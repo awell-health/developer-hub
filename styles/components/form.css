@@ -1,0 +1,12 @@
+@layer components {
+    .input-base {
+        @apply block w-full border-2 text-gray-900 rounded;
+        border-color: #002f3c;
+        box-shadow: 2px 2px 0 #002f3c;
+    }
+    .input-base:focus {
+        @apply border-blue-500;
+        outline: none;
+        box-shadow: 3px 3px 0 #3b82f6;
+    }
+}

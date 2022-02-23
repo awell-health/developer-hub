@@ -1,0 +1,25 @@
+@layer components {
+    .btn-base {
+      @apply text-slate-800 font-inter cursor-pointer inline-block bg-yellow-200 rounded border border-2 py-1 px-4 text-sm font-medium whitespace-nowrap text-center transition duration-75 ease-in;
+      border-color: #002f3c;
+    }
+    .btn-base:focus {
+        @apply border-blue-500;
+        outline: none;
+        box-shadow: 3px 3px 0 #3b82f6;
+    }
+    .btn-ltr {
+      box-shadow: 3px 3px 0 #002f3c;
+    }
+    .btn-ltr:hover {
+      box-shadow: 1px 1px 0 #002f3c;
+      transform: translate(2px, 2px);
+    }
+    .btn-rtl {
+      box-shadow: -3px 3px 0 #002f3c;
+    }
+    .btn-rtl:hover {
+      box-shadow: -1px 1px 0 #002f3c;
+      transform: translate(-2px, 2px);
+    }
+  }

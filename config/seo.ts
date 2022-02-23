@@ -1,1 +1,11 @@
-export const APP_VERSION: number = 'v1.0.0'
+interface SEO {
+  rootUrl: string
+  title: string
+  description: string
+}
+
+export const SEO: SEO = {
+  rootUrl: 'https://awell.health',
+  title: 'Awell Healt',
+  description: `Write description`,
+}
