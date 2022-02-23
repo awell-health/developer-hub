@@ -1,16 +1,7 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@import "tailwindcss/base";
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@import "tailwindcss/components";
+/** Import custom css components here **/
 
-* {
-  box-sizing: border-box;
-}
+@import "tailwindcss/utilities";
+/** Import custom css utilities here **/
