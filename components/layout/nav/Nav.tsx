@@ -17,12 +17,12 @@ export const Nav = () => {
 
   return (
     <>
-      <nav className="fixed w-full md:w-11/12 lg:w-10/12 left-1/2 transform -translate-x-1/2 py-5 px-4 sm:px-8 mx-auto bg-white rounded-b-2xl drop-shadow-md">
-        <div className="flex items-center justify-between mx-auto">
+      <nav className="fixed z-20 w-full md:w-11/12 lg:w-10/12 left-1/2 transform -translate-x-1/2 h-16 px-4 sm:px-8 mx-auto bg-white rounded-b-2xl drop-shadow">
+        <div className="flex h-full items-center justify-between mx-auto">
           <Link href="/">
             <a
               title="Awell Health"
-              className="block max-w-full	h-auto w-32 leading-none"
+              className="block max-w-full	h-auto w-28 leading-none"
             >
               <Image src={awellLogo} alt="Awell Health" />
             </a>

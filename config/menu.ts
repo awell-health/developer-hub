@@ -1,63 +1,81 @@
 export type MenuItemType = {
   title: string
   path?: string
+  subMenu?: {
+    title: string
+    path: string
+  }[]
 }
 
-interface MenuItem extends MenuItemType {
-  routes: MenuItemType[]
-}
+export const navHeight = 16
 
-export const menu: MenuItem[] = [
+export const menu: MenuItemType[] = [
   {
-    title: 'Why Awell?',
-    routes: [
+    title: 'Products',
+    subMenu: [
       {
-        title: 'Installation',
+        title: 'Awell Studio',
         path: '/docs/getting-started',
       },
       {
-        title: 'Upgrade to v1',
-        path: '/docs/migration',
+        title: 'Orchestration API',
+        path: '/docs/getting-started',
+      },
+      {
+        title: 'Awell Care',
+        path: '/docs/getting-started',
+      },
+      {
+        title: 'Awell Score',
+        path: '/docs/getting-started',
       },
     ],
   },
   {
-    title: 'Products',
-    routes: [
+    title: 'Use Cases',
+    subMenu: [
       {
-        title: 'Installation',
+        title: 'To do',
+        path: '/docs/getting-started',
+      },
+    ],
+  },
+  {
+    title: 'Developers',
+    subMenu: [
+      {
+        title: 'API Quickstart',
         path: '/docs/getting-started',
       },
       {
-        title: 'Upgrade to v1',
-        path: '/docs/migration',
+        title: 'API Reference',
+        path: '/docs/getting-started',
       },
     ],
   },
   {
     title: 'Company',
-    routes: [
+    subMenu: [
       {
-        title: 'Installation',
+        title: 'About Us',
         path: '/docs/getting-started',
       },
       {
-        title: 'Upgrade to v1',
-        path: '/docs/migration',
+        title: 'Values',
+        path: '/docs/getting-started',
+      },
+      {
+        title: 'Careers',
+        path: '/docs/getting-started',
+      },
+      {
+        title: 'Blog',
+        path: '/docs/getting-started',
       },
     ],
   },
   {
     title: 'Pricing',
-    routes: [
-      {
-        title: 'Installation',
-        path: '/docs/getting-started',
-      },
-      {
-        title: 'Upgrade to v1',
-        path: '/docs/migration',
-      },
-    ],
+    path: '/pricing',
   },
 ]
