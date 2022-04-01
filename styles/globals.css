@@ -1,7 +1,11 @@
-@import "tailwindcss/base";
+@import 'tailwindcss/base';
 
-@import "tailwindcss/components";
-/** Import custom css components here **/
+@import 'tailwindcss/components';
+@import './components/layout.css';
+@import './components/typography.css';
+@import './components/docSearch.css';
+@import './components/code.css';
+@import './components/button.css';
 
-@import "tailwindcss/utilities";
+@import 'tailwindcss/utilities';
 /** Import custom css utilities here **/

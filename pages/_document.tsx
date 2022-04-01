@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -13,7 +12,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body>
+      <body className="antialiased bg-white dark:bg-slate-900">
         <Main />
         <NextScript />
       </body>
