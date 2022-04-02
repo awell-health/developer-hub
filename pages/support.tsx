@@ -8,15 +8,15 @@ export default function Community() {
     <>
       <header className="mb-20 max-w-xl">
         <p className="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-          Community
+          Support
         </p>
         <h1 className="mb-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200">
-          Everything else you need to build awesome Tailwind CSS websites
+          We are here to help you!
         </h1>
-        <p className="text-lg text-slate-700 dark:text-slate-400">
+        {/* <p className="text-lg text-slate-700 dark:text-slate-400">
           We think Tailwind is an amazing CSS framework, but you need more than
           just a CSS framework to produce visually awesome work.
-        </p>
+        </p> */}
       </header>
     </>
   )
