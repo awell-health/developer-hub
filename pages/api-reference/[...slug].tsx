@@ -83,6 +83,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const toc = getTableOfContents(content)
   // https://github.com/hashicorp/next-mdx-remote/issues/86
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   const mdxSource = await serialize(content, mdxOptions)
 
   return {
