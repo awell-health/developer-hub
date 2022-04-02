@@ -72,7 +72,7 @@ export default function Home() {
         <h2 className="max-w-4xl mt-4 font-brand text-5xl sm:text-6xl lg:text-7xl font-bold">
           Buy, not build.
         </h2>
-        <p className="mt-4 text-neutrals-light-10 text-xlg">
+        <p className="mt-4 text-neutrals-light-10 text-lg">
           Build end-to-end care flows in days and orchestrate your them through
           our easy-to-use APIs.
         </p>
