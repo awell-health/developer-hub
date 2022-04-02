@@ -140,11 +140,6 @@ export default function Home() {
                 </div>
                 <div className="lg:col-span-2">
                   <figure className="relative overflow-hidden bg-white border-2 rounded-lg border-aqua">
-                    <img
-                      src="/images/home/chrome-macos.png"
-                      style={{ boxShadow: '0 1px 0 rgba(0,0,0,0.1)' }}
-                      alt=""
-                    />
                     <video
                       autoPlay
                       muted

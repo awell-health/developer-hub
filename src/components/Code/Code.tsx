@@ -2,6 +2,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/github'
 
 interface CodeProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any
   className: string
 }
@@ -14,6 +15,8 @@ export const Code = ({ children, className }: CodeProps) => {
       {...defaultProps}
       theme={theme}
       code={children.trim()}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
       language={language}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

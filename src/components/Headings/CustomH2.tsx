@@ -1,6 +1,10 @@
 import Link from 'next/link'
 
-export const CustomH2 = ({ id, ...rest }) => {
+interface PropsType {
+  id: string
+}
+
+export const CustomH2 = ({ id, ...rest }: PropsType) => {
   if (id) {
     return (
       <h2 id={`#${id}`} className="group flex whitespace-pre-wrap">

@@ -4,6 +4,8 @@ import { TableOfContentsType } from '../types/toc.types'
 
 export const getTableOfContents = (content: string): TableOfContentsType => {
   const regexp = new RegExp(/^(### |## )(.*)\n/, 'gm')
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   const headings = [...content.matchAll(regexp)]
 
   let tableOfContents: TableOfContentsType = []
