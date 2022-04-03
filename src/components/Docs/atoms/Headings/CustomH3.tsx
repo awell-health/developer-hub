@@ -7,10 +7,13 @@ interface PropsType {
 export const CustomH3 = ({ id, ...rest }: PropsType) => {
   if (id) {
     return (
-      <h3 id={id} className="group flex whitespace-pre-wrap scroll-mt-24">
+      <h3
+        id={id}
+        className="group relative flex whitespace-pre-wrap scroll-mt-24"
+      >
         <Link href={`#${id}`}>
           <a
-            className="absolute -ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100"
+            className="absolute -ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100 top-0.5"
             aria-label="Anchor"
           >
             <div className="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700 dark:bg-slate-700 dark:text-slate-300 dark:shadow-none dark:ring-0">
