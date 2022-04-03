@@ -1,7 +1,6 @@
 import rehypeSlug from 'rehype-slug'
 
-import { Code } from '../../src/components/Code'
-import { CustomH2, CustomH3 } from '../../src/components/Headings'
+import { Code, CustomH2, CustomH3 } from '../../src/components/Docs/atoms'
 
 export const mdxOptions = {
   mdxOptions: {

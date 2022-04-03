@@ -1,0 +1,1 @@
+export { EditOnGithub } from './EditOnGithub'

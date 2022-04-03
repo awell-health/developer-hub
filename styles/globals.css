@@ -6,6 +6,7 @@
 @import './components/docSearch.css';
 @import './components/code.css';
 @import './components/button.css';
+@import './components/docStyles.css';
 
 @import 'tailwindcss/utilities';
 /** Import custom css utilities here **/

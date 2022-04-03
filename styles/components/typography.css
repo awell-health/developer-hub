@@ -1,5 +1,10 @@
 body {
-  @apply text-slate-500 dark:text-slate-400;
+  @apply font-source-sans-pro text-slate-500 dark:text-slate-400;
+}
+
+h2,
+h3 {
+  @apply mb-4;
 }
 
 h1 {
@@ -7,9 +12,9 @@ h1 {
 }
 
 h2 {
-  @apply text-slate-900 text-xl tracking-tight font-bold dark:text-slate-200;
+  @apply text-xl sm:text-2xl text-slate-900 tracking-tight font-bold dark:text-slate-200;
 }
 
 h3 {
-  @apply text-slate-900 text-lg tracking-tight font-bold dark:text-slate-200;
+  @apply text-lg sm:text-xl text-slate-900 tracking-tight font-bold dark:text-slate-200;
 }

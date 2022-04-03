@@ -1,7 +1,6 @@
-import { BadgeColorType } from '../../components/Badge/badge.types'
-import { type MenuItemType } from '../../types/menu.types'
+import { type MenuItemType, BadgeType } from '../../types/menu.types'
 
-const badges: { [key in string]: { label: string; color: BadgeColorType } } = {
+const badges: { [key in string]: BadgeType } = {
   patient: { label: 'Patient', color: 'green' },
   pathway: { label: 'Pathway', color: 'purple' },
   activity: { label: 'Activity', color: 'indigo' },

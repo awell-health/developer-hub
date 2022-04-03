@@ -1,13 +1,14 @@
 import { BadgeColorType } from '../components/Badge/badge.types'
 
+export type BadgeType = { label: string; color?: BadgeColorType }
+
+export type SubmenuItemType = {
+  title: string
+  path: string
+  badge?: BadgeType
+}
+
 export type MenuItemType = {
   title: string
-  submenu?: {
-    title: string
-    path: string
-    badge?: {
-      label: string
-      color?: BadgeColorType
-    }
-  }[]
+  submenu?: SubmenuItemType[]
 }

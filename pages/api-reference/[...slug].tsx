@@ -4,6 +4,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { ParsedUrlQuery } from 'querystring'
 import { ReactNode } from 'react'
 
+import { DocsHeader } from '../../src/components/Docs/atoms'
 import { DocsLayout } from '../../src/components/Layouts'
 import { TOC } from '../../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../../src/config/mdx'
@@ -12,6 +13,7 @@ import { TableOfContentsType } from '../../src/types/toc.types'
 import {
   getAllApiDocs,
   getApiDoc,
+  getBadeForDoc,
   getHeadingForDoc,
   getTableOfContents,
 } from '../../src/utils'
@@ -33,28 +35,19 @@ export default function ApiPage({
   toc,
 }: ApiPageProps) {
   const heading = getHeadingForDoc(slug)
+  const badge = getBadeForDoc(slug)
 
   return (
     <div>
-      <header id="header" className="relative z-20 mb-10">
-        <div>
-          {heading && (
-            <p className="mb-2 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-              {heading}
-            </p>
-          )}
-          <div className="flex items-center">
-            <h1 className="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
-              {frontMatter.title}
-            </h1>
-          </div>
-        </div>
-        {frontMatter.description && (
-          <p className="mt-2 text-lg text-slate-700 dark:text-slate-400">
-            {frontMatter.description}
-          </p>
-        )}
-      </header>
+      {heading && (
+        <DocsHeader
+          heading={heading}
+          title={frontMatter.title}
+          description={frontMatter.description}
+          badge={badge}
+          githubUrl={`/content/api-reference/${slug}.mdx`}
+        />
+      )}
       <div id="content-wrapper">
         <MDXRemote {...mdxSource} components={mdxComponents} />
       </div>
