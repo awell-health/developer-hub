@@ -1,6 +1,6 @@
 import { Badge } from '../../../../components/Badge'
 import { BadgeType } from '../../../../types/menu.types'
-import { EditOnGithub } from '../../../Button/variants'
+import { EditOnGithub, OpenInPostman } from '../../../Button/variants'
 
 interface DocsHeaderProps {
   heading?: string
@@ -8,6 +8,7 @@ interface DocsHeaderProps {
   description?: string
   badge?: BadgeType
   githubUrl?: string
+  postmanUrl?: string
 }
 
 export const DocsHeader = ({
@@ -16,6 +17,7 @@ export const DocsHeader = ({
   description,
   badge,
   githubUrl,
+  postmanUrl,
 }: DocsHeaderProps) => (
   <header id="header" className="relative z-20">
     <div>
@@ -40,11 +42,18 @@ export const DocsHeader = ({
         {description}
       </p>
     )}
-    {githubUrl && (
-      <div className="mt-2">
-        <EditOnGithub href={githubUrl} />
-      </div>
-    )}
+    <div className="flex">
+      {githubUrl && (
+        <div className="mt-2">
+          <EditOnGithub href={githubUrl} />
+        </div>
+      )}
+      {postmanUrl && (
+        <div className="mt-2 ml-3">
+          <OpenInPostman postmanUrl="#" />
+        </div>
+      )}
+    </div>
     <div className="border-b border-gray-200 dark:border-gray-800 my-6"></div>
   </header>
 )

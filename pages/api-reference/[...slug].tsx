@@ -46,6 +46,7 @@ export default function ApiPage({
           description={frontMatter.description}
           badge={badge}
           githubUrl={`/content/api-reference/${slug}.mdx`}
+          postmanUrl={'#'}
         />
       )}
       <div id="content-wrapper">
