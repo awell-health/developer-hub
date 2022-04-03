@@ -1,5 +1,23 @@
 #content-wrapper {
-  @apply text-slate-600;
+  @apply text-slate-600 mb-32;
+}
+
+#content-wrapper strong,
+#content-wrapper bold {
+  @apply text-sky-500;
+}
+
+#content-wrapper a:not([aria-label='Anchor']) {
+  @apply font-bold border-b border-sky-500;
+}
+
+#content-wrapper a:not([aria-label='Anchor']):hover {
+  @apply border-b-2;
+}
+
+#content-wrapper h2,
+#content-wrapper h3 {
+  @apply mt-8;
 }
 
 #content-wrapper h2 + p,
@@ -7,6 +25,24 @@
   @apply mt-0;
 }
 
+#content-wrapper ol {
+  @apply list-decimal;
+}
+
+#content-wrapper ul {
+  @apply list-disc;
+}
+
+#content-wrapper ol,
+#content-wrapper ul {
+  @apply sm:text-lg pl-4 mb-6 leading-7 dark:text-slate-400;
+}
+
+#content-wrapper ol li,
+#content-wrapper ul li {
+  @apply mb-2 pl-2;
+}
+
 #content-wrapper p {
-  @apply sm:text-lg my-6 leading-7;
+  @apply sm:text-lg my-6 leading-7 dark:text-slate-400;
 }
