@@ -7,7 +7,7 @@ interface PropsType {
 export const CustomH2 = ({ id, ...rest }: PropsType) => {
   if (id) {
     return (
-      <h2 id={`#${id}`} className="group flex whitespace-pre-wrap">
+      <h2 id={id} className="group flex whitespace-pre-wrap scroll-mt-24">
         <Link href={`#${id}`}>
           <a
             className="absolute -ml-10 flex items-center opacity-0 border-0 group-hover:opacity-100"
