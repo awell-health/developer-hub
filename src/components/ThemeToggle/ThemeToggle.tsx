@@ -1,16 +1,16 @@
-import { Fragment } from 'react'
+import { useContext } from 'react'
 
-import { useTheme } from '../../hooks/useTheme'
+import { AppContext } from '../../contexts/app/AppContext'
 import { MoonIcon, SunIcon } from './icons'
 
 export const ThemeToggle = () => {
-  const { theme, changeTheme } = useTheme()
+  const { toggleTheme, theme } = useContext(AppContext)
 
   return (
     <>
       <span
         className="dark:hidden cursor-pointer"
-        onClick={() => changeTheme()}
+        onClick={() => toggleTheme()}
       >
         <SunIcon
           className="w-6 h-6"
@@ -19,7 +19,7 @@ export const ThemeToggle = () => {
       </span>
       <span
         className="hidden dark:inline cursor-pointer"
-        onClick={() => changeTheme()}
+        onClick={() => toggleTheme()}
       >
         <MoonIcon
           className="w-6 h-6"

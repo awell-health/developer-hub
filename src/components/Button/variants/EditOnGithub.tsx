@@ -1,12 +1,14 @@
 import Link from 'next/link'
 
+import { editOnGithubLink } from '../../../config/github'
+
 interface ButtonProps {
   href: string
 }
 
 export const EditOnGithub = ({ href }: ButtonProps) => {
   return (
-    <Link href={href}>
+    <Link href={`${editOnGithubLink}${href}`}>
       <a
         title="Edit this page on Github"
         target="_blank"

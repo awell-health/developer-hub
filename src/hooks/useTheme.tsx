@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-type ThemeType = 'light' | 'dark'
+import { type ThemeType } from '../types/theme.types'
 
 const DEFAULT_THEME: ThemeType = 'light'
 
@@ -10,7 +10,7 @@ export const useTheme = (): {
 } => {
   const [theme, setTheme] = useState<ThemeType>(DEFAULT_THEME)
 
-  function changeTheme() {
+  const changeTheme = () => {
     if (theme === 'light') {
       document.querySelector('html')?.classList?.add?.('dark')
       setTheme('dark')

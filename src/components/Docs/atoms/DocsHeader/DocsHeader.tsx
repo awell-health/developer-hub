@@ -1,5 +1,4 @@
 import { Badge } from '../../../../components/Badge'
-import { editOnGithubLink } from '../../../../config/github'
 import { BadgeType } from '../../../../types/menu.types'
 import { EditOnGithub } from '../../../Button/variants'
 
@@ -43,7 +42,7 @@ export const DocsHeader = ({
     )}
     {githubUrl && (
       <div className="mt-2">
-        <EditOnGithub href={`${editOnGithubLink}/${githubUrl}`} />
+        <EditOnGithub href={githubUrl} />
       </div>
     )}
     <div className="border-b border-gray-200 dark:border-gray-800 my-6"></div>

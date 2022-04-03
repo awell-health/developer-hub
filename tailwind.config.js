@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        proseBg: '#1e293b',
+      },
       fontFamily: {
         'space-mono': ['Space Mono', 'monospace'],
         'source-sans-pro': ['Source Sans Pro', 'sans-serif'],
