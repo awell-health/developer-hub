@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { ReactNode } from 'react'
 
 import awellLogo from '../public/awell-full-logo.svg'
+import featuredSteps from '../public/images/3-easy-steps.png'
 import featuredWorkflows from '../public/images/automate-digital-workflows.png'
 import { LinkButton } from '../src/components/Button'
 import { HomeLayout } from '../src/components/Layouts/'
@@ -140,20 +141,11 @@ export default function Home() {
                 </div>
                 <div className="lg:col-span-2">
                   <figure className="relative overflow-hidden bg-white border-2 rounded-lg border-aqua">
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      poster="/images/home/builder-poster.jpg"
-                      className="w-full rounded-lg -mb-0.5"
-                    >
-                      <source
-                        src="https://a.storyblok.com/f/127629/x/9ec619d99a/builder-demo.mp4"
-                        type="video/mp4"
-                      />
-                      Your browser does not support the video tag.
-                    </video>
+                    <Image
+                      className="rounded-lg w-full -mb-0.5"
+                      src={featuredSteps}
+                      alt="3 easy steps"
+                    />
                   </figure>
                 </div>
               </div>
