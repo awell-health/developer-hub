@@ -70,7 +70,7 @@ export default function Home() {
           Clinical workflow automation made easy
         </h5>
         <h2 className="max-w-4xl mt-4 font-brand text-5xl sm:text-6xl lg:text-7xl font-bold">
-          Buy, not build.
+          We can’t wait to see what you build
         </h2>
         <p className="mt-4 text-neutrals-light-10 text-lg">
           Build end-to-end care flows in days and orchestrate your them through
