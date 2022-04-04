@@ -3,4 +3,931 @@ title: Schema
 description: Schema
 ---
 
-Hey, we are currently working on this page!
+```graphql
+enum ActionType {
+  API_CALL
+  CALCULATION
+  CHECKLIST
+  FORM
+  MESSAGE
+  PUSH_TO_EMR
+}
+
+type ActivitiesPayload implements Payload {
+  activities: [Activity!]!
+  code: String!
+  success: Boolean!
+}
+
+type Activity {
+  action: ActivityAction!
+  container_name: String
+  context: PathwayContext
+  date: String!
+  id: ID!
+  indirect_object: ActivityObject
+  isUserActivity: Boolean!
+  label: ActivityLabel
+  object: ActivityObject!
+  public: Boolean
+  reference_id: String!
+  resolution: ActivityResolution
+  status: ActivityStatus!
+  stream_id: String!
+  sub_activities: [SubActivity!]!
+  subject: ActivitySubject!
+  track: ActivityTrack
+}
+
+enum ActivityAction {
+  ACTIVATE
+  ASSIGNED
+  COMPLETE
+  COMPUTED
+  DELIVER
+  DISCARD
+  FAILED
+  FAILED_TO_SEND
+  PROCESSED
+  READ
+  REMIND
+  SEND
+  STOPPED
+  SUBMITTED
+}
+
+type ActivityLabel {
+  color: String!
+  id: String
+  text: String!
+}
+
+type ActivityObject {
+  email: String
+  id: String!
+  name: String!
+  preferred_language: String
+  type: ActivityObjectType!
+}
+
+enum ActivityObjectType {
+  ACTION
+  API_CALL
+  CALCULATION
+  CHECKLIST
+  EMR_REPORT
+  EMR_REQUEST
+  EVALUATED_RULE
+  FORM
+  MESSAGE
+  PATHWAY
+  PATIENT
+  REMINDER
+  STAKEHOLDER
+  STEP
+  TRACK
+  USER
+}
+
+enum ActivityResolution {
+  FAILURE
+  SUCCESS
+}
+
+enum ActivityStatus {
+  ACTIVE
+  CANCELED
+  DONE
+  FAILED
+}
+
+type ActivitySubject {
+  id: String
+  name: String!
+  type: ActivitySubjectType!
+}
+
+enum ActivitySubjectType {
+  AWELL
+  STAKEHOLDER
+  USER
+}
+
+type ActivityTrack {
+  id: String
+  title: String!
+}
+
+type Address {
+  city: String
+  country: String
+  state: String
+  street: String
+  zip: String
+}
+
+input AddressInput {
+  city: String
+  country: String
+  state: String
+  street: String
+  zip: String
+}
+
+type Answer {
+  question_id: String!
+  value: String!
+  value_type: DataPointValueType!
+}
+
+input AnswerInput {
+  question_id: String!
+  value: String!
+}
+
+type ApiCall {
+  id: ID!
+  request: ApiCallRequest!
+  responses: [ApiCallResponse!]!
+}
+
+type ApiCallHeader {
+  key: String!
+  value: String!
+}
+
+type ApiCallPayload implements Payload {
+  api_call: ApiCall!
+  code: String!
+  success: Boolean!
+}
+
+type ApiCallRequest {
+  body: String!
+  endpoint: String!
+  headers: [ApiCallHeader!]!
+}
+
+type ApiCallResponse {
+  body: String!
+  date: String!
+  status: Float!
+}
+
+type BaselineDataPoint {
+  definition: DataPointDefinition!
+  value: String
+}
+
+input BaselineInfoInput {
+  data_point_definition_id: String!
+  value: String!
+}
+
+type BaselineInfoPayload implements Payload {
+  baselineDataPoints: [BaselineDataPoint!]!
+  code: String!
+  success: Boolean!
+}
+
+type CalculationResultsPayload {
+  result: [SingleCalculationResult!]!
+}
+
+type Checklist {
+  items: [String!]!
+  title: String!
+}
+
+type ChecklistPayload implements Payload {
+  checklist: Checklist
+  code: String!
+  success: Boolean!
+}
+
+input CreatePatientInput {
+  address: AddressInput
+  birth_date: String
+  email: String
+  first_name: String
+  last_name: String
+  mobile_phone: String
+  national_registry_number: String
+  patient_code: String
+  phone: String
+  preferred_language: String
+
+  """
+  Sex code as defined by ISO standard IEC_5218, 0 - NOT_KNOWN, 1 - MALE, 2 - FEMALE
+  """
+  sex: Sex
+}
+
+type CreatePatientPayload {
+  patient: User
+}
+
+type DataPointDefinition {
+  category: DataPointSourceType!
+  id: ID!
+  key: String!
+  possibleValues: [DataPointPossibleValue!]
+  range: Range
+  title: String!
+  unit: String
+  valueType: DataPointValueType!
+}
+
+input DataPointInput {
+  data_point_definition_id: String!
+  value: String!
+}
+
+type DataPointPossibleValue {
+  label: String
+  value: String!
+}
+
+enum DataPointSourceType {
+  CALCULATION
+  FORM
+  PATHWAY
+  PATIENT_PROFILE
+  STEP
+  TRACK
+}
+
+enum DataPointValueType {
+  BOOLEAN
+  DATE
+  NUMBER
+  NUMBERS_ARRAY
+  STRING
+}
+
+input DeletePathwayInput {
+  pathway_id: String!
+}
+
+input DeletePatientInput {
+  patient_id: String!
+}
+
+type Element {
+  activity_type: ActionType
+  context: PathwayContext!
+  end_date: String
+  id: ID!
+  label: ActivityLabel
+  name: String!
+  parent_id: ID
+  stakeholders: [ElementStakeholder!]!
+  start_date: String!
+  status: ElementStatus!
+  type: ElementType!
+}
+
+type ElementStakeholder {
+  id: ID!
+  name: String
+}
+
+enum ElementStatus {
+  ACTIVE
+  DONE
+}
+
+enum ElementType {
+  ACTION
+  PATHWAY
+  STEP
+  TRACK
+  TRIGGER
+}
+
+type ElementsPayload implements Payload {
+  code: String!
+  elements: [Element!]!
+  success: Boolean!
+}
+
+type EmptyPayload implements Payload {
+  code: String!
+  success: Boolean!
+}
+
+type EmrReport {
+  id: ID!
+  message_html: String!
+  metadata: [EmrReportMetadataField!]
+}
+
+type EmrReportMetadataField {
+  id: ID!
+  label: String!
+  value: String
+}
+
+type EmrReportPayload implements Payload {
+  code: String!
+  report: EmrReport
+  success: Boolean!
+}
+
+input EvaluateFormRulesInput {
+  answers: [AnswerInput!]!
+  form_id: String!
+}
+
+type EvaluateFormRulesPayload {
+  results: [QuestionRuleResult!]!
+}
+
+type Form {
+  id: String!
+  questions: [Question!]!
+  title: String!
+}
+
+type FormPayload implements Payload {
+  code: String!
+  form: Form
+  success: Boolean!
+}
+
+type FormResponse {
+  answers: [Answer!]!
+}
+
+type FormResponsePayload {
+  response: FormResponse!
+}
+
+type FormattedText {
+  content: TranslatedText!
+  format: String!
+}
+
+input MarkMessageAsReadInput {
+  activity_id: String!
+}
+
+type MarkMessageAsReadPayload {
+  activity: Activity!
+}
+
+type Message {
+  attachments: [MessageAttachment!]
+  body: String!
+  format: MessageFormat!
+  id: ID!
+  subject: String!
+}
+
+type MessageAttachment {
+  id: ID!
+  name: String!
+  type: MessageAttachmentType!
+  url: String!
+}
+
+enum MessageAttachmentType {
+  FILE
+  LINK
+  VIDEO
+}
+
+enum MessageFormat {
+  HTML
+  SLATE
+}
+
+type MessagePayload implements Payload {
+  code: String!
+  message: Message
+  success: Boolean!
+}
+
+type Mutation {
+  createPatient(input: CreatePatientInput): CreatePatientPayload!
+  deletePathway(input: DeletePathwayInput!): EmptyPayload!
+  deletePatient(input: DeletePatientInput!): EmptyPayload!
+  evaluateFormRules(input: EvaluateFormRulesInput!): EvaluateFormRulesPayload!
+  markMessageAsRead(input: MarkMessageAsReadInput!): MarkMessageAsReadPayload!
+  retryActivity(input: RetryActivityInput!): EmptyPayload!
+  retryAllFailedWebhookCalls(
+    input: RetryAllFailedWebhookCallsInput!
+  ): RetryAllFailedWebhookCallsPayload!
+  retryAllWebhookCalls(
+    input: RetryAllWebhookCallsInput!
+  ): RetryAllWebhookCallsPayload!
+  retryWebhookCall(input: RetryWebhookCallInput!): RetryWebhookCallPayload!
+  saveBaselineInfo(input: SaveBaselineInfoInput!): EmptyPayload!
+  startPathway(input: StartPathwayInput!): StartPathwayPayload!
+  stopPathway(input: StopPathwayInput!): EmptyPayload!
+  submitChecklist(input: SubmitChecklistInput!): SubmitChecklistPayload!
+  submitFormResponse(
+    input: SubmitFormResponseInput!
+  ): SubmitFormResponsePayload!
+  updateBaselineInfo(input: UpdateBaselineInfoInput!): EmptyPayload!
+  updatePatient(input: UpdatePatientInput!): UpdatePatientPayload!
+}
+
+type Option {
+  id: ID!
+  label: String!
+  value: Float!
+}
+
+type Pathway {
+  activities: [Activity!]!
+  dashboards: PathwayDashboard
+  id: ID!
+  patient: User!
+  patient_id: String!
+  start_date: SafeDate
+  status: PathwayStatus!
+  swimlanes: Swimlanes!
+  title: String!
+  tracks: [Track!]!
+}
+
+type PathwayContext {
+  action_id: String
+  instance_id: String!
+  pathway_id: String!
+  step_id: String
+  track_id: String
+}
+
+type PathwayDashboard {
+  cumulio_auth_id: String!
+  cumulio_auth_token: String!
+  dashboard_ids: [String!]!
+}
+
+type PathwayPayload implements Payload {
+  code: String!
+  pathway: Pathway
+  success: Boolean!
+}
+
+enum PathwayStatus {
+  active
+  completed
+  missing_baseline_info
+  starting
+  stopped
+}
+
+type PathwaySummary {
+  id: ID!
+  status: PathwayStatus!
+  title: String!
+}
+
+type PathwaysPayload implements Payload {
+  code: String!
+  pathways: [PathwaySummary!]!
+  success: Boolean!
+}
+
+type PatientPathway {
+  id: ID!
+  pathway_definition_id: String!
+  status: PathwayStatus!
+  status_explanation: String
+  title: String!
+}
+
+type PatientPathwaysPayload implements Payload {
+  code: String!
+  patientPathways: [PatientPathway!]!
+  success: Boolean!
+}
+
+type PatientPayload implements Payload {
+  code: String!
+  patient: User
+  success: Boolean!
+}
+
+input PatientProfileInput {
+  address: AddressInput
+  birth_date: String
+  email: String
+  first_name: String
+  last_name: String
+  mobile_phone: String
+  national_registry_number: String
+  patient_code: String
+  phone: String
+  preferred_language: String
+
+  """
+  Sex code as defined by ISO standard IEC_5218, 0 - NOT_KNOWN, 1 - MALE, 2 - FEMALE
+  """
+  sex: Sex
+}
+
+type PatientsPayload implements Payload {
+  code: String!
+  patients: [User!]!
+  success: Boolean!
+}
+
+interface Payload {
+  code: String!
+  success: Boolean!
+}
+
+type PublishedPathwayDefinition {
+  """
+  Starting/baseline data point definitions for the pathway
+  """
+  dataPointDefinitions: [DataPointDefinition!]!
+  id: ID!
+  title: String!
+}
+
+type PublishedPathwayDefinitionsPayload implements Payload {
+  code: String!
+  publishedPathwayDefinitions: [PublishedPathwayDefinition!]!
+  success: Boolean!
+}
+
+type Query {
+  apiCall(id: String!): ApiCallPayload!
+  baselineInfo(pathway_id: String!): BaselineInfoPayload!
+  calculationResults(
+    activity_id: String!
+    pathway_id: String!
+  ): CalculationResultsPayload!
+  checklist(id: String!): ChecklistPayload!
+  emrReport(id: String!): EmrReportPayload!
+  form(id: String!): FormPayload!
+  formResponse(activity_id: String!, pathway_id: String!): FormResponsePayload!
+  message(id: String!): MessagePayload!
+  myActivities(pathway_id: String!): ActivitiesPayload!
+  myPathways: PathwaysPayload!
+  myPendingActivities: ActivitiesPayload!
+  pathway(id: String!): PathwayPayload!
+  pathwayActivities(pathway_id: String!): ActivitiesPayload!
+  pathwayElements(pathway_id: String!): ElementsPayload!
+  pathwayStepActivities(
+    pathway_id: String!
+    step_id: String!
+  ): ActivitiesPayload!
+  patient(id: String!): PatientPayload!
+  patientPathways(patient_id: String!): PatientPathwaysPayload!
+  patients: PatientsPayload!
+  publishedPathwayDefinitions: PublishedPathwayDefinitionsPayload!
+  searchPatientsByNationalRegistryNumber(
+    national_registry_number: String!
+  ): SearchPatientsPayload!
+  searchPatientsByPatientCode(patient_code: String!): SearchPatientsPayload!
+  webhookCall(webhook_call_id: String!): WebhookCallPayload!
+  webhookCalls(pathway_id: String!): WebhookCallsPayload!
+  whoami: UserPayload!
+}
+
+type Question {
+  dataPointValueType: DataPointValueType
+  id: ID!
+  options: [Option!]
+  questionConfig: QuestionConfig
+  questionType: QuestionType
+  title: String!
+  userQuestionType: UserQuestionType
+}
+
+type QuestionConfig {
+  mandatory: Boolean!
+  recode_enabled: Boolean
+  slider: SliderConfig
+}
+
+input QuestionResponseInput {
+  question_id: String!
+  value: String!
+}
+
+type QuestionRuleResult {
+  question_id: String!
+  rule_id: String!
+  satisfied: Boolean!
+}
+
+enum QuestionType {
+  INPUT
+  MULTIPLE_CHOICE
+  NO_INPUT
+}
+
+type Range {
+  max: Float
+  min: Float
+}
+
+input RetryActivityInput {
+  activity_id: String!
+}
+
+input RetryAllFailedWebhookCallsInput {
+  pathway_id: String!
+}
+
+type RetryAllFailedWebhookCallsPayload implements Payload {
+  code: String!
+  success: Boolean!
+  webhook_calls: [WebhookCall!]!
+}
+
+input RetryAllWebhookCallsInput {
+  pathway_id: String!
+}
+
+type RetryAllWebhookCallsPayload implements Payload {
+  code: String!
+  success: Boolean!
+  webhook_calls: [WebhookCall!]!
+}
+
+input RetryWebhookCallInput {
+  webhook_call_id: String!
+}
+
+type RetryWebhookCallPayload implements Payload {
+  code: String!
+  success: Boolean!
+  webhook_call: WebhookCall!
+}
+
+"""
+Safe date scalar that can serialize string or date
+"""
+scalar SafeDate
+
+input SaveBaselineInfoInput {
+  baseline_info: [BaselineInfoInput!]!
+  pathway_id: String!
+}
+
+type SearchPatientsPayload implements Payload {
+  code: String!
+  patients: [User!]!
+  success: Boolean!
+}
+
+enum Sex {
+  FEMALE
+  MALE
+  NOT_KNOWN
+}
+
+type SingleCalculationResult {
+  status: String
+  subresult_id: String!
+  unit: String
+  value: String!
+  value_type: DataPointValueType
+}
+
+type SliderConfig {
+  display_marks: Boolean!
+  is_value_tooltip_on: Boolean!
+  max: Float!
+  max_label: String!
+  min: Float!
+  min_label: String!
+  show_min_max_values: Boolean!
+  step_value: Float!
+}
+
+input StartPathwayInput {
+  data_points: [DataPointInput!]
+  pathway_definition_id: String!
+  patient_id: String!
+}
+
+type StartPathwayPayload {
+  pathway_id: String!
+}
+
+input StopPathwayInput {
+  pathway_id: String!
+  reason: String
+}
+
+type SubActivity {
+  action: ActivityAction!
+  date: String!
+  error: String
+  id: String!
+  object: ActivityObject
+  subject: ActivitySubject!
+}
+
+input SubmitChecklistInput {
+  activity_id: String!
+}
+
+type SubmitChecklistPayload {
+  activity: Activity!
+}
+
+input SubmitFormResponseInput {
+  activity_id: String!
+  response: [QuestionResponseInput!]!
+}
+
+type SubmitFormResponsePayload {
+  activity: Activity!
+}
+
+type Subscription {
+  activityCompleted(
+    only_patient_activities: Boolean
+    pathway_id: String
+  ): Activity!
+  activityCreated(
+    only_patient_activities: Boolean
+    pathway_id: String
+  ): Activity!
+  activityUpdated(
+    only_patient_activities: Boolean
+    pathway_id: String
+  ): Activity!
+  elementCompleted(pathway_id: String!): Element!
+  elementCreated(pathway_id: String!): Element!
+  elementUpdated(pathway_id: String!): Element!
+  pathwayUpdated(id: ID!): Pathway!
+  webhookCallCreated(pathway_id: String!): WebhookCall!
+  webhookCallUpdated(pathway_id: String!): WebhookCall!
+}
+
+type Swimlane {
+  id: ID!
+  title: String!
+}
+
+type SwimlaneItem {
+  category: SwimlaneItemCategory!
+  column_index: Float!
+  date: SafeDate
+  documentation: FormattedText
+  id: ID!
+  info: String
+  lane_id: ID!
+  row_index: Float!
+  title: String!
+  track_id: ID
+  type: SwimlaneItemType!
+}
+
+enum SwimlaneItemCategory {
+  ACTION
+  PATHWAY_END
+  PATHWAY_START
+  STEP
+  TRACK
+  TRACK_END
+  TRACK_START
+}
+
+enum SwimlaneItemType {
+  active
+  completed
+  pending
+  possible
+}
+
+type SwimlaneLink {
+  destination_id: ID!
+  id: ID!
+  origin_id: ID!
+}
+
+type Swimlanes {
+  items: [SwimlaneItem!]!
+  lanes: [Swimlane!]!
+  links: [SwimlaneLink!]!
+}
+
+type Tenant {
+  is_default: Boolean!
+  name: String!
+}
+
+type Track {
+  id: ID!
+  title: String!
+}
+
+type TranslatedText {
+  en: String
+}
+
+input UpdateBaselineInfoInput {
+  baseline_info: [BaselineInfoInput!]!
+  pathway_id: String!
+}
+
+input UpdatePatientInput {
+  patient_id: String!
+  profile: PatientProfileInput!
+}
+
+type UpdatePatientPayload implements Payload {
+  code: String!
+  patient: User
+  success: Boolean!
+}
+
+type User {
+  id: ID!
+  profile: UserProfile
+  tenant: Tenant!
+}
+
+type UserPayload implements Payload {
+  code: String!
+  success: Boolean!
+  user: User!
+}
+
+type UserProfile {
+  address: Address
+  birth_date: String
+  email: String
+  first_name: String
+  last_name: String
+  mobile_phone: String
+  name: String
+  national_registry_number: String
+  patient_code: String
+  phone: String
+  preferred_language: String
+
+  """
+  Sex code as defined by ISO standard IEC_5218, 0 - NOT_KNOWN, 1 - MALE, 2 - FEMALE
+  """
+  sex: Sex
+}
+
+enum UserQuestionType {
+  DATE
+  DESCRIPTION
+  LONG_TEXT
+  MULTIPLE_CHOICE
+  MULTIPLE_CHOICE_GRID
+  MULTIPLE_SELECT
+  NUMBER
+  SHORT_TEXT
+  SIGNATURE
+  SLIDER
+  YES_NO
+}
+
+type WebhookCall {
+  created_at: String!
+  event_type: String!
+  id: ID!
+  pathway_id: String!
+  request: WebhookCallRequest!
+  responses: [WebhookCallResponse!]!
+  status: String!
+  webhook_id: String!
+  webhook_name: String!
+}
+
+type WebhookCallHeader {
+  key: String!
+  value: String!
+}
+
+type WebhookCallPayload implements Payload {
+  code: String!
+  success: Boolean!
+  webhook_call: WebhookCall!
+}
+
+type WebhookCallRequest {
+  body: String!
+  endpoint: String!
+  headers: [WebhookCallHeader!]!
+  method: String!
+}
+
+type WebhookCallResponse {
+  body: String!
+  date: String!
+  status: Float!
+}
+
+type WebhookCallsPayload implements Payload {
+  code: String!
+  success: Boolean!
+  webhook_calls: [WebhookCall!]!
+}
+```

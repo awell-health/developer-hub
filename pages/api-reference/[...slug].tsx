@@ -23,6 +23,7 @@ type ApiPageProps = {
   frontMatter: {
     title: string
     description: string
+    postmanUrl?: string
   }
   mdxSource: MDXRemoteSerializeResult
   slug: string
@@ -52,7 +53,7 @@ export default function ApiPage({
           description={frontMatter.description}
           badge={badge}
           githubUrl={`/content/api-reference/${slug}.mdx`}
-          postmanUrl={'#'}
+          postmanUrl={frontMatter.postmanUrl}
         />
       )}
       <div id="content-wrapper">
