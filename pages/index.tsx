@@ -19,7 +19,7 @@ export default function Home() {
           <span className="font-mono font-medium text-blue-600 dark:text-blue-400">
             Awell Studio
           </span>
-          , publish them, and{' '}
+          , publish, and{' '}
           <span className="font-mono font-medium text-blue-600 dark:text-blue-400">
             orchestrate
           </span>{' '}
