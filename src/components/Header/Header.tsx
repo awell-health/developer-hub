@@ -114,8 +114,10 @@ export const Header = () => {
                   </label>
                   <ThemeToggle />
                   <a
-                    href="https://github.com/nckhell/"
+                    href="https://github.com/nckhell/awell-developers"
+                    target="_blank"
                     className="ml-6 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
+                    rel="noreferrer"
                   >
                     <span className="sr-only">Tailwind CSS on GitHub</span>
                     <svg
