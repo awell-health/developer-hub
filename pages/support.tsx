@@ -13,11 +13,10 @@ export default function Community() {
         <h1 className="mb-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200">
           We are here to help you!
         </h1>
-        {/* <p className="text-lg text-slate-700 dark:text-slate-400">
-          We think Tailwind is an amazing CSS framework, but you need more than
-          just a CSS framework to produce visually awesome work.
-        </p> */}
       </header>
+      <div id="content-wrapper">
+        <p>Hey, we are currently working on this page!</p>
+      </div>
     </>
   )
 }

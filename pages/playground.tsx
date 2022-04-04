@@ -18,6 +18,9 @@ export default function Playground() {
           just a CSS framework to produce visually awesome work.
         </p>
       </header>
+      <div id="content-wrapper">
+        <p>Hey, we are currently working on this page!</p>
+      </div>
     </>
   )
 }
