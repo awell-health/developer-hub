@@ -3,6 +3,8 @@ title: Search patient
 description: Search patient on patient code or national registry number
 ---
 
+Search for a patient in your tenant by patient code or national registry number, regardless of pathway or patient status.
+
 ### Query
 
 Search by patient code:
@@ -39,7 +41,7 @@ Search by patient code:
 
 ```json
 {
-  "patient_code": "<PATIENT_CODE>"
+  "patient_code": "{{PATIENT_CODE}}"
 }
 ```
 
@@ -47,6 +49,6 @@ Search by national regsitry number:
 
 ```json
 {
-  "national_registry_number": "<NATIONAL_REGISTRY_NUMBER>"
+  "national_registry_number": "{{NATIONAL_REGISTRY_NUMBER}}"
 }
 ```

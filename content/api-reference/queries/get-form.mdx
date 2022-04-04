@@ -3,6 +3,8 @@ title: Get form
 description: Get the form definition of a given form
 ---
 
+This query allows us to fetch the details and questions for a specific form.
+
 ## Request
 
 ### Query
@@ -36,3 +38,26 @@ query GetForm($id: String!) {
   "id": "{{FORM_ID}}"
 }
 ```
+
+This mutation expects only one input variable:
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>Yes</td>
+        <td>the id of the form we want to fetch details for </td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

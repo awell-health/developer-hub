@@ -7,11 +7,19 @@
   @apply text-sky-500;
 }
 
-#content-wrapper a:not([aria-label='Anchor']) {
+#content-wrapper a.button {
+  @apply leading-none inline-flex items-center cursor-pointer inline-block font-semibold rounded-lg whitespace-nowrap text-center px-5 py-2.5 text-sm text-white bg-sky-500 hover:bg-sky-400;
+}
+
+#content-wrapper a.button:focus {
+  @apply outline-none ring-2 ring-offset-2;
+}
+
+#content-wrapper a:not([aria-label='Anchor'], .button) {
   @apply font-bold border-b border-sky-500;
 }
 
-#content-wrapper a:not([aria-label='Anchor']):hover {
+#content-wrapper a:not([aria-label='Anchor'], .button):hover {
   @apply border-b-2;
 }
 
@@ -45,4 +53,31 @@
 
 #content-wrapper p {
   @apply sm:text-lg my-6 leading-7 dark:text-slate-400;
+}
+
+#content-wrapper code {
+  @apply font-semibold text-sm;
+  color: #0f172a;
+  font-variant-ligatures: none;
+}
+
+#content-wrapper code:before,
+#content-wrapper code:after {
+  content: '`';
+}
+
+#content-wrapper blockquote {
+  @apply border-l-2 border-sky-600 pl-4 my-6;
+}
+
+#content-wrapper blockquote p {
+  @apply py-2;
+  margin: 0;
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+
+#content-wrapper blockquote code {
+  font-size: 0.8rem !important;
+  line-height: 1.5rem !important;
 }

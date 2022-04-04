@@ -58,13 +58,13 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.pathway,
       },
       {
-        title: 'Get pathway activities',
-        path: '/api-reference/queries/get-pathway-activities',
-        badge: badges.activity,
-      },
-      {
         title: 'Get baseline info',
         path: '/api-reference/queries/get-baseline-info',
+        badge: badges.pathway,
+      },
+      {
+        title: 'Get pathway activities',
+        path: '/api-reference/queries/get-pathway-activities',
         badge: badges.activity,
       },
       {

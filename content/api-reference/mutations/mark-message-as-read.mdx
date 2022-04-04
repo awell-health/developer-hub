@@ -3,7 +3,7 @@ title: Mark message as read
 description: Mark a message activity as read
 ---
 
-This request allows us to update the status of the message activity to "DONE". The input object supplied in the request body will contain the following:
+This request allows us to update the status of the message activity to "DONE".
 
 ## Request
 
@@ -29,3 +29,26 @@ mutation MarkMessageAsRead($input: MarkMessageAsReadInput!) {
   }
 }
 ```
+
+This mutation expects only one input variable:
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>activity_id</td>
+        <td>Yes</td>
+        <td>the id of the message activity</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

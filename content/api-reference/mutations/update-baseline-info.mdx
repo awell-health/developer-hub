@@ -20,13 +20,54 @@ mutation updateBaselineInfo($input: UpdateBaselineInfoInput!) {
 ```json
 {
   "input": {
-    "pathway_id": "<PATHWAY_ID>",
+    "pathway_id": "{{PATHWAY_ID}}",
     "baseline_info": [
       {
-        "data_point_definition_id": "<DATA_POINT_DEFINITION_ID>",
-        "value": "<VALUE>"
+        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
+        "value": "{{VALUE}}"
       }
     ]
   }
 }
 ```
+
+To update the baseline info data points in an existing pathway, the request needs the following, provided within an input object:
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pathway_id</td>
+        <td>Yes</td>
+        <td>the id of the pathway</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>baseline_info</td>
+        <td>Yes</td>
+        <td>the list of data point values for baseline info data points</td>
+        <td>Array of baseline info input</td>
+      </tr>
+      <tr>
+        <td>baseline_info.data_point_definition_id</td>
+        <td>Yes, for each item</td>
+        <td>the data point definition identifier</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>baseline_info.value</td>
+        <td>Yes, for each item</td>
+        <td>that data point value</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,5 +1,5 @@
 ---
-title: Start pathway ecosystem
+title: Start pathway
 description: Start a new pathway for a given patient
 ---
 
@@ -21,7 +21,36 @@ mutation startPathway($input: StartPathwayInput!) {
 {
   "input": {
     "patient_id": "{{PATIENT_ID}}",
-    "pathway_definition_id": "nrNVpSoRnVLR"
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
   }
 }
 ```
+
+To start a pathway for a patient, the request needs the following, provided within an input object:
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>patient_id</td>
+        <td>Yes</td>
+        <td>the id of the patient</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>pathway_definition_id</td>
+        <td>Yes</td>
+        <td>the id of the published pathway</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

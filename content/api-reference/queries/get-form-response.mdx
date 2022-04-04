@@ -29,3 +29,32 @@ query GetFormResponse($pathway_id: String!, $activity_id: String!) {
   "activity_id": "{{FORM_ACTIVITY_ID}}"
 }
 ```
+
+The inputs for this query are:
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pathway_id</td>
+        <td>Yes</td>
+        <td>the id of the pathway</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>activity_id</td>
+        <td>Yes</td>
+        <td>the id of the form activity (note: not the form id)</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

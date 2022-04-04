@@ -3,4 +3,33 @@ title: Concepts & Terminology
 description: Familiarize yourself with our domain language
 ---
 
-Hello world
+## Orchestration
+
+Orchestration of a pathway means executing a pathway that we built in Awell Studio. For this we need to create an orchestration pathway from our design pathway. This collection demonstrates starting/creating an orchestration pathway & including a patient in an orchestration pathway. Also we will see how to execute the activities mentioned in an orchestration pathway.
+
+## Activities
+
+Activities are the key units of interaction with the pathway as patient travels through the various steps of their care journey.
+
+While orchestrating, our Orchestration API handles the logic for computing next steps and navigating the patient correctly through the pathway, meaning you only need to check for and handle pending activities for each patient.
+
+These activities are assigned to the appropriate stakeholder and can be completed by them.
+
+There are multiple activity types supported by the Awell Orchestration API, including:
+
+- Calculations
+- Checklists
+- Forms
+- Messages
+
+## Forms
+
+Forms activities allow data to be collected from a pathway stakeholder, whether a member of the care team or a patient. Forms are assigned to one stakeholder to complete.
+
+They can be built flexibly and update dynamically, meaning that questions can be optional and/or shown only if a condition is met.
+
+## Pathways
+
+Pathways in the Orchestration context refer to the collection of tracks and steps that will define the patients journey as they progress through it. The Orchestration API is responsible for navigating through a pathway and identifying what is next for the patient, based on logic defined in the pathway design.
+
+When starting a pathway, the orchestration API automatically chooses the most recent published version of the pathway to use.

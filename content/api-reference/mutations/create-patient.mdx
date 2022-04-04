@@ -22,9 +22,134 @@ mutation createPatient($input: CreatePatientInput!) {
 ```json
 {
   "input": {
-    "first_name": "<PATIENT FIRST NAME>",
-    "last_name": "<PATIENT LAST NAME>",
-    "patient_code": "<PATIENT_CODE>"
+    "first_name": "{{PATIENT FIRST NAME}}",
+    "last_name": "{{PATIENT LAST NAME}}",
+    "patient_code": "{{PATIENT CODE}}",
+    ...
   }
 }
 ```
+
+The following input fields are available:
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>email</td>
+        <td>No</td>
+        <td>the patient's email address</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>first_name</td>
+        <td>No</td>
+        <td>the first name of the patient</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>last_name</td>
+        <td>No</td>
+        <td>the last name of the patient</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>patient_code</td>
+        <td>No</td>
+        <td>any internal reference id for the patient</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>preferred_language</td>
+        <td>No</td>
+        <td>
+          the patient's preferred language of communication. We use the ISO
+          639-1 standard for this (e.g. en for English, nl for Dutch). Defaults
+          to 'en'
+        </td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>national_registry_number</td>
+        <td>No</td>
+        <td>
+          any government- or health-organisation-issued identified for the
+          patient
+        </td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>sex</td>
+        <td>No</td>
+        <td>the patient's sex. We use the ISO/IEC 5218 standard for this</td>
+        <td>enum: NOT_KNOWN / MALE / FEMALE</td>
+      </tr>
+      <tr>
+        <td>birth_date</td>
+        <td>No</td>
+        <td>the patient's date of birth, in ISO8601 format</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>phone</td>
+        <td>No</td>
+        <td>the patient's landline phone number</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>mobile_phone</td>
+        <td>No</td>
+        <td>the patient's mobile phone number</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>address</td>
+        <td>No</td>
+        <td>the patient's contact address, which is subdivided into:</td>
+        <td>object (see below for object keys)</td>
+      </tr>
+      <tr>
+        <td>address.street</td>
+        <td>No</td>
+        <td>the street address, including house or flat number</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>address.city</td>
+        <td>No</td>
+        <td>the city of the address</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>address.zip</td>
+        <td>No</td>
+        <td>the zip or postal code of the address</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>address.state</td>
+        <td>No</td>
+        <td>the state, region or locality the address is in</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>address.country</td>
+        <td>No</td>
+        <td>the country the address is in</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Support for anonymous patients
+
+As all of the input fields are optional, this means, in effect, that you can create anonymous patients should you need to. For example, you can begin a patient journey with no details provided except an internal patient_code reference and use the generated patient ID to progress them through a pathway until such time you wish to gather and update their personal details.

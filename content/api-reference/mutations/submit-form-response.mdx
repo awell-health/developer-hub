@@ -37,3 +37,47 @@ mutation SubmitFormResponse($input: SubmitFormResponseInput!) {
   }
 }
 ```
+
+The following input fields are available:
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>activity_id</td>
+        <td>Yes</td>
+        <td>the id of the form activity</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>response</td>
+        <td>Yes</td>
+        <td>the responses to questions in the form</td>
+        <td>array of response objects</td>
+      </tr>
+      <tr>
+        <td>response.question_id</td>
+        <td>Yes, for each response object</td>
+        <td>the id of the question for this response</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>response.value</td>
+        <td>Yes, for each response object</td>
+        <td>
+          the value of the response, corresponding to the question's data point
+          value type
+        </td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
