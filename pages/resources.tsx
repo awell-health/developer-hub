@@ -1,11 +1,13 @@
 import { ReactNode } from 'react'
 
 import { DocsLayoutWithoutToc } from '../src/components/Layouts'
+import { SEO } from '../src/components/SEO'
 import { docsMenu } from '../src/config/menus'
 
 export default function Resources() {
   return (
     <>
+      <SEO title="Resources" />
       <header className="mb-20 max-w-xl">
         <p className="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
           Resources

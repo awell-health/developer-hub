@@ -119,7 +119,7 @@ export const Header = () => {
                     className="ml-6 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
                     rel="noreferrer"
                   >
-                    <span className="sr-only">Tailwind CSS on GitHub</span>
+                    <span className="sr-only">Awell Developers on GitHub</span>
                     <svg
                       viewBox="0 0 16 16"
                       className="w-5 h-5"

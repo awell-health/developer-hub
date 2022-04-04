@@ -6,6 +6,7 @@ import { ReactNode } from 'react'
 
 import { DocsHeader } from '../../src/components/Docs/atoms'
 import { DocsLayout } from '../../src/components/Layouts'
+import { SEO } from '../../src/components/SEO'
 import { TOC } from '../../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../../src/config/mdx'
 import { docsMenu } from '../../src/config/menus'
@@ -37,6 +38,11 @@ export default function DocsPage({
 
   return (
     <div>
+      <SEO
+        title={frontMatter.title}
+        description={frontMatter.description}
+        url={`/docs/${slug}`}
+      />
       {heading && (
         <DocsHeader
           heading={heading}

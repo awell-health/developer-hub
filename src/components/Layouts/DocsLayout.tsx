@@ -14,8 +14,6 @@ export const DocsLayout = ({ menu, children }: LayoutProps) => {
   return (
     <>
       <Head>
-        <title>Awell Health</title>
-        <meta name="description" content="Awell Health" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

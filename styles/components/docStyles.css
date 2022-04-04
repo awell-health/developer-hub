@@ -61,20 +61,22 @@
   font-variant-ligatures: none;
 }
 
+.dark #content-wrapper code {
+  color: #fff;
+}
+
 #content-wrapper code:before,
 #content-wrapper code:after {
   content: '`';
 }
 
 #content-wrapper blockquote {
-  @apply border-l-2 border-sky-600 pl-4 my-6;
+  @apply border-l-2 border-sky-500 pl-6 my-6 dark:border-sky-400;
 }
 
 #content-wrapper blockquote p {
   @apply py-2;
   margin: 0;
-  font-size: 1rem !important;
-  line-height: 1.5rem !important;
 }
 
 #content-wrapper blockquote code {

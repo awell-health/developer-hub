@@ -11,14 +11,17 @@ interface SeoProps {
 }
 
 export const SEO = ({
-  title = SeoSettings.title,
+  title,
   description = SeoSettings.description,
   url = SeoSettings.rootUrl,
   siteName = SeoSettings.title,
 }: SeoProps) => {
   return (
     <Head>
-      <title>{title} | nckhell</title>
+      <title>
+        {title && title + ' | '}
+        {SeoSettings.title}
+      </title>
       <meta name="description" content={description} />
       <meta
         property="og:url"
