@@ -3,4 +3,36 @@ title: Get form
 description: Get the form definition of a given form
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+query GetForm($id: String!) {
+  form(id: $id) {
+    form {
+      id
+      title
+      questions {
+        id
+        title
+        dataPointValueType
+        questionType
+        options {
+          id
+          value
+          label
+        }
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "id": "{{FORM_ID}}"
+}
+```

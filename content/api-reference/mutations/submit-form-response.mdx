@@ -3,4 +3,37 @@ title: Submit form response
 description: Submit a form response
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+mutation SubmitFormResponse($input: SubmitFormResponseInput!) {
+  submitFormResponse(input: $input) {
+    activity {
+      id
+      status
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "activity_id": "{{FORM_ACTIVITY_ID}}",
+    "response": [
+      {
+        "question_id": "{{HEIGHT_QUESTION_ID}}",
+        "value": "183"
+      },
+      {
+        "question_id": "{{WEIGHT_QUESTION_ID}}",
+        "value": "95"
+      }
+    ]
+  }
+}
+```

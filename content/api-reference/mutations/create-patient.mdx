@@ -3,4 +3,28 @@ title: Create patient
 description: Create a new patient, anonymous patients are also supported.
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+mutation createPatient($input: CreatePatientInput!) {
+  createPatient(input: $input) {
+    patient {
+      id
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "first_name": "<PATIENT FIRST NAME>",
+    "last_name": "<PATIENT LAST NAME>",
+    "patient_code": "<PATIENT_CODE>"
+  }
+}
+```

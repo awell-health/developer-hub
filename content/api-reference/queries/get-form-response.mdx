@@ -3,4 +3,29 @@ title: Get form response
 description: Get the form response from a given form activity
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+query GetFormResponse($pathway_id: String!, $activity_id: String!) {
+  formResponse(pathway_id: $pathway_id, activity_id: $activity_id) {
+    response {
+      answers {
+        question_id
+        value
+        value_type
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "pathway_id": "{{PATIENT_PATHWAY_ID}}",
+  "activity_id": "{{FORM_ACTIVITY_ID}}"
+}
+```

@@ -3,4 +3,24 @@ title: Delete pathway
 description: 'Keep in mind that this action cannot be undone. Tip: You can also stop a pathway.'
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+mutation DeletePathway($input: DeletePathwayInput!) {
+  deletePathway(input: $input) {
+    success
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "pathway_id": "{{PATHWAY_ID}}"
+  }
+}
+```

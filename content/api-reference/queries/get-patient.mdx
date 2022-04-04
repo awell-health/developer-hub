@@ -3,16 +3,44 @@ title: Get patient
 description: Get a patient's profile
 ---
 
-```graphql
-# A book has a title and an author
-type Book {
-  title: String
-  author: Author
-}
+## Request
 
-# An author has a name and a list of books
-type Author {
-  name: String
-  books: [Book]
+### Query
+
+```graphql
+query GetPatient($patient_id: String!) {
+  patient(id: $patient_id) {
+    patient {
+      id
+      profile {
+        name
+        first_name
+        last_name
+        preferred_language
+        birth_date
+        sex
+        patient_code
+        address {
+          city
+          country
+          state
+          street
+          zip
+        }
+        email
+        national_registry_number
+        mobile_phone
+        phone
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "patient_id": "{PATIENT_ID}"
 }
 ```

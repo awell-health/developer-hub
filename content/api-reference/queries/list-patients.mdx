@@ -3,4 +3,16 @@ title: List patients
 description: Get all patients in your organization
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+query {
+  patients {
+    patients {
+      id
+    }
+  }
+}
+```

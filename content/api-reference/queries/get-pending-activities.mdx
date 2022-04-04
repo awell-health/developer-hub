@@ -3,4 +3,29 @@ title: Get pending activities
 description: Get pending activities only in a given pathway
 ---
 
-Hello world
+This query allows us to fetch a specific user's pending pathway activities (i.e. activities that require them to take action). An activity is pending if its status is 'ACTIVE'.
+
+The query has no inputs for the request body. However, we need to specify which patient's pending activities we want to see. We can pass this information in to the request in via the Header, using the X-User-ID key.
+
+## Request
+
+### Query
+
+```graphql
+query MyPendingActivities {
+  myPendingActivities {
+    activities {
+      stream_id
+      id
+      status
+      action
+      date
+      object {
+        id
+        type
+        name
+      }
+    }
+  }
+}
+```

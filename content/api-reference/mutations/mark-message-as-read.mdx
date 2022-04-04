@@ -3,4 +3,29 @@ title: Mark message as read
 description: Mark a message activity as read
 ---
 
-Hello world
+This request allows us to update the status of the message activity to "DONE". The input object supplied in the request body will contain the following:
+
+## Request
+
+### Query
+
+```graphql
+mutation MarkMessageAsRead($input: MarkMessageAsReadInput!) {
+  markMessageAsRead(input: $input) {
+    activity {
+      id
+      status
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "activity_id": "{{MESSAGE_ACTIVITY_ID}}"
+  }
+}
+```

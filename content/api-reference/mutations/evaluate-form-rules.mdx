@@ -3,4 +3,33 @@ title: Evaluate form rules
 description: Evaluate what question needs to be shown next
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+mutation EvaluateFormRules($input: EvaluateFormRulesInput!) {
+  evaluateFormRules(input: $input) {
+    results {
+      question_id
+      satisfied
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "form_id": "{{FORM_ID}}",
+    "answers": [
+      {
+        "question_id": "{{HEIGHT_QUESTION_ID}}",
+        "value": "183"
+      }
+    ]
+  }
+}
+```

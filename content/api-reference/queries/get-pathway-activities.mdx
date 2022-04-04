@@ -3,4 +3,34 @@ title: Get pathway activities
 description: Get all activities in a given pathway
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+query PathwayActivities($pathway_id: String!) {
+  pathwayActivities(pathway_id: $pathway_id) {
+    success
+    activities {
+      stream_id
+      id
+      status
+      action
+      date
+      object {
+        id
+        type
+        name
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "pathway_id": "{{PATIENT_PATHWAY_ID}}"
+}
+```

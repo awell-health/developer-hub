@@ -3,4 +3,30 @@ title: Update baseline info
 description: Update baseline pathway data points with new values
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+mutation updateBaselineInfo($input: UpdateBaselineInfoInput!) {
+  updateBaselineInfo(input: $input) {
+    success
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "pathway_id": "<PATHWAY_ID>",
+    "baseline_info": [
+      {
+        "data_point_definition_id": "<DATA_POINT_DEFINITION_ID>",
+        "value": "<VALUE>"
+      }
+    ]
+  }
+}
+```

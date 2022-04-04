@@ -3,4 +3,29 @@ title: Get calculation results
 description: Get the calculations results from a given calculation activity
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+query GetCalculationResults($pathway_id: String!, $activity_id: String!) {
+  calculationResults(pathway_id: $pathway_id, activity_id: $activity_id) {
+    result {
+      status
+      subresult_id
+      unit
+      value
+      value_type
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "pathway_id": "{{PATHWAY_ID}}",
+  "activity_id": "{{PATHWAY_ID}}"
+}
+```

@@ -1,6 +1,26 @@
 ---
 title: Delete patient
-description: Delete a patient
+description: Delete a patient record
 ---
 
-Hello world
+## Request
+
+### Query
+
+```graphql
+mutation deletePatient($input: DeletePatientInput!) {
+  deletePatient(input: $input) {
+    success
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "patient_id": "{{PATIENT_ID}}"
+  }
+}
+```
