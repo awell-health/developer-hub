@@ -11,6 +11,7 @@ import {
   DocumentationIcon,
   PlaygroundIcon,
   ResourcesIcon,
+  StudioIcon,
 } from '../atoms/icons'
 
 interface MenuProps {
@@ -100,6 +101,24 @@ export const Menu = ({ menu }: MenuProps) => {
               <CommunityIcon />
             </div>
             Support
+          </a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/awell-studio-docs">
+          <a
+            title="Awell Studio docs"
+            className={clsx(
+              'group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold',
+              router.pathname.includes('/awell-studio-docs')
+                ? topLevelActiveClass
+                : topLevelInactiveClass
+            )}
+          >
+            <div className="mr-4 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-purple-200 dark:group-hover:bg-purple-400 dark:bg-slate-800 dark:highlight-white/5">
+              <StudioIcon />
+            </div>
+            Awell Studio docs
           </a>
         </Link>
       </li>

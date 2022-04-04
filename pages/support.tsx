@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 
+import { DocsHeader } from '../src/components/Docs/atoms'
 import { DocsLayoutWithoutToc } from '../src/components/Layouts'
 import { SEO } from '../src/components/SEO'
 import { docsMenu } from '../src/config/menus'
@@ -8,14 +9,7 @@ export default function Community() {
   return (
     <>
       <SEO title="Support" />
-      <header className="mb-20 max-w-xl">
-        <p className="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-          Support
-        </p>
-        <h1 className="mb-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200">
-          We are here to help you!
-        </h1>
-      </header>
+      <DocsHeader heading="Support" title="We are here to help you!" />
       <div id="content-wrapper">
         <p>Hey, we are currently working on this page!</p>
       </div>

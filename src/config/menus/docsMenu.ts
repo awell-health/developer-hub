@@ -16,10 +16,6 @@ export const docsMenu: MenuItemType[] = [
         title: 'Concepts & Terminology',
         path: '/docs/getting-started/concepts-and-terminology',
       },
-      {
-        title: 'Setup',
-        path: '/docs/getting-started/setup',
-      },
     ],
   },
   {

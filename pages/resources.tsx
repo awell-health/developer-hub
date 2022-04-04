@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 
+import { DocsHeader } from '../src/components/Docs/atoms'
 import { DocsLayoutWithoutToc } from '../src/components/Layouts'
 import { SEO } from '../src/components/SEO'
 import { docsMenu } from '../src/config/menus'
@@ -8,16 +9,14 @@ export default function Resources() {
   return (
     <>
       <SEO title="Resources" />
-      <header className="mb-20 max-w-xl">
-        <p className="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-          Resources
-        </p>
-        <h1 className="mb-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200">
-          Everything you need to help you integrate with the Awell platform
-        </h1>
-      </header>
-      <div id="content-wrapper">
-        <p>Hey, we are currently working on this page!</p>
+      <div className="max-w-3xl mx-auto xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
+        <DocsHeader
+          heading="Resources"
+          title="Everything you need to help you integrate with the Awell platform"
+        />
+        <div id="content-wrapper">
+          <p>Hey, we are currently working on this page!</p>
+        </div>
       </div>
     </>
   )

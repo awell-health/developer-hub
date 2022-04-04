@@ -14,7 +14,7 @@ export const DocsLayoutWithoutToc = ({ menu, children }: LayoutProps) => {
     <>
       <Header />
       <div>
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8  mb-32">
           <Sidebar menu={menu} />
           <div className="lg:pl-[19.5rem]">
             <div className="max-w-3xl mx-auto relative z-20 pt-10 xl:max-w-none">

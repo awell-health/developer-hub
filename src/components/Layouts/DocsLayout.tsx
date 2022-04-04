@@ -38,7 +38,7 @@ export const DocsLayout = ({ menu, children }: LayoutProps) => {
       </Head>
       <Header />
       <div>
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8 mb-32">
           <Sidebar menu={menu} />
           <div className="lg:pl-[19.5rem]">
             <div className="max-w-3xl mx-auto pt-10 xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">

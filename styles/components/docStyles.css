@@ -1,5 +1,5 @@
 #content-wrapper {
-  @apply text-slate-600 mb-32;
+  @apply text-slate-600;
 }
 
 #content-wrapper strong,
