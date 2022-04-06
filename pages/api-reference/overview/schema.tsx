@@ -4,7 +4,6 @@ import { DocsHeader } from '../../../src/components/Docs/atoms'
 import { GraphQLExplorer } from '../../../src/components/GraphQLExplorer'
 import { DocsLayoutWithoutToc } from '../../../src/components/Layouts'
 import { SEO } from '../../../src/components/SEO'
-import { apiMenu } from '../../../src/config/menus'
 import { getHeadingForDoc } from '../../../src/utils'
 
 export default function Schema() {
@@ -28,5 +27,5 @@ export default function Schema() {
 }
 
 Schema.getLayout = function getLayout(page: ReactNode) {
-  return <DocsLayoutWithoutToc menu={apiMenu}>{page}</DocsLayoutWithoutToc>
+  return <DocsLayoutWithoutToc>{page}</DocsLayoutWithoutToc>
 }

@@ -1,0 +1,1 @@
+export { AlgoliaAutocomplete } from './AlgoliaAutocomplete'

@@ -9,7 +9,6 @@ import { DocsLayout } from '../../src/components/Layouts'
 import { SEO } from '../../src/components/SEO'
 import { TOC } from '../../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../../src/config/mdx'
-import { docsMenu } from '../../src/config/menus'
 import { TableOfContentsType } from '../../src/types/toc.types'
 import {
   getAllDocs,
@@ -66,7 +65,7 @@ export default function DocsPage({
 }
 
 DocsPage.getLayout = function getLayout(page: ReactNode) {
-  return <DocsLayout menu={docsMenu}>{page}</DocsLayout>
+  return <DocsLayout>{page}</DocsLayout>
 }
 
 interface Iparams extends ParsedUrlQuery {

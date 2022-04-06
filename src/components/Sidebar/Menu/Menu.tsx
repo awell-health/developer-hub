@@ -1,9 +1,11 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useContext, useEffect } from 'react'
 
+import { apiMenu, docsMenu } from '../../../config/menus'
 import { apiReferenceStartRoute, docsStartRoute } from '../../../config/routes'
-import { type MenuItemType } from '../../../types/menu.types'
+import { AppContext } from '../../../contexts/app/AppContext'
 import { isMenuItemActive } from '../../../utils/isMenuItemActive'
 import { Badge } from '../../Badge'
 import {
@@ -14,12 +16,17 @@ import {
   StudioIcon,
 } from '../atoms/icons'
 
-interface MenuProps {
-  menu: MenuItemType[]
-}
-
-export const Menu = ({ menu }: MenuProps) => {
+export const Menu = () => {
   const router = useRouter()
+  const { menu, setMenu } = useContext(AppContext)
+
+  useEffect(() => {
+    if (router.asPath.includes('api-reference')) {
+      setMenu(apiMenu)
+    } else {
+      setMenu(docsMenu)
+    }
+  })
 
   const topLevelActiveClass = 'text-sky-500 dark:text-sky-400'
   const topLevelInactiveClass =

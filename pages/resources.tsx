@@ -3,7 +3,6 @@ import { ReactNode } from 'react'
 import { DocsHeader } from '../src/components/Docs/atoms'
 import { DocsLayoutWithoutToc } from '../src/components/Layouts'
 import { SEO } from '../src/components/SEO'
-import { docsMenu } from '../src/config/menus'
 
 export default function Resources() {
   return (
@@ -23,5 +22,5 @@ export default function Resources() {
 }
 
 Resources.getLayout = function getLayout(page: ReactNode) {
-  return <DocsLayoutWithoutToc menu={docsMenu}>{page}</DocsLayoutWithoutToc>
+  return <DocsLayoutWithoutToc>{page}</DocsLayoutWithoutToc>
 }

@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 
-import { docsMenu } from '../../../config/menus'
 import { AppContext } from '../../../contexts/app/AppContext'
 import { Menu } from './Menu'
 
@@ -40,7 +39,7 @@ export const MobileMenu = () => {
           </svg>
         </button>
         <nav id="nav" className="lg:text-sm lg:leading-6 relative">
-          <Menu menu={docsMenu} />
+          <Menu />
         </nav>
       </div>
     </div>

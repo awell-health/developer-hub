@@ -8,7 +8,6 @@ import { DocsLayout } from '../src/components/Layouts'
 import { SEO } from '../src/components/SEO'
 import { TOC } from '../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../src/config/mdx'
-import { docsMenu } from '../src/config/menus'
 import { TableOfContentsType } from '../src/types/toc.types'
 import { getDoc, getHeadingForDoc, getTableOfContents } from '../src/utils'
 
@@ -60,7 +59,7 @@ export default function DocsPage({
 }
 
 DocsPage.getLayout = function getLayout(page: ReactNode) {
-  return <DocsLayout menu={docsMenu}>{page}</DocsLayout>
+  return <DocsLayout>{page}</DocsLayout>
 }
 
 export const getStaticProps: GetStaticProps = async () => {

@@ -5,12 +5,11 @@ import { ParsedUrlQuery } from 'querystring'
 import { ReactNode } from 'react'
 
 import { DocsHeader } from '../../src/components/Docs/atoms'
-// import { GraphQLExplorer } from '../../src/components/GraphQLExplorer'
+import { GraphQLExplorer } from '../../src/components/GraphQLExplorer'
 import { DocsLayout } from '../../src/components/Layouts'
 import { SEO } from '../../src/components/SEO'
 import { TOC } from '../../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../../src/config/mdx'
-import { apiMenu } from '../../src/config/menus'
 import { TableOfContentsType } from '../../src/types/toc.types'
 import {
   getAllApiDocs,
@@ -69,16 +68,16 @@ export default function ApiPage({
         <h5 className="mt-10 text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
           Explorer
         </h5>
-        {/* <div className="explorer-sidepane">
+        <div className="explorer-sidepane">
           <GraphQLExplorer />
-        </div> */}
+        </div>
       </div>
     </div>
   )
 }
 
 ApiPage.getLayout = function getLayout(page: ReactNode) {
-  return <DocsLayout menu={apiMenu}>{page}</DocsLayout>
+  return <DocsLayout>{page}</DocsLayout>
 }
 
 interface Iparams extends ParsedUrlQuery {

@@ -5,13 +5,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node ./scripts/build-algolia-search/build-algolia-search.js",
     "start": "next start",
+    "ts": "tsc --noEmit --incremental",
     "lint": "next lint"
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@headlessui/react": "^1.5.0",
+    "algoliasearch": "^4.13.0",
     "clsx": "^1.1.1",
+    "dotenv": "^16.0.0",
     "glob": "^7.1.7",
     "graphiql": "^1.8.3",
     "graphql": "^16.3.0",

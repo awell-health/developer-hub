@@ -12,3 +12,5 @@ export type MenuItemType = {
   title: string
   submenu?: SubmenuItemType[]
 }
+
+export type MenuType = MenuItemType[]
