@@ -11,7 +11,11 @@ import { docsMenu } from '../src/config/menus'
 export default function Community() {
   return (
     <>
-      <SEO title="Awell Studio docs" />
+      <SEO
+        title="Awell Studio docs"
+        url={`/awell-studio-docs`}
+        canonicalUrl={`/awell-studio-docs`}
+      />
       <div className="max-w-3xl mx-auto xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
         <DocsHeader
           heading="Awell Studio docs"

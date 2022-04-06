@@ -8,6 +8,7 @@
 @import './components/button.css';
 @import './components/docStyles.css';
 @import './components/table.css';
+@import './components/graphQLExplorer.css';
 
 @import 'tailwindcss/utilities';
 /** Import custom css utilities here **/

@@ -2,6 +2,10 @@ export const isMenuItemActive = (
   menuItemPath: string,
   slug?: string | string[]
 ) => {
+  /** Hacky solution to have this as the homepage and make active links work */
+  if (menuItemPath === '/docs/getting-started/welcome' && slug === '/') {
+    return true
+  }
   if (!slug) return false
 
   /**

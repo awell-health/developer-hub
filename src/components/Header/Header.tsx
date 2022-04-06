@@ -1,12 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useContext } from 'react'
 
 import awellLogo from '../../../public/awell-full-logo.svg'
-import { apiReferenceStartRoute, docsStartRoute } from '../../config/routes'
+import { nav } from '../../config/nav'
+import { AppContext } from '../../contexts/app/AppContext'
+import { useBreadcrumb } from '../../hooks/useBreadcrumb'
 import { isMenuItemActive } from '../../utils/isMenuItemActive'
 import { Badge } from '../Badge'
-import { ThemeToggle } from '../ThemeToggle'
 
 const MobileSearch = () => {
   return (
@@ -32,11 +34,12 @@ const MobileSearch = () => {
   )
 }
 
-const MobileMainMenu = () => {
+const MobileMainMenu = ({ onClick }: { onClick: () => void }) => {
   return (
     <div className="ml-2 -my-1 lg:hidden">
       <button
         type="button"
+        onClick={() => onClick()}
         className="text-slate-500 w-8 h-8 flex items-center justify-center hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
       >
         <span className="sr-only">Navigation</span>
@@ -56,6 +59,8 @@ const MobileMainMenu = () => {
 
 export const Header = () => {
   const router = useRouter()
+  const breadcrumb = useBreadcrumb(router.asPath)
+  const { toggleMobileSideMenu, toggleMobileMainMenu } = useContext(AppContext)
 
   return (
     <>
@@ -78,45 +83,30 @@ export const Header = () => {
               <div className="relative hidden lg:flex items-center ml-auto">
                 <nav className="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
                   <ul className="flex space-x-8">
-                    <li>
-                      <Link href={docsStartRoute}>
-                        <a
-                          className={
-                            isMenuItemActive('docs', router.pathname)
-                              ? 'text-sky-500'
-                              : 'hover:text-sky-500 dark:hover:text-sky-400'
-                          }
-                          title="Docs"
-                        >
-                          Docs
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={apiReferenceStartRoute}>
-                        <a
-                          className={
-                            isMenuItemActive('api-reference', router.pathname)
-                              ? 'text-sky-500'
-                              : 'hover:text-sky-500 dark:hover:text-sky-400'
-                          }
-                          title="API reference"
-                        >
-                          API Reference
-                        </a>
-                      </Link>
-                    </li>
+                    {nav.map((navItem, index) => (
+                      <li key={index}>
+                        <Link href={navItem.path}>
+                          <a
+                            className={
+                              isMenuItemActive(navItem.slug, router.pathname) ||
+                              router.pathname === '/'
+                                ? 'text-sky-500'
+                                : 'hover:text-sky-500 dark:hover:text-sky-400'
+                            }
+                            title={navItem.label}
+                          >
+                            {navItem.label}
+                          </a>
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </nav>
                 <div className="flex items-center border-l border-slate-200 ml-6 pl-6 dark:border-slate-800">
-                  <label className="sr-only" id="headlessui-listbox-label-18">
-                    Theme
-                  </label>
-                  <ThemeToggle />
                   <a
                     href="https://github.com/nckhell/awell-developers"
                     target="_blank"
-                    className="ml-6 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
+                    className="block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
                     rel="noreferrer"
                   >
                     <span className="sr-only">Awell Developers on GitHub</span>
@@ -132,12 +122,13 @@ export const Header = () => {
                 </div>
               </div>
               <MobileSearch />
-              <MobileMainMenu />
+              <MobileMainMenu onClick={toggleMobileMainMenu} />
             </div>
           </div>
           <div className="flex items-center p-4 border-b border-slate-900/10 lg:hidden dark:border-slate-50/[0.06]">
             <button
               type="button"
+              onClick={() => toggleMobileSideMenu()}
               className="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
             >
               <span className="sr-only">Navigation</span>
@@ -151,28 +142,38 @@ export const Header = () => {
                 />
               </svg>
             </button>
-            <ol className="ml-4 flex text-sm leading-6 whitespace-nowrap min-w-0">
-              <li className="flex items-center">
-                Sizing
-                <svg
-                  width={3}
-                  height={6}
-                  aria-hidden="true"
-                  className="mx-3 overflow-visible text-slate-400"
-                >
-                  <path
-                    d="M0 0L3 3L0 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </li>
-              <li className="font-semibold text-slate-900 truncate dark:text-slate-200">
-                Max-Width
-              </li>
-            </ol>
+            {breadcrumb && (
+              <ol className="ml-4 flex text-sm leading-6 whitespace-nowrap min-w-0">
+                {breadcrumb.map((breadcrumbItem, index) => (
+                  <li
+                    key={index}
+                    className={`flex items-center ${
+                      breadcrumb.length - 1 === index
+                        ? 'font-semibold text-slate-900 truncate dark:text-slate-200'
+                        : ''
+                    }`}
+                  >
+                    {breadcrumbItem.label}
+                    {breadcrumb.length - 1 !== index && (
+                      <svg
+                        width={3}
+                        height={6}
+                        aria-hidden="true"
+                        className="mx-3 overflow-visible text-slate-400"
+                      >
+                        <path
+                          d="M0 0L3 3L0 6"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            )}
           </div>
         </div>
       </div>

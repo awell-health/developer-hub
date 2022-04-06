@@ -38,7 +38,7 @@ export const Menu = ({ menu }: MenuProps) => {
             title="Documentation"
             className={clsx(
               'group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold',
-              router.pathname.includes('/docs')
+              router.pathname.includes('/docs') || router.pathname === '/'
                 ? topLevelActiveClass
                 : topLevelInactiveClass
             )}
@@ -136,7 +136,12 @@ export const Menu = ({ menu }: MenuProps) => {
                       title={subMenuItem.title}
                       className={clsx(
                         'flex justify-between block border-l pl-4 -ml-px',
-                        isMenuItemActive(subMenuItem.path, router.query.slug)
+                        isMenuItemActive(
+                          subMenuItem.path,
+                          router.query.slug
+                            ? router.query.slug
+                            : router.pathname
+                        )
                           ? subLevelActiveClass
                           : subLevelInactiveClass
                       )}

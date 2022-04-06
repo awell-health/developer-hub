@@ -8,7 +8,7 @@ import { docsMenu } from '../src/config/menus'
 export default function Community() {
   return (
     <>
-      <SEO title="Support" />
+      <SEO title="Support" url={`/support`} canonicalUrl={`/support`} />
       <DocsHeader heading="Support" title="We are here to help you!" />
       <div id="content-wrapper">
         <p>Hey, we are currently working on this page!</p>

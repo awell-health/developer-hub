@@ -6,8 +6,9 @@ import { SEO as SeoSettings } from '../../config/seo'
 interface SeoProps {
   title?: string
   description?: string
-  url?: string
+  url: string
   siteName?: string
+  canonicalUrl: string
 }
 
 export const SEO = ({
@@ -15,6 +16,7 @@ export const SEO = ({
   description = SeoSettings.description,
   url = SeoSettings.rootUrl,
   siteName = SeoSettings.title,
+  canonicalUrl,
 }: SeoProps) => {
   return (
     <Head>
@@ -31,6 +33,10 @@ export const SEO = ({
       <meta property="og:site_name" content={siteName} key="ogsitename" />
       <meta property="og:title" content={title} key="ogtitle" />
       <meta property="og:description" content={description} key="ogdesc" />
+      <link
+        rel="canonical"
+        href={`https://developers.awellhealth.com${canonicalUrl}`}
+      />
     </Head>
   )
 }

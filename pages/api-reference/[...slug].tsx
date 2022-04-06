@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { ReactNode } from 'react'
 
 import { DocsHeader } from '../../src/components/Docs/atoms'
+import { GraphQLExplorer } from '../../src/components/GraphQLExplorer'
 import { DocsLayout } from '../../src/components/Layouts'
 import { SEO } from '../../src/components/SEO'
 import { TOC } from '../../src/components/TOC'
@@ -45,6 +46,7 @@ export default function ApiPage({
         title={frontMatter.title}
         description={frontMatter.description}
         url={`/api-reference/${slug}`}
+        canonicalUrl={`/api-reference/${slug}`}
       />
       {heading && (
         <DocsHeader
@@ -64,6 +66,12 @@ export default function ApiPage({
           On this page
         </h5>
         <TOC toc={toc}></TOC>
+        <h5 className="mt-10 text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
+          Explorer
+        </h5>
+        {/* <div className="explorer-sidepane">
+          <GraphQLExplorer />
+        </div> */}
       </div>
     </div>
   )

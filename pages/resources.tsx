@@ -8,7 +8,7 @@ import { docsMenu } from '../src/config/menus'
 export default function Resources() {
   return (
     <>
-      <SEO title="Resources" />
+      <SEO title="Resources" url={`/resources`} canonicalUrl={`/resources`} />
       <div className="max-w-3xl mx-auto xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
         <DocsHeader
           heading="Resources"

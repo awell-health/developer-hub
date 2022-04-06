@@ -1,8 +1,6 @@
 import Highlight, { defaultProps } from 'prism-react-renderer'
-import { useContext } from 'react'
 
 import { darkTheme, lightTheme } from '../../../../config/prism'
-import { AppContext } from '../../../../contexts/app/AppContext'
 import { CopyButton } from '../../../Button/variants'
 
 interface CodeProps {
@@ -13,7 +11,7 @@ interface CodeProps {
 
 export const Code = ({ children, className }: CodeProps) => {
   const language = className.replace(/language-/, '')
-  const { theme } = useContext(AppContext)
+  const theme = 'light'
 
   const [code] = Array.isArray(children) ? children : [children]
 

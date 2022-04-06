@@ -5,7 +5,8 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import type { ReactElement, ReactNode } from 'react'
 
-import { SEO } from '../src/components/SEO'
+import { MobileNav } from '../src/components/Header/MobileNav'
+import { MobileMenu } from '../src/components/Sidebar/Menu/'
 import { AppProvider } from '../src/contexts/app/AppContext'
 
 type NextPageWithLayout = NextPage & {
@@ -46,8 +47,11 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <SEO />
-      <AppProvider>{getLayout(<Component {...pageProps} />)}</AppProvider>
+      <AppProvider>
+        {getLayout(<Component {...pageProps} />)}
+        <MobileMenu />
+        <MobileNav />
+      </AppProvider>
     </>
   )
 }

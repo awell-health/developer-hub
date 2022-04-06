@@ -1,19 +1,18 @@
-import React, { ReactNode, useState } from 'react'
-
-import { type ThemeType } from '../../types/theme.types'
+import { useRouter } from 'next/router'
+import React, { ReactNode, useCallback, useEffect, useState } from 'react'
 
 interface AppContextStateType {
-  isMobileMenuOpen: boolean
-  theme: ThemeType
-  toggleTheme: () => void
-  toggleMobileMenu: () => void
+  isMobileSideMenuOpen: boolean
+  isMobileMainMenuOpen: boolean
+  toggleMobileMainMenu: () => void
+  toggleMobileSideMenu: () => void
 }
 
 const initialState: AppContextStateType = {
-  isMobileMenuOpen: false,
-  theme: 'light',
-  toggleTheme: () => null,
-  toggleMobileMenu: () => null,
+  isMobileSideMenuOpen: false,
+  isMobileMainMenuOpen: false,
+  toggleMobileMainMenu: () => null,
+  toggleMobileSideMenu: () => null,
 }
 
 export const AppContext = React.createContext<AppContextStateType>(initialState)
@@ -23,26 +22,41 @@ interface AppProviderProps {
 }
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-  const [theme, setTheme] = useState<ThemeType>(initialState.theme)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(
-    initialState.isMobileMenuOpen
+  const router = useRouter()
+  const [isMobileSideMenuOpen, setIsSideMobileMenuOpen] = useState<boolean>(
+    initialState.isMobileSideMenuOpen
+  )
+  const [isMobileMainMenuOpen, setIsMainMobileMenuOpen] = useState<boolean>(
+    initialState.isMobileMainMenuOpen
   )
 
-  const toggleTheme = () => {
-    if (theme === 'light') {
-      document.querySelector('html')?.classList?.add?.('dark')
-      setTheme('dark')
-    } else {
-      document.querySelector('html')?.classList?.remove?.('dark')
-      setTheme('light')
-    }
-  }
+  const toggleMobileSideMenu = () =>
+    setIsSideMobileMenuOpen(!isMobileSideMenuOpen)
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
+  const toggleMobileMainMenu = () =>
+    setIsMainMobileMenuOpen(!isMobileMainMenuOpen)
+
+  const hideMenu = useCallback(() => {
+    setIsSideMobileMenuOpen(false)
+    setIsMainMobileMenuOpen(false)
+  }, [setIsSideMobileMenuOpen, setIsMainMobileMenuOpen])
+
+  useEffect(() => {
+    // subscribe
+    router.events.on('routeChangeStart', hideMenu)
+
+    // unsubscribe
+    return () => router.events.off('routeChangeStart', hideMenu)
+  }, [hideMenu, router.events])
 
   return (
     <AppContext.Provider
-      value={{ theme, toggleTheme, isMobileMenuOpen, toggleMobileMenu }}
+      value={{
+        isMobileSideMenuOpen,
+        toggleMobileSideMenu,
+        toggleMobileMainMenu,
+        isMobileMainMenuOpen,
+      }}
     >
       {children}
     </AppContext.Provider>

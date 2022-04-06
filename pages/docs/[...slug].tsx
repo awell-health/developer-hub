@@ -42,6 +42,7 @@ export default function DocsPage({
         title={frontMatter.title}
         description={frontMatter.description}
         url={`/docs/${slug}`}
+        canonicalUrl={`/docs/${slug}`}
       />
       {heading && (
         <DocsHeader
