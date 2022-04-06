@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { ReactNode } from 'react'
 
 import { DocsHeader } from '../../src/components/Docs/atoms'
-import { GraphQLExplorer } from '../../src/components/GraphQLExplorer'
+// import { GraphQLExplorer } from '../../src/components/GraphQLExplorer'
 import { DocsLayout } from '../../src/components/Layouts'
 import { SEO } from '../../src/components/SEO'
 import { TOC } from '../../src/components/TOC'
