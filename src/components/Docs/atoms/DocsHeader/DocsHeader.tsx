@@ -8,7 +8,10 @@ interface DocsHeaderProps {
   description?: string
   badge?: BadgeType
   githubUrl?: string
-  postmanUrl?: string
+  postman?: {
+    showPostmanButton?: boolean
+    postmanButtonUrl?: string
+  }
 }
 
 export const DocsHeader = ({
@@ -17,7 +20,7 @@ export const DocsHeader = ({
   description,
   badge,
   githubUrl,
-  postmanUrl,
+  postman,
 }: DocsHeaderProps) => (
   <header id="header" className="relative z-20">
     <div>
@@ -48,9 +51,9 @@ export const DocsHeader = ({
           <EditOnGithub href={githubUrl} />
         </div>
       )}
-      {postmanUrl && (
+      {postman?.showPostmanButton && (
         <div className="mt-2 ml-3">
-          <OpenInPostman postmanUrl="#" />
+          <OpenInPostman postmanUrl={postman.postmanButtonUrl} />
         </div>
       )}
     </div>

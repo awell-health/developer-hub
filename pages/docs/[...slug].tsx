@@ -21,6 +21,8 @@ type DocsPageProps = {
   frontMatter: {
     title: string
     description: string
+    postmanUrl: string
+    showPostmanButton: boolean
   }
   mdxSource: MDXRemoteSerializeResult
   slug: string
@@ -49,6 +51,10 @@ export default function DocsPage({
           title={frontMatter.title}
           description={frontMatter.description}
           githubUrl={`/content/docs/${slug}.mdx`}
+          postman={{
+            showPostmanButton: frontMatter.showPostmanButton,
+            postmanButtonUrl: frontMatter.postmanUrl,
+          }}
         />
       )}
       <div id="content-wrapper">
