@@ -25,7 +25,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [themeSetting, setThemeSetting] = useState<ThemeSettingType>(
     initialState.themeSetting
   )
-  const [theme, setTheme] = useState<ThemeType>(initialState.theme)
+  const [theme, setTheme] = useState<ThemeType | null>(null)
 
   const initial = useRef(true)
 
@@ -96,6 +96,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
       window.removeEventListener('storage', onStorage)
     }
   }, [])
+
+  if (!theme) return null
 
   return (
     <ThemeContext.Provider
