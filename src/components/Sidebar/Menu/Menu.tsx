@@ -47,10 +47,7 @@ export const Menu = () => {
       <li>
         <MainMenuItem
           route={apiReferenceStartRoute}
-          active={
-            router.pathname.includes('/api-reference') ||
-            router.pathname === '/'
-          }
+          active={router.pathname.includes('/api-reference')}
           label="API Reference"
           icon={PlaygroundIcon}
         />
