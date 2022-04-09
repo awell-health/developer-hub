@@ -16,6 +16,7 @@ const PostmanButton = ({ postmanUrl }: { postmanUrl: string }) => {
       <a
         title="Open in postman"
         target="_blank"
+        data-heap="open-in-postman"
         className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-[#ff6c37] text-white border border-orange-500 rounded-lg focus:outline-none hover:bg-orange-600 focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-orange-300"
       >
         <svg
@@ -72,6 +73,7 @@ const PostmanSelect = () => {
           id="menu-button"
           aria-expanded="true"
           aria-haspopup="true"
+          data-heap="open-in-postman"
         >
           <svg
             stroke="currentColor"

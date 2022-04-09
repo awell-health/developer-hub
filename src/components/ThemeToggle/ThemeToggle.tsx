@@ -59,6 +59,7 @@ export function ThemeToggle({ panelClassName = 'mt-4' }) {
                   selected && 'text-sky-500',
                   active && 'bg-slate-50 dark:bg-slate-600/30'
                 )}
+                data-track-heap={`set-theme-${value}`}
               >
                 {/* @ts-expect-error don't know how to fix this typing error */}
                 <Icon selected={selected} className="w-6 h-6 mr-2" />
@@ -133,7 +134,11 @@ export function ThemeSelect() {
           className="absolute appearance-none inset-0 w-full h-full opacity-0"
         >
           {settings.map(({ value, label }) => (
-            <option key={value} value={value}>
+            <option
+              key={value}
+              value={value}
+              data-track-heap={`set-theme-${value}`}
+            >
               {label}
             </option>
           ))}
