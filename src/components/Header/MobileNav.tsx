@@ -63,7 +63,7 @@ export const MobileNav = () => {
               target="_blank"
               className="hover:text-sky-500 dark:hover:text-sky-400"
               rel="noreferrer"
-              data-heap="open-github-repo"
+              data-track-heap="open-github-repo"
             >
               GitHub
             </a>

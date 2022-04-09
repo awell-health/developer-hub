@@ -91,7 +91,7 @@ export const Header = () => {
                     target="_blank"
                     className="ml-6 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
                     rel="noreferrer"
-                    data-heap="open-github-repo"
+                    data-track-heap="open-github-repo"
                   >
                     <span className="sr-only">Awell Developers on GitHub</span>
                     <svg
