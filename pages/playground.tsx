@@ -15,6 +15,9 @@ export default function Playground() {
 
   const fetcher = createGraphiQLFetcher({
     url: process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL,
+    headers: {
+      apiKey: 'I0xHR9QOuOPhupv68kdKfVeR3CwIFkIe',
+    },
   })
 
   return (

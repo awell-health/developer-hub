@@ -45,6 +45,7 @@ export const AlgoliaAutocomplete = (props: any) => {
 
     // Initialize autocomplete on the newly created container
     const search = autocomplete({
+      debug: true,
       autoFocus: true,
       container: containerRef.current,
       panelContainer: containerRef.current,

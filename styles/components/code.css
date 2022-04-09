@@ -2,6 +2,10 @@ pre.prism-code {
   @apply border border-slate-200 bg-slate-50 p-4 rounded-lg dark:bg-proseBg dark:border-none overflow-x-auto;
 }
 
+.withCollapseExpandButton pre.prism-code {
+  @apply pb-12;
+}
+
 .dark pre {
   color: #fff;
 }

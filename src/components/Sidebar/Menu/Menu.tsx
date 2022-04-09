@@ -15,6 +15,7 @@ import {
   ResourcesIcon,
   StudioIcon,
 } from '../atoms/icons'
+import { MainMenuItem } from './atoms/MainMenuItem'
 
 export const Menu = () => {
   const router = useRouter()
@@ -28,10 +29,6 @@ export const Menu = () => {
     }
   })
 
-  const topLevelActiveClass = 'text-sky-500 dark:text-sky-400'
-  const topLevelInactiveClass =
-    'text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-30'
-
   const subLevelActiveClass =
     'text-sky-500 border-current font-semibold dark:text-sky-400'
   const subLevelInactiveClass =
@@ -40,94 +37,47 @@ export const Menu = () => {
   return (
     <ul>
       <li>
-        <Link href={docsStartRoute}>
-          <a
-            title="Documentation"
-            className={clsx(
-              'group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold',
-              router.pathname.includes('/docs') || router.pathname === '/'
-                ? topLevelActiveClass
-                : topLevelInactiveClass
-            )}
-          >
-            <div className="mr-4 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-sky-200 dark:group-hover:bg-sky-500 dark:bg-sky-500 dark:highlight-white/10">
-              <DocumentationIcon />
-            </div>
-            Documentation
-          </a>
-        </Link>
+        <MainMenuItem
+          route={docsStartRoute}
+          active={router.pathname.includes('/docs') || router.pathname === '/'}
+          label="Documentation"
+          icon={DocumentationIcon}
+        />
       </li>
       <li>
-        <Link href={apiReferenceStartRoute}>
-          <a
-            title="API reference"
-            className={clsx(
-              'group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold',
-              router.pathname.includes('/api-reference')
-                ? topLevelActiveClass
-                : topLevelInactiveClass
-            )}
-          >
-            <div className="mr-4 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-blue-200 dark:group-hover:bg-blue-500 dark:bg-slate-800 dark:highlight-white/5">
-              <PlaygroundIcon />
-            </div>
-            API Reference
-          </a>
-        </Link>
+        <MainMenuItem
+          route={apiReferenceStartRoute}
+          active={
+            router.pathname.includes('/api-reference') ||
+            router.pathname === '/'
+          }
+          label="API Reference"
+          icon={PlaygroundIcon}
+        />
       </li>
       <li>
-        <Link href="/resources">
-          <a
-            title="Resources"
-            className={clsx(
-              'group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold',
-              router.pathname.includes('/resources')
-                ? topLevelActiveClass
-                : topLevelInactiveClass
-            )}
-          >
-            <div className="mr-4 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-purple-200 dark:group-hover:bg-purple-400 dark:bg-slate-800 dark:highlight-white/5">
-              <ResourcesIcon />
-            </div>
-            Resources
-          </a>
-        </Link>
+        <MainMenuItem
+          route="/resources"
+          active={router.pathname.includes('/resources')}
+          label="Resources"
+          icon={ResourcesIcon}
+        />
       </li>
       <li>
-        <Link href="/support">
-          <a
-            title="Support"
-            className={clsx(
-              'group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold',
-              router.pathname.includes('/support')
-                ? topLevelActiveClass
-                : topLevelInactiveClass
-            )}
-          >
-            <div className="mr-4 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-violet-200 dark:group-hover:bg-violet-500 dark:bg-slate-800 dark:highlight-white/5">
-              <CommunityIcon />
-            </div>
-            Support
-          </a>
-        </Link>
+        <MainMenuItem
+          route="/support"
+          active={router.pathname.includes('/support')}
+          label="Support"
+          icon={CommunityIcon}
+        />
       </li>
       <li>
-        <Link href="/awell-studio-docs">
-          <a
-            title="Awell Studio docs"
-            className={clsx(
-              'group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold',
-              router.pathname.includes('/awell-studio-docs')
-                ? topLevelActiveClass
-                : topLevelInactiveClass
-            )}
-          >
-            <div className="mr-4 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-purple-200 dark:group-hover:bg-purple-400 dark:bg-slate-800 dark:highlight-white/5">
-              <StudioIcon />
-            </div>
-            Awell Studio docs
-          </a>
-        </Link>
+        <MainMenuItem
+          route="/awell-studio-docs"
+          active={router.pathname.includes('/awell-studio-docs')}
+          label="Awell Studio Docs"
+          icon={StudioIcon}
+        />
       </li>
       {menu.map((menuItem, index) => (
         <li className="mt-12 lg:mt-8" key={index}>

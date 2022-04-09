@@ -10,10 +10,10 @@ export const SearchResultItem = ({
 }) => {
   return (
     <a href={`/${item.slug}`} title={item.title} className="flex flex-col">
-      <div className="font-semibold text-lg">
+      <div className="font-semibold text-lg dark:text-slate-100">
         <components.Highlight hit={item} attribute="title" tagName="mark" />
       </div>
-      <div className="text-base text-slate-600">
+      <div className="text-base text-slate-600 dark:text-slate-300">
         <components.Highlight
           hit={item}
           attribute="description"

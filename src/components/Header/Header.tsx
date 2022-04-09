@@ -9,6 +9,7 @@ import { AppContext } from '../../contexts/app/AppContext'
 import { useBreadcrumb } from '../../hooks/useBreadcrumb'
 import { isMenuItemActive } from '../../utils/isMenuItemActive'
 import { Badge } from '../Badge'
+import { ThemeToggle } from '../ThemeToggle'
 
 const MobileMainMenu = ({ onClick }: { onClick: () => void }) => {
   return (
@@ -81,10 +82,14 @@ export const Header = () => {
                   </ul>
                 </nav>
                 <div className="flex items-center border-l border-slate-200 ml-6 pl-6 dark:border-slate-800">
+                  <label className="sr-only" id="headlessui-listbox-label-18">
+                    Theme
+                  </label>
+                  <ThemeToggle />
                   <a
                     href="https://github.com/nckhell/awell-developers"
                     target="_blank"
-                    className="block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
+                    className="ml-6 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
                     rel="noreferrer"
                   >
                     <span className="sr-only">Awell Developers on GitHub</span>

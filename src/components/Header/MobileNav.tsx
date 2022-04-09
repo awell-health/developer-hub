@@ -3,6 +3,7 @@ import { useContext } from 'react'
 
 import { nav } from '../../config/nav'
 import { AppContext } from '../../contexts/app/AppContext'
+import { ThemeSelect } from '../ThemeToggle'
 
 export const MobileNav = () => {
   const { isMobileMainMenuOpen, toggleMobileMainMenu } = useContext(AppContext)
@@ -67,6 +68,9 @@ export const MobileNav = () => {
             </a>
           </li>
         </ul>
+        <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-200/10">
+          <ThemeSelect />
+        </div>
       </div>
     </div>
   )

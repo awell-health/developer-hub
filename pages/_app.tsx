@@ -9,6 +9,7 @@ import { MobileNav } from '../src/components/Header/MobileNav'
 import { Search } from '../src/components/Search'
 import { MobileMenu } from '../src/components/Sidebar/Menu/'
 import { AppProvider } from '../src/contexts/app/AppContext'
+import { ThemeProvider } from '../src/hooks/useTheme'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -48,12 +49,14 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <AppProvider>
-        {getLayout(<Component {...pageProps} />)}
-        <MobileMenu />
-        <MobileNav />
-        <Search />
-      </AppProvider>
+      <ThemeProvider>
+        <AppProvider>
+          {getLayout(<Component {...pageProps} />)}
+          <MobileMenu />
+          <MobileNav />
+          <Search />
+        </AppProvider>
+      </ThemeProvider>
     </>
   )
 }
