@@ -26,9 +26,13 @@ module.exports = {
   plugins: [
     function ({ addVariant }) {
       addVariant(
-        'supports-scrollbars',
-        '@supports selector(::-webkit-scrollbar)'
-      )
+        'supports-backdrop-blur',
+        '@supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))'
+      ),
+        addVariant(
+          'supports-scrollbars',
+          '@supports selector(::-webkit-scrollbar)'
+        )
       addVariant('scrollbar', '&::-webkit-scrollbar')
       addVariant('scrollbar-track', '&::-webkit-scrollbar-track')
       addVariant('scrollbar-thumb', '&::-webkit-scrollbar-thumb')

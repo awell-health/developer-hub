@@ -82,14 +82,14 @@ export const Menu = () => {
             {menuItem.title}
           </h5>
           {menuItem.submenu && (
-            <ul className="space-y-6 lg:space-y-2 border-l border-slate-100 dark:border-slate-800">
+            <ul className="space-y-6 lg:space-y-2 border-l border-slate-100 dark:border-slate-700 lg:dark:border-slate-800">
               {menuItem.submenu.map((subMenuItem, index) => (
                 <li key={index}>
                   <Link href={subMenuItem.path}>
                     <a
                       title={subMenuItem.title}
                       className={clsx(
-                        'flex justify-between block border-l pl-4 -ml-px',
+                        'text-lg lg:text-sm lg:leading-6 flex justify-between block border-l pl-4 -ml-px',
                         isMenuItemActive(
                           subMenuItem.path,
                           router.query.slug

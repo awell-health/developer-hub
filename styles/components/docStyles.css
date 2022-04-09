@@ -71,7 +71,7 @@
 }
 
 #content-wrapper blockquote {
-  @apply border-l-2 border-sky-500 pl-6 my-6 dark:border-sky-400;
+  @apply border-l-2 border-sky-500 pl-6 my-6 dark:border-sky-400 break-words;
 }
 
 #content-wrapper blockquote p {

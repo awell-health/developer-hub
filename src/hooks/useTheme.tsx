@@ -97,9 +97,6 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     }
   }, [])
 
-  console.log('Theme seting: ' + themeSetting)
-  console.log('Theme: ' + theme)
-
   return (
     <ThemeContext.Provider
       value={{
