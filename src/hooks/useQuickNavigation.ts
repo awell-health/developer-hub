@@ -10,13 +10,9 @@ export const useQuickNavigation = (
       ? docsMenu.flatMap((mainMenuItem) => mainMenuItem.submenu || [])
       : apiMenu.flatMap((mainMenuItem) => mainMenuItem.submenu || [])
 
-  console.log(subMenus)
-
   const indexCurrentPage = subMenus.findIndex((subMenu) => {
     return subMenu.path.includes(currentPageSlug)
   })
-
-  console.log(indexCurrentPage)
 
   if (indexCurrentPage === -1) return { prev: undefined, next: undefined }
 

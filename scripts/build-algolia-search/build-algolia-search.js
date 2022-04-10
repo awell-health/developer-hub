@@ -45,7 +45,6 @@ function transformPagesToAlgoliaSearchObjects(pages) {
 ;(async function () {
   // initialize environment variables
   dotenv.config()
-  console.log(process.env.NODE_ENV)
 
   try {
     if (!process.env.NEXT_PUBLIC_ALGOLIA_APP_ID) {
