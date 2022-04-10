@@ -40,7 +40,7 @@ export const SearchButton = () => {
         />
       </svg>
       Quick search...
-      <span className="ml-auto pl-3 flex-none text-xs font-semibold">⌘K</span>
+      {/* <span className="ml-auto pl-3 flex-none text-xs font-semibold">⌘K</span> */}
     </button>
   )
 }

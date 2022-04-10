@@ -59,6 +59,7 @@ export const CopyButton = ({ content }: CopyButtonProps) => {
       type="button"
       onClick={copyUrl}
       className="inline-flex items-center text-xs bg-slate-200 text-slate-600 px-2 py-1 rounded-lg font-semibold hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
+      data-track-heap="copy-code"
     >
       <span className="mr-1">
         {copyUrlStatus === 'copied' ? <CopiedIcon /> : <CopyIcon />}

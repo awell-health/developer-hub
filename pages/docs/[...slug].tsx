@@ -6,9 +6,11 @@ import { ReactNode } from 'react'
 
 import { DocsHeader } from '../../src/components/Docs/atoms'
 import { DocsLayout } from '../../src/components/Layouts'
+import { QuickNav } from '../../src/components/QuickNavigation'
 import { SEO } from '../../src/components/SEO'
 import { TOC } from '../../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../../src/config/mdx'
+import { useQuickNavigation } from '../../src/hooks/useQuickNavigation'
 import { TableOfContentsType } from '../../src/types/toc.types'
 import {
   getAllDocs,
@@ -36,6 +38,7 @@ export default function DocsPage({
   toc,
 }: DocsPageProps) {
   const heading = getHeadingForDoc(slug)
+  const { next, prev } = useQuickNavigation(slug, 'docs')
 
   return (
     <div>
@@ -57,8 +60,13 @@ export default function DocsPage({
           }}
         />
       )}
-      <div id="content-wrapper">
-        <MDXRemote {...mdxSource} components={mdxComponents} />
+      <div>
+        <div id="content-wrapper">
+          <MDXRemote {...mdxSource} components={mdxComponents} />
+        </div>
+        <div className="mt-12">
+          <QuickNav prev={prev} next={next} />
+        </div>
       </div>
       <div className="fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto hidden xl:block">
         <h5 className="text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">

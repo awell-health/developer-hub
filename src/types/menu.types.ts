@@ -14,3 +14,14 @@ export type MenuItemType = {
 }
 
 export type MenuType = MenuItemType[]
+
+export type QuickNavType = {
+  prev?: {
+    label: string
+    url: string
+  }
+  next?: {
+    label: string
+    url: string
+  }
+}

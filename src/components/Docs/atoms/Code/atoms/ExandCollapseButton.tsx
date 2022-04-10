@@ -7,6 +7,7 @@ export const ExpandCollapseButton = ({ onClick, expanded }: ButtonProps) => (
     <button
       className="flex items-center px-4 py-2 mr-3 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:focus:ring-offset-2 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 copy-to-clipboard-button"
       onClick={() => onClick()}
+      data-track-heap={expanded ? 'collapse-code' : 'expand-code'}
     >
       {expanded ? (
         <svg

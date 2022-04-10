@@ -8,7 +8,9 @@
     "postbuild": "node ./scripts/build-algolia-search/build-algolia-search.js",
     "start": "next start",
     "ts": "tsc --noEmit --incremental",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "pre-commit": "npm run ts && next lint --fix"
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.5.6",
