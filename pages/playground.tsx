@@ -14,7 +14,7 @@ export default function Playground() {
   // const { createGraphiQLFetcher } = require('@graphiql/toolkit')
 
   const fetcher = createGraphiQLFetcher({
-    url: 'https://api.awellhealth.com/orchestration/m2m/graphql',
+    url: process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL,
     headers: {
       apiKey: 'I0xHR9QOuOPhupv68kdKfVeR3CwIFkIe',
     },
