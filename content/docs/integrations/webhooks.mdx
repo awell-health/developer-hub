@@ -3,4 +3,193 @@ title: Webhooks
 description: Webhooks are a powerful resource that you can use to notify your system when actions are happening in a pathway.
 ---
 
-Unlike the API resources, which represent static data that you can create, update and retrieve as needed, webhooks represent dynamic resources. You can configure them to automatically notify you when something has happened in the pathway, such as an activity that is completed or a form that is filled in.
+Webhooks can be configured to automatically notify your system when something has happened in the pathway, such as an activity that is completed or a form that is submitted.
+
+## Webhook configuration
+
+Webhooks can be configured on a per pathway basis in the Awell Studio (see `Settings > Webhooks`). See our Awell Studio documentation on how to configure Webhooks.
+
+<a
+  href="https://help.awellhealth.com/en/"
+  className="button"
+  target="_blank"
+  title="Open Awell Studio docs"
+>
+  Open Awell Studio docs
+</a>
+
+## Subscriptions
+
+**Webhooks are automatically subscribed to the following events**:
+
+1. <u>Activity created:</u> triggered every time an activity in the pathway is created,
+   including system activities.
+2. <u>Activity completed:</u> triggered every time an activity in the pathway is
+   completed, including system activities.{' '}
+3. <u>Data point collected:</u> triggered every time a new value for a data point
+   is collected
+4. <u>Form submitted:</u> triggered every time a form is submitted
+
+> Note that every Webhook is automatically subscribed to the above events. You can currently not change the subscriptions on a per webhook basis.
+
+## Example payloads
+
+Below an example of every type of subscription and the payload you'll be receiving on your end.
+
+### Activity created
+
+Activity created by the system to indicate that the pathway was activated.
+
+```json
+{
+  "activity": {
+    "id": "Activity/Eq3ROYLFqGns45e-uIenn",
+    "stream_id": "uw780I2_Jv2O",
+    "date": "uw780I2_Jv2O",
+    "subject": {
+      "type": "awell",
+      "name": "Awell"
+    },
+    "action": "activate",
+    "object": {
+      "type": "pathway",
+      "id": "owMPjuQrYbg7",
+      "name": "Test Pathway"
+    },
+    "status": "done",
+    "reference_id": "PathwayNavigationNode/22629258",
+    "reference_type": "navigation",
+    "sub_activities": [],
+    "isUserActivity": false,
+    "context": {
+      "instance_id": "uw780I2_Jv2O",
+      "pathway_id": "uw780I2_Jv2O"
+    }
+  },
+  "pathway_id": "uw780I2_Jv2O",
+  "pathway_definition_id": "owMPjuQrYbg7",
+  "event_type": "ACTIVITY_CREATED"
+}
+```
+
+### Activity completed
+
+A completed activity by the system that tells us the pathway was completed.
+
+```json
+{
+  "activity": {
+    "id": "Activity/Dc5dcnhKcKN8dTTKT9UyR",
+    "stream_id": "uw780I2_Jv2O",
+    "date": "uw780I2_Jv2O",
+    "subject": {
+      "type": "awell",
+      "name": "Awell"
+    },
+    "action": "complete",
+    "object": {
+      "type": "pathway",
+      "id": "owMPjuQrYbg7",
+      "name": "Test Pathway"
+    },
+    "status": "done",
+    "reference_id": "PathwayNavigationNode/22629272",
+    "reference_type": "navigation",
+    "sub_activities": [],
+    "isUserActivity": false,
+    "context": {
+      "instance_id": "uw780I2_Jv2O",
+      "pathway_id": "uw780I2_Jv2O"
+    }
+  },
+  "pathway_id": "uw780I2_Jv2O",
+  "pathway_definition_id": "owMPjuQrYbg7",
+  "event_type": "ACTIVITY_COMPLETED"
+}
+```
+
+### Data point collected
+
+A new value `Hello world` was collected for data point with definition id `T6eJCLlf-fjf`.
+
+```json
+{
+  "data_point": {
+    "id": "DataPoint/S9aOsV1EXkaacIiRhbiWQ",
+    "data_point_definition_id": "T6eJCLlf-fjf",
+    "valueType": "string",
+    "value": "Hello world",
+    "data_set_id": "uw780I2_Jv2O",
+    "activity_id": "Activity/Wj6oZwTgiu7Smf99hQMBb",
+    "date": "2022-04-10T15:57:58.369Z"
+  },
+  "pathway_id": "uw780I2_Jv2O",
+  "pathway_definition_id": "owMPjuQrYbg7",
+  "event_type": "DATA_POINT_COLLECTED"
+}
+```
+
+### Form submitted
+
+Form with activity id `Activity/Wj6oZwTgiu7Smf99hQMBb` was submitted and we can retrieve the full response with all answers.
+
+```json
+{
+  "activity_id": "Activity/Wj6oZwTgiu7Smf99hQMBb",
+  "date": "2022-04-10T15:57:58.369Z",
+  "response": [
+    {
+      "data_point_definition_id": "4UqgFEYpMVtO",
+      "valueType": "date",
+      "value": "1993-11-30T00:00:00.000Z",
+      "data_set_id": "uw780I2_Jv2O",
+      "activity_id": "Activity/Wj6oZwTgiu7Smf99hQMBb",
+      "date": "2022-04-10T15:57:58.369Z"
+    },
+    {
+      "data_point_definition_id": "O6pLeXJW-QL_",
+      "valueType": "string",
+      "value": "Hello world",
+      "data_set_id": "uw780I2_Jv2O",
+      "activity_id": "Activity/Wj6oZwTgiu7Smf99hQMBb",
+      "date": "2022-04-10T15:57:58.369Z"
+    },
+    {
+      "data_point_definition_id": "P0ZmKasxJWzS",
+      "valueType": "number",
+      "value": 31,
+      "data_set_id": "uw780I2_Jv2O",
+      "activity_id": "Activity/Wj6oZwTgiu7Smf99hQMBb",
+      "date": "2022-04-10T15:57:58.369Z"
+    },
+    {
+      "data_point_definition_id": "T6eJCLlf-fjf",
+      "valueType": "string",
+      "value": "Hello world",
+      "data_set_id": "uw780I2_Jv2O",
+      "activity_id": "Activity/Wj6oZwTgiu7Smf99hQMBb",
+      "date": "2022-04-10T15:57:58.369Z"
+    },
+    {
+      "data_point_definition_id": "WRMtuukfqHvL",
+      "valueType": "numbers_array",
+      "value": [0],
+      "data_set_id": "uw780I2_Jv2O",
+      "activity_id": "Activity/Wj6oZwTgiu7Smf99hQMBb",
+      "date": "2022-04-10T15:57:58.369Z",
+      "label": "Option 1"
+    },
+    {
+      "data_point_definition_id": "dGrXwnqEP73V",
+      "valueType": "number",
+      "value": 3,
+      "data_set_id": "uw780I2_Jv2O",
+      "activity_id": "Activity/Wj6oZwTgiu7Smf99hQMBb",
+      "date": "2022-04-10T15:57:58.369Z"
+    }
+  ],
+  "pathway_id": "uw780I2_Jv2O",
+  "pathway_definition_id": "owMPjuQrYbg7",
+  "event_type": "FORM_SUBMITTED"
+}
+```

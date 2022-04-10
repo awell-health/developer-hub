@@ -31,6 +31,10 @@ export const docsMenu: MenuItemType[] = [
     title: 'Integrations',
     submenu: [
       {
+        title: 'Healthcare interopability',
+        path: '/docs/integrations/healthcare-interoperability',
+      },
+      {
         title: 'Webhooks',
         path: '/docs/integrations/webhooks',
       },
