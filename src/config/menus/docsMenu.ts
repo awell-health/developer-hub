@@ -31,7 +31,7 @@ export const docsMenu: MenuItemType[] = [
     title: 'Integrations',
     submenu: [
       {
-        title: 'Healthcare interopability',
+        title: 'Healthcare interoperability',
         path: '/docs/integrations/healthcare-interoperability',
       },
       {
