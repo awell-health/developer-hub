@@ -6,6 +6,7 @@ export type SubmenuItemType = {
   title: string
   path: string
   badge?: BadgeType
+  openInNewTab?: boolean
 }
 
 export type MenuItemType = {

@@ -24,9 +24,10 @@ import {
 type ApiPageProps = {
   frontMatter: {
     title: string
-    description: string
-    postmanUrl: string
-    showPostmanButton: boolean
+    description?: string
+    postmanUrl?: string
+    showPostmanButton?: boolean
+    showPlaygroundButton?: boolean
   }
   mdxSource: MDXRemoteSerializeResult
   slug: string
@@ -59,8 +60,9 @@ export default function ApiPage({
           badge={badge}
           githubUrl={`/content/api-reference/${slug}.mdx`}
           postman={{
-            showPostmanButton: true,
+            showPostmanButton: frontMatter.showPostmanButton !== false,
           }}
+          playgroundButton={frontMatter.showPlaygroundButton}
         />
       )}
       <div>

@@ -22,6 +22,10 @@ export const apiMenu: MenuItemType[] = [
         title: 'Schema',
         path: '/api-reference/overview/schema',
       },
+      {
+        title: 'Playground',
+        path: '/api-reference/overview/playground',
+      },
     ],
   },
   {

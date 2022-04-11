@@ -12,7 +12,7 @@ import {
   CommunityIcon,
   DocumentationIcon,
   PlaygroundIcon,
-  ResourcesIcon,
+  PlayIcon,
   StudioIcon,
 } from '../atoms/icons'
 import { MainMenuItem } from './atoms/MainMenuItem'
@@ -54,10 +54,11 @@ export const Menu = () => {
       </li>
       <li>
         <MainMenuItem
-          route="/resources"
-          active={router.pathname.includes('/resources')}
-          label="Resources"
-          icon={ResourcesIcon}
+          route="/playground"
+          active={router.pathname.includes('/playground')}
+          label="Playground"
+          icon={PlayIcon}
+          openInNewTab={true}
         />
       </li>
       <li>
@@ -88,6 +89,7 @@ export const Menu = () => {
                   <Link href={subMenuItem.path}>
                     <a
                       title={subMenuItem.title}
+                      target={subMenuItem.openInNewTab ? '_blank' : ''}
                       className={clsx(
                         'text-lg lg:text-sm lg:leading-6 flex justify-between block border-l pl-4 -ml-px',
                         isMenuItemActive(

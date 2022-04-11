@@ -22,7 +22,12 @@ export default function Schema() {
         canonicalUrl={`/api-reference/schema`}
       />
       <div className="max-w-3xl mx-auto xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
-        <DocsHeader heading={heading} title="Explore our GraphQL schema" />
+        <DocsHeader
+          heading={heading}
+          title="Schema"
+          description="Explore our GraphQL schema with our explorer"
+          playgroundButton={true}
+        />
         <GraphQLExplorer />
         <div className="mt-12">
           <QuickNav prev={prev} next={next} />

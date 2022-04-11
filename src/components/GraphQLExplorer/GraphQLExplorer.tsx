@@ -1,14 +1,14 @@
-import { buildClientSchema } from 'graphql'
-
-import { schema } from '../../../src/config/graphSchema'
+import { useGraphQLSchema } from '../../hooks/useGraphQLSchema'
 
 export const GraphQLExplorer = () => {
   // https://github.com/graphql/graphiql/issues/118
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { DocExplorer } = require('graphiql')
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  const graphQLSchema = buildClientSchema(schema.data)
+  const { schema } = useGraphQLSchema()
 
-  return <DocExplorer schema={graphQLSchema} />
+  return (
+    <div id="graphiql-embed">
+      <DocExplorer schema={schema} />
+    </div>
+  )
 }

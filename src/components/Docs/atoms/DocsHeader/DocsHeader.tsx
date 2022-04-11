@@ -1,6 +1,10 @@
 import { Badge } from '../../../../components/Badge'
 import { BadgeType } from '../../../../types/menu.types'
-import { EditOnGithub, OpenInPostman } from '../../../Button/variants'
+import {
+  EditOnGithub,
+  GraphQLButton,
+  OpenInPostman,
+} from '../../../Button/variants'
 
 interface DocsHeaderProps {
   heading?: string
@@ -8,6 +12,7 @@ interface DocsHeaderProps {
   description?: string
   badge?: BadgeType
   githubUrl?: string
+  playgroundButton?: boolean
   postman?: {
     showPostmanButton?: boolean
     postmanButtonUrl?: string
@@ -21,6 +26,7 @@ export const DocsHeader = ({
   badge,
   githubUrl,
   postman,
+  playgroundButton,
 }: DocsHeaderProps) => (
   <header id="header" className="relative z-20">
     <div>
@@ -47,13 +53,18 @@ export const DocsHeader = ({
     )}
     <div className="flex">
       {githubUrl && (
-        <div className="mt-2">
+        <div className="mt-2 mr-3">
           <EditOnGithub href={githubUrl} />
         </div>
       )}
       {postman?.showPostmanButton && (
-        <div className="mt-2 ml-3">
+        <div className="mt-2 mr-3">
           <OpenInPostman postmanUrl={postman.postmanButtonUrl} />
+        </div>
+      )}
+      {playgroundButton && (
+        <div className="mt-2 mr-3">
+          <GraphQLButton url={'/playground'} />
         </div>
       )}
     </div>

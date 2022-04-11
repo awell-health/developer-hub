@@ -7,17 +7,20 @@ interface MainMenuItemProps {
   active: boolean
   label: string
   icon: ReactNode
+  openInNewTab?: boolean
 }
 export const MainMenuItem = ({
   route,
   active,
   label,
   icon: Icon,
+  openInNewTab,
 }: MainMenuItemProps) => {
   return (
     <Link href={route}>
       <a
-        title="Documentation"
+        title={label}
+        target={openInNewTab ? '_blank' : ''}
         className={clsx(
           'pb-2 lg:pb-0 text-lg lg:text-sm group flex items-center lg:leading-6 mb-4 font-semibold',
           active
