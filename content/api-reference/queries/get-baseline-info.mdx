@@ -8,11 +8,35 @@ description: Get baseline info of the pathway
 ### Query
 
 ```graphql
-
+query GetBaselineInfo($pathway_id: String!) {
+  baselineInfo(pathway_id: $pathway_id) {
+    baselineDataPoints {
+      value
+      definition {
+        id
+        title
+        category
+        key
+        valueType
+        possibleValues {
+          label
+          value
+        }
+        unit
+        range {
+          min
+          max
+        }
+      }
+    }
+  }
+}
 ```
 
 ### Variables
 
 ```json
-
+{
+  "pathway_id": "{{PATIENT_PATHWAY_ID}}"
+}
 ```
