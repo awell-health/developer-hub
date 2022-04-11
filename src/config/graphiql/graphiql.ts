@@ -14,6 +14,10 @@ export const defaultQuery = `# Welcome to our GraphQL playground
 #
 # { "apiKey": "{{YOUR_API_KEY}}" }
 #
+# Environment:
+# Please note that the Playground is connected to our Sandbox environment. 
+# We don't offer a playground to interact with the production environment directly.
+#
 # Keyboard shortcuts:
 #
 #  Prettify Query:  Shift-Ctrl-P (or press the prettify button above)
