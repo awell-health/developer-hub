@@ -33,6 +33,7 @@ export default function Playground() {
         editorTheme={'dracula'}
         defaultQuery={defaultQuery}
         shouldPersistHeaders={true}
+        tabs={true}
       />
     </div>
   )
