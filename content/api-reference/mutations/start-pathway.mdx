@@ -44,36 +44,16 @@ mutation startPathway($input: StartPathwayInput!) {
 {
   "input": {
     "patient_id": "{{PATIENT_ID}}",
-    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "baseline_info": [
+      {
+        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
+        "value": "{{DATA_POINT_VALUE}}"
+      },
+      ...
+    ]
   }
 }
 ```
 
-To start a pathway for a patient, the request needs the following, provided within an input object:
-
-<div className="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th>Field</th>
-        <th>Required</th>
-        <th>Description</th>
-        <th>Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>patient_id</td>
-        <td>Yes</td>
-        <td>the id of the patient</td>
-        <td>string</td>
-      </tr>
-      <tr>
-        <td>pathway_definition_id</td>
-        <td>Yes</td>
-        <td>the id of the published pathway</td>
-        <td>string</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+> Note `baseline_info` is only needed when you want to pass baseline data points values to your pathway on pathway start. Keep in mind that, if your pathway has required baseline data points, it will not start until all required baseline data points have a value.
