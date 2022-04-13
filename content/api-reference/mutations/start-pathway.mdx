@@ -45,7 +45,7 @@ mutation startPathway($input: StartPathwayInput!) {
   "input": {
     "patient_id": "{{PATIENT_ID}}",
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
-    "baseline_info": [
+    "data_points": [
       {
         "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
         "value": "{{DATA_POINT_VALUE}}"
@@ -56,4 +56,4 @@ mutation startPathway($input: StartPathwayInput!) {
 }
 ```
 
-> Note `baseline_info` is only needed when you want to pass baseline data points values to your pathway on pathway start. Keep in mind that, if your pathway has required baseline data points, it will not start until all required baseline data points have a value.
+> Note that `data_points` is only needed when you want to pass baseline data point values to your pathway on pathway start. Keep in mind that, if your pathway has required baseline data points, it will not start until all required baseline data points have a value.
