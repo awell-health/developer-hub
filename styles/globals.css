@@ -3,7 +3,6 @@
 @import 'tailwindcss/components';
 @import './components/layout.css';
 @import './components/typography.css';
-@import './components/docSearch.css';
 @import './components/code.css';
 @import './components/button.css';
 @import './components/docStyles.css';

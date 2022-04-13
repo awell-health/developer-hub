@@ -7,6 +7,7 @@ import { AppContext } from '../../contexts/app/AppContext'
 import { useBreadcrumb } from '../../hooks/useBreadcrumb'
 import { isMenuItemActive } from '../../utils/isMenuItemActive'
 import { Badge } from '../Badge'
+import { Search } from '../Search'
 import { ThemeToggle } from '../ThemeToggle'
 
 const MobileMainMenu = ({ onClick }: { onClick: () => void }) => {
@@ -35,8 +36,7 @@ const MobileMainMenu = ({ onClick }: { onClick: () => void }) => {
 export const Header = () => {
   const router = useRouter()
   const breadcrumb = useBreadcrumb(router.asPath)
-  const { toggleMobileSideMenu, toggleMobileMainMenu, toggleIsSearching } =
-    useContext(AppContext)
+  const { toggleMobileSideMenu, toggleMobileMainMenu } = useContext(AppContext)
 
   return (
     <>
@@ -116,9 +116,12 @@ export const Header = () => {
                   </a>
                 </div>
               </div>
-              <button
+              <div className="lg:hidden ml-auto">
+                <Search />
+              </div>
+              {/* <button
                 type="button"
-                onClick={() => toggleIsSearching()}
+                onClick={() => true}
                 className="ml-auto text-slate-500 w-8 h-8 -my-1 flex items-center justify-center hover:text-slate-600 lg:hidden dark:text-slate-400 dark:hover:text-slate-300"
               >
                 <span className="sr-only">Search</span>
@@ -135,7 +138,7 @@ export const Header = () => {
                   <path d="m19 19-3.5-3.5" />
                   <circle cx={11} cy={11} r={6} />
                 </svg>
-              </button>
+              </button> */}
               <MobileMainMenu onClick={toggleMobileMainMenu} />
             </div>
           </div>

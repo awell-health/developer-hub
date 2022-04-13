@@ -8,9 +8,7 @@ interface AppContextStateType {
   menu: MenuType
   isMobileSideMenuOpen: boolean
   isMobileMainMenuOpen: boolean
-  isSearching: boolean
   setMenu: (menu: MenuType) => void
-  toggleIsSearching: () => void
   toggleMobileMainMenu: () => void
   toggleMobileSideMenu: () => void
 }
@@ -19,9 +17,7 @@ const initialState: AppContextStateType = {
   menu: docsMenu,
   isMobileSideMenuOpen: false,
   isMobileMainMenuOpen: false,
-  isSearching: false,
   setMenu: () => null,
-  toggleIsSearching: () => null,
   toggleMobileMainMenu: () => null,
   toggleMobileSideMenu: () => null,
 }
@@ -42,10 +38,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     initialState.isMobileMainMenuOpen
   )
 
-  const [isSearching, setIsSearching] = useState<boolean>(
-    initialState.isSearching
-  )
-
   const [menu, setNewMenu] = useState<MenuType>(initialState.menu)
 
   const toggleMobileSideMenu = () =>
@@ -53,8 +45,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
   const toggleMobileMainMenu = () =>
     setIsMainMobileMenuOpen(!isMobileMainMenuOpen)
-
-  const toggleIsSearching = () => setIsSearching(!isSearching)
 
   const setMenu = (menu: MenuType) => setNewMenu(menu)
 
@@ -76,8 +66,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       value={{
         menu,
         setMenu,
-        isSearching,
-        toggleIsSearching,
         isMobileSideMenuOpen,
         toggleMobileSideMenu,
         toggleMobileMainMenu,

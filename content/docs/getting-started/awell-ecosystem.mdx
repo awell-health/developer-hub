@@ -5,16 +5,76 @@ description: Get an understanding of the Awell platform
 
 ## Awell Studio
 
-Our web application used by clinical and product experts to build clinical pathways with Awell Studio. Once a pathway is published, it becomes available in our Orchestration domain.
+Our web application used by clinical and product experts to build clinical pathways with Awell Studio. A pathway built in Awell Studio is called a `pathway definition model`.
 
-<a
-  href="/awell-studio-docs"
-  className="button"
-  title="Open API reference for form response query"
->
-  Open Awell Studio docs
-</a>
+### Pathway definition model
+
+A pathway definition model uses the following elements as building blocks:
+
+<div className="grid gap-6 mx-auto grid-cols-2">
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Track + Triggers
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Transitions + Conditional logic
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Steps + Labels
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Forms + Conditional logic
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Actions + Stakeholder(s)
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Messages + Dynamic content
+      </div>
+    </div>
+  </div>
+</div>
 
 ## Awell Orchestration
 
-A GraphQL API to orchestrate your clinical pathways and feed your patient and care team apps with the next steps, the next information to show, or the next data to capture.
+When a version of the pathway definition model is published, it becomes available in our Orchestration domain. Our Orchestrator has a GraphQL API interface to orchestrate or execute your clinical pathways and feed your patient and care team apps with the next steps, the next information to show, or the next data to capture.
+
+Where the pathway definition model is a quite elaborate model, an orchestrated pathway is reduced to 2 main elements for you to interact with:
+
+<div className="grid gap-6 mx-auto grid-cols-2">
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Activities
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Data points
+      </div>
+    </div>
+  </div>
+</div>

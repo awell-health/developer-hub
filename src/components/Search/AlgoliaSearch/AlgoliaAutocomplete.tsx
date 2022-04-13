@@ -1,45 +1,13 @@
 import { autocomplete } from '@algolia/autocomplete-js'
-import React, {
-  createElement,
-  Fragment,
-  useContext,
-  useEffect,
-  useRef,
-} from 'react'
+import React, { createElement, Fragment, useEffect, useRef } from 'react'
 import { render } from 'react-dom'
-
-import { AppContext } from '../../../contexts/app/AppContext'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const AlgoliaAutocomplete = (props: any) => {
-  const { toggleIsSearching } = useContext(AppContext)
-
-  const containerRef = useRef<HTMLElement | null>(null)
-
-  const useClickOutside = (ref: React.MutableRefObject<HTMLElement | null>) => {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      const handleClickOutside = (event: MouseEvent) => {
-        //@ts-expect-error not correctly typed yet
-        if (ref.current && !ref.current.contains(event.target)) {
-          toggleIsSearching()
-        }
-      }
-      // Bind the event listener
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [ref])
-  }
-
-  useClickOutside(containerRef)
+  const buttonRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    if (!containerRef.current) {
+    if (!buttonRef.current) {
       return undefined
     }
 
@@ -47,8 +15,7 @@ export const AlgoliaAutocomplete = (props: any) => {
     const search = autocomplete({
       debug: true,
       autoFocus: true,
-      container: containerRef.current,
-      panelContainer: containerRef.current,
+      container: buttonRef.current,
       renderer: { createElement, Fragment },
       // Autocomplete render()
       // https://www.algolia.com/doc/ui-libraries/autocomplete/api-reference/autocomplete-js/autocomplete/#param-render
@@ -58,6 +25,11 @@ export const AlgoliaAutocomplete = (props: any) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         render(children, root)
+      },
+      renderNoResults({ state }, root) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        render(`No results for "${state.query}".`, root)
       },
       ...props,
     })
@@ -69,5 +41,5 @@ export const AlgoliaAutocomplete = (props: any) => {
   }, [props])
 
   //@ts-expect-error not correctly typed yet
-  return <div className="DocSearch-Modal" ref={containerRef} />
+  return <div className="SearchButton" ref={buttonRef} />
 }

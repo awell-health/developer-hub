@@ -6,7 +6,6 @@ import Head from 'next/head'
 import type { ReactElement, ReactNode } from 'react'
 
 import { MobileNav } from '../src/components/Header/MobileNav'
-import { Search } from '../src/components/Search'
 import { MobileMenu } from '../src/components/Sidebar/Menu/'
 import { AppProvider } from '../src/contexts/app/AppContext'
 import { ThemeProvider } from '../src/hooks/useTheme'
@@ -54,7 +53,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
           {getLayout(<Component {...pageProps} />)}
           <MobileMenu />
           <MobileNav />
-          <Search />
+          <div id="search"></div>
         </AppProvider>
       </ThemeProvider>
     </>
