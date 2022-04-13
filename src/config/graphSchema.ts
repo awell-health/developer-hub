@@ -2550,6 +2550,18 @@ export const schema = {
               isDeprecated: false,
               deprecationReason: null,
             },
+            {
+              name: 'optional',
+              description: null,
+              args: [],
+              type: {
+                kind: 'SCALAR',
+                name: 'Boolean',
+                ofType: null,
+              },
+              isDeprecated: false,
+              deprecationReason: null,
+            },
           ],
           inputFields: null,
           interfaces: [],
