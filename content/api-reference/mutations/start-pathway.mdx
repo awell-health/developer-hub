@@ -5,6 +5,27 @@ description: Start a new pathway for a given patient
 
 When starting a pathway, the orchestration API automatically chooses the most recent published version of the pathway to use.
 
+## Prerequisites to start a pathway
+
+Keep in mind that, if your pathway has baseline pathway data points, the pathway will not be initiated until all non-optional baseline data points have a value. You can use the `publishedPathwayDefinitions` query (see documentation [here](https://developers.awellhealth.com/api-reference/queries/get-published-pathways)) to get the baseline pathway data points of a pathway as well as seeing whether they are required or optional (through the `optional` field).
+
+```graphql
+query publishedPathwayDefinitions {
+  publishedPathwayDefinitions {
+    publishedPathwayDefinitions {
+      id
+      title
+      dataPointDefinitions {
+        id
+        key
+        valueType
+        optional # if not set to "true" then baseline data point is required
+      }
+    }
+  }
+}
+```
+
 ## Request
 
 ### Query
