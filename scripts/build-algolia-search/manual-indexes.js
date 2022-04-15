@@ -23,4 +23,4 @@ const manualIndexes = [
   },
 ]
 
-export default manualIndexes
+module.exports = manualIndexes
