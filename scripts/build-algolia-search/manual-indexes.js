@@ -1,4 +1,4 @@
-export default manualIndexes = [
+const manualIndexes = [
   {
     objectID: 'api-reference/overview/playground',
     title: 'Playground',
@@ -22,3 +22,5 @@ export default manualIndexes = [
     slug: 'support',
   },
 ]
+
+export default manualIndexes
