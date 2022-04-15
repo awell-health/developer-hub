@@ -11,15 +11,13 @@ import { QuickNav } from '../../src/components/QuickNavigation'
 import { SEO } from '../../src/components/SEO'
 import { TOC } from '../../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../../src/config/mdx'
-import { useQuickNavigation } from '../../src/hooks/useQuickNavigation'
-import { TableOfContentsType } from '../../src/types/toc.types'
 import {
-  getAllApiDocs,
-  getApiDoc,
-  getBadeForDoc,
-  getHeadingForDoc,
-  getTableOfContents,
-} from '../../src/utils'
+  useBadge,
+  useHeading,
+  useQuickNavigation,
+  useTableOfContents,
+} from '../../src/hooks'
+import { getAllApiDocs, getApiDoc } from '../../src/utils'
 
 type ApiPageProps = {
   frontMatter: {
@@ -31,17 +29,18 @@ type ApiPageProps = {
   }
   mdxSource: MDXRemoteSerializeResult
   slug: string
-  toc: TableOfContentsType
+  content: string
 }
 
 export default function ApiPage({
   frontMatter,
   mdxSource,
   slug,
-  toc,
+  content,
 }: ApiPageProps) {
-  const heading = getHeadingForDoc(slug)
-  const badge = getBadeForDoc(slug)
+  const { heading } = useHeading(slug)
+  const { badge } = useBadge(slug)
+  const { toc } = useTableOfContents(content)
   const { next, prev } = useQuickNavigation(slug, 'api')
 
   return (
@@ -102,7 +101,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const slugString = slug.join('/')
   const { frontMatter, content } = await getApiDoc(slugString)
 
-  const toc = getTableOfContents(content)
   // https://github.com/hashicorp/next-mdx-remote/issues/86
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
@@ -112,8 +110,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       frontMatter,
       mdxSource,
+      content,
       slug: slugString,
-      toc,
     },
   }
 }

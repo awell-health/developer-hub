@@ -1,7 +1,7 @@
 import { apiMenu, docsMenu } from '../config/menus'
 import { BadgeType } from '../types/menu.types'
 
-export const getBadeForDoc = (slug: string): BadgeType | undefined => {
+export const useBadge = (slug: string): { badge: BadgeType | undefined } => {
   const menus = [...apiMenu, ...docsMenu]
 
   const matchedMenuCategory = menus.find((menuSection) => {
@@ -11,9 +11,11 @@ export const getBadeForDoc = (slug: string): BadgeType | undefined => {
   })
 
   if (matchedMenuCategory && matchedMenuCategory.submenu)
-    return matchedMenuCategory.submenu.find((subMenuItem) =>
-      subMenuItem.path.includes(slug)
-    )?.badge
+    return {
+      badge: matchedMenuCategory.submenu.find((subMenuItem) =>
+        subMenuItem.path.includes(slug)
+      )?.badge,
+    }
 
-  return undefined
+  return { badge: undefined }
 }

@@ -1,4 +1,4 @@
-import { getCurrentYear } from '../../utils/getCurrentYear'
+import { getCurrentYear } from '../../utils/date'
 
 export const Footer = () => {
   return (

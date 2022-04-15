@@ -2,7 +2,9 @@ import slugify from 'slugify'
 
 import { TableOfContentsType } from '../types/toc.types'
 
-export const getTableOfContents = (content: string): TableOfContentsType => {
+export const useTableOfContents = (
+  content: string
+): { toc: TableOfContentsType } => {
   const regexp = new RegExp(/^(### |## )(.*)\n/, 'gm')
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
@@ -24,5 +26,5 @@ export const getTableOfContents = (content: string): TableOfContentsType => {
     })
   }
 
-  return tableOfContents
+  return { toc: tableOfContents }
 }

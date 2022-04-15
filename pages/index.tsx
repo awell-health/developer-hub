@@ -9,9 +9,12 @@ import { QuickNav } from '../src/components/QuickNavigation'
 import { SEO } from '../src/components/SEO'
 import { TOC } from '../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../src/config/mdx'
-import { useQuickNavigation } from '../src/hooks/useQuickNavigation'
-import { TableOfContentsType } from '../src/types/toc.types'
-import { getDoc, getHeadingForDoc, getTableOfContents } from '../src/utils'
+import {
+  useHeading,
+  useQuickNavigation,
+  useTableOfContents,
+} from '../src/hooks'
+import { getDoc } from '../src/utils'
 
 type DocsPageProps = {
   frontMatter: {
@@ -20,16 +23,17 @@ type DocsPageProps = {
   }
   mdxSource: MDXRemoteSerializeResult
   slug: string
-  toc: TableOfContentsType
+  content: string
 }
 
 export default function DocsPage({
   frontMatter,
   mdxSource,
   slug,
-  toc,
+  content,
 }: DocsPageProps) {
-  const heading = getHeadingForDoc(slug)
+  const { heading } = useHeading(slug)
+  const { toc } = useTableOfContents(content)
   const { next, prev } = useQuickNavigation(
     'docs/getting-started/welcome',
     'docs'
@@ -77,7 +81,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const homePage = '/getting-started/welcome'
   const { frontMatter, content } = await getDoc(homePage)
 
-  const toc = getTableOfContents(content)
   // https://github.com/hashicorp/next-mdx-remote/issues/86
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
@@ -87,8 +90,8 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       frontMatter,
       mdxSource,
+      content,
       slug: homePage,
-      toc,
     },
   }
 }

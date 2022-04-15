@@ -2,6 +2,9 @@ import { useClipboard } from '../../../hooks/useClipboard'
 
 interface CopyButtonProps {
   content: string
+  copyText?: string
+  copiedText?: string
+  copyFailedText?: string
 }
 
 const CopiedIcon = () => (
@@ -43,26 +46,31 @@ const CopyIcon = () => (
   </svg>
 )
 
-export const CopyButton = ({ content }: CopyButtonProps) => {
-  const [copyUrlStatus, copyUrl] = useClipboard(content)
+export const CopyButton = ({
+  content,
+  copiedText = 'Copied',
+  copyFailedText = 'Copy failed!',
+  copyText = 'Copy',
+}: CopyButtonProps) => {
+  const { copyFn, copyStatus } = useClipboard()
 
-  let buttonText = 'Copy'
+  let buttonText = copyText
 
-  if (copyUrlStatus === 'copied') {
-    buttonText = 'Copied'
-  } else if (copyUrlStatus === 'failed') {
-    buttonText = 'Copy failed!'
+  if (copyStatus === 'copied') {
+    buttonText = copiedText
+  } else if (copyStatus === 'failed') {
+    buttonText = copyFailedText
   }
 
   return (
     <button
       type="button"
-      onClick={copyUrl}
+      onClick={() => copyFn(content)}
       className="inline-flex items-center text-xs bg-slate-200 text-slate-600 px-2 py-1 rounded-lg font-semibold hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
       data-track-heap="copy-code"
     >
       <span className="mr-1">
-        {copyUrlStatus === 'copied' ? <CopiedIcon /> : <CopyIcon />}
+        {copyStatus === 'copied' ? <CopiedIcon /> : <CopyIcon />}
       </span>
       {buttonText}
     </button>

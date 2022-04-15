@@ -1,11 +1,6 @@
-interface SEO {
-  rootUrl: string
-  title: string
-  siteName: string
-  description: string
-}
+import { SEO as SEOType } from '../types/seo.types'
 
-export const SEO: SEO = {
+export const SEO: SEOType = {
   rootUrl: 'https://developers.awellhealth.com',
   title: 'Awell Developers',
   siteName: 'Awell Developers',

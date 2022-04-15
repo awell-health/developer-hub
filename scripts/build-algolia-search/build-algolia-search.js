@@ -4,6 +4,7 @@ const fs = require('fs')
 const glob = require('glob')
 const matter = require('gray-matter')
 const algoliasearch = require('algoliasearch')
+const manualIndexes = require('./manual-indexes')
 
 const CONTENT_PATH = path.join(process.cwd(), 'content')
 
@@ -68,7 +69,10 @@ function transformPagesToAlgoliaSearchObjects(pages) {
     const index = client.initIndex('awell_developers')
 
     // save the objects!
-    const algoliaResponse = await index.saveObjects(transformedDocs)
+    const algoliaResponse = await index.saveObjects([
+      ...transformedDocs,
+      ...manualIndexes,
+    ])
 
     // check the output of the response in the console
     console.log(

@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 import {
   postmanMacCollectionLink,
   postmanWebCollectionLink,
 } from '../../../config/postmanLinks'
+import { useOnClickOutside } from '../../../hooks'
 
 interface Props {
   postmanUrl?: string
@@ -41,27 +42,7 @@ const PostmanSelect = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const useClickOutside = (ref: React.MutableRefObject<HTMLElement | null>) => {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      const handleClickOutside = (event: MouseEvent) => {
-        //@ts-expect-error not correctly typed yet
-        if (ref.current && !ref.current.contains(event.target)) {
-          setIsOpen(false)
-        }
-      }
-      // Bind the event listener
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [ref])
-  }
-
-  useClickOutside(ref)
+  useOnClickOutside(ref, () => setIsOpen(false))
 
   return (
     <div className="relative inline-block text-left" ref={ref}>

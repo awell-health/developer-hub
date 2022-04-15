@@ -1,0 +1,1 @@
+export { getCurrentYear } from './getCurrentYear'

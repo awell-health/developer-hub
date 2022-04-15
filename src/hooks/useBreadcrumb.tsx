@@ -1,5 +1,5 @@
 import { BreadcrumbType } from '../types/breadcrumb.types'
-import { capitalizeFirstLetter } from '../utils'
+import { capitalizeFirstLetter } from '../utils/string'
 
 export const useBreadcrumb = (pathName: string): BreadcrumbType => {
   const pathArray = pathName.split('/').filter((item) => item !== '')

@@ -1,6 +1,7 @@
 import { apiReferenceStartRoute, docsStartRoute } from '../../config/routes'
+import { type NavType } from '../../types/menu.types'
 
-export const nav = [
+export const nav: NavType[] = [
   {
     label: 'Docs',
     path: docsStartRoute,

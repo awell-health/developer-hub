@@ -5,13 +5,10 @@ import { GraphQLExplorer } from '../../../src/components/GraphQLExplorer'
 import { DocsLayoutWithoutToc } from '../../../src/components/Layouts'
 import { QuickNav } from '../../../src/components/QuickNavigation'
 import { SEO } from '../../../src/components/SEO'
-import { useQuickNavigation } from '../../../src/hooks/useQuickNavigation'
-import { getHeadingForDoc } from '../../../src/utils'
+import { useHeading, useQuickNavigation } from '../../../src/hooks/'
 
 export default function Schema() {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  const heading = getHeadingForDoc('schema')
+  const { heading } = useHeading('schema')
   const { next, prev } = useQuickNavigation('schema', 'api')
 
   return (

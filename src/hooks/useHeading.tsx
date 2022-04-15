@@ -1,6 +1,6 @@
 import { apiMenu, docsMenu } from '../config/menus'
 
-export const getHeadingForDoc = (slug: string): string => {
+export const useHeading = (slug: string): { heading: string } => {
   const menus = [...apiMenu, ...docsMenu]
 
   const matchedMenuCategory = menus.find((menuSection) => {
@@ -9,7 +9,7 @@ export const getHeadingForDoc = (slug: string): string => {
     return subMenu.some((subMenuItem) => subMenuItem.path.includes(slug))
   })
 
-  if (matchedMenuCategory) return matchedMenuCategory?.title
+  if (matchedMenuCategory) return { heading: matchedMenuCategory?.title }
 
-  return ''
+  return { heading: '' }
 }

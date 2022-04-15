@@ -10,14 +10,12 @@ import { QuickNav } from '../../src/components/QuickNavigation'
 import { SEO } from '../../src/components/SEO'
 import { TOC } from '../../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../../src/config/mdx'
-import { useQuickNavigation } from '../../src/hooks/useQuickNavigation'
-import { TableOfContentsType } from '../../src/types/toc.types'
 import {
-  getAllDocs,
-  getDoc,
-  getHeadingForDoc,
-  getTableOfContents,
-} from '../../src/utils'
+  useHeading,
+  useQuickNavigation,
+  useTableOfContents,
+} from '../../src/hooks/'
+import { getAllDocs, getDoc } from '../../src/utils'
 
 type DocsPageProps = {
   frontMatter: {
@@ -28,17 +26,18 @@ type DocsPageProps = {
   }
   mdxSource: MDXRemoteSerializeResult
   slug: string
-  toc: TableOfContentsType
+  content: string
 }
 
 export default function DocsPage({
   frontMatter,
   mdxSource,
   slug,
-  toc,
+  content,
 }: DocsPageProps) {
-  const heading = getHeadingForDoc(slug)
+  const { heading } = useHeading(slug)
   const { next, prev } = useQuickNavigation(slug, 'docs')
+  const { toc } = useTableOfContents(content)
 
   return (
     <div>
@@ -91,7 +90,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const slugString = slug.join('/')
   const { frontMatter, content } = await getDoc(slugString)
 
-  const toc = getTableOfContents(content)
   // https://github.com/hashicorp/next-mdx-remote/issues/86
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
@@ -101,8 +99,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       frontMatter,
       mdxSource,
+      content,
       slug: slugString,
-      toc,
     },
   }
 }
