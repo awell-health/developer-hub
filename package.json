@@ -15,6 +15,7 @@
   "dependencies": {
     "@algolia/autocomplete-js": "^1.5.6",
     "@apollo/client": "^3.5.10",
+    "@graphql-codegen/cli": "^2.6.2",
     "@headlessui/react": "^1.5.0",
     "algoliasearch": "^4.13.0",
     "clsx": "^1.1.1",

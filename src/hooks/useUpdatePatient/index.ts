@@ -1,0 +1,1 @@
+export { useUpdatePatient } from './useUpdatePatient'

@@ -1,0 +1,1 @@
+export { useDeletePathway } from './useDeletePathway'

@@ -1,16 +1,17 @@
 import { buildClientSchema, GraphQLSchema } from 'graphql'
 
-import { schema } from '../config/graphSchema'
+import { useIntrospection } from './useIntrospection'
 
-/**
- * Todo: get schema directly via Introspection query
- * and not via config file
- */
 export const useGraphQLSchema = (): {
   schema: GraphQLSchema | null
 } => {
-  //@ts-expect-error ignore
-  const graphQLSchema = buildClientSchema(schema.data)
+  const { introspection } = useIntrospection()
+
+  let graphQLSchema = null
+
+  if (introspection) {
+    graphQLSchema = buildClientSchema(introspection)
+  }
 
   return { schema: graphQLSchema }
 }

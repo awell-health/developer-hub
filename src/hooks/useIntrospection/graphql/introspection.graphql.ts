@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const INTROSPECTION_QUERY = gql`
+export const INTROSPECTION = gql`
   {
     __schema {
       queryType {

@@ -1,10 +1,12 @@
 import '../styles/globals.css'
 
+import { ApolloProvider } from '@apollo/client'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import type { ReactElement, ReactNode } from 'react'
 
+import client from '../apollo-client'
 import { MobileNav } from '../src/components/Header/MobileNav'
 import { MobileMenu } from '../src/components/Sidebar/Menu/'
 import { AppProvider } from '../src/contexts/app/AppContext'
@@ -48,14 +50,16 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <ThemeProvider>
-        <AppProvider>
-          {getLayout(<Component {...pageProps} />)}
-          <MobileMenu />
-          <MobileNav />
-          <div id="search"></div>
-        </AppProvider>
-      </ThemeProvider>
+      <ApolloProvider client={client}>
+        <ThemeProvider>
+          <AppProvider>
+            {getLayout(<Component {...pageProps} />)}
+            <MobileMenu />
+            <MobileNav />
+            <div id="search"></div>
+          </AppProvider>
+        </ThemeProvider>
+      </ApolloProvider>
     </>
   )
 }
