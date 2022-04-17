@@ -24,6 +24,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/forms'),
     function ({ addVariant }) {
       addVariant(
         'supports-backdrop-blur',

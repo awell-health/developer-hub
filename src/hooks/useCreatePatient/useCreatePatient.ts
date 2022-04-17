@@ -22,6 +22,7 @@ export const useCreatePatient = (): UseCreatePatientHook => {
     }
     return undefined
   }
+
   return {
     createPatient,
   }
