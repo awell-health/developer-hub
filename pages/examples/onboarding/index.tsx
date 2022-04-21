@@ -1,44 +1,72 @@
 import { Switch } from '@headlessui/react'
 import { CheckIcon, CodeIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
-import { useContext, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { SEO } from '../../../src/components/SEO'
 import { Spinner } from '../../../src/components/Spinner'
 import { useCreatePatient } from '../../../src/hooks/useCreatePatient'
-// import { useStartPathway } from '../../../src/hooks/useStartPathway'
-import { ThemeContext } from '../../../src/hooks/useTheme'
+import { usePublishedPathwayDefinitions } from '../../../src/hooks/usePublishedPathwayDefinitions'
+import { useStartPathway } from '../../../src/hooks/useStartPathway'
+import {
+  type DataPointDefinition,
+  type User,
+} from '../../../src/types/generated/api.types'
+import { beautifySnakeCase, dataPointTypeToInputType } from '../../../src/utils'
+import { keyValueObjectToDataPointsArrayOfObjects } from '../../../src/utils/dataPoints'
 
 export default function OnboardingExample() {
+  const PATHWAY_DEFINITION_ID = 'S7YmVI-Dfw9c'
+
   const { createPatient } = useCreatePatient()
-  const { register, handleSubmit } = useForm()
+  const { startPathway } = useStartPathway()
+  const { publishedPathwayDefinitions } = usePublishedPathwayDefinitions()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isLoadingMessage, setIsLoadingMessage] = useState<string>('')
-  const { setThemeSetting } = useContext(ThemeContext)
   const [anonymous, setAnonymous] = useState<boolean>(false)
+  const [isLoadingMessage, setIsLoadingMessage] = useState<string>('')
   const [steps, setSteps] = useState([
     { id: '01', name: 'Patient identification', href: '#', status: 'current' },
     { id: '02', name: 'Onboarding form', href: '#', status: 'upcoming' },
     { id: '03', name: 'Summary', href: '#', status: 'upcoming' },
   ])
+  const [baselineDatapoints, setBaselineDatapoints] = useState<
+    DataPointDefinition[]
+  >([])
+  const [createdPatient, setCreatedPatient] = useState<User | null>(null)
+  const [createdPathway, setCreatedPathway] = useState<string | null>(null)
 
   const onSubmit = () => {
     handleSubmit(async (data) => {
       goToNextStep()
       setIsLoading(true)
       setIsLoadingMessage('Creating patient...')
-      const patient = await createPatient(data?.profile)
-      console.log(patient)
+      await createPatient(!anonymous ? data?.profile : {}).then(async (res) => {
+        setIsLoadingMessage('Starting pathway...')
+        setCreatedPatient(res)
+        console.log(
+          keyValueObjectToDataPointsArrayOfObjects(data.baselineDataPoints)
+        )
+        const pathway = await startPathway({
+          patient_id: res.id,
+          pathway_definition_id: PATHWAY_DEFINITION_ID,
+          data_points: keyValueObjectToDataPointsArrayOfObjects(
+            data.baselineDataPoints
+          ),
+        })
+        setCreatedPathway(pathway)
+      })
       setIsLoading(false)
     })()
   }
 
-  useEffect(() => {
-    setThemeSetting('light')
-  })
-
-  const goToNextStep = () => {
+  const goToNextStep = async () => {
     const currentStepIndex = steps.findIndex(
       (step) => step.status === 'current'
     )
@@ -52,10 +80,19 @@ export default function OnboardingExample() {
     })
 
     setSteps(newSteps)
+
+    if (publishedPathwayDefinitions) {
+      setBaselineDatapoints(
+        //@ts-expect-error checked undefined
+        publishedPathwayDefinitions.find(
+          (publishedPathway) => publishedPathway.id === PATHWAY_DEFINITION_ID
+        ).dataPointDefinitions
+      )
+    }
   }
 
   return (
-    <>
+    <div className="h-screen">
       <SEO
         title="Onboarding | Examples"
         url={`/examples/onboarding`}
@@ -92,12 +129,9 @@ export default function OnboardingExample() {
             {steps.map((step, stepIdx) => (
               <li key={step.name} className="relative md:flex-1 md:flex">
                 {step.status === 'complete' ? (
-                  <a
-                    href={step.href}
-                    className="group flex items-center w-full"
-                  >
+                  <div className="group flex items-center w-full">
                     <span className="px-6 py-4 flex items-center text-sm font-medium">
-                      <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full group-hover:bg-indigo-800">
+                      <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full">
                         <CheckIcon
                           className="w-6 h-6 text-white"
                           aria-hidden="true"
@@ -107,10 +141,9 @@ export default function OnboardingExample() {
                         {step.name}
                       </span>
                     </span>
-                  </a>
+                  </div>
                 ) : step.status === 'current' ? (
-                  <a
-                    href={step.href}
+                  <div
                     className="px-6 py-4 flex items-center text-sm font-medium"
                     aria-current="step"
                   >
@@ -120,20 +153,18 @@ export default function OnboardingExample() {
                     <span className="ml-4 text-sm font-medium text-indigo-600">
                       {step.name}
                     </span>
-                  </a>
+                  </div>
                 ) : (
-                  <a href={step.href} className="group flex items-center">
+                  <div className="group flex items-center">
                     <span className="px-6 py-4 flex items-center text-sm font-medium">
-                      <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
-                        <span className="text-gray-500 group-hover:text-gray-900">
-                          {step.id}
-                        </span>
+                      <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full">
+                        <span className="text-gray-500">{step.id}</span>
                       </span>
-                      <span className="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">
+                      <span className="ml-4 text-sm font-medium text-gray-500">
                         {step.name}
                       </span>
                     </span>
-                  </a>
+                  </div>
                 )}
 
                 {stepIdx !== steps.length - 1 ? (
@@ -171,7 +202,7 @@ export default function OnboardingExample() {
             <>
               <Switch.Group
                 as="div"
-                className="flex items-center justify-between"
+                className="hidden flex items-center justify-between"
               >
                 <span className="flex-grow flex flex-col">
                   <Switch.Label
@@ -220,11 +251,13 @@ export default function OnboardingExample() {
                           htmlFor="first-name"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          First name
+                          First name<span className="text-red-500">*</span>
                         </label>
                         <div className="mt-1">
                           <input
-                            {...register('profile.first_name')}
+                            {...register('profile.first_name', {
+                              required: true,
+                            })}
                             type="text"
                             className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                           />
@@ -236,11 +269,13 @@ export default function OnboardingExample() {
                           htmlFor="last-name"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Last name
+                          Last name<span className="text-red-500">*</span>
                         </label>
                         <div className="mt-1">
                           <input
-                            {...register('profile.last_name')}
+                            {...register('profile.last_name', {
+                              required: true,
+                            })}
                             type="text"
                             className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                           />
@@ -252,11 +287,13 @@ export default function OnboardingExample() {
                           htmlFor="email"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Email address
+                          Email address<span className="text-red-500">*</span>
                         </label>
                         <div className="mt-1">
                           <input
-                            {...register('profile.email')}
+                            {...register('profile.email', {
+                              required: true,
+                            })}
                             type="email"
                             className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                           />
@@ -281,7 +318,7 @@ export default function OnboardingExample() {
           )}
           {steps[1].status === 'current' && (
             <>
-              {/* <div className="space-y-8 divide-y divide-gray-200">
+              <div className="space-y-8 divide-y divide-gray-200">
                 <div className="pt-8">
                   <div>
                     <h3 className="text-lg leading-6 font-medium text-gray-900">
@@ -289,62 +326,38 @@ export default function OnboardingExample() {
                     </h3>
                   </div>
                   <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div className="sm:col-span-3">
-                      <label
-                        htmlFor="first-name"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        First name
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="first-name"
-                          id="first-name"
-                          autoComplete="given-name"
-                          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="sm:col-span-3">
-                      <label
-                        htmlFor="last-name"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Last name
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="last-name"
-                          id="last-name"
-                          autoComplete="family-name"
-                          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="sm:col-span-4">
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Email address
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          autoComplete="email"
-                          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        />
-                      </div>
-                    </div>
+                    {baselineDatapoints &&
+                      baselineDatapoints.map((dataPoint) => (
+                        <div className="sm:col-span-3" key={dataPoint.id}>
+                          <label
+                            htmlFor={dataPoint.id}
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            {beautifySnakeCase(dataPoint.key)}
+                            {!dataPoint.optional && (
+                              <span className="text-red-500">*</span>
+                            )}
+                          </label>
+                          <div className="mt-1">
+                            <input
+                              {...register(
+                                `baselineDataPoints.${dataPoint.id}`,
+                                { required: dataPoint.optional ? false : true }
+                              )}
+                              type={dataPointTypeToInputType(
+                                dataPoint.valueType
+                              )}
+                              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                            />
+                            {errors[`baselineDataPoints.${dataPoint.id}`] && (
+                              <span>This field is required</span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
                   </div>
                 </div>
-              </div> */}
+              </div>
 
               <div className="pt-5">
                 <div className="flex justify-end">
@@ -361,17 +374,46 @@ export default function OnboardingExample() {
           {steps[2].status === 'current' && (
             <div>
               {isLoading && (
-                <div>
+                <div className="flex justify-center py-24">
                   <div>
-                    <Spinner />
+                    <Spinner size="lg" />
                   </div>
-                  {isLoadingMessage}
+                  <div className="text-slate-600 text-lg font-medium pt-2">
+                    {isLoadingMessage}
+                  </div>
+                </div>
+              )}
+              {!isLoading && (
+                <div>
+                  <h1 className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
+                    Hooray!
+                  </h1>
+                  <p className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
+                    Onboarding successful!
+                  </p>
+                  <p className="mt-2 text-lg text-gray-500">
+                    {anonymous ? 'An anonymous patient' : 'A patient'} was
+                    created and a pathway started
+                  </p>
+
+                  <dl className="mt-12 text-base font-medium">
+                    <dt className="text-gray-900">Patient ID</dt>
+                    <dd className="text-indigo-600 mt-2">
+                      {createdPatient && createdPatient.id}
+                    </dd>
+                  </dl>
+                  <dl className="mt-6 text-base font-medium">
+                    <dt className="text-gray-900">Pathway ID</dt>
+                    <dd className="text-indigo-600 mt-2">
+                      {createdPathway && createdPathway}
+                    </dd>
+                  </dl>
                 </div>
               )}
             </div>
           )}
         </form>
       </div>
-    </>
+    </div>
   )
 }

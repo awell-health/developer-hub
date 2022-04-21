@@ -1,10 +1,11 @@
 import { useQuery } from '@apollo/client'
 
+import { type PublishedPathwayDefinition } from '../../types/generated/api.types'
 import { PUBLISHED_PATHWAY_DEFINITIONS } from './graphql/GetPublishedPathwayDefinitions.graphql'
 
 interface UsePublishedPathwayDefinitionsHook {
   loading: boolean
-  publishedPathwayDefinitions?: unknown
+  publishedPathwayDefinitions?: Array<PublishedPathwayDefinition>
 }
 
 export const usePublishedPathwayDefinitions =

@@ -1,15 +1,7 @@
 import { useMutation } from '@apollo/client'
 
+import { type StartPathwayInput } from '../../types/generated/api.types'
 import { START_PATHWAY } from './graphql/StartPathway.graphql'
-
-type StartPathwayInput = {
-  patientId: string
-  pathwayDefinitionId: string
-  data_points: {
-    data_point_definition_id: string
-    value: string
-  }
-}
 
 interface UseStartPathwayHook {
   startPathway: (input: StartPathwayInput) => Promise<string>

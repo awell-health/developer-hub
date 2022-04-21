@@ -1,0 +1,12 @@
+overwrite: true
+schema:
+  - https://api.sandbox.awellhealth.com/orchestration/m2m/graphql:
+      headers:
+        apiKey: I0xHR9QOuOPhupv68kdKfVeR3CwIFkIe
+# documents: 'src/**/*.graphql'
+generates:
+  src/types/generated/api.types.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'

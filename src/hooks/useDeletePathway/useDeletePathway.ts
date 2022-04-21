@@ -1,9 +1,10 @@
 import { useMutation } from '@apollo/client'
 
+import { type DeletePathwayInput } from '../../types/generated/api.types'
 import { DELETE_PATHWAY } from './graphql/DeletePathway.graphql'
 
 interface UseDeletePathwayHook {
-  deletePathway: (input: unknown) => Promise<boolean>
+  deletePathway: (input: DeletePathwayInput) => Promise<boolean>
 }
 
 export const useDeletePathway = (): UseDeletePathwayHook => {

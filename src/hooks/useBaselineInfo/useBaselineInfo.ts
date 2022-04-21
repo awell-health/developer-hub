@@ -1,10 +1,11 @@
 import { useQuery } from '@apollo/client'
 
+import { type BaselineDataPoint } from '../../types/generated/api.types'
 import { BASELINE_INFO } from './graphql/GetBaselineInfo.graphql'
 
 interface UseBaselineInfoHook {
   loading: boolean
-  baselineDataPoints?: Array<unknown>
+  baselineDataPoints?: Array<BaselineDataPoint>
 }
 
 export const useBaselineInfo = (pathway_id: string): UseBaselineInfoHook => {

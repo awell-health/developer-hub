@@ -4,6 +4,7 @@ import { ApolloProvider } from '@apollo/client'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import type { ReactElement, ReactNode } from 'react'
 
 import client from '../apollo-client'
@@ -23,7 +24,8 @@ type AppPropsWithLayout = AppProps & {
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page: ReactNode) => page)
-
+  const router = useRouter()
+  const isExamplePage = router.asPath.includes('examples')
   return (
     <>
       <Head>
@@ -50,16 +52,26 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <ApolloProvider client={client}>
-        <ThemeProvider>
-          <AppProvider>
-            {getLayout(<Component {...pageProps} />)}
-            <MobileMenu />
-            <MobileNav />
-            <div id="search"></div>
-          </AppProvider>
-        </ThemeProvider>
-      </ApolloProvider>
+
+      {/* Example pages don't need theming, apollo, search, nav, ... */}
+      {isExamplePage && (
+        <ApolloProvider client={client}>
+          <AppProvider>{getLayout(<Component {...pageProps} />)}</AppProvider>
+        </ApolloProvider>
+      )}
+
+      {!isExamplePage && (
+        <ApolloProvider client={client}>
+          <ThemeProvider>
+            <AppProvider>
+              {getLayout(<Component {...pageProps} />)}
+              <MobileMenu />
+              <MobileNav />
+              <div id="search"></div>
+            </AppProvider>
+          </ThemeProvider>
+        </ApolloProvider>
+      )}
     </>
   )
 }

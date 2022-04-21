@@ -1,9 +1,13 @@
 import { useMutation } from '@apollo/client'
 
+import {
+  type CreatePatientInput,
+  type User,
+} from '../../types/generated/api.types'
 import { CREATE_PATIENT } from './graphql/CreatePatient.graphql'
 
 interface UseCreatePatientHook {
-  createPatient: (profile: unknown) => Promise<unknown>
+  createPatient: (profile: CreatePatientInput) => Promise<User>
 }
 
 export const useCreatePatient = (): UseCreatePatientHook => {

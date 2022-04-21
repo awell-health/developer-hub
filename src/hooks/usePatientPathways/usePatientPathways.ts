@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client'
 
+import { type PatientPathway } from '../../types/generated/api.types'
 import { GET_PATIENT_PATHWAYS } from './graphql/GetPatientPathways.graphql'
 
 interface UsePatientPathwaysHook {
-  patientPathways: Array<unknown>
+  patientPathways: Array<PatientPathway>
   loading: boolean
 }
 

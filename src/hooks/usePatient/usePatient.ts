@@ -1,10 +1,11 @@
 import { useQuery } from '@apollo/client'
 
+import { type User } from '../../types/generated/api.types'
 import { GET_PATIENT } from './graphql/GetPatient.graphql'
 
 interface UsePatientHook {
   loading: boolean
-  patient?: unknown
+  patient?: User
 }
 
 export const usePatient = (patient_id: string): UsePatientHook => {
