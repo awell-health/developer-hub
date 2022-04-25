@@ -1,28 +1,20 @@
 ---
-title: Get message
-description: Get the body and attachments of a message activity
+title: Get checklist Details
+description: Get the details of a checklist activity
 ---
 
-This request allows us to fetch the details of a message activity.
+This request allows us to fetch the details of a checklist activity.
 
 ## Request
 
 ### Query
 
 ```graphql
-query GetMessage($id: String!) {
-  message(id: $id) {
-    message {
-      id
-      body
-      format
-      subject
-      attachments {
-        id
-        name
-        url
-        type
-      }
+query GetChecklist($id: String!) {
+  checklist(id: $id) {
+    checklist {
+      title
+      items
     }
   }
 }
@@ -32,7 +24,7 @@ query GetMessage($id: String!) {
 
 ```json
 {
-  "id": "{{MESSAGE_ID}}"
+  "id": "{{CHECKLIST_ID}}"
 }
 ```
 
@@ -52,7 +44,7 @@ This query expects only one input variable:
       <tr>
         <td>id</td>
         <td>Yes</td>
-        <td>the id of the message activity</td>
+        <td>the id of the checklist activity</td>
         <td>string</td>
       </tr>
     </tbody>
