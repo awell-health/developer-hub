@@ -23,7 +23,7 @@ export default function Playground() {
   return (
     <div id="graphql-embed" className="h-screen">
       <SEO
-        title="GraphiQL Playground"
+        title="GraphQL Playground"
         url={`/playground`}
         canonicalUrl={`/playground`}
       />
