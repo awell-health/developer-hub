@@ -1,27 +1,31 @@
 ---
-title: Get message
-description: Get the body and attachments of a message activity
+title: Get API call details
+description: Get the details of a API call activity
 ---
 
-This request allows us to fetch the details of a message activity.
+This request allows us to fetch the details of a API call activity.
 
 ## Request
 
 ### Query
 
 ```graphql
-query GetMessage($id: String!) {
-  message(id: $id) {
-    message {
+query ApiCall($id: String!) {
+  apiCall(id: $id) {
+    api_call {
       id
-      body
-      format
-      subject
-      attachments {
-        id
-        name
-        url
-        type
+      request {
+        endpoint
+        headers {
+          key
+          value
+        }
+        body
+      }
+      responses {
+        status
+        body
+        date
       }
     }
   }
@@ -32,7 +36,7 @@ query GetMessage($id: String!) {
 
 ```json
 {
-  "id": "{{MESSAGE_ID}}"
+  "id": "{{API_CALL_ID}}"
 }
 ```
 
@@ -52,7 +56,7 @@ This query expects only one input variable:
       <tr>
         <td>id</td>
         <td>Yes</td>
-        <td>the id of the message activity</td>
+        <td>the id of the API call activity</td>
         <td>string</td>
       </tr>
     </tbody>
