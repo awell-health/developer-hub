@@ -199,7 +199,7 @@ export default function OnboardingExample() {
             <>
               <Switch.Group
                 as="div"
-                className="hidden flex items-center justify-between"
+                className="flex items-center justify-between"
               >
                 <span className="flex-grow flex flex-col">
                   <Switch.Label
