@@ -1,3 +1,4 @@
+export { beautifySnakeCase } from './beautifySnakeCase'
 export { capitalizeFirstLetter } from './capitalizeFirstLetter'
 export { removeLeadingAndTrailingSlashes } from './removeLeadingAndTrailingSlashes'
 export { stripHtml } from './stripHtml'

@@ -14,8 +14,11 @@ import {
   type DataPointDefinition,
   type User,
 } from '../../../src/types/generated/api.types'
-import { beautifySnakeCase, dataPointTypeToInputType } from '../../../src/utils'
-import { keyValueObjectToDataPointsArrayOfObjects } from '../../../src/utils/dataPoints'
+import {
+  dataPointTypeToInputType,
+  keyValueObjectToDataPointsArrayOfObjects,
+} from '../../../src/utils/dataPoints'
+import { beautifySnakeCase } from '../../../src/utils/string'
 
 export default function OnboardingExample() {
   const PATHWAY_DEFINITION_ID = 'S7YmVI-Dfw9c'
