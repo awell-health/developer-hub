@@ -19,11 +19,15 @@ export const docsMenu: MenuItemType[] = [
     ],
   },
   {
-    title: 'Tutorials',
+    title: 'Guides & Tutorials',
     submenu: [
       {
         title: 'Get started with Awell',
         path: '/docs/tutorials/get-started-with-awell',
+      },
+      {
+        title: 'Onboarding',
+        path: '/docs/tutorials/onboarding',
       },
     ],
   },
