@@ -1,27 +1,24 @@
 ---
-title: Get message
-description: Get the body and attachments of a message activity
+title: Get EMR Report Details
+description: Get the body of an EMR report activity
 ---
 
-This request allows us to fetch the details of a message activity.
+This request allows us to fetch the details of an EMR report activity.
 
 ## Request
 
 ### Query
 
 ```graphql
-query GetMessage($id: String!) {
-  message(id: $id) {
-    message {
+query GetEmrReport($id: String!) {
+  emrReport(id: $id) {
+    report {
       id
-      body
-      format
-      subject
-      attachments {
+      message_html
+      metadata {
         id
-        name
-        url
-        type
+        label
+        value
       }
     }
   }
@@ -32,7 +29,7 @@ query GetMessage($id: String!) {
 
 ```json
 {
-  "id": "{{MESSAGE_ID}}"
+  "id": "{{EMR_REPORT_ID}}"
 }
 ```
 
@@ -52,7 +49,7 @@ This query expects only one input variable:
       <tr>
         <td>id</td>
         <td>Yes</td>
-        <td>the id of the message activity</td>
+        <td>the id of the EMR report activity</td>
         <td>string</td>
       </tr>
     </tbody>
