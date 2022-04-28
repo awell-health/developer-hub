@@ -1,14 +1,16 @@
 import Head from 'next/head'
 import { ReactNode } from 'react'
 
+import { MenuItemType } from '../../types/menu.types'
 import { Header } from '../Header'
 import { Sidebar } from '../Sidebar'
 
 interface LayoutProps {
   children: ReactNode
+  menuItems?: MenuItemType[]
 }
 
-export const DocsLayout = ({ children }: LayoutProps) => {
+export const DocsLayout = ({ children, menuItems = [] }: LayoutProps) => {
   return (
     <>
       <Head>
@@ -36,8 +38,8 @@ export const DocsLayout = ({ children }: LayoutProps) => {
       </Head>
       <Header />
       <div>
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8 mb-32">
-          <Sidebar />
+        <div className="px-4 mx-auto mb-32 max-w-8xl sm:px-6 md:px-8">
+          <Sidebar menuItems={menuItems} />
           <div className="lg:pl-[19.5rem]">
             <div className="max-w-3xl mx-auto pt-10 xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
               {children}

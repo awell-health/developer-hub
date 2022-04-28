@@ -84,7 +84,6 @@ export default function OnboardingExample() {
 
     if (publishedPathwayDefinitions) {
       setBaselineDatapoints(
-        //@ts-expect-error checked undefined
         publishedPathwayDefinitions.find(
           (publishedPathway) => publishedPathway.id === PATHWAY_DEFINITION_ID
         ).dataPointDefinitions
@@ -100,19 +99,19 @@ export default function OnboardingExample() {
         canonicalUrl={`/examples/onboarding`}
       />
       <div className="bg-indigo-600">
-        <div className="max-w-6xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between flex-wrap">
-            <div className="w-0 flex-1 flex items-center">
-              <span className="flex p-2 rounded-lg bg-indigo-800">
-                <CodeIcon className="h-6 w-6 text-white" aria-hidden="true" />
+        <div className="max-w-6xl px-3 py-3 mx-auto sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-between">
+            <div className="flex items-center flex-1 w-0">
+              <span className="flex p-2 bg-indigo-800 rounded-lg">
+                <CodeIcon className="w-6 h-6 text-white" aria-hidden="true" />
               </span>
               <p className="ml-3 font-medium text-white truncate">
                 <span>Onboarding example</span>
               </p>
             </div>
-            <div className="order-3 flex-shrink-0 w-full w-auto">
+            <div className="flex-shrink-0 order-3 w-auto w-full">
               <Link href="/docs/tutorials/onboarding">
-                <a className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50">
+                <a className="flex items-center justify-center px-4 py-2 text-sm font-medium text-indigo-600 bg-white border border-transparent rounded-md shadow-sm hover:bg-indigo-50">
                   Read guide
                 </a>
               </Link>
@@ -120,18 +119,18 @@ export default function OnboardingExample() {
           </div>
         </div>
       </div>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 mt-8 mb-32">
+      <div className="max-w-4xl px-4 mx-auto mt-8 mb-32 sm:px-6 md:px-8">
         <nav aria-label="Progress">
           <ol
             role="list"
-            className="border border-gray-300 rounded-md divide-y divide-gray-300 md:flex md:divide-y-0"
+            className="border border-gray-300 divide-y divide-gray-300 rounded-md md:flex md:divide-y-0"
           >
             {steps.map((step, stepIdx) => (
               <li key={step.name} className="relative md:flex-1 md:flex">
                 {step.status === 'complete' ? (
-                  <div className="group flex items-center w-full">
-                    <span className="px-6 py-4 flex items-center text-sm font-medium">
-                      <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full">
+                  <div className="flex items-center w-full group">
+                    <span className="flex items-center px-6 py-4 text-sm font-medium">
+                      <span className="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full">
                         <CheckIcon
                           className="w-6 h-6 text-white"
                           aria-hidden="true"
@@ -144,10 +143,10 @@ export default function OnboardingExample() {
                   </div>
                 ) : step.status === 'current' ? (
                   <div
-                    className="px-6 py-4 flex items-center text-sm font-medium"
+                    className="flex items-center px-6 py-4 text-sm font-medium"
                     aria-current="step"
                   >
-                    <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
+                    <span className="flex items-center justify-center flex-shrink-0 w-10 h-10 border-2 border-indigo-600 rounded-full">
                       <span className="text-indigo-600">{step.id}</span>
                     </span>
                     <span className="ml-4 text-sm font-medium text-indigo-600">
@@ -155,9 +154,9 @@ export default function OnboardingExample() {
                     </span>
                   </div>
                 ) : (
-                  <div className="group flex items-center">
-                    <span className="px-6 py-4 flex items-center text-sm font-medium">
-                      <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full">
+                  <div className="flex items-center group">
+                    <span className="flex items-center px-6 py-4 text-sm font-medium">
+                      <span className="flex items-center justify-center flex-shrink-0 w-10 h-10 border-2 border-gray-300 rounded-full">
                         <span className="text-gray-500">{step.id}</span>
                       </span>
                       <span className="ml-4 text-sm font-medium text-gray-500">
@@ -171,11 +170,11 @@ export default function OnboardingExample() {
                   <>
                     {/* Arrow separator for lg screens and up */}
                     <div
-                      className="hidden md:block absolute top-0 right-0 h-full w-5"
+                      className="absolute top-0 right-0 hidden w-5 h-full md:block"
                       aria-hidden="true"
                     >
                       <svg
-                        className="h-full w-full text-gray-300"
+                        className="w-full h-full text-gray-300"
                         viewBox="0 0 22 80"
                         fill="none"
                         preserveAspectRatio="none"
@@ -204,7 +203,7 @@ export default function OnboardingExample() {
                 as="div"
                 className="flex items-center justify-between"
               >
-                <span className="flex-grow flex flex-col">
+                <span className="flex flex-col flex-grow">
                   <Switch.Label
                     as="span"
                     className="text-base font-medium text-gray-900"
@@ -241,11 +240,11 @@ export default function OnboardingExample() {
                 <div className="space-y-8 divide-y divide-gray-200">
                   <div className="pt-8">
                     <div>
-                      <h3 className="text-lg leading-6 font-medium text-gray-900">
+                      <h3 className="text-lg font-medium leading-6 text-gray-900">
                         Personal Information
                       </h3>
                     </div>
-                    <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                    <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                       <div className="sm:col-span-3">
                         <label
                           htmlFor="first-name"
@@ -259,7 +258,7 @@ export default function OnboardingExample() {
                               required: true,
                             })}
                             type="text"
-                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
                         </div>
                       </div>
@@ -277,7 +276,7 @@ export default function OnboardingExample() {
                               required: true,
                             })}
                             type="text"
-                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
                         </div>
                       </div>
@@ -295,7 +294,7 @@ export default function OnboardingExample() {
                               required: true,
                             })}
                             type="email"
-                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
                         </div>
                       </div>
@@ -308,7 +307,7 @@ export default function OnboardingExample() {
                 <div className="flex justify-end">
                   <button
                     onClick={() => goToNextStep()}
-                    className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Next
                   </button>
@@ -321,11 +320,11 @@ export default function OnboardingExample() {
               <div className="space-y-8 divide-y divide-gray-200">
                 <div className="pt-8">
                   <div>
-                    <h3 className="text-lg leading-6 font-medium text-gray-900">
+                    <h3 className="text-lg font-medium leading-6 text-gray-900">
                       Onboarding Information
                     </h3>
                   </div>
-                  <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                  <div className="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                     {baselineDatapoints &&
                       baselineDatapoints.map((dataPoint) => (
                         <div className="sm:col-span-3" key={dataPoint.id}>
@@ -347,7 +346,7 @@ export default function OnboardingExample() {
                               type={dataPointTypeToInputType(
                                 dataPoint.valueType
                               )}
-                              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                              className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
                             {errors[`baselineDataPoints.${dataPoint.id}`] && (
                               <span>This field is required</span>
@@ -363,7 +362,7 @@ export default function OnboardingExample() {
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Next
                   </button>
@@ -378,14 +377,14 @@ export default function OnboardingExample() {
                   <div>
                     <Spinner size="lg" />
                   </div>
-                  <div className="text-slate-600 text-lg font-medium pt-2">
+                  <div className="pt-2 text-lg font-medium text-slate-600">
                     {isLoadingMessage}
                   </div>
                 </div>
               )}
               {!isLoading && (
                 <div>
-                  <h1 className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
+                  <h1 className="text-sm font-semibold tracking-wide text-indigo-600 uppercase">
                     Hooray!
                   </h1>
                   <p className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
@@ -398,13 +397,13 @@ export default function OnboardingExample() {
 
                   <dl className="mt-12 text-base font-medium">
                     <dt className="text-gray-900">Patient ID</dt>
-                    <dd className="text-indigo-600 mt-2">
+                    <dd className="mt-2 text-indigo-600">
                       {createdPatient && createdPatient.id}
                     </dd>
                   </dl>
                   <dl className="mt-6 text-base font-medium">
                     <dt className="text-gray-900">Pathway ID</dt>
-                    <dd className="text-indigo-600 mt-2">
+                    <dd className="mt-2 text-indigo-600">
                       {createdPathway && createdPathway}
                     </dd>
                   </dl>

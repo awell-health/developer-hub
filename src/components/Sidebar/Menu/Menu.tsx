@@ -6,6 +6,7 @@ import { useContext, useEffect } from 'react'
 import { apiMenu, docsMenu } from '../../../config/menus'
 import { apiReferenceStartRoute, docsStartRoute } from '../../../config/routes'
 import { AppContext } from '../../../contexts/app/AppContext'
+import { MenuItemType } from '../../../types/menu.types'
 import { isMenuItemActive } from '../../../utils/isMenuItemActive'
 import { Badge } from '../../Badge'
 import {
@@ -17,13 +18,13 @@ import {
 } from '../atoms/icons'
 import { MainMenuItem } from './atoms/MainMenuItem'
 
-export const Menu = () => {
+export const Menu = ({ menuItems = []}: { menuItems?: MenuItemType[] }) => {
   const router = useRouter()
   const { menu, setMenu } = useContext(AppContext)
 
   useEffect(() => {
     if (router.asPath.includes('api-reference')) {
-      setMenu(apiMenu)
+      setMenu([...apiMenu, ...menuItems])
     } else {
       setMenu(docsMenu)
     }
@@ -79,11 +80,11 @@ export const Menu = () => {
       </li>
       {menu.map((menuItem, index) => (
         <li className="mt-12 lg:mt-8" key={index}>
-          <h5 className="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">
+          <h5 className="mb-8 font-semibold lg:mb-3 text-slate-900 dark:text-slate-200">
             {menuItem.title}
           </h5>
           {menuItem.submenu && (
-            <ul className="space-y-6 lg:space-y-2 border-l border-slate-100 dark:border-slate-700 lg:dark:border-slate-800">
+            <ul className="space-y-6 border-l lg:space-y-2 border-slate-100 dark:border-slate-700 lg:dark:border-slate-800">
               {menuItem.submenu.map((subMenuItem, index) => (
                 <li key={index}>
                   <Link href={subMenuItem.path}>
@@ -91,7 +92,7 @@ export const Menu = () => {
                       title={subMenuItem.title}
                       target={subMenuItem.openInNewTab ? '_blank' : ''}
                       className={clsx(
-                        'text-lg lg:text-sm lg:leading-6 flex justify-between block border-l pl-4 -ml-px',
+                        'text-lg lg:text-sm lg:leading-6 flex justify-between border-l pl-4 -ml-px',
                         isMenuItemActive(
                           subMenuItem.path,
                           router.query.slug

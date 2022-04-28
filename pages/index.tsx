@@ -64,7 +64,7 @@ export default function DocsPage({
         </div>
       </div>
       <div className="fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto hidden xl:block">
-        <h5 className="text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
+        <h5 className="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">
           On this page
         </h5>
         <TOC toc={toc} />
@@ -79,7 +79,7 @@ DocsPage.getLayout = function getLayout(page: ReactNode) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const homePage = '/getting-started/welcome'
-  const { frontMatter, content } = await getDoc(homePage)
+  const { frontMatter, content } = getDoc(homePage)
 
   // https://github.com/hashicorp/next-mdx-remote/issues/86
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

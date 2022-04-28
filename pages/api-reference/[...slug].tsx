@@ -17,7 +17,7 @@ import {
   useQuickNavigation,
   useTableOfContents,
 } from '../../src/hooks'
-import { getAllApiDocs, getApiDoc } from '../../src/utils'
+import { generateApiMenu, getAllApiDocs, getApiDoc } from '../../src/utils'
 
 type ApiPageProps = {
   frontMatter: {
@@ -73,11 +73,11 @@ export default function ApiPage({
         </div>
       </div>
       <div className="fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto hidden xl:block">
-        <h5 className="text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
+        <h5 className="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">
           On this page
         </h5>
         <TOC toc={toc}></TOC>
-        <h5 className="mt-10 text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
+        <h5 className="mt-10 mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">
           Explorer
         </h5>
         <div className="explorer-sidepane">
@@ -88,8 +88,10 @@ export default function ApiPage({
   )
 }
 
-ApiPage.getLayout = function getLayout(page: ReactNode) {
-  return <DocsLayout>{page}</DocsLayout>
+ApiPage.getLayout = (component) => {
+  return function getLayout(page: ReactNode) {
+    return <DocsLayout menuItems={component.props.menuItems}>{page}</DocsLayout>
+  }
 }
 
 interface Iparams extends ParsedUrlQuery {
@@ -99,7 +101,8 @@ interface Iparams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params as Iparams
   const slugString = slug.join('/')
-  const { frontMatter, content } = await getApiDoc(slugString)
+  const { frontMatter, content } = getApiDoc(slugString)
+  const menuItems = generateApiMenu()
 
   // https://github.com/hashicorp/next-mdx-remote/issues/86
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -112,6 +115,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       mdxSource,
       content,
       slug: slugString,
+      menuItems,
     },
   }
 }
