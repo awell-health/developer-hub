@@ -10,7 +10,7 @@ When starting a pathway, the orchestration API automatically chooses the most re
 Keep in mind that, if your pathway has baseline pathway data points, the pathway will not be initiated until all non-optional baseline data points have a value. You can use the `publishedPathwayDefinitions` query (see documentation [here](https://developers.awellhealth.com/api-reference/queries/get-published-pathways)) to get the baseline pathway data points of a pathway as well as seeing whether they are required or optional (through the `optional` field).
 
 ```graphql
-query publishedPathwayDefinitions {
+query GetPublishedPathwayDefinitions {
   publishedPathwayDefinitions {
     publishedPathwayDefinitions {
       id
@@ -31,7 +31,7 @@ query publishedPathwayDefinitions {
 ### Query
 
 ```graphql
-mutation startPathway($input: StartPathwayInput!) {
+mutation StartPathway($input: StartPathwayInput!) {
   startPathway(input: $input) {
     pathway_id
   }
