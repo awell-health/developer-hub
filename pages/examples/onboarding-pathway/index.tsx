@@ -9,12 +9,14 @@ import { Spinner } from '../../../src/components/Spinner'
 import { usePathwayActivities } from '../../../src/hooks/usePathwayActivities'
 import { useStartPathway } from '../../../src/hooks/useStartPathway'
 import { type Activity } from '../../../src/types/generated/api.types'
+import { isPathwayCompleted } from '../../../src/utils/pathway'
 
 const Pathway = ({ pathwayId }: { pathwayId: string }) => {
   const { activities, startPolling, stopPolling } =
     usePathwayActivities(pathwayId)
   const [currentPendingUserActivity, setCurrentPendingUseractivity] =
     useState<Activity | null>(null)
+  const [isCompleted, setIsCompleted] = useState(false)
 
   const onActivityCompleted = () => {
     setCurrentPendingUseractivity(null)
@@ -22,6 +24,14 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
   }
 
   useEffect(() => {
+    const pathwayCompleted = isPathwayCompleted(activities || [])
+
+    if (pathwayCompleted) {
+      setIsCompleted(true)
+      stopPolling()
+      return
+    }
+
     const firstPendingUserActivity = activities?.find(
       (activity) => activity.status === 'ACTIVE'
     )
@@ -32,6 +42,7 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
     }
   }, [
     activities,
+    isCompleted,
     stopPolling,
     setCurrentPendingUseractivity,
     currentPendingUserActivity,
@@ -44,8 +55,23 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
   if (!currentPendingUserActivity)
     return (
       <div>
-        {!currentPendingUserActivity && (
+        {!currentPendingUserActivity && !isCompleted && (
           <Spinner message="Hang on, loading activities..." />
+        )}
+        {isCompleted && (
+          <div className="max-w-3xl mx-auto">
+            <div className="max-w-xl mx-auto">
+              <h1 className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
+                Hooray!
+              </h1>
+              <p className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
+                Pathway completed
+              </p>
+              <p className="mt-2 text-base text-gray-500">
+                You completed the onboarding pathway
+              </p>
+            </div>
+          </div>
         )}
       </div>
     )
