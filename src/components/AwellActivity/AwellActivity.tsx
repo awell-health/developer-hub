@@ -1,5 +1,5 @@
 import { type Activity } from '../../types/generated/api.types'
-import { Form } from './Form'
+import { FormContainer } from './Form'
 import { Message } from './Message'
 
 interface AwellActivityProps {
@@ -16,7 +16,7 @@ export const AwellActivity = ({
   if (type === 'FORM') {
     return (
       <div>
-        <Form
+        <FormContainer
           formActivity={activity}
           onActivityCompleted={onActivityCompleted}
         />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   type FieldValues,
   Control,
@@ -7,13 +7,13 @@ import {
   UseFormRegister,
 } from 'react-hook-form'
 
+import { useEvaluateFormRules } from '../../../hooks/useEvaluateFormRules'
 import { useForm as useFormQuery } from '../../../hooks/useForm'
 import { useSubmitFormResponse } from '../../../hooks/useSubmitFormResponse'
-import {
-  type Activity,
-  type Question,
-} from '../../../types/generated/api.types'
+import { QuestionWithVisibility } from '../../../types/form.types'
+import { type Activity, Question } from '../../../types/generated/api.types'
 import { keyValueObjectToQuestionResponseObject } from '../../../utils/dataPoints'
+import { getInitialValues, updateVisibility } from '../../../utils/form'
 import { Spinner } from '../../Spinner'
 import {
   Boolean,
@@ -33,7 +33,7 @@ interface FormProps {
 }
 
 const renderQuestion = (
-  question: Question,
+  question: QuestionWithVisibility,
   register: UseFormRegister<FieldValues>,
   control: Control<FieldValues>
 ) => {
@@ -79,19 +79,66 @@ const renderQuestion = (
   }
 }
 
-export const Form = ({ formActivity, onActivityCompleted }: FormProps) => {
-  const { form, loading } = useFormQuery(formActivity.object.id)
+const Form = ({
+  questions,
+  formActivity,
+  onActivityCompleted,
+}: {
+  questions: Question[]
+  formActivity: Activity
+  onActivityCompleted: () => void
+}) => {
+  const { register, handleSubmit, control, watch, reset, getValues } = useForm({
+    defaultValues: getInitialValues(questions),
+  })
   const [isSubmittingForm, setIsSubmittingForm] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [evaluateFormRules] = useEvaluateFormRules(formActivity.object.id)
+  const [visibleQuestions, setVisibleQuestions] = useState<
+    Array<QuestionWithVisibility>
+  >([])
   const { submitFormResponse } = useSubmitFormResponse()
-  const { register, handleSubmit, control } = useForm()
+
+  const updateQuestionsVisibility = async () => {
+    const data = keyValueObjectToQuestionResponseObject(getValues())
+    const evaluationResults = await evaluateFormRules(data)
+    setVisibleQuestions(updateVisibility(questions, evaluationResults))
+  }
+
+  const resetForm = async () => {
+    reset()
+    await updateQuestionsVisibility()
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
+    const subscription = watch(() => updateQuestionsVisibility())
+    return () => subscription.unsubscribe()
+  }, [watch])
+
+  useEffect(() => {
+    resetForm()
+  }, [questions])
 
   const onSubmit = () => {
     handleSubmit(async (data) => {
       setIsSubmittingForm(true)
-      const response = keyValueObjectToQuestionResponseObject(data)
+      /**
+       * We only want to submit data for the applicable/visible questions
+       */
+      const responseOfVisibleQuestionsOnly = Object.fromEntries(
+        Object.entries(data).filter(([key]) =>
+          visibleQuestions.find((question) => question.id === key)
+            ? true
+            : false
+        )
+      )
+
       const submittedForm = await submitFormResponse({
         activityId: formActivity.id,
-        response,
+        response: keyValueObjectToQuestionResponseObject(
+          responseOfVisibleQuestionsOnly
+        ),
       })
       if (submittedForm.status === 'DONE') {
         onActivityCompleted()
@@ -100,18 +147,22 @@ export const Form = ({ formActivity, onActivityCompleted }: FormProps) => {
     })()
   }
 
-  if (loading) return <Spinner message="Loading questions" />
+  if (isLoading) return <Spinner message="Loading display logic" />
 
   return (
     <form
       className="max-w-xl mx-auto pb-12 text-left grid grid-cols-1 gap-y-6"
       onSubmit={handleSubmit(onSubmit)}
     >
-      {form.questions.map((question) => (
-        <div key={question.id}>
-          {renderQuestion(question, register, control)}
-        </div>
-      ))}
+      {visibleQuestions.map((question) => {
+        if (!question.visible) return null
+
+        return (
+          <div key={question.id}>
+            {renderQuestion(question, register, control)}
+          </div>
+        )
+      })}
       <input
         type="submit"
         disabled={isSubmittingForm ? true : false}
@@ -119,5 +170,22 @@ export const Form = ({ formActivity, onActivityCompleted }: FormProps) => {
         className="cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       />
     </form>
+  )
+}
+
+export const FormContainer = ({
+  formActivity,
+  onActivityCompleted,
+}: FormProps) => {
+  const { form, loading } = useFormQuery(formActivity.object.id)
+
+  if (loading) return <Spinner message="Loading form" />
+
+  return (
+    <Form
+      questions={form.questions}
+      formActivity={formActivity}
+      onActivityCompleted={onActivityCompleted}
+    />
   )
 }
