@@ -1,12 +1,64 @@
 import { CodeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
+import { AwellActivity } from '../../../src/components/AwellActivity'
 import { Button } from '../../../src/components/Button'
 import { SEO } from '../../../src/components/SEO'
 import { Spinner } from '../../../src/components/Spinner'
 import { usePathwayActivities } from '../../../src/hooks/usePathwayActivities'
 import { useStartPathway } from '../../../src/hooks/useStartPathway'
+import { type Activity } from '../../../src/types/generated/api.types'
+
+const Pathway = ({ pathwayId }: { pathwayId: string }) => {
+  const { activities, startPolling, stopPolling } =
+    usePathwayActivities(pathwayId)
+  const [currentPendingUserActivity, setCurrentPendingUseractivity] =
+    useState<Activity | null>(null)
+
+  const onActivityCompleted = () => {
+    setCurrentPendingUseractivity(null)
+    startPolling(1000)
+  }
+
+  useEffect(() => {
+    const firstPendingUserActivity = activities?.find(
+      (activity) => activity.status === 'ACTIVE'
+    )
+
+    if (firstPendingUserActivity) {
+      stopPolling()
+      setCurrentPendingUseractivity(firstPendingUserActivity)
+    }
+  }, [
+    activities,
+    stopPolling,
+    setCurrentPendingUseractivity,
+    currentPendingUserActivity,
+  ])
+
+  useEffect(() => {
+    startPolling(1000)
+  }, [startPolling])
+
+  if (!currentPendingUserActivity)
+    return (
+      <div>
+        {!currentPendingUserActivity && (
+          <Spinner message="Hang on, loading activities..." />
+        )}
+      </div>
+    )
+
+  return (
+    <div>
+      <AwellActivity
+        activity={currentPendingUserActivity}
+        onActivityCompleted={onActivityCompleted}
+      />
+    </div>
+  )
+}
 
 export default function OnboardingExample() {
   /**
@@ -22,11 +74,6 @@ export default function OnboardingExample() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isLoadingMessage, setIsLoadingMessage] = useState<string>('')
   const [createdPathway, setCreatedPathway] = useState<string | null>(null)
-  const { activities } = usePathwayActivities(
-    createdPathway ? createdPathway : ''
-  )
-
-  console.log(activities)
 
   const onPathwayStart = async () => {
     setIsLoading(true)
@@ -79,7 +126,7 @@ export default function OnboardingExample() {
                 onClick={() => onPathwayStart()}
               />
             )}
-            {createdPathway && <div>{createdPathway}</div>}
+            {createdPathway && <Pathway pathwayId={createdPathway} />}
           </div>
         )}
       </div>

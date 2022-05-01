@@ -5,28 +5,44 @@ import { PATHWAY_ACTIVITIES } from './graphql/GetPathwayActivities.graphql'
 
 interface UseBaselineInfoHook {
   loading: boolean
+  startPolling: (pollInterval: number) => void
+  stopPolling: () => void
   activities?: Array<Activity>
 }
 
+/**
+ * Check Apollo periodically polling
+ * 1. pollInterval
+ * 2. startPolling & endPolling functions
+ *
+ * OR
+ * - VCP keeps track of activities (eg: through webhooks)
+ * - Subscriptions: but needs an AUTH token right now (server-to-server)
+ */
 export const usePathwayActivities = (
   pathway_id: string
 ): UseBaselineInfoHook => {
-  const { data, loading, error } = useQuery(PATHWAY_ACTIVITIES, {
-    variables: {
-      pathway_id,
-    },
-  })
+  const { data, loading, error, startPolling, stopPolling } = useQuery(
+    PATHWAY_ACTIVITIES,
+    {
+      variables: {
+        pathway_id,
+      },
+    }
+  )
 
   if (error) {
     console.log(error)
-    return { loading: false }
+    return { loading: false, startPolling, stopPolling }
   }
   if (loading) {
-    return { loading: true }
+    return { loading: true, startPolling, stopPolling }
   }
 
   return {
     loading: false,
+    startPolling,
+    stopPolling,
     activities: data?.pathwayActivities?.activities ?? [],
   }
 }
