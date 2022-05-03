@@ -10,7 +10,7 @@ This query lets us fetch all of the pathway activities of any status for a speci
 ### Query
 
 ```graphql
-query PathwayActivities($pathway_id: String!) {
+query GetPathwayActivities($pathway_id: String!) {
   pathwayActivities(pathway_id: $pathway_id) {
     success
     activities {
