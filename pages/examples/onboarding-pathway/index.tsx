@@ -47,7 +47,9 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
 
     const firstPendingUserActivity = activities?.find(
       (activity) =>
-        activity.status === 'ACTIVE' && !ignoredActivities.includes(activity.id)
+        activity.status === 'ACTIVE' &&
+        !ignoredActivities.includes(activity.id) &&
+        ['MESSAGE', 'FORM'].includes(activity.object.type)
     )
 
     if (firstPendingUserActivity) {
