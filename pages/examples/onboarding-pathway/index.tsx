@@ -17,8 +17,15 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
   const [currentPendingUserActivity, setCurrentPendingUseractivity] =
     useState<Activity | null>(null)
   const [isCompleted, setIsCompleted] = useState(false)
+  const [ignoredActivities, setIgnoredActivities] = useState<string[]>([])
 
   const onActivityCompleted = () => {
+    if (currentPendingUserActivity?.object.type === 'MESSAGE') {
+      setIgnoredActivities([
+        ...ignoredActivities,
+        currentPendingUserActivity.id,
+      ])
+    }
     setCurrentPendingUseractivity(null)
     startPolling(1000)
   }
@@ -33,7 +40,8 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
     }
 
     const firstPendingUserActivity = activities?.find(
-      (activity) => activity.status === 'ACTIVE'
+      (activity) =>
+        activity.status === 'ACTIVE' && !ignoredActivities.includes(activity.id)
     )
 
     if (firstPendingUserActivity) {
@@ -93,7 +101,7 @@ export default function OnboardingExample() {
    * and use the patient id returned in the response.
    */
   const PATIENT_ID = 'Gh6m6f_WxD0HMQkRmfMS-'
-  const PATHWAY_DEFINITION_ID = '3v5cU-hvyeGp'
+  const PATHWAY_DEFINITION_ID = 'fSw1-GkU98HJ'
 
   const { startPathway } = useStartPathway()
 
