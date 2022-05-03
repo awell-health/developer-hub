@@ -22,6 +22,8 @@ mutation MarkMessageAsRead($input: MarkMessageAsReadInput!) {
 
 ### Variables
 
+An example `activity_id` is "Activity/ZIRzBxe37Zs9sLnk7LWJY"
+
 ```json
 {
   "input": {
@@ -30,25 +32,12 @@ mutation MarkMessageAsRead($input: MarkMessageAsReadInput!) {
 }
 ```
 
-This mutation expects only one input variable:
+### Request Headers
 
-<div className="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th>Field</th>
-        <th>Required</th>
-        <th>Description</th>
-        <th>Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>activity_id</td>
-        <td>Yes</td>
-        <td>the id of the message activity</td>
-        <td>string</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+An additional request header is required, to indicate the user id of the message reader. If a patient is reading the message, for example, then this user id is the patient user's id.
+
+```json
+{
+  "X-User-ID": "{{USER_ID}}"
+}
+```
