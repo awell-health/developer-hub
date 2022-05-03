@@ -4,11 +4,13 @@ import { Message } from './Message'
 
 interface AwellActivityProps {
   activity: Activity
+  patientId: string
   onActivityCompleted: () => void
 }
 
 export const AwellActivity = ({
   activity,
+  patientId,
   onActivityCompleted,
 }: AwellActivityProps) => {
   const type = activity.object.type
@@ -28,6 +30,7 @@ export const AwellActivity = ({
     return (
       <div>
         <Message
+          patientId={patientId}
           messageActivity={activity}
           onActivityCompleted={onActivityCompleted}
         />

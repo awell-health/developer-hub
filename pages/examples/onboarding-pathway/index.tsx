@@ -11,7 +11,13 @@ import { useStartPathway } from '../../../src/hooks/useStartPathway'
 import { type Activity } from '../../../src/types/generated/api.types'
 import { isPathwayCompleted } from '../../../src/utils/pathway'
 
-const Pathway = ({ pathwayId }: { pathwayId: string }) => {
+const Pathway = ({
+  patientId,
+  pathwayId,
+}: {
+  patientId: string
+  pathwayId: string
+}) => {
   const { activities, startPolling, stopPolling } =
     usePathwayActivities(pathwayId)
   const [currentPendingUserActivity, setCurrentPendingUseractivity] =
@@ -21,9 +27,15 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
 
   const onActivityCompleted = () => {
     /**
-     * Needs fixing
+     * We cannot mark messages as read that are not for the patient in an
+     * onboarding flow. If we want to make sure we can go through an onboarding
+     * flow where there are messages that are NOT assigned to the patient, then
+     * we need to make sure we ignore them.
      */
-    if (currentPendingUserActivity?.object.type === 'MESSAGE') {
+    if (
+      currentPendingUserActivity?.object.type === 'MESSAGE' &&
+      currentPendingUserActivity?.indirect_object?.type === 'PATIENT'
+    ) {
       setIgnoredActivities([
         ...ignoredActivities,
         currentPendingUserActivity.id,
@@ -98,6 +110,7 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
       <AwellActivity
         activity={currentPendingUserActivity}
         onActivityCompleted={onActivityCompleted}
+        patientId={patientId}
       />
     </div>
   )
@@ -169,7 +182,9 @@ export default function OnboardingExample() {
                 onClick={() => onPathwayStart()}
               />
             )}
-            {createdPathway && <Pathway pathwayId={createdPathway} />}
+            {createdPathway && (
+              <Pathway pathwayId={createdPathway} patientId={PATIENT_ID} />
+            )}
           </div>
         )}
       </div>

@@ -15,6 +15,11 @@ export const PATHWAY_ACTIVITIES = gql`
           type
           name
         }
+        indirect_object {
+          id
+          type
+          name
+        }
       }
     }
   }

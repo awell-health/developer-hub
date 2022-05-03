@@ -10,15 +10,6 @@ interface UseBaselineInfoHook {
   activities?: Array<Activity>
 }
 
-/**
- * Check Apollo periodically polling
- * 1. pollInterval
- * 2. startPolling & endPolling functions
- *
- * OR
- * - VCP keeps track of activities (eg: through webhooks)
- * - Subscriptions: but needs an AUTH token right now (server-to-server)
- */
 export const usePathwayActivities = (
   pathway_id: string
 ): UseBaselineInfoHook => {
