@@ -8,12 +8,14 @@ description: Get all pathways a given patient is or was enrolled in
 ### Query
 
 ```graphql
-query patientPathways($patient_id: String!) {
+query GetPatientPathways($patient_id: String!) {
   patientPathways(patient_id: $patient_id) {
     patientPathways {
       id
       title
       status
+      status_explanation
+      pathway_definition_id
     }
   }
 }

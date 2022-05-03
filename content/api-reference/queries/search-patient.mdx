@@ -3,14 +3,14 @@ title: Search patient
 description: Search patient on patient code or national registry number
 ---
 
-Search for a patient in your tenant by patient code or national registry number, regardless of pathway or patient status.
+Search for a patient in your tenant by patient code or national registry number, regardless of pathway or patient status. The search is done via partial-text matching so multiple results may be returned for any given query.
 
 ### Query
 
 Search by patient code:
 
 ```graphql
-query searchPatientsByPatientCode($patient_code: String!) {
+query SearchPatientsByPatientCode($patient_code: String!) {
   searchPatientsByPatientCode(patient_code: $patient_code) {
     patients {
       id
@@ -22,7 +22,7 @@ query searchPatientsByPatientCode($patient_code: String!) {
 Search by national regsitry number:
 
 ```graphql
-query searchPatientsByNationalRegistryNumber(
+query SearchPatientsByNationalRegistryNumber(
   $national_registry_number: String!
 ) {
   searchPatientsByNationalRegistryNumber(
