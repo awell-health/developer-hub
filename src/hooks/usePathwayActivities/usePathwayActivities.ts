@@ -39,10 +39,19 @@ export const usePathwayActivities = (
     return { loading: true, startPolling, stopPolling }
   }
 
+  /**
+   * Needs fixing
+   * I need to reverse activities array in order to make sure I show
+   * activities in the right order to the user
+   */
+  const activities = data?.pathwayActivities?.activities
+    ? data.pathwayActivities.activities.slice().reverse()
+    : []
+
   return {
     loading: false,
     startPolling,
     stopPolling,
-    activities: data?.pathwayActivities?.activities ?? [],
+    activities,
   }
 }

@@ -20,6 +20,9 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
   const [ignoredActivities, setIgnoredActivities] = useState<string[]>([])
 
   const onActivityCompleted = () => {
+    /**
+     * Needs fixing
+     */
     if (currentPendingUserActivity?.object.type === 'MESSAGE') {
       setIgnoredActivities([
         ...ignoredActivities,
@@ -54,6 +57,7 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
   }, [
     activities,
     isCompleted,
+    ignoredActivities,
     stopPolling,
     setCurrentPendingUseractivity,
     currentPendingUserActivity,
