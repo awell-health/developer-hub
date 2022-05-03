@@ -1,6 +1,9 @@
 import { type Activity } from '../../types/generated/api.types'
 
-export const isPathwayCompleted = (activities: Activity[]): boolean => {
+export const isPathwayCompleted = (
+  activities: Activity[],
+  ignoredActivities: string[]
+): boolean => {
   const pathwayCompletedActivity = activities.find(
     (activity) =>
       activity.object.type === 'PATHWAY' &&
@@ -8,7 +11,12 @@ export const isPathwayCompleted = (activities: Activity[]): boolean => {
       activity.action === 'COMPLETE'
   )
 
-  if (pathwayCompletedActivity) return true
+  const activeActivities = activities.find(
+    (activity) =>
+      activity.status === 'ACTIVE' && !ignoredActivities.includes(activity.id)
+  )
+
+  if (pathwayCompletedActivity && !activeActivities) return true
 
   return false
 }

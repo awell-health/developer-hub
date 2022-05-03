@@ -31,7 +31,10 @@ const Pathway = ({ pathwayId }: { pathwayId: string }) => {
   }
 
   useEffect(() => {
-    const pathwayCompleted = isPathwayCompleted(activities || [])
+    const pathwayCompleted = isPathwayCompleted(
+      activities || [],
+      ignoredActivities
+    )
 
     if (pathwayCompleted) {
       setIsCompleted(true)
