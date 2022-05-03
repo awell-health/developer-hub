@@ -20,6 +20,8 @@ mutation SubmitFormResponse($input: SubmitFormResponseInput!) {
 
 ### Variables
 
+An example `activity_id` is "Activity/ZIRzBxe37Zs9sLnk7LWJY"
+
 ```json
 {
   "input": {
@@ -35,6 +37,16 @@ mutation SubmitFormResponse($input: SubmitFormResponseInput!) {
       }
     ]
   }
+}
+```
+
+### Request Headers
+
+An additional request header is required, to indicate the user id of the form responder. If a patient is submitting the form, for example, then this user id is the patient user's id.
+
+```json
+{
+  "X-User-ID": "{{USER_ID}}"
 }
 ```
 

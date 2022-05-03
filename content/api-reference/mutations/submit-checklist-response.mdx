@@ -76,11 +76,23 @@ mutation SubmitChecklist($input: SubmitChecklistInput!) {
 
 ### Variables
 
+An example `activity_id` is "Activity/ZIRzBxe37Zs9sLnk7LWJY"
+
 ```json
 {
     "input": {
         "activity_id": {{CHECKLIST_ID}}
     }
+}
+```
+
+### Request Headers
+
+An additional request header is required, to indicate the user id of the person submitting the checklist. If a nurse is completing the checklist, for example, then this is the nurse user's id.
+
+```json
+{
+  "X-User-ID": "{{USER_ID}}"
 }
 ```
 
