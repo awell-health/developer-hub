@@ -5,6 +5,8 @@ description: Get all activities in a given pathway
 
 This query lets us fetch all of the pathway activities of any status for a specific orchestrated pathway, including system activities such as calculations or activations.
 
+> We suggest reading the page on our [domain model](/docs/getting-started/domain-model) first to get an understanding of the activity model.
+
 ## Request
 
 ### Query
@@ -45,26 +47,3 @@ query GetPathwayActivities($pathway_id: String!) {
   "pathway_id": "{{PATIENT_PATHWAY_ID}}"
 }
 ```
-
-This query expects only one input variable:
-
-<div className="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th>Field</th>
-        <th>Required</th>
-        <th>Description</th>
-        <th>Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>pathway_id</td>
-        <td>Yes</td>
-        <td>the id of the pathway</td>
-        <td>string</td>
-      </tr>
-    </tbody>
-  </table>
-</div>

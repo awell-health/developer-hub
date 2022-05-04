@@ -67,6 +67,11 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.pathway,
       },
       {
+        title: 'Get pathway activities',
+        path: '/api-reference/queries/get-pathway-activities',
+        badge: badges.activity,
+      },
+      {
         title: 'Get API call',
         path: '/api-reference/queries/get-api-call',
         badge: badges.activity,
@@ -104,11 +109,6 @@ export const apiMenu: MenuItemType[] = [
       {
         title: 'Get patient pending activities',
         path: '/api-reference/queries/get-patient-pending-activities',
-        badge: badges.activity,
-      },
-      {
-        title: 'Get pathway activities',
-        path: '/api-reference/queries/get-pathway-activities',
         badge: badges.activity,
       },
     ],
