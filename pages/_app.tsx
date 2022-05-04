@@ -54,17 +54,19 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-BMFXJW6RY3"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
 
-          gtag('config', 'G-BMFXJW6RY3');
-        `}
+      <Script id="google-analytics" strategy="lazyOnload">
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+                `}
       </Script>
 
       {/* Example pages don't need theming, apollo, search, nav, ... */}
