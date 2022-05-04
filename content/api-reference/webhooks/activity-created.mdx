@@ -1,0 +1,27 @@
+---
+title: Activity created
+description: Activity created webhook payload
+---
+
+## Payload
+
+```json
+{
+  "activity": {
+    "id": "<ACTIVITY_ID>",
+    "stream_id": "<PATHWAY_ID>",
+    "date": "<CREATION_DATE>", // In ISO8601 format
+    "subject": {
+      "type": "awell",
+      "name": "Awell"
+    },
+    "action": "<ACTION>",
+    "object": {},           // See Domain model for more details
+    "indirect_object": {},  // See Domain model for more details
+    "status": "active"
+  },
+  "pathway_id": "<PATHWAY_ID>",
+  "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+  "event_type": "ACTIVITY_CREATED"
+}
+```
