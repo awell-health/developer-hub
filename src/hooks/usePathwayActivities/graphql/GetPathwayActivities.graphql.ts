@@ -5,11 +5,15 @@ export const PATHWAY_ACTIVITIES = gql`
     pathwayActivities(pathway_id: $pathway_id) {
       success
       activities {
-        stream_id
         id
+        stream_id
         status
-        action
         date
+        subject {
+          type
+          name
+        }
+        action
         object {
           id
           type
