@@ -7,7 +7,7 @@ This request allows us to update the status of the message activity to "DONE".
 
 ## Request
 
-### Query
+### Mutation
 
 ```graphql
 mutation MarkMessageAsRead($input: MarkMessageAsReadInput!) {
@@ -22,8 +22,6 @@ mutation MarkMessageAsRead($input: MarkMessageAsReadInput!) {
 
 ### Variables
 
-An example `activity_id` is "Activity/ZIRzBxe37Zs9sLnk7LWJY"
-
 ```json
 {
   "input": {
@@ -32,9 +30,9 @@ An example `activity_id` is "Activity/ZIRzBxe37Zs9sLnk7LWJY"
 }
 ```
 
-### Request Headers
+### Specifying the user
 
-An additional request header is required, to indicate the user id of the message reader. If a patient is reading the message, for example, then this user id is the patient user's id.
+The optional `X-User-ID` header can be used to specify which user has read the message. When this header is present, Awell Orchestration will log a subactivity indicating that this specific user read the message.
 
 ```json
 {
