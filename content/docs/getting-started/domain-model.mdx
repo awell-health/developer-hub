@@ -3,6 +3,28 @@ title: Domain model
 description: Familiarize yourself with our domain model
 ---
 
+## Patient
+
+A patient refers to a user that can be included in pathways.
+
+```graphql
+type User {
+  id: ID!                         # Unique identifier of the patient
+  profile: UserProfile            # Optional profile information
+}
+
+type UserProfile {
+  patient_code: String            # Optional custom identifier
+  [...]
+}
+```
+
+Awell Orchestration does not need to know anything about a patient when orchestrating pathways. Any information saved in a patient profile can be used inside pathway definitions (to customise message content, or enrich api calls / webhook payloads for example), but none of it is required.
+
+The only recommended property to set when creating patients is the `patient_code`, which can be used as a custom identifier to help you reconciliate data with your own patient records.
+
+See the [API Reference](/api-reference/overview/schema) for more information about the user type.
+
 ## Pathway
 
 A pathway refers to an instance of a pathway definition that has been started for a specific patient.
