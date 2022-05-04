@@ -4,6 +4,7 @@ const badges: { [key in string]: BadgeType } = {
   patient: { label: 'Patient', color: 'green' },
   pathway: { label: 'Pathway', color: 'purple' },
   activity: { label: 'Activity', color: 'indigo' },
+  datapoint: { label: 'Data Point', color: 'slate' },
 }
 
 export const apiMenu: MenuItemType[] = [
@@ -170,6 +171,31 @@ export const apiMenu: MenuItemType[] = [
         title: 'Submit form response',
         path: '/api-reference/mutations/submit-form-response',
         badge: badges.activity,
+      },
+    ],
+  },
+  {
+    title: 'Webhooks',
+    submenu: [
+      {
+        title: 'Activity created',
+        path: '/api-reference/webhooks/activity-created',
+        badge: badges.activity,
+      },
+      {
+        title: 'Activity completed',
+        path: '/api-reference/webhooks/activity-completed',
+        badge: badges.activity,
+      },
+      {
+        title: 'Data point collected',
+        path: '/api-reference/webhooks/data-point-collected',
+        badge: badges.datapoint,
+      },
+      {
+        title: 'Form submitted',
+        path: '/api-reference/webhooks/form-submitted',
+        badge: badges.pathway,
       },
     ],
   },
