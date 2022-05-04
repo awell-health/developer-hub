@@ -5,6 +5,7 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 import type { ReactElement, ReactNode } from 'react'
 
 import client from '../apollo-client'
@@ -52,6 +53,19 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-BMFXJW6RY3"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-BMFXJW6RY3');
+        `}
+      </Script>
 
       {/* Example pages don't need theming, apollo, search, nav, ... */}
       {isExamplePage && (

@@ -15,6 +15,7 @@ export default function Document() {
       <body className="antialiased bg-white dark:bg-slate-900">
         <Main />
         <NextScript />
+
         <script
           data-partytown-config
           dangerouslySetInnerHTML={{
