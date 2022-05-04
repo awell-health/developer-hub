@@ -1,0 +1,183 @@
+---
+title: Domain model
+description: Familiarize yourself with our domain model
+---
+
+## Patient
+
+A patient refers to a user that can be included in pathways.
+
+```graphql
+type User {
+  id: ID!                         # Unique identifier of the patient
+  profile: UserProfile            # Optional profile information
+}
+
+type UserProfile {
+  patient_code: String            # Optional custom identifier
+  [...]
+}
+```
+
+Awell Orchestration does not need to know anything about a patient when orchestrating pathways. Any information saved in a patient profile can be used inside pathway definitions (to customise message content, or enrich api calls / webhook payloads for example), but none of it is required.
+
+The only recommended property to set when creating patients is the `patient_code`, which can be used as a custom identifier to help you reconciliate data with your own patient records.
+
+See the [API Reference](/api-reference/overview/schema) for more information about the user type.
+
+## Pathway
+
+A pathway refers to an instance of a pathway definition that has been started for a specific patient.
+
+```graphql
+type Pathway {
+  id: ID!                         # Unique identifier of the pathway
+  patient_id: String!             # Unique identifier of the patient
+  pathway_definition_id: String!  # Unique identifier of the pathway definition
+                                  # this pathway is derived from
+  start_date: SafeDate            # Start date in ISO8601 format
+  status: PathwayStatus!          # Current status of the pathway
+  [...]
+}
+```
+See the [API Reference](/api-reference/overview/schema) for more information about the pathway type.
+
+## Activities
+
+Activities are the atomic build blocks in an orchestrated pathway. Each activity describes a specific task that needs to be performed by a specific stakeholder at a given point in time.
+
+Awell Orchestration uses the pathway definition to automatically create and schedule activities and assign them to the right stakeholder. Your responsibility is therefore not to schedule individual activities, but to dispatch activities we create to your own users or use them as triggers for additional logic in your system.
+
+Awell Orchestration currently supports the following activity types:
+
+- API Call
+- Calculation
+- Checklist
+- Form
+- Message
+- Reminder
+
+### Generic structure
+
+Activities use a generic structure (subject + action + object + indirect object) to describe any action that needs to be performed by a human or system.
+
+```graphql
+{
+  id          # Unique identifier of the activity
+  stream_id   # Pathway identifier
+  date        # Creation date in ISO8601 format
+  subject {   # User or system that created the activity
+              # Currently only the Awell system creates activities
+    type
+    name
+  }
+  action      # Action performed by the subject when creating
+              # the activity.
+  object {    # Object that the activity relates to.
+    id
+    type
+    name
+  }
+  indirect_object { # User or stakeholder this activity was
+                    # assigned to. Is omitted when the activity
+                    # is assigned to the Awell system.
+    id
+    type
+    name
+  }
+  [...]
+}
+```
+
+When an activity is explicitly assigned to a patient or clinical stakeholder, the `indirect_object` property has the following data:
+```graphql
+# Assigned to patient
+indirect_object {
+  id: '<PATIENT_ID>'     # Unique identifier of the patient
+  type: 'patient'
+  name: '<PATIENT_NAME>' # Patient full name, if known  
+}
+# Assigned to clinical stakeholder
+indirect_object {
+  id: '<STAKEHOLDER_ID>'      # Unique identifier of the stakeholder
+  type: 'stakeholder'
+  name: '<STAKEHOLDER_NAME>'  # Stakeholder name
+}
+```
+
+See the [API Reference](/api-reference/overview/schema) for more information about the activity type.
+
+### Example: API Call activity
+
+```graphql
+{
+  subject {
+    type: 'awell'
+    name: 'Awell'
+  }
+  action: 'assigned'
+  object {
+    id: '<API_CALL_ID>'   # Unique identifier of the api call
+    type: 'api_call'
+    name: '<ACTION_TITLE>' # Title defined in pathway definition
+  }
+  [...]
+}
+```
+
+### Example: Calculation activity
+
+```graphql
+{
+  subject {
+    type: 'awell'
+    name: 'Awell'
+  }
+  action: 'assigned'
+  object {
+    id: '<CALCULATION_ID>'      # Unique identifier of the calculation
+    type: 'calculation'
+    name: '<CALCULATION_NAME>'  # Calculation name
+  }
+  [...]
+}
+```
+
+### Example: Form activity
+
+```graphql
+{
+  subject {
+    type: 'awell'
+    name: 'Awell'
+  }
+  action: 'assigned'
+  object {
+    id: '<FORM_ID>'       # Unique version-specific identifier of the form
+    type: 'form'
+    name: '<FORM_TITLE>'  # Form title
+  }
+  indirect_object { ... }
+  [...]
+}
+```
+
+
+## Data point definition
+
+Data point definitions describes and qualify each and every atomic piece of data that can be captured in the lifecycle of a pathway.
+
+```graphql
+{
+  id              # Unique identifier
+  category        # Where the data points will come from
+                  # Example: form, calculation, patient_profile, ...
+  key             # Human and machine friendly identifier
+  value_type      # Data type of the captured values
+                  # One of: boolean / date / number / string / numbers_array
+  possible_values # List of accepted (value,label) pairs, when relevant.
+  range           # Min / Max value, when relevant
+}
+```
+
+See the [API Reference](/api-reference/overview/schema) for more information about the data point definition type.

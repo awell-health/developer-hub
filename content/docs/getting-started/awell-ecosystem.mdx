@@ -5,11 +5,13 @@ description: Get an understanding of the Awell platform
 
 ## Awell Studio
 
-Our web application used by clinical and product experts to build clinical pathways with Awell Studio. A pathway built in Awell Studio is called a `pathway definition model`.
+The web application used by clinical and product experts to build clinical pathway definitions.
 
-### Pathway definition model
+### Pathway definition
 
-A pathway definition model uses the following elements as building blocks:
+A pathway definition is a structured representation of the workflow behind clinical pathways. It describes everything that can or should happen in a pathway, from the moment it starts to when it is considered completed.
+
+Pathway definitions use the following resources as building blocks:
 
 <div className="grid gap-6 mx-auto grid-cols-2">
   <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
@@ -58,9 +60,9 @@ A pathway definition model uses the following elements as building blocks:
 
 ## Awell Orchestration
 
-When a version of the pathway definition model is published, it becomes available in our Orchestration domain. Our Orchestrator has a GraphQL API interface to orchestrate or execute your clinical pathways and feed your patient and care team apps with the next steps, the next information to show, or the next data to capture.
+Awell Orchestration is the software that runs pathways based on pathway definitions created in Awell Studio. It automatically handles the variability encoded in pathway definitions for you by evaluating all conditional logic, activating and discarding branches, scheduling activities and assigning them to the right stakeholder and more.
 
-Where the pathway definition model is a quite elaborate model, an orchestrated pathway is reduced to 2 main elements for you to interact with:
+When integrating with the orchestration API, you will primarily interact with the following resources:
 
 <div className="grid gap-6 mx-auto grid-cols-2">
   <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
@@ -74,6 +76,13 @@ Where the pathway definition model is a quite elaborate model, an orchestrated p
     <div className="flex justify-center">
       <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
         Data points
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Forms
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ description: Create a new patient, anonymous patients are also supported.
 
 ## Request
 
-### Query
+### Mutation
 
 ```graphql
 mutation CreatePatient($input: CreatePatientInput!) {
@@ -17,29 +17,24 @@ mutation CreatePatient($input: CreatePatientInput!) {
 }
 ```
 
-### Variables
+### Variables - Anonymous patient
 
-Use our GraphQL explorer to discover all the variables you can pass with this mutation.
+```json
+{
+  "input": {}
+}
+```
+
+### Variables - Patient with profile
+
+Use our <a target="_blank" rel="noopener noreferrer" href="/playground">GraphQL explorer</a> to discover all the variables you can pass with this mutation.
 
 ```json
 {
   "input": {
     "first_name": "{{PATIENT FIRST NAME}}",
     "last_name": "{{PATIENT LAST NAME}}",
-    "patient_code": "{{PATIENT CODE}}",
-    ...
+    "patient_code": "{{YOUR PATIENT IDENTIFIER}}"
   }
-}
-```
-
-## Support for anonymous patients
-
-As all of the input fields are optional, this means, in effect, that you can create anonymous patients should you need to. For example, you can begin a patient journey with no details provided except an internal patient_code reference and use the generated patient ID to progress them through a pathway until such time you wish to gather and update their personal details.
-
-To create an anonymous patient you thus use the same mutation and you leave the `input` object empty. Leaving the `input` object out completely will not work.
-
-```json
-{
-  "input": {}
 }
 ```
