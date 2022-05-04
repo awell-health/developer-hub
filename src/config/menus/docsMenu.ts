@@ -13,8 +13,8 @@ export const docsMenu: MenuItemType[] = [
         path: '/docs/getting-started/awell-ecosystem',
       },
       {
-        title: 'Concepts & Terminology',
-        path: '/docs/getting-started/concepts-and-terminology',
+        title: 'Domain model',
+        path: '/docs/getting-started/domain-model',
       },
     ],
   },
