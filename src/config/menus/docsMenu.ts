@@ -16,6 +16,10 @@ export const docsMenu: MenuItemType[] = [
         title: 'Domain model',
         path: '/docs/getting-started/domain-model',
       },
+      {
+        title: 'Data access',
+        path: '/docs/getting-started/data-access',
+      },
     ],
   },
   {
