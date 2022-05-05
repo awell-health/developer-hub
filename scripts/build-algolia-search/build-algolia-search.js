@@ -67,6 +67,7 @@ function transformPagesToAlgoliaSearchObjects(pages) {
 
     // initialize the index with your index name
     const index = client.initIndex('awell_developers')
+    await index.clearObjects()
 
     // save the objects!
     const algoliaResponse = await index.saveObjects([

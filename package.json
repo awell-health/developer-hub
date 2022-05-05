@@ -22,6 +22,7 @@
     "@graphql-codegen/typescript": "^2.4.8",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
+    "@rjsf/core": "^4.1.1",
     "algoliasearch": "^4.13.0",
     "clsx": "^1.1.1",
     "dotenv": "^16.0.0",
