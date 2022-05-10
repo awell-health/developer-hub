@@ -1,0 +1,72 @@
+---
+title: Search activities
+description: Search activities by status, type, patient and other criteria
+---
+
+> Coming soon!
+
+> We suggest reading the page on our [domain model](/docs/getting-started/domain-model) first to get an understanding of the activity model.
+
+## Request
+
+### Query
+
+```graphql
+query activities ($filters: FilterActivitiesParamsGraphqlType) {
+    activities (filters: $filters) {
+        activities {
+            id
+            stream_id
+            date
+            subject {
+                id
+                name
+                type
+            }
+            action
+            object {
+                id
+                name
+                type
+            }
+            indirect_object {
+                id
+                name
+                type
+            }
+            resolution
+            status
+        }
+    }
+}
+```
+
+### Variables
+
+All filter values are optional, if you don't provide any filter all activities in your tenant will be returned.
+
+All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria.
+
+When specifying multiple filters, the resulting criteria is the conjuction of all filters.
+
+```json
+{
+  "filters": {
+    "action": {
+      "in": []
+    },
+    "activity_status": {
+      "in": []
+    },
+    "activity_type": {
+      "in": []
+    },
+    "pathway_definition_id": {
+      "in": []
+    },
+    "patient_id": {
+      "eq": ""
+    }
+  }
+}
+```
