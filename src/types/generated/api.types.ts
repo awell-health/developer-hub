@@ -198,6 +198,10 @@ export type ApiCallResponse = {
   status: Scalars['Float'];
 };
 
+export type ArrayFilter = {
+  in?: InputMaybe<Array<Scalars['String']>>;
+};
+
 export type BaselineDataPoint = {
   __typename?: 'BaselineDataPoint';
   definition: DataPointDefinition;
@@ -379,6 +383,14 @@ export type EvaluateFormRulesInput = {
 export type EvaluateFormRulesPayload = {
   __typename?: 'EvaluateFormRulesPayload';
   results: Array<QuestionRuleResult>;
+};
+
+export type FilterActivitiesParamsGraphqlType = {
+  action?: InputMaybe<ArrayFilter>;
+  activity_status?: InputMaybe<ArrayFilter>;
+  activity_type?: InputMaybe<ArrayFilter>;
+  pathway_definition_id?: InputMaybe<ArrayFilter>;
+  patient_id?: InputMaybe<TextFilter>;
 };
 
 export type Form = {
@@ -629,10 +641,13 @@ export type PathwaysPayload = Payload & {
 
 export type PatientPathway = {
   __typename?: 'PatientPathway';
+  complete_date?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   pathway_definition_id: Scalars['String'];
+  revision?: Maybe<Scalars['Float']>;
   status: PathwayStatus;
   status_explanation?: Maybe<Scalars['String']>;
+  stop_date?: Maybe<Scalars['String']>;
   title: Scalars['String'];
 };
 
@@ -694,6 +709,7 @@ export type PublishedPathwayDefinitionsPayload = Payload & {
 
 export type Query = {
   __typename?: 'Query';
+  activities: ActivitiesPayload;
   apiCall: ApiCallPayload;
   baselineInfo: BaselineInfoPayload;
   calculationResults: CalculationResultsPayload;
@@ -720,6 +736,11 @@ export type Query = {
   webhookCallsForPathwayDefinition: WebhookCallsPayload;
   webhookCallsForTenant: WebhookCallsPayload;
   whoami: UserPayload;
+};
+
+
+export type QueryActivitiesArgs = {
+  filters?: InputMaybe<FilterActivitiesParamsGraphqlType>;
 };
 
 
@@ -1095,6 +1116,10 @@ export type Tenant = {
   __typename?: 'Tenant';
   is_default: Scalars['Boolean'];
   name: Scalars['String'];
+};
+
+export type TextFilter = {
+  eq?: InputMaybe<Scalars['String']>;
 };
 
 export type Track = {
