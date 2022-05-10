@@ -13,9 +13,33 @@ query GetPatientPathways($patient_id: String!) {
     patientPathways {
       id
       title
+      pathway_definition_id
       status
       status_explanation
-      pathway_definition_id
+      version # version number
+      release_id # unique id representing the version
+      start_date
+      stop_date # if pathway is stopped
+      complete_date # if pathway is completed
+      baseline_info {
+        value
+        definition {
+          id
+          title
+          category
+          key
+          valueType
+          possibleValues {
+            label
+            value
+          }
+          unit
+          range {
+            min
+            max
+          }
+        }
+      }
     }
   }
 }
