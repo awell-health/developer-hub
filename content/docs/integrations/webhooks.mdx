@@ -32,6 +32,24 @@ Webhooks can be configured on a per pathway basis in the Awell Studio (see `Sett
 
 > Note that every Webhook is automatically subscribed to the above events. You can currently not change the subscriptions on a per webhook basis.
 
+## Security
+
+We value security & privacy, especially because we're handling sensistive healthcare data. As a company, we're doing our best to stay ahead of attackers by fixing and guarding the loopholes in our systems.
+
+Outlined below are the strategies we use to faciliate security when working with webhooks. We're open to discuss additional measures if needed.
+
+### Encryption (HTTPS)
+
+We only allow HTTPS webhook endpoints. This provides security at the transport layer, ensuring that all data sent is encrypted and therefore cannot be read.
+
+### Headers to verify the source
+
+Headers can be configured for all outgoing webhooks that are sent by our system (webhook provider). An authentication token can thus be added to the header and the client (webhook consumer) can validate that token to verify whether the incoming request is coming from the right source.
+
+### Whitelisting
+
+Another way to verify the source is for the client to be aware of the webhook provider's IP address. The client can then whitelist this IP address and bounce any other request coming from unknown IP addresses.
+
 ## Example payloads
 
 Below an example of every type of subscription and the payload you'll be receiving on your end.
@@ -193,21 +211,3 @@ Form with activity id `Activity/Wj6oZwTgiu7Smf99hQMBb` was submitted and we can 
   "event_type": "FORM_SUBMITTED"
 }
 ```
-
-## Security
-
-We value security & privacy, especially because we're handling sensistive healthcare data. As a company, we're doing our best to stay ahead of attackers by fixing and guarding the loopholes in our systems.
-
-Outlined below are the strategies we use to faciliate security when working with webhooks. We're open to discuss additional measures if needed.
-
-### Encryption (HTTPS)
-
-We only allow HTTPS webhook endpoints. This provides security at the transport layer, ensuring that all data sent is encrypted and therefore cannot be read.
-
-### Headers to verify the source
-
-Headers can be configured for all outgoing webhooks that are sent by our system (webhook provider). An authentication token can thus be added to the header and the client (webhook consumer) can validate that token to verify whether the incoming request is coming from the right source.
-
-### Whitelisting
-
-Another way to verify the source is for the client to be aware of the webhook provider's IP address. The client can then whitelist this IP address and bounce any other request coming from unknown IP addresses.
