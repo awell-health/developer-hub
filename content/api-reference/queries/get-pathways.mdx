@@ -9,7 +9,7 @@ description: Search pathways by status, type, patient and other criteria
 
 ```graphql
 query GetPathways($filters: FilterPathwaysGraphqlType) {
-  activities(filters: $filters) {
+  pathways(filters: $filters) {
     success
     pathways {
       id
