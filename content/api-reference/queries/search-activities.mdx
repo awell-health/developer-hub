@@ -7,41 +7,41 @@ description: Search activities by status, type, patient and other criteria
 
 > We suggest reading the page on our [domain model](/docs/getting-started/domain-model) first to get an understanding of the activity model.
 
-## Request
-
-### Query
+## Query
 
 ```graphql
-query activities ($filters: FilterActivitiesParamsGraphqlType) {
-    activities (filters: $filters) {
-        activities {
-            id
-            stream_id
-            date
-            subject {
-                id
-                name
-                type
-            }
-            action
-            object {
-                id
-                name
-                type
-            }
-            indirect_object {
-                id
-                name
-                type
-            }
-            resolution
-            status
-        }
+query activities($filters: FilterActivitiesParamsGraphqlType) {
+  activities(filters: $filters) {
+    activities {
+      id
+      stream_id
+      date
+      subject {
+        id
+        name
+        type
+      }
+      action
+      object {
+        id
+        name
+        type
+      }
+      indirect_object {
+        id
+        name
+        type
+      }
+      resolution
+      status
     }
+  }
 }
 ```
 
-### Variables
+## Variables
+
+### Filters
 
 All filter values are optional, if you don't provide any filter all activities in your tenant will be returned.
 
