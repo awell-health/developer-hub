@@ -69,8 +69,22 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
   "patient_id": "{{ PATIENT_ID }}",
   "filters": {
     "status": {
-      "in": []
+      "in": [""]
     }
   }
+}
+```
+
+#### Status
+
+You can use the following statusses in the `status` filter.
+
+```graphql
+enum PathwayStatus {
+  active
+  completed
+  missing_baseline_info
+  starting
+  stopped
 }
 ```
