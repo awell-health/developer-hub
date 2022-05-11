@@ -1,0 +1,62 @@
+---
+title: Get pathways
+description: Search pathways by status, type, patient and other criteria
+---
+
+> We suggest reading the page on our [domain model](/docs/getting-started/domain-model) first to get an understanding of the pathway model.
+
+## Query
+
+```graphql
+query GetPathways($filters: FilterPathwaysGraphqlType) {
+  activities(filters: $filters) {
+    success
+    pathways {
+      id
+      title
+      pathway_definition_id
+      patient_id
+      status
+      status_explanation
+      version # version number
+      release_id # unique id representing the version
+      start_date
+      stop_date # if pathway is stopped
+      complete_date # if pathway is completed
+    }
+  }
+}
+```
+
+## Variables
+
+### Filters
+
+All filter values are optional, if you don't provide any filter all pathways in your tenant will be returned.
+
+All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria.
+
+When specifying multiple filters, the resulting criteria is the conjuction of all filters.
+
+```json
+{
+  "filters": {
+    "pathway_definition_id": {
+      "eq": ""
+    },
+    "patient_id": {
+      "in": []
+    },
+    "start_date": {
+      "gte": "",
+      "lte": ""
+    },
+    "status": {
+      "in": []
+    },
+    "version": {
+      "in": []
+    }
+  }
+}
+```

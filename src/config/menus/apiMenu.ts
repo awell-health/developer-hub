@@ -48,6 +48,11 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.patient,
       },
       {
+        title: 'Get pathways',
+        path: '/api-reference/queries/get-pathways',
+        badge: badges.pathway,
+      },
+      {
         title: 'Get baseline info',
         path: '/api-reference/queries/get-baseline-info',
         badge: badges.pathway,
