@@ -3,13 +3,14 @@ title: Get patient pathways
 description: Get all pathways a given patient is or was enrolled in
 ---
 
-## Request
-
-### Query
+## Query
 
 ```graphql
-query GetPatientPathways($patient_id: String!) {
-  patientPathways(patient_id: $patient_id) {
+query GetPatientPathways(
+  $patient_id: String!
+  $filters: FilterPatientPathwaysGraphqlType
+) {
+  patientPathways(patient_id: $patient_id, filters: $filters) {
     patientPathways {
       id
       title
@@ -45,10 +46,31 @@ query GetPatientPathways($patient_id: String!) {
 }
 ```
 
-### Variables
+## Variables
+
+### Required parameters
 
 ```json
 {
-  "patient_id": "{{PATIENT_ID}}"
+  "patient_id": "{{ PATIENT_ID }}"
+}
+```
+
+### Filters
+
+All filter values are optional, if you don't provide any filter all pathways for the patient will be returned.
+
+All `in` filters accept a list of values and result in an `is any of` search criteria.
+
+When specifying multiple filters, the resulting criteria is the conjuction of all filters.
+
+```json
+{
+  "patient_id": "{{ PATIENT_ID }}",
+  "filters": {
+    "status": {
+      "in": []
+    }
+  }
 }
 ```
