@@ -38,8 +38,8 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.patient,
       },
       {
-        title: 'List patients',
-        path: '/api-reference/queries/list-patients',
+        title: 'Get patients',
+        path: '/api-reference/queries/get-patients',
         badge: badges.patient,
       },
       {
