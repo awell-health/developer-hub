@@ -164,6 +164,23 @@ See the [API Reference](/api-reference/overview/schema) for more information abo
 }
 ```
 
+### Example: Reminder activity
+
+```graphql
+{
+  subject {
+    type: 'awell'
+    name: 'Awell'
+  }
+  action: 'send'
+  object {
+    type: 'reminder'
+  }
+  indirect_object { ... }
+  [...]
+}
+```
+
 
 ## Data point definition
 
