@@ -3,26 +3,26 @@ title: Pathway versioning
 description: Iterate and publish new versions of your care pathway
 ---
 
-A pathway version is an immutable snapshot of the state of all the resources associated with that pathway definition.
+A pathway version is an immutable snapshot of the state of all the components associated with that pathway definition.
 
-## A pathway as a set of resources
+## A pathway as a set of components
 
-**A pathway definition consists of set of resources that are logically linked together.** There are different type of resources and they can change over time as you want to do changes to your pathway (eg: add new steps and transitions, add new forms, ...).
+**A pathway definition consists of set of components that are logically linked together.** There are different type of components and they can change over time as you want to do changes to your pathway (eg: add new steps and transitions, add new forms, ...).
 
-We make a distinction between `shared` and `non-shared` resources.
+We make a distinction between `shared` and `non-shared` components.
 
-### Shared resources
+### Shared components
 
-**Shared resources are resources that can be re-used across pathways**. There are currently 2 shared resources in our domain model:
+**Shared components are components that can be re-used across pathways**. There are currently 2 shared components in our domain model:
 
 1. Forms
 2. Calculations
 
-Given that shared resources can be used in multiple pathways, each pathway definition is always associated to a specific version of the shared resource. All of this happens automatically when publishing a new version of your pathway.
+Given that shared components can be used in multiple pathways, each pathway definition is always associated to a specific version of the shared component. All of this happens automatically when publishing a new version of your pathway.
 
-### Non-shared resources
+### Non-shared components
 
-Most of the resources in a pathway are not shared:
+Most of the components in a pathway are not shared:
 
 - Pathway itself (pathway name, pathway settings, ...)
 - Tracks
@@ -30,11 +30,11 @@ Most of the resources in a pathway are not shared:
 - Transitions
 - Actions
 
-Although you're able to re-use some of these resources in other pathways, by design they are considered non-shared resources.
+Although you're able to re-use some of these components in other pathways, by design they are considered non-shared components.
 
 ## How versioning works
 
-As mentioned above, **publishing a new version creates an immutable snapshot of the state of all the resources associated with your pathway at the time of publishing**.
+As mentioned above, **publishing a new version creates an immutable snapshot of the state of all the components associated with your pathway at the time of publishing**.
 
 <figure className="w-full flex flex-col justify-center text-center">
   <img
