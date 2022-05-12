@@ -17,6 +17,10 @@ export const docsMenu: MenuItemType[] = [
         path: '/docs/getting-started/domain-model',
       },
       {
+        title: 'Pathway versioning',
+        path: '/docs/getting-started/pathway-versioning',
+      },
+      {
         title: 'Data access',
         path: '/docs/getting-started/data-access',
       },
