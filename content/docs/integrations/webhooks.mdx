@@ -3,6 +3,16 @@ title: Webhooks
 description: Push notifications about events happening in your pathways.
 ---
 
+<figure className="w-full flex flex-col justify-center text-center">
+  <img
+    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/Webhooks_diagram.png"
+    alt="Pathway versioning"
+    className="w-full mx-auto"
+  />
+  <figcaption className="dark:text-slate-400 pt-1">© Awell Health</figcaption>
+
+</figure>
+
 ## Webhook configuration
 
 Webhooks can be configured on a per pathway basis in the Awell Studio (see `Settings > Webhooks`). See the <a href="https://help.awellhealth.com/en/" target="_blank">Awell Studio documentation</a> for more information on how to configure Webhooks.
@@ -13,13 +23,13 @@ Webhooks can be configured separately for pathway preview (when building and tes
 
 Currently each configured endpoint receives all of the available events:
 
-* <u>Activity created:</u> triggered every time an activity in the pathway is created,
-   including system activities.
-* <u>Activity completed:</u> triggered every time an activity in the pathway is
-   completed, including system activities.{' '}
-* <u>Data point collected:</u> triggered every time a new value for a data point
-   is collected
-* <u>Form submitted:</u> triggered every time a form is submitted
+- <u>Activity created:</u> triggered every time an activity in the pathway is created,
+  including system activities.
+- <u>Activity completed:</u> triggered every time an activity in the pathway is completed,
+  including system activities.{' '}
+- <u>Data point collected:</u> triggered every time a new value for a data point
+  is collected
+- <u>Form submitted:</u> triggered every time a form is submitted
 
 > More granular configuration for webhooks is coming soon with the ability to select one or more events you want to receive on a specific endpoint.
 
