@@ -15,7 +15,7 @@ description: Push notifications about events happening in your pathways.
 
 ## Webhook configuration
 
-Webhooks can be configured on a per pathway basis in the Awell Studio (see `Settings > Webhooks`). See the <a href="https://help.awellhealth.com/en/" target="_blank">Awell Studio documentation</a> for more information on how to configure Webhooks.
+Webhooks can be configured on a per pathway basis in Awell Studio (see `Settings > Webhooks`). See the <a href="https://help.awellhealth.com/en/" target="_blank">Awell Studio documentation</a> for more information on how to configure Webhooks.
 
 Webhooks can be configured separately for pathway preview (when building and testing pathways) and for pathway orchestration. In addition, when previewing pathways all webhooks are skipped by default but you have the ability to trigger them manually to test your endpoint implementation.
 
@@ -47,8 +47,8 @@ We only allow HTTPS webhook endpoints. This provides security at the transport l
 
 ### Headers to verify the source
 
-Headers can be configured for all outgoing webhooks that are sent by our system (webhook provider). An authentication token can thus be added to the header and the client (webhook consumer) can validate that token to verify whether the incoming request is coming from the right source.
+Headers can be configured for all outgoing webhooks that are sent by our system. An authentication token can thus be added to the header you can validate that token to verify whether the incoming request is coming from the right source.
 
 ### Whitelisting
 
-Another way to verify the source is for the client to be aware of the webhook provider's IP address. The client can then whitelist this IP address and bounce any other request coming from unknown IP addresses.
+Another way to verify the source is for you to be aware of our IP address. You can whitelist this IP address and bounce any other request coming from unknown IP addresses.
