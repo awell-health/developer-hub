@@ -77,7 +77,9 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 ### Pagination and sorting
 
-Pagination and sorting are optional, **though we recommend not implementing this query without pagination**. Not using pagination means that the API will return all activities at once which might cause performance issues.
+Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
+
+Default sorting is based on date field, sorted descendingly (i.e. newest to oldest).
 
 ```json
 {
