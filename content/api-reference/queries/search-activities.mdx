@@ -82,8 +82,8 @@ Pagination and sorting are optional, **though we recommend not implementing this
 ```json
 {
   "pagination": {
-    "offset": 0,
-    "count": 20
+    "offset": 0, // the number of records that need to be skipped
+    "count": 20 // the number of results, also known as limit
   },
   "sorting": {
     "sort_field": "date",
