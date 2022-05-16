@@ -11,9 +11,9 @@ description: Search activities by status, type, patient and other criteria
 
 ```graphql
 query activities(
-  $filters: FilterActivitiesParamsGraphqlType
-  $pagination: PaginationParamsGraphqlType
-  $sorting: SortingParamsGraphqlType
+  $filters: FilterActivitiesParams
+  $pagination: PaginationParams
+  $sorting: SortingParams
 ) {
   activities(filters: $filters, pagination: $pagination, sorting: $sorting) {
     activities {
