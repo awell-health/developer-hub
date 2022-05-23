@@ -90,10 +90,7 @@ When integrating with the orchestration API, you will primarily interact with th
 
 ### Machine to Machine (M2M) API
 
-**The Orchestration API is a Machine to Machine (M2M) API**. This has a couple of consequences that need to be considered when integrating with our platform:
-
-1. We authorizie clients, not users. In other words, there is no need for a user to directly interact with the system to authenticate, rather our system will authenticate and authorize your client.
-2. Never consume the Orchestration API from your front-end applications directly. U will need to consume the API via a backend service.
+**The Orchestration API is a Machine to Machine (M2M) API** and uses a secret API key for authentication and authorization. All requests to the orchestration API should be sent from backend services that can safely and securely access the API key and add it in the relevant header without creating a risk of disclosing the API key.
 
 <figure className="w-full flex flex-col justify-center text-center pt-4">
   <img
