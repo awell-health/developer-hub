@@ -6,8 +6,12 @@ description: Retrieve a list of patients in your organization
 ## Query
 
 ```graphql
-query GetPatients($filters: FilterPatientsGraphqlType) {
-  patients(filters: $filters) {
+query GetPatients(
+  filters: FilterPatients
+  pagination: PaginationParams
+  sorting: SortingParams
+) {
+  patients(filters: $filters, pagination: $pagination, sorting: $sorting) {
     patients {
       id
       profile {
@@ -57,6 +61,25 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
     "profile_id": {
       "in": []
     }
+  }
+}
+```
+
+### Pagination and sorting
+
+Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
+
+Default sorting is based on the `last_name` field, sorted ascending.
+
+```json
+{
+  "pagination": {
+    "offset": 0, // the number of records that need to be skipped
+    "count": 20 // the number of results, also known as limit
+  },
+  "sorting": {
+    "sort_field": "last_name",
+    "sort_direction": "asc"
   }
 }
 ```
