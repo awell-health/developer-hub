@@ -10,8 +10,12 @@ description: Search activities by status, type, patient and other criteria
 ## Query
 
 ```graphql
-query activities($filters: FilterActivitiesParamsGraphqlType) {
-  activities(filters: $filters) {
+query activities(
+  $filters: FilterActivitiesParams
+  $pagination: PaginationParams
+  $sorting: SortingParams
+) {
+  activities(filters: $filters, pagination: $pagination, sorting: $sorting) {
     activities {
       id
       stream_id
@@ -67,6 +71,25 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
     "patient_id": {
       "eq": ""
     }
+  }
+}
+```
+
+### Pagination and sorting
+
+Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
+
+Default sorting is based on the `date` field, sorted descendingly (i.e. newest to oldest).
+
+```json
+{
+  "pagination": {
+    "offset": 0, // the number of records that need to be skipped
+    "count": 20 // the number of results, also known as limit
+  },
+  "sorting": {
+    "sort_field": "date",
+    "sort_direction": "desc"
   }
 }
 ```
