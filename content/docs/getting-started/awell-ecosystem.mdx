@@ -87,3 +87,19 @@ When integrating with the orchestration API, you will primarily interact with th
     </div>
   </div>
 </div>
+
+### Machine to Machine (M2M) API
+
+**The Orchestration API is a Machine to Machine (M2M) API**. This has a couple of consequences that need to be considered when integrating with our platform:
+
+1. In contrast to usual systems where an authorization process attempts to establish trust by authorizing a user, in this case what must be authorized and trusted is the client. In other words, there is no need for a user to interact with the system to authenticate, rather the system must authenticate and authorize the client.
+2. Never consume the Orchestration API from your front-end applications directly. The Orchestration API needs to be consumed by a backend service.
+
+<figure className="w-full flex flex-col justify-center text-center pt-4">
+  <img
+    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/M2M.png"
+    alt="Pathway versioning"
+    className="w-5/6 mx-auto"
+  />
+  <figcaption className="dark:text-slate-400 pt-1">© Awell Health</figcaption>
+</figure>
