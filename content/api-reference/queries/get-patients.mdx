@@ -69,7 +69,7 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
 
-Default sorting is based on the `last_name` field, sorted ascending.
+Default sorting is based on the `last_name` field, sorted ascending. Only top-level patient profile fields can be used for sorting (e.g. `birth_date`, `sex`, `patient_code`).
 
 ```json
 {
