@@ -122,6 +122,11 @@ export const apiMenu: MenuItemType[] = [
         path: '/api-reference/queries/get-patient-pending-activities',
         badge: badges.activity,
       },
+      {
+        title: 'Get data point definitions',
+        path: '/api-reference/queries/get-data-point-definitions',
+        badge: badges.datapoint,
+      },
     ],
   },
   {
