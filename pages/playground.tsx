@@ -1,7 +1,6 @@
 import 'graphiql/graphiql.css'
 
 import { createGraphiQLFetcher } from '@graphiql/toolkit'
-import { GraphiQL } from 'graphiql'
 
 import { SEO } from '../src/components/SEO'
 import { defaultQuery } from '../src/config/graphiql/graphiql'
@@ -9,6 +8,9 @@ import { useGraphQLSchema } from '../src/hooks/useGraphQLSchema'
 
 export default function Playground() {
   const { schema } = useGraphQLSchema()
+  // https://github.com/graphql/graphiql/issues/118
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { GraphiQL } = require('graphiql')
 
   if (typeof window === 'undefined') return null
 

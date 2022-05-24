@@ -22,7 +22,7 @@ export default function Community() {
         />
         <div id="content-wrapper">
           <p>
-            Need help with using the Awell Studio to build your care pathway? Or
+            Need help with using Awell Studio to build your care pathway? Or
             maybe you want to get familiar with the basic concepts and building
             blocks of our Studio? Check out our{' '}
             <a

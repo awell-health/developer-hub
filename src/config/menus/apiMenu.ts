@@ -38,8 +38,8 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.patient,
       },
       {
-        title: 'List patients',
-        path: '/api-reference/queries/list-patients',
+        title: 'Get patients',
+        path: '/api-reference/queries/get-patients',
         badge: badges.patient,
       },
       {
@@ -53,8 +53,8 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.pathway,
       },
       {
-        title: 'Get baseline info',
-        path: '/api-reference/queries/get-baseline-info',
+        title: 'Get published pathways',
+        path: '/api-reference/queries/get-published-pathways',
         badge: badges.pathway,
       },
       {
@@ -68,13 +68,18 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.pathway,
       },
       {
-        title: 'Get published pathways',
-        path: '/api-reference/queries/get-published-pathways',
+        title: 'Get baseline info',
+        path: '/api-reference/queries/get-baseline-info',
         badge: badges.pathway,
       },
       {
         title: 'Get pathway activities',
         path: '/api-reference/queries/get-pathway-activities',
+        badge: badges.activity,
+      },
+      {
+        title: 'Search activities',
+        path: '/api-reference/queries/search-activities',
         badge: badges.activity,
       },
       {

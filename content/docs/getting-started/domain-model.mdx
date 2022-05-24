@@ -23,6 +23,8 @@ Awell Orchestration does not need to know anything about a patient when orchestr
 
 The only recommended property to set when creating patients is the `patient_code`, which can be used as a custom identifier to help you reconciliate data with your own patient records.
 
+> Awell does not enforce the uniqueness of the `patient_code` amongst your patients. If you use unique identifiers, you can use the [`searchPatientsByPatientCode` query](/api-reference/queries/search-patient) before creating patients to enforce the uniqueness constraint on your end.
+
 See the [API Reference](/api-reference/overview/schema) for more information about the user type.
 
 ## Pathway
@@ -156,6 +158,23 @@ See the [API Reference](/api-reference/overview/schema) for more information abo
     id: '<FORM_ID>'       # Unique version-specific identifier of the form
     type: 'form'
     name: '<FORM_TITLE>'  # Form title
+  }
+  indirect_object { ... }
+  [...]
+}
+```
+
+### Example: Reminder activity
+
+```graphql
+{
+  subject {
+    type: 'awell'
+    name: 'Awell'
+  }
+  action: 'send'
+  object {
+    type: 'reminder'
   }
   indirect_object { ... }
   [...]
