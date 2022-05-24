@@ -47,6 +47,9 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
     "patient_id": {
       "in": []
     },
+    "release_id: { 
+      "in": []
+    },
     "start_date": {
       "gte": "",
       "lte": ""
@@ -57,6 +60,25 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
     "version": {
       "in": []
     }
+  }
+}
+```
+
+### Pagination and sorting
+
+Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
+
+Default sorting is based on the `start_date` field, sorted descendingly (i.e. newest to oldest).
+
+```json
+{
+  "pagination": {
+    "offset": 0, // the number of records that need to be skipped
+    "count": 20 // the number of results, also known as limit
+  },
+  "sorting": {
+    "sort_field": "start_date",
+    "sort_direction": "desc"
   }
 }
 ```
