@@ -16,8 +16,39 @@ query GetPathway($pathway_id: String!) {
       id
       title
       pathway_definition_id
+      patient_id
       patient {
         id
+      }
+      activities {
+        id
+        stream_id
+        date
+        action
+        status
+        resolution
+        reference_id
+        container_name
+        isUserActivity
+        public
+        object {
+            id
+        }
+        indirect_object {
+            id
+        }
+        track {
+            id
+        }
+        label {
+            id
+        }
+        sub_activities {
+            id
+        }
+        context {
+            instance_id
+        }
       }
       version # version number
       release_id # unique id representing the version
