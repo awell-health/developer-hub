@@ -27,10 +27,6 @@ export const apiMenu: MenuItemType[] = [
         title: 'Playground',
         path: '/api-reference/overview/playground',
       },
-      {
-        title: 'Changelog',
-        path: '/api-reference/overview/changelog',
-      },
     ],
   },
   {
