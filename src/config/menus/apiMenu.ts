@@ -42,14 +42,19 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.patient,
       },
       {
-        title: 'List patients',
-        path: '/api-reference/queries/list-patients',
+        title: 'Get patients',
+        path: '/api-reference/queries/get-patients',
         badge: badges.patient,
       },
       {
         title: 'Search patient',
         path: '/api-reference/queries/search-patient',
         badge: badges.patient,
+      },
+      {
+        title: 'Get pathways',
+        path: '/api-reference/queries/get-pathways',
+        badge: badges.pathway,
       },
       {
         title: 'Get published pathways',
@@ -120,6 +125,11 @@ export const apiMenu: MenuItemType[] = [
         title: 'Get patient pending activities',
         path: '/api-reference/queries/get-patient-pending-activities',
         badge: badges.activity,
+      },
+      {
+        title: 'Get data point definitions',
+        path: '/api-reference/queries/get-data-point-definitions',
+        badge: badges.datapoint,
       },
     ],
   },

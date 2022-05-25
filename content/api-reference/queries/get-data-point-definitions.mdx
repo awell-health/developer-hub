@@ -1,0 +1,81 @@
+---
+title: Get data point definitions
+description: Retrieve the data dictionary for a pathway
+---
+
+For any given pathway a patient is included in, you might want to know what data points are captured in that pathway (i.e a data dictionary). Via the `pathwayDataPointDefinitions` query, you're able to retrieve all data points definitions for a given pathway version.
+
+## Release id
+
+Every patient enrolled in a pathway is included in the last version of the pathway at the moment of pathway start. Because pathways can evolve over time, it might be that the oldest version of your pathway has a totally different data dictionary compared to the most recent version.
+
+Therefore, to query all the data point definitions for a given pathway version, you need to specify the `release_id` as an input parameter for this query.
+
+### Version vs. release id
+
+The `version` of a pathway is an auto-incremented and human-readable numerical value (eg: version 5). However, every version also has a unique identifier which is called the `release_id`. The `version` and `release_id` are returned in all pathway related queries.
+
+**Example:**
+All patients included in version 5 of the pathway have the same `release_id`.
+
+## Query
+
+```graphql
+query GetPathwayDataPointDefinitions(
+    $pathway_definition_id: String,
+    $release_id: String!,
+    $filters: FilterPathwayDataPointDefinitionsParams!
+) {
+  pathwayDataPointDefinitions(
+      pathway_definition_id: $pathway_definition_id,
+      release_id: $release_id,
+      filters: $filters
+    ) {
+        data_point_definitions {
+            id
+            title
+            key
+            category
+            valueType
+            possibleValues {
+                value
+                label
+            }
+        }
+    }
+}
+```
+
+## Variables
+
+### Required parameters
+
+A `release_id` needs to be specified in order to retrieve the data dictionary for a pathway.
+
+```json
+{
+  "release_id": "{{ RELEASE_ID }}"
+}
+```
+
+### Filters
+
+All filter values are optional, if you don't provide any filter all data points for the pathway will be returned.
+
+All `in` filters accept a list of values and result in an `is any of` search criteria.
+
+When specifying multiple filters, the resulting criteria is the conjuction of all filters.
+
+```json
+{
+  "release_id": "{{ RELEASE_ID }}",
+  "filters": {
+    "category": {
+      "in": []
+    },
+    "value_type": {
+      "in": []
+    }
+  }
+}
+```

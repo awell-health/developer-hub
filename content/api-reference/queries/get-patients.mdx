@@ -1,0 +1,85 @@
+---
+title: Get patients
+description: Retrieve a list of patients in your organization
+---
+
+## Query
+
+```graphql
+query GetPatients(
+  filters: FilterPatients
+  pagination: PaginationParams
+  sorting: SortingParams
+) {
+  patients(filters: $filters, pagination: $pagination, sorting: $sorting) {
+    patients {
+      id
+      profile {
+        email
+        sex
+        birth_date
+        first_name
+        last_name
+        name
+        phone
+        mobile_phone
+        preferred_language
+        patient_code
+        national_registry_number
+        address {
+          street
+          city
+          zip
+          state
+          country
+        }
+      }
+    }
+  }
+}
+```
+
+## Variables
+
+### Filters
+
+All filter values are optional, if you don't provide any filter all patients in your tenant will be returned.
+
+All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria.
+
+When specifying multiple filters, the resulting criteria is the conjuction of all filters.
+
+```json
+{
+  "filters": {
+    "national_registry_number": {
+      "eq": ""
+    },
+    "patient_code": {
+      "eq": ""
+    },
+    "profile_id": {
+      "in": []
+    }
+  }
+}
+```
+
+### Pagination and sorting
+
+Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
+
+Default sorting is based on the `last_name` field, sorted ascending. Only top-level patient profile fields can be used for sorting (e.g. `birth_date`, `sex`, `patient_code`).
+
+```json
+{
+  "pagination": {
+    "offset": 0, // the number of records that need to be skipped
+    "count": 20 // the number of results, also known as limit
+  },
+  "sorting": {
+    "sort_field": "last_name",
+    "sort_direction": "asc"
+  }
+}
+```
