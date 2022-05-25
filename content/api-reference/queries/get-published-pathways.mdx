@@ -15,11 +15,22 @@ query GetPublishedPathwayDefinitions {
     publishedPathwayDefinitions {
       id
       title
+      version
       dataPointDefinitions {
         id
         key
+        category
         valueType
         optional
+        range {
+          min
+          max
+        }
+        unit
+        possibleValues {
+          label
+          value
+        }
       }
     }
   }

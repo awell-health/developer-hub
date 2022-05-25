@@ -16,9 +16,18 @@ query activities(
   $sorting: SortingParams
 ) {
   activities(filters: $filters, pagination: $pagination, sorting: $sorting) {
+    pagination {
+      offset
+      count
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
     activities {
       id
-      stream_id
+      stream_id # pathway id
       date
       subject {
         id
@@ -88,8 +97,8 @@ Default sorting is based on the `date` field, sorted descendingly (i.e. newest t
     "count": 20 // the number of results, also known as limit
   },
   "sorting": {
-    "sort_field": "date",
-    "sort_direction": "desc"
+    "field": "date",
+    "direction": "desc"
   }
 }
 ```

@@ -7,11 +7,20 @@ description: Retrieve a list of patients in your organization
 
 ```graphql
 query GetPatients(
-  filters: FilterPatients
-  pagination: PaginationParams
-  sorting: SortingParams
+  $filters: FilterPatients
+  $pagination: PaginationParams
+  $sorting: SortingParams
 ) {
   patients(filters: $filters, pagination: $pagination, sorting: $sorting) {
+    pagination {
+      offset
+      count
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
     patients {
       id
       profile {

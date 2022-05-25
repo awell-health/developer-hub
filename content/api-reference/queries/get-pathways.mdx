@@ -8,9 +8,22 @@ description: Search pathways by status, type, patient and other criteria
 ## Query
 
 ```graphql
-query GetPathways($filters: FilterPathwaysGraphqlType) {
-  pathways(filters: $filters) {
+query GetPathways(
+  $filters: FilterPathways
+  $pagination: PaginationParams
+  $sorting: SortingParams
+) {
+  pathways(filters: $filters, pagination: $pagination, sorting: $sorting) {
     success
+    pagination {
+      count
+      offset
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
     pathways {
       id
       title
@@ -19,7 +32,6 @@ query GetPathways($filters: FilterPathwaysGraphqlType) {
       status
       status_explanation
       version # version number
-      release_id # unique id representing the version
       start_date
       stop_date # if pathway is stopped
       complete_date # if pathway is completed
@@ -47,7 +59,7 @@ When specifying multiple filters, the resulting criteria is the conjunction of a
     "patient_id": {
       "in": []
     },
-    "release_id: { 
+    "release_id": {
       "in": []
     },
     "start_date": {
@@ -77,8 +89,8 @@ Default sorting is based on the `start_date` field, sorted from newest to oldest
     "count": 20 // the number of results, also known as limit
   },
   "sorting": {
-    "sort_field": "start_date",
-    "sort_direction": "desc"
+    "field": "start_date",
+    "direction": "desc"
   }
 }
 ```

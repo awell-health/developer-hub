@@ -6,45 +6,38 @@ description: Get all pathways a given patient is or was enrolled in
 ## Query
 
 ```graphql
-query GetPatientPathways(
-    $patient_id: String!,
-    $status: [String!]
-) {
-patientPathways(
-  patient_id: $patient_id
-  filters: {
-      status: {
-          in: $status
-      }
-  }
-) {
+query GetPatientPathways($patient_id: String!, $status: [String!]) {
+  patientPathways(
+    patient_id: $patient_id
+    filters: { status: { in: $status } }
+  ) {
     patientPathways {
-        id
-        title
-        pathway_definition_id
-        status
-        status_explanation
-        version
-        release_id
-        baseline_info {
+      id
+      title
+      pathway_definition_id
+      status
+      status_explanation
+      version
+      release_id
+      baseline_info {
+        value
+        definition {
+          id
+          title
+          category
+          key
+          valueType
+          possibleValues {
+            label
             value
-            definition {
-                id
-                title
-                category
-                key
-                valueType
-                possibleValues {
-                    label
-                    value
-                }
-                unit
-                range {
-                    min
-                    max
-                }
-            }
+          }
+          unit
+          range {
+            min
+            max
+          }
         }
+      }
     }
   }
 }
