@@ -28,6 +28,8 @@ export type ActivitiesPayload = Payload & {
   __typename?: 'ActivitiesPayload';
   activities: Array<Activity>;
   code: Scalars['String'];
+  pagination?: Maybe<PaginationOutput>;
+  sorting?: Maybe<SortingOutput>;
   success: Scalars['Boolean'];
 };
 
@@ -61,9 +63,11 @@ export enum ActivityAction {
   Discard = 'DISCARD',
   Failed = 'FAILED',
   FailedToSend = 'FAILED_TO_SEND',
+  IsWaitingOn = 'IS_WAITING_ON',
   Processed = 'PROCESSED',
   Read = 'READ',
   Remind = 'REMIND',
+  Scheduled = 'SCHEDULED',
   Send = 'SEND',
   Stopped = 'STOPPED',
   Submitted = 'SUBMITTED'
@@ -198,10 +202,6 @@ export type ApiCallResponse = {
   status: Scalars['Float'];
 };
 
-export type ArrayFilter = {
-  in?: InputMaybe<Array<Scalars['String']>>;
-};
-
 export type BaselineDataPoint = {
   __typename?: 'BaselineDataPoint';
   definition: DataPointDefinition;
@@ -299,6 +299,11 @@ export enum DataPointValueType {
   String = 'STRING'
 }
 
+export type DateFilter = {
+  gte?: InputMaybe<Scalars['String']>;
+  lte?: InputMaybe<Scalars['String']>;
+};
+
 export type DeletePathwayInput = {
   pathway_id: Scalars['String'];
 };
@@ -330,7 +335,8 @@ export type ElementStakeholder = {
 
 export enum ElementStatus {
   Active = 'ACTIVE',
-  Done = 'DONE'
+  Done = 'DONE',
+  Scheduled = 'SCHEDULED'
 }
 
 export enum ElementType {
@@ -385,12 +391,36 @@ export type EvaluateFormRulesPayload = {
   results: Array<QuestionRuleResult>;
 };
 
-export type FilterActivitiesParamsGraphqlType = {
-  action?: InputMaybe<ArrayFilter>;
-  activity_status?: InputMaybe<ArrayFilter>;
-  activity_type?: InputMaybe<ArrayFilter>;
-  pathway_definition_id?: InputMaybe<ArrayFilter>;
-  patient_id?: InputMaybe<TextFilter>;
+export type FilterActivitiesParams = {
+  action: StringArrayFilter;
+  activity_status: StringArrayFilter;
+  activity_type: StringArrayFilter;
+  pathway_definition_id: StringArrayFilter;
+  patient_id: TextFilter;
+};
+
+export type FilterPathwayDataPointDefinitionsParams = {
+  category?: InputMaybe<StringArrayFilter>;
+  value_type?: InputMaybe<StringArrayFilter>;
+};
+
+export type FilterPathways = {
+  pathway_definition_id?: InputMaybe<IdFilter>;
+  patient_id?: InputMaybe<StringArrayFilter>;
+  release_id?: InputMaybe<StringArrayFilter>;
+  start_date?: InputMaybe<DateFilter>;
+  status?: InputMaybe<StringArrayFilter>;
+  version?: InputMaybe<NumberArrayFilter>;
+};
+
+export type FilterPatientPathways = {
+  status: StringArrayFilter;
+};
+
+export type FilterPatients = {
+  national_registry_number?: InputMaybe<TextFilter>;
+  patient_code?: InputMaybe<TextFilter>;
+  profile_id?: InputMaybe<StringArrayFilter>;
 };
 
 export type Form = {
@@ -421,6 +451,10 @@ export type FormattedText = {
   __typename?: 'FormattedText';
   content: TranslatedText;
   format: Scalars['String'];
+};
+
+export type IdFilter = {
+  eq?: InputMaybe<Scalars['String']>;
 };
 
 export type MarkMessageAsReadInput = {
@@ -573,6 +607,10 @@ export type MutationUpdatePatientArgs = {
   input: UpdatePatientInput;
 };
 
+export type NumberArrayFilter = {
+  in?: InputMaybe<Array<Scalars['Float']>>;
+};
+
 export type Option = {
   __typename?: 'Option';
   id: Scalars['ID'];
@@ -580,18 +618,36 @@ export type Option = {
   value: Scalars['Float'];
 };
 
+export type PaginationOutput = {
+  __typename?: 'PaginationOutput';
+  count?: Maybe<Scalars['Float']>;
+  offset?: Maybe<Scalars['Float']>;
+  total_count?: Maybe<Scalars['Float']>;
+};
+
+export type PaginationParams = {
+  count: Scalars['Float'];
+  offset: Scalars['Float'];
+};
+
 export type Pathway = {
   __typename?: 'Pathway';
   activities: Array<Activity>;
+  complete_date?: Maybe<Scalars['SafeDate']>;
   dashboards?: Maybe<PathwayDashboard>;
   id: Scalars['ID'];
+  pathway_definition_id: Scalars['String'];
   patient: User;
   patient_id: Scalars['String'];
+  release_id: Scalars['String'];
   start_date?: Maybe<Scalars['SafeDate']>;
   status: PathwayStatus;
+  status_explanation?: Maybe<Scalars['String']>;
+  stop_date?: Maybe<Scalars['SafeDate']>;
   swimlanes: Swimlanes;
   title: Scalars['String'];
   tracks: Array<Track>;
+  version?: Maybe<Scalars['Float']>;
 };
 
 export type PathwayContext = {
@@ -608,6 +664,13 @@ export type PathwayDashboard = {
   cumulio_auth_id: Scalars['String'];
   cumulio_auth_token: Scalars['String'];
   dashboard_ids: Array<Scalars['String']>;
+};
+
+export type PathwayDataPointDefinitionsPayload = Payload & {
+  __typename?: 'PathwayDataPointDefinitionsPayload';
+  code: Scalars['String'];
+  data_point_definitions: Array<DataPointDefinition>;
+  success: Scalars['Boolean'];
 };
 
 export type PathwayPayload = Payload & {
@@ -627,28 +690,39 @@ export enum PathwayStatus {
 
 export type PathwaySummary = {
   __typename?: 'PathwaySummary';
+  complete_date?: Maybe<Scalars['SafeDate']>;
   id: Scalars['ID'];
+  pathway_definition_id?: Maybe<Scalars['String']>;
+  patient_id?: Maybe<Scalars['String']>;
+  start_date?: Maybe<Scalars['SafeDate']>;
   status: PathwayStatus;
+  status_explanation?: Maybe<Scalars['String']>;
+  stop_date?: Maybe<Scalars['SafeDate']>;
   title: Scalars['String'];
+  version?: Maybe<Scalars['Float']>;
 };
 
 export type PathwaysPayload = Payload & {
   __typename?: 'PathwaysPayload';
   code: Scalars['String'];
+  pagination?: Maybe<PaginationOutput>;
   pathways: Array<PathwaySummary>;
+  sorting?: Maybe<SortingOutput>;
   success: Scalars['Boolean'];
 };
 
 export type PatientPathway = {
   __typename?: 'PatientPathway';
+  baseline_info?: Maybe<Array<BaselineDataPoint>>;
   complete_date?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   pathway_definition_id: Scalars['String'];
-  revision?: Maybe<Scalars['Float']>;
+  release_id: Scalars['String'];
   status: PathwayStatus;
   status_explanation?: Maybe<Scalars['String']>;
   stop_date?: Maybe<Scalars['String']>;
   title: Scalars['String'];
+  version?: Maybe<Scalars['Float']>;
 };
 
 export type PatientPathwaysPayload = Payload & {
@@ -683,7 +757,9 @@ export type PatientProfileInput = {
 export type PatientsPayload = Payload & {
   __typename?: 'PatientsPayload';
   code: Scalars['String'];
+  pagination: PaginationOutput;
   patients: Array<User>;
+  sorting: SortingOutput;
   success: Scalars['Boolean'];
 };
 
@@ -698,6 +774,7 @@ export type PublishedPathwayDefinition = {
   dataPointDefinitions: Array<DataPointDefinition>;
   id: Scalars['ID'];
   title: Scalars['String'];
+  version?: Maybe<Scalars['Float']>;
 };
 
 export type PublishedPathwayDefinitionsPayload = Payload & {
@@ -723,12 +800,15 @@ export type Query = {
   myPendingActivities: ActivitiesPayload;
   pathway: PathwayPayload;
   pathwayActivities: ActivitiesPayload;
+  pathwayDataPointDefinitions: PathwayDataPointDefinitionsPayload;
   pathwayElements: ElementsPayload;
   pathwayStepActivities: ActivitiesPayload;
+  pathways: PathwaysPayload;
   patient: PatientPayload;
   patientPathways: PatientPathwaysPayload;
   patients: PatientsPayload;
   publishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
+  scheduledSteps: ScheduledStepsPayload;
   searchPatientsByNationalRegistryNumber: SearchPatientsPayload;
   searchPatientsByPatientCode: SearchPatientsPayload;
   webhookCall: WebhookCallPayload;
@@ -740,7 +820,9 @@ export type Query = {
 
 
 export type QueryActivitiesArgs = {
-  filters?: InputMaybe<FilterActivitiesParamsGraphqlType>;
+  filters?: InputMaybe<FilterActivitiesParams>;
+  pagination?: InputMaybe<PaginationParams>;
+  sorting?: InputMaybe<SortingParams>;
 };
 
 
@@ -801,6 +883,13 @@ export type QueryPathwayActivitiesArgs = {
 };
 
 
+export type QueryPathwayDataPointDefinitionsArgs = {
+  filters?: InputMaybe<FilterPathwayDataPointDefinitionsParams>;
+  pathway_definition_id?: InputMaybe<Scalars['String']>;
+  release_id: Scalars['String'];
+};
+
+
 export type QueryPathwayElementsArgs = {
   pathway_id: Scalars['String'];
 };
@@ -812,13 +901,33 @@ export type QueryPathwayStepActivitiesArgs = {
 };
 
 
+export type QueryPathwaysArgs = {
+  filters?: InputMaybe<FilterPathways>;
+  pagination?: InputMaybe<PaginationParams>;
+  sorting?: InputMaybe<SortingParams>;
+};
+
+
 export type QueryPatientArgs = {
   id: Scalars['String'];
 };
 
 
 export type QueryPatientPathwaysArgs = {
+  filters?: InputMaybe<FilterPatientPathways>;
   patient_id: Scalars['String'];
+};
+
+
+export type QueryPatientsArgs = {
+  filters?: InputMaybe<FilterPatients>;
+  pagination?: InputMaybe<PaginationParams>;
+  sorting?: InputMaybe<SortingParams>;
+};
+
+
+export type QueryScheduledStepsArgs = {
+  pathway_id: Scalars['String'];
 };
 
 
@@ -920,6 +1029,13 @@ export type SaveBaselineInfoInput = {
   pathway_id: Scalars['String'];
 };
 
+export type ScheduledStepsPayload = Payload & {
+  __typename?: 'ScheduledStepsPayload';
+  code: Scalars['String'];
+  steps: Array<Element>;
+  success: Scalars['Boolean'];
+};
+
 export type SearchPatientsPayload = Payload & {
   __typename?: 'SearchPatientsPayload';
   code: Scalars['String'];
@@ -954,6 +1070,17 @@ export type SliderConfig = {
   step_value: Scalars['Float'];
 };
 
+export type SortingOutput = {
+  __typename?: 'SortingOutput';
+  direction: Scalars['String'];
+  field: Scalars['String'];
+};
+
+export type SortingParams = {
+  direction: Scalars['String'];
+  field: Scalars['String'];
+};
+
 export type StartPathwayInput = {
   data_points?: InputMaybe<Array<DataPointInput>>;
   pathway_definition_id: Scalars['String'];
@@ -968,6 +1095,10 @@ export type StartPathwayPayload = {
 export type StopPathwayInput = {
   pathway_id: Scalars['String'];
   reason?: InputMaybe<Scalars['String']>;
+};
+
+export type StringArrayFilter = {
+  in?: InputMaybe<Array<Scalars['String']>>;
 };
 
 export type SubActivity = {
