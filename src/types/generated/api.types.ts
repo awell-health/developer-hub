@@ -773,6 +773,7 @@ export type PublishedPathwayDefinition = {
   /** Starting/baseline data point definitions for the pathway */
   dataPointDefinitions: Array<DataPointDefinition>;
   id: Scalars['ID'];
+  release_id?: Maybe<Scalars['String']>;
   title: Scalars['String'];
   version?: Maybe<Scalars['Float']>;
 };
