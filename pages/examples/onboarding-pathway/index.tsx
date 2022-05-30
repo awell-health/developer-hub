@@ -34,7 +34,7 @@ const Pathway = ({
      */
     if (
       currentPendingUserActivity?.object.type === 'MESSAGE' &&
-      currentPendingUserActivity?.indirect_object?.type === 'PATIENT'
+      currentPendingUserActivity?.indirect_object?.type !== 'PATIENT'
     ) {
       setIgnoredActivities([
         ...ignoredActivities,
@@ -65,6 +65,7 @@ const Pathway = ({
     )
 
     if (firstPendingUserActivity) {
+      console.log(firstPendingUserActivity)
       stopPolling()
       setCurrentPendingUseractivity(firstPendingUserActivity)
     }
