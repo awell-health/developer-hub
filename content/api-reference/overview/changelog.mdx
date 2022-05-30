@@ -4,4 +4,66 @@ description: This page contains a log of all changes to the API
 showPostmanButton: false
 ---
 
-##
+Below you can find a list of all releases that have a notable impact on our APIs. Please note that this page does not list all releases and all changes in a release but rather only those releases and changes that have an impact on the consumers of our API.
+
+## 0.15.1 (May 30, 2022)
+
+**getScheduledSteps query:**
+
+- New query to fetch the scheduled (i.e. future) steps in a given pathway
+
+**pathwayDataPointDefinitions query**
+
+- Fix issue caused by filters set to null resulted in an error
+
+## 0.14.2.3 (May 27, 2022)
+
+**searchPatientByPatientCode query:**
+
+- Fix destruction issue causing the following error: "Cannot read properties of undefined (reading 'national_registry_number')" introduced by a breaking change in v0.14.2
+
+## 0.14.2 (May 9, 2022)
+
+**Generic:**
+
+- Improved error messages
+
+**activities query:**
+
+- Ability to paginate & sort the response
+
+**patients query:**
+
+- Ability to filter on the following fields: `national_registry_number`, `patient_code`, and `profile_id`
+- Ability to paginate & sort the response
+
+**pathway query:**
+
+- Additional fields available in response: `version`, `release_id`, `stop_date`, `complete_date`, `status_explanation` (eg: reason why pathway was stopped)
+
+**pathways query:**
+
+- New query to search pathways by status, type, patient and other criteria (incl. filters, pagination, and sorting)
+
+**patientsPathways query:**
+
+- Ability to filter by pathway status
+- Baseline info is now available in the response (`baseline_info` field)
+
+**pathwayDataPointDefinitions query**
+
+- New query to fetch the data catalog for a given version of a pathway definition
+
+**publishedPathwayDefinitions query:**
+
+- Additional fields available in response: `version`
+
+## 0.14.1 (May 2, 2022)
+
+**activities query:**
+
+- New query to fetch activities the ability to filter to get the activities you need
+
+**patientsPathways query:**
+
+- Additional fields available in response: `version`, `release_id`, `stop_date`, `complete_date`, `status_explanation` (eg: reason why pathway was stopped)
