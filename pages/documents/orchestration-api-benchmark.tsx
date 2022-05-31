@@ -34,13 +34,13 @@ const BenchmarkChart = ({
           margin={{ top: 5, right: 20, bottom: 40, left: 0 }}
         >
           <Line
-            type="monotone"
+            type="linear"
             dataKey="average_response_time"
             name="Average response time"
             stroke="#8884d8"
           />
           <Line
-            type="monotone"
+            type="linear"
             dataKey="95p_response_time"
             name="95p response time"
             stroke="#82ca9d"
