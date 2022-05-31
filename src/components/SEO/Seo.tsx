@@ -9,6 +9,7 @@ interface SeoProps {
   url: string
   siteName?: string
   canonicalUrl: string
+  preventCrawling?: boolean
 }
 
 export const SEO = ({
@@ -17,6 +18,7 @@ export const SEO = ({
   url = SeoSettings.rootUrl,
   siteName = SeoSettings.title,
   canonicalUrl,
+  preventCrawling,
 }: SeoProps) => {
   return (
     <Head>
@@ -30,6 +32,7 @@ export const SEO = ({
         content={`${SeoSettings.rootUrl}${url}`}
         key="ogurl"
       />
+      {preventCrawling && <meta name="robots" content="noindex" />}
       <meta property="og:site_name" content={siteName} key="ogsitename" />
       <meta property="og:title" content={title} key="ogtitle" />
       <meta property="og:description" content={description} key="ogdesc" />
