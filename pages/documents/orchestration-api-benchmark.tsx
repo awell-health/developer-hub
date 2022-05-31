@@ -82,16 +82,20 @@ export default function BenchmarkDocument() {
         heading="Documents"
         title="Orchestration API benchmark"
         description="This benchmark is meant to document the horizontal scalability of Awell Systems by measuring the responsiveness of the API."
+        githubUrl="/pages/documents/orchestration-api-benchmark.tsx"
       />
       <div>
         <div id="content-wrapper">
           <p>
-            For the purposes of this test we used an separated environment that
-            mirror our production environment. We took this environment through
-            3 steps of scale from 1 node for each relevant service to 3 and then
-            5 nodes. For each scale step we load tested the Awell Orchestration
-            API up to the point the API response time surpassed 500 ms - as our
-            target is to always offer under 500 ms response time.
+            For the purposes of this test we used a separate environment that
+            mirrors our production environment. We took this environment through
+            3 steps of scale: from 1 node for each relevant service to 3 and
+            then 5 nodes.
+          </p>
+          <p>
+            For each scale step we load tested the Awell Orchestration API up to
+            the point the API response time surpassed 500ms - as our target is
+            to always offer under 500ms response time.
           </p>
           <h2 id="response-time">Response time</h2>
           <h3 id="1-node">1 node</h3>
@@ -125,11 +129,14 @@ export default function BenchmarkDocument() {
           </p>
           <p>
             As expected the system reached it limit relatively fast, at 150
-            request / second. From this point the system response time spikes to
-            an average of 800 ms with request taking up 2000 ms to get a
-            response.
+            requests per second. From this point on the system response times
+            spike to an average of 800ms with requests taking up to 2000ms to
+            get a response.
           </p>
           <h3 id="3-nodes">3 nodes</h3>
+          <blockquote>
+            By default, our services are running on 3 nodes.
+          </blockquote>
           <BenchmarkChart
             data={[
               {
@@ -164,13 +171,12 @@ export default function BenchmarkDocument() {
             see an improvement of the performance.
           </p>
           <p>
-            At 3 nodes the system can already process more than 200
-            request/second with response time well under 100 ms.
+            At 3 nodes the system can already process more than 200 requests per
+            second with response times well under 100ms.
           </p>
           <p>
-            Also as expected with an increase above 200-250 request/second the
-            system slows down on response averaging at 600 ms with spikes up to
-            2500 ms
+            As expected, we see an increase of the response times with 200-250
+            requests per second, averaging at 600ms with spikes up to 2500ms.
           </p>
 
           <h3 id="5-nodes">5 nodes</h3>
@@ -219,18 +225,17 @@ export default function BenchmarkDocument() {
             ]}
           />
           <p>
-            Finally to prove the horizontal scalability of the Awell system we
+            Finally, to prove the horizontal scalability of the Awell system we
             tested against at 5 node deployment.
           </p>
           <p>
-            As observable at 400 requests/second the system is still responding
-            in average well under 200 ms and even the spikes are averaged around
-            500 ms.
+            As observable at 400 requests per second, the system is still
+            responding in average well under 200ms and even the spikes are
+            averaged around 500ms.
           </p>
           <p>
-            {' '}
             This concludes that Awell Orchestration API is scaling horizontally
-            and can guarantee under 500 ms response time in average.
+            and can guarantee under 500ms response time in average.
           </p>
         </div>
       </div>
