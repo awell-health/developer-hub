@@ -25,7 +25,7 @@ const BenchmarkChart = ({
   }[]
 }) => {
   return (
-    <div className="w-full h-96">
+    <div className="w-full h-96 dark:fill-slate-100">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           width={600}
