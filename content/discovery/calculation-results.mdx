@@ -1,0 +1,96 @@
+---
+title: Relationship between calculation results and form data
+description: How might we see what form is related to a given calculation?
+---
+
+## Context
+
+**A calculation action does not have a one-to-one relationship with a form.** When configuring a calculation, you map data points to calculation inputs and those data points can come from anywhere (one or more forms, pathway data points, etc). It's thefore not always the case that a calculation is based on values coming from one form.
+
+Nonetheless, we understand the request and would like to dive a bit deeper in to the exact needs behind this request.
+
+## Open questions
+
+What's the goal? What type type of information or data would you want to extract out of it?
+
+**Assumption:**
+You might not only be interested in the calculation results, but in the calculation inputs (submitted data) as well
+
+> Cerebral to confirm whether this assumption is correct.
+
+## Discovery
+
+### calculationResults query returns calculation inputs as well
+
+> Note: the discovery below does not necessarily represent the final implementation but helps us to see whether we're solving the problem or need you have.
+
+**Query:**
+
+```graphql
+query GetCalculationResults($pathway_id: String!, $activity_id: String!) {
+  calculationResults(pathway_id: $pathway_id, activity_id: $activity_id) {
+    calculation_name # we can add a human readable label
+    # calculation_input would be a new field
+    calculation_input {
+      calculation_input_id
+      calculation_input_value
+      source {
+        type
+        form_id
+        data_point_definition_id
+        collected_at
+      }
+    }
+    result {
+      subresult_label # we can add a human readable label
+      subresult_id
+      value
+    }
+  }
+}
+```
+
+**Response:**
+
+```json
+{
+  "data": {
+    "calculation_results": {
+      "calculation_name": "Patient Health Questionnaire‐9 (PHQ‐9)",
+      "calculation_input": [
+        {
+          "calculation_input_id": "PHQ9_Q01",
+          "calculation_input_value": 1,
+          "source": {
+            "type": "FORM",
+            "form_id": "<A_FORM_ID>",
+            "collected_at": "2022-04-04T..."
+          }
+        },
+        {
+          "calculation_input_id": "PHQ9_Q02",
+          "calculation_input_value": 2,
+          "source": {
+            "type": "FORM",
+            "form_id": "<A_FORM_ID>",
+            "collected_at": "2022-04-04T..."
+          }
+        },
+        ...
+      ],
+      "result": [
+        {
+          "subresult_label": "PHQ-9 Score",
+          "subresult_id": "phq_9.PHQ9_SCORE",
+          "value": "19"
+        },
+        {
+          "subresult_label": "PHQ-9 Interpretation",
+          "subresult_id": "phq_9.PHQ9_INTERPRETATION",
+          "value": "Moderately severe depression"
+        }
+      ]
+    }
+  }
+}
+```
