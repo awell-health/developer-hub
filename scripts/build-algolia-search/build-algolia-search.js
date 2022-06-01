@@ -13,6 +13,8 @@ async function getAllPages() {
 
   filePaths = glob
     .sync(`**/*`, { cwd: CONTENT_PATH })
+    /** Ignore discovery pages */
+    .filter((path) => !path.includes('discovery'))
     .filter((path) => /\.mdx?$/.test(path))
 
   const pages = filePaths.map((filePath) => {
