@@ -61,7 +61,7 @@ export default function ApiPage({
           postman={{
             showPostmanButton: frontMatter.showPostmanButton !== false,
           }}
-          playgroundButton={frontMatter.showPlaygroundButton}
+          playgroundButton={true}
         />
       )}
       <div>
