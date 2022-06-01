@@ -4,7 +4,9 @@ import { ReactNode } from 'react'
 
 import { DocsHeader } from '../../../../src/components/Docs/atoms'
 import { DocsLayoutWithoutToc } from '../../../../src/components/Layouts'
+import { QuickNav } from '../../../../src/components/QuickNavigation'
 import { SEO } from '../../../../src/components/SEO'
+import { useQuickNavigation } from '../../../../src/hooks'
 import { getAllReleaseChangelogs } from '../../../../src/utils'
 
 type ChangelogPageProps = {
@@ -19,6 +21,11 @@ type ChangelogPageProps = {
 }
 
 export default function ChangelogPage({ releases }: ChangelogPageProps) {
+  const { next, prev } = useQuickNavigation(
+    'api-reference/overview/changelog',
+    'api'
+  )
+
   return (
     <>
       <SEO
@@ -70,6 +77,9 @@ export default function ChangelogPage({ releases }: ChangelogPageProps) {
             </a>
           </div>
         ))}
+      </div>
+      <div className="mt-12 max-w-3xl mx-auto xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
+        <QuickNav prev={prev} next={next} />
       </div>
     </>
   )
