@@ -11,6 +11,7 @@ export const GraphQLButton = ({ url }: ButtonProps) => {
         target="_blank"
         title="Explore schema"
         className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-indigo-600 text-white border border-indigo-600 rounded-lg focus:outline-none hover:bg-indigo-700 hover:border-indigo-700 focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300"
+        data-heap="open-graphiql-playground"
       >
         <svg
           stroke="currentColor"

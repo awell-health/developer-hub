@@ -90,6 +90,7 @@ const PostmanSelect = () => {
               role="menuitem"
               tabIndex={-1}
               id="menu-item-0"
+              data-heap="download-postman-web-collection"
             >
               Open in Postman Web
             </a>
@@ -101,6 +102,7 @@ const PostmanSelect = () => {
               role="menuitem"
               tabIndex={-1}
               id="menu-item-1"
+              data-heap="download-postman-mac-windows-collection"
             >
               Open in Postman for Mac/Windows
             </a>
