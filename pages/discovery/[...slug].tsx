@@ -36,13 +36,14 @@ export default function DiscoveryPage({
         title={frontMatter.title}
         description={frontMatter.description}
         url={`/docs/${slug}`}
-        canonicalUrl={`/docs/${slug}`}
+        canonicalUrl={`/discovery/${slug}`}
+        preventCrawling={true}
       />
       <DocsHeader
         heading="Discovery"
         title={frontMatter.title}
         description={frontMatter.description}
-        githubUrl={`/content/docs/${slug}.mdx`}
+        githubUrl={`/content/discovery/${slug}.mdx`}
       />
       <div>
         <div id="content-wrapper">
