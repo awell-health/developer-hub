@@ -47,18 +47,23 @@ export const Menu = () => {
       <li>
         <MainMenuItem
           route={apiReferenceStartRoute}
-          active={router.pathname.includes('/api-reference')}
+          active={
+            router.pathname.includes('/api-reference') &&
+            !router.query.slug?.includes('playground')
+          }
           label="API Reference"
           icon={PlaygroundIcon}
         />
       </li>
       <li>
         <MainMenuItem
-          route="/playground"
-          active={router.pathname.includes('/playground')}
+          route="/api-reference/overview/playground"
+          active={isMenuItemActive(
+            'playground',
+            router.query.slug ? router.query.slug : router.pathname
+          )}
           label="Playground"
           icon={PlayIcon}
-          openInNewTab={true}
         />
       </li>
       <li>
