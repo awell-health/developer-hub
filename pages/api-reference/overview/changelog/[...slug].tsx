@@ -1,3 +1,4 @@
+import format from 'date-fns/format'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
 import { type MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote'
@@ -46,6 +47,10 @@ export default function ReleasePage({
       <DocsHeader
         heading="Changelog"
         title={`Release ${frontMatter.title}`}
+        description={`Released on ${format(
+          new Date(frontMatter.releaseDate),
+          'MMMM d, y'
+        )}`}
         githubUrl={`/content/changelog/${slug}.mdx`}
       />
       <div>
