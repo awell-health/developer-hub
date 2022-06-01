@@ -49,7 +49,7 @@ export const Header = () => {
                   className="mr-3 flex-none w-[1.9rem] overflow-hidden md:w-auto"
                   title="Awell Health Developers"
                 >
-                  <span className="sr-only">Awell Health Developers</span>
+                  <span className="sr-only">Awell Health Developer Hub</span>
                   <div className="leading-none text-blue-600 dark:text-slate-200">
                     <svg className="w-24" viewBox="0 0 190 50">
                       <g>
@@ -68,7 +68,7 @@ export const Header = () => {
                   </div>
                 </a>
               </Link>
-              <Badge color="sky">Developers</Badge>
+              <Badge color="sky">Developer Hub</Badge>
               <div className="relative hidden lg:flex items-center ml-auto">
                 <nav className="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
                   <ul className="flex space-x-8">
