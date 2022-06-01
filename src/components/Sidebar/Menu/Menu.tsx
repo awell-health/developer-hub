@@ -60,6 +60,7 @@ export const Menu = () => {
           route="/api-reference/overview/playground"
           active={isMenuItemActive(
             'playground',
+            router.pathname,
             router.query.slug ? router.query.slug : router.pathname
           )}
           label="Playground"
@@ -99,6 +100,7 @@ export const Menu = () => {
                         'text-lg lg:text-sm lg:leading-6 flex justify-between block border-l pl-4 -ml-px',
                         isMenuItemActive(
                           subMenuItem.path,
+                          router.pathname,
                           router.query.slug
                             ? router.query.slug
                             : router.pathname

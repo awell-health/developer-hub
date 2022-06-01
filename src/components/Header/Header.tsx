@@ -77,7 +77,11 @@ export const Header = () => {
                         <Link href={navItem.path}>
                           <a
                             className={
-                              isMenuItemActive(navItem.slug, router.pathname) ||
+                              isMenuItemActive(
+                                navItem.slug,
+                                router.pathname,
+                                router.pathname
+                              ) ||
                               (router.pathname === '/' &&
                                 navItem.slug === 'docs')
                                 ? 'text-sky-500'
