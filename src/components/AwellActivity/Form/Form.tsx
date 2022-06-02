@@ -14,6 +14,7 @@ import { QuestionWithVisibility } from '../../../types/form.types'
 import { type Activity, Question } from '../../../types/generated/api.types'
 import { keyValueObjectToQuestionResponseObject } from '../../../utils/dataPoints'
 import { getInitialValues, updateVisibility } from '../../../utils/form'
+import { FormSkeleton } from '../../Skeleton'
 import { Spinner } from '../../Spinner'
 import {
   Boolean,
@@ -179,7 +180,7 @@ export const FormContainer = ({
 }: FormProps) => {
   const { form, loading } = useFormQuery(formActivity.object.id)
 
-  if (loading) return <Spinner message="Loading form" />
+  if (loading) return <FormSkeleton />
 
   return (
     <Form

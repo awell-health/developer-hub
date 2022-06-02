@@ -1,7 +1,7 @@
 import { useMarkMessageAsRead } from '../../../hooks/useMarkMessageAsRead'
 import { useMessage } from '../../../hooks/useMessage'
 import { type Activity } from '../../../types/generated/api.types'
-import { Spinner } from '../../Spinner'
+import { MessageSkeleton } from '../../Skeleton'
 
 interface MessageProps {
   messageActivity: Activity
@@ -29,7 +29,7 @@ export const Message = ({
     }
   }
 
-  if (loading) return <Spinner message="Loading message" />
+  if (loading) return <MessageSkeleton />
 
   return (
     <div className="text-lg max-w-prose mx-auto">
