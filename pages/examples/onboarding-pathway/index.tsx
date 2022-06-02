@@ -86,7 +86,7 @@ const Pathway = ({
     return (
       <div>
         {!currentPendingUserActivity && !isCompleted && (
-          <Spinner message="Hang on, loading activities..." />
+          <Spinner message="Loading next activity" />
         )}
         {isCompleted && (
           <div className="max-w-3xl mx-auto">
@@ -129,12 +129,10 @@ export default function OnboardingExample() {
   const { startPathway } = useStartPathway()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isLoadingMessage, setIsLoadingMessage] = useState<string>('')
   const [createdPathway, setCreatedPathway] = useState<string | null>(null)
 
   const onPathwayStart = async () => {
     setIsLoading(true)
-    setIsLoadingMessage('Starting pathway...')
     const pathway = await startPathway({
       patient_id: PATIENT_ID,
       pathway_definition_id: PATHWAY_DEFINITION_ID,
@@ -172,7 +170,7 @@ export default function OnboardingExample() {
         </div>
       </div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 mt-8 mb-32 text-center mt-24">
-        {isLoading && <Spinner message={isLoadingMessage} />}
+        {isLoading && <Spinner message="Starting pathway" />}
         {!isLoading && (
           <div>
             {!createdPathway && (
