@@ -1,5 +1,4 @@
 import { CodeIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import { AwellActivity } from '../../../src/components/AwellActivity'
@@ -158,13 +157,6 @@ export default function OnboardingExample() {
               <p className="ml-3 font-medium text-white truncate">
                 <span>Onboarding pathway example</span>
               </p>
-            </div>
-            <div className="order-3 flex-shrink-0 w-full w-auto">
-              <Link href="/docs/tutorials/onboarding">
-                <a className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50">
-                  Read guide
-                </a>
-              </Link>
             </div>
           </div>
         </div>
