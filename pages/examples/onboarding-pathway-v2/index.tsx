@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { AwellActivity } from '../../../src/components/AwellActivity'
 import { Button } from '../../../src/components/Button'
 import { SEO } from '../../../src/components/SEO'
+import { Spinner } from '../../../src/components/Spinner'
 import { usePathwayActivities } from '../../../src/hooks/usePathwayActivities'
 import { useStartPathway } from '../../../src/hooks/useStartPathway'
 import { type Activity } from '../../../src/types/generated/api.types'
@@ -159,7 +160,7 @@ export default function OnboardingExample() {
         </div>
       </div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 mt-8 mb-32 text-center mt-24">
-        {isLoading && <div />}
+        {isLoading && <Spinner message="Starting your personal flow" />}
         {!isLoading && (
           <div>
             {!createdPathway && (
