@@ -54,7 +54,7 @@ export default function ChangelogPage({ releases }: ChangelogPageProps) {
           </p>
         </div>
       </div>
-      <div className="grid gap-6 mx-auto grid-cols-3">
+      <div className="grid gap-3 sm:gap-6 mx-auto grid-cols-2 sm:grid-cols-3">
         {releases.map((release) => (
           <div
             key={release.slug}
