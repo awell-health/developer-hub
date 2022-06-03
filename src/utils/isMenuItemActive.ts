@@ -3,8 +3,6 @@ export const isMenuItemActive = (
   pathName: string,
   slug?: string | string[]
 ) => {
-  console.log(menuItemPath)
-  console.log(slug)
   /** Hacky solution to have this as the homepage and make active links work */
   if (menuItemPath === '/docs/getting-started/welcome' && slug === '/') {
     return true
