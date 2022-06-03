@@ -60,11 +60,10 @@ const Pathway = ({
       (activity) =>
         activity.status === 'ACTIVE' &&
         !ignoredActivities.includes(activity.id) &&
-        ['MESSAGE', 'FORM'].includes(activity.object.type)
+        ['MESSAGE', 'FORM', 'CHECKLIST'].includes(activity.object.type)
     )
 
     if (firstPendingUserActivity) {
-      console.log(firstPendingUserActivity)
       stopPolling()
       setCurrentPendingUseractivity(firstPendingUserActivity)
     }
@@ -85,7 +84,7 @@ const Pathway = ({
     return (
       <div>
         {!currentPendingUserActivity && !isCompleted && (
-          <Spinner message="Loading next activity" />
+          <Spinner message="Loading next user activity" />
         )}
         {isCompleted && (
           <div className="max-w-3xl mx-auto">

@@ -60,11 +60,10 @@ const Pathway = ({
       (activity) =>
         activity.status === 'ACTIVE' &&
         !ignoredActivities.includes(activity.id) &&
-        ['MESSAGE', 'FORM'].includes(activity.object.type)
+        ['MESSAGE', 'FORM', 'CHECKLIST'].includes(activity.object.type)
     )
 
     if (firstPendingUserActivity) {
-      console.log(firstPendingUserActivity)
       stopPolling()
       setCurrentPendingUseractivity(firstPendingUserActivity)
     }
