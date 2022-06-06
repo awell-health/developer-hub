@@ -20,9 +20,18 @@ export const docsMenu: MenuItemType[] = [
         title: 'Pathway versioning',
         path: '/docs/getting-started/pathway-versioning',
       },
+    ],
+  },
+  {
+    title: 'Data',
+    submenu: [
       {
         title: 'Data access',
-        path: '/docs/getting-started/data-access',
+        path: '/docs/data/data-access',
+      },
+      {
+        title: 'Monthly active patients',
+        path: '/docs/data/monthly-active-patients',
       },
     ],
   },
@@ -32,10 +41,6 @@ export const docsMenu: MenuItemType[] = [
       {
         title: 'Get started with Awell',
         path: '/docs/tutorials/get-started-with-awell',
-      },
-      {
-        title: 'Onboarding',
-        path: '/docs/tutorials/onboarding',
       },
     ],
   },
