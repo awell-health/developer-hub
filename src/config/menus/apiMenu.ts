@@ -207,14 +207,19 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.activity,
       },
       {
+        title: 'Form submitted',
+        path: '/api-reference/webhooks/form-submitted',
+        badge: badges.activity,
+      },
+      {
+        title: 'Reminder created',
+        path: '/api-reference/webhooks/reminder-created',
+        badge: badges.activity,
+      },
+      {
         title: 'Data point collected',
         path: '/api-reference/webhooks/data-point-collected',
         badge: badges.datapoint,
-      },
-      {
-        title: 'Form submitted',
-        path: '/api-reference/webhooks/form-submitted',
-        badge: badges.pathway,
       },
     ],
   },

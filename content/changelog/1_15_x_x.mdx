@@ -1,0 +1,96 @@
+---
+title: 1.15.x.x
+description: Changelog for release v1.15.x.x
+releaseDate: '2022-06-02'
+---
+
+## Added
+
+### Subscribe Webhooks to events
+
+Before this release, all Webhooks were automatically subscribed to all events in a pathway. With this release, you can now subscribe your Webhooks to specific events.
+
+> All legacy webhooks will stay subscribed to all events so there are no breaking changes for customers that already have an intergration with Webhooks.
+
+### Contextual information in Webhooks and API calls payload
+
+Webhook and API calls now all have contextual information on the pathway & patient in their payload. This information is disclosed through the `pathway` object.
+
+```json
+{
+  "pathway": {
+    "id": "<PATHWAY_ID>",
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "start_date": "<START_DATE>"
+  }
+}
+```
+
+### Activity IDs in the reminder created payload
+
+In order to understand for what acitivites a reminder was created, we now pass the activity ids in the corresponding Webhook payload.
+
+```json
+{
+  "new_activities_ids": ["activity_1", "activity_2"]
+}
+```
+
+## Deprecated
+
+### Webhook event types are renamed
+
+The event types for Webhooks are renamed. Please note that legacy Webhooks will still use the old event type names for backwards compatibility. The change is only applicable for newly created Webhooks.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Renamed event type</th>
+        <th>Legacy event type name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>reminder.created</td>
+        <td>REMINDER_CREATED</td>
+      </tr>
+      <tr>
+        <td>activity.completed</td>
+        <td>ACTIVITY_COMPLETED</td>
+      </tr>
+      <tr>
+        <td>activity.created</td>
+        <td>ACTIVITY_CREATED</td>
+      </tr>
+      <tr>
+        <td>data_point.collected</td>
+        <td>DATA_POINT_COLLECTED</td>
+      </tr>
+      <tr>
+        <td>form.submitted</td>
+        <td>FORM_SUBMITTED</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Deprecated context fields in Webhook calls
+
+As part of ["Contextual information in Webhooks and API calls payload"](#contextual-information-in-webhooks-and-api-calls-payload) we are deprecating the `pathway_id` and `pathway_definition_id` field. This information can now be found in the `pathway` object.
+
+The fields will still be included in the payload to support legacy integrations but should not be used anymore to set up new integrations.
+
+```json
+{
+  "pathway_definition_id": "<PATHWAY_DEFINITION_ID>", // Deprecated, see 'pathway.pathway_definition_id'
+  "pathway_id": "<PATHWAY_ID>", // Deprecated, see 'pathway.id'
+  "pathway": {
+    "id": "<PATHWAY_ID>",
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "start_date": "<START_DATE>"
+  }
+}
+```
