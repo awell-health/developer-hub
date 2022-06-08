@@ -33,7 +33,11 @@ In order to understand for what acitivites a reminder was created, we now pass t
 
 ```json
 {
-  "new_activities_ids": ["activity_1", "activity_2"]
+  ...,
+  "reminder": {
+    ...,
+    "new_activities_ids": ["activity_1", "activity_2"]
+  }
 }
 ```
 
@@ -86,6 +90,7 @@ The fields will still be included in the payload to support legacy integrations 
 {
   "pathway_definition_id": "<PATHWAY_DEFINITION_ID>", // Deprecated, see 'pathway.pathway_definition_id'
   "pathway_id": "<PATHWAY_ID>", // Deprecated, see 'pathway.id'
+  "patient_id": "<PATIENT_ID>", // Deprecated, see 'pathway.patient_id'
   "pathway": {
     "id": "<PATHWAY_ID>",
     "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
