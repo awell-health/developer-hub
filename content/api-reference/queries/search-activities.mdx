@@ -8,12 +8,28 @@ description: Search activities by status, type, patient and other criteria
 ## Query
 
 ```graphql
-query activities(
-  $filters: FilterActivitiesParams
-  $pagination: PaginationParams
-  $sorting: SortingParams
+query GetActivities(
+  $activity_type: [String!]
+  $activity_status: [String!]
+  $pathway_definition_id: [String!]
+  $action: [String!]
+  $patient_id: String
+  $count: Float!
+  $offset: Float!
+  $field: String!
+  $direction: String!
 ) {
-  activities(filters: $filters, pagination: $pagination, sorting: $sorting) {
+  activities(
+    filters: {
+      activity_type: { in: $activity_type }
+      action: { in: $action }
+      pathway_definition_id: { in: $pathway_definition_id }
+      patient_id: { eq: $patient_id }
+      activity_status: { in: $activity_status }
+    }
+    pagination: { count: $count, offset: $offset }
+    sorting: { field: $field, direction: $direction }
+  ) {
     pagination {
       offset
       count
@@ -63,23 +79,12 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 ```json
 {
-  "filters": {
-    "action": {
-      "in": []
-    },
-    "activity_status": {
-      "in": []
-    },
-    "activity_type": {
-      "in": []
-    },
-    "pathway_definition_id": {
-      "in": []
-    },
-    "patient_id": {
-      "eq": ""
-    }
-  }
+  "action": ["ASSIGNED", "ACTIVATE"], // See ActivityAction enum
+  "activity_type": ["FORM", "MESSAGE"], // See ActivityObjectType enum
+  "activity_status": ["DONE", "ACTIVE"], // See ActivityStatus enum
+  "pathway_definition_id": ["{{ PATHWAY_DEFINITION_ID }}"],
+  "patient_id": "{{ PATIENT_ID }}",
+  ...
 }
 ```
 
@@ -91,13 +96,10 @@ Default sorting is based on the `date` field, sorted descendingly (i.e. newest t
 
 ```json
 {
-  "pagination": {
-    "offset": 0, // the number of records that need to be skipped
-    "count": 20 // the number of results, also known as limit
-  },
-  "sorting": {
-    "field": "date",
-    "direction": "desc"
-  }
+  ...,
+  "offset": 0,
+  "count": 20,
+  "field": "date",
+  "direction": "desc"
 }
 ```
