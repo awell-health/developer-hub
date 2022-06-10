@@ -9,11 +9,29 @@ description: Search pathways by status, type, patient and other criteria
 
 ```graphql
 query GetPathways(
-  $filters: FilterPathways
-  $pagination: PaginationParams
-  $sorting: SortingParams
+  $pathway_definition_id: String
+  $status: [String!]
+  $start_date_earliest: String
+  $start_date_latest: String
+  $patient_id: [String!]
+  $release_id: [String!]
+  $version: [Float!]
+  $count: Float!
+  $offset: Float!
+  $field: String!
+  $direction: String!
 ) {
-  pathways(filters: $filters, pagination: $pagination, sorting: $sorting) {
+  pathways(
+    filters: {
+      pathway_definition_id: { eq: $pathway_definition_id }
+      status: { in: $status }
+      start_date: { gte: $start_date_earliest, lte: $start_date_latest }
+      patient_id: { in: $patient_id }
+      release_id: { in: $release_id }
+    }
+    pagination: { count: $count, offset: $offset }
+    sorting: { field: $field, direction: $direction }
+  ) {
     success
     pagination {
       count
@@ -53,27 +71,14 @@ When specifying multiple filters, the resulting criteria is the conjunction of a
 
 ```json
 {
-  "filters": {
-    "pathway_definition_id": {
-      "eq": ""
-    },
-    "patient_id": {
-      "in": []
-    },
-    "release_id": {
-      "in": []
-    },
-    "start_date": {
-      "gte": "",
-      "lte": ""
-    },
-    "status": {
-      "in": []
-    },
-    "version": {
-      "in": []
-    }
-  }
+  "pathway_definition_id": "{{ PATHWAY_DEFINITION_ID }}",
+  "patient_id": ["{{ PATIENT_ID_1 }}", "{{ PATIENT_ID_2 }}"],
+  "start_date_earliest": "2022-01-01", // ISO8601 dates string
+  "start_date_latest": "2022-01-01", // ISO8601 dates string
+  "release_id": ["{{ RELEASE_ID_1 }}", "{{ RELEASE_ID_2 }}"],
+  "status": ["active", "completed", "stopped"], // See PathwayStatus enum
+  "version": [1, 2, 3],
+  ...
 }
 ```
 
@@ -85,13 +90,10 @@ Default sorting is based on the `start_date` field, sorted from newest to oldest
 
 ```json
 {
-  "pagination": {
-    "offset": 0, // the number of records that need to be skipped
-    "count": 20 // the number of results, also known as limit
-  },
-  "sorting": {
-    "field": "start_date",
-    "direction": "desc"
-  }
+  ...,
+  "offset": 0, // the number of records that need to be skipped
+  "count": 20, // the number of results, also known as limit
+  "field": "start_date",
+  "direction": "desc"
 }
 ```

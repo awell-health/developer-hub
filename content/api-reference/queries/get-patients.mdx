@@ -6,12 +6,24 @@ description: Retrieve a list of patients in your organization
 ## Query
 
 ```graphql
-query GetPatients(
-  $filters: FilterPatients
-  $pagination: PaginationParams
-  $sorting: SortingParams
+query ListPatients(
+  $patient_code: String
+  $national_registry_number: String
+  $profile_id: [String!]
+  $count: Float!
+  $offset: Float!
+  $field: String!
+  $direction: String!
 ) {
-  patients(filters: $filters, pagination: $pagination, sorting: $sorting) {
+  patients(
+    filters: {
+      patient_code: { eq: $patient_code }
+      national_registry_number: { eq: $national_registry_number }
+      profile_id: { in: $profile_id }
+    }
+    pagination: { count: $count, offset: $offset }
+    sorting: { field: $field, direction: $direction }
+  ) {
     pagination {
       offset
       count
@@ -61,17 +73,10 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 ```json
 {
-  "filters": {
-    "national_registry_number": {
-      "eq": ""
-    },
-    "patient_code": {
-      "eq": ""
-    },
-    "profile_id": {
-      "in": []
-    }
-  }
+  "national_registry_number": "{{ NRNN }}",
+  "patient_code": "{{ PATIENT_CODE }}",
+  "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
+  ...
 }
 ```
 
@@ -83,13 +88,10 @@ Default sorting is based on the `last_name` field, sorted ascending. Only top-le
 
 ```json
 {
-  "pagination": {
-    "offset": 0, // the number of records that need to be skipped
-    "count": 20 // the number of results, also known as limit
-  },
-  "sorting": {
-    "sort_field": "last_name",
-    "sort_direction": "asc"
-  }
+  ...,
+  "offset": 0, // the number of records that need to be skipped
+  "count": 20, // the number of results, also known as limit
+  "sort_field": "last_name",
+  "sort_direction": "asc"
 }
 ```
