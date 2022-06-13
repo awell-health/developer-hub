@@ -12,8 +12,8 @@ query GetPatients(
   $profile_id: [String!]
   $count: Float!
   $offset: Float!
-  $field: String!
-  $direction: String!
+  $sort_field: String!
+  $sort_direction: String!
 ) {
   patients(
     filters: {
@@ -22,7 +22,7 @@ query GetPatients(
       profile_id: { in: $profile_id }
     }
     pagination: { count: $count, offset: $offset }
-    sorting: { field: $field, direction: $direction }
+    sorting: { field: $sort_field, direction: $sort_direction }
   ) {
     pagination {
       offset

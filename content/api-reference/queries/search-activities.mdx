@@ -16,8 +16,8 @@ query GetActivities(
   $patient_id: String
   $count: Float!
   $offset: Float!
-  $field: String!
-  $direction: String!
+  $sort_field: String!
+  $sort_direction: String!
 ) {
   activities(
     filters: {
@@ -28,7 +28,7 @@ query GetActivities(
       activity_status: { in: $activity_status }
     }
     pagination: { count: $count, offset: $offset }
-    sorting: { field: $field, direction: $direction }
+    sorting: { field: $sort_field, direction: $sort_direction }
   ) {
     pagination {
       offset
@@ -99,7 +99,7 @@ Default sorting is based on the `date` field, sorted descendingly (i.e. newest t
   ...,
   "offset": 0,
   "count": 20,
-  "field": "date",
-  "direction": "desc"
+  "sort_field": "date",
+  "sort_direction": "desc"
 }
 ```
