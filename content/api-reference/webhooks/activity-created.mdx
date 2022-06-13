@@ -22,8 +22,12 @@ showPlaygroundButton: false
     "indirect_object": {}, // See Domain model for more details
     "status": "active"
   },
-  "pathway_id": "<PATHWAY_ID>",
-  "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
-  "event_type": "ACTIVITY_CREATED"
+  "pathway": {
+    "id": "<PATHWAY_ID>",
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
+  },
+  "event_type": "activity.created"
 }
 ```

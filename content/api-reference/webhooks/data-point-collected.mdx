@@ -17,8 +17,12 @@ showPlaygroundButton: false
     "data_set_id": "<PATHWAY_ID>",
     "date": "<COLLECTION_DATE>" // In ISO8601 format
   },
-  "pathway_id": "<PATHWAY_ID>",
-  "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
-  "event_type": "DATA_POINT_COLLECTED"
+  "pathway": {
+    "id": "<PATHWAY_ID>",
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
+  },
+  "event_type": "data_point.collected"
 }
 ```
