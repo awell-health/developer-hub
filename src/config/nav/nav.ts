@@ -12,4 +12,10 @@ export const nav: NavType[] = [
     path: apiReferenceStartRoute,
     slug: 'api-reference',
   },
+  {
+    label: 'Awell Website',
+    path: 'https://www.awellhealth.com?referral=developer-hub',
+    slug: 'awell-website',
+    external: true,
+  },
 ]

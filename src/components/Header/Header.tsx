@@ -74,24 +74,35 @@ export const Header = () => {
                   <ul className="flex space-x-8">
                     {nav.map((navItem, index) => (
                       <li key={index}>
-                        <Link href={navItem.path}>
+                        {navItem.external ? (
                           <a
-                            className={
-                              isMenuItemActive(
-                                navItem.slug,
-                                router.pathname,
-                                router.pathname
-                              ) ||
-                              (router.pathname === '/' &&
-                                navItem.slug === 'docs')
-                                ? 'text-sky-500'
-                                : 'hover:text-sky-500 dark:hover:text-sky-400'
-                            }
+                            href={navItem.path}
                             title={navItem.label}
+                            target="_blank"
+                            rel="noreferrer"
                           >
                             {navItem.label}
                           </a>
-                        </Link>
+                        ) : (
+                          <Link href={navItem.path}>
+                            <a
+                              className={
+                                isMenuItemActive(
+                                  navItem.slug,
+                                  router.pathname,
+                                  router.pathname
+                                ) ||
+                                (router.pathname === '/' &&
+                                  navItem.slug === 'docs')
+                                  ? 'text-sky-500'
+                                  : 'hover:text-sky-500 dark:hover:text-sky-400'
+                              }
+                              title={navItem.label}
+                            >
+                              {navItem.label}
+                            </a>
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
