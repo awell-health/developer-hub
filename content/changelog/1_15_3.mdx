@@ -28,20 +28,6 @@ Webhook and API calls now all have contextual information on the pathway & patie
 }
 ```
 
-### Activity IDs in the reminder created payload
-
-In order to support identifying the activites for which a reminder was created, we now include the activity ids in the corresponding Webhook payload.
-
-```json
-{
-  ...,
-  "reminder": {
-    ...,
-    "new_activities_ids": ["activity_1", "activity_2"]
-  }
-}
-```
-
 ## Deprecated
 
 ### Webhook event types are renamed
