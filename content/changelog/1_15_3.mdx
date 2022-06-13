@@ -10,14 +10,15 @@ releaseDate: '2022-06-13'
 
 Before this release, all Webhooks were automatically subscribed to all events in a pathway. With this release, you can now subscribe your Webhooks to specific events.
 
-> All legacy webhooks will stay subscribed to all events so there are no breaking changes for customers that already have an intergration with Webhooks.
+> All legacy webhooks will stay subscribed to all events so there are no breaking changes for customers that already have an integration with Webhooks. However, please note the change in Webhook event type naming in the ["Deprecated"](#deprecated) section below.
 
 ### Contextual information in Webhooks and API calls payload
 
-Webhook and API calls now all have contextual information on the pathway & patient in their payload. This information is disclosed through the `pathway` object.
+Webhook and API calls now all have contextual information on the pathway & patient in their payload. This information is disclosed through the `pathway` field in the response object.
 
 ```json
 {
+  ...,
   "pathway": {
     "id": "<PATHWAY_ID>",
     "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
@@ -29,7 +30,7 @@ Webhook and API calls now all have contextual information on the pathway & patie
 
 ### Activity IDs in the reminder created payload
 
-In order to understand for what acitivites a reminder was created, we now pass the activity ids in the corresponding Webhook payload.
+In order to support identifying the activites for which a reminder was created, we now include the activity ids in the corresponding Webhook payload.
 
 ```json
 {
@@ -45,7 +46,9 @@ In order to understand for what acitivites a reminder was created, we now pass t
 
 ### Webhook event types are renamed
 
-The event types for Webhooks are renamed. Please note that legacy Webhooks will still use the old event type names for backwards compatibility. The change is only applicable for newly created Webhooks.
+The event types for Webhooks have been renamed. Please note that Webhooks in pathways created prior to this release will still use the old event type names for backwards compatibility. The change is only applicable for newly created Webhooks.
+
+This change was made to simplify the parsing of Webhook event names, following a `<resource>.<event_that_took_place>` format.
 
 <div className="table-wrapper">
   <table>
@@ -82,9 +85,9 @@ The event types for Webhooks are renamed. Please note that legacy Webhooks will 
 
 ### Deprecated context fields in Webhook calls
 
-As part of ["Contextual information in Webhooks and API calls payload"](#contextual-information-in-webhooks-and-api-calls-payload) we are deprecating the `pathway_id` and `pathway_definition_id` field. This information can now be found in the `pathway` object.
+As part of ["Contextual information in Webhooks and API calls payload"](#contextual-information-in-webhooks-and-api-calls-payload) we will be deprecating the `patient_id`, `pathway_id` and `pathway_definition_id` fields and removing them in a future release. This information can now be found in the `pathway` object.
 
-The fields will still be included in the payload to support legacy integrations but should not be used anymore to set up new integrations.
+The fields will still be included in the payload to support legacy integrations but should not be used to set up new integrations.
 
 ```json
 {
@@ -95,7 +98,7 @@ The fields will still be included in the payload to support legacy integrations 
     "id": "<PATHWAY_ID>",
     "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
     "patient_id": "<PATIENT_ID>",
-    "start_date": "<START_DATE>"
+    "start_date": "<PATHWAY_START_DATE>"
   }
 }
 ```

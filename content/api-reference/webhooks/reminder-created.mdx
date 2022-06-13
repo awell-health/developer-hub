@@ -11,25 +11,25 @@ showPlaygroundButton: false
 {
   "reminder": {
     "recipient": {
-      "id": "_Zpiwnbq67Nh3YVPefwuh",
-      "type": "patient"
+      "id": "<USER_ID>",
+      "type": "<RECIPIENT_TYPE>" // e.g. "patient"
     },
     "recipient_profile": {
-      "name": "Webhook Testerson",
-      "id": "_Zpiwnbq67Nh3YVPefwuh",
-      "preferred_language": "en",
-      "type": "patient"
+      "name": "<RECIPIENT_NAME>",
+      "email": "<RECIPIENT_EMAIL>",
+      "id": "<USER_ID>",
+      "preferred_language": "<USER_LANGUAGE>",
+      "type": "<RECIPIENT_TYPE>" // e.g. "patient"
     },
-    "count_new_activities": 0,
-    "count_reminders": 2,
+    "count_new_activities": <PENDING_ACTIVITIY_COUNT>, // number
+    "count_reminders": <REMINDERS_SENT>,  // number
     "new_activities_ids": ["activity_1", "activity_2"],
-    "pathway_id": "0VK7WGoPM29w"
   },
   "pathway": {
-    "pathway_definition_id": "6q8rl-4xQ29b",
-    "id": "0VK7WGoPM29w",
-    "start_date": "2022-06-08T08:37:23.099Z",
-    "patient_id": "_Zpiwnbq67Nh3YVPefwuh"
+    "id": "<PATHWAY_ID>",
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
   },
   "event_type": "reminder.created"
 }
