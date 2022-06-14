@@ -9,9 +9,13 @@ When starting a pathway, Awell Orchestration automatically chooses the most rece
 
 > Improved support for versioning is coming soon, with the ability to select a specific version when starting a new pathway and upgrading started pathways to newer version.
 
-## Providing input data points
+## Providing baseline data points
 
-Some pathway definitions expect one or more data points upon start. The expected data points are documented in the `publishedPathwayDefinitions` query (see documentation [here](/api-reference/queries/get-published-pathways)).
+You have the ability to pass some initial data when starting a pathway with baseline data points. What data you can pass on pathway start needs to be configured in Awell Studio via the settings (see `Pathway > Settings > General`).
+
+When your baseline data points are configured and your pathway is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/api-reference/queries/get-published-pathways)).
+
+> There are `required` and `optional` baseline data points. A pathway will not be started until all required baseline data points have a value.
 
 ```graphql
 query GetPublishedPathwayDefinitions {
@@ -29,9 +33,6 @@ query GetPublishedPathwayDefinitions {
   }
 }
 ```
-
-> Configuring input data points cannot be done through Awell Studio. Contact customer support in order to enable and configure this feature.
-
 
 ## Request
 
@@ -56,7 +57,7 @@ mutation StartPathway($input: StartPathwayInput!) {
 }
 ```
 
-### Variables - With input data points
+### Variables - With baseline data points
 
 ```json
 {
