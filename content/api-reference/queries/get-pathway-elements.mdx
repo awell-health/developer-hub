@@ -1,6 +1,6 @@
 ---
 title: Get pathway elements
-description: Query all the elements or building blocks of a pathway
+description: Pathway elements help you construct a clear picture of where you are in the lifespan of a pathway
 ---
 
 Where pathway activities represent every granular activity related to the operation or orchestration of a pathway, Elements are the building blocks of a pathway represented by their logical (e.g. this step belongs to a parent track) and chronological (e.g. this step's completion date depends on when all its child actions are completed) dependencies.
@@ -9,7 +9,9 @@ Where pathway activities represent every granular activity related to the operat
 
 By reflecting dependencies between the pathway building blocks, Elements allow us to reflect a pathway's overall shape. This means we can generate a clear picture of not just when we are (as with activities), but where we are in the lifespan of an orchestrated pathway. This makes them perfect for constructing Gantt or Timeline-style views that give users high-level or granular views of a patient's progress through a care flow.
 
-**A pathway consists of the following elements:**
+### Element types
+
+**A pathway consists of the following types of elements:**
 
 - Pathway
 - Tracks
@@ -18,6 +20,7 @@ By reflecting dependencies between the pathway building blocks, Elements allow u
 - Triggers (not yet supported in the query)
 
 There is hierarchy to elements. An action's parent is a Step. A Step's parent is a Track. A Track's parent is a Pathway. In other words, `Pathway -> Track -> Step -> Action`. Pathways, being the largest unit of pathway definition themselves, do not have parents.
+
 ## Request
 
 ### Query
@@ -27,13 +30,13 @@ query GetPathwayElements($pathway_id: String!) {
   pathwayElements(pathway_id: $pathway_id) {
     elements {
       id
-      parent_id // id of this element's parent. one of `pathway_id`, `track_id` or `step_id` from the context object below
+      parent_id # id of this element's parent. one of `pathway_id`, `track_id` or `step_id` from the context object below
       name
-      status // one of 'active', 'done' or 'scheduled'
-      type // one of 'pathway', 'track', 'step', 'action' or 'trigger'
-      activity_type // one of 'api_call', 'calculation', 'checklist', 'form', 'message' or 'push_to_emr'
+      status # one of 'active', 'done' or 'scheduled'
+      type # one of 'pathway', 'track', 'step', 'action' or 'trigger'
+      activity_type # one of 'api_call', 'calculation', 'checklist', 'form', 'message' or 'push_to_emr'
       start_date
-      end_date // for a completed element, this is the completion date of the final action element in it
+      end_date # for a completed element, this is the completion date of the final action element in it
       stakeholders {
         id
         name
