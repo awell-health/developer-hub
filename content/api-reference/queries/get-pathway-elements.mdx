@@ -7,7 +7,7 @@ Where pathway activities represent every granular activity related to the operat
 
 ## Elements of a pathway
 
-By reflecting dependencies between the pathway building blocks, Elements allow us to reflect a pathway's overall shape. This means we can generate a clear picture of not just when we are (as with activities), but where we are in the lifespan of an orchestrated pathway. This makes them perfect for constructing Gantt or Timeline-style views that give users high-level or granular views of a patient's progress through a care flow.
+Elements allow us to reflect a pathway's overall shape. This means we can generate a clear picture of not just when we are (as with activities), but where we are in the lifespan of an orchestrated pathway. This makes them perfect for constructing [Gantt or Timeline-style views](#timeline-view) that give users high-level or granular views of a patient's progress through a care flow.
 
 ### Element types
 
@@ -63,7 +63,9 @@ query GetPathwayElements($pathway_id: String!) {
 
 ## Timeline view
 
-We use the `pathwayElements` query ourselves to render a timeline representation of pathways. There are a multitude of timeline and gantt libraries out there but we've used [DHTMLX Gantt](https://dhtmlx.com/docs/products/dhtmlxGantt/).
+The `pathwayElements` query is perfect for constructing Gantt or Timeline-style views that give users high-level or granular views of a patient's progress through a care flow.
+
+We leverage this query ourselves to construct a Timeline view, you can see an example below. There are a multitude of timeline and gantt libraries out there but we've used [DHTMLX Gantt](https://dhtmlx.com/docs/products/dhtmlxGantt/).
 
 > Do you want to know more about our Timeline view? Or do you need any help to implement this view or any other view? Give us a shout via the Intercom chat!
 
