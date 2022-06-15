@@ -31,7 +31,7 @@ query GetPathwayElements($pathway_id: String!) {
       type
       activity_type
       start_date
-      end_date
+      end_date // for a completed element, this is the completion date of the final action element in it
       stakeholders {
         id
         name
