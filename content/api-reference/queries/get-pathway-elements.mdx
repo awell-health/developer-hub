@@ -29,7 +29,7 @@ query GetPathwayElements($pathway_id: String!) {
       name
       status
       type
-      activity_type
+      activity_type // one of 'api_call', 'calculation', 'checklist', 'form', 'message' or 'push_to_emr'
       start_date
       end_date // for a completed element, this is the completion date of the final action element in it
       stakeholders {
