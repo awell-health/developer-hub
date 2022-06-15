@@ -28,7 +28,7 @@ query GetPathwayElements($pathway_id: String!) {
       parent_id // id of this element's parent. one of `pathway_id`, `track_id` or `step_id` from the context object below
       name
       status
-      type
+      type // one of 'pathway', 'track', 'step', 'action' or 'trigger'
       activity_type // one of 'api_call', 'calculation', 'checklist', 'form', 'message' or 'push_to_emr'
       start_date
       end_date // for a completed element, this is the completion date of the final action element in it
