@@ -43,7 +43,7 @@
 
 #content-wrapper ol,
 #content-wrapper ul {
-  @apply sm:text-lg pl-4 mb-6 leading-7 dark:text-slate-400;
+  @apply sm:text-lg pl-8 mb-6 leading-7 dark:text-slate-400;
 }
 
 #content-wrapper ol li,
