@@ -3,9 +3,11 @@ title: Get pathway elements
 description: Query all the elements or building blocks of a pathway
 ---
 
-Where pathway activities represent every granular activity related to the operation or orchestration of a pathway. The pathway elements query allows you to query the main elements or building blocks of a patient's pathway and their status. It's essentially a different lens to look at a pathway and can be useful to create specific types of visualizations like a timeline view.
+Where pathway activities represent every granular activity related to the operation or orchestration of a pathway, Elements are the building blocks of a pathway represented by their logical (e.g. this step belongs to a parent track) and chronological (e.g. this step's completion date depends on when all its child actions are completed) dependencies.
 
 ## Elements of a pathway
+
+By reflecting dependencies between the pathway building blocks, Elements allow us to reflect a pathway's overall shape. This means we can generate a clear picture of not just when we are (as with activities), but where we are in the lifespan of an orchestrated pathway. This makes them perfect for constructing Gantt or Timeline-style views that give users high-level or granular views of a patient's progress through a care flow.
 
 **A pathway consists of the following elements:**
 
