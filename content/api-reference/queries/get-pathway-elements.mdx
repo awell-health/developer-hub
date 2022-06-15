@@ -24,7 +24,7 @@ query GetPathwayElements($pathway_id: String!) {
   pathwayElements(pathway_id: $pathway_id) {
     elements {
       id
-      parent_id
+      parent_id // id of this element's parent. one of `pathway_id`, `track_id` or `step_id` from the context object below
       name
       status
       type
