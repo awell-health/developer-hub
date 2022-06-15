@@ -15,6 +15,7 @@ Where pathway activities represent every granular activity related to the operat
 - Actions
 - Triggers (not yet supported in the query)
 
+There is hierarchy to elements. An action's parent is a Step. A Step's parent is a Track. A Track's parent is a Pathway. In other words, `Pathway -> Track -> Step -> Action`. Pathways, being the largest unit of pathway definition themselves, do not have parents.
 ## Request
 
 ### Query
