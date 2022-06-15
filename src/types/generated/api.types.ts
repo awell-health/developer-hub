@@ -202,6 +202,14 @@ export type ApiCallResponse = {
   status: Scalars['Float'];
 };
 
+export type ApiPathwayContext = {
+  __typename?: 'ApiPathwayContext';
+  id: Scalars['String'];
+  pathway_definition_id: Scalars['String'];
+  patient_id?: Maybe<Scalars['String']>;
+  start_date?: Maybe<Scalars['String']>;
+};
+
 export type BaselineDataPoint = {
   __typename?: 'BaselineDataPoint';
   definition: DataPointDefinition;
@@ -1332,13 +1340,10 @@ export type WebhookCall = {
   created_at: Scalars['String'];
   event_type: Scalars['String'];
   id: Scalars['ID'];
-  pathway_definition_id?: Maybe<Scalars['String']>;
-  pathway_id: Scalars['String'];
-  patient_id?: Maybe<Scalars['String']>;
+  pathway?: Maybe<ApiPathwayContext>;
   request: WebhookCallRequest;
   responses: Array<WebhookCallResponse>;
   status: Scalars['String'];
-  tenant_id?: Maybe<Scalars['String']>;
   webhook_id: Scalars['String'];
   webhook_name: Scalars['String'];
 };
