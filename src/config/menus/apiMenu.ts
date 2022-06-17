@@ -187,8 +187,8 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.activity,
       },
       {
-        title: 'Submit checklist response',
-        path: '/api-reference/mutations/submit-checklist-response',
+        title: 'Complete checklist',
+        path: '/api-reference/mutations/complete-checklist',
         badge: badges.activity,
       },
       {
