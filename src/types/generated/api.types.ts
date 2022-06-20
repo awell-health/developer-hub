@@ -15,6 +15,13 @@ export type Scalars = {
   SafeDate: any;
 };
 
+export type ActionPayload = Payload & {
+  __typename?: 'ActionPayload';
+  calculationId: Scalars['String'];
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
+};
+
 export enum ActionType {
   ApiCall = 'API_CALL',
   Calculation = 'CALCULATION',
@@ -520,6 +527,7 @@ export type Mutation = {
   retryAllFailedWebhookCalls: EmptyPayload;
   retryAllFailedWebhookCallsForPathwayDefinition: EmptyPayload;
   retryAllWebhookCalls: EmptyPayload;
+  retryPushToEmr: EmptyPayload;
   retryWebhookCall: RetryWebhookCallPayload;
   saveBaselineInfo: EmptyPayload;
   startPathway: StartPathwayPayload;
@@ -573,6 +581,11 @@ export type MutationRetryAllFailedWebhookCallsForPathwayDefinitionArgs = {
 
 export type MutationRetryAllWebhookCallsArgs = {
   input: RetryAllWebhookCallsInput;
+};
+
+
+export type MutationRetryPushToEmrArgs = {
+  input: RetryPushToEmrInput;
 };
 
 
@@ -798,6 +811,7 @@ export type Query = {
   activities: ActivitiesPayload;
   apiCall: ApiCallPayload;
   baselineInfo: BaselineInfoPayload;
+  calculationAction: ActionPayload;
   calculationResults: CalculationResultsPayload;
   checklist: ChecklistPayload;
   emrReport: EmrReportPayload;
@@ -842,6 +856,11 @@ export type QueryApiCallArgs = {
 
 export type QueryBaselineInfoArgs = {
   pathway_id: Scalars['String'];
+};
+
+
+export type QueryCalculationActionArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -1020,6 +1039,10 @@ export type RetryAllFailedWebhookCallsInput = {
 
 export type RetryAllWebhookCallsInput = {
   pathway_id: Scalars['String'];
+};
+
+export type RetryPushToEmrInput = {
+  activity_id: Scalars['String'];
 };
 
 export type RetryWebhookCallInput = {
