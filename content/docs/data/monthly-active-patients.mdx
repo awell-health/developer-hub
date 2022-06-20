@@ -3,65 +3,26 @@ title: Monthly active patients (MAPs)
 description: Understand our pricing by understanding what a monthly active patient is
 ---
 
-Awell offers you a tool to build and operate clinical workflows. As explained on the "[Awell ecosystem](/docs/getting-started/awell-ecosystem)" page, you use Awell Studio to build these workflows and Awell Orchestration to operate or run these workflows.
-
 The definition of a monthly active patient (MAP) is based on whether an activity in a workflow was orchestrated for a given patient. **This means that you're not billed for the use of Awell Studio, only for Awell Orchestration.**
 
 ## Operating a clinical workflow
 
-Whenever Awell Orchestration operates a clinical workflow, it processes the flow built in Awell Studio and translates it to a set of activities that represent the pathway of an individual patient. We added an example below to illustrate this.
+Whenever Awell Orchestration operates a clinical workflow, it processes the flow built in Awell Studio and translates it to a set of activities that represent the pathway of an individual patient.
 
 ## What is an active patient?
 
 **A patient is active if Awell Orchestration performed at least one of the following activities for that patient:**
 
-- Pathway was started or completed
-- Action was activated
-- Reminder was triggered
+1. Pathway was started or completed
+2. Action was activated
+3. Reminder was triggered
 
 Please note that the patient does not need to have been active themselves. For example, the sending of a reminder marks that patient as active.
 
-## Example
+## FAQ
 
-### Flow in Awell Studio
+**Does it matter how many activities are operated for a patient?**
+No. Whether Awell Orchestration operated 1 or 1000 activities for a given patient in a given month, that patient will be billed only once in that month. This means we do not disincentivise you from building pathways with many activities, on the contrary.
 
-Let's take a look at a simple, single track BMI pathway built in Awell Studio.
-
-<figure className="w-full flex flex-col justify-center text-center">
-  <img
-    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/BMI_pathway.png"
-    alt="Data access"
-    className="w-full mx-auto"
-  />
-  <figcaption className="dark:text-slate-400 pt-1">
-    A pathway in Awell Studio
-  </figcaption>
-</figure>
-
-The pathway above only has a single step with 2 actions in it: a form and a calculation. Let's assume we also configured reminders in the pathway that are triggered after 15 days for pending actions.
-
-### Operating via Awell Orchestration
-
-When the above pathway is published, it can be operated for a patient by Awell Orchestration. Awell Orchestration processes the pathway definition built in Awell Studio and translates it to a set of activities. The activities for our pathway would look like this:
-
-<figure className="w-full flex flex-col justify-center text-center">
-  <img
-    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/BMI_activities.png"
-    alt="Data access"
-    className="w-9/12 sm:w-7/12 mx-auto"
-  />
-  <figcaption className="dark:text-slate-400 pt-1">
-    We included a patient in our BMI pathway on June 30
-  </figcaption>
-</figure>
-
-**When applying the above definition for an active patient, the patient would be considered active in:**
-
-- June: the pathway was started and we activated the first action (BMI form)
-- July: Awell Orchestration triggered a reminder because patient did not complete the form
-- August: the pathway calculated the BMI of the patient and the pathway was completed
-
-**Other notes to take into account:**
-
-- Whether Awell Orchestration operated 1 or 1000 activities for a given patient in a given month, that patient will be billed only once in that month. This means we do not disincentivise you from building pathways with many activities, on the contrary.
-- To avoid billing twice for the same action, we only take activation of an action into account. If a form has been made available for a patient in June but submitted in July, that patient will be billed only in June
+**If an action was activated in June but completed in July, will the patient be considered active in both June & July?**
+No. To avoid billing twice for the same action, we only take activation of an action into account. If a form has been made available for a patient in June but submitted in July, that patient will be billed only in June.
