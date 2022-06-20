@@ -1,0 +1,27 @@
+---
+title: Resend EMR report
+description: Trigger resending of an EMR report to the integration provider (Mirth)
+---
+
+## Request
+
+### Mutation
+
+```graphql
+mutation ResendEmrReport($input: RetryPushToEmrInput!) {
+  retryPushToEmr(input: $input) {
+    code
+    success
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "activity_id": "{{EMR_REPORT_ACTIVITY_ID}}"
+  }
+}
+```

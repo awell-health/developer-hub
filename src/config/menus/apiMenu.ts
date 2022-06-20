@@ -196,6 +196,11 @@ export const apiMenu: MenuItemType[] = [
         path: '/api-reference/mutations/submit-form-response',
         badge: badges.activity,
       },
+      {
+        title: 'Resend EMR report',
+        path: '/api-reference/mutations/resend-emr-report',
+        badge: badges.activity,
+      },
     ],
   },
   {
