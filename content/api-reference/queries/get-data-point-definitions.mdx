@@ -23,9 +23,13 @@ All patients included in version 5 of the pathway have the same `release_id`.
 ```graphql
 query GetPathwayDataPointDefinitions(
   $release_id: String!
-  $filters: FilterPathwayDataPointDefinitionsParams
+  $category: [String!]
+  $value_type: [String!]
 ) {
-  pathwayDataPointDefinitions(release_id: $release_id, filters: $filters) {
+  pathwayDataPointDefinitions(
+    filters: { category: { in: $category }, value_type: { in: $value_type } }
+    release_id: $release_id
+  ) {
     data_point_definitions {
       id
       title
@@ -52,7 +56,8 @@ A `release_id` needs to be specified in order to retrieve the data dictionary fo
 
 ```json
 {
-  "release_id": "{{ RELEASE_ID }}"
+  "release_id": "{{ RELEASE_ID }}",
+  ...
 }
 ```
 
@@ -67,14 +72,15 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 ```json
 {
-  "release_id": "{{ RELEASE_ID }}",
-  "filters": {
-    "category": {
-      "in": []
-    },
-    "value_type": {
-      "in": []
-    }
-  }
+  ...,
+  "category": [
+    "CALCULATION",
+    "FORM",
+    "PATIENT_PROFILE",
+    "PATHWAY",
+    "TRACK",
+    "STEP"
+  ],
+  "value_type": ["BOOLEAN", "DATE", "NUMBER", "NUMBERS_ARRAY", "STRING"]
 }
 ```
