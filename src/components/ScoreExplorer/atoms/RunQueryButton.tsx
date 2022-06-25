@@ -81,7 +81,7 @@ export const RunQueryButton = ({
       case 'simulate_calculation':
         const simulatcalculationId =
           typeof request.path?.calculationId === 'string'
-            ? 'request.path?.calculationId'
+            ? request.path?.calculationId
             : ''
         simulateCalculation(simulatcalculationId.toString())
         break
