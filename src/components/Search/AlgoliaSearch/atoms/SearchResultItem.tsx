@@ -13,7 +13,10 @@ export const SearchResultItem = ({
       <div className="font-semibold text-lg text-slate-800 dark:text-slate-100">
         <components.Highlight hit={item} attribute="title" tagName="mark" />
       </div>
-      <div className="text-base text-slate-600 dark:text-slate-300">
+      <div className="text-sm font-normal text-slate-500">
+        <components.Highlight hit={item} attribute="space" tagName="mark" />
+      </div>
+      <div className="pt-1 text-base text-slate-700 dark:text-slate-300">
         <components.Highlight
           hit={item}
           attribute="description"
