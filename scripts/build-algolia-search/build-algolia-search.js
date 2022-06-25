@@ -13,15 +13,18 @@ async function getAllPages() {
 
   filePaths = glob
     .sync(`**/*`, { cwd: CONTENT_PATH })
-    /** Ignore discovery pages */
-    .filter((path) => !path.includes('discovery'))
     .filter((path) => /\.mdx?$/.test(path))
 
   const pages = filePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(CONTENT_PATH, filePath))
     const { content, data } = matter(source)
 
+    const space = filePath.includes('awell-orchestration')
+      ? 'Awell Orchestration'
+      : 'Awell Score'
+
     return {
+      space, // "Awell Orchestration" or "Awell Score"
       content, // this is the .mdx content
       data, // this is the frontmatter
       slug: filePath.split('.')[0], // this is the file path
@@ -35,12 +38,13 @@ function transformPagesToAlgoliaSearchObjects(pages) {
   const transformed = pages.map((page) => {
     return {
       objectID: page.slug,
+      space: page.space,
       title: page.data.title,
       description: page.data.description,
       content: page.content,
       slug: page.slug.includes('changelog')
         ? /** Releases changelog are in different content directory compared to /pages  */
-          `api-reference/overview/${page.slug}`
+          `/awell-orchestration/api-reference/overview/${page.slug}`
         : page.slug,
     }
   })

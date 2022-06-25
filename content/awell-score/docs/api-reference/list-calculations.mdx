@@ -1,0 +1,99 @@
+---
+title: List calculations
+description: Retrieve all calculations in Awell Score
+---
+
+## Request
+
+### Endpoint
+
+<p>
+  <span className="pr-2 font-semibold text-sky-500 dark:text-sky-400">GET</span>
+  <span className="text-gray-600 dark:text-gray-300 font-semibold">{`/v1/calculations`}</span>
+</p>
+
+## Response
+
+### HTTP 200
+
+When successful, the API will return a HTTP status code of 200 and in the response an array of calculations. The schema of the response can be found [here](https://score-api.awellhealth.com/v1/docs/#/).
+
+**Below you can find an example of a truncated response:**
+
+```json
+[
+  {
+    "calculation_id": "bmi",
+    "calculation_name": {
+      "en": "BMI (metric)"
+    },
+    "calculation_description": {
+      "en": "<h1 id=\"bodymassindexbmi\">Body Mass Index (BMI)</h1>..."
+    },
+    "calculation_blueprint": {
+      "input_definition": [
+        {
+          "id": "height",
+          "label": {
+            "nl": "Lengte",
+            "en": "Height",
+            "fr": "Longueur",
+            "de": "Länge"
+          },
+          "input_type": {
+            "type": "number",
+            "range": {
+              "min": {
+                "value": 20
+              },
+              "max": {
+                "value": 300
+              }
+            }
+          },
+          "format": "cm"
+        },
+        {
+          "id": "weight",
+          "label": {
+            "nl": "Gewicht",
+            "en": "Weight",
+            "fr": "Poids",
+            "de": "Gewicht"
+          },
+          "input_type": {
+            "type": "number",
+            "range": {
+              "min": {
+                "value": 10
+              },
+              "max": {
+                "value": 300
+              }
+            }
+          },
+          "format": "kg"
+        }
+      ],
+      "output_definition": [
+        {
+          "subresult_id": "BMI",
+          "label": {
+            "en": "Body Mass Index"
+          },
+          "unit": {
+            "en": "kg/m2"
+          },
+          "type": "number"
+        }
+      ]
+    },
+    "is_private": false
+  },
+  ...
+]
+```
+
+### HTTP 500
+
+When unsuccessful, the API will return a 500 HTTP status.

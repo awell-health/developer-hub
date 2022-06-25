@@ -1,0 +1,240 @@
+---
+title: Perform calculation
+description: Pass calculation inputs and get back the results of the calculation
+---
+
+## Request
+
+### Endpoint
+
+<p>
+  <span className="pr-2 font-semibold text-green-600 dark:text-green-500">
+    POST
+  </span>
+  <span className="text-gray-600 dark:text-gray-300 font-semibold">
+    {`/v1/calculations`}
+  </span>
+</p>
+
+### Body
+
+This endpoint expects the below fields to be present in the request body.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>calculation_id</td>
+        <td>string</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>calculation_input</td>
+        <td>object (key-value pair)</td>
+        <td>yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+The `calculation_input` parameter expects a key-value pair object where the key represents the calculation input id and the value is the corresponding value for that calculation input.
+
+```json
+{
+  "calculation_id": "bmi",
+  "calculation_input": {
+    "height": 170,
+    "weight": 80
+  }
+}
+```
+
+## Response
+
+### HTTP 200
+
+When successful, the API will return a HTTP status code of 200 and in the response an array of results. We return an array of results because some calculations return multiple "subresults" instead of a single score. The schema of the response can be found [here](https://score-api.awellhealth.com/v1/docs/#/).
+
+**Below you can find an example response of the bmi calculation:**
+
+```json
+[
+  {
+    "subresult_id": "BMI",
+    "label": {
+      "en": "Body Mass Index"
+    },
+    "unit": {
+      "en": "kg/m2"
+    },
+    "type": "number",
+    "result": 27.68166089965398,
+    "status": "CALCULATED"
+  }
+]
+```
+
+### HTTP 404
+
+When you try to perform a calculation that doesn't exist (based on the `calculation_id`), the API will return a 404 HTTP status code and the following response:
+
+```json
+{
+  "data": {
+    "error": {
+      "message": "Calculation with id \"nonExistentCalculationId\" could not be found."
+    }
+  }
+}
+```
+
+### HTTP 500
+
+When unsuccessful, the API will return a 500 HTTP status.
+
+#### InvalidInputsError
+
+This error is thrown when you're passing at least 1 invalid value for a given calculation input id.
+
+**Request:**
+
+```json
+{
+  "calculation_id": "bmi",
+  "calculation_input": {
+    "height": -1, // invalid value based on the calculation's definition
+    "weight": 80
+  }
+}
+```
+
+**Response:**
+
+```json
+{
+  "data": {
+    "error": {
+      "name": "InvalidInputsError",
+      "message": "bmi could not be calculated because some inputs have invalid values passed.",
+      "invalid_inputs": [
+        {
+          "input_id": "height",
+          "input_type": {
+            "type": "number",
+            "range": {
+              "min": {
+                "value": 20
+              },
+              "max": {
+                "value": 300
+              }
+            }
+          },
+          "passed_answer": -1,
+          "reason": {
+            "en": "-1 does not fall in the expected [20, 300] range.",
+            "nl": "-1 valt niet tussen de verwachte [20, 300] grens."
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+<br />
+
+#### UnexpectedInputsError
+
+This error is thrown when you're passing at least 1 unexpected calculation input id for a given calculation.
+
+**Request:**
+
+```json
+{
+  "calculation_id": "bmi",
+  "calculation_input": {
+    "age": 40, // the bmi calculation does not expect this calculation input id
+    "weight": 80
+  }
+}
+```
+
+**Response:**
+
+```json
+{
+  "data": {
+    "error": {
+      "name": "UnexpectedInputsError",
+      "message": "Unexpected inputs were passed into bmi. Please make sure that the calculation inputs you pass match the calculation blueprint.",
+      "unexpected_inputs": ["age"],
+      "calculation_blueprint": {
+        "input_definition": [
+          {
+            "id": "height",
+            "label": {
+              "nl": "Lengte",
+              "en": "Height",
+              "fr": "Longueur",
+              "de": "Länge"
+            },
+            "input_type": {
+              "type": "number",
+              "range": {
+                "min": {
+                  "value": 20
+                },
+                "max": {
+                  "value": 300
+                }
+              }
+            },
+            "format": "cm"
+          },
+          {
+            "id": "weight",
+            "label": {
+              "nl": "Gewicht",
+              "en": "Weight",
+              "fr": "Poids",
+              "de": "Gewicht"
+            },
+            "input_type": {
+              "type": "number",
+              "range": {
+                "min": {
+                  "value": 10
+                },
+                "max": {
+                  "value": 300
+                }
+              }
+            },
+            "format": "kg"
+          }
+        ],
+        "output_definition": [
+          {
+            "subresult_id": "BMI",
+            "label": {
+              "en": "Body Mass Index"
+            },
+            "unit": {
+              "en": "kg/m2"
+            },
+            "type": "number"
+          }
+        ]
+      }
+    }
+  }
+}
+```

@@ -1,0 +1,97 @@
+---
+title: Simulate calculation
+description: Automatically generate random calculation inputs and see what the calculation returns
+---
+
+This endpoint allows you to simulate a calculation and therefore helps you understand what inputs a calculation expects and what results it returns. **When calling this endpoint, 2 things will happen:**
+
+1. Random calculation inputs (i.e. response) for the calculation are generated
+2. Scores will be calculated based on the generated inputs
+
+## Request
+
+### Endpoint
+
+<p>
+  <span className="pr-2 font-semibold text-sky-500 dark:text-sky-400">GET</span>
+  <span className="text-gray-600 dark:text-gray-300 font-semibold">
+    {`/v1/calculations/simulate/{calculationId}`}
+  </span>
+</p>
+
+### Path parameters
+
+This endpoint expects a `calculationId` to be passed as a path parameter.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>calculationId</td>
+        <td>string</td>
+        <td>yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Response
+
+### HTTP 200
+
+When successful, the API will return a HTTP status code of 200. In the response you'll find the simulated calculation inputs and the corresponding results. Below you can find an example response for the BMI calculation.
+
+<div className="mb-2">
+  <span className="pr-2 font-semibold text-sky-500 dark:text-sky-400">GET</span>
+  <span className="text-gray-600 dark:text-gray-300 font-semibold">
+    {`/v1/calculations/simulate/bmi`}
+  </span>
+</div>
+
+```json
+{
+  "simulated_calculation_input": {
+    "height": 123,
+    "weight": 41
+  },
+  "simulated_calculation_results": [
+    {
+      "subresult_id": "BMI",
+      "label": {
+        "en": "Body Mass Index"
+      },
+      "unit": {
+        "en": "kg/m2"
+      },
+      "type": "number",
+      "result": 27.100271002710027,
+      "status": "CALCULATED"
+    }
+  ]
+}
+```
+
+### HTTP 404
+
+When a calculation for the given `calculationId` cannot be found, the API will return a 400 HTTP status code and the following response:
+
+```json
+{
+  "data": {
+    "error": {
+      "message": "Calculation with id \"nonExistentCalculationId\" could not be found."
+    }
+  }
+}
+```
+
+### HTTP 500
+
+When unsuccessful, the API will return a 500 HTTP status.

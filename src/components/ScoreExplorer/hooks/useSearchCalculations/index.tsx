@@ -1,0 +1,1 @@
+export { useSearchCalculations } from './useSearchCalculations'

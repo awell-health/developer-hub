@@ -1,14 +1,31 @@
-import { apiMenu, docsMenu } from '../config/menus'
+import {
+  orchestrationApiMenu,
+  orchestrationDocsMenu,
+} from '../config/menus/awell-orchestration'
+import { scoreDocsMenu } from '../config/menus/awell-score'
 import { type QuickNavType } from '../types/menu.types'
 
-export const useQuickNavigation = (
-  currentPageSlug: string,
-  menuCategory: 'docs' | 'api'
-): QuickNavType => {
-  const subMenus =
-    menuCategory === 'docs'
-      ? docsMenu.flatMap((mainMenuItem) => mainMenuItem.submenu || [])
-      : apiMenu.flatMap((mainMenuItem) => mainMenuItem.submenu || [])
+export const useQuickNavigation = (currentPageSlug: string): QuickNavType => {
+  const subMenus = [
+    ...orchestrationDocsMenu.flatMap(
+      (mainMenuItem) =>
+        mainMenuItem.submenu?.map((submenuItem) => {
+          return { ...submenuItem, space: 'awell-orchestration' }
+        }) || []
+    ),
+    ...orchestrationApiMenu.flatMap(
+      (mainMenuItem) =>
+        mainMenuItem.submenu?.map((submenuItem) => {
+          return { ...submenuItem, space: 'awell-orchestration' }
+        }) || []
+    ),
+    ...scoreDocsMenu.flatMap(
+      (mainMenuItem) =>
+        mainMenuItem.submenu?.map((submenuItem) => {
+          return { ...submenuItem, space: 'awell-score' }
+        }) || []
+    ),
+  ]
 
   const indexCurrentPage = subMenus.findIndex((subMenu) => {
     return subMenu.path.includes(currentPageSlug)
@@ -16,8 +33,18 @@ export const useQuickNavigation = (
 
   if (indexCurrentPage === -1) return { prev: undefined, next: undefined }
 
-  const prevItem = subMenus[indexCurrentPage - 1]
-  const nextItem = subMenus[indexCurrentPage + 1]
+  const filteredSubMenus = subMenus.filter(
+    (submenu) => submenu.space === subMenus[indexCurrentPage].space
+  )
+
+  const indexCurrentPageInFilteredList = filteredSubMenus.findIndex(
+    (subMenu) => {
+      return subMenu.path.includes(currentPageSlug)
+    }
+  )
+
+  const prevItem = filteredSubMenus[indexCurrentPageInFilteredList - 1]
+  const nextItem = filteredSubMenus[indexCurrentPageInFilteredList + 1]
 
   return {
     prev: prevItem && {
