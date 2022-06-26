@@ -1,9 +1,13 @@
 import { useEffect } from 'react'
 
-import { type RequestType } from '../../../types/restExplorer.types'
+import {
+  type EndpointVersion,
+  type RequestType,
+} from '../../../types/restExplorer.types'
 import { Button } from '../../Button'
 import {
   useCalculation,
+  useCalculationResult,
   useCalculations,
   usePerformCalculation,
   useSearchCalculations,
@@ -13,23 +17,29 @@ import {
 interface RunQueryButtonProps {
   updateResponse: (response: unknown) => void
   endpointId?: string
+  endpointVersion: EndpointVersion
   request: RequestType
 }
 
 export const RunQueryButton = ({
   updateResponse,
   endpointId,
+  endpointVersion,
   request,
 }: RunQueryButtonProps) => {
-  const { getCalculation, response: getCalculationResponse } = useCalculation()
+  const { getCalculation, response: getCalculationResponse } = useCalculation(
+    endpointVersion.version
+  )
   const { getCalculations, response: getCalculationsResponse } =
-    useCalculations()
+    useCalculations(endpointVersion.version)
   const { searchCalculations, response: searchCalculationsResponse } =
-    useSearchCalculations()
+    useSearchCalculations(endpointVersion.version)
   const { simulateCalculation, response: simulateCalculationResponse } =
-    useSimulateCalculation()
+    useSimulateCalculation(endpointVersion.version)
   const { performCalculation, response: performCalculationResponse } =
-    usePerformCalculation()
+    usePerformCalculation(endpointVersion.version)
+  const { getCalculationResult, response: getCalculationResultResponse } =
+    useCalculationResult(endpointVersion.version)
 
   /**
    * This needs to be refactored as it's not a clean solution to force
@@ -51,12 +61,16 @@ export const RunQueryButton = ({
     if (endpointId === 'perform_calculation') {
       updateResponse(performCalculationResponse)
     }
+    if (endpointId === 'get_calculation_result') {
+      updateResponse(getCalculationResultResponse)
+    }
   }, [
     getCalculationResponse,
     getCalculationsResponse,
     searchCalculationsResponse,
     simulateCalculationResponse,
     performCalculationResponse,
+    getCalculationResultResponse,
   ])
 
   const onClick = () => {
@@ -95,6 +109,10 @@ export const RunQueryButton = ({
             ? request.body?.calculation_input
             : {}
         performCalculation(calculationIdToPerform.toString(), calculationInput)
+        break
+      case 'get_calculation_result':
+        const id = typeof request.path?.id === 'string' ? request.path?.id : ''
+        getCalculationResult(id.toString())
         break
       default:
         console.log('This endpoint is not yet supported.')

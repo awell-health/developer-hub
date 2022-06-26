@@ -10,12 +10,14 @@ interface UseSimulateCalculationsHook {
   simulateCalculation: (calculationId: string) => void
 }
 
-export const useSimulateCalculation = (): UseSimulateCalculationsHook => {
+export const useSimulateCalculation = (
+  apiVersion: string
+): UseSimulateCalculationsHook => {
   const [response, setResponse] = useState<unknown>(null)
   const [loading, setLoading] = useState(true)
 
   const simulateCalculation = async (calculationId: string) => {
-    const endpoint = `/v1/calculations/simulate/${
+    const endpoint = `/${apiVersion}/calculations/simulate/${
       calculationId === '' ? 'empty' : calculationId
     }`
 

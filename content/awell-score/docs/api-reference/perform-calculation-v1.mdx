@@ -12,7 +12,7 @@ description: Pass calculation inputs and get back the results of the calculation
     POST
   </span>
   <span className="text-gray-600 dark:text-gray-300 font-semibold">
-    {`/v2/calculations`}
+    {`/v1/calculations`}
   </span>
 </p>
 
@@ -60,29 +60,25 @@ The `calculation_input` parameter expects a key-value pair object where the key 
 
 ### HTTP 200
 
-When successful, the API will return a HTTP status code of 200. An array of `results` is returned because some calculations return multiple "subresults" instead of a single score.
+When successful, the API will return a HTTP status code of 200 and in the response an array of results. We return an array of results because some calculations return multiple "subresults" instead of a single score. The schema of the response can be found [here](https://score-api.awellhealth.com/v1/docs/#/).
 
 **Below you can find an example response of the bmi calculation:**
 
 ```json
-{
-  "id": "62b8c0c20e46e700122c5f7e",
-  "calculation_id": "bmi",
-  "timestamp": "2022-06-26T20:25:38.973Z",
-  "results": [
-    {
-      "subresult_id": "BMI",
-      "label": {
-        "en": "Body Mass Index"
-      },
-      "unit": {
-        "en": "kg/m2"
-      },
-      "type": "number",
-      "status": "MISSING"
-    }
-  ]
-}
+[
+  {
+    "subresult_id": "BMI",
+    "label": {
+      "en": "Body Mass Index"
+    },
+    "unit": {
+      "en": "kg/m2"
+    },
+    "type": "number",
+    "result": 27.68166089965398,
+    "status": "CALCULATED"
+  }
+]
 ```
 
 ### HTTP 404
@@ -242,9 +238,3 @@ This error is thrown when you're passing at least 1 unexpected calculation input
   }
 }
 ```
-
-## Previous versions
-
-### v1
-
-The documentation for the v1 endpoint can be found [here](/awell-score/docs/api-reference/perform-calculation-v1). The only change between v1 and v2 is the response format.

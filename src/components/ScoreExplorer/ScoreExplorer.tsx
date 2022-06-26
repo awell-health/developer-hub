@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { awellScoreEndpoints } from '../../config/awell-score/endpoints'
 import {
   type Endpoint,
+  type EndpointVersion,
   type PathParameter,
   type QueryParameter,
   type RequestBodyParameter,
@@ -20,13 +21,15 @@ import { useRequest } from './hooks'
 
 export const ScoreExplorer = () => {
   const [endpoint, setEndpoint] = useState<Endpoint | null>(null)
+  const [endpointVersion, setEndpointVersion] =
+    useState<EndpointVersion | null>(null)
   const [pathParameters, setPathParameters] = useState<PathParameter[]>([])
   const [queryParameters, setQueryParameters] = useState<QueryParameter[]>([])
   const [requestBodyParameters, setRequestBodyParameters] = useState<
     RequestBodyParameter[]
   >([])
   const { request } = useRequest({
-    endpoint: endpoint?.endpoint ? endpoint?.endpoint : null,
+    endpoint: endpointVersion?.endpoint ? endpointVersion?.endpoint : null,
     queryParameters,
     pathParameters,
     requestBodyParameters,
@@ -39,13 +42,17 @@ export const ScoreExplorer = () => {
     setRequestBodyParameters([])
   }
 
-  const changeEndpoint = (newEndpoint: Endpoint | null) => {
+  const changeEndpoint = (
+    newEndpoint: Endpoint | null,
+    newEndpointVersion: EndpointVersion | null
+  ) => {
     resetEndPointParameters()
     setEndpoint(newEndpoint)
-    if (newEndpoint) {
-      setPathParameters(newEndpoint.options.pathParameters)
-      setQueryParameters(newEndpoint.options.queryParameters)
-      setRequestBodyParameters(newEndpoint.options.requestBodyParameters)
+    setEndpointVersion(newEndpointVersion)
+    if (newEndpoint && newEndpointVersion) {
+      setPathParameters(newEndpointVersion.options.pathParameters)
+      setQueryParameters(newEndpointVersion.options.queryParameters)
+      setRequestBodyParameters(newEndpointVersion.options.requestBodyParameters)
     }
   }
 
@@ -75,12 +82,15 @@ export const ScoreExplorer = () => {
             <EndpointSelector
               endpoints={awellScoreEndpoints}
               selectedEndpoint={endpoint}
+              selectedEndpointVersion={endpointVersion}
               onChange={changeEndpoint}
             />
           </div>
         </div>
         {/* Authorization is not implemented yet */}
-        {endpoint?.options.authorization && <div>Authorization to do</div>}
+        {endpointVersion?.options.authorization && (
+          <div>Authorization to do</div>
+        )}
         {pathParameters.length > 0 && (
           <PathParameters
             pathParameters={pathParameters}
@@ -110,11 +120,14 @@ export const ScoreExplorer = () => {
               </small>
             )}
           </div>
-          <RunQueryButton
-            updateResponse={updateResponse}
-            request={request}
-            endpointId={endpoint?.id}
-          />
+          {endpointVersion && (
+            <RunQueryButton
+              updateResponse={updateResponse}
+              endpointVersion={endpointVersion}
+              request={request}
+              endpointId={endpoint?.id}
+            />
+          )}
         </div>
       </div>
       <div className="relative mt-1 mb-8">

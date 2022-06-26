@@ -10,12 +10,14 @@ interface UseSearchCalculationsHook {
   searchCalculations: (searchString: string) => void
 }
 
-export const useSearchCalculations = (): UseSearchCalculationsHook => {
+export const useSearchCalculations = (
+  apiVersion: string
+): UseSearchCalculationsHook => {
   const [response, setResponse] = useState<unknown>(null)
   const [loading, setLoading] = useState(true)
 
   const searchCalculations = async (searchString: string) => {
-    const endpoint = `/v1/calculations/search?calculation_name=${searchString}`
+    const endpoint = `/${apiVersion}/calculations/search?calculation_name=${searchString}`
     try {
       const { data }: { data: CalculationType[] } =
         await awellScoreRestClient.get(endpoint)

@@ -26,11 +26,11 @@ export type PathParameter = {
   value?: unknown
 }
 
-export type Endpoint = {
-  id: string
-  method: 'GET' | 'POST'
+type API_VERSIONS = 'v1' | 'v2'
+
+export type EndpointVersion = {
+  version: API_VERSIONS
   endpoint: string
-  label: string
   options: {
     authorization: boolean
     headerParameters: HeaderParameter[]
@@ -38,6 +38,12 @@ export type Endpoint = {
     pathParameters: PathParameter[]
     requestBodyParameters: RequestBodyParameter[]
   }
+}
+export type Endpoint = {
+  id: string
+  method: 'GET' | 'POST'
+  label: string
+  versions: Array<EndpointVersion>
 }
 
 export type RequestType = {

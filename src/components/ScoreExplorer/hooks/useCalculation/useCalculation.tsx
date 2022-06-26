@@ -9,7 +9,7 @@ interface UseCalculationHook {
   getCalculation: (calculationId: string) => Promise<void>
 }
 
-export const useCalculation = (): UseCalculationHook => {
+export const useCalculation = (apiVersion: string): UseCalculationHook => {
   const [response, setResponse] = useState<unknown>(null)
   const [loading, setLoading] = useState(true)
 
@@ -17,7 +17,7 @@ export const useCalculation = (): UseCalculationHook => {
     setLoading(true)
     setResponse(null)
 
-    const endpoint = `/v1/calculations/${
+    const endpoint = `/${apiVersion}/calculations/${
       calculationId === '' ? 'empty' : calculationId
     }`
 

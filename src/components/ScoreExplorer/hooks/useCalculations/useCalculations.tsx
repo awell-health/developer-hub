@@ -10,11 +10,11 @@ interface UseCalculationsHook {
   getCalculations: () => Promise<void>
 }
 
-export const useCalculations = (): UseCalculationsHook => {
+export const useCalculations = (apiVersion: string): UseCalculationsHook => {
   const [response, setResponse] = useState<unknown>(null)
   const [loading, setLoading] = useState(true)
 
-  const endpoint = `/v1/calculations`
+  const endpoint = `/${apiVersion}/calculations`
 
   const getCalculations = async () => {
     try {

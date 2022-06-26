@@ -51,6 +51,11 @@ export const docsMenu: MenuItemType[] = [
         badge: badges.get,
       },
       {
+        title: 'Get calculation result',
+        path: '/awell-score/docs/api-reference/get-calculation-result',
+        badge: badges.get,
+      },
+      {
         title: 'Perform calculation',
         path: '/awell-score/docs/api-reference/perform-calculation',
         badge: badges.post,

@@ -1,4 +1,5 @@
 export { useCalculation } from './useCalculation/useCalculation'
+export { useCalculationResult } from './useCalculationResult'
 export { useCalculations } from './useCalculations'
 export { usePerformCalculation } from './usePerformCalculation'
 export { useRequest } from './useRequest'

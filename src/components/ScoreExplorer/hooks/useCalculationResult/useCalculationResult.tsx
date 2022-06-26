@@ -3,38 +3,26 @@ import { useState } from 'react'
 
 import awellScoreRestClient from '../../../../clients/awellScoreRestClient'
 
-interface UseCalculationHook {
+interface UseCalculationResultHook {
   loading: boolean
   response: unknown
-  performCalculation: (
-    calculationId: string,
-    calculationInput: object | null
-  ) => Promise<void>
+  getCalculationResult: (id: string) => Promise<void>
 }
 
-export const usePerformCalculation = (
+export const useCalculationResult = (
   apiVersion: string
-): UseCalculationHook => {
+): UseCalculationResultHook => {
   const [response, setResponse] = useState<unknown>(null)
   const [loading, setLoading] = useState(true)
 
-  const performCalculation = async (
-    calculationId: string,
-    calculationInput: object | null
-  ) => {
+  const getCalculationResult = async (id: string) => {
     setLoading(true)
     setResponse(null)
 
-    const endpoint = `/${apiVersion}/calculations/`
+    const endpoint = `/${apiVersion}/calculations/result/${id}`
 
     try {
-      const { data } = await awellScoreRestClient.post(endpoint, {
-        calculation_id: calculationId,
-        calculation_input: calculationInput,
-        meta: {
-          source: 'developer_hub_explorer',
-        },
-      })
+      const { data } = await awellScoreRestClient.get(endpoint)
       setResponse(data)
     } catch (error) {
       const err = error as AxiosError
@@ -62,7 +50,7 @@ export const usePerformCalculation = (
 
   return {
     loading,
-    performCalculation,
+    getCalculationResult,
     response,
   }
 }
