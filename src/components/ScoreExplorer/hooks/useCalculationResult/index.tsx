@@ -1,1 +1,0 @@
-export { useCalculationResult } from './useCalculationResult'

@@ -29,7 +29,8 @@ export const ScoreExplorer = () => {
     RequestBodyParameter[]
   >([])
   const { request } = useRequest({
-    endpoint: endpointVersion?.endpoint ? endpointVersion?.endpoint : null,
+    endpoint,
+    endpointVersion,
     queryParameters,
     pathParameters,
     requestBodyParameters,

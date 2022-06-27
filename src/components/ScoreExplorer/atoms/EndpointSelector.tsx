@@ -105,7 +105,7 @@ export const EndpointSelector = ({
               {selectedEndpoint.method}
             </span>
             <span className="text-gray-600 dark:text-gray-300">
-              {selectedEndpointVersion.endpoint}
+              {selectedEndpointVersion.endpointLabel}
             </span>
           </small>
         )}

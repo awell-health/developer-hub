@@ -31,6 +31,7 @@ type API_VERSIONS = 'v1' | 'v2'
 export type EndpointVersion = {
   version: API_VERSIONS
   endpoint: string
+  endpointLabel: string
   options: {
     authorization: boolean
     headerParameters: HeaderParameter[]
@@ -39,15 +40,19 @@ export type EndpointVersion = {
     requestBodyParameters: RequestBodyParameter[]
   }
 }
+
+type MethodEnum = 'GET' | 'POST'
+
 export type Endpoint = {
   id: string
-  method: 'GET' | 'POST'
+  method: MethodEnum
   label: string
   versions: Array<EndpointVersion>
 }
 
 export type RequestType = {
   endpoint?: string
+  method?: MethodEnum
   body?: {
     [key in string]: unknown
   }
