@@ -44,14 +44,25 @@ This endpoint expects the below fields to be present in the request body.
   </table>
 </div>
 
-The `calculation_input` parameter expects a key-value pair object where the key represents the calculation input id and the value is the corresponding value for that calculation input.
+The `calculation_input` field expects a key-value pair object where the key represents the calculation input id and the value is the corresponding value for that calculation input.
+
+To know what inputs a calculation expects, you can call the "[get calculation](/awell-score/docs/api-reference/get-calculation)" endpoint. In the response you'll find the `calculation_blueprint.input_definition` field that describes what calculation input ids the calculation expects. Additionally, you can use our [Playground](/awell-score/docs/getting-started/playground) to simulate a calculation and see a simulated calculation input.
+
+**Below you can find an example for the PHQ-9 calculation.**
 
 ```json
 {
-  "calculation_id": "bmi",
+  "calculation_id": "phq_9",
   "calculation_input": {
-    "height": 170,
-    "weight": 80
+    "PHQ9_Q01": 1,
+    "PHQ9_Q02": 1,
+    "PHQ9_Q03": 1,
+    "PHQ9_Q04": 0,
+    "PHQ9_Q05": 3,
+    "PHQ9_Q06": 2,
+    "PHQ9_Q07": 1,
+    "PHQ9_Q08": 3,
+    "PHQ9_Q09": 0
   }
 }
 ```
@@ -62,7 +73,7 @@ The `calculation_input` parameter expects a key-value pair object where the key 
 
 When successful, the API will return a HTTP status code of 200. An array of `results` is returned because some calculations return multiple "subresults" instead of a single score.
 
-**Below you can find an example response of the bmi calculation:**
+**Below you can find an example response of the PHQ-9 calculation:**
 
 ```json
 {
@@ -71,15 +82,22 @@ When successful, the API will return a HTTP status code of 200. An array of `res
   "timestamp": "2022-06-26T20:25:38.973Z",
   "results": [
     {
-      "subresult_id": "BMI",
+      "subresult_id": "PHQ9_SCORE",
       "label": {
-        "en": "Body Mass Index"
-      },
-      "unit": {
-        "en": "kg/m2"
+        "en": "PHQ-9 Score"
       },
       "type": "number",
-      "status": "MISSING"
+      "result": 16,
+      "status": "CALCULATED"
+    },
+    {
+      "subresult_id": "PHQ9_INTERPRETATION",
+      "label": {
+        "en": "PHQ-9 Interpretation"
+      },
+      "type": "string",
+      "result": "Moderately severe depression",
+      "status": "CALCULATED"
     }
   ]
 }
