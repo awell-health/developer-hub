@@ -13,14 +13,14 @@ export const isMenuItemActive = (
   /** Hacky solution to have this as the homepage and make active links work */
   if (
     menuItemPath === awellOrchestrationHomePage &&
-    pathName.includes('awell-orchestration')
+    pathName.includes('awell-orchestration') && pathName.includes('welcome')
   ) {
     return true
   }
 
-  /** Hacky solution to have active link when viewing release page */
+  /** Hacky solution to have active link when viewing changelog overview or individual release details */
   if (
-    menuItemPath === 'awell-orchestration/api-reference/overview/changelog' &&
+    menuItemPath.includes('awell-orchestration/api-reference/overview/changelog') &&
     pathName.includes('changelog')
   ) {
     return true
