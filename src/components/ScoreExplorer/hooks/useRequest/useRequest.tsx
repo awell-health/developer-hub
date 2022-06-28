@@ -44,12 +44,12 @@ export const useRequest = ({
     requestBodyParameters.length > 0
       ? Object.fromEntries(
           requestBodyParameters.map((parameter) => {
-            let value = parameter?.value || ''
+            let value = parameter?.value || '{}'
 
             if (parameter.type === 'object') {
               try {
                 value = JSON.parse(
-                  typeof value === 'string' ? value.toString() : ''
+                  typeof value === 'string' ? value.toString() : '{}'
                 )
               } catch (e) {
                 value = 'Invalid calculation_input object'

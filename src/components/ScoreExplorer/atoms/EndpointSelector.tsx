@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react'
+
 import {
   type Endpoint,
   type EndpointVersion,
@@ -19,6 +21,32 @@ export const EndpointSelector = ({
   selectedEndpointVersion,
   onChange,
 }: EndpointSelectorProps) => {
+
+  const handleEndpointChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const newEndpoint = endpoints.find(
+      (endpoint) => endpoint.id === e.target.value
+    )
+
+    if (newEndpoint) {
+      const latestEndpointVersion =
+        newEndpoint.versions.at(-1) || null
+      onChange(newEndpoint, latestEndpointVersion)
+    }
+  }
+
+  const handleEndpointVersionChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    if (selectedEndpoint) {
+      const newEndpointVersion = selectedEndpoint.versions.find(
+        (endpointVersion) =>
+          endpointVersion.version === e.target.value
+      )
+
+      if (newEndpointVersion) {
+        onChange(selectedEndpoint, newEndpointVersion)
+      } 
+    }
+  }
+
   return (
     <div className="">
       <div className="flex flex-row">
@@ -28,19 +56,7 @@ export const EndpointSelector = ({
             data-testid="endpoint"
             name="endpoint"
             value={selectedEndpoint?.id || ''}
-            onChange={(e) => {
-              const newEndpoint = endpoints.find(
-                (endpoint) => endpoint.id === e.target.value
-              )
-
-              if (newEndpoint) {
-                const latestEndpointVersion =
-                  newEndpoint.versions.at(-1) || null
-                onChange(newEndpoint, latestEndpointVersion)
-              } else {
-                onChange(null, null)
-              }
-            }}
+            onChange={handleEndpointChange}
           >
             <option disabled value="">
               Select endpoint
@@ -62,18 +78,7 @@ export const EndpointSelector = ({
                 selectedEndpointVersion?.version ||
                 selectedEndpoint.versions.at(-1)?.version
               }
-              onChange={(e) => {
-                const newEndpointVersion = selectedEndpoint.versions.find(
-                  (endpointVersion) =>
-                    endpointVersion.version === e.target.value
-                )
-
-                if (newEndpointVersion) {
-                  onChange(selectedEndpoint, newEndpointVersion)
-                } else {
-                  onChange(selectedEndpoint, null)
-                }
-              }}
+              onChange={handleEndpointVersionChange}
             >
               <option disabled value="">
                 Version
