@@ -1,6 +1,7 @@
 import {
   type Endpoint,
   type EndpointVersion,
+  type HeaderParameter,
   type PathParameter,
   type QueryParameter,
   type RequestBodyParameter,
@@ -14,6 +15,7 @@ interface UseRequestHook {
 interface UseRequestProps {
   endpoint: Endpoint | null
   endpointVersion: EndpointVersion | null
+  headerParameters: HeaderParameter[]
   queryParameters: QueryParameter[]
   pathParameters: PathParameter[]
   requestBodyParameters: RequestBodyParameter[]
@@ -22,10 +24,18 @@ interface UseRequestProps {
 export const useRequest = ({
   endpoint,
   endpointVersion,
+  headerParameters,
   queryParameters,
   pathParameters,
   requestBodyParameters,
 }: UseRequestProps): UseRequestHook => {
+  const headers =
+    headerParameters.length > 0
+      ? Object.fromEntries(
+          headerParameters.map(({ name, value }) => [name, value])
+        )
+      : undefined
+
   const query =
     queryParameters.length > 0
       ? Object.fromEntries(
@@ -65,13 +75,16 @@ export const useRequest = ({
         )
       : undefined
 
+  const request = {
+    endpoint: endpointVersion?.endpoint,
+    method: endpoint?.method,
+    headers,
+    query,
+    path,
+    body,
+  }
+
   return {
-    request: {
-      endpoint: endpointVersion?.endpoint,
-      method: endpoint?.method,
-      query,
-      path,
-      body,
-    },
+    request,
   }
 }

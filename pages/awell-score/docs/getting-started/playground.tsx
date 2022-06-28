@@ -5,24 +5,24 @@ import { DocsLayoutWithoutToc } from '../../../../src/components/Layouts'
 import { QuickNav } from '../../../../src/components/QuickNavigation'
 import { ScoreExplorer } from '../../../../src/components/ScoreExplorer'
 import { SEO } from '../../../../src/components/SEO'
-import { useQuickNavigation } from '../../../../src/hooks/useQuickNavigation'
+import { useHeading, useQuickNavigation } from '../../../../src/hooks'
 
 export default function Playground() {
-  const { next, prev } = useQuickNavigation(
-    'awell-score/docs/getting-started/playground'
-  )
+  const path = 'awell-score/docs/getting-started/playground'
+  const { next, prev } = useQuickNavigation(path)
+  const { heading } = useHeading()
 
   return (
     <>
       <div className="">
         <SEO
-          title="Playground"
+          title="API Playground"
           url={`/awell-score/docs/getting-started/playground`}
           canonicalUrl={`/awell-score/docs/getting-started/playground`}
         />
         <DocsHeader
-          heading="Awell Score"
-          title="Playground"
+          heading={heading}
+          title="API Playground"
           description="Send real HTTP requests to the Awell Score API without implementing any code."
         />
         <div id="content-wrapper">

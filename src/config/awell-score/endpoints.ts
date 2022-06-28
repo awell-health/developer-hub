@@ -12,7 +12,6 @@ export const awellScoreEndpoints: Endpoint[] = [
         endpointLabel:
           'https://score-api.staging.awellhealth.com/v1/calculations',
         options: {
-          authorization: false,
           headerParameters: [],
           pathParameters: [],
           queryParameters: [],
@@ -32,7 +31,6 @@ export const awellScoreEndpoints: Endpoint[] = [
         endpointLabel:
           'https://score-api.staging.awellhealth.com/v1/calculations/{calculationId}',
         options: {
-          authorization: false,
           headerParameters: [],
           pathParameters: [
             {
@@ -59,7 +57,6 @@ export const awellScoreEndpoints: Endpoint[] = [
         endpointLabel:
           'https://score-api.staging.awellhealth.com/v1/calculations/search?calculation_name={searchString}',
         options: {
-          authorization: false,
           headerParameters: [],
           pathParameters: [],
           queryParameters: [
@@ -82,7 +79,6 @@ export const awellScoreEndpoints: Endpoint[] = [
         endpointLabel:
           'https://score-api.staging.awellhealth.com/v1/calculations/simulate/{calculationId}',
         options: {
-          authorization: false,
           headerParameters: [],
           pathParameters: [
             {
@@ -108,7 +104,6 @@ export const awellScoreEndpoints: Endpoint[] = [
         endpointLabel:
           'https://score-api.staging.awellhealth.com/v1/calculations',
         options: {
-          authorization: false,
           headerParameters: [],
           pathParameters: [],
           queryParameters: [],
@@ -128,7 +123,6 @@ export const awellScoreEndpoints: Endpoint[] = [
         endpointLabel:
           'https://score-api.staging.awellhealth.com/v2/calculations',
         options: {
-          authorization: false,
           headerParameters: [],
           pathParameters: [],
           queryParameters: [],
@@ -156,7 +150,6 @@ export const awellScoreEndpoints: Endpoint[] = [
         endpointLabel:
           'https://score-api.staging.awellhealth.com/v2/calculations/result/{id}',
         options: {
-          authorization: false,
           headerParameters: [],
           pathParameters: [
             {

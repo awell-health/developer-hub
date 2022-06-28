@@ -33,7 +33,6 @@ export type EndpointVersion = {
   endpoint: string
   endpointLabel: string
   options: {
-    authorization: boolean
     headerParameters: HeaderParameter[]
     queryParameters: QueryParameter[]
     pathParameters: PathParameter[]
@@ -53,6 +52,9 @@ export type Endpoint = {
 export type RequestType = {
   endpoint?: string
   method?: MethodEnum
+  headers?: {
+    [key in string]: unknown
+  }
   body?: {
     [key in string]: unknown
   }

@@ -4,12 +4,14 @@ import { awellScoreEndpoints } from '../../config/awell-score/endpoints'
 import {
   type Endpoint,
   type EndpointVersion,
+  type HeaderParameter,
   type PathParameter,
   type QueryParameter,
   type RequestBodyParameter,
 } from '../../types/restExplorer.types'
 import {
   EndpointSelector,
+  HeaderParameters,
   PathParameters,
   QueryParameters,
   Request,
@@ -28,9 +30,14 @@ export const ScoreExplorer = () => {
   const [requestBodyParameters, setRequestBodyParameters] = useState<
     RequestBodyParameter[]
   >([])
+  const [headerParameters, setHeaderParameters] = useState<HeaderParameter[]>(
+    []
+  )
+
   const { request } = useRequest({
     endpoint,
     endpointVersion,
+    headerParameters,
     queryParameters,
     pathParameters,
     requestBodyParameters,
@@ -40,6 +47,7 @@ export const ScoreExplorer = () => {
   const resetEndPointParameters = () => {
     setPathParameters([])
     setQueryParameters([])
+    setHeaderParameters([])
     setRequestBodyParameters([])
   }
 
@@ -54,6 +62,7 @@ export const ScoreExplorer = () => {
       setPathParameters(newEndpointVersion.options.pathParameters)
       setQueryParameters(newEndpointVersion.options.queryParameters)
       setRequestBodyParameters(newEndpointVersion.options.requestBodyParameters)
+      setHeaderParameters(newEndpointVersion.options.headerParameters)
     }
   }
 
@@ -69,6 +78,10 @@ export const ScoreExplorer = () => {
     newRequestBodyParameters: RequestBodyParameter[]
   ) => {
     setRequestBodyParameters(newRequestBodyParameters)
+  }
+
+  const changeHeaderParameters = (newHeaderParameters: HeaderParameter[]) => {
+    setHeaderParameters(newHeaderParameters)
   }
 
   const updateResponse = (newResponse: unknown) => {
@@ -88,9 +101,11 @@ export const ScoreExplorer = () => {
             />
           </div>
         </div>
-        {/* Authorization is not implemented yet */}
-        {endpointVersion?.options.authorization && (
-          <div>Authorization to do</div>
+        {headerParameters.length > 0 && (
+          <HeaderParameters
+            headerParameters={headerParameters}
+            onChange={changeHeaderParameters}
+          />
         )}
         {pathParameters.length > 0 && (
           <PathParameters

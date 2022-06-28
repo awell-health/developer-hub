@@ -1,4 +1,5 @@
 export { EndpointSelector } from './EndpointSelector'
+export { HeaderParameters } from './HeaderParameters'
 export { PathParameters } from './PathParameters'
 export { QueryParameters } from './QueryParameters'
 export { Request } from './Request'
