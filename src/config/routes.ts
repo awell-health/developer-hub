@@ -1,5 +1,5 @@
 export const awellOrchestrationDocsHomePage =
-  '/awell-orchestration/docs/getting-started/welcome'
+  '/awell-orchestration/docs/getting-started/what-is-awell-orchestration'
 export const awellOrchestrationHomePage = awellOrchestrationDocsHomePage
 export const awellOrchestrationApiHomePage =
   '/awell-orchestration/api-reference/overview/endpoints'

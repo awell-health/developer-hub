@@ -6,7 +6,7 @@ export const docsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'Welcome',
-        path: '/awell-orchestration/docs/getting-started/welcome',
+        path: '/awell-orchestration/docs/getting-started/what-is-awell-orchestration',
       },
       {
         title: 'Awell ecosystem',
