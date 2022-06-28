@@ -1,5 +1,5 @@
-import { useMarkMessageAsRead } from '../../../hooks/useMarkMessageAsRead'
-import { useMessage } from '../../../hooks/useMessage'
+import { useMarkMessageAsRead } from '../../../hooks/awell-orchestration/useMarkMessageAsRead'
+import { useMessage } from '../../../hooks/awell-orchestration/useMessage'
 import { type Activity } from '../../../types/generated/api.types'
 import { MessageSkeleton } from '../../Skeleton'
 

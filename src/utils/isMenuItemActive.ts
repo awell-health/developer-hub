@@ -1,21 +1,32 @@
+import { awellOrchestrationHomePage } from '../config/routes'
+
 export const isMenuItemActive = (
   menuItemPath: string,
   pathName: string,
   slug?: string | string[]
 ) => {
+  /** Active state for home page */
+  if (menuItemPath === '/' && pathName !== '/') {
+    return false
+  }
+
   /** Hacky solution to have this as the homepage and make active links work */
-  if (menuItemPath === '/docs/getting-started/welcome' && slug === '/') {
+  if (
+    menuItemPath === awellOrchestrationHomePage &&
+    pathName.includes('awell-orchestration')
+  ) {
     return true
   }
 
   /** Hacky solution to have active link when viewing release page */
-
   if (
-    menuItemPath === '/api-reference/overview/changelog' &&
+    menuItemPath === 'awell-orchestration/api-reference/overview/changelog' &&
     pathName.includes('changelog')
   ) {
     return true
   }
+
+  if (pathName === menuItemPath) return true
 
   if (!slug) return false
 

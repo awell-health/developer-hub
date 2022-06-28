@@ -1,6 +1,6 @@
 import { buildClientSchema, GraphQLSchema } from 'graphql'
 
-import { useIntrospection } from './useIntrospection'
+import { useIntrospection } from './awell-orchestration/useIntrospection'
 
 export const useGraphQLSchema = (): {
   schema: GraphQLSchema | null

@@ -64,7 +64,7 @@ export const DocsHeader = ({
       )}
       {playgroundButton && (
         <div className="mt-2 mr-3">
-          <GraphQLButton url={'/playground'} />
+          <GraphQLButton url={'/awell-orchestration/playground'} />
         </div>
       )}
     </div>

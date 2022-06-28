@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { ReactNode, useCallback, useEffect, useState } from 'react'
 
-import { docsMenu } from '../../config/menus'
 import { type MenuType } from '../../types/menu.types'
 
 interface AppContextStateType {
@@ -14,7 +13,7 @@ interface AppContextStateType {
 }
 
 const initialState: AppContextStateType = {
-  menu: docsMenu,
+  menu: [],
   isMobileSideMenuOpen: false,
   isMobileMainMenuOpen: false,
   setMenu: () => null,

@@ -1,7 +1,10 @@
 import Link from 'next/link'
 import { useContext } from 'react'
 
-import { nav } from '../../config/nav'
+import {
+  awellOrchestrationHomePage,
+  awellScoreHomePage,
+} from '../../config/routes'
 import { AppContext } from '../../contexts/app/AppContext'
 import { ThemeSelect } from '../ThemeToggle'
 
@@ -45,18 +48,36 @@ export const MobileNav = () => {
           </svg>
         </button>
         <ul className="space-y-6">
-          {nav.map((navItem, index) => (
-            <li key={index}>
-              <Link href={navItem.path}>
-                <a
-                  className="hover:text-sky-500 dark:hover:text-sky-400"
-                  title={navItem.label}
-                >
-                  {navItem.label}
-                </a>
-              </Link>
-            </li>
-          ))}
+          <li>
+            <Link href="/">
+              <a
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title="Home"
+              >
+                Home
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href={awellOrchestrationHomePage}>
+              <a
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title="Awell Orchestration"
+              >
+                Awell Orchestration
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href={awellScoreHomePage}>
+              <a
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title="Awell Score"
+              >
+                Awell Score
+              </a>
+            </Link>
+          </li>
           <li>
             <a
               href="https://github.com/nckhell/awell-developers"

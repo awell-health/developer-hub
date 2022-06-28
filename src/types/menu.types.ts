@@ -3,7 +3,6 @@ import { BadgeColorType } from '../components/Badge/badge.types'
 export type NavType = {
   label: string
   path: string
-  slug: string
   external?: boolean
 }
 

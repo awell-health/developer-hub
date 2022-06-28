@@ -1,8 +1,11 @@
-import { apiMenu, docsMenu } from '../config/menus'
+import {
+  orchestrationApiMenu,
+  orchestrationDocsMenu,
+} from '../config/menus/awell-orchestration'
 import { BadgeType } from '../types/menu.types'
 
 export const useBadge = (slug: string): { badge: BadgeType | undefined } => {
-  const menus = [...apiMenu, ...docsMenu]
+  const menus = [...orchestrationApiMenu, ...orchestrationDocsMenu]
 
   const matchedMenuCategory = menus.find((menuSection) => {
     const subMenu = menuSection?.submenu || []

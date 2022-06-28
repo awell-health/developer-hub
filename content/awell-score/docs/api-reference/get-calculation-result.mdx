@@ -1,0 +1,88 @@
+---
+title: Get calculation result
+description: Retrieve the result of a previous computed calculation
+---
+
+Please note that this endpoint can only be used if you also use the [v2 endpoint to perform calculations](/awell-score/docs/api-reference/perform-calculation) as the v1 endpoint does not return an `id` for the calculation result that you need to call this endpoint.
+
+## Request
+
+### Endpoint
+
+<p>
+  <span className="pr-2 font-semibold text-sky-500 dark:text-sky-400">GET</span>
+  <span className="text-gray-600 dark:text-gray-300 font-semibold">
+    {`/v2/calculations/result/{id}`}
+  </span>
+</p>
+
+### Path parameters
+
+This endpoint expects an `id` to be passed as a path parameter. This id represents the identifier of a calculation result which is returned when the calculation was first performed (see "[perform calculation](/awell-score/docs/api-reference/perform-calculation)").
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td>yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Response
+
+### HTTP 200
+
+When successful, the API will return a HTTP status code of 200 and in the response the calculation result(s).
+
+**Below you can find an example response of the bmi calculation:**
+
+```json
+{
+  "id": "62b8c0c20e46e700122c5f7e",
+  "calculation_id": "bmi",
+  "timestamp": "2022-06-26T20:25:38.973Z",
+  "results": [
+    {
+      "subresult_id": "BMI",
+      "label": {
+        "en": "Body Mass Index"
+      },
+      "unit": {
+        "en": "kg/m2"
+      },
+      "type": "number",
+      ""
+      "status": "CALCULATED"
+    }
+  ]
+}
+```
+
+### HTTP 404
+
+When no results can be found for the given id, the API will return a 400 HTTP status code and the following response:
+
+```json
+{
+  "data": {
+    "error": {
+      "message": "No results found for id {id}"
+    }
+  }
+}
+```
+
+### HTTP 500
+
+When unsuccessful, the API will return a 500 HTTP status.

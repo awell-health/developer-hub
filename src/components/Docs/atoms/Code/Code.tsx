@@ -10,16 +10,19 @@ interface CodeProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any
   className: string
+  numberOfLinesPreview?: number
 }
 
-export const Code = ({ children, className }: CodeProps) => {
+export const Code = ({
+  children,
+  className,
+  numberOfLinesPreview = 15,
+}: CodeProps) => {
   const { theme } = useContext(ThemeContext)
   const [showExpandCollapseButton, setShowExpandeCollapseButton] =
     useState<boolean>(false)
   const [showAll, setIsShowAll] = useState<boolean>(true)
   const language = className.replace(/language-/, '')
-
-  const numberOfLinesPreview = 15
 
   const [code] = Array.isArray(children) ? children : [children]
 

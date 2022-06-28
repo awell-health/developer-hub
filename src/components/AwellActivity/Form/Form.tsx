@@ -7,9 +7,9 @@ import {
   UseFormRegister,
 } from 'react-hook-form'
 
-import { useEvaluateFormRules } from '../../../hooks/useEvaluateFormRules'
-import { useForm as useFormQuery } from '../../../hooks/useForm'
-import { useSubmitFormResponse } from '../../../hooks/useSubmitFormResponse'
+import { useEvaluateFormRules } from '../../../hooks/awell-orchestration/useEvaluateFormRules'
+import { useForm as useFormQuery } from '../../../hooks/awell-orchestration/useForm'
+import { useSubmitFormResponse } from '../../../hooks/awell-orchestration/useSubmitFormResponse'
 import { QuestionWithVisibility } from '../../../types/form.types'
 import { type Activity, Question } from '../../../types/generated/api.types'
 import { keyValueObjectToQuestionResponseObject } from '../../../utils/dataPoints'
