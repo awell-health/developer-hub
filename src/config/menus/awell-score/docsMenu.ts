@@ -22,8 +22,12 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-score/docs/getting-started/authorization',
       },
       {
-        title: 'Playground',
+        title: 'API Playground',
         path: '/awell-score/docs/getting-started/playground',
+      },
+      {
+        title: 'Score Explorer',
+        path: '/awell-score/docs/getting-started/score-explorer',
       },
     ],
   },
