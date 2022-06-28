@@ -10,7 +10,7 @@ export const isMenuItemActive = (
 
   /** Hacky solution to have active link when viewing release page */
   if (
-    menuItemPath === 'awell-orchestration/api-reference/overview/changelog' &&
+    menuItemPath.includes('awell-orchestration/api-reference/overview/changelog') &&
     pathName.includes('changelog')
   ) {
     return true

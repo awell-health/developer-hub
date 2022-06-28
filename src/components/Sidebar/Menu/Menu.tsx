@@ -130,7 +130,7 @@ export const Menu = () => {
                       title={subMenuItem.title}
                       target={subMenuItem.openInNewTab ? '_blank' : ''}
                       className={clsx(
-                        'text-lg lg:text-sm lg:leading-6 flex justify-between block border-l pl-4 -ml-px',
+                        'text-lg lg:text-sm lg:leading-6 justify-between block border-l pl-4 -ml-px',
                         isMenuItemActive(
                           subMenuItem.path,
                           router.pathname,
