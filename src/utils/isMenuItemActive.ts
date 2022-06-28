@@ -1,5 +1,3 @@
-import { awellOrchestrationHomePage } from '../config/routes'
-
 export const isMenuItemActive = (
   menuItemPath: string,
   pathName: string,
@@ -8,14 +6,6 @@ export const isMenuItemActive = (
   /** Active state for home page */
   if (menuItemPath === '/' && pathName !== '/') {
     return false
-  }
-
-  /** Hacky solution to have this as the homepage and make active links work */
-  if (
-    menuItemPath === awellOrchestrationHomePage &&
-    pathName.includes('awell-orchestration')
-  ) {
-    return true
   }
 
   /** Hacky solution to have active link when viewing release page */
