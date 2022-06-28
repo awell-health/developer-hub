@@ -1,5 +1,3 @@
-import { awellOrchestrationHomePage } from '../config/routes'
-
 export const isMenuItemActive = (
   menuItemPath: string,
   pathName: string,
