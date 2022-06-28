@@ -10,14 +10,6 @@ export const isMenuItemActive = (
     return false
   }
 
-  /** Hacky solution to have this as the homepage and make active links work */
-  if (
-    menuItemPath === awellOrchestrationHomePage &&
-    pathName.includes('awell-orchestration')
-  ) {
-    return true
-  }
-
   /** Hacky solution to have active link when viewing release page */
   if (
     menuItemPath === 'awell-orchestration/api-reference/overview/changelog' &&
