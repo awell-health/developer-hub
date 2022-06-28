@@ -59,8 +59,8 @@ export default function Home() {
                     Awell Score
                   </div>
                   <p className="text-center text-lg text-slate-600">
-                    Our API to calculate scores for the most common patient &
-                    clinical reported outcomes.
+                    Our API to calculate scores for patient & clinical reported
+                    outcomes.
                   </p>
                   <Link href={awellScoreHomePage}>
                     <a
