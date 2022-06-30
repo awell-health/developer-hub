@@ -164,7 +164,7 @@ export default function OnboardingExample() {
           <div>
             {!createdPathway && (
               <Button
-                label="Start onboarding pathway"
+                label="Getting Started"
                 color="indigo"
                 size="xl"
                 onClick={() => onPathwayStart()}

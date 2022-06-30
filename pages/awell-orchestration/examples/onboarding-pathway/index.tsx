@@ -161,12 +161,12 @@ export default function OnboardingExample() {
         </div>
       </div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 mt-8 mb-32 text-center mt-24">
-        {isLoading && <Spinner message="Starting pathway" />}
+        {isLoading && <Spinner message="Getting started..." />}
         {!isLoading && (
           <div>
             {!createdPathway && (
               <Button
-                label="Start onboarding pathway"
+                label="Get Started"
                 color="indigo"
                 size="xl"
                 onClick={() => onPathwayStart()}
