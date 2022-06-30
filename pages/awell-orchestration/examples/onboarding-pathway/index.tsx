@@ -41,7 +41,6 @@ const Pathway = ({
       ])
     }
     setCurrentPendingUseractivity(null)
-    startPolling(1000)
   }
 
   useEffect(() => {
@@ -52,7 +51,6 @@ const Pathway = ({
 
     if (pathwayCompleted) {
       setIsCompleted(true)
-      stopPolling()
       return
     }
 
@@ -64,21 +62,28 @@ const Pathway = ({
     )
 
     if (firstPendingUserActivity) {
-      stopPolling()
       setCurrentPendingUseractivity(firstPendingUserActivity)
     }
-  }, [
-    activities,
-    isCompleted,
-    ignoredActivities,
-    stopPolling,
-    setCurrentPendingUseractivity,
-    currentPendingUserActivity,
-  ])
+  }, [activities, ignoredActivities])
 
+  /**
+   * Stop polling for activities when there's a pending user activity
+   * or when pathway is completed
+   */
   useEffect(() => {
-    startPolling(1000)
-  }, [startPolling])
+    if (currentPendingUserActivity || isCompleted) {
+      stopPolling()
+    }
+  }, [currentPendingUserActivity, isCompleted])
+
+  /**
+   * Start polling for activities on initial render
+   */
+  useEffect(() => {
+    if (!currentPendingUserActivity) {
+      startPolling(1000)
+    }
+  }, [startPolling, currentPendingUserActivity])
 
   if (!currentPendingUserActivity)
     return (
