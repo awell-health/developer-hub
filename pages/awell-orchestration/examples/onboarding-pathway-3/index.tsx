@@ -147,7 +147,7 @@ export default function OnboardingExample() {
    * and use the patient id returned in the response.
    */
   const PATIENT_ID = 'Gh6m6f_WxD0HMQkRmfMS-'
-  const PATHWAY_DEFINITION_ID = 'nUmZm3J73Ru_'
+  const PATHWAY_DEFINITION_ID = '1Wio1TR9laQC'
 
   const { startPathway } = useStartPathway()
 
