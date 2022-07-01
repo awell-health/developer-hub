@@ -14,6 +14,15 @@ const nextConfig = {
 
     return config
   },
+  async redirects() {
+    return [
+      {
+        source: '/examples/:slug',
+        destination: '/awell-orchestration/examples/:slug', // Matched parameters can be used in the destination
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
