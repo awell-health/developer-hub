@@ -17,7 +17,6 @@ const Pathway = ({
   patientId: string
   pathwayId: string
 }) => {
-  console.log('Pathway ID: ' + pathwayId)
   const { activities, startPolling, stopPolling } =
     usePathwayActivities(pathwayId)
   const [currentPendingUserActivity, setCurrentPendingUseractivity] =
@@ -161,6 +160,7 @@ export default function OnboardingExample() {
       patient_id: PATIENT_ID,
       pathway_definition_id: PATHWAY_DEFINITION_ID,
     })
+    console.log('Pathway ID: ' + pathway)
     setCreatedPathway(pathway)
     setIsLoading(false)
   }
