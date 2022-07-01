@@ -23,7 +23,7 @@ Awell Orchestration does not need to know anything about a patient when orchestr
 
 The only recommended property to set when creating patients is the `patient_code`, which can be used as a custom identifier to help you reconciliate data with your own patient records.
 
-> Awell does not enforce the uniqueness of the `patient_code` amongst your patients. If you use unique identifiers, you can use the [`searchPatientsByPatientCode` query](/api-reference/queries/search-patient) before creating patients to enforce the uniqueness constraint on your end.
+> Awell does not enforce the uniqueness of the `patient_code` amongst your patients. If you use unique identifiers, you can use the [`searchPatientsByPatientCode` query](/awell-orchestration/api-reference/queries/search-patient) before creating patients to enforce the uniqueness constraint on your end.
 
 See the [API Reference](/awell-orchestration/api-reference/overview/schema) for more information about the user type.
 
