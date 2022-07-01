@@ -17,12 +17,15 @@ const Pathway = ({
   patientId: string
   pathwayId: string
 }) => {
+  console.log('Pathway ID: ' + pathwayId)
   const { activities, startPolling, stopPolling } =
     usePathwayActivities(pathwayId)
   const [currentPendingUserActivity, setCurrentPendingUseractivity] =
     useState<Activity | null>(null)
   const [isCompleted, setIsCompleted] = useState(false)
   const [ignoredActivities, setIgnoredActivities] = useState<string[]>([])
+  const [currentPendingSystemActivity, setCurrentPendingSystemactivity] =
+    useState<Activity | null>(null)
 
   const onActivityCompleted = () => {
     /**
@@ -58,11 +61,24 @@ const Pathway = ({
       (activity) =>
         activity.status === 'ACTIVE' &&
         !ignoredActivities.includes(activity.id) &&
-        ['MESSAGE', 'FORM', 'CHECKLIST'].includes(activity.object.type)
+        ['MESSAGE', 'FORM', 'CHECKLIST'].includes(activity.object.type) &&
+        activity.indirect_object?.name !== 'Other'
+    )
+
+    const pendingSystemActivity = activities?.find(
+      (activity) =>
+        activity.status === 'ACTIVE' &&
+        !ignoredActivities.includes(activity.id) &&
+        ['MESSAGE', 'FORM', 'CHECKLIST'].includes(activity.object.type) &&
+        activity.indirect_object?.name === 'Other'
     )
 
     if (firstPendingUserActivity) {
       setCurrentPendingUseractivity(firstPendingUserActivity)
+    }
+
+    if (pendingSystemActivity) {
+      setCurrentPendingSystemactivity(pendingSystemActivity)
     }
   }, [activities, ignoredActivities])
 
@@ -88,8 +104,13 @@ const Pathway = ({
   if (!currentPendingUserActivity)
     return (
       <div>
-        {!currentPendingUserActivity && !isCompleted && (
-          <Spinner message="Loading next user activity" />
+        {!currentPendingUserActivity &&
+          !isCompleted &&
+          !currentPendingSystemActivity && (
+            <Spinner message="Loading next user activity" />
+          )}
+        {!isCompleted && currentPendingSystemActivity && (
+          <Spinner message="Waiting on system activity" />
         )}
         {isCompleted && (
           <div className="max-w-3xl mx-auto">
