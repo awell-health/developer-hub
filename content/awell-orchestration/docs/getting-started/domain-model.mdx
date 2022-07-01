@@ -25,7 +25,7 @@ The only recommended property to set when creating patients is the `patient_code
 
 > Awell does not enforce the uniqueness of the `patient_code` amongst your patients. If you use unique identifiers, you can use the [`searchPatientsByPatientCode` query](/api-reference/queries/search-patient) before creating patients to enforce the uniqueness constraint on your end.
 
-See the [API Reference](/api-reference/overview/schema) for more information about the user type.
+See the [API Reference](/awell-orchestration/api-reference/overview/schema) for more information about the user type.
 
 ## Pathway
 
@@ -42,7 +42,8 @@ type Pathway {
   [...]
 }
 ```
-See the [API Reference](/api-reference/overview/schema) for more information about the pathway type.
+
+See the [API Reference](/awell-orchestration/api-reference/overview/schema) for more information about the pathway type.
 
 ## Activities
 
@@ -92,12 +93,13 @@ Activities use a generic structure (subject + action + object + indirect object)
 ```
 
 When an activity is explicitly assigned to a patient or clinical stakeholder, the `indirect_object` property has the following data:
+
 ```graphql
 # Assigned to patient
 indirect_object {
   id: '<PATIENT_ID>'     # Unique identifier of the patient
   type: 'patient'
-  name: '<PATIENT_NAME>' # Patient full name, if known  
+  name: '<PATIENT_NAME>' # Patient full name, if known
 }
 # Assigned to clinical stakeholder
 indirect_object {
@@ -107,7 +109,7 @@ indirect_object {
 }
 ```
 
-See the [API Reference](/api-reference/overview/schema) for more information about the activity type.
+See the [API Reference](/awell-orchestration/api-reference/overview/schema) for more information about the activity type.
 
 ### Example: API Call activity
 
@@ -181,22 +183,21 @@ See the [API Reference](/api-reference/overview/schema) for more information abo
 }
 ```
 
-
 ## Data point definition
 
 Data point definitions describes and qualify each and every atomic piece of data that can be captured in the lifecycle of a pathway.
 
 ```graphql
 {
-  id              # Unique identifier
-  category        # Where the data points will come from
-                  # Example: form, calculation, patient_profile, ...
-  key             # Human and machine friendly identifier
-  value_type      # Data type of the captured values
-                  # One of: boolean / date / number / string / numbers_array
+  id # Unique identifier
+  category # Where the data points will come from
+  # Example: form, calculation, patient_profile, ...
+  key # Human and machine friendly identifier
+  value_type # Data type of the captured values
+  # One of: boolean / date / number / string / numbers_array
   possible_values # List of accepted (value,label) pairs, when relevant.
-  range           # Min / Max value, when relevant
+  range # Min / Max value, when relevant
 }
 ```
 
-See the [API Reference](/api-reference/overview/schema) for more information about the data point definition type.
+See the [API Reference](/awell-orchestration/api-reference/overview/schema) for more information about the data point definition type.

@@ -6,7 +6,7 @@ description: Learn how to build an onboarding form on your website that starts a
 In this tutorial we'll show you how you can create an onboarding flow that starts a pathway.
 
 <a
-  href="/examples/onboarding"
+  href="/awell-orchestration/examples/onboarding"
   className="button"
   target="_blank"
   title="View demo"
@@ -16,8 +16,8 @@ In this tutorial we'll show you how you can create an onboarding flow that start
 
 ## Prerequisites
 
-1. Make sure that you're calling the correct [endpoint](/api-reference/overview/endpoints) and have an [API key to authorize your requests](/api-reference/overview/authorization)
-2. Fire up a demo app, use our [Playground](/api-reference/overview/playground), or [Postman collection](https://documenter.getpostman.com/view/19166134/UVXnGEJb) to follow along
+1. Make sure that you're calling the correct [endpoint](/awell-orchestration/api-reference/overview/endpoints) and have an [API key to authorize your requests](/awell-orchestration/awell-orchestration/api-reference/overview/authorization)
+2. Fire up a demo app, use our [Playground](/awell-orchestration/api-reference/overview/playground), or [Postman collection](https://documenter.getpostman.com/view/19166134/UVXnGEJb) to follow along
 
 ## Guide
 
@@ -59,7 +59,7 @@ query publishedPathwayDefinitions {
 }
 ```
 
-This query returns all published pathway definitions in your tenant so you need to do a find on `id` to get the baseline data points of the pathway you're interested in (you'll need the [`pathway_definition_id`](/docs/getting-started/concepts-and-terminology#pathway-definition-id) to do the find on the `id ` field).
+This query returns all published pathway definitions in your tenant so you need to do a find on `id` to get the baseline data points of the pathway you're interested in (you'll need the [`pathway_definition_id`](/awell-orchestration/docs/getting-started/concepts-and-terminology#pathway-definition-id) to do the find on the `id ` field).
 
 **Example response:**
 
@@ -104,7 +104,7 @@ You can either use the fields in `dataPointDefinitions` to dynamically render a 
 When you have the patient's information and the baseline data points, you need to create the patient first and then start the pathway. Note that it needs to be done in this order as to start a pathway you need to pass the id of the patient you want to start the pathway for.
 
 <a
-  href="/api-reference/mutations/create-patient"
+  href="/awell-orchestration/api-reference/mutations/create-patient"
   className="button"
   target="_blank"
   title="Open createPatient mutation documentation"
@@ -154,7 +154,7 @@ mutation createPatient($input: CreatePatientInput!) {
 ### Start pathway
 
 <a
-  href="/api-reference/mutations/start-pathway"
+  href="/awell-orchestration/api-reference/mutations/start-pathway"
   className="button"
   target="_blank"
   title="Open startPathway mutation documentation"

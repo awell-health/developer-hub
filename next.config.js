@@ -21,6 +21,11 @@ const nextConfig = {
         destination: '/awell-orchestration/examples/:slug', // Matched parameters can be used in the destination
         permanent: true,
       },
+      {
+        source: '/playground/',
+        destination: '/awell-orchestration/playground', // Matched parameters can be used in the destination
+        permanent: true,
+      },
     ]
   },
 }

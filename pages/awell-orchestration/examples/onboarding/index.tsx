@@ -111,7 +111,7 @@ export default function OnboardingExample() {
               </p>
             </div>
             <div className="order-3 flex-shrink-0 w-full w-auto">
-              <Link href="/docs/tutorials/onboarding">
+              <Link href="/awell-orchestration/docs/tutorials/onboarding">
                 <a className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50">
                   Read guide
                 </a>

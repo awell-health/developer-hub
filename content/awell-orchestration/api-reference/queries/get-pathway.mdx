@@ -3,7 +3,7 @@ title: Get pathway
 description: Get all information for a given pathway
 ---
 
-> We suggest reading the page on our [domain model](/docs/getting-started/domain-model) first to get an understanding of the pathway model.
+> We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the pathway model.
 
 ## Request
 
@@ -32,22 +32,22 @@ query GetPathway($pathway_id: String!) {
         isUserActivity
         public
         object {
-            id
+          id
         }
         indirect_object {
-            id
+          id
         }
         track {
-            id
+          id
         }
         label {
-            id
+          id
         }
         sub_activities {
-            id
+          id
         }
         context {
-            instance_id
+          instance_id
         }
       }
       version # version number
