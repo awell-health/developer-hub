@@ -140,6 +140,7 @@ export default function OnboardingExample() {
       patient_id: PATIENT_ID,
       pathway_definition_id: PATHWAY_DEFINITION_ID,
     })
+    console.log('Pathway ID: ' + pathway)
     setCreatedPathway(pathway)
     setIsLoading(false)
   }
