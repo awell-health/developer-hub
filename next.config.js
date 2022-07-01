@@ -22,7 +22,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/playground/',
+        source: '/playground',
         destination: '/awell-orchestration/playground', // Matched parameters can be used in the destination
         permanent: true,
       },
