@@ -30,7 +30,7 @@ export const SEO = ({
       ? 'Awell Orchestration'
       : router.asPath.includes('awell-score')
       ? 'Awell Score'
-      : ''
+      : 'Developer Hub'
 
   const generatedTitle = `${title ? title + ' | ' : ''}${titleSuffix}`
 

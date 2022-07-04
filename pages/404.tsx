@@ -1,10 +1,12 @@
 import Link from 'next/link'
 
 import { Search } from '../src/components/Search'
+import { SEO } from '../src/components/SEO'
 
 export default function Custom404() {
   return (
     <div className="h-screen pt-16 pb-12 flex flex-col bg-white">
+      <SEO title="404" url="" preventCrawling={true} canonicalUrl="" />
       <main className="flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-16">
           <div className="text-center">
