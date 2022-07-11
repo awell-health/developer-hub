@@ -3,8 +3,6 @@ title: Integrations overview
 description: Learn about Awell's integration choices for orchestrating care flows
 ---
 
-## Intro
-
 Depending on your appetite, we provide ways to get care flows up and running from a one day effort to full integration. For context, please have a look at our [Domain model](/awell-orchestration/docs/getting-started/domain-model) to make sense of what's below.
 
 ## Integration choices
@@ -13,30 +11,128 @@ Depending on your appetite, we provide ways to get care flows up and running fro
 - Hosted activities
 - Full integration
 
-| (Image hosted pathways) | (Image hosted activities) | (Image full integration) |
-|---|---|---|
-| Hosted pathways | Hosted activities | Full integration |
-| Redirect users to an Awell pathway page without needing to build a front-end yourself. Ideal for patient onboarding flows.  | Send multiple stakeholders to an Awell-hosted page to complete activities in more elaborate pathways. Ideal for triage flows, outcomes / PROMs collection and more.  | Build your own UI on Awell Orchestration for full customization and flexibility. |
-| Effort: 1/5 | Effort: 2/5 | Effort: 3/5 |
+<div className="table-wrapper">
+  <table className="table-fixed ignore-default-style">
+    <thead>
+      <tr>
+        <th className="w-64">(Image hosted pathways)</th>
+        <th>(Image hosted activities)</th>
+        <th>(Image full integration)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hosted pathways</td>
+        <td>Hosted activities</td>
+        <td>Full integration</td>
+      </tr>
+      <tr>
+        <td className="w-64">
+          Redirect users to an Awell pathway page without needing to build a
+          front-end yourself. Ideal for patient onboarding flows.
+        </td>
+        <td className="w-64">
+          Send multiple stakeholders to an Awell-hosted page to complete
+          activities in more elaborate pathways. Ideal for triage flows,
+          outcomes / PROMs collection and more.
+        </td>
+        <td className="w-64">
+          Build your own UI on Awell Orchestration for full customization and
+          flexibility.
+        </td>
+      </tr>
+      <tr>
+        <td>Effort: 1/5</td>
+        <td>Effort: 2/5</td>
+        <td>Effort: 3/5</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Compare features and availability
+
 All integration types support building care flows with Awell Studio and data access through Elastic and Kibana. Read more about the [Awell ecosystem](/awell-orchestration/docs/getting-started/awell-ecosystem)
 
-| Feature | Hosted pathway | Hosted activity | Full integration |
-|:---|:---:|:---:|:---:|
-| Forms | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Messages | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Checklists | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Calculations | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| API calls | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Conditional transitions | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Scheduled steps | :no_entry_sign: | :white_check_mark: | :white_check_mark: |
-| Multiple stakeholders | :no_entry_sign: | :white_check_mark: | :white_check_mark: |
-| UI customization | Branding | Branding | Full |
-| Authentication | Light | Full | Full |
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th align="left">Feature</th>
+        <th align="center">Hosted pathway</th>
+        <th align="center">Hosted activity</th>
+        <th align="center">Full integration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td align="left">Forms</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+      </tr>
+      <tr>
+        <td align="left">Messages</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+      </tr>
+      <tr>
+        <td align="left">Checklists</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+      </tr>
+      <tr>
+        <td align="left">Calculations</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+      </tr>
+      <tr>
+        <td align="left">API calls</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+      </tr>
+      <tr>
+        <td align="left">Conditional transitions</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+      </tr>
+      <tr>
+        <td align="left">Scheduled steps</td>
+        <td align="center">⛔</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+      </tr>
+      <tr>
+        <td align="left">Multiple stakeholders</td>
+        <td align="center">⛔</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+      </tr>
+      <tr>
+        <td align="left">UI customization</td>
+        <td align="center">Branding</td>
+        <td align="center">Branding</td>
+        <td align="center">Full</td>
+      </tr>
+      <tr>
+        <td align="left">Authentication</td>
+        <td align="center">Light</td>
+        <td align="center">Full</td>
+        <td align="center">Full</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Compare use cases and effort
+
 ### Hosted pathway
+
 This integration is ideal to quickly set up patient onboarding ([see example](/awell-orchestration/examples/onboarding-pathway)) or collect forms such as intake forms, PROMs/PREMs and pre-consultation questionnaires.
 
 One engineer can set this integration up in less than a day. This makes it also ideal to test an end-to-end use case with Awell with minimal effort before considering other integration alternatives.
@@ -46,6 +142,7 @@ If your pathways are using scheduled steps to determine when activities are bein
 Learn how to set up a Hosted pathway integration
 
 ### Hosted activity
+
 Typical use cases supported by this integration are longitudinal outcomes (such as PROMs / PREMs) collection, triage & eligibility flows and clinicial decision support.
 
 This integration is more powerful, allowing the use of webhooks and taking full advantage of what Awell Studio has to offer. It is a good way to get the most out of the Awell platform with limited engineering effort.
@@ -55,6 +152,7 @@ UI customization is still limited with this integration. This is often enough fo
 Learn how to set up a Hosted activity integration
 
 ### Full integration
+
 This integration offers the full power of Awell orchestration while ensuring full flexibility to define the patient and care team experience. Use this when you develop and manage your own care team and patient apps and want to integrate activities from complex care flows such as care pathways seamlessly for your end users.
 
 Go through our [quickstart guide](/awell-orchestration/docs/tutorials/get-started-with-awell) to learn how to get started with Full integration
