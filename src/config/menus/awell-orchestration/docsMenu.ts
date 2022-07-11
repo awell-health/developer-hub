@@ -17,6 +17,10 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/getting-started/domain-model',
       },
       {
+        title: 'Integrations overview',
+        path: '/awell-orchestration/docs/getting-started/integrations-overview'
+      },
+      {
         title: 'Pathway versioning',
         path: '/awell-orchestration/docs/getting-started/pathway-versioning',
       },
