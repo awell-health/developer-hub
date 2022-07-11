@@ -52,6 +52,10 @@ export const docsMenu: MenuItemType[] = [
     title: 'Integrations',
     submenu: [
       {
+        title: 'Hosted pathway',
+        path: '/awell-orchestration/docs/integrations/hosted-pathway',
+      },
+      {
         title: 'Healthcare interoperability',
         path: '/awell-orchestration/docs/integrations/healthcare-interoperability',
       },
