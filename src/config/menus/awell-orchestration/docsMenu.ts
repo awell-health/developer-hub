@@ -56,6 +56,10 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/integrations/hosted-pathway',
       },
       {
+        title: 'Hosted activity',
+        path: '/awell-orchestration/docs/integrations/hosted-activity',
+      },
+      {
         title: 'Healthcare interoperability',
         path: '/awell-orchestration/docs/integrations/healthcare-interoperability',
       },
