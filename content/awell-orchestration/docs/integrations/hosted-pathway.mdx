@@ -1,0 +1,29 @@
+---
+title: Hosted pathway
+description: Get up and running with Awell Orchestration in less than a day
+---
+
+Continue reading if your goal is to set up an onboarding flow [see example](/awell-orchestration/examples/onboarding-pathway), collect forms such as intake forms, validated surveys, pre-consultation questionnaires or quickly set up a first integration with Awell Orchestration with minimal effort.
+
+## Integration
+Once your pathway is built and published, the only things you need to set up are:
+- Start a new pathway (see the [Start pathway](/awell-orchestration/api-reference/mutations/start-pathway) mutation in our API-reference)
+- We'll provide you with a unique URL
+- Redirect your user to the URL
+- Your user completes the activities in the flow
+- Redirect your user back to your website / app
+
+This means setting up only one API call.
+
+## FAQ
+**What about the patient?**
+
+You can start pathways for anonymous patients. Although you can choose to start a pathway for a known patient (see [Create patient](/awell-orchestration/api-reference/mutations/create-patient) this is not mandatory.
+
+**What about authentication?**
+
+Given that hosted pathways are only used to start new pathways and only allows users to submit data, there is no need to add authentication to that page. The URLs we provide have a short lifetime as a form of light authentication.
+
+**What about branding?**
+
+You have limited branding capabilities on Hosted pathway pages. For full control over your UI we recommend setting up a [Full integration](https://developers.awellhealth.com/awell-orchestration/docs/tutorials/get-started-with-awell).
