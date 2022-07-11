@@ -7,22 +7,17 @@ Continue reading if your goal is to set up an onboarding flow [see example](/awe
 
 ## Integration
 Once your pathway is built and published, the only things you need to set up are:
-- Start a new pathway (see the [Start pathway](/awell-orchestration/api-reference/mutations/start-pathway) mutation in our API-reference)
+- Start a new pathway through the orchestration API
 - We'll provide you with a unique URL
 - Redirect your user to the URL
-- Your user completes the activities in the flow
-- Redirect your user back to your website / app
+- Your user completes the activities in the care pathway
 
-This means setting up only one API call.
+When all activities are completed, your user will be redirected to the URL of your choice (provided in the start pathway API call).
 
 ## FAQ
 **What about the patient?**
 
 You can start pathways for anonymous patients. Although you can choose to start a pathway for a known patient (see [Create patient](/awell-orchestration/api-reference/mutations/create-patient) this is not mandatory.
-
-**What about authentication?**
-
-Given that hosted pathways are only used to start new pathways and only allows users to submit data, there is no need to add authentication to that page. The URLs we provide have a short lifetime as a form of light authentication.
 
 **What about branding?**
 
