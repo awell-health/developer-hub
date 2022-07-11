@@ -24,20 +24,19 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Editing files
 
-Most of the content is managed through [mdx files](https://mdxjs.com/) and these can be found in `/content/**/*`. Editing the markdown file, while automatically update the content.
+Most of the content is managed through [mdx files](https://mdxjs.com/) and these can be found in `/content/**/*`. Editing the markdown file will automatically update the content.
 
 **Pages that are not managed through mdx files are:**
 
-- [Schema page](https://developers.awellhealth.com/api-reference/overview/schema)
-- [Resources page](https://developers.awellhealth.com/resources)
-- [Support page](https://developers.awellhealth.com/support)
-- [Awell Studio docs page](https://developers.awellhealth.com/awell-studio-docs)
+- [Schema page](https://developers.awellhealth.com/awell-orchestration/api-reference/overview/schema)
+- [Support page](https://developers.awellhealth.com/awell-orchestration/support)
+- [Awell Studio docs page](https://developers.awellhealth.com/awell-orchestration/awell-studio-docs)
 
 If you'd like to edit these pages, see the corresponding `.jsx` files in the `/pages` directory.
 
 ### Adding a new page
 
-1. Create a `.mdx` file in the appropriate location (eg `/content/docs/getting-started/new-doc.mdx`)
+1. Create a `.mdx` file in the appropriate location (eg `/content/awell-orchestration/docs/getting-started/new-doc.mdx`)
 2. Add your new page to the menu, this is not done automatically! See `/src/config/menus/*.ts` and add your new page to the appropriate file: docsMenu if it's a documentation page and apiMenu if it's a page that belongs to the API reference.
 3. That's it!
 
