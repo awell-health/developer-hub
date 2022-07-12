@@ -18,11 +18,28 @@ export const docsMenu: MenuItemType[] = [
       },
       {
         title: 'Integrations overview',
-        path: '/awell-orchestration/docs/getting-started/integrations-overview'
+        path: '/awell-orchestration/docs/getting-started/integrations-overview',
       },
       {
         title: 'Pathway versioning',
         path: '/awell-orchestration/docs/getting-started/pathway-versioning',
+      },
+    ],
+  },
+  {
+    title: 'Use cases',
+    submenu: [
+      {
+        title: 'Hosted pathway',
+        path: '/awell-orchestration/docs/use-cases/hosted-pathway',
+      },
+      {
+        title: 'Hosted activity',
+        path: '/awell-orchestration/docs/use-cases/hosted-activity',
+      },
+      {
+        title: 'Custom integration',
+        path: '/awell-orchestration/docs/use-cases/custom-integration',
       },
     ],
   },
@@ -40,25 +57,8 @@ export const docsMenu: MenuItemType[] = [
     ],
   },
   {
-    title: 'Guides & Tutorials',
-    submenu: [
-      {
-        title: 'Get started with Awell',
-        path: '/awell-orchestration/docs/tutorials/get-started-with-awell',
-      },
-    ],
-  },
-  {
     title: 'Integrations',
     submenu: [
-      {
-        title: 'Hosted pathway',
-        path: '/awell-orchestration/docs/integrations/hosted-pathway',
-      },
-      {
-        title: 'Hosted activity',
-        path: '/awell-orchestration/docs/integrations/hosted-activity',
-      },
       {
         title: 'Healthcare interoperability',
         path: '/awell-orchestration/docs/integrations/healthcare-interoperability',

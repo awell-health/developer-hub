@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
-import { Button } from '../src/components/Button'
+import { LinkButton } from '../src/components/Button'
 import { HomeLayout } from '../src/components/Layouts'
 import { SEO } from '../src/components/SEO'
 import {
@@ -34,7 +34,7 @@ export default function Home() {
                 Integrate with Awell in less then a day
               </h2>
               <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
-                Get started with Awell in one API call with the{' '}
+                Get started with Awell with only one API call by using our{' '}
                 <strong>hosted pathway</strong> integration.
               </p>
               <div className="mt-2">
@@ -48,9 +48,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-4">
-                <Button
+                <LinkButton
                   label="Get started"
-                  onClick={() => true}
+                  href="/awell-orchestration/docs/use-cases/hosted-pathway"
                   size="sm"
                   color="sky"
                 />
@@ -78,7 +78,7 @@ export default function Home() {
             to a full custom integration.
           </p>
           <div className="grid grid-cols-3 gap-3 mt-4">
-            <Link href="#">
+            <Link href="/awell-orchestration/docs/use-cases/hosted-pathway">
               <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
@@ -112,7 +112,7 @@ export default function Home() {
                 </figure>
               </a>
             </Link>
-            <Link href="#">
+            <Link href="/awell-orchestration/docs/use-cases/hosted-activity">
               <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
@@ -146,7 +146,7 @@ export default function Home() {
                 </figure>
               </a>
             </Link>
-            <Link href="#">
+            <Link href="/awell-orchestration/docs/use-cases/custom-integration">
               <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
