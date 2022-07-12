@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
+import { Button } from '../src/components/Button'
 import { HomeLayout } from '../src/components/Layouts'
 import { SEO } from '../src/components/SEO'
 import {
@@ -16,9 +17,9 @@ export default function Home() {
         url="/"
         canonicalUrl="/"
       />
-      <div className="relative max-w-5xl mx-auto pt-4 md:pt-8 lg:pt-16 px-4 sm:px-6 md:px-8">
+      <div className="relative max-w-5xl mx-auto pt-4 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-8">
         <div>
-          <h1 className="text-slate-900 font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight dark:text-white">
+          <h1 className="text-slate-900 font-extrabold text-xl sm:text-2xl lg:text-3xl tracking-tight dark:text-white">
             Documentation
           </h1>
           <p className="mt-2 text-xl text-slate-600 dark:text-slate-400">
@@ -26,11 +27,165 @@ export default function Home() {
             integrating with Awell.
           </p>
         </div>
+        <div className="mt-12 flex">
+          <div className="w-7/12">
+            <div className="w-full lg:w-11/12">
+              <h2 className="text-slate-900 text-xl lg:text-2xl font-bold dark:text-white m-0 p-0">
+                Integrate with Awell in less then a day
+              </h2>
+              <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
+                Get started with Awell in one API call with the{' '}
+                <strong>hosted pathway</strong> integration.
+              </p>
+              <div className="mt-2">
+                <div className="font-semibold">Effort:</div>
+                <div className="flex pt-1">
+                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                </div>
+              </div>
+              <div className="mt-4">
+                <Button
+                  label="Get started"
+                  onClick={() => true}
+                  size="sm"
+                  color="sky"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-5/12">
+            <figure className="w-full flex flex-col justify-center text-center">
+              <div>
+                <img
+                  src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/hosted_pathway_vis.png"
+                  alt="Hosted Pathway"
+                  className="w-full mx-auto bg-[#001A44] dark:bg-transparent rounded-lg"
+                />
+              </div>
+            </figure>
+          </div>
+        </div>
         <div className="mt-12">
-          <h5 className="text-slate-900 text-2xl lg:text-3xl font-bold dark:text-white">
+          <h2 className="text-slate-900 text-xl lg:text-2xl font-bold dark:text-white m-0 p-0">
+            All integration use cases
+          </h2>
+          <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
+            Select the use case that fits you best. From almost writing no code
+            to a full custom integration.
+          </p>
+          <div className="grid grid-cols-3 gap-3 mt-4">
+            <Link href="#">
+              <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
+                <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+                <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+                  <img
+                    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+                    alt=""
+                    className="w-full sm:w-11/12 hidden"
+                  />
+                  <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+                    <div>
+                      <h3 className="font-semibold dark:text-sky-400">
+                        Hosted pathways
+                      </h3>
+                      <span className="pt-3">
+                        Redirect users to an Awell pathway page without needing
+                        to build a front-end yourself. Ideal for patient
+                        onboarding flows.
+                      </span>
+                    </div>
+                    <div className="mt-auto">
+                      <div className="pt-3">Effort:</div>
+                      <div className="flex pt-1">
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </a>
+            </Link>
+            <Link href="#">
+              <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
+                <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+                <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+                  <img
+                    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+                    alt=""
+                    className="w-full sm:w-11/12 hidden"
+                  />
+                  <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+                    <div>
+                      <h3 className="font-semibold dark:text-sky-400">
+                        Hosted activity page
+                      </h3>
+                      <span className="pt-3">
+                        Send multiple stakeholders to an Awell-hosted page to
+                        complete activities in more elaborate pathways. Ideal
+                        for triage flows, outcomes / PROMs collection and more.
+                      </span>
+                    </div>
+                    <div className="mt-auto">
+                      <div className="pt-3">Effort:</div>
+                      <div className="flex pt-1">
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </a>
+            </Link>
+            <Link href="#">
+              <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
+                <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+                <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+                  <img
+                    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+                    alt=""
+                    className="w-full sm:w-11/12 hidden"
+                  />
+                  <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+                    <div>
+                      <h3 className="font-semibold dark:text-sky-400">
+                        Custom integration
+                      </h3>
+                      <span className="pt-3">
+                        Build your own UI on Awell Orchestration for full
+                        customization and flexibility.
+                      </span>
+                    </div>
+                    <div className="mt-auto">
+                      <div className="pt-3">Effort:</div>
+                      <div className="flex pt-1">
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </a>
+            </Link>
+          </div>
+        </div>
+        <div className="mt-12">
+          <h2 className="text-slate-900 text-xl lg:text-2xl font-bold dark:text-white">
             Browse by product
-          </h5>
-          <div className="grid gap-6 mx-auto mt-8 md:grid-cols-2">
+          </h2>
+          <div className="grid gap-6 mx-auto mt-4 md:grid-cols-2">
             <Link href={awellOrchestrationHomePage} passHref>
               <div className="grid items-center grid-flow-col p-4 drop-shadow-sm bg-blue-50 rounded-2xl dark:bg-blue-200 cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-300">
                 <div className="flex justify-center flex-col max-w-[354px] mx-auto py-12">
