@@ -43,8 +43,8 @@ export const Header = () => {
   return (
     <>
       <div className="sticky top-0 z-40 w-full backdrop-blur flex-none lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 bg-white supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75">
-        <div className="container">
-          <div className="py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
+        <div className="py-4">
+          <div className="container">
             <div className="relative flex items-center">
               <Link href="/">
                 <a
@@ -106,123 +106,124 @@ export const Header = () => {
               <MobileMainMenu onClick={toggleMobileMainMenu} />
             </div>
           </div>
-          <div className="hidden lg:block">
-            <div className="lg:px-8 mx-4 lg:mx-0">
-              <div className="flex space-between">
-                <div>
-                  <ul className="flex">
-                    <li className="mr-8">
-                      <Link href={'/'}>
-                        <a
-                          title="Home"
-                          className={`block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
-                            router.asPath === '/'
-                              ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
-                              : ''
-                          }`}
-                        >
-                          Home
-                        </a>
-                      </Link>
-                    </li>
-                    <li className="mr-8">
-                      <Link href={awellOrchestrationHomePage}>
-                        <a
-                          title="Awell Orchestration"
-                          className={`block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
-                            router.asPath.includes('awell-orchestration')
-                              ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
-                              : ''
-                          }`}
-                        >
-                          Awell Orchestration
-                        </a>
-                      </Link>
-                    </li>
-                    <li className="mr-8">
-                      <Link href={awellScoreHomePage}>
-                        <a
-                          title="Awell Score"
-                          className={`block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
-                            router.asPath.includes('awell-score')
-                              ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
-                              : ''
-                          }`}
-                        >
-                          Awell Score
-                        </a>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ml-auto">
-                  <ul className="flex">
-                    <li>
-                      <Link href="https://www.awellhealth.com/">
-                        <a
-                          title="Home"
-                          target="_blank"
-                          className="block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400"
-                        >
-                          Awell Website
-                        </a>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
+        </div>
+        <div className="border-b border-slate-900/10 lg:border-0 dark:border-slate-300/10"></div>
+        <div className="hidden lg:block">
+          <div className="container">
+            <div className="flex space-between">
+              <div>
+                <ul className="flex">
+                  <li className="mr-8">
+                    <Link href={'/'}>
+                      <a
+                        title="Home"
+                        className={`block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
+                          router.asPath === '/'
+                            ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
+                            : ''
+                        }`}
+                      >
+                        Home
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mr-8">
+                    <Link href={awellOrchestrationHomePage}>
+                      <a
+                        title="Awell Orchestration"
+                        className={`block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
+                          router.asPath.includes('awell-orchestration')
+                            ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
+                            : ''
+                        }`}
+                      >
+                        Awell Orchestration
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mr-8">
+                    <Link href={awellScoreHomePage}>
+                      <a
+                        title="Awell Score"
+                        className={`block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
+                          router.asPath.includes('awell-score')
+                            ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
+                            : ''
+                        }`}
+                      >
+                        Awell Score
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="ml-auto">
+                <ul className="flex">
+                  <li>
+                    <Link href="https://www.awellhealth.com/">
+                      <a
+                        title="Home"
+                        target="_blank"
+                        className="block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400"
+                      >
+                        Awell Website
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-          <div className="flex items-center p-4 border-b border-slate-900/10 lg:hidden dark:border-slate-50/[0.06]">
-            <button
-              type="button"
-              onClick={() => toggleMobileSideMenu()}
-              className="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
-            >
-              <span className="sr-only">Navigation</span>
-              <svg width={24} height={24}>
-                <path
-                  d="M5 6h14M5 12h14M5 18h14"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-            {breadcrumb && (
-              <ol className="ml-4 flex text-sm leading-6 whitespace-nowrap min-w-0">
-                {breadcrumb.map((breadcrumbItem, index) => (
-                  <li
-                    key={index}
-                    className={`flex items-center ${
-                      breadcrumb.length - 1 === index
-                        ? 'font-semibold text-slate-900 truncate dark:text-slate-200'
-                        : ''
-                    }`}
-                  >
-                    {breadcrumbItem.label}
-                    {breadcrumb.length - 1 !== index && (
-                      <svg
-                        width={3}
-                        height={6}
-                        aria-hidden="true"
-                        className="mx-3 overflow-visible text-slate-400"
-                      >
-                        <path
-                          d="M0 0L3 3L0 6"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            )}
-          </div>
+        </div>
+        <div className="flex items-center p-4 border-b border-slate-900/10 lg:hidden dark:border-slate-50/[0.06]">
+          <button
+            type="button"
+            onClick={() => toggleMobileSideMenu()}
+            className="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+          >
+            <span className="sr-only">Navigation</span>
+            <svg width={24} height={24}>
+              <path
+                d="M5 6h14M5 12h14M5 18h14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+          {breadcrumb && (
+            <ol className="ml-4 flex text-sm leading-6 whitespace-nowrap min-w-0">
+              {breadcrumb.map((breadcrumbItem, index) => (
+                <li
+                  key={index}
+                  className={`flex items-center ${
+                    breadcrumb.length - 1 === index
+                      ? 'font-semibold text-slate-900 truncate dark:text-slate-200'
+                      : ''
+                  }`}
+                >
+                  {breadcrumbItem.label}
+                  {breadcrumb.length - 1 !== index && (
+                    <svg
+                      width={3}
+                      height={6}
+                      aria-hidden="true"
+                      className="mx-3 overflow-visible text-slate-400"
+                    >
+                      <path
+                        d="M0 0L3 3L0 6"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  )}
+                </li>
+              ))}
+            </ol>
+          )}
         </div>
       </div>
     </>

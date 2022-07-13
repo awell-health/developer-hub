@@ -17,7 +17,7 @@ export default function Home() {
         url="/"
         canonicalUrl="/"
       />
-      <div className="relative max-w-5xl mx-auto pt-4 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-8">
+      <div className="relative max-w-6xl mx-auto pt-4 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-8">
         <div>
           <h1 className="text-slate-900 font-extrabold text-xl sm:text-2xl lg:text-3xl tracking-tight dark:text-white">
             Documentation
@@ -179,6 +179,14 @@ export default function Home() {
                 </figure>
               </a>
             </Link>
+          </div>
+          <div className="mt-4 mx-auto text-center">
+            <LinkButton
+              label="Compare use cases"
+              href={'/awell-orchestration/use-cases'}
+              size="lg"
+              color="slate"
+            />
           </div>
         </div>
         <div className="mt-12">

@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
 import React, { ReactNode, useCallback, useEffect, useState } from 'react'
+import slugify from 'slugify'
 
 import { type MenuType } from '../../types/menu.types'
+import { TableOfContentsType } from '../../types/toc.types'
 
 interface AppContextStateType {
   menu: MenuType
@@ -10,6 +12,8 @@ interface AppContextStateType {
   setMenu: (menu: MenuType) => void
   toggleMobileMainMenu: () => void
   toggleMobileSideMenu: () => void
+  tableOfContents: TableOfContentsType | null
+  setTableOfContents: (content: string) => void
 }
 
 const initialState: AppContextStateType = {
@@ -19,6 +23,8 @@ const initialState: AppContextStateType = {
   setMenu: () => null,
   toggleMobileMainMenu: () => null,
   toggleMobileSideMenu: () => null,
+  tableOfContents: null,
+  setTableOfContents: () => null,
 }
 
 export const AppContext = React.createContext<AppContextStateType>(initialState)
@@ -33,6 +39,9 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const [isMobileSideMenuOpen, setIsSideMobileMenuOpen] = useState<boolean>(
     initialState.isMobileSideMenuOpen
   )
+  const [toc, setToc] = useState<TableOfContentsType | null>(
+    initialState.tableOfContents
+  )
   const [isMobileMainMenuOpen, setIsMainMobileMenuOpen] = useState<boolean>(
     initialState.isMobileMainMenuOpen
   )
@@ -46,6 +55,35 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     setIsMainMobileMenuOpen(!isMobileMainMenuOpen)
 
   const setMenu = (menu: MenuType) => setNewMenu(menu)
+
+  const setTableOfContents = (content: string) => {
+    const regexp = new RegExp(/^(### |## )(.*)\n/, 'gm')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    const headings = [...content.matchAll(regexp)]
+
+    let tableOfContents: TableOfContentsType = []
+
+    if (headings.length) {
+      tableOfContents = headings.map((heading) => {
+        const headingText = heading[2].trim()
+        const headingLevel = heading[1].trim() === '##' ? 'h2' : 'h3'
+        const headingLink = slugify(headingText, { lower: true, strict: true })
+
+        return {
+          title: headingText,
+          link: `#${headingLink}`,
+          level: headingLevel,
+        }
+      })
+
+      console.log(tableOfContents)
+
+      setToc(tableOfContents)
+    } else {
+      setToc(null)
+    }
+  }
 
   const hideMenu = useCallback(() => {
     setIsSideMobileMenuOpen(false)
@@ -69,6 +107,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         toggleMobileSideMenu,
         toggleMobileMainMenu,
         isMobileMainMenuOpen,
+        tableOfContents: toc,
+        setTableOfContents,
       }}
     >
       {children}

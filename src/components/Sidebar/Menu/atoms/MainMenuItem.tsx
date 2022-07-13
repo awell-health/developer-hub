@@ -22,7 +22,7 @@ export const MainMenuItem = ({
         title={label}
         target={openInNewTab ? '_blank' : ''}
         className={clsx(
-          'pb-2 lg:pb-0 text-lg lg:text-sm group flex items-center lg:leading-6 mb-4 font-semibold',
+          'pb-2 lg:pb-0 text-lg lg:text-base group flex items-center lg:leading-6 mb-4 lg:mb-5 font-semibold',
           active
             ? 'text-sky-500 dark:text-sky-400'
             : 'text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-30'
