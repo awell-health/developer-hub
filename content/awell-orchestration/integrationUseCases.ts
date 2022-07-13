@@ -61,7 +61,7 @@ export const sections: SectionType[] = [
         },
       },
       {
-        name: 'API clal actions',
+        name: 'API call actions',
         tiers: {
           'Hosted pathway': true,
           'Hosted activity': true,
