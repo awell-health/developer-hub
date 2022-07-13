@@ -2,19 +2,15 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { type MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { ParsedUrlQuery } from 'querystring'
-import { ReactNode } from 'react'
+import { ReactNode, useContext, useEffect } from 'react'
 
 import { DocsHeader } from '../../../src/components/Docs/atoms'
 import { DocsLayout } from '../../../src/components/Layouts'
 import { QuickNav } from '../../../src/components/QuickNavigation'
 import { SEO } from '../../../src/components/SEO'
-import { TOC } from '../../../src/components/TOC'
 import { mdxComponents, mdxOptions } from '../../../src/config/mdx'
-import {
-  useHeading,
-  useQuickNavigation,
-  useTableOfContents,
-} from '../../../src/hooks/'
+import { AppContext } from '../../../src/contexts/app/AppContext'
+import { useHeading, useQuickNavigation } from '../../../src/hooks/'
 import {
   getAllOrchestrationDocs,
   getOrchestrationDoc,
@@ -40,7 +36,11 @@ export default function DocsPage({
 }: DocsPageProps) {
   const { heading } = useHeading()
   const { next, prev } = useQuickNavigation(slug)
-  const { toc } = useTableOfContents(content)
+  const { setTableOfContents } = useContext(AppContext)
+
+  useEffect(() => {
+    setTableOfContents(content)
+  }, [slug])
 
   return (
     <div>
@@ -62,19 +62,11 @@ export default function DocsPage({
           }}
         />
       )}
-      <div>
-        <div id="content-wrapper">
-          <MDXRemote {...mdxSource} components={mdxComponents} />
-        </div>
-        <div className="mt-12">
-          <QuickNav prev={prev} next={next} />
-        </div>
+      <div id="content-wrapper">
+        <MDXRemote {...mdxSource} components={mdxComponents} />
       </div>
-      <div className="fixed z-20 top-[6.5rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto hidden xl:block">
-        <h5 className="text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
-          On this page
-        </h5>
-        <TOC toc={toc} />
+      <div className="mt-12">
+        <QuickNav prev={prev} next={next} />
       </div>
     </div>
   )

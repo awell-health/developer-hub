@@ -9,34 +9,32 @@ import { SEO } from '../../src/components/SEO'
 
 export default function Community() {
   return (
-    <>
+    <div>
       <SEO
         title="Awell Studio docs"
         url={`/awell-orchestration/awell-studio-docs`}
         canonicalUrl={`/awell-orchestration/awell-studio-docs`}
       />
-      <div className="max-w-3xl mx-auto xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
-        <DocsHeader
-          heading="Awell Studio docs"
-          title="Articles on using Awell Studio"
-        />
-        <div id="content-wrapper">
-          <p>
-            Need help with using Awell Studio to build your care pathway? Or
-            maybe you want to get familiar with the basic concepts and building
-            blocks of our Studio? Check out our{' '}
-            <a
-              href="https://help.awellhealth.com/en/"
-              title="Awell Help Center"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Help center
-            </a>{' '}
-            containing articles on building your care pathway and courses to
-            build your first pathway.
-          </p>
-        </div>
+      <DocsHeader
+        heading="Awell Studio docs"
+        title="Articles on using Awell Studio"
+      />
+      <div id="content-wrapper">
+        <p>
+          Need help with using Awell Studio to build your care pathway? Or maybe
+          you want to get familiar with the basic concepts and building blocks
+          of our Studio? Check out our{' '}
+          <a
+            href="https://help.awellhealth.com/en/"
+            title="Awell Help Center"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Help center
+          </a>{' '}
+          containing articles on building your care pathway and courses to build
+          your first pathway.
+        </p>
       </div>
       <div className="-mx-4 p-4 pb-10 bg-slate-50 flex flex-col-reverse items-start sm:mx-0 sm:p-10 sm:rounded-2xl xl:flex-row dark:bg-slate-800/50">
         <div className="flex-auto">
@@ -62,7 +60,7 @@ export default function Community() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

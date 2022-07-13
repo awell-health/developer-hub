@@ -7,155 +7,114 @@ Depending on your appetite, we provide ways to get care flows up and running fro
 
 ## Integration choices
 
-<div className="grid grid-cols-3 gap-3">
-  <figure className="flex flex-col justify-start">
-    <img
-      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
-      alt=""
-      className="w-full sm:w-11/12 hidden"
-    />
-    <figcaption className="dark:text-slate-400 pt-1">
-      <div className="font-semibold dark:text-sky-400">Hosted pathways</div>
-      <span className="pt-3">
-        Redirect users to an Awell pathway page without needing to build a
-        front-end yourself. Ideal for patient onboarding flows.
-      </span>
-      <div className="pt-3">Effort:</div>
-      <div className="flex pt-1">
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-      </div>
-    </figcaption>
-  </figure>
-  <figure className="flex flex-col justify-start">
-    <img
-      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
-      alt=""
-      className="w-full sm:w-11/12 hidden"
-    />
-    <figcaption className="dark:text-slate-400 pt-1">
-      <div className="font-semibold dark:text-sky-400">
-        Hosted activity page
-      </div>
-      <span className="pt-3">
-        Send multiple stakeholders to an Awell-hosted page to complete
-        activities in more elaborate pathways. Ideal for triage flows, outcomes
-        / PROMs collection and more.
-      </span>
-      <div className="pt-3">Effort:</div>
-      <div className="flex pt-1">
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-      </div>
-    </figcaption>
-  </figure>
-  <figure className="flex flex-col justify-start">
-    <img
-      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
-      alt=""
-      className="w-full sm:w-11/12 hidden"
-    />
-    <figcaption className="dark:text-slate-400 pt-1">
-      <div className="font-semibold dark:text-sky-400">Custom integration</div>
-      <span className="pt-3">
-        Build your own UI on Awell Orchestration for full customization and
-        flexibility.
-      </span>
-      <div className="pt-3">Effort:</div>
-      <div className="flex pt-1">
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-      </div>
-    </figcaption>
-  </figure>
+<div className="reset-styles grid lg:grid-cols-3 gap-3 mt-4">
+  <a
+    href="/awell-orchestration/docs/use-cases/hosted-pathway"
+    className="custom-link block group relative rounded-xl border border-slate-200 dark:border-slate-800"
+  >
+    <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+    <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+        alt=""
+        className="w-full sm:w-11/12 hidden"
+      />
+      <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+        <div>
+          <h3 className="font-semibold dark:text-sky-400">Hosted pathways</h3>
+          <span className="pt-3">
+            Redirect users to an Awell pathway page without needing to build a
+            front-end yourself. Ideal for patient onboarding flows.
+          </span>
+        </div>
+        <div className="mt-auto">
+          <div className="pt-3">Effort:</div>
+          <div className="flex pt-1">
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+          </div>
+        </div>
+      </figcaption>
+    </figure>
+  </a>
+  <a
+    href="/awell-orchestration/docs/use-cases/hosted-activity"
+    className="custom-link block group relative rounded-xl border border-slate-200 dark:border-slate-800"
+  >
+    <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+    <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+        alt=""
+        className="w-full sm:w-11/12 hidden"
+      />
+      <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+        <div>
+          <h3 className="font-semibold dark:text-sky-400">Hosted activity</h3>
+          <span className="pt-3">
+            Send multiple stakeholders to an Awell-hosted page to complete
+            activities in more elaborate pathways. Ideal for triage flows,
+            outcomes / PROMs collection and more.
+          </span>
+        </div>
+        <div className="mt-auto">
+          <div className="pt-3">Effort:</div>
+          <div className="flex pt-1">
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+          </div>
+        </div>
+      </figcaption>
+    </figure>
+  </a>
+  <a
+    href="/awell-orchestration/docs/use-cases/custom-integration"
+    className="custom-link block group relative rounded-xl border border-slate-200 dark:border-slate-800"
+  >
+    <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+    <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+        alt=""
+        className="w-full sm:w-11/12 hidden"
+      />
+      <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+        <div>
+          <h3 className="font-semibold dark:text-sky-400">
+            Custom integration
+          </h3>
+          <span className="pt-3">
+            Build your own UI on Awell Orchestration for full customization and
+            flexibility.
+          </span>
+        </div>
+        <div className="mt-auto">
+          <div className="pt-3">Effort:</div>
+          <div className="flex pt-1">
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+            <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+          </div>
+        </div>
+      </figcaption>
+    </figure>
+  </a>
 </div>
 
 ## Compare features and availability
 
 All integration types support building care flows with Awell Studio and data access through Elastic and Kibana. Read more about the [Awell ecosystem](/awell-orchestration/docs/getting-started/awell-ecosystem)
 
-<div className="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th align="left">Feature</th>
-        <th align="center">Hosted pathway</th>
-        <th align="center">Hosted activity</th>
-        <th align="center">Full integration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td align="left">Forms</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-      </tr>
-      <tr>
-        <td align="left">Messages</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-      </tr>
-      <tr>
-        <td align="left">Checklists</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-      </tr>
-      <tr>
-        <td align="left">Calculations</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-      </tr>
-      <tr>
-        <td align="left">API calls</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-      </tr>
-      <tr>
-        <td align="left">Conditional transitions</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-      </tr>
-      <tr>
-        <td align="left">Scheduled steps</td>
-        <td align="center">⛔</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-      </tr>
-      <tr>
-        <td align="left">Multiple stakeholders</td>
-        <td align="center">⛔</td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
-      </tr>
-      <tr>
-        <td align="left">UI customization</td>
-        <td align="center">Branding</td>
-        <td align="center">Branding</td>
-        <td align="center">Full</td>
-      </tr>
-      <tr>
-        <td align="left">Authentication</td>
-        <td align="center">Light</td>
-        <td align="center">Full</td>
-        <td align="center">Full</td>
-      </tr>
-    </tbody>
-  </table>
+<div className="mb-12">
+  <UseCasesComparisonTable />
 </div>
 
 ## Compare use cases and effort
