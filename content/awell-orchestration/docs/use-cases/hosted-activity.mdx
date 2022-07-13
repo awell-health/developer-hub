@@ -14,3 +14,29 @@ This integration enables you to orchestrate activities over time for multiple st
 - Proactively request pending activities for a specific stakeholder at any time
 
 Optionally, you can set up an integration with Elastic to access your data.
+
+## Differences hosted pathway
+
+- Timings: basically multiple "hosted pathways" throughout time
+  - Client needs to know when sth new in pathway has been activated
+- Multiple stakeholders
+
+```js
+careSession = Awell::Activity::Session.create({
+  pathway_id: 'XYZ', // or activity id?
+  activity_id: 'ABC', // if there are consequtive activities for the same stakeholder we don't want 2 sessions as that's not great UX
+  stakeholder: 'patient',
+  success_url: YOUR_DOMAIN + '/success.html',
+  cancel_url: YOUR_DOMAIN + '/cancel.html',
+})
+
+browseTo(careSession.url)
+```
+
+Q: when does the session end?
+A: when there are no pending activities anymore, pathway is completed, or manually cancelled
+
+Q: will hosted activity be the same SPA as hosted pathway?
+A: Yes, but probably different route
+
+## Sequence

@@ -536,6 +536,7 @@ export type Mutation = {
   submitFormResponse: SubmitFormResponsePayload;
   updateBaselineInfo: EmptyPayload;
   updatePatient: UpdatePatientPayload;
+  updatePatientLanguage: UpdatePatientLanguagePayload;
 };
 
 
@@ -626,6 +627,11 @@ export type MutationUpdateBaselineInfoArgs = {
 
 export type MutationUpdatePatientArgs = {
   input: UpdatePatientInput;
+};
+
+
+export type MutationUpdatePatientLanguageArgs = {
+  input: UpdatePatientLanguageInput;
 };
 
 export type NumberArrayFilter = {
@@ -1304,6 +1310,17 @@ export type UpdateBaselineInfoInput = {
 export type UpdatePatientInput = {
   patient_id: Scalars['String'];
   profile: PatientProfileInput;
+};
+
+export type UpdatePatientLanguageInput = {
+  preferred_language: Scalars['String'];
+};
+
+export type UpdatePatientLanguagePayload = Payload & {
+  __typename?: 'UpdatePatientLanguagePayload';
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
+  user?: Maybe<User>;
 };
 
 export type UpdatePatientPayload = Payload & {

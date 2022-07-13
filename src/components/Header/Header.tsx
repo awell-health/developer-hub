@@ -160,6 +160,17 @@ export const Header = () => {
               <div className="ml-auto">
                 <ul className="flex">
                   <li>
+                    <Link href="https://awellhealth.statuspage.io/">
+                      <a
+                        title="Home"
+                        target="_blank"
+                        className="mr-8 block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400"
+                      >
+                        System status
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="https://www.awellhealth.com/">
                       <a
                         title="Home"
