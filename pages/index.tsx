@@ -51,7 +51,7 @@ export default function Home() {
                 <LinkButton
                   label="Get started"
                   href="/awell-orchestration/docs/use-cases/hosted-pathway"
-                  size="sm"
+                  size="base"
                   color="sky"
                 />
               </div>
