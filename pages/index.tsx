@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 import { LinkButton } from '../src/components/Button'
 import { HomeLayout } from '../src/components/Layouts'
 import { SEO } from '../src/components/SEO'
+import { Effort } from '../src/components/UseCasesComparisonTable/atoms/Effort'
 import {
   awellOrchestrationHomePage,
   awellScoreHomePage,
@@ -39,12 +40,8 @@ export default function Home() {
               </p>
               <div className="mt-2">
                 <div className="font-semibold">Effort:</div>
-                <div className="flex pt-1">
-                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-                  <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                <div className="pt-1">
+                  <Effort effort={1} />
                 </div>
               </div>
               <div className="mt-4">
@@ -100,12 +97,8 @@ export default function Home() {
                     </div>
                     <div className="mt-auto">
                       <div className="pt-3">Effort:</div>
-                      <div className="flex pt-1">
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                      <div className="pt-1">
+                        <Effort effort={1} />
                       </div>
                     </div>
                   </figcaption>
@@ -134,12 +127,8 @@ export default function Home() {
                     </div>
                     <div className="mt-auto">
                       <div className="pt-3">Effort:</div>
-                      <div className="flex pt-1">
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                      <div className="pt-1">
+                        <Effort effort={1} />
                       </div>
                     </div>
                   </figcaption>
@@ -167,12 +156,8 @@ export default function Home() {
                     </div>
                     <div className="mt-auto">
                       <div className="pt-3">Effort:</div>
-                      <div className="flex pt-1">
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-sky-400"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
-                        <div className="w-2.5 h-2.5 mr-1.5 rounded-full bg-slate-300"></div>
+                      <div className="pt-1">
+                        <Effort effort={1} />
                       </div>
                     </div>
                   </figcaption>
