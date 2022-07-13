@@ -7,13 +7,14 @@ import {
   sections,
   tiers,
 } from '../../../content/awell-orchestration/integrationUseCases'
+import { Effort } from './atoms'
 
 export const UseCasesComparisonTable = () => {
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto bg-white">
         {/* xs to lg */}
-        <div className="max-w-2xl mx-auto space-y-16 lg:hidden">
+        <div className="mx-auto space-y-16 xl:hidden">
           {tiers.map((tier, tierIdx) => (
             <section key={tier.name}>
               <div className="px-4 mb-8">
@@ -21,6 +22,12 @@ export const UseCasesComparisonTable = () => {
                   {tier.name}
                 </h2>
                 <p className="mt-4 text-sm text-gray-500">{tier.description}</p>
+                <div>
+                  <div className="font-semibold pb-2">Effort:</div>
+                  <div>
+                    <Effort effort={tier.effort} />
+                  </div>
+                </div>
               </div>
 
               {sections.map((section) => (
@@ -104,7 +111,7 @@ export const UseCasesComparisonTable = () => {
         </div>
 
         {/* lg+ */}
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <table className="w-full h-px table-fixed ignore-default-style">
             <caption className="sr-only">Pricing plan comparison</caption>
             <thead>
@@ -141,6 +148,21 @@ export const UseCasesComparisonTable = () => {
                       <p className="text-sm text-gray-500">
                         {tier.description}
                       </p>
+                    </div>
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <th
+                  className="py-8 px-6 text-sm font-medium text-gray-900 text-left align-top"
+                  scope="row"
+                >
+                  Effort
+                </th>
+                {tiers.map((tier) => (
+                  <td key={tier.name} className="h-full py-4 px-6 align-top">
+                    <div className="relative h-full flex items-center justify-center">
+                      <Effort effort={tier.effort} />
                     </div>
                   </td>
                 ))}
@@ -208,7 +230,7 @@ export const UseCasesComparisonTable = () => {
                   <td key={tier.name} className="pt-5 px-6">
                     <a
                       href={tier.href}
-                      className="block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
+                      className="custom-link block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
                     >
                       More information
                     </a>

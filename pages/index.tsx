@@ -27,9 +27,9 @@ export default function Home() {
             integrating with Awell.
           </p>
         </div>
-        <div className="mt-12 flex">
-          <div className="w-7/12">
-            <div className="w-full lg:w-11/12">
+        <div className="mt-12 flex flex-col md:flex-row">
+          <div className="md:w-7/12">
+            <div className="w-full md:w-11/12">
               <h2 className="text-slate-900 text-xl lg:text-2xl font-bold dark:text-white m-0 p-0">
                 Integrate with Awell in less then a day
               </h2>
@@ -57,13 +57,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="w-5/12">
+          <div className="mt-8 md:mt-0 md:w-5/12">
             <figure className="w-full flex flex-col justify-center text-center">
               <div>
                 <img
                   src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/hosted_pathway_vis.png"
                   alt="Hosted Pathway"
-                  className="w-full mx-auto bg-[#001A44] dark:bg-transparent rounded-lg"
+                  className="w-full max-w-[460px] md:max-w-none mx-auto bg-[#001A44] rounded-lg"
                 />
               </div>
             </figure>
@@ -77,7 +77,7 @@ export default function Home() {
             Select the use case that fits you best. From almost writing no code
             to a full custom integration.
           </p>
-          <div className="grid grid-cols-3 gap-3 mt-4">
+          <div className="grid md:grid-cols-3 gap-3 mt-4">
             <Link href="/awell-orchestration/docs/use-cases/hosted-pathway">
               <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
@@ -124,7 +124,7 @@ export default function Home() {
                   <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
                     <div>
                       <h3 className="font-semibold dark:text-sky-400">
-                        Hosted activity page
+                        Hosted activity
                       </h3>
                       <span className="pt-3">
                         Send multiple stakeholders to an Awell-hosted page to
@@ -183,7 +183,9 @@ export default function Home() {
           <div className="mt-4 mx-auto text-center">
             <LinkButton
               label="Compare use cases"
-              href={'/awell-orchestration/use-cases'}
+              href={
+                '/awell-orchestration/docs/getting-started/integrations-overview'
+              }
               size="lg"
               color="slate"
             />
