@@ -34,25 +34,53 @@
 }
 
 #content-wrapper ol {
-  @apply list-decimal;
+  @apply list-none;
 }
 
-#content-wrapper ul {
+#content-wrapper ul:not(.code-block ul) {
   @apply list-disc;
 }
 
-#content-wrapper ol,
-#content-wrapper ul {
+#content-wrapper ol:not(.code-block ol),
+#content-wrapper ul:not(.code-block ul) {
   @apply sm:text-lg pl-8 mb-6 leading-7 dark:text-slate-400;
 }
 
-#content-wrapper ol li,
-#content-wrapper ul li {
+#content-wrapper ol.no-pl,
+#content-wrapper ul.no-pl {
+  @apply pl-0;
+}
+
+#content-wrapper ol:not(.code-block ol) li,
+#content-wrapper ul:not(.code-block ul) li {
   @apply mb-2 pl-2;
+}
+
+#content-wrapper ol:not(.code-block ol) li {
+  counter-increment: step-counter;
+}
+
+#content-wrapper ol:not(.code-block ol) li:before {
+  content: counter(step-counter);
+  @apply text-sm inline-block bg-slate-200 text-slate-600 rounded-full font-medium mr-4 px-2 py-0.5;
 }
 
 #content-wrapper p {
   @apply sm:text-lg my-6 leading-7 dark:text-slate-400;
+}
+
+#content-wrapper blockquote {
+  @apply border-l-2 border-sky-500 pl-6 my-6 dark:border-sky-400 break-words;
+}
+
+#content-wrapper blockquote p {
+  @apply py-2;
+  margin: 0;
+}
+
+#content-wrapper blockquote code {
+  font-size: 0.8rem !important;
+  line-height: 1.5rem !important;
 }
 
 #content-wrapper code {
@@ -68,18 +96,4 @@
 #content-wrapper code:before,
 #content-wrapper code:after {
   content: '`';
-}
-
-#content-wrapper blockquote {
-  @apply border-l-2 border-sky-500 pl-6 my-6 dark:border-sky-400 break-words;
-}
-
-#content-wrapper blockquote p {
-  @apply py-2;
-  margin: 0;
-}
-
-#content-wrapper blockquote code {
-  font-size: 0.8rem !important;
-  line-height: 1.5rem !important;
 }

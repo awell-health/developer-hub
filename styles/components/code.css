@@ -1,21 +1,21 @@
 pre.prism-code {
-  @apply border border-slate-200 bg-slate-50 p-4 rounded-lg dark:bg-proseBg dark:border-none overflow-x-auto;
+  @apply bg-slate-800 p-4 overflow-x-auto;
 }
 
 .withCollapseExpandButton pre.prism-code {
   @apply pb-12;
 }
 
-.dark pre {
-  color: #fff;
-}
-
-.dark pre.prism-code {
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+pre {
+  @apply text-slate-50;
 }
 
 .CodeLine {
-  display: table-row;
+  @apply min-w-full;
+}
+
+.HighlightedCodeLine {
+  @apply -mx-4 pl-3 pr-5 border-l-4 border-sky-400 bg-sky-300/[0.15];
 }
 
 .CodeLineNumber {
@@ -24,6 +24,7 @@ pre.prism-code {
   padding-right: 1em;
   user-select: none;
   opacity: 0.5;
+  @apply text-slate-400 w-10;
 }
 
 .CodeLineContent {

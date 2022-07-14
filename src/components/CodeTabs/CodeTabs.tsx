@@ -1,0 +1,57 @@
+import React, { ReactElement, useState } from 'react'
+
+import { CopyButton } from '../Button/variants'
+import { CodeTab } from './atoms'
+import { type CodeBlockProps } from './atoms/CodeBlock'
+
+interface CodeTabsProps {
+  children: Array<ReactElement<CodeBlockProps>>
+}
+
+export const CodeTabs = ({ children }: CodeTabsProps) => {
+  const [activeTab, setActiveTab] = useState(children[0].props.fileName)
+
+  const onTabClick = (tabLabel: string) => {
+    setActiveTab(tabLabel)
+  }
+
+  return (
+    <div className="code-block relative z-10 -ml-10 col-span-3 bg-slate-800 rounded-xl shadow-lg xl:ml-0 dark:shadow-none dark:ring-1 dark:ring-inset dark:ring-white/10">
+      <div className="relative flex text-slate-400 text-xs leading-6">
+        <ul className="flex">
+          {children.map((child) => {
+            const label = child.props.fileName
+
+            return (
+              <CodeTab
+                isActive={activeTab === label}
+                key={label}
+                label={label}
+                onClick={onTabClick}
+              />
+            )
+          })}
+        </ul>
+        <div className="flex-auto flex pt-2 rounded-tr-xl overflow-hidden">
+          <div className="flex-auto -mr-px bg-slate-700/50 border border-slate-500/30 rounded-tl" />
+        </div>
+        <div className="absolute top-2 right-0 h-8 flex items-center pr-4">
+          <div className="relative flex -mr-2">
+            <CopyButton
+              content={
+                children.find((child) => child.props.fileName == activeTab)
+                  ?.props.code || ''
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <div className="relative">
+        {children.map((child) => {
+          if (child.props.fileName !== activeTab) return undefined
+          return child
+        })}
+      </div>
+    </div>
+  )
+}

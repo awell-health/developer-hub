@@ -14,3 +14,5 @@ export type SectionType = {
     }
   }>
 }
+
+export type LanguagesType = Array<{ label: string; disabled: boolean }>

@@ -71,14 +71,19 @@ All `in` filters accept a list of values and result in an `is any of` search cri
 
 When specifying multiple filters, the resulting criteria is the conjuction of all filters.
 
-```json
-{
-  "national_registry_number": "{{ NRNN }}",
-  "patient_code": "{{ PATIENT_CODE }}",
-  "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
-  ...
-}
-```
+<code className="language-json" highlightedRows={[2, 3, 4]}>
+  {`
+  {
+    "national_registry_number": "{{ NRNN }}",
+    "patient_code": "{{ PATIENT_CODE }}",
+    "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
+    "offset": 0,
+    "count": 20,
+    "sort_field": "last_name",
+    "sort_direction": "desc"
+  }
+  `}
+</code>
 
 ### Pagination and sorting
 
@@ -86,12 +91,15 @@ Pagination and sorting are highly recommended. Not using pagination means that t
 
 Default sorting is based on the `last_name` field, sorted ascending. Only top-level patient profile fields can be used for sorting (e.g. `birth_date`, `sex`, `patient_code`).
 
-```json
-{
-  ...,
-  "offset": 0, // the number of records that need to be skipped
-  "count": 20, // the number of results, also known as limit
-  "sort_field": "last_name",
-  "sort_direction": "asc"
-}
-```
+<code className="language-json" highlightedRows={[5, 6, 7, 8]}>
+  {`
+  {
+    "national_registry_number": "{{ NRNN }}",
+    "patient_code": "{{ PATIENT_CODE }}",
+    "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
+    "offset": 0, // the number of records that need to be skipped
+    "count": 20,  // the number of results, also known as limit
+    "sort_field": "last_name",
+    "sort_direction": "desc"
+  }`}
+</code>
