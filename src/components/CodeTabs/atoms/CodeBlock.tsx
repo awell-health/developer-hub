@@ -24,15 +24,9 @@ export const CodeBlock = ({
   const [code] = Array.isArray(children) ? children : [children]
   const [showExpandCollapseButton, setShowExpandeCollapseButton] =
     useState<boolean>(false)
-  const [allHighlightedRows, setAllHighlightedRows] = useState<number[]>(
-    arrayOfNumbersBasedOnRanges(highlightedRows)
-  )
   const [showAll, setIsShowAll] = useState<boolean>(true)
 
-  useEffect(() => {
-    setAllHighlightedRows(arrayOfNumbersBasedOnRanges(highlightedRows))
-    console.log(allHighlightedRows)
-  }, [highlightedRows])
+  const allHighlightedRows = arrayOfNumbersBasedOnRanges(highlightedRows)
 
   const toggleShowAll = () => setIsShowAll(!showAll)
 
