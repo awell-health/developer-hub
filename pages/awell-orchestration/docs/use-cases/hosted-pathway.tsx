@@ -179,7 +179,7 @@ export default function HostedPathwayPage() {
             </div>
           </div>
           <div className="flex gap-8">
-            <div className="w-4/12 flex flex-col gap-4">
+            <div className="w-5/12 flex flex-col gap-4">
               <div
                 onMouseEnter={() => setFrontEndHighlights([[3, 9], [35]])}
                 onMouseLeave={() => setFrontEndHighlights([])}
@@ -235,7 +235,7 @@ export default function HostedPathwayPage() {
                 </div>
               </div>
             </div>
-            <div className="w-6/12">
+            <div className="w-7/12">
               <CodeTabs>
                 <CodeBlock
                   language="jsx"
@@ -298,7 +298,7 @@ export default function App() {
             </div>
           </div>
           <div className="flex gap-8">
-            <div className="w-4/12 flex flex-col gap-4">
+            <div className="w-5/12 flex flex-col gap-4">
               <div
                 onMouseEnter={() => setBackEndHighlights([[2]])}
                 onMouseLeave={() => setBackEndHighlights([])}
@@ -418,7 +418,7 @@ export default function App() {
                 </div>
               </div>
             </div>
-            <div className="w-6/12">
+            <div className="w-7/12">
               <CodeTabs>
                 <CodeBlock
                   language="js"
