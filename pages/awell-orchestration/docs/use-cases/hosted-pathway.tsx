@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ReactNode, useState } from 'react'
 
 import { Alert } from '../../../../src/components/Alert'
-import { Button } from '../../../../src/components/Button'
+import { LinkButton } from '../../../../src/components/Button'
 import { CodeTabs } from '../../../../src/components/CodeTabs'
 import { CodeBlock } from '../../../../src/components/CodeTabs/atoms'
 import { DocsHeader } from '../../../../src/components/Docs/atoms'
@@ -531,14 +531,14 @@ app.listen(4242, () => console.log('Running on port 4242'));
                     <strong>Try it out</strong>
                   </p>
                   <p>
-                    Click the button below to be redirected to the Awell hosted
-                    pathway page.
+                    Click the button below to see a working example of the
+                    hosted pathway page.
                   </p>
                   <div className="mt-4">
-                    <Button
-                      label="Start pathway session"
+                    <LinkButton
+                      label="Try it out"
                       color="sky"
-                      onClick={() => alert('Coming soon!')}
+                      href="/awell-orchestration/examples/hosted-pathway"
                     />
                   </div>
                 </div>
