@@ -340,29 +340,29 @@ export default function App() {
                   </p>
                   <p className="mt-4">
                     <strong>Resources:</strong>
-                    <ul className="list-disc ml-4">
-                      <li>
-                        <Link href="/awell-orchestration/api-reference/overview/authorization">
-                          <a
-                            title="Get your API key"
-                            className="text-sky-500 underline"
-                          >
-                            Get your API key
-                          </a>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="https://developers.awellhealth.com/awell-orchestration/api-reference/queries/get-published-pathways">
-                          <a
-                            title="Get pathway definition ids"
-                            className="text-sky-500 underline"
-                          >
-                            Get pathway definition ids
-                          </a>
-                        </Link>
-                      </li>
-                    </ul>
                   </p>
+                  <ul className="list-disc ml-4">
+                    <li>
+                      <Link href="/awell-orchestration/api-reference/overview/authorization">
+                        <a
+                          title="Get your API key"
+                          className="text-sky-500 underline"
+                        >
+                          Get your API key
+                        </a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="https://developers.awellhealth.com/awell-orchestration/api-reference/queries/get-published-pathways">
+                        <a
+                          title="Get pathway definition ids"
+                          className="text-sky-500 underline"
+                        >
+                          Get pathway definition ids
+                        </a>
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <div
@@ -395,9 +395,9 @@ export default function App() {
                     </strong>
                   </p>
                   <p>
-                    We want to show something to the client when they get
-                    redirected back to the application. In this case, we show a
-                    simple message.
+                    Specify what pathway needs to be started as well as the
+                    start and cancel URLs. Make sure these URLs are publicly
+                    accessible so Awell can redirect clients to them.
                   </p>
                 </div>
               </div>
