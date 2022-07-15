@@ -128,7 +128,7 @@ export default function Home() {
                     <div className="mt-auto">
                       <div className="pt-3">Effort:</div>
                       <div className="pt-1">
-                        <Effort effort={1} />
+                        <Effort effort={2} />
                       </div>
                     </div>
                   </figcaption>
@@ -157,7 +157,7 @@ export default function Home() {
                     <div className="mt-auto">
                       <div className="pt-3">Effort:</div>
                       <div className="pt-1">
-                        <Effort effort={1} />
+                        <Effort effort={3} />
                       </div>
                     </div>
                   </figcaption>

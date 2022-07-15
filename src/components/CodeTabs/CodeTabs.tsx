@@ -5,11 +5,17 @@ import { CodeTab } from './atoms'
 import { type CodeBlockProps } from './atoms/CodeBlock'
 
 interface CodeTabsProps {
-  children: Array<ReactElement<CodeBlockProps>>
+  children: ReactElement<CodeBlockProps> | Array<ReactElement<CodeBlockProps>>
 }
 
 export const CodeTabs = ({ children }: CodeTabsProps) => {
-  const [activeTab, setActiveTab] = useState(children[0].props.fileName)
+  const [activeTab, setActiveTab] = useState(
+    Array.isArray(children)
+      ? children[0].props.fileName
+      : children.props.fileName
+  )
+
+  const childrenAsArray = Array.isArray(children) ? children : [children]
 
   const onTabClick = (tabLabel: string) => {
     setActiveTab(tabLabel)
@@ -19,7 +25,7 @@ export const CodeTabs = ({ children }: CodeTabsProps) => {
     <div className="code-block relative z-10 -ml-10 col-span-3 bg-slate-800 rounded-xl shadow-lg xl:ml-0 dark:shadow-none dark:ring-1 dark:ring-inset dark:ring-white/10">
       <div className="relative flex text-slate-400 text-xs leading-6">
         <ul className="flex">
-          {children.map((child) => {
+          {childrenAsArray.map((child) => {
             const label = child.props.fileName
 
             return (
@@ -39,15 +45,16 @@ export const CodeTabs = ({ children }: CodeTabsProps) => {
           <div className="relative flex -mr-2">
             <CopyButton
               content={
-                children.find((child) => child.props.fileName == activeTab)
-                  ?.props.code || ''
+                childrenAsArray.find(
+                  (child) => child.props.fileName == activeTab
+                )?.props.children || ''
               }
             />
           </div>
         </div>
       </div>
       <div className="relative">
-        {children.map((child) => {
+        {childrenAsArray.map((child) => {
           if (child.props.fileName !== activeTab) return undefined
           return child
         })}

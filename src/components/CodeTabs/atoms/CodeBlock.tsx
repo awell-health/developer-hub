@@ -1,48 +1,111 @@
 import Highlight, { defaultProps } from 'prism-react-renderer'
+import { useEffect, useState } from 'react'
 
 import { darkTheme } from '../../../config/prism'
+import { arrayOfNumbersBasedOnRanges } from '../../../utils/array/arrayOfNumbersBasedOnRanges'
+import { ExpandCollapseButton } from '../../Docs/atoms/Code/atoms/ExandCollapseButton'
 
 export type CodeBlockProps = {
   fileName: string
-  code: string
   language: string
-  highlightedRows?: number[]
+  highlightedRows?: Array<number[]>
+  numberOfLinesPreview?: number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children: any
 }
 
 export const CodeBlock = ({
   fileName,
-  code,
+  children,
   language,
+  numberOfLinesPreview = 999,
   highlightedRows = [],
 }: CodeBlockProps) => {
+  const [code] = Array.isArray(children) ? children : [children]
+  const [showExpandCollapseButton, setShowExpandeCollapseButton] =
+    useState<boolean>(false)
+  const [allHighlightedRows, setAllHighlightedRows] = useState<number[]>(
+    arrayOfNumbersBasedOnRanges(highlightedRows)
+  )
+  const [showAll, setIsShowAll] = useState<boolean>(true)
+
+  useEffect(() => {
+    setAllHighlightedRows(arrayOfNumbersBasedOnRanges(highlightedRows))
+    console.log(allHighlightedRows)
+  }, [highlightedRows])
+
+  const toggleShowAll = () => setIsShowAll(!showAll)
+
+  useEffect(() => {
+    const numberOfLines = code.split(/\r\n|\r|\n/).length
+
+    if (numberOfLines > numberOfLinesPreview) {
+      setShowExpandeCollapseButton(true)
+      setIsShowAll(false)
+    }
+  }, [code])
+
   return (
-    // @ts-expect-error not sure how to fix the types
-    <Highlight
-      {...defaultProps}
-      theme={darkTheme}
-      code={code.trim()}
-      language={language}
+    <div
+      className={`${fileName} relative ${
+        showExpandCollapseButton ? 'withCollapseExpandButton' : ''
+      }`}
     >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre id={fileName} className={className} style={style}>
-          {tokens.map((line, i) => (
-            <div
-              key={i}
-              {...getLineProps({ line, key: i })}
-              className={`CodeLine ${
-                highlightedRows.includes(i + 1) ? 'HighlightedCodeLine' : ''
-              }`}
-            >
-              <span className="CodeLineNumber">{i + 1}</span>
-              <span className="CodeLineContent">
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
+      {/* @ts-expect-error not sure how to type */}
+      <Highlight
+        {...defaultProps}
+        theme={darkTheme}
+        code={children.trim()}
+        language={language}
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className} style={style}>
+            {showAll
+              ? tokens.map((line, i) => (
+                  <div
+                    key={i}
+                    {...getLineProps({ line, key: i })}
+                    className={`CodeLine ${
+                      allHighlightedRows.includes(i + 1)
+                        ? 'HighlightedCodeLine'
+                        : ''
+                    }`}
+                  >
+                    <span className="CodeLineNumber">{i + 1}</span>
+                    <span className="CodeLineContent">
+                      {line.map((token, key) => (
+                        <span key={key} {...getTokenProps({ token, key })} />
+                      ))}
+                    </span>
+                  </div>
+                ))
+              : tokens.slice(0, numberOfLinesPreview).map((line, i) => (
+                  <div
+                    key={i}
+                    {...getLineProps({ line, key: i })}
+                    className={`CodeLine ${
+                      allHighlightedRows.includes(i + 1)
+                        ? 'HighlightedCodeLine'
+                        : ''
+                    }`}
+                  >
+                    <span className="CodeLineNumber">{i + 1}</span>
+                    <span className="CodeLineContent">
+                      {line.map((token, key) => (
+                        <span key={key} {...getTokenProps({ token, key })} />
+                      ))}
+                    </span>
+                  </div>
                 ))}
-              </span>
-            </div>
-          ))}
-        </pre>
+          </pre>
+        )}
+      </Highlight>
+      {showExpandCollapseButton && (
+        <ExpandCollapseButton
+          onClick={toggleShowAll}
+          expanded={showAll ? true : false}
+        />
       )}
-    </Highlight>
+    </div>
   )
 }

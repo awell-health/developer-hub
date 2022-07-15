@@ -46,6 +46,10 @@
   @apply sm:text-lg pl-8 mb-6 leading-7 dark:text-slate-400;
 }
 
+#content-wrapper ol:not(.code-block ol) {
+  @apply pl-0;
+}
+
 #content-wrapper ol.no-pl,
 #content-wrapper ul.no-pl {
   @apply pl-0;
@@ -58,14 +62,15 @@
 
 #content-wrapper ol:not(.code-block ol) li {
   counter-increment: step-counter;
+  @apply relative pl-10;
 }
 
-#content-wrapper ol:not(.code-block ol) li:before {
+#content-wrapper ol:not(.code-block ol) li:after {
   content: counter(step-counter);
-  @apply text-sm inline-block bg-slate-200 text-slate-600 rounded-full font-medium mr-4 px-2 py-0.5;
+  @apply text-sm inline-block bg-slate-200 text-slate-600 rounded-full font-medium mr-4 px-2 py-0.5 absolute left-0 top-0.5;
 }
 
-#content-wrapper p {
+#content-wrapper p:not(.alert p) {
   @apply sm:text-lg my-6 leading-7 dark:text-slate-400;
 }
 
