@@ -183,11 +183,11 @@ export default function HostedPathwayPage() {
               <div
                 onMouseEnter={() => setFrontEndHighlights([[3, 9], [35]])}
                 onMouseLeave={() => setFrontEndHighlights([])}
-                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left"
+                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
               >
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>Add a start pathway button</strong>
                   </p>
                   <p>
@@ -199,11 +199,11 @@ export default function HostedPathwayPage() {
               <div
                 onMouseEnter={() => setFrontEndHighlights([[11, 13], [33]])}
                 onMouseLeave={() => setFrontEndHighlights([])}
-                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left"
+                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
               >
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>
                       Show a message when client is redirected back
                     </strong>
@@ -218,11 +218,11 @@ export default function HostedPathwayPage() {
               <div
                 onMouseEnter={() => setFrontEndHighlights([[18, 30]])}
                 onMouseLeave={() => setFrontEndHighlights([])}
-                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left"
+                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
               >
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>
                       Check if there is a redirect back from Hosted Pathway
                     </strong>
@@ -302,11 +302,11 @@ export default function App() {
               <div
                 onMouseEnter={() => setBackEndHighlights([[2]])}
                 onMouseLeave={() => setBackEndHighlights([])}
-                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left"
+                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
               >
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>Install node-fetch library</strong>
                   </p>
                   <p>
@@ -326,11 +326,11 @@ export default function App() {
               <div
                 onMouseEnter={() => setBackEndHighlights([[7, 10]])}
                 onMouseLeave={() => setBackEndHighlights([])}
-                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left"
+                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
               >
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>Configure variables</strong>
                   </p>
                   <p>
@@ -368,11 +368,11 @@ export default function App() {
               <div
                 onMouseEnter={() => setBackEndHighlights([[30, 46]])}
                 onMouseLeave={() => setBackEndHighlights([])}
-                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left"
+                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
               >
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>Create a pathway session</strong>
                   </p>
                   <p>
@@ -385,11 +385,11 @@ export default function App() {
               <div
                 onMouseEnter={() => setBackEndHighlights([[39, 43]])}
                 onMouseLeave={() => setBackEndHighlights([])}
-                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left"
+                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
               >
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>
                       Define pathway to start, success and cancel URLs
                     </strong>
@@ -404,11 +404,11 @@ export default function App() {
               <div
                 onMouseEnter={() => setBackEndHighlights([[48]])}
                 onMouseLeave={() => setBackEndHighlights([])}
-                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left"
+                className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
               >
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>Redirect to Hosted Pathway page</strong>
                   </p>
                   <p>
@@ -496,10 +496,10 @@ app.listen(4242, () => console.log('Running on port 4242'));
           </div>
           <div className="flex gap-8">
             <div className="max-w-4xl flex flex-col gap-4">
-              <div className="relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left">
+              <div className="relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600">
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>Run the application</strong>
                   </p>
                   <p>
@@ -515,10 +515,10 @@ app.listen(4242, () => console.log('Running on port 4242'));
                   </p>
                 </div>
               </div>
-              <div className="relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left">
+              <div className="relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600">
                 <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
                 <div className="relative">
-                  <p className="text-slate-700 mb-2">
+                  <p className="text-slate-700 dark:text-slate-200 mb-2">
                     <strong>Try it out</strong>
                   </p>
                   <p>
