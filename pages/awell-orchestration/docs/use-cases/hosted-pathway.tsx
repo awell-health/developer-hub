@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ReactNode, useState } from 'react'
 
+import { Alert } from '../../../../src/components/Alert'
 import { Button } from '../../../../src/components/Button'
 import { CodeTabs } from '../../../../src/components/CodeTabs'
 import { CodeBlock } from '../../../../src/components/CodeTabs/atoms'
@@ -482,6 +483,14 @@ app.listen(4242, () => console.log('Running on port 4242'));
                 </CodeBlock>
               </CodeTabs>
             </div>
+          </div>
+          <div className="mt-8">
+            <Alert type="info" title="Awell Node library">
+              <p>
+                We are working on an Awell Node library that you can install to
+                make it even more easy to access the Awell API functionalities.
+              </p>
+            </Alert>
           </div>
         </div>
         {/* Test */}
