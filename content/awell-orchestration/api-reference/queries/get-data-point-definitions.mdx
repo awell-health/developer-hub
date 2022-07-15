@@ -54,25 +54,10 @@ query GetPathwayDataPointDefinitions(
 
 A `release_id` needs to be specified in order to retrieve the data dictionary for a pathway.
 
-```json
+<code className="language-json" highlightedRows={[2]}>
+  {`
 {
   "release_id": "{{ RELEASE_ID }}",
-  ...
-}
-```
-
-### Filters
-
-All filter values are optional, if you don't provide any filter all data points for the pathway will be returned.
-Sending an empty filter will result in a search for the matching field to be empty.
-
-All `in` filters accept a list of values and result in an `is any of` search criteria.
-
-When specifying multiple filters, the resulting criteria is the conjuction of all filters.
-
-```json
-{
-  ...,
   "category": [
     "CALCULATION",
     "FORM",
@@ -83,4 +68,31 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
   ],
   "value_type": ["BOOLEAN", "DATE", "NUMBER", "NUMBERS_ARRAY", "STRING"]
 }
-```
+  `}
+</code>
+
+### Filters
+
+All filter values are optional, if you don't provide any filter all data points for the pathway will be returned.
+Sending an empty filter will result in a search for the matching field to be empty.
+
+All `in` filters accept a list of values and result in an `is any of` search criteria.
+
+When specifying multiple filters, the resulting criteria is the conjuction of all filters.
+
+<code className="language-json" highlightedRows={[3, 4, 5, 6, 7, 8, 9, 10, 11]}>
+  {`
+{
+  "release_id": "{{ RELEASE_ID }}",
+  "category": [
+    "CALCULATION",
+    "FORM",
+    "PATIENT_PROFILE",
+    "PATHWAY",
+    "TRACK",
+    "STEP"
+  ],
+  "value_type": ["BOOLEAN", "DATE", "NUMBER", "NUMBERS_ARRAY", "STRING"]
+}
+  `}
+</code>

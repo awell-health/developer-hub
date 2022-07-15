@@ -1,3 +1,6 @@
+/**
+ * Note: lightTheme is not used
+ */
 export const lightTheme = {
   plain: {
     color: 'currentColor',
@@ -81,8 +84,7 @@ export const lightTheme = {
 
 export const darkTheme = {
   plain: {
-    color: 'currentColor',
-    backgroundColor: '#060F2F',
+    backgroundColor: 'inherit',
   },
   styles: [
     {
