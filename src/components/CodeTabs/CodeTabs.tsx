@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 
 import { CopyButton } from '../Button/variants'
 import { CodeTab } from './atoms'
@@ -6,14 +6,21 @@ import { type CodeBlockProps } from './atoms/CodeBlock'
 
 interface CodeTabsProps {
   children: ReactElement<CodeBlockProps> | Array<ReactElement<CodeBlockProps>>
+  selectedTab?: string
 }
 
-export const CodeTabs = ({ children }: CodeTabsProps) => {
+export const CodeTabs = ({ selectedTab, children }: CodeTabsProps) => {
   const [activeTab, setActiveTab] = useState(
     Array.isArray(children)
       ? children[0].props.fileName
       : children.props.fileName
   )
+
+  useEffect(() => {
+    if (selectedTab) {
+      setActiveTab(selectedTab)
+    }
+  }, [selectedTab])
 
   const childrenAsArray = Array.isArray(children) ? children : [children]
 

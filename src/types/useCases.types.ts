@@ -15,4 +15,9 @@ export type SectionType = {
   }>
 }
 
-export type LanguagesType = Array<{ label: string; disabled: boolean }>
+export type LanguageType = { label: string; disabled: boolean }
+
+export type StackType = {
+  frontEnd: LanguageType
+  backEnd: LanguageType[]
+}
