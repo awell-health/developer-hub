@@ -126,8 +126,8 @@ export default function HostedPathwayPage() {
             </li>
             <li>
               When the pathway is completed, a webhook (
-              <code>pathway.session.completed</code>) is triggered to let you
-              know the pathway is completed.
+              <code>pathway.completed</code>) is triggered to let you know the
+              pathway is completed.
             </li>
           </ol>
           <figure className="w-full flex flex-col justify-center text-center pt-4">
