@@ -134,7 +134,7 @@ export default function HostedPathwayPage() {
             <img
               src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/Sequence_Diagram_Template_Community.png"
               alt="Pathway versioning"
-              className="rounded-lg w-full sm:w-9/12 mx-auto"
+              className="rounded-lg w-full sm:w-11/12 mx-auto"
             />
             <figcaption className="dark:text-slate-400 pt-1">
               Hosted pathway lifecycle © Awell Health
