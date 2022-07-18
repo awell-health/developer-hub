@@ -1098,12 +1098,6 @@ AWELL_API_KEY=YOUR_API_KEY
               answer:
                 'By default, sessions expire after 15 minutes but the timer is reset after every completion of an activity. A session also expires when the pathway is completed.',
             },
-            {
-              question:
-                'What happens if the session expires and the user is still completing the pathway?',
-              answer:
-                "When the user is currently on the hosted pathway page and the session expires, he or she will still be able to complete activities in a pathway. It's only when a user tries to browse to an expired hosted pathway session url that they won't have access anymore.",
-            },
           ]}
         />
       </div>
