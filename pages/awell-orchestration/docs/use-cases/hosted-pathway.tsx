@@ -777,13 +777,13 @@ app.post('/start-pathway-session', async (req, res) => {
     body: {
       query,
       variables: {
-        $pathway_definition_id: PATHWAY_DEFINITION_ID,
-        $success_url: ${
+        pathway_definition_id: PATHWAY_DEFINITION_ID,
+        success_url: ${
           frontEnd === 'HTML'
             ? '`${YOUR_DOMAIN}/success.html`'
             : '`${YOUR_DOMAIN}?success=true`'
         },
-        $cancel_url: ${
+        cancel_url: ${
           frontEnd === 'HTML'
             ? '`${YOUR_DOMAIN}/cancel.html`'
             : '`${YOUR_DOMAIN}?canceled=true`'
@@ -955,7 +955,7 @@ export default async function handler(req, res) {
         body: {
           query: query,
           variables: {
-            $pathway_definition_id: PATHWAY_DEFINITION_ID,
+            pathway_definition_id: PATHWAY_DEFINITION_ID,
             success_url: ${'`${req.headers.origin}'}/?success=true${'`'},
             cancel_url: ${'`${req.headers.origin}'}/?canceled=true${'`'},
           },
