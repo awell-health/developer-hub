@@ -1,5 +1,5 @@
-import { type StackType } from '../../../types/useCases.types'
-import { CardSelector } from '../CardSelector'
+import { type StackType } from '../../types/useCases.types'
+import { CardSelector } from './atoms'
 
 interface StackSelectorProps {
   selectedStack: {

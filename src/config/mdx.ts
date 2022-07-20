@@ -1,6 +1,7 @@
 import rehypeSlug from 'rehype-slug'
 
 import { Code, CustomH2, CustomH3 } from '../../src/components/Docs/atoms'
+import { HowToUse } from '../components/HowToUse'
 import { UseCasesComparisonTable } from '../components/UseCasesComparisonTable'
 import { Effort } from '../components/UseCasesComparisonTable/atoms'
 
@@ -18,4 +19,5 @@ export const mdxComponents = {
   code: Code,
   UseCasesComparisonTable,
   Effort,
+  HowToUse,
 }

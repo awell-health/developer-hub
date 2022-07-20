@@ -15,7 +15,7 @@ import { DocsHeader } from '../../../../src/components/Docs/atoms'
 import { FAQ } from '../../../../src/components/FAQ'
 import { DocsLayoutWithoutToc } from '../../../../src/components/Layouts'
 import { SEO } from '../../../../src/components/SEO'
-import { StackSelector } from '../../../../src/components/UseCases/StackSelector'
+import { StackSelector } from '../../../../src/components/StackSelector'
 import { useStack } from '../../../../src/hooks/useStack'
 
 export default function HostedPathwayPage() {
