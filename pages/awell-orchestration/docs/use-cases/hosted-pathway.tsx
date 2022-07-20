@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
 
@@ -96,11 +97,15 @@ export default function HostedPathwayPage() {
             </li>
           </ol>
           <figure className="w-full flex flex-col justify-center text-center pt-4">
-            <img
-              src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/Sequence_Diagram_Template_Community.png"
-              alt="Pathway versioning"
-              className="rounded-lg w-full sm:w-11/12 mx-auto"
-            />
+            <div className="w-full sm:w-11/12 mx-auto text-center">
+              <Image
+                src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658318620/Developer%20portal/hosted-pathway-sequence-diagram.png"
+                alt="Hosted pathway sequence diagram"
+                className="rounded-lg"
+                width="5408"
+                height="3606"
+              />
+            </div>
             <figcaption className="dark:text-slate-400 pt-1">
               Hosted pathway lifecycle © Awell Health
             </figcaption>
