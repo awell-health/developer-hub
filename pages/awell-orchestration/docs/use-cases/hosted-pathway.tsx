@@ -138,6 +138,27 @@ export default function HostedPathwayPage() {
               for a guide on creating such a pathway.
             </li>
           </ol>
+          <h3>Webhooks (optional):</h3>
+          <p>
+            <strong>
+              You can configure Webhooks to get notified when a pathway is
+              started and/or completed.
+            </strong>{' '}
+            Webhooks are configured on a per pathway basis via the pathway
+            settings so if you want to receive webhooks for these events, you
+            will have to configure them via the pathway settings.
+          </p>
+          <div className="mb-12">
+            <Alert title="Configure webhooks" type="info">
+              Click{' '}
+              <Link href="https://help.awellhealth.com/en/articles/6103339-configure-a-webhook">
+                <a title="Configure webhooks" target="_blank">
+                  here
+                </a>
+              </Link>{' '}
+              for more information on how to configure Webhooks on pathways.
+            </Alert>
+          </div>
         </div>
       </div>
       {/* Guide section */}
