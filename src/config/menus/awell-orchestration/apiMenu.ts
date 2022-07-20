@@ -231,6 +231,16 @@ export const apiMenu: MenuItemType[] = [
         path: '/awell-orchestration/api-reference/webhooks/data-point-collected',
         badge: badges.datapoint,
       },
+      {
+        title: 'Pathway started',
+        path: '/awell-orchestration/api-reference/webhooks/pathway-started',
+        badge: badges.activity,
+      },
+            {
+        title: 'Pathway completed',
+        path: '/awell-orchestration/api-reference/webhooks/pathway-completed',
+        badge: badges.activity,
+      },
     ],
   },
 ]
