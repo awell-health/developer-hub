@@ -29,7 +29,7 @@ export const CodeTabs = ({ selectedTab, children }: CodeTabsProps) => {
   }
 
   return (
-    <div className="code-block relative z-10 -ml-10 col-span-3 bg-slate-800 rounded-xl shadow-lg xl:ml-0 dark:shadow-none dark:ring-1 dark:ring-inset dark:ring-white/10">
+    <div className="code-block relative z-10 col-span-3 bg-slate-800 rounded-xl shadow-lg xl:ml-0 dark:shadow-none dark:ring-1 dark:ring-inset dark:ring-white/10">
       <div className="relative flex text-slate-400 text-xs leading-6">
         <ul className="flex">
           {childrenAsArray.map((child) => {

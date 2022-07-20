@@ -1,7 +1,10 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
 import { LinkButton } from '../src/components/Button'
+import { CodeTabs } from '../src/components/CodeTabs'
+import { CodeBlock } from '../src/components/CodeTabs/atoms'
 import { HomeLayout } from '../src/components/Layouts'
 import { SEO } from '../src/components/SEO'
 import { Effort } from '../src/components/UseCasesComparisonTable/atoms/Effort'
@@ -55,15 +58,44 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 md:mt-0 md:w-5/12">
-            <figure className="w-full flex flex-col justify-center text-center">
-              <div>
-                <img
-                  src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/hosted_pathway_vis.png"
-                  alt="Hosted Pathway"
-                  className="w-full max-w-[460px] md:max-w-none mx-auto bg-[#001A44] rounded-lg"
-                />
+            <div className="relative">
+              <div className="z-10">
+                <CodeTabs>
+                  <CodeBlock
+                    language="graphql"
+                    fileName="graphql"
+                    highlightedRows={[[19]]}
+                  >
+                    {`
+mutation CreatePathwaySession(
+  $pathway_id: String!
+  $success_url: String!
+  $cancel_url: String!
+) {
+  createPathwaySession(
+    pathway_id: $pathway_id
+    success_url: $pathway_id
+    cancel_url: $pathway_id
+  ) {
+    session_url
+  }
+}
+              `}
+                  </CodeBlock>
+                </CodeTabs>
               </div>
-            </figure>
+              <figure className="absolute z-20 -bottom-8 right-0 xl:-right-12">
+                <div className="w-full max-w-[200px] ">
+                  <Image
+                    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658316163/Developer%20portal/hosted-pathway.png"
+                    alt="Hosted Pathway"
+                    className="rounded-lg"
+                    width="553"
+                    height="840"
+                  />
+                </div>
+              </figure>
+            </div>
           </div>
         </div>
         <div className="mt-12">
