@@ -18,7 +18,7 @@ export const useHeading = (): { heading: string } => {
     const subMenu = menuSection?.submenu || []
 
     return subMenu.some((subMenuItem) =>
-      subMenuItem.path.includes(router.asPath)
+      router.asPath.includes(subMenuItem.path)
     )
   })
 
