@@ -12,8 +12,17 @@ interface HowToUseProps {
 }
 
 export const HowToUse = ({ stories }: HowToUseProps) => {
+  const MIN_COLUMNS = 2
+  const MAX_COLUMNS = 3
+  const columns =
+    stories.length === 1
+      ? MIN_COLUMNS
+      : stories.length > MAX_COLUMNS
+      ? MIN_COLUMNS
+      : stories.length
+
   return (
-    <div className={`grid md:grid-cols-${stories.length} gap-4`}>
+    <div className={`grid md:grid-cols-${columns} gap-4`}>
       {stories.map((story) => (
         <Link href={story.url} key={story.title}>
           <a className="custom-link block group relative rounded-xl border border-slate-200 dark:border-slate-800">
