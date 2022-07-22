@@ -207,6 +207,16 @@ export const apiMenu: MenuItemType[] = [
     title: 'Webhooks',
     submenu: [
       {
+        title: 'Pathway started',
+        path: '/awell-orchestration/api-reference/webhooks/pathway-started',
+        badge: badges.pathway,
+      },
+            {
+        title: 'Pathway completed',
+        path: '/awell-orchestration/api-reference/webhooks/pathway-completed',
+        badge: badges.pathway,
+      },
+      {
         title: 'Activity created',
         path: '/awell-orchestration/api-reference/webhooks/activity-created',
         badge: badges.activity,
