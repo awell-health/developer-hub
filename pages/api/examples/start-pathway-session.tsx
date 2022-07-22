@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next/types'
 
 // const AWELL_API_ENDPOINT =
 //   'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql'

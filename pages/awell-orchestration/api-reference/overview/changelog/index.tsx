@@ -1,5 +1,5 @@
 import format from 'date-fns/format'
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from 'next/types'
 import { ReactNode } from 'react'
 
 import { DocsHeader } from '../../../../../src/components/Docs/atoms'

@@ -1,6 +1,6 @@
 import format from 'date-fns/format'
-import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
+import { GetStaticPaths, GetStaticProps } from 'next/types'
 import { type MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { ParsedUrlQuery } from 'querystring'

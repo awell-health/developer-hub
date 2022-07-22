@@ -1,11 +1,11 @@
 import '../styles/globals.css'
 
 import { ApolloProvider } from '@apollo/client'
-import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
+import type { NextPage } from 'next/types'
 import type { ReactElement, ReactNode } from 'react'
 
 import client from '../src/clients/awellOrchestrationGraphQlClient'
