@@ -8,6 +8,8 @@ interface UseStoriesHook {
   stories: Stories
 }
 
+const ENDPOINT = process.env.NEXT_PUBLIC_AWELL_STORIES_API_URL + '/api/stories'
+
 export const useStories = (): UseStoriesHook => {
   const [loading, isLoading] = useState(false)
   const [stories, setStories] = useState<Stories>([])
@@ -15,9 +17,7 @@ export const useStories = (): UseStoriesHook => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get<Stories>(
-          process.env.NEXT_PUBLIC_AWELL_STORIES_API_URL + '/api/stories' || ''
-        )
+        const { data } = await axios.get<Stories>(ENDPOINT)
         setStories(data)
         isLoading(false)
       } catch (error) {
