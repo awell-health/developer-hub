@@ -16,7 +16,7 @@ export const useStories = (): UseStoriesHook => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get<Stories>(
-          'https://orchestration-stories.vercel.app/api/stories'
+          process.env.NEXT_PUBLIC_AWELL_STORIES_API_URL + '/api/stories' || ''
         )
         setStories(data)
         isLoading(false)

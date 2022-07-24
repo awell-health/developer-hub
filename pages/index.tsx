@@ -85,7 +85,7 @@ mutation CreatePathwaySession(
                 </CodeTabs>
               </div>
               <figure className="absolute z-20 -bottom-8 right-0 xl:-right-12">
-                <div className="w-full max-w-[200px] ">
+                <div className="w-full max-w-[200px] shadow-xl rounded-lg">
                   <Image
                     src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658316163/Developer%20portal/hosted-pathway.png"
                     alt="Hosted Pathway"
