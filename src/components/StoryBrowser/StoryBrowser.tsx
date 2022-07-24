@@ -36,13 +36,16 @@ export const StoryBrowser = () => {
     const operationFilters = stories
       .flatMap((story) =>
         story?.operations
-          ? story?.operations.flatMap((operation) => operation.operationName)
+          ? story?.operations.flatMap(
+              (operation) =>
+                `${operation.operationName} (${operation.type.toLowerCase()})`
+            )
           : []
       )
       .filter(filterUniqueItems)
       .map((category) => {
         return {
-          value: category,
+          value: category.split('(')[0].trim(),
           label: category,
         }
       })

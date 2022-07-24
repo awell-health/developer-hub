@@ -17,6 +17,7 @@ export type StoryFilter = {
   options: {
     value: string
     label: string
+    badge?: string
   }[]
 }
 
