@@ -20,7 +20,7 @@
     "@apollo/client": "^3.5.10",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/typescript": "^2.4.8",
-    "@headlessui/react": "^1.5.0",
+    "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
     "@rjsf/core": "^4.1.1",
     "algoliasearch": "^4.13.0",
