@@ -10,3 +10,14 @@ export type Story = {
 }
 
 export type Stories = Array<Story>
+
+export type StoryFilter = {
+  id: string
+  name: string
+  options: {
+    value: string
+    label: string
+  }[]
+}
+
+export type StoriesFilters = Array<StoryFilter>
