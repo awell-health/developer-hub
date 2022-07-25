@@ -8,16 +8,17 @@ interface useStoryHook {
   story: Story | null
 }
 
-export const useStory = (): useStoryHook => {
+export const useStory = (storyId: string): useStoryHook => {
   const [loading, isLoading] = useState(false)
   const [story, setStory] = useState<Story | null>(null)
+
+  const ENDPOINT =
+    process.env.NEXT_PUBLIC_AWELL_STORIES_API_URL + '/api/stories/' + storyId
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get<Story>(
-          'https://orchestration-stories.vercel.app/api/stories'
-        )
+        const { data } = await axios.get<Story>(ENDPOINT)
         setStory(data)
         isLoading(false)
       } catch (error) {
