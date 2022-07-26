@@ -182,6 +182,11 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.pathway,
       },
       {
+        title: 'Start hosted activity session',
+        path: '/awell-orchestration/api-reference/mutations/start-hosted-activity-session',
+        badge: badges.activity,
+      },
+      {
         title: 'Evaluate form rules',
         path: '/awell-orchestration/api-reference/mutations/evaluate-form-rules',
         badge: badges.activity,

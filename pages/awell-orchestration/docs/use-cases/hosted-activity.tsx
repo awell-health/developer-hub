@@ -1,5 +1,5 @@
-// import Image from 'next/image'
-// import Link from 'next/link'
+import Image from 'next/image'
+import Link from 'next/link'
 import React, { ReactNode } from 'react'
 
 // import {
@@ -10,7 +10,7 @@ import React, { ReactNode } from 'react'
 //   ReactDocs,
 //   stack,
 // } from '../../../../content/awell-orchestration/docs/use-cases/hosted-pathway'
-// import { Alert } from '../../../../src/components/Alert'
+import { Alert } from '../../../../src/components/Alert'
 // import { LinkButton } from '../../../../src/components/Button'
 import { DocsHeader } from '../../../../src/components/Docs/atoms'
 import { FAQ } from '../../../../src/components/FAQ'
@@ -18,44 +18,6 @@ import { DocsLayoutWithoutToc } from '../../../../src/components/Layouts'
 import { SEO } from '../../../../src/components/SEO'
 // import { StackSelector } from '../../../../src/components/StackSelector'
 // import { useStack } from '../../../../src/hooks/useStack'
-
-/**
- * Two possible options:
- * 1. There's no relevant patient data when starting a hosted pathway session
- * 2. There's relevant patient data when starting a hosted pathway session
- *
- * Mutation:
- * - startHostedPathwaySession (starts a pathway and creates a session)
- *    - Optional parameters
- *      - baseline info (if pathway has baseline info)
- *      - patient ID
- *        - If not passed, we create an "anonymous patient"
- *        - If passed, we start a pathway and create a session for that patient
- *    - Required parameters:
- *        - pathway_definition_id
- *        - success_url
- *        - cancel_url
- * - Response
- *    - session id
- *    - session url
- *    - pathway id
- *    - patient id
- *
- * Mutation:
- * - startedHostedActivitySession (creates a session to complete activities for a given stakeholder)
- *    - Required parameters:
- *        - pathway id
- *        - stakeholder id
- *        - success_url
- *        - cancel_url
- *   - Optional parameters (for later!):
- *        - activity id (use case: a VCP might want to make sure that a stakeholder can ONLY complete a very specific activity)
- * - Response
- *    - session url
- *    - session id
- *    - pathway id
- *    - patient id
- */
 
 export default function HostedActivityPage() {
   //   const { frontEnd, backEnd, changeBackEnd, changeFrontEnd } = useStack()
@@ -79,7 +41,7 @@ export default function HostedActivityPage() {
     <div>
       <SEO
         title="Hosted activity"
-        description="Unlock powerful features like webhooks with a low code effort"
+        description="Redirect stakeholders to an Awell Hosted Activity page to complete activities"
         url={`/awell-orchestration/docs/use-cases/hosted-activity`}
         canonicalUrl={`/awell-orchestration/docs/use-cases/hosted-activity`}
       />
@@ -97,88 +59,79 @@ export default function HostedActivityPage() {
         heading={'Use cases'}
         title={'Awell hosted activity'}
         description={
-          'Unlock powerful features like webhooks with a low code effort'
+          'Redirect stakeholders to an Awell Hosted Activity page to complete activities'
         }
       />
       {/* Intro section */}
       <div className="max-w-4xl">
         <div id="content-wrapper">
           <p>
-            Continue reading if your goal is to set up longitudinal outcomes
-            (such as PROMs / PREMs) collection, triage & eligibility flows and
-            clinicial decision support with limited engineering effort.
+            <strong>
+              This integration enables you to orchestrate activities over time
+              for multiple stakeholders on an Awell Hosted Activity page.
+            </strong>
           </p>
-          <h2>Integration</h2>
           <p>
-            This integration enables you to orchestrate activities over time for
-            multiple stakeholders on an Awell hosted activities page. The basic
-            integration is the same as the one explained for the [Hosted
-            pathway](/awell-orchestration/docs/integrations/hosted-pathway)
-            integration. Additionally, this integration allows you to:
-          </p>
-          <ul>
-            <li>Create a patient before starting a pathway</li>
-            <li>
-              Set up webhooks to be notified of pending activities, forms
-              submitted or data points collected in active pathways
-            </li>
-            <li>
-              Proactively request pending activities for a specific stakeholder
-              at any time
-            </li>
-          </ul>
-          <p>
-            Optionally, you can set up an integration with Elastic to access
-            your data.
+            This use case is perfect to set up longitudinal outcomes (such as
+            PROMs / PREMs) collection, triage & eligibility flows and clinicial
+            decision support with limited engineering effort.
           </p>
 
-          {/* <h2>Hosted activity lifecycle</h2>
-          <p>
-            The basic lifecycle for a hosted pathway experience looks like this:
-          </p>
+          <h2>Hosted activity lifecycle</h2>
+          <p>The lifecycle for a hosted activity experience looks like this:</p>
           <ol className="no-pl">
             <li>
-              When a pathway needs to be started for a client, your application
-              creates a new Pathway Session.
+              At some point in time, a patient is created and included in a care
+              pathway.
             </li>
             <li>
-              The Pathway Session provides a URL that redirects your client to
-              an Awell-hosted pathway page.
+              When an activity is created (activated) in the pathway, your
+              system will get notified via the <code>activity.created</code>{' '}
+              webhook.
             </li>
             <li>
-              Your client can interact with the pathway or care flow and
-              complete activities.
+              At that point in time, you know something in the pathway needs to
+              be completed by a given stakeholder. You can notifiy that
+              stakeholder via the appropriate channels.
             </li>
             <li>
-              When the pathway is completed, a webhook (
-              <code>pathway.completed</code>) is triggered to let you know the
-              pathway is completed.
+              The stakeholder reacts to the notification and wants to complete
+              the activity. This is the trigger to create a Hosted Activity
+              Session via the Awell API.
+            </li>
+            <li>
+              Our API creates a Hosted Activity Session scoped for that
+              stakeholder where you can redirect the stakeholder to in order to
+              complete the pending activity.{' '}
+              <strong>
+                Note that a Hosted Activity Session is always scoped per
+                stakeholder.
+              </strong>
+            </li>
+            <li>
+              The stakeholder can complete the activity and we will let you know
+              when the activity is completed via the{' '}
+              <code>activity.completed</code> webhook.
             </li>
           </ol>
+          <p>
+            This lifecycle is repeated for every activity that is created in a
+            care pathway.
+          </p>
           <figure className="w-full flex flex-col justify-center text-center pt-4">
             <div className="w-full sm:w-11/12 mx-auto text-center">
               <Image
-                src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658318620/Developer%20portal/hosted-pathway-sequence-diagram.png"
-                alt="Hosted pathway sequence diagram"
+                src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658845321/Developer%20portal/sequence-diagram-hosted-activity.png"
+                alt="Hosted activity sequence diagram"
                 className="rounded-lg"
-                width="5408"
-                height="3606"
+                width="5512"
+                height="4694"
               />
             </div>
             <figcaption className="dark:text-slate-400 pt-1">
-              Hosted pathway lifecycle © Awell Health
+              Hosted activity lifecycle © Awell Health
             </figcaption>
           </figure>
-          <h2>Low-code integration</h2>
-          <p>
-            The hosted pathway integration requires minimal coding.{' '}
-            <Link href="/awell-orchestration/docs/getting-started/integrations-overview">
-              <a title="this page">
-                Compare the hosted pathway integration to other options
-              </a>
-            </Link>{' '}
-            to determine which option meets your requirements .
-          </p>
           <h2>Prerequisites</h2>
           <p>To get started, there are a couple of things you need:</p>
           <ol>
@@ -191,26 +144,41 @@ export default function HostedActivityPage() {
               to get your API key.
             </li>
             <li>
-              A <strong>published pathway</strong> that meets the{' '}
-              <Link href="/awell-orchestration/docs/getting-started/integrations-overview">
-                <a title="requirements">requirements</a>
+              <Link href="/awell-orchestration/api-reference/mutations/create-patient">
+                <a title="Create a patient">A patient resource created</a>
               </Link>{' '}
-              to be used with the Awell hosted pathway page. Click{' '}
-              <Link href="#">
-                <a title="here">here</a>
-              </Link>{' '}
-              for a guide on creating such a pathway.
+              and{' '}
+              <Link href="/awell-orchestration/api-reference/mutations/start-pathway">
+                <a title="Start a pathway">included in a care pathway</a>
+              </Link>
+              . It is not explicitly part of this guide but you can find
+              documentation on creating a patient and starting a pathway on the
+              respective links.
+            </li>
+            <li>Webhooks set up for your care pathway (see below).</li>
+            <li>
+              You have a server that can listen to incoming wehooks and perform
+              an action based the events (eg: notifiy the stakeholder).
             </li>
           </ol>
-          <h3>Webhooks (optional):</h3>
+          <h3>Webhooks</h3>
           <p>
             <strong>
-              You can configure Webhooks to get notified when a pathway is
-              started and/or completed.
+              Your pathway should minimally be subscribed to the{' '}
+              <code>activity.created</code> webhook as that is the trigger to
+              initiate a Hosted Activity session.
             </strong>{' '}
+            Depending on the type of integration and events you want to receive,
+            you can configure other wehooks as well ({' '}
+            <Link href="/awell-orchestration/docs/integrations/webhooks">
+              <a title="See list of all webhooks">See list of all webhooks</a>
+            </Link>
+            ).
+          </p>
+          <p>
             Webhooks are configured on a per pathway basis via the pathway
-            settings so if you want to receive webhooks for these events, you
-            will have to configure them via the pathway settings.
+            settings so if you want to receive webhooks for events, you will
+            have to configure them via the pathway settings.
           </p>
           <div className="mb-12">
             <Alert title="Configure webhooks" type="info">
@@ -220,9 +188,16 @@ export default function HostedActivityPage() {
                   here
                 </a>
               </Link>{' '}
-              for more information on how to configure Webhooks on pathways.
+              for more information on how to configure Webhooks on pathways. The
+              payload of the{' '}
+              <Link href="/awell-orchestration/api-reference/webhooks/activity-created">
+                <a title="pathway.started webhook" target="_blank">
+                  activity.created
+                </a>
+              </Link>{' '}
+              webhook can be found on the respective link.
             </Alert>
-          </div> */}
+          </div>
         </div>
       </div>
       {/* FAQ */}
@@ -248,19 +223,15 @@ export default function HostedActivityPage() {
             },
             {
               question:
-                'What happens if more than 1 activity is activated for the same stakeholder at the same time?',
+                'What happens if more than one activity is activated for the same stakeholder at the same time?',
               answer:
-                'An activity.created event will be emitted for every activity --> if you want to notify the patient only once, then you will have to handle that',
+                'An activity.created wehook will be emitted for every activity. If you want to group notifications to stakeholders that is something you currently will have to handle on your end.',
             },
             {
               question:
                 'Can a stakeholder complete multiple pending activities in the same session?',
-              answer: 'Yes',
-            },
-            {
-              question: 'How do we know there is nothing to do anymore?',
               answer:
-                'After completion of an activity we check if there are new pending activities for that stakeholder. We will use an artifical delay of X seconds (check how long it takes for an orchestration cycle to run in Jeager so we can pick a sensible number).',
+                'Yes. If there are multiple pending activities for a stakeholder we will show these activities one after the other.',
             },
           ]}
         />
