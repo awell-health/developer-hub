@@ -69,7 +69,7 @@ All `in` filters accept a list of values and result in an `is any of` search cri
 
 When specifying multiple filters, the resulting criteria is the conjunction of all filters.
 
-<code className="language-json" highlightedRows={[2, 3, 4, 5, 6, 7, 8]}>
+<code className="language-json" highlightedRows={[[2, 8]]}>
   {`
   {
     "pathway_definition_id": "{{ PATHWAY_DEFINITION_ID }}",
@@ -92,7 +92,7 @@ Pagination and sorting are highly recommended. Not using pagination means that t
 
 Default sorting is based on the `start_date` field, sorted from newest to oldest (i.e. descending).
 
-<code className="language-json" highlightedRows={[9, 10, 11, 12]}>
+<code className="language-json" highlightedRows={[[9, 12]]}>
   {`
   {
     "pathway_definition_id": "{{ PATHWAY_DEFINITION_ID }}",

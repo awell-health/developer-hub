@@ -54,7 +54,7 @@ query GetPathwayDataPointDefinitions(
 
 A `release_id` needs to be specified in order to retrieve the data dictionary for a pathway.
 
-<code className="language-json" highlightedRows={[2]}>
+<code className="language-json" highlightedRows={[[2]]}>
   {`
 {
   "release_id": "{{ RELEASE_ID }}",
@@ -80,7 +80,7 @@ All `in` filters accept a list of values and result in an `is any of` search cri
 
 When specifying multiple filters, the resulting criteria is the conjuction of all filters.
 
-<code className="language-json" highlightedRows={[3, 4, 5, 6, 7, 8, 9, 10, 11]}>
+<code className="language-json" highlightedRows={[[3, 11]]}>
   {`
 {
   "release_id": "{{ RELEASE_ID }}",

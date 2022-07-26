@@ -77,6 +77,22 @@ export const NextJS = () => {
                 Add an endpoint on your server that creates a Pathway Session. A
                 session is created by calling the Awell API (graphql).
               </p>
+              <p className="mt-4">
+                <strong>Resources:</strong>
+              </p>
+              <ul className="list-disc ml-4">
+                <li>
+                  <Link href="/awell-orchestration/api-reference/mutations/start-hosted-pathway-session">
+                    <a
+                      title="API reference for startHostedPathwaySession mutation"
+                      target="_blank"
+                      className="text-sky-500 underline"
+                    >
+                      API reference for startHostedPathwaySession mutation
+                    </a>
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
           <div
@@ -160,7 +176,7 @@ export const NextJS = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/coming-soon">
+                  <Link href="/awell-orchestration/api-reference/mutations/start-hosted-pathway-session#optional-variables">
                     <a
                       title="How to pass baseline information"
                       target="_blank"

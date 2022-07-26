@@ -172,6 +172,11 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.pathway,
       },
       {
+        title: 'Start hosted pathway session',
+        path: '/awell-orchestration/api-reference/mutations/start-hosted-pathway-session',
+        badge: badges.pathway,
+      },
+      {
         title: 'Update baseline info',
         path: '/awell-orchestration/api-reference/mutations/update-baseline-info',
         badge: badges.pathway,
@@ -211,7 +216,7 @@ export const apiMenu: MenuItemType[] = [
         path: '/awell-orchestration/api-reference/webhooks/pathway-started',
         badge: badges.pathway,
       },
-            {
+      {
         title: 'Pathway completed',
         path: '/awell-orchestration/api-reference/webhooks/pathway-completed',
         badge: badges.pathway,

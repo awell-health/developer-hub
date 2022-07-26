@@ -1,5 +1,6 @@
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import { useEffect, useState } from 'react'
+import { arrayOfNumbersBasedOnRanges } from 'src/utils/array/arrayOfNumbersBasedOnRanges'
 
 import { darkTheme } from '../../../../config/prism'
 import { CopyButton } from '../../../Button/variants'
@@ -11,7 +12,7 @@ interface CodeProps {
   children: any
   className: string
   numberOfLinesPreview?: number
-  highlightedRows?: number[]
+  highlightedRows?: Array<number[]>
 }
 
 export const Code = ({
@@ -26,6 +27,8 @@ export const Code = ({
   const language = className.replace(/language-/, '')
 
   const [code] = Array.isArray(children) ? children : [children]
+
+  const allHighlightedRows = arrayOfNumbersBasedOnRanges(highlightedRows)
 
   const toggleShowAll = () => setIsShowAll(!showAll)
 
@@ -75,7 +78,7 @@ export const Code = ({
                       key={i}
                       {...getLineProps({ line, key: i })}
                       className={`CodeLine ${
-                        highlightedRows.includes(i + 1)
+                        allHighlightedRows.includes(i + 1)
                           ? 'HighlightedCodeLine'
                           : ''
                       }`}
@@ -92,7 +95,11 @@ export const Code = ({
                     <div
                       key={i}
                       {...getLineProps({ line, key: i })}
-                      className="CodeLine"
+                      className={`CodeLine ${
+                        allHighlightedRows.includes(i + 1)
+                          ? 'HighlightedCodeLine'
+                          : ''
+                      }`}
                     >
                       <span className="CodeLineNumber">{i + 1}</span>
                       <span className="CodeLineContent">
