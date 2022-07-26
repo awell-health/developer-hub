@@ -137,7 +137,7 @@ export default function HostedPathwayPage() {
                 <a title="requirements">requirements</a>
               </Link>{' '}
               to be used with the Awell hosted pathway page. Click{' '}
-              <Link href="#">
+              <Link href="/coming-soon">
                 <a title="here">here</a>
               </Link>{' '}
               for a guide on creating such a pathway.
@@ -161,7 +161,20 @@ export default function HostedPathwayPage() {
                   here
                 </a>
               </Link>{' '}
-              for more information on how to configure Webhooks on pathways.
+              for more information on how to configure Webhooks on pathways. The
+              payload of the{' '}
+              <Link href="/awell-orchestration/api-reference/webhooks/pathway-started">
+                <a title="pathway.started webhook" target="_blank">
+                  pathway.started
+                </a>
+              </Link>{' '}
+              and{' '}
+              <Link href="/awell-orchestration/api-reference/webhooks/pathway-completed">
+                <a title="pathway.completed wehook" target="_blank">
+                  pathway.completed
+                </a>
+              </Link>{' '}
+              webhook can be found on the respective links.
             </Alert>
           </div>
         </div>
