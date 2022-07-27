@@ -170,7 +170,7 @@ export default function HostedActivityPage() {
             </strong>{' '}
             Depending on the type of integration and events you want to receive,
             you can configure other wehooks as well ({' '}
-            <Link href="/awell-orchestration/docs/integrations/webhooks">
+            <Link href="/awell-orchestration/docs/webhooks/introduction">
               <a title="See list of all webhooks">see list of all webhooks</a>
             </Link>
             ).
