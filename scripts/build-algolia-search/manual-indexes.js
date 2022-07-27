@@ -41,6 +41,15 @@ const manualIndexes = [
     content: `We truely value developer experience and are constantly updating our documentation. Don't hesitate to get in touch with us directly for:Documentation: missing or incorrect documentation, suggestions, or maybe additional material you would like to seeQuestions & advice: send us a message via IntercomBugs: if you have issues you believe are due to a bug in the APITip: If you didn't find what you were looking for, try searching the docs first.Request a calculationWe welcome suggestions for calculations to add — let us know via Intercom and we will be happy to help you.Please include a citation or reference when submitting a calculation or score.IntercomGet fast, helpful support via our chat. Send us a direct message via Intercom (bottom right corner of the screen) and we will get back to you asap.`,
     slug: 'awell-score/support',
   },
+  {
+    objectID: 'awell-orchestration/docs/webhooks/webhook-builder',
+    space: 'Awell Orchestration',
+    title: 'Webhook builder',
+    description: 'Interactive webhook endpoint builder',
+    content:
+      'Learn how to set up and deploy a webhook to listen to events from Awell! Select the webhooks you would like to listen to and copy/paste the corresponding code',
+    slug: 'awell-orchestration/docs/webhooks/webhook-builder',
+  },
 ]
 
 module.exports = manualIndexes
