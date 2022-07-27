@@ -28,7 +28,7 @@ export const webhooks: WebhooksType = [
   {
     event: 'activity.created',
     description:
-      'riggered every time an activity in the pathway is created, including system activities.',
+      'Triggered every time an activity in the pathway is created, including system activities.',
     eventVariables: [
       {
         variableName: 'activity',
