@@ -64,7 +64,7 @@ Your endpoint must be configured to read event objects for the type of event not
 
 ### Check event objects
 
-The payload structure of each event differs based on the type of event. Every webhook payload does have a `event_type` field that you must check. In our [API reference](/awell-orchestration/api-reference/webhooks/pathway-started) under `webhooks` you can find the exact payloads for each of the event types. Based on the event type, your endpoint can parse the payload of each event.
+The payload structure of each event differs based on the type of event. All webhook payloads do have an `event_type` field that you must check. In our [API reference](/awell-orchestration/api-reference/webhooks/pathway-started) under `webhooks` you can find the exact payloads for each of the event types. Based on the event type, your endpoint can parse the payload of each event.
 
 Below an example of the `pathway.completed` webhook event
 
