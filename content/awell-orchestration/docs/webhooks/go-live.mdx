@@ -8,13 +8,3 @@ After [testing your webhook endpoint](/awell-orchestration/docs/webhooks/test-we
 ## Register production endpoints in the pathway settings
 
 Awell needs to know where to send events. To register your webhook production endpoint, provide the publicly accessible HTTPS URL to your webhook endpoint, and select the type of events you want to receive on your endpoint. More information on how to configure webhooks can be found [here](https://help.awellhealth.com/en/articles/6103339-configure-a-webhook).
-
-### Webhook URL format
-
-The URL format to register a webhook endpoint is:
-
-```text
-https://<your-website>/<your-webhook-endpoint>
-```
-
-For example, if your domain is https://mycompanysite.com and the route to your webhook endpoint is `/awell_webhooks`, specify `https://mycompanysite.com/awell_webhooks` as the endpoint URL.
