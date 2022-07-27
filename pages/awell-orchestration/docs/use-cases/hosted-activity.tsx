@@ -158,7 +158,7 @@ export default function HostedActivityPage() {
             <li>Webhooks set up for your care pathway (see below).</li>
             <li>
               You have a server that can listen to incoming wehooks and perform
-              an action based the events (eg: notifiy the stakeholder).
+              an action based on the events (eg: notifiy the stakeholder).
             </li>
           </ol>
           <h3>Webhooks</h3>
@@ -171,7 +171,7 @@ export default function HostedActivityPage() {
             Depending on the type of integration and events you want to receive,
             you can configure other wehooks as well ({' '}
             <Link href="/awell-orchestration/docs/integrations/webhooks">
-              <a title="See list of all webhooks">See list of all webhooks</a>
+              <a title="See list of all webhooks">see list of all webhooks</a>
             </Link>
             ).
           </p>

@@ -15,7 +15,7 @@ export type SectionType = {
   }>
 }
 
-export type LanguageType = { label: string; disabled: boolean }
+export type LanguageType = { label: string; disabled: boolean; hide?: boolean }
 
 export type StackType = {
   frontEnd: LanguageType

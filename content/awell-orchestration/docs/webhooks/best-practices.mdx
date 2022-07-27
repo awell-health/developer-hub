@@ -1,0 +1,32 @@
+---
+title: Best practices for using webhooks
+description: Implement these best practices when using webhooks.
+---
+
+Review these best practices to ensure your webhooks remain secure and function seamlessly with your integration.
+
+## Event types
+
+Your webhook endpoints should be configured to receive only the types of events required by your integration. Listening for extra events (or all events) will put undue strain on your server and is not recommended.
+
+You can change the events a webhook endpoint will receive via the [Pathway settings](https://help.awellhealth.com/en/articles/6103339-configure-a-webhook).
+
+## Event handling
+
+Handling webhook events correctly is crucial to making sure your integration’s business logic works as expected.
+
+### Handle duplicate events
+
+Webhook endpoints might occasionally receive the same event more than once. We advise you to guard against duplicated event receipts by making your event processing [idempotent](https://en.wikipedia.org/wiki/Idempotence). One way of doing this is logging the events you’ve processed, and then not processing already-logged events.
+
+### Order of events
+
+Awell does not guarantee delivery of events in the order in which they are generated. Your endpoint shouldn thus not expect delivery of events in a certain order and should handle this accordingly.
+
+## Security
+
+Keeping your endpoints secure is critical to protecting sensitive patient data. Awell provides several ways for you to verify events are coming from Awell in a secure manner.
+
+### Receive events with an HTTPS server
+
+Awell only supports sending webhooks to HTTPS endpoints.

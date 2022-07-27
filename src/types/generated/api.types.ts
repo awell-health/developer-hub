@@ -351,7 +351,8 @@ export type ElementStakeholder = {
 export enum ElementStatus {
   Active = 'ACTIVE',
   Done = 'DONE',
-  Scheduled = 'SCHEDULED'
+  Scheduled = 'SCHEDULED',
+  Stopped = 'STOPPED'
 }
 
 export enum ElementType {
@@ -532,6 +533,7 @@ export type Mutation = {
   saveBaselineInfo: EmptyPayload;
   startPathway: StartPathwayPayload;
   stopPathway: EmptyPayload;
+  stopTrack: StopTrackPayload;
   submitChecklist: SubmitChecklistPayload;
   submitFormResponse: SubmitFormResponsePayload;
   updateBaselineInfo: EmptyPayload;
@@ -607,6 +609,11 @@ export type MutationStartPathwayArgs = {
 
 export type MutationStopPathwayArgs = {
   input: StopPathwayInput;
+};
+
+
+export type MutationStopTrackArgs = {
+  input: StopTrackInput;
 };
 
 
@@ -1133,6 +1140,18 @@ export type StartPathwayPayload = {
 export type StopPathwayInput = {
   pathway_id: Scalars['String'];
   reason?: InputMaybe<Scalars['String']>;
+};
+
+export type StopTrackInput = {
+  pathway_id: Scalars['String'];
+  track_id: Scalars['String'];
+};
+
+export type StopTrackPayload = Payload & {
+  __typename?: 'StopTrackPayload';
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
+  track: Element;
 };
 
 export type StringArrayFilter = {

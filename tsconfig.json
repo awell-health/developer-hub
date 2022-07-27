@@ -6,7 +6,8 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/contexts/*": ["src/contexts/*"],
       "@/types/*": ["src/types/*"],
-      "@/content/*": ["content/*"]
+      "@/content/*": ["content/*"],
+      "@/config/*": ["src/config/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext", "es2020.string"],

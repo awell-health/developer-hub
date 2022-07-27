@@ -11,6 +11,7 @@ interface CodeProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any
   className: string
+  fileName?: string
   numberOfLinesPreview?: number
   highlightedRows?: Array<number[]>
 }
@@ -18,6 +19,7 @@ interface CodeProps {
 export const Code = ({
   children,
   className,
+  fileName,
   numberOfLinesPreview = 15,
   highlightedRows = [],
 }: CodeProps) => {
@@ -47,7 +49,11 @@ export const Code = ({
     >
       <div className="relative flex text-slate-400 text-xs leading-6">
         <ul className="flex">
-          <CodeTab isActive={true} label={language} onClick={() => true} />
+          <CodeTab
+            isActive={true}
+            label={fileName ? fileName : language}
+            onClick={() => true}
+          />
         </ul>
         <div className="flex-auto flex pt-2 rounded-tr-xl overflow-hidden">
           <div className="flex-auto -mr-px bg-slate-700/50 border border-slate-500/30 rounded-tl" />

@@ -57,15 +57,48 @@ export const docsMenu: MenuItemType[] = [
     ],
   },
   {
+    title: 'Webhooks',
+    submenu: [
+      {
+        title: 'Introduction',
+        path: '/awell-orchestration/docs/webhooks/introduction',
+      },
+      {
+        title: 'Events overview',
+        path: '/awell-orchestration/docs/webhooks/events-overview',
+      },
+      {
+        title: 'Listen for events',
+        path: '/awell-orchestration/docs/webhooks/listen-for-events',
+      },
+      {
+        title: 'Webhook builder',
+        path: '/awell-orchestration/docs/webhooks/webhook-builder',
+      },
+      {
+        title: 'Test webhooks',
+        path: '/awell-orchestration/docs/webhooks/test-webhooks',
+      },
+      {
+        title: 'Security',
+        path: '/awell-orchestration/docs/webhooks/security',
+      },
+      {
+        title: 'Best practices',
+        path: '/awell-orchestration/docs/webhooks/best-practices',
+      },
+      {
+        title: 'Go live',
+        path: '/awell-orchestration/docs/webhooks/go-live',
+      },
+    ],
+  },
+  {
     title: 'Integrations',
     submenu: [
       {
         title: 'Healthcare interoperability',
         path: '/awell-orchestration/docs/integrations/healthcare-interoperability',
-      },
-      {
-        title: 'Webhooks',
-        path: '/awell-orchestration/docs/integrations/webhooks',
       },
     ],
   },

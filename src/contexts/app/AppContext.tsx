@@ -77,8 +77,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         }
       })
 
-      console.log(tableOfContents)
-
       setToc(tableOfContents)
     } else {
       setToc(null)
