@@ -48,7 +48,7 @@ The `success_url` and `cancel_url` specify where the user should be redirected t
     "success_url": "https://yourdomain.com/success.html",
     "cancel_url": "https://yourdomain.com/cancel.html",
     "patient_id": "{{PATIENT_ID}}",
-    "baseline_info": []
+    "data_points": []
   }
 }
 `}
@@ -61,7 +61,7 @@ Every pathway is linked to a patient resource in our system. We automatically cr
 
 If you want to create a patient first, you will have to do an a priori API call to create the patient and use the id returned by that API call as the value for the `patient_id` field. See the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient) for more information on how to create a patient.
 
-#### Baseline info
+#### Data points (or Baseline info)
 
 You have the ability to pass some initial data when starting a pathway. What data you can pass on pathway start needs to be configured in Awell Studio via the settings (see `Pathway > Settings > General`).
 
@@ -73,7 +73,7 @@ Passing baseline info is as easy as providing an array of objects in the followi
 
 ```json
 {
-  "baseline_info": [
+  "data_points": [
     {
       "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
       "value": "{{DATA_POINT_VALUE}}"
