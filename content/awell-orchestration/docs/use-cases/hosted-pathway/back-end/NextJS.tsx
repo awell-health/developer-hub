@@ -165,7 +165,7 @@ export const NextJS = () => {
               </p>
               <ul className="list-disc ml-4">
                 <li>
-                  <Link href="/coming-soon">
+                  <Link href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points">
                     <a
                       title="Configure baseline data points in your pathway"
                       target="_blank"
