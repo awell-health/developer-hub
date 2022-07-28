@@ -11,19 +11,23 @@ import { Effort } from './atoms'
 
 export const UseCasesComparisonTable = () => {
   return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto bg-white">
+    <div className="">
+      <div className="max-w-7xl mx-auto">
         {/* xs to lg */}
         <div className="mx-auto space-y-16 xl:hidden">
           {tiers.map((tier, tierIdx) => (
             <section key={tier.name}>
               <div className="px-4 mb-8">
-                <h2 className="text-lg leading-6 font-medium text-gray-900">
+                <h2 className="text-lg leading-6 font-medium text-slate-900 dark:text-slate-400">
                   {tier.name}
                 </h2>
-                <p className="mt-4 text-sm text-gray-500">{tier.description}</p>
+                <p className="mt-4 text-sm text-slate-500 dark:text-slate-300">
+                  {tier.description}
+                </p>
                 <div>
-                  <div className="font-semibold pb-2">Effort:</div>
+                  <div className="font-semibold pb-2 text-slate-900 dark:text-slate-400">
+                    Effort:
+                  </div>
                   <div>
                     <Effort effort={tier.effort} />
                   </div>
@@ -35,7 +39,7 @@ export const UseCasesComparisonTable = () => {
                   key={section.name}
                   className="w-full ignore-default-style"
                 >
-                  <caption className="bg-gray-50 border-t border-gray-200 py-3 px-4 text-sm font-medium text-gray-900 text-left">
+                  <caption className="bg-slate-50 border-t border-slate-200 dark:border-slate-600 py-3 px-4 text-sm font-medium text-slate-900 text-left dark:bg-slate-800 dark:text-slate-300">
                     {section.name}
                   </caption>
                   <thead>
@@ -48,21 +52,21 @@ export const UseCasesComparisonTable = () => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-600">
                     {section.features.map((feature) => (
                       <tr
                         key={feature.name}
-                        className="border-t border-gray-200"
+                        className="border-t border-slate-200 dark:border-slate-600"
                       >
                         <th
-                          className="py-5 px-4 text-sm font-normal text-gray-500 text-left"
+                          className="py-5 px-4 text-sm font-normal text-slate-500 dark:text-slate-400 text-left"
                           scope="row"
                         >
                           {feature.name}
                         </th>
                         <td className="py-5 pr-4">
                           {typeof feature.tiers[tier.name] === 'string' ? (
-                            <span className="block text-sm text-gray-700 text-right">
+                            <span className="block text-sm text-slate-700 text-right dark:text-slate-400">
                               {feature.tiers[tier.name]}
                             </span>
                           ) : (
@@ -74,7 +78,7 @@ export const UseCasesComparisonTable = () => {
                                 />
                               ) : (
                                 <MinusIcon
-                                  className="ml-auto h-5 w-5 text-gray-400"
+                                  className="ml-auto h-5 w-5 text-slate-400"
                                   aria-hidden="true"
                                 />
                               )}
@@ -96,12 +100,12 @@ export const UseCasesComparisonTable = () => {
               <div
                 className={clsx(
                   tierIdx < tiers.length - 1 ? 'py-5 border-b' : 'pt-5',
-                  'border-t border-gray-200 px-4'
+                  'border-t border-slate-200 px-4 dark:border-slate-600'
                 )}
               >
                 <a
                   href={tier.href}
-                  className="block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
+                  className="custom-link block w-full bg-slate-800 border border-slate-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-slate-900"
                 >
                   More infomation
                 </a>
@@ -117,7 +121,7 @@ export const UseCasesComparisonTable = () => {
             <thead>
               <tr>
                 <th
-                  className="pb-4 px-6 text-sm font-medium text-gray-900 text-left"
+                  className="pb-4 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left"
                   scope="col"
                 >
                   <span className="sr-only">Feature by</span>
@@ -126,7 +130,7 @@ export const UseCasesComparisonTable = () => {
                 {tiers.map((tier) => (
                   <th
                     key={tier.name}
-                    className="w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-gray-900 text-left"
+                    className="w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-slate-900 dark:text-slate-400 text-left"
                     scope="col"
                   >
                     {tier.name}
@@ -134,10 +138,10 @@ export const UseCasesComparisonTable = () => {
                 ))}
               </tr>
             </thead>
-            <tbody className="border-t border-gray-200 divide-y divide-gray-200">
+            <tbody className="border-t border-slate-200 divide-y dark:border-slate-600 divide-slate-200 dark:divide-slate-600">
               <tr>
                 <th
-                  className="py-8 px-6 text-sm font-medium text-gray-900 text-left align-top"
+                  className="py-8 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left align-top"
                   scope="row"
                 >
                   Description
@@ -145,7 +149,7 @@ export const UseCasesComparisonTable = () => {
                 {tiers.map((tier) => (
                   <td key={tier.name} className="h-full py-4 px-6 align-top">
                     <div className="relative h-full table">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-slate-500">
                         {tier.description}
                       </p>
                     </div>
@@ -154,7 +158,7 @@ export const UseCasesComparisonTable = () => {
               </tr>
               <tr>
                 <th
-                  className="py-8 px-6 text-sm font-medium text-gray-900 text-left align-top"
+                  className="py-8 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left align-top"
                   scope="row"
                 >
                   Effort
@@ -171,7 +175,7 @@ export const UseCasesComparisonTable = () => {
                 <Fragment key={section.name}>
                   <tr>
                     <th
-                      className="bg-gray-50 py-3 pl-6 text-sm font-medium text-gray-900 text-left"
+                      className="bg-slate-50 py-3 pl-6 text-sm font-semibold text-slate-900 text-left dark:bg-slate-800 dark:text-slate-300"
                       colSpan={4}
                       scope="colgroup"
                     >
@@ -181,7 +185,7 @@ export const UseCasesComparisonTable = () => {
                   {section.features.map((feature) => (
                     <tr key={feature.name}>
                       <th
-                        className="py-5 px-6 text-sm font-normal text-gray-500 text-left"
+                        className="py-5 px-6 text-sm font-normal text-slate-900 dark:text-slate-400 text-left"
                         scope="row"
                       >
                         {feature.name}
@@ -189,7 +193,7 @@ export const UseCasesComparisonTable = () => {
                       {tiers.map((tier) => (
                         <td key={tier.name} className="py-5 px-6 text-center">
                           {typeof feature.tiers[tier.name] === 'string' ? (
-                            <span className="block text-sm text-gray-700">
+                            <span className="block text-sm text-slate-700 dark:text-slate-400">
                               {feature.tiers[tier.name]}
                             </span>
                           ) : (
@@ -201,7 +205,7 @@ export const UseCasesComparisonTable = () => {
                                 />
                               ) : (
                                 <MinusIcon
-                                  className="h-5 w-5 text-gray-400 mx-auto"
+                                  className="h-5 w-5 text-slate-400 mx-auto"
                                   aria-hidden="true"
                                 />
                               )}
@@ -222,7 +226,7 @@ export const UseCasesComparisonTable = () => {
               ))}
             </tbody>
             <tfoot>
-              <tr className="border-t border-gray-200">
+              <tr className="border-t border-slate-200 dark:border-slate-600">
                 <th className="sr-only" scope="row">
                   Choose your plan
                 </th>
@@ -230,7 +234,7 @@ export const UseCasesComparisonTable = () => {
                   <td key={tier.name} className="pt-5 px-6">
                     <a
                       href={tier.href}
-                      className="custom-link block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
+                      className="custom-link block w-full bg-slate-800 border border-slate-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-slate-900"
                     >
                       More information
                     </a>
