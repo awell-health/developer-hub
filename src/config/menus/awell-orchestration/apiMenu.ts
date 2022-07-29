@@ -5,6 +5,7 @@ const badges: { [key in string]: BadgeType } = {
   pathway: { label: 'Pathway', color: 'purple' },
   activity: { label: 'Activity', color: 'indigo' },
   datapoint: { label: 'Data Point', color: 'slate' },
+  session: { label: 'Session', color: 'fuchsia' },
 }
 
 export const apiMenu: MenuItemType[] = [
