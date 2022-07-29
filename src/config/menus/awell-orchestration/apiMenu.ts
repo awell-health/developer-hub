@@ -251,6 +251,21 @@ export const apiMenu: MenuItemType[] = [
         path: '/awell-orchestration/api-reference/webhooks/data-point-collected',
         badge: badges.datapoint,
       },
+      {
+        title: 'Session started',
+        path: '/awell-orchestration/api-reference/webhooks/session-started',
+        badge: badges.session,
+      },
+      {
+        title: 'Session expired',
+        path: '/awell-orchestration/api-reference/webhooks/session-expired',
+        badge: badges.session,
+      },
+      {
+        title: 'Session completed',
+        path: '/awell-orchestration/api-reference/webhooks/session-completed',
+        badge: badges.session,
+      },
     ],
   },
 ]
