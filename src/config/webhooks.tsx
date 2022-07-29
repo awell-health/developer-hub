@@ -109,4 +109,52 @@ export const webhooks: WebhooksType = [
     comment:
       'Then define and call a method to handle the creation of a reminder in your system.',
   },
+  {
+    event: 'session.started',
+    description: 'Triggered every time a hosted session is started.',
+    eventVariables: [
+      {
+        variableName: 'session',
+        jsonPath: 'event.session',
+      },
+      {
+        variableName: 'pathway',
+        jsonPath: 'event.pathway',
+      },
+    ],
+    comment:
+      'Then define and call a method to handle the creation of a session in your system.',
+  },
+  {
+    event: 'session.completed',
+    description: 'Triggered every time a hosted session is completed.',
+    eventVariables: [
+      {
+        variableName: 'session',
+        jsonPath: 'event.session',
+      },
+      {
+        variableName: 'pathway',
+        jsonPath: 'event.pathway',
+      },
+    ],
+    comment:
+      'Then define and call a method to handle the completion of a session in your system.',
+  },
+  {
+    event: 'session.expired',
+    description: 'Triggered every time a hosted session is expired.',
+    eventVariables: [
+      {
+        variableName: 'session',
+        jsonPath: 'event.session',
+      },
+      {
+        variableName: 'pathway',
+        jsonPath: 'event.pathway',
+      },
+    ],
+    comment:
+      'Then define and call a method to handle the expiration of a session in your system.',
+  },
 ]
