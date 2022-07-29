@@ -5,6 +5,7 @@ const badges: { [key in string]: BadgeType } = {
   pathway: { label: 'Pathway', color: 'purple' },
   activity: { label: 'Activity', color: 'indigo' },
   datapoint: { label: 'Data Point', color: 'slate' },
+  session: { label: 'Session', color: 'red' },
 }
 
 export const apiMenu: MenuItemType[] = [
@@ -250,6 +251,21 @@ export const apiMenu: MenuItemType[] = [
         title: 'Data point collected',
         path: '/awell-orchestration/api-reference/webhooks/data-point-collected',
         badge: badges.datapoint,
+      },
+      {
+        title: 'Session started',
+        path: '/awell-orchestration/api-reference/webhooks/session-started',
+        badge: badges.session,
+      },
+      {
+        title: 'Session expired',
+        path: '/awell-orchestration/api-reference/webhooks/session-expired',
+        badge: badges.session,
+      },
+      {
+        title: 'Session completed',
+        path: '/awell-orchestration/api-reference/webhooks/session-completed',
+        badge: badges.session,
       },
     ],
   },

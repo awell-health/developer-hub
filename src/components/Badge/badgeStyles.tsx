@@ -19,4 +19,5 @@ export const badgeColors: { [key in BadgeColorType]: string } = {
     'bg-indigo-100 text-indigo-800 dark:bg-indigo-200 dark:text-indigo-900',
   purple:
     'bg-purple-100 text-purple-800 dark:bg-purple-200 dark:text-purple-900',
+  red: 'bg-red-100 text-red-800 dark:bg-red-200 dark:text-red-900',
 }

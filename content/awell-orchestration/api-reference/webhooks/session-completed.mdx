@@ -1,0 +1,31 @@
+---
+title: Session completed
+description: Hosted session completed webhook payload
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+## Payload
+
+```json
+{
+  "session": {
+    "id": "<SESSION_ID>",
+    "created_at": "<SESSION_START_DATE>",
+    "completed_at": "<SESSION_COMPLETED_DATE>",
+    "stakeholder": {
+      "id": "<SESSION_STAKEHOLDER_ID>",
+      "type": "<SESSION_STAKEHOLDER_TYPE>",
+    },
+    "success_url": "<SESSION_SUCCESS_URL>",
+    "cancel_url": "<SESSION_CANCEL_URL>",
+  },
+   "pathway": {
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "id": "<PATHWAY_ID>",
+    "start_date": "<PATHWAY_START_DATE>",
+    "patient_id": "<PATIENT_ID>"
+  },
+  "event_type": "session.completed"
+}
+```
