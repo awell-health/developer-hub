@@ -1,61 +1,64 @@
 import type { NextApiRequest, NextApiResponse } from 'next/types'
 
-// const AWELL_API_ENDPOINT =
-//   'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql'
-// const AWELL_API_KEY = process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_KEY
-// const YOUR_DOMAIN = 'https://your-domain.com'
-// const PATHWAY_DEFINITION_ID = 'ABC'
+import { type StartHostedPathwaySessionPayload } from '@/types/generated/api.types'
+
+const AWELL_API_ENDPOINT = process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL || ''
+const AWELL_API_KEY = process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_KEY || ''
+const PATHWAY_DEFINITION_ID = 'KQTLxMAsXpOU'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  res.redirect(303, 'https://awell.health')
-  //   if (req.method === 'POST') {
-  //     return
-  //     try {
-  //       const query = JSON.stringify({
-  //         query: `
-  //         mutation StartAndCreatePathwaySession(
-  //           $pathway_definition_id: String!,
-  //           $success_url: String!,
-  //           $cancel_url: String!
-  //         ) {
-  //           startAndCreatePathwaySession(
-  //             $pathway_definition_id: String!,
-  //             $success_url: String!,
-  //             $cancel_url: String!,
-  //           ) {
-  //             session_url
-  //           }
-  //         }
-  //       }`,
-  //       })
+  if (req.method === 'POST') {
+    try {
+      const body = JSON.stringify({
+        query: `
+        mutation StartHostedPathwaySession(
+          $input: StartHostedPathwaySessionInput!,
+        ) {
+          startHostedPathwaySession(input: $input) {
+            session_id
+            session_url
+            patient_id
+            pathway_id
+          }
+        }`,
+        variables: {
+          input: {
+            pathway_definition_id: PATHWAY_DEFINITION_ID,
+            success_url: `${req.headers.origin}/awell-orchestration/examples/hosted-pathway?success=true`,
+            cancel_url: `${req.headers.origin}/awell-orchestration/examples/hosted-pathway?canceled=true`,
+          },
+        },
+      })
 
-  //       const session = fetch(AWELL_API_ENDPOINT, {
-  //         method: 'POST',
-  //         headers: {
-  //           apiKey: AWELL_API_KEY,
-  //           Accept: 'application/json',
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: {
-  //           query: query,
-  //           variables: {
-  //             $pathway_definition_id: PATHWAY_DEFINITION_ID,
-  //             $success_url: `${YOUR_DOMAIN}?success=true`,
-  //             $cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-  //           },
-  //         },
-  //         cache: 'default',
-  //       })
+      const session = await fetch(AWELL_API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          apiKey: AWELL_API_KEY,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body,
+        cache: 'default',
+      })
+        .then((response) => response.json())
+        .then(
+          (response) =>
+            response.data
+              .startHostedPathwaySession as StartHostedPathwaySessionPayload
+        )
 
-  //       res.redirect(303, session.session_url)
-  //     } catch (err) {
-  //       res.status(err.statusCode || 500).json(err.message)
-  //     }
-  //   } else {
-  //     res.setHeader('Allow', 'POST')
-  //     res.status(405).end('Method Not Allowed')
-  //   }
+      const SESSION_URL = `https://hosted-pages.vercel.app/${session.session_url}`
+
+      res.redirect(303, SESSION_URL)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      res.status(err.statusCode || 500).json(err.message)
+    }
+  } else {
+    res.setHeader('Allow', 'POST')
+    res.status(405).end('Method Not Allowed')
+  }
 }

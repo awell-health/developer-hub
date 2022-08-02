@@ -22,7 +22,7 @@ export const NextJS = () => {
       <div className="flex gap-8">
         <div className="w-6/12 flex flex-col gap-4">
           <div
-            onMouseEnter={() => setBackEndHighlights([[1, 2]])}
+            onMouseEnter={() => setBackEndHighlights([[1, 3]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -64,7 +64,7 @@ export const NextJS = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[22, 40]])}
+            onMouseEnter={() => setBackEndHighlights([[29, 40]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -96,7 +96,7 @@ export const NextJS = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[33]])}
+            onMouseEnter={() => setBackEndHighlights([[21, 25]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -116,8 +116,8 @@ export const NextJS = () => {
                 <div className="inline" id="content-wrapper">
                   <code>patient_id</code>
                 </div>{' '}
-                is left blank, but you can also create a patient first and pass
-                the id of that patient.
+                is not set as an input variable. You can also create a patient
+                first and pass the id of that patient via the input variables.
               </p>
               <p className="mt-4">
                 If you want to create a patient first, you will have to do an a
@@ -142,7 +142,7 @@ export const NextJS = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[34]])}
+            onMouseEnter={() => setBackEndHighlights([[21, 25]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -150,15 +150,23 @@ export const NextJS = () => {
             <div className="relative">
               <p className="text-slate-700 dark:text-slate-200 mb-2">
                 <strong>
-                  Pass baseline info or data points{' '}
+                  Pass baseline info or baseline data points{' '}
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                     Optional
                   </span>
                 </strong>
               </p>
-              <p>
+              <p className="mb-4">
                 Pathways can be configured to accept sending baseline data point
                 values (i.e. baseline information) when starting the pathway.
+              </p>
+              <p>
+                Add a{' '}
+                <div className="inline" id="content-wrapper">
+                  <code>data_points</code>
+                </div>{' '}
+                variable if you want to pass baseline data point values to your
+                care flow.
               </p>
               <p className="mt-4">
                 <strong>Resources:</strong>
@@ -190,7 +198,7 @@ export const NextJS = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[32], [35, 36]])}
+            onMouseEnter={() => setBackEndHighlights([[22, 24]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -234,13 +242,14 @@ export const NextJS = () => {
               highlightedRows={backEndHighlights}
             >
               {`
+const AWELL_API_ENDPOINT = process.env.AWELL_API_URL
 const API_KEY = process.env.AWELL_API_KEY;
 const PATHWAY_DEFINITION_ID = "XYZ";
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const query = JSON.stringify({
+      const body = JSON.stringify({
         query: ${'`'}
         mutation StartHostedPathwaySession(
           $input: StartHostedPathwaySessionInput!,
@@ -251,8 +260,14 @@ export default async function handler(req, res) {
             patient_id
             pathway_id
           }
-        }
-      }${'`'},
+        }${'`'},
+        variables: {
+          input: {
+            pathway_definition_id: PATHWAY_DEFINITION_ID,
+            success_url: ${'`${req.headers.origin}'}/?success=true${'`'},
+            cancel_url: ${'`${req.headers.origin}'}/?canceled=true${'`'},
+          }
+        },
       })
 
       const session = fetch(AWELL_API_ENDPOINT, {
@@ -262,18 +277,11 @@ export default async function handler(req, res) {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: {
-          query: query,
-          variables: {
-            pathway_definition_id: PATHWAY_DEFINITION_ID,
-            // patient_id: 'XYZ', - Optional
-            // baseline_info: [], - Optional
-            success_url: ${'`${req.headers.origin}'}/?success=true${'`'},
-            cancel_url: ${'`${req.headers.origin}'}/?canceled=true${'`'},
-          },
-        },
+        body,
         cache: 'default',
       })
+        .then(response => response.json())
+        .then(response => response.data.startHostedPathwaySession)
 
       res.redirect(303, session.session_url);
     } catch (err) {

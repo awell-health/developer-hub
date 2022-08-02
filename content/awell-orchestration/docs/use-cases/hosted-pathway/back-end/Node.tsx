@@ -94,7 +94,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[27, 47]])}
+            onMouseEnter={() => setBackEndHighlights([[34, 45]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -126,7 +126,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[39]])}
+            onMouseEnter={() => setBackEndHighlights([[26, 30]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -146,8 +146,8 @@ export const Node = ({ frontEnd }: NodeProps) => {
                 <div className="inline" id="content-wrapper">
                   <code>patient_id</code>
                 </div>{' '}
-                is left blank, but you can also create a patient first and pass
-                the id of that patient.
+                is not set as an input variable. You can also create a patient
+                first and pass the id of that patient via the input variables.
               </p>
               <p className="mt-4">
                 If you want to create a patient first, you will have to do an a
@@ -172,7 +172,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[40]])}
+            onMouseEnter={() => setBackEndHighlights([[26, 30]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -180,15 +180,23 @@ export const Node = ({ frontEnd }: NodeProps) => {
             <div className="relative">
               <p className="text-slate-700 dark:text-slate-200 mb-2">
                 <strong>
-                  Pass baseline info or data points{' '}
+                  Pass baseline info or baseline data points{' '}
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                     Optional
                   </span>
                 </strong>
               </p>
-              <p>
+              <p className="mb-4">
                 Pathways can be configured to accept sending baseline data point
                 values (i.e. baseline information) when starting the pathway.
+              </p>
+              <p>
+                Add a{' '}
+                <div className="inline" id="content-wrapper">
+                  <code>data_points</code>
+                </div>{' '}
+                variable if you want to pass baseline data point values to your
+                care flow.
               </p>
               <p className="mt-4">
                 <strong>Resources:</strong>
@@ -220,7 +228,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[38], [41, 42]])}
+            onMouseEnter={() => setBackEndHighlights([[27, 29]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -239,7 +247,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[49]])}
+            onMouseEnter={() => setBackEndHighlights([[47]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -276,18 +284,33 @@ const YOUR_DOMAIN = 'https://your-domain.com'
 const PATHWAY_DEFINITION_ID = "ABC"
 
 app.post('/start-pathway-session', async (req, res) => {
-  const query = JSON.stringify({${'`'}
-      mutation StartHostedPathwaySession(
-        input: StartHostedPathwaySessionInput!
-      ) {
-        startHostedPathwaySession(input: $input) {
-          session_id
-          session_url
-          pathway_id
-          patient_id
-        }
+  const body = JSON.stringify({
+    query: ${'`'}
+    mutation StartHostedPathwaySession(
+      $input: StartHostedPathwaySessionInput!,
+    ) {
+      startHostedPathwaySession(input: $input) {
+        session_id
+        session_url
+        patient_id
+        pathway_id
       }
     }${'`'},
+    variables: {
+      input: {
+        pathway_definition_id: PATHWAY_DEFINITION_ID,
+        success_url: ${
+          frontEnd === 'HTML'
+            ? '`${YOUR_DOMAIN}/success.html`'
+            : '`${YOUR_DOMAIN}?success=true`'
+        },
+        cancel_url: ${
+          frontEnd === 'HTML'
+            ? '`${YOUR_DOMAIN}/cancel.html`'
+            : '`${YOUR_DOMAIN}?canceled=true`'
+        }
+      }
+    }
   });
 
   const session = fetch(AWELL_API_ENDPOINT, {
@@ -297,28 +320,11 @@ app.post('/start-pathway-session', async (req, res) => {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    body: {
-      query,
-      variables: {
-        input: {
-          pathway_definition_id: PATHWAY_DEFINITION_ID,
-          // patient_id: 'XYZ', - Optional
-          // baseline_info: [], - Optional
-          success_url: ${
-            frontEnd === 'HTML'
-              ? '`${YOUR_DOMAIN}/success.html`'
-              : '`${YOUR_DOMAIN}?success=true`'
-          },
-          cancel_url: ${
-            frontEnd === 'HTML'
-              ? '`${YOUR_DOMAIN}/cancel.html`'
-              : '`${YOUR_DOMAIN}?canceled=true`'
-          }
-        }
-      }
-    },
+    body,
     cache: 'default'
   })
+    .then(response => response.json())
+    .then(response => response.data.startHostedPathwaySession)
 
   res.redirect(303, session.session_url);
 });

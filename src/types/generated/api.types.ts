@@ -54,6 +54,7 @@ export type Activity = {
   public?: Maybe<Scalars['Boolean']>;
   reference_id: Scalars['String'];
   resolution?: Maybe<ActivityResolution>;
+  session_id?: Maybe<Scalars['String']>;
   status: ActivityStatus;
   stream_id: Scalars['String'];
   sub_activities: Array<SubActivity>;
@@ -469,6 +470,28 @@ export type FormattedText = {
   format: Scalars['String'];
 };
 
+export type HostedSession = {
+  __typename?: 'HostedSession';
+  cancel_url: Scalars['String'];
+  id: Scalars['ID'];
+  pathway_id: Scalars['String'];
+  status: HostedSessionStatus;
+  success_url: Scalars['String'];
+};
+
+export type HostedSessionPayload = Payload & {
+  __typename?: 'HostedSessionPayload';
+  code: Scalars['String'];
+  session: HostedSession;
+  success: Scalars['Boolean'];
+};
+
+export enum HostedSessionStatus {
+  Active = 'ACTIVE',
+  Completed = 'COMPLETED',
+  Expired = 'EXPIRED'
+}
+
 export type IdFilter = {
   eq?: InputMaybe<Scalars['String']>;
 };
@@ -531,6 +554,7 @@ export type Mutation = {
   retryPushToEmr: EmptyPayload;
   retryWebhookCall: RetryWebhookCallPayload;
   saveBaselineInfo: EmptyPayload;
+  startHostedPathwaySession: StartHostedPathwaySessionPayload;
   startPathway: StartPathwayPayload;
   stopPathway: EmptyPayload;
   stopTrack: StopTrackPayload;
@@ -599,6 +623,11 @@ export type MutationRetryWebhookCallArgs = {
 
 export type MutationSaveBaselineInfoArgs = {
   input: SaveBaselineInfoInput;
+};
+
+
+export type MutationStartHostedPathwaySessionArgs = {
+  input: StartHostedPathwaySessionInput;
 };
 
 
@@ -830,6 +859,7 @@ export type Query = {
   emrReport: EmrReportPayload;
   form: FormPayload;
   formResponse: FormResponsePayload;
+  hostedSession: HostedSessionPayload;
   message: MessagePayload;
   myActivities: ActivitiesPayload;
   myPathways: PathwaysPayload;
@@ -1126,6 +1156,24 @@ export type SortingParams = {
   field: Scalars['String'];
 };
 
+export type StartHostedPathwaySessionInput = {
+  cancel_url: Scalars['String'];
+  data_points?: InputMaybe<Array<DataPointInput>>;
+  pathway_definition_id: Scalars['String'];
+  patient_id?: InputMaybe<Scalars['String']>;
+  success_url: Scalars['String'];
+};
+
+export type StartHostedPathwaySessionPayload = Payload & {
+  __typename?: 'StartHostedPathwaySessionPayload';
+  code: Scalars['String'];
+  pathway_id: Scalars['String'];
+  patient_id: Scalars['String'];
+  session_id: Scalars['String'];
+  session_url: Scalars['String'];
+  success: Scalars['Boolean'];
+};
+
 export type StartPathwayInput = {
   data_points?: InputMaybe<Array<DataPointInput>>;
   pathway_definition_id: Scalars['String'];
@@ -1196,6 +1244,8 @@ export type Subscription = {
   elementCreated: Element;
   elementUpdated: Element;
   pathwayUpdated: Pathway;
+  sessionCompleted: HostedSession;
+  sessionExpired: HostedSession;
   webhookCallCreated: WebhookCall;
   webhookCallUpdated: WebhookCall;
 };
