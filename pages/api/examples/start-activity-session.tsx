@@ -62,9 +62,10 @@ export default async function handler(
           message: `Check your inbox at ${requestBody.email}. We have started a pathway for your and you should have received a notification to complete an activity.`,
           pathway,
         })
+      } else {
+        res.status(500).send({ message: 'Something went wrong' })
       }
 
-      res.status(500).send({ message: 'Something went wrong' })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       res.status(err.statusCode || 500).json(err.message)
