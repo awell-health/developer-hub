@@ -23,13 +23,14 @@ app.post('/awell-webhooks', express.json({type: 'application/json'}), (request, 
   const event = request.body;
   ${''}
   // Handle the event
-  switch (event.type) {
-    case 'pathway.started':
+  switch (event.event_type) {
+    case 'pathway.started': {
       const pathway = event.pathway;
       // Then define and call a method to handle the pathway started event.
       break;
+    }
     default:
-      console.log(${'`'}Unhandled event type ${'${event.type}'}${'`'});
+      console.log(${'`'}Unhandled event type ${'${event.event_type}'}${'`'});
   }
   ${''}
   // Return a response to acknowledge receipt of the event

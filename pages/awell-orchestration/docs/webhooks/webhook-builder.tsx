@@ -138,10 +138,10 @@ app.post('/awell-webhooks', express.json({type: 'application/json'}), (request, 
   const event = request.body;
 
   // Handle the event
-  switch (event.type) {${selectedWebhooks
+  switch (event.event_type) {${selectedWebhooks
     .map((selectedWebhook) => {
       return `
-    case '${selectedWebhook.event}':${selectedWebhook?.eventVariables
+    case '${selectedWebhook.event}': {${selectedWebhook?.eventVariables
         .map((eventVariable) => {
           return `
       const ${eventVariable.variableName} = ${eventVariable.jsonPath};`
@@ -153,11 +153,12 @@ app.post('/awell-webhooks', express.json({type: 'application/json'}), (request, 
         })
         .join('')}
       // ${selectedWebhook.comment}
-      break;`
+      break;
+    }`
     })
     .join('')}
     default:
-      console.log(${'`'}Unhandled event type ${'${event.type}'}${'`'});
+      console.log(${'`'}Unhandled event type ${'${event.event_type}'}${'`'});
   }
 
   // Return a response to acknowledge receipt of the event
