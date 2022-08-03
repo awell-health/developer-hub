@@ -160,11 +160,14 @@ export const Header = () => {
               <div className="ml-auto">
                 <ul className="flex">
                   <li>
-                    <Link href="https://awellhealth.statuspage.io/">
+                    <Link href="/system-status">
                       <a
                         title="Home"
-                        target="_blank"
-                        className="mr-8 block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400"
+                        className={`mr-8 block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
+                          router.asPath === '/system-status'
+                            ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
+                            : ''
+                        }`}
                       >
                         System status
                       </a>

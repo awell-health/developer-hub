@@ -1,0 +1,54 @@
+---
+title: System status
+description: View Awell system status and learn more about our Service Level Objectives and Agreements.
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+## Awell System Status
+
+View our status page to get live and historical insights on our system status.
+
+<a
+  href="https://awellhealth.statuspage.io/"
+  target="_blank"
+  class="custom-link text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-2 mb-2"
+>
+  <div className="mr-2 -ml-1 w-2 h-2 bg-green-500 rounded-full"></div>
+  View Awell system status
+</a>
+
+## Service Level Objectives (SLOs)
+
+Our Service Level Objectives (SLOs) are the targeted levels of service Awell is using internally. These help set customer expectations and tell our internal teams what goals they need to hit and measure themselves against.
+
+### Availability
+
+- **Target availability.** Awell will use commercially reasonable efforts to make each Service available with an uptime of 99% of each calendar month ("Target Availability").
+- **Exclusions.** The calculation of uptime will not include unavailability to the extent due to: (a) use of the Service by Customer in a manner not authorized in the terms & policies or other applicable documentation; (b) general Internet problems, force majeure events or other factors outside of Awell's reasonable control; (c) Customer's equipment, software, network connections or other infrastructure; (d) third party systems, acts or omissions; or (e) Scheduled Maintenance or reasonable emergency maintenance.
+- **Scheduled Maintenance.** Scheduled Maintenance" means Awell's scheduled routine maintenance of the Services for which Awell notifies Customer at least twenty-four (24) hours in advance. Scheduled Maintenance will not exceed eight (8) hours per month.
+
+> Have a look at our system status page to view the actual availability of our services.
+
+### API Response time
+
+Our target is to always offer under 500ms response time. The Awell system is built to scale horizontally, have a look at our [API benchmark](/documents/orchestration-api-benchmark) that provides evidence on how Awell can guarantee response times even when load increases by scaling horizontally.
+
+## Service Level Agreements (SLA)
+
+Service Level Agreements (SLAs) are contractual agreements we might or might not close with customers. They outline the level of service our customers can expect from our service.
+
+We currently have 4 types of SLAs:
+
+1. **No SLA (free)**: suitable for smaller customers that are comfortable with the SLOs defined by Awell. Please note that in this tier there's no commitment from Awell to reach the SLOs so there can be no consequences if the targeted levels of service are not met.
+2. **Standard SLA**: Awell signs an SLA with the customer based on the number defined in Awell's Service Level Objectives (SLO).
+3. **Premium SLA:** Awell signs an SLA with the customer but the level of service is higher compared to the SLOs. The targeted availability of our services in this tier is 99.9%.
+4. **Custom SLA**: Reach out to us if you have specific needs in terms of availability of our services.
+
+### Consequences
+
+The customer may benefit from service credits (the “Service Credits”) in accordance with the following schedule:
+
+- **One Week Credit**: a quarter (1/4th) of last month’s number of active patients is added for free to the following month’s invoice if the Monthly Uptime Percentage for a calendar month is between 99.0% and 95.0%.
+- **Two Week Credit**: half (1/2) of last month’s number of active patients is added for free to the following month’s invoice if the Monthly Uptime Percentage for a calendar month is between 95.0% and 90.0%.
+- **One Month Credit**: last month’s number of active patients is added for free to the following month’s invoice if the Monthly Uptime Percentage for a calendar month is lower than 90.0%.

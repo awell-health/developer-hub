@@ -21,10 +21,12 @@ async function getAllPages() {
 
     const space = filePath.includes('awell-orchestration')
       ? 'Awell Orchestration'
-      : 'Awell Score'
+      : filePath.includes('awell-score')
+      ? 'Awell Score'
+      : 'Generic'
 
     return {
-      space, // "Awell Orchestration" or "Awell Score"
+      space,
       content, // this is the .mdx content
       data, // this is the frontmatter
       slug: filePath.split('.')[0], // this is the file path

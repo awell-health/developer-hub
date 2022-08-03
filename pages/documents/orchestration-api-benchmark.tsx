@@ -257,5 +257,5 @@ export default function BenchmarkDocument() {
 }
 
 BenchmarkDocument.getLayout = function getLayout(page: ReactNode) {
-  return <DocsLayout>{page}</DocsLayout>
+  return <DocsLayout withSidebar={false}>{page}</DocsLayout>
 }

@@ -67,12 +67,12 @@ export default function Home() {
                     highlightedRows={[[19]]}
                   >
                     {`
-mutation CreatePathwaySession(
+mutation StartHostedPathwaySession(
   $pathway_id: String!
   $success_url: String!
   $cancel_url: String!
 ) {
-  createPathwaySession(
+  startHostedPathwaySession(
     pathway_id: $pathway_id
     success_url: $pathway_id
     cancel_url: $pathway_id
