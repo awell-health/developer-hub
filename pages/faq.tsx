@@ -10,7 +10,7 @@ import { SEO } from '@/components/SEO'
 import { mdxComponents, mdxOptions } from '@/config/mdx'
 import { AppContext } from '@/contexts/app/AppContext'
 
-type SystemStatusPageProps = {
+type FaqPageProps = {
   frontMatter: {
     title: string
     description: string
@@ -21,12 +21,12 @@ type SystemStatusPageProps = {
   content: string
 }
 
-export default function SystemStatusPage({
+export default function FaqPage({
   frontMatter,
   mdxSource,
   slug,
   content,
-}: SystemStatusPageProps) {
+}: FaqPageProps) {
   const { setTableOfContents } = useContext(AppContext)
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function SystemStatusPage({
         canonicalUrl={slug}
       />
       <DocsHeader
-        heading={'Awell Systems'}
+        heading={'Things we know you want to know'}
         title={frontMatter.title}
         description={frontMatter.description}
         githubUrl={`/content${slug}.mdx`}
@@ -54,12 +54,12 @@ export default function SystemStatusPage({
   )
 }
 
-SystemStatusPage.getLayout = function getLayout(page: ReactNode) {
+FaqPage.getLayout = function getLayout(page: ReactNode) {
   return <DocsLayout withSidebar={false}>{page}</DocsLayout>
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const slug = '/system-status'
+  const slug = '/faq'
   const { frontMatter, content } = await getPageContent(slug)
 
   // https://github.com/hashicorp/next-mdx-remote/issues/86

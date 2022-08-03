@@ -1,0 +1,109 @@
+---
+title: Frequently Asked Questions
+description: If you can't find what you're looking for, you can always send us a message over Intercom with your enquiry.
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+## Architecture, deployments, and technology
+
+<FAQ
+  withHeader={false}
+  condensed={true}
+  faqs={[
+    {
+      question:
+        'Do you have a high-level architectural diagram of the Awell system and all its different components?',
+      answer:
+        '<span>Yes! Have a look at our architecture diagram <a href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1659548875/Developer%20portal/Awell_Architecture_-_Full_-_Next.drawio.png" title="Awell Architecture Diagram" target="_blank">here</a>.</span>',
+    },
+    {
+      question: 'Where is your stack hosted?',
+      answer:
+        'Our stack is hosted on Google Cloud and can be deployed in several geographical locations for compliance reasons.',
+    },
+    {
+      question: 'How scalable is Awell Health?',
+      answer:
+        '<span>Our integrations and infrastructure are designed to handle large volumes of patients. Have a look at our <a href="/system-status">system status page</a> for more information.</span>',
+    },
+    {
+      question:
+        'How will you ensure geo-fencing as-in US data stays in US servers?',
+      answer:
+        'Our deployments are regional, so by design the data never leaves the region.',
+    },
+    {
+      question:
+        'How do you support multiple environments? Like Development/Test/Production?',
+      answer:
+        'We currently offer access to two environments: Sandbox and Production. We have more internal facing environments to support the software development lifecycle. If you need access to such environments to support development on your end we can discuss how best to address that need.',
+    },
+  ]}
+/>
+
+## Compliance
+
+<FAQ
+  withHeader={false}
+  condensed={true}
+  faqs={[
+    {
+      question: 'Is your system secure?',
+      answer:
+        'All interactions with our software as well as all data processing is end to end encrypted according to standards set for the banking industry. We are GDPR and HIPAA compliant and ISO27001 certified. That is a certification for how we deal with information security. We do regular external audits of our processes as well as our infrastructure in order to evolve our security continuously.',
+    },
+    {
+      question: 'How does your system handle PII/PHI data storage?',
+      answer:
+        'PII & PHI data is stored in a graph database (to support orchestration) and elastic (to support analytics). You decide how much PII/PHI data you want to share with us, our product can also works with completely anonymous patients.',
+    },
+    {
+      question:
+        'If your system will be storing PII/PHI data, are you open to signing a Business Associate Agreement (BAA)?',
+      answer: 'Yes, we can sign a BAA with you.',
+    },
+  ]}
+/>
+
+## Usage
+
+<FAQ
+  withHeader={false}
+  condensed={true}
+  faqs={[
+    {
+      question: 'What is an active patient?',
+      answer: `
+<span class='mb-4 inline-block'>To determine whether a patient was active in a given month, we look at:</span>
+‍
+<ul>
+<li>Was a pathway started for this patient</li>
+<li>Did the system complete an activity</li>
+<li>Did a human complete an activity</li>
+</ul>
+
+<span>
+  If any of these is true, the patient was active in the previous month.
+</span>
+`, }, ]} />
+
+## Data
+
+<FAQ
+  withHeader={false}
+  condensed={true}
+  faqs={[
+    {
+      question:
+        'Are all questions or data points and the corresponding answers uniquely identifiable in your system?',
+      answer:
+        'Yes. In addition, questions can be given a human readable identifier to support analytics queries.',
+    },
+    {
+      question:
+        'Can we assign custom attributes/tags to the Pathways? Will these custom tags be available in the Kibana Dashboards?',
+      answer: 'Not yet, but this feature is on our roadmap.',
+    },
+  ]}
+/>

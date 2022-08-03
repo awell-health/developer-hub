@@ -2,6 +2,7 @@ import rehypeSlug from 'rehype-slug'
 
 import { Alert } from '@/components/Alert'
 import { Code, CustomH2, CustomH3 } from '@/components/Docs/atoms'
+import { FAQ } from '@/components/FAQ'
 import { HowToUse } from '@/components/HowToUse'
 import { UseCasesComparisonTable } from '@/components/UseCasesComparisonTable'
 import { Effort } from '@/components/UseCasesComparisonTable/atoms'
@@ -22,4 +23,5 @@ export const mdxComponents = {
   Effort,
   HowToUse,
   Alert,
+  FAQ,
 }

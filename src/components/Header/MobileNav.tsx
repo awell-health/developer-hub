@@ -79,14 +79,34 @@ export const MobileNav = () => {
             </Link>
           </li>
           <li>
+            <Link href="/faq">
+              <a
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title="FAQ"
+              >
+                FAQ
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/system-status">
+              <a
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title="System status"
+              >
+                System status
+              </a>
+            </Link>
+          </li>
+          <li>
             <a
-              href="https://github.com/nckhell/awell-developers"
+              href="https://awell.health"
               target="_blank"
+              title="Awell website"
               className="hover:text-sky-500 dark:hover:text-sky-400"
               rel="noreferrer"
-              data-track-heap="open-github-repo"
             >
-              GitHub
+              Awell Website
             </a>
           </li>
         </ul>

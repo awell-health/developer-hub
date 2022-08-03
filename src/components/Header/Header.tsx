@@ -160,9 +160,23 @@ export const Header = () => {
               <div className="ml-auto">
                 <ul className="flex">
                   <li>
+                    <Link href="/faq">
+                      <a
+                        title="FAQ"
+                        className={`mr-8 block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
+                          router.asPath === '/faq'
+                            ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
+                            : ''
+                        }`}
+                      >
+                        FAQ
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/system-status">
                       <a
-                        title="Home"
+                        title="System status"
                         className={`mr-8 block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
                           router.asPath === '/system-status'
                             ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
@@ -176,7 +190,7 @@ export const Header = () => {
                   <li>
                     <Link href="https://www.awellhealth.com/">
                       <a
-                        title="Home"
+                        title="Awell Website"
                         target="_blank"
                         className="block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400"
                       >
