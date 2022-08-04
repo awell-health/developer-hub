@@ -2,10 +2,10 @@ import type { NextApiRequest, NextApiResponse } from 'next/types'
 
 import { type StartPathwayPayload } from '@/types/generated/api.types'
 
-const AWELL_API_ENDPOINT = process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL || ''
-const AWELL_API_KEY = process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_KEY || ''
-const PATHWAY_DEFINITION_ID = 'yYZujfDZashg'
-const PATIENT_ID = '0CDP6fmOYhwgcWXwnO57h'
+const AWELL_API_ENDPOINT = process.env.DEVELOPMENT_GRAPHQL_API_URL || ''
+const AWELL_API_KEY = process.env.DEVELOPMENT_SANDBOX_GRAPHQL_API_KEY || ''
+const PATHWAY_DEFINITION_ID = 'aqlAwv8cih-t'
+const PATIENT_ID = 'qDHyOo2IpvDGdxbFZ4Ocl'
 
 export default async function handler(
   req: NextApiRequest,
