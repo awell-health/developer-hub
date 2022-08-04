@@ -6,6 +6,7 @@ const AWELL_API_ENDPOINT = process.env.DEVELOPMENT_GRAPHQL_API_URL || ''
 const AWELL_API_KEY = process.env.DEVELOPMENT_SANDBOX_GRAPHQL_API_KEY || ''
 const PATHWAY_DEFINITION_ID = 'aqlAwv8cih-t'
 const PATIENT_ID = 'qDHyOo2IpvDGdxbFZ4Ocl'
+const EMAIL_DATAPOINT_DEFINITION_ID = 'zpY4LlF29O-E'
 
 export default async function handler(
   req: NextApiRequest,
@@ -36,7 +37,7 @@ export default async function handler(
             pathway_definition_id: PATHWAY_DEFINITION_ID,
             data_points: [
               {
-                data_point_definition_id: 'wtZGTsIE9Dr-',
+                data_point_definition_id: EMAIL_DATAPOINT_DEFINITION_ID,
                 value: requestBody.email,
               },
             ],
