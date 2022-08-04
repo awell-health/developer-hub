@@ -73,19 +73,25 @@ showPlaygroundButton: false
   condensed={true}
   faqs={[
     {
-      question: 'What is an active patient?',
+      question: 'What is a (monthly) active patient?',
       answer: `
-<span class='mb-4 inline-block'>To determine whether a patient was active in a given month, we look at:</span>
+<span class='mb-4 inline-block'>A patient is active in a preceding month if any of the following occurred:</span>
 ‍
 <ul>
-<li>Was a pathway started for this patient</li>
-<li>Did the system complete an activity</li>
-<li>Did a human complete an activity</li>
+<li>Pathway was started</li>
+<li>Activity was activated</li>
+<li>Reminder was triggered</li>
 </ul>
 
-<span>
-  If any of these is true, the patient was active in the previous month.
-</span>
+<div>
+  Please note that the patient does not need to have been active themselves. For
+  example, the sending of a reminder marks that patient as active.
+</div>
+<div class="mt-4">
+  Whether a patient has 1 active flow and 1 activity in a given month, or 100
+  flows with 1000 activities, that patient will be billed only once in that
+  month
+</div>
 `, }, ]} />
 
 ## Data

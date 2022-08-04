@@ -16,8 +16,6 @@ export default function WebhookBuilderPage() {
   const { frontEnd, changeFrontEnd, backEnd, changeBackEnd } = useStack()
   const [selectedWebhooks, setSelectedWebhooks] = useState<WebhooksType>([])
 
-  console.log(selectedWebhooks)
-
   const onChangeStack = ({
     newBackEnd,
     newFrontEnd,
