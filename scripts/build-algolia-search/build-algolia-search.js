@@ -48,7 +48,8 @@ function transformPagesToAlgoliaSearchObjects(pages) {
         ? /** Releases changelog are in different content directory compared to /pages  */
           `awell-orchestration/api-reference/overview/changelog/${page.slug
             .split('/')
-            .at(-1)}`
+            .slice(-1)
+            .pop()}`
         : page.slug,
     }
   })
