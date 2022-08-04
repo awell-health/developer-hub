@@ -46,7 +46,7 @@ function transformPagesToAlgoliaSearchObjects(pages) {
       content: page.content,
       slug: page.slug.includes('changelog')
         ? /** Releases changelog are in different content directory compared to /pages  */
-          `/awell-orchestration/api-reference/overview/${page.slug}`
+          `awell-orchestration/api-reference/overview/${page.slug}`
         : page.slug,
     }
   })
