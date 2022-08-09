@@ -15,7 +15,10 @@ mutation StartHostedPathwaySession($input: StartHostedPathwaySessionInput!) {
     session_id
     session_url
     pathway_id
-    patient_id
+    stakeholder {
+      type
+      name
+    }
   }
 }
 ```

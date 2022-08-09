@@ -292,7 +292,10 @@ app.post('/start-pathway-session', async (req, res) => {
       startHostedPathwaySession(input: $input) {
         session_id
         session_url
-        patient_id
+        stakeholder {
+          type
+          name
+        }
         pathway_id
       }
     }${'`'},

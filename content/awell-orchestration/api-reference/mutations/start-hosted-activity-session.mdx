@@ -15,7 +15,10 @@ mutation StartHostedActivitySession($input: StartHostedActivitySessionInput!) {
     session_id
     session_url
     pathway_id
-    patient_id
+    stakeholder {
+      type
+      name
+    }
   }
 }
 ```

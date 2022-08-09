@@ -20,7 +20,10 @@ export default async function handler(
           startHostedPathwaySession(input: $input) {
             session_id
             session_url
-            patient_id
+            stakeholder {
+              type
+              name
+            }
             pathway_id
           }
         }`,
@@ -50,9 +53,7 @@ export default async function handler(
               .startHostedPathwaySession as StartHostedPathwaySessionPayload
         )
 
-      const SESSION_URL = `https://hosted-pages.vercel.app/${session.session_url}`
-
-      res.redirect(303, SESSION_URL)
+      res.redirect(303, session.session_url)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       res.status(err.statusCode || 500).json(err.message)
