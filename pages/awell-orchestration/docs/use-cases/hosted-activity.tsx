@@ -61,6 +61,10 @@ export default function HostedActivityPage() {
         description={
           'Redirect stakeholders to an Awell Hosted Activity page to complete activities'
         }
+        customLink={{
+          url: `${process.env.NEXT_PUBLIC_AWELL_STORIES_API_URL}/stories/hosted-activity`,
+          title: 'Try it out',
+        }}
       />
       {/* Intro section */}
       <div className="max-w-4xl">

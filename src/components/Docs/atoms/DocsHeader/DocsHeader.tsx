@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { Badge } from '../../../../components/Badge'
 import { BadgeType } from '../../../../types/menu.types'
 import {
@@ -17,6 +19,10 @@ interface DocsHeaderProps {
     showPostmanButton?: boolean
     postmanButtonUrl?: string
   }
+  customLink?: {
+    url: string
+    title: string
+  }
 }
 
 export const DocsHeader = ({
@@ -27,6 +33,7 @@ export const DocsHeader = ({
   githubUrl,
   postman,
   playgroundButton,
+  customLink,
 }: DocsHeaderProps) => (
   <header id="header" className="relative z-20">
     <div>
@@ -65,6 +72,19 @@ export const DocsHeader = ({
       {playgroundButton && (
         <div className="mt-2 mr-3">
           <GraphQLButton url={'/awell-orchestration/playground'} />
+        </div>
+      )}
+      {customLink && (
+        <div className="mt-2 mr-3">
+          <Link href={customLink.url}>
+            <a
+              title={customLink.title}
+              target="_blank"
+              className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-sky-500 text-white border border-sky-500 rounded-lg focus:outline-none hover:bg-sky-400 hover:border-sky-400 focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-sky-200"
+            >
+              {customLink.title}
+            </a>
+          </Link>
         </div>
       )}
     </div>

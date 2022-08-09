@@ -61,6 +61,10 @@ export default function HostedPathwayPage() {
         description={
           'Get up and running with Awell Orchestration in less than a day'
         }
+        customLink={{
+          url: `${process.env.NEXT_PUBLIC_AWELL_STORIES_API_URL}/stories/hosted-pathway`,
+          title: 'Try it out',
+        }}
       />
       {/* Intro section */}
       <div className="max-w-4xl">
@@ -276,7 +280,7 @@ export default function HostedPathwayPage() {
                     <LinkButton
                       label="Try it out"
                       color="sky"
-                      href="/awell-orchestration/examples/hosted-pathway"
+                      href={`${process.env.NEXT_PUBLIC_AWELL_STORIES_API_URL}/stories/hosted-pathway`}
                     />
                   </div>
                 </div>
