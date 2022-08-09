@@ -285,6 +285,7 @@ app.post('/start-pathway-session', async (req, res) => {
           session_url
           pathway_id
           stakeholder {
+            id
             type
             name
           }

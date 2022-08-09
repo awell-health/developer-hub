@@ -258,6 +258,7 @@ export default async function handler(req, res) {
             session_id
             session_url
             stakeholder {
+              id
               type
               name
             }
