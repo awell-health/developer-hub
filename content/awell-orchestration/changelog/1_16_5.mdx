@@ -1,0 +1,65 @@
+---
+title: 1.16.5
+description: Changelog for release v1.16.5
+releaseDate: '2022-08-09'
+---
+
+## Added
+
+### startHostedActivitySession mutation
+
+Mutation added to start a hosted activity session.
+
+### hostedSessionActivities query 
+
+Query to fetch all activities that are part of a hosted session.
+
+```graphql
+query GetHostedSessionActivities($only_stakeholder_activities: Boolean) {
+    hostedSessionActivities(only_stakeholder_activities: $only_stakeholder_activities) {
+        activities {
+          ...
+        }
+    }
+}
+
+```
+
+## Changed
+
+### patient_id replaced with stakeholder object in Hosted Session
+
+Hosted Session payload now returns the following data:
+
+```json
+{
+  "session": {
+    "id": "<SESSION_ID>",
+    "pathway_id": "<PATHWAY_ID>",
+    "stakeholder": { // new
+      "id": "<SESSION_STAKEHOLDER_ID>",
+      "type": "<SESSION_STAKEHOLDER_TYPE>",
+      "name": "<SESSION_STAKEHOLDER_NAME>",
+    },
+    "success_url": "<SESSION_SUCCESS_URL>",
+    "cancel_url": "<SESSION_CANCEL_URL>",
+  },
+}
+```
+
+### session_id in Activity type is added when activity is part of a Hosted Session 
+
+```graphql
+query GetHostedSessionActivities($only_stakeholder_activities: Boolean) {
+    hostedSessionActivities(only_stakeholder_activities: $only_stakeholder_activities) {
+        activities {
+            id
+            date
+            session_id # new
+            status
+            ...
+        }
+    }
+}
+
+```
