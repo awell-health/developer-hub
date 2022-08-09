@@ -11,11 +11,12 @@ This page documents the `startHostedActivitySession` mutation but we recommend t
 
 ```graphql
 mutation StartHostedActivitySession($input: StartHostedActivitySessionInput!) {
-  startHostedPathwaySession(input: $input) {
+  startHostedActivitySession(input: $input) {
     session_id
     session_url
     pathway_id
     stakeholder {
+      id
       type
       name
     }
