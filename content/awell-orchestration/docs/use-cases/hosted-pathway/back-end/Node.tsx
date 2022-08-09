@@ -293,6 +293,7 @@ app.post('/start-pathway-session', async (req, res) => {
         session_id
         session_url
         stakeholder {
+          id
           type
           name
         }
