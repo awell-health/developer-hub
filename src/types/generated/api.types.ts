@@ -236,6 +236,13 @@ export type BaselineInfoPayload = Payload & {
   success: Scalars['Boolean'];
 };
 
+export type BrandingSettings = {
+  __typename?: 'BrandingSettings';
+  accent_color?: Maybe<Scalars['String']>;
+  hosted_page_title?: Maybe<Scalars['String']>;
+  logo_url?: Maybe<Scalars['String']>;
+};
+
 export type CalculationResultsPayload = {
   __typename?: 'CalculationResultsPayload';
   result: Array<SingleCalculationResult>;
@@ -489,6 +496,7 @@ export type HostedSessionActivitiesPayload = Payload & {
 
 export type HostedSessionPayload = Payload & {
   __typename?: 'HostedSessionPayload';
+  branding?: Maybe<BrandingSettings>;
   code: Scalars['String'];
   session: HostedSession;
   success: Scalars['Boolean'];

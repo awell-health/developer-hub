@@ -94,7 +94,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[34, 45]])}
+            onMouseEnter={() => setBackEndHighlights([[38, 49]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -126,7 +126,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[26, 30]])}
+            onMouseEnter={() => setBackEndHighlights([[30, 34]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -172,7 +172,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[26, 30]])}
+            onMouseEnter={() => setBackEndHighlights([[30, 34]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -228,7 +228,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[27, 29]])}
+            onMouseEnter={() => setBackEndHighlights([[31, 33]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -247,7 +247,7 @@ export const Node = ({ frontEnd }: NodeProps) => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[47]])}
+            onMouseEnter={() => setBackEndHighlights([[51]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
