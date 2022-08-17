@@ -475,8 +475,16 @@ export type HostedSession = {
   cancel_url: Scalars['String'];
   id: Scalars['ID'];
   pathway_id: Scalars['String'];
+  stakeholder: HostedSessionStakeholder;
   status: HostedSessionStatus;
   success_url: Scalars['String'];
+};
+
+export type HostedSessionActivitiesPayload = Payload & {
+  __typename?: 'HostedSessionActivitiesPayload';
+  activities: Array<Activity>;
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
 };
 
 export type HostedSessionPayload = Payload & {
@@ -485,6 +493,18 @@ export type HostedSessionPayload = Payload & {
   session: HostedSession;
   success: Scalars['Boolean'];
 };
+
+export type HostedSessionStakeholder = {
+  __typename?: 'HostedSessionStakeholder';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  type: HostedSessionStakeholderType;
+};
+
+export enum HostedSessionStakeholderType {
+  Patient = 'PATIENT',
+  Stakeholder = 'STAKEHOLDER'
+}
 
 export enum HostedSessionStatus {
   Active = 'ACTIVE',
@@ -554,6 +574,7 @@ export type Mutation = {
   retryPushToEmr: EmptyPayload;
   retryWebhookCall: RetryWebhookCallPayload;
   saveBaselineInfo: EmptyPayload;
+  startHostedActivitySession: StartHostedActivitySessionPayload;
   startHostedPathwaySession: StartHostedPathwaySessionPayload;
   startPathway: StartPathwayPayload;
   stopPathway: EmptyPayload;
@@ -623,6 +644,11 @@ export type MutationRetryWebhookCallArgs = {
 
 export type MutationSaveBaselineInfoArgs = {
   input: SaveBaselineInfoInput;
+};
+
+
+export type MutationStartHostedActivitySessionArgs = {
+  input: StartHostedActivitySessionInput;
 };
 
 
@@ -860,6 +886,7 @@ export type Query = {
   form: FormPayload;
   formResponse: FormResponsePayload;
   hostedSession: HostedSessionPayload;
+  hostedSessionActivities: HostedSessionActivitiesPayload;
   message: MessagePayload;
   myActivities: ActivitiesPayload;
   myPathways: PathwaysPayload;
@@ -931,6 +958,11 @@ export type QueryFormArgs = {
 export type QueryFormResponseArgs = {
   activity_id: Scalars['String'];
   pathway_id: Scalars['String'];
+};
+
+
+export type QueryHostedSessionActivitiesArgs = {
+  only_stakeholder_activities?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -1156,6 +1188,21 @@ export type SortingParams = {
   field: Scalars['String'];
 };
 
+export type StartHostedActivitySessionInput = {
+  cancel_url: Scalars['String'];
+  pathway_id: Scalars['String'];
+  stakeholder_id: Scalars['String'];
+  success_url: Scalars['String'];
+};
+
+export type StartHostedActivitySessionPayload = Payload & {
+  __typename?: 'StartHostedActivitySessionPayload';
+  code: Scalars['String'];
+  session_id: Scalars['String'];
+  session_url: Scalars['String'];
+  success: Scalars['Boolean'];
+};
+
 export type StartHostedPathwaySessionInput = {
   cancel_url: Scalars['String'];
   data_points?: InputMaybe<Array<DataPointInput>>;
@@ -1168,9 +1215,9 @@ export type StartHostedPathwaySessionPayload = Payload & {
   __typename?: 'StartHostedPathwaySessionPayload';
   code: Scalars['String'];
   pathway_id: Scalars['String'];
-  patient_id: Scalars['String'];
   session_id: Scalars['String'];
   session_url: Scalars['String'];
+  stakeholder: HostedSessionStakeholder;
   success: Scalars['Boolean'];
 };
 
@@ -1244,6 +1291,9 @@ export type Subscription = {
   elementCreated: Element;
   elementUpdated: Element;
   pathwayUpdated: Pathway;
+  sessionActivityCompleted: Activity;
+  sessionActivityCreated: Activity;
+  sessionActivityUpdated: Activity;
   sessionCompleted: HostedSession;
   sessionExpired: HostedSession;
   webhookCallCreated: WebhookCall;
@@ -1286,6 +1336,21 @@ export type SubscriptionElementUpdatedArgs = {
 
 export type SubscriptionPathwayUpdatedArgs = {
   id: Scalars['ID'];
+};
+
+
+export type SubscriptionSessionActivityCompletedArgs = {
+  only_stakeholder_activities?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type SubscriptionSessionActivityCreatedArgs = {
+  only_stakeholder_activities?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type SubscriptionSessionActivityUpdatedArgs = {
+  only_stakeholder_activities?: InputMaybe<Scalars['Boolean']>;
 };
 
 

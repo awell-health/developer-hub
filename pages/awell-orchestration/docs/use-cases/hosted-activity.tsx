@@ -212,7 +212,7 @@ export default function HostedActivityPage() {
               question:
                 'Can we apply custom branding on the hosted activity page?',
               answer:
-                "No, you can't. However, we are working on making some minimal branding options available like changing the logo and accent color. For full control over your UI we recommend setting up a custom integration.",
+                'Yes! You can customize the logo, accent color, and page title.',
             },
             {
               question:
