@@ -26,13 +26,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Most of the content is managed through [mdx files](https://mdxjs.com/) and these can be found in `/content/**/*`. Editing the markdown file will automatically update the content.
 
-**Pages that are not managed through mdx files are:**
-
-- [Schema page](https://developers.awellhealth.com/awell-orchestration/api-reference/overview/schema)
-- [Support page](https://developers.awellhealth.com/awell-orchestration/support)
-- [Awell Studio docs page](https://developers.awellhealth.com/awell-orchestration/awell-studio-docs)
-
-If you'd like to edit these pages, see the corresponding `.jsx` files in the `/pages` directory.
+Pages that are not managed through mdx files can be edit in the `/pages` directory.
 
 ### Adding a new page
 

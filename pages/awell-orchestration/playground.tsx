@@ -26,8 +26,8 @@ export default function Playground() {
     <div id="graphql-embed" className="h-screen">
       <SEO
         title="GraphQL Playground"
-        url={`/awell-orchestration/playground`}
-        canonicalUrl={`/awell-orchestration/playground`}
+        url={`/awell-orchestration/developer-tools/playground`}
+        canonicalUrl={`/awell-orchestration/developer-tools/playground`}
       />
       <GraphiQL
         schema={schema}

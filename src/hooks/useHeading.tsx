@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 
 import {
   orchestrationApiMenu,
+  orchestrationDeveloperToolsMenu,
   orchestrationDocsMenu,
 } from '../config/menus/awell-orchestration'
 import { scoreDocsMenu } from '../config/menus/awell-score'
@@ -11,6 +12,7 @@ export const useHeading = (): { heading: string } => {
   const menus = [
     ...orchestrationApiMenu,
     ...orchestrationDocsMenu,
+    ...orchestrationDeveloperToolsMenu,
     ...scoreDocsMenu,
   ]
 

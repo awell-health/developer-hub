@@ -1,15 +1,22 @@
 import Link from 'next/link'
 import { useContext } from 'react'
 
-import {
-  awellOrchestrationHomePage,
-  awellScoreHomePage,
-} from '../../config/routes'
+import { orchestrationNavigation } from '@/config/navigation'
+import { MainNavType } from '@/types/nav.types'
+
 import { AppContext } from '../../contexts/app/AppContext'
 import { ThemeSelect } from '../ThemeToggle'
 
 export const MobileNav = () => {
-  const { isMobileMainMenuOpen, toggleMobileMainMenu } = useContext(AppContext)
+  const { space, isMobileMainMenuOpen, toggleMobileMainMenu } =
+    useContext(AppContext)
+
+  let navigation: MainNavType = []
+
+  if (space === 'awell-orchestration') {
+    navigation = orchestrationNavigation
+  } else {
+  }
 
   if (!isMobileMainMenuOpen) return null
 
@@ -48,36 +55,18 @@ export const MobileNav = () => {
           </svg>
         </button>
         <ul className="space-y-6">
-          <li>
-            <Link href="/">
-              <a
-                className="hover:text-sky-500 dark:hover:text-sky-400"
-                title="Home"
-              >
-                Home
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href={awellOrchestrationHomePage}>
-              <a
-                className="hover:text-sky-500 dark:hover:text-sky-400"
-                title="Awell Orchestration"
-              >
-                Awell Orchestration
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href={awellScoreHomePage}>
-              <a
-                className="hover:text-sky-500 dark:hover:text-sky-400"
-                title="Awell Score"
-              >
-                Awell Score
-              </a>
-            </Link>
-          </li>
+          {navigation.map((navItem) => (
+            <li key={navItem.slug}>
+              <Link href={navItem.slug}>
+                <a
+                  className="hover:text-sky-500 dark:hover:text-sky-400"
+                  title={navItem.title}
+                >
+                  {navItem.title}
+                </a>
+              </Link>
+            </li>
+          ))}
           <li>
             <Link href="/faq">
               <a

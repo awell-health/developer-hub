@@ -17,88 +17,75 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/getting-started/domain-model',
       },
       {
-        title: 'Integrations overview',
-        path: '/awell-orchestration/docs/getting-started/integrations-overview',
-      },
-      {
         title: 'Pathway versioning',
         path: '/awell-orchestration/docs/getting-started/pathway-versioning',
       },
     ],
   },
   {
-    title: 'Use cases',
+    title: 'Interact with activities',
     submenu: [
       {
+        title: 'Overview',
+        path: '/awell-orchestration/docs/activities/overview-activities',
+      },
+      {
         title: 'Hosted pathway',
-        path: '/awell-orchestration/docs/use-cases/hosted-pathway',
+        path: '/awell-orchestration/docs/activities/hosted-pathway',
       },
       {
         title: 'Hosted activity',
-        path: '/awell-orchestration/docs/use-cases/hosted-activity',
+        path: '/awell-orchestration/docs/activities/hosted-activity',
       },
       {
         title: 'Custom integration',
-        path: '/awell-orchestration/docs/use-cases/custom-integration',
+        path: '/awell-orchestration/docs/activities/custom-integration',
       },
     ],
   },
   {
-    title: 'Data',
+    title: 'Manage and coordinate care',
     submenu: [
       {
-        title: 'Data access',
-        path: '/awell-orchestration/docs/data/data-access',
+        title: 'Overview',
+        path: '/awell-orchestration/docs/manage-coordinate-care/overview-care',
       },
       {
-        title: 'Monthly active patients',
-        path: '/awell-orchestration/docs/data/monthly-active-patients',
+        title: 'Awell & Retool',
+        path: '/awell-orchestration/docs/manage-coordinate-care/awell-and-retool',
+      },
+      {
+        title: 'Embed in your in-house built EHR/EMR',
+        path: '/awell-orchestration/docs/manage-coordinate-care/embed-ehr-emr',
+      },
+      {
+        title: 'Integrations with vendors',
+        path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors',
       },
     ],
   },
   {
-    title: 'Webhooks',
+    title: 'Get data and events out',
     submenu: [
       {
-        title: 'Introduction',
-        path: '/awell-orchestration/docs/webhooks/introduction',
+        title: 'Overview',
+        path: '/awell-orchestration/docs/data/overview-data',
       },
       {
-        title: 'Events overview',
-        path: '/awell-orchestration/docs/webhooks/events-overview',
+        title: 'Webhooks & events',
+        path: '/awell-orchestration/docs/data/webhooks-and-events',
       },
       {
-        title: 'Listen for events',
-        path: '/awell-orchestration/docs/webhooks/listen-for-events',
+        title: 'Create dashboards with Awell',
+        path: '/awell-orchestration/docs/data/create-dashboards-with-awell',
       },
       {
-        title: 'Webhook builder',
-        path: '/awell-orchestration/docs/webhooks/webhook-builder',
+        title: 'Connect to Awell data repository',
+        path: '/awell-orchestration/docs/data/connect-to-awell-data-repository',
       },
-      {
-        title: 'Test webhooks',
-        path: '/awell-orchestration/docs/webhooks/test-webhooks',
-      },
-      {
-        title: 'Security',
-        path: '/awell-orchestration/docs/webhooks/security',
-      },
-      {
-        title: 'Best practices',
-        path: '/awell-orchestration/docs/webhooks/best-practices',
-      },
-      {
-        title: 'Go live',
-        path: '/awell-orchestration/docs/webhooks/go-live',
-      },
-    ],
-  },
-  {
-    title: 'Integrations',
-    submenu: [
       {
         title: 'Healthcare interoperability',
-        path: '/awell-orchestration/docs/integrations/healthcare-interoperability',
+        path: '/awell-orchestration/docs/data/healthcare-interoperability',
       },
     ],
   },

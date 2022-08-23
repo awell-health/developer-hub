@@ -3,21 +3,21 @@ import { type SectionType, type TierType } from '../../src/types/useCases.types'
 export const tiers: TierType[] = [
   {
     name: 'Hosted pathway',
-    href: '/awell-orchestration/docs/use-cases/hosted-pathway',
+    href: '/awell-orchestration/docs/activities/hosted-pathway',
     description:
       'Redirect users to an Awell pathway page without needing to build a front-end yourself. Ideal for patient onboarding flows.',
     effort: 1,
   },
   {
     name: 'Hosted activity',
-    href: '/awell-orchestration/docs/use-cases/hosted-activity',
+    href: '/awell-orchestration/docs/activities/hosted-activity',
     description:
       'Send multiple stakeholders to an Awell-hosted page to complete activities in more elaborate pathways. Ideal for triage flows, outcomes / PROMs collection and more.',
     effort: 2,
   },
   {
     name: 'Custom integration',
-    href: '/awell-orchestration/docs/use-cases/custom-integration',
+    href: '/awell-orchestration/docs/activities/custom-integration',
     description:
       'Build your own UI on Awell Orchestration for full customization and flexibility.',
     effort: 3,

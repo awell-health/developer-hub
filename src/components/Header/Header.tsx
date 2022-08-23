@@ -2,14 +2,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 
-import {
-  awellOrchestrationHomePage,
-  awellScoreHomePage,
-} from '../../config/routes'
+import { orchestrationNavigation, scoreNavigation } from '@/config/navigation'
+import { MainNavType } from '@/types/nav.types'
+
 import { AppContext } from '../../contexts/app/AppContext'
-import { useBreadcrumb } from '../../hooks/useBreadcrumb'
 import { Badge } from '../Badge'
 import { Search } from '../Search'
+import { SpaceSwitcher } from '../SpaceSwitcher'
 import { ThemeToggle } from '../ThemeToggle'
 
 const MobileMainMenu = ({ onClick }: { onClick: () => void }) => {
@@ -37,8 +36,15 @@ const MobileMainMenu = ({ onClick }: { onClick: () => void }) => {
 
 export const Header = () => {
   const router = useRouter()
-  const breadcrumb = useBreadcrumb(router.asPath)
-  const { toggleMobileSideMenu, toggleMobileMainMenu } = useContext(AppContext)
+  const { menu, space, toggleMobileSideMenu, toggleMobileMainMenu } =
+    useContext(AppContext)
+  let navigation: MainNavType = []
+
+  if (space === 'awell-orchestration') {
+    navigation = orchestrationNavigation
+  } else {
+    navigation = scoreNavigation
+  }
 
   return (
     <>
@@ -71,6 +77,9 @@ export const Header = () => {
                 </a>
               </Link>
               <Badge color="sky">Developer Hub</Badge>
+              <div className="ml-2">
+                <SpaceSwitcher />
+              </div>
               <div className="flex ml-auto">
                 <div className="md:w-56">
                   <Search />
@@ -113,48 +122,29 @@ export const Header = () => {
             <div className="flex space-between">
               <div>
                 <ul className="flex">
-                  <li className="mr-8">
-                    <Link href={'/'}>
-                      <a
-                        title="Home"
-                        className={`block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
-                          router.asPath === '/'
-                            ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
-                            : ''
-                        }`}
-                      >
-                        Home
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mr-8">
-                    <Link href={awellOrchestrationHomePage}>
-                      <a
-                        title="Awell Orchestration"
-                        className={`block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
-                          router.asPath.includes('awell-orchestration')
-                            ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
-                            : ''
-                        }`}
-                      >
-                        Awell Orchestration
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mr-8">
-                    <Link href={awellScoreHomePage}>
-                      <a
-                        title="Awell Score"
-                        className={`block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400 ${
-                          router.asPath.includes('awell-score')
-                            ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
-                            : ''
-                        }`}
-                      >
-                        Awell Score
-                      </a>
-                    </Link>
-                  </li>
+                  {navigation.map((navItem) => {
+                    const isNavItemActive =
+                      navItem.title === 'Home'
+                        ? router.asPath === navItem.slug
+                        : router.asPath.includes(navItem.slug)
+
+                    return (
+                      <li className="mr-8" key={navItem.slug}>
+                        <Link href={navItem.slug}>
+                          <a
+                            title={navItem.title}
+                            className={`border-b border-transparent block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b hover:border-blue-700 dark:hover:border-sky-400 ${
+                              isNavItemActive
+                                ? 'border-b border-blue-700 text-blue-700 dark:border-sky-400 dark:text-sky-400'
+                                : ''
+                            }`}
+                          >
+                            {navItem.title}
+                          </a>
+                        </Link>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
               <div className="ml-auto">
@@ -203,56 +193,26 @@ export const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex items-center p-4 border-b border-slate-900/10 lg:hidden dark:border-slate-50/[0.06]">
-          <button
-            type="button"
-            onClick={() => toggleMobileSideMenu()}
-            className="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
-          >
-            <span className="sr-only">Navigation</span>
-            <svg width={24} height={24}>
-              <path
-                d="M5 6h14M5 12h14M5 18h14"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-          {breadcrumb && (
-            <ol className="ml-4 flex text-sm leading-6 whitespace-nowrap min-w-0">
-              {breadcrumb.map((breadcrumbItem, index) => (
-                <li
-                  key={index}
-                  className={`flex items-center ${
-                    breadcrumb.length - 1 === index
-                      ? 'font-semibold text-slate-900 truncate dark:text-slate-200'
-                      : ''
-                  }`}
-                >
-                  {breadcrumbItem.label}
-                  {breadcrumb.length - 1 !== index && (
-                    <svg
-                      width={3}
-                      height={6}
-                      aria-hidden="true"
-                      className="mx-3 overflow-visible text-slate-400"
-                    >
-                      <path
-                        d="M0 0L3 3L0 6"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  )}
-                </li>
-              ))}
-            </ol>
-          )}
-        </div>
+        {menu.length > 0 && (
+          <div className="flex items-center p-4 border-b border-slate-900/10 lg:hidden dark:border-slate-50/[0.06]">
+            <button
+              type="button"
+              onClick={() => toggleMobileSideMenu()}
+              className="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+            >
+              <span className="sr-only">Navigation</span>
+              <svg width={24} height={24}>
+                <path
+                  d="M5 6h14M5 12h14M5 18h14"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </>
   )

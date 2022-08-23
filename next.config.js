@@ -21,13 +21,28 @@ const nextConfig = {
     return [
       {
         source: '/examples/:slug',
-        destination: '/awell-orchestration/examples/:slug', // Matched parameters can be used in the destination
+        destination: '/awell-orchestration/examples/:slug',
         permanent: true,
       },
       {
         source: '/playground',
-        destination: '/awell-orchestration/playground', // Matched parameters can be used in the destination
+        destination: '/awell-orchestration/developer-tools/playground',
         permanent: true,
+      },
+      {
+        source: '/awell-orchestration/playground',
+        destination: '/awell-orchestration/developer-tools/playground',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/playground',
+        destination: '/awell-orchestration/developer-tools/playground',
+        permanent: true,
+      },
+      {
+        source: '/',
+        destination: '/awell-orchestration',
+        permanent: false,
       },
     ]
   },

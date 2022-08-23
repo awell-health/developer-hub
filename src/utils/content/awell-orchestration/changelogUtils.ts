@@ -7,7 +7,7 @@ import { ChangelogType } from '../../../types/changelog.types'
 
 const CHANGELOG_PATH = join(
   process.cwd(),
-  'content/awell-orchestration/changelog'
+  'content/awell-orchestration/developer-tools/changelog'
 )
 
 export const getReleaseChangelog = (slug: string): ChangelogType => {

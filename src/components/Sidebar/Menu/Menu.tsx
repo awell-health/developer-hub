@@ -1,48 +1,15 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
 
-import {
-  orchestrationApiMenu,
-  orchestrationDocsMenu,
-} from '../../../config/menus/awell-orchestration'
-import { scoreDocsMenu } from '../../../config/menus/awell-score'
-import {
-  awellOrchestrationApiHomePage,
-  awellOrchestrationDocsHomePage,
-} from '../../../config/routes'
-import { AppContext } from '../../../contexts/app/AppContext'
+import { useSidebarMenu } from '@/hooks/useSidebarMenu'
+
 import { isMenuItemActive } from '../../../utils/isMenuItemActive'
 import { Badge } from '../../Badge'
-import {
-  CommunityIcon,
-  DocumentationIcon,
-  PlaygroundIcon,
-  PlayIcon,
-  StudioIcon,
-} from '../atoms/icons'
-import { MainMenuItem } from './atoms/MainMenuItem'
 
 export const Menu = () => {
   const router = useRouter()
-  const { menu, setMenu } = useContext(AppContext)
-
-  useEffect(() => {
-    if (router.asPath.includes('awell-orchestration')) {
-      if (router.asPath.includes('api-reference')) {
-        setMenu(orchestrationApiMenu)
-      } else {
-        setMenu(orchestrationDocsMenu)
-      }
-    } else {
-      if (router.asPath.includes('awell-score')) {
-        setMenu(scoreDocsMenu)
-      } else {
-        setMenu([])
-      }
-    }
-  })
+  const { menu } = useSidebarMenu()
 
   const subLevelActiveClass =
     'text-sky-500 border-current font-semibold dark:text-sky-400'
@@ -51,73 +18,8 @@ export const Menu = () => {
 
   return (
     <ul>
-      {router.asPath.includes('awell-orchestration') && (
-        <li>
-          <MainMenuItem
-            route={awellOrchestrationDocsHomePage}
-            active={
-              router.pathname.includes('/docs') || router.pathname === '/'
-            }
-            label="Documentation"
-            icon={DocumentationIcon}
-          />
-        </li>
-      )}
-      {router.asPath.includes('awell-orchestration') && (
-        <li>
-          <MainMenuItem
-            route={awellOrchestrationApiHomePage}
-            active={
-              router.pathname.includes('/api-reference') &&
-              !router.query.slug?.includes('playground')
-            }
-            label="API Reference"
-            icon={PlaygroundIcon}
-          />
-        </li>
-      )}
-      <li>
-        <MainMenuItem
-          route={
-            router.asPath.includes('awell-orchestration')
-              ? '/awell-orchestration/api-reference/overview/playground'
-              : '/awell-score/docs/getting-started/playground'
-          }
-          active={isMenuItemActive(
-            'playground',
-            router.pathname,
-            router.query.slug ? router.query.slug : router.pathname
-          )}
-          label="Playground"
-          icon={PlayIcon}
-        />
-      </li>
-      <li>
-        <MainMenuItem
-          route={
-            router.asPath.includes('awell-orchestration')
-              ? '/awell-orchestration/support'
-              : '/awell-score/support'
-          }
-          active={router.pathname.includes('support')}
-          label="Support"
-          icon={CommunityIcon}
-        />
-      </li>
-      {router.asPath.includes('awell-orchestration') && (
-        <li>
-          <MainMenuItem
-            route="/awell-orchestration/awell-studio-docs"
-            active={router.pathname.includes(
-              'awell-orchestration/awell-studio-docs'
-            )}
-            label="Awell Studio Docs"
-            icon={StudioIcon}
-          />
-        </li>
-      )}
       {menu.map((menuItem, index) => (
-        <li className="mt-12 lg:mt-8" key={index}>
+        <li className="mb-12 lg:mb-8" key={index}>
           <h5 className="mb-8 lg:mb-3 font-semibold text-base text-slate-900 dark:text-slate-200">
             {menuItem.title}
           </h5>

@@ -2,15 +2,35 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@/contexts/*": ["src/contexts/*"],
-      "@/types/*": ["src/types/*"],
-      "@/content/*": ["content/*"],
-      "@/config/*": ["src/config/*"]
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/hooks/*": [
+        "src/hooks/*"
+      ],
+      "@/contexts/*": [
+        "src/contexts/*"
+      ],
+      "@/types/*": [
+        "src/types/*"
+      ],
+      "@/content/*": [
+        "content/*"
+      ],
+      "@/config/*": [
+        "src/config/*"
+      ],
+      "@/utils/*": [
+        "src/utils/*"
+      ],
     },
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext", "es2020.string"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2020.string"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,6 +44,14 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "scripts", "src/types/generated"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "scripts",
+    "src/types/generated"
+  ]
 }

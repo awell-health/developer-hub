@@ -1,0 +1,37 @@
+---
+title: Webhooks
+description: Listen for events on your pathways so your integration can automatically trigger reactions.
+---
+
+Awell uses webhooks to notify your application when an event happens in a pathway. Webhooks are particularly useful for asynchronous events such as when a stakeholder completes an action or a pathway gets completed.
+
+<figure className="w-full flex flex-col justify-center text-center">
+  <img
+    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/Webhooks_diagram.png"
+    alt="Pathway versioning"
+    className="w-full sm:w-10/12 mx-auto p-4 bg-white rounded-lg"
+  />
+  <figcaption className="dark:text-slate-400 pt-1">
+    Webhooks © Awell Health
+  </figcaption>
+</figure>
+
+## How Awell uses webhooks
+
+A webhook enables Awell to push real-time notifications to your app. Awell uses HTTPS to send these notifications to your app as a JSON payload. You can then use these notifications to execute actions in your backend systems. To learn more, see the [webhook events overview](/awell-orchestration/developer-tools/webhooks/events-overview).
+
+## Steps to receive webhooks
+
+You can start receiving event notifications in your app using the steps in this section:
+
+1. Identify the events you want to monitor and the event payloads to parse.
+2. Create a webhook endpoint as an HTTPS endpoint (URL) that can accept POST requests on your local server.
+3. Handle requests from Awell by parsing each event object and returning 2xx response status codes.
+4. Deploy your webhook endpoint so it’s a publicly accessible HTTPS URL.
+5. Register your publicly accessible HTTPS URL in the Pathway settings of a pathway in [Awell studio](/awell-orchestration/docs/getting-started/awell-ecosystem#awell-studio).
+
+## Configure webhooks in pathways
+
+Webhooks are configured on a per pathway basis in Awell Studio (see `Settings > Webhooks`). You can find more information on how to configure webhooks in your pathways [here](https://help.awellhealth.com/en/articles/6103339-configure-a-webhook).
+
+Webhooks can be configured separately for pathway preview (when building and testing pathways) and for pathway orchestration. In addition, when previewing pathways all webhooks are skipped by default but you have the ability to trigger them manually to test your endpoint implementation.

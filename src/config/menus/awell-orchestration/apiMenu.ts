@@ -10,7 +10,7 @@ const badges: { [key in string]: BadgeType } = {
 
 export const apiMenu: MenuItemType[] = [
   {
-    title: 'Overview',
+    title: 'Getting started',
     submenu: [
       {
         title: 'Endpoints',
@@ -19,18 +19,6 @@ export const apiMenu: MenuItemType[] = [
       {
         title: 'Authorization',
         path: '/awell-orchestration/api-reference/overview/authorization',
-      },
-      {
-        title: 'Schema',
-        path: '/awell-orchestration/api-reference/overview/schema',
-      },
-      {
-        title: 'Playground',
-        path: '/awell-orchestration/api-reference/overview/playground',
-      },
-      {
-        title: 'Changelog',
-        path: '/awell-orchestration/api-reference/overview/changelog',
       },
     ],
   },
