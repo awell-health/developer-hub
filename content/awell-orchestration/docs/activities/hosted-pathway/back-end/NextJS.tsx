@@ -274,7 +274,7 @@ export default async function handler(req, res) {
         },
       })
 
-      const session = fetch(AWELL_API_ENDPOINT, {
+      const session = await fetch(AWELL_API_ENDPOINT, {
         method: 'POST',
         headers: {
           apiKey: AWELL_API_KEY,
