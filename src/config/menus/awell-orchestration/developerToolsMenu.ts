@@ -17,8 +17,8 @@ export const developerToolsMenu: MenuItemType[] = [
         path: '/awell-orchestration/developer-tools/playground',
       },
       {
-        title: 'Postman collections',
-        path: '#',
+        title: 'Postman collection',
+        path: '/awell-orchestration/developer-tools/api/postman-collection',
       },
     ],
   },
@@ -64,7 +64,7 @@ export const developerToolsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'Orchestration stories',
-        path: '#',
+        path: '/awell-orchestration/developer-tools/example-projects/orchestration-stories',
       },
     ],
   },
@@ -73,7 +73,7 @@ export const developerToolsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'UI library',
-        path: '#',
+        path: '/awell-orchestration/developer-tools/sdks/ui-library',
       },
     ],
   },
