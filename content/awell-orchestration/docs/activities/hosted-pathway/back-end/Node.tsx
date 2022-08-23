@@ -292,11 +292,6 @@ app.post('/start-pathway-session', async (req, res) => {
       startHostedPathwaySession(input: $input) {
         session_id
         session_url
-        stakeholder {
-          id
-          type
-          name
-        }
         pathway_id
       }
     }${'`'},
@@ -317,7 +312,7 @@ app.post('/start-pathway-session', async (req, res) => {
     }
   });
 
-  const session = fetch(AWELL_API_ENDPOINT, {
+  const session = await fetch(AWELL_API_ENDPOINT, {
     method: 'POST',
     headers: {
       apiKey: AWELL_API_KEY,

@@ -257,11 +257,6 @@ export default async function handler(req, res) {
           startHostedPathwaySession(input: $input) {
             session_id
             session_url
-            stakeholder {
-              id
-              type
-              name
-            }
             pathway_id
           }
         }${'`'},
