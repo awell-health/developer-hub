@@ -7,19 +7,16 @@ export const WebhooksTable = () => {
     <div className="flex flex-col">
       <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-          <table className="ignore-default-style min-w-full divide-y divide-slate-300">
+          <table className="ignore-default-style min-w-full divide-y divide-slate-300 dark:divide-slate-500">
             <thead>
-              <tr>
+              <tr className="text-slate-900 dark:text-white text-base font-semibold">
                 <th
                   scope="col"
-                  className="py-3.5 pl-4 pr-3 text-left text-base font-semibold text-slate-900 sm:pl-6 md:pl-0"
+                  className="py-3.5 pl-4 pr-3 text-left sm:pl-6 md:pl-0"
                 >
                   Event
                 </th>
-                <th
-                  scope="col"
-                  className="py-3.5 px-3 text-left text-base font-semibold text-slate-900"
-                >
+                <th scope="col" className="py-3.5 px-3 text-left">
                   Description
                 </th>
                 <th
@@ -30,20 +27,23 @@ export const WebhooksTable = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
               {webhooks.map((webhook) => (
-                <tr key={webhook.event}>
-                  <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 text-base text-slate-900 sm:pl-6 md:pl-0">
+                <tr
+                  key={webhook.event}
+                  className="text-slate-900 dark:text-slate-100"
+                >
+                  <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
                     {webhook.event}
                   </td>
-                  <td className="whitespace-nowrap py-4 px-3 text-base text-slate-500">
+                  <td className="whitespace-nowrap py-4 px-3 text-base">
                     {webhook.description}
                   </td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm sm:pr-6 md:pr-0">
                     <Link href={webhook.apiReferenceLink}>
                       <a
                         title={`View payload of ${webhook.event}`}
-                        className="custom-link font-semibold text-blue-600 hover:text-blue-900"
+                        className="custom-link font-semibold text-blue-600 dark:text-sky-400 hover:text-blue-900 dark:hover:text-sky-500"
                       >
                         View payload
                       </a>
