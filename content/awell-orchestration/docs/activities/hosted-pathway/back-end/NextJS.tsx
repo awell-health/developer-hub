@@ -237,13 +237,13 @@ export const NextJS = () => {
           <CodeTabs>
             <CodeBlock
               language="js"
-              fileName="pages/api/start_pathway_session.js"
+              fileName="pages/api/start-pathway-session.js"
               numberOfLinesPreview={999}
               highlightedRows={backEndHighlights}
             >
               {`
 const AWELL_API_ENDPOINT = process.env.AWELL_API_URL
-const API_KEY = process.env.AWELL_API_KEY;
+const AWELL_API_KEY = process.env.AWELL_API_KEY;
 const PATHWAY_DEFINITION_ID = "XYZ";
 
 export default async function handler(req, res) {

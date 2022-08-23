@@ -130,7 +130,7 @@ export default function StartPathwayPage() {
   }, []);
 
   return (
-    <form action="/api/start_pathway_session" method="POST">
+    <form action="/api/start-pathway-session" method="POST">
       <button type="submit" role="link">
         Start pathway session
       </button>
