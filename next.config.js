@@ -29,16 +29,6 @@ const nextConfig = {
         destination: '/awell-orchestration/developer-tools/playground',
         permanent: true,
       },
-      {
-        source: '/awell-orchestration/playground',
-        destination: '/awell-orchestration/developer-tools/playground',
-        permanent: true,
-      },
-      {
-        source: '/awell-orchestration/playground',
-        destination: '/awell-orchestration/developer-tools/playground',
-        permanent: true,
-      },
     ]
   },
 }
