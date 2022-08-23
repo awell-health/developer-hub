@@ -10,7 +10,7 @@ import { Effort } from '@/components/UseCasesComparisonTable/atoms'
 
 const domains = [
   {
-    url: '/awell-orchestration/docs/activities/overview',
+    url: '/awell-orchestration/docs/activities/overview-activities',
     title: 'Interact with activities',
     icon: (
       <svg
@@ -30,7 +30,7 @@ const domains = [
       'Let stakeholders interact with activities like messages and forms in your care pathway.',
   },
   {
-    url: '/awell-orchestration/docs/manage-coordinate-care/overview',
+    url: '/awell-orchestration/docs/manage-coordinate-care/overview-care',
     title: 'Manage and coordinate care',
     icon: (
       <svg
@@ -50,7 +50,7 @@ const domains = [
       'Manage your care pathways, see who needs attention and coordinate care efficiently.',
   },
   {
-    url: '/awell-orchestration/docs/data/overview',
+    url: '/awell-orchestration/docs/data/overview-data',
     title: 'Get data and events out',
     icon: (
       <svg
