@@ -125,8 +125,8 @@ export const Header = () => {
                   {navigation.map((navItem) => {
                     const isNavItemActive =
                       navItem.title === 'Home'
-                        ? router.asPath === navItem.slug
-                        : router.asPath.includes(navItem.slug)
+                        ? router.asPath === navItem.activeSlugCheck
+                        : router.asPath.includes(navItem.activeSlugCheck)
 
                     return (
                       <li className="mr-8" key={navItem.slug}>

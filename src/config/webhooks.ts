@@ -12,6 +12,8 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the start of the pathway in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/pathway-started',
   },
   {
     event: 'pathway.completed',
@@ -24,6 +26,8 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the completion of the pathway in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/pathway-completed',
   },
   {
     event: 'activity.created',
@@ -37,6 +41,8 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the creation of an activity in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/activity-created',
   },
   {
     event: 'activity.completed',
@@ -50,6 +56,8 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the completion of an activity in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/activity-completed',
   },
   {
     event: 'form.submitted',
@@ -74,6 +82,8 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle submission of a form in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/form-submitted',
   },
   {
     event: 'data_point.collected',
@@ -91,6 +101,8 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the collection of a data point in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/data-point-collected',
   },
   {
     event: 'reminder.created',
@@ -108,6 +120,8 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the creation of a reminder in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/reminder-created',
   },
   {
     event: 'session.started',
@@ -124,6 +138,8 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the creation of a session in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/session-started',
   },
   {
     event: 'session.completed',
@@ -140,6 +156,8 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the completion of a session in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/session-completed',
   },
   {
     event: 'session.expired',
@@ -156,5 +174,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the expiration of a session in your system.',
+    apiReferenceLink:
+      '/awell-orchestration/api-reference/webhooks/session-expired',
   },
 ]

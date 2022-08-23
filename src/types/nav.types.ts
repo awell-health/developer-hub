@@ -1,1 +1,5 @@
-export type MainNavType = { title: string; slug: string }[]
+export type MainNavType = {
+  title: string
+  slug: string
+  activeSlugCheck: string
+}[]

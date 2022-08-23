@@ -102,13 +102,20 @@ export default function HostedPathwayPage() {
           </ol>
           <figure className="w-full flex flex-col justify-center text-center pt-4">
             <div className="w-full sm:w-11/12 mx-auto text-center">
-              <Image
-                src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658318620/Developer%20portal/hosted-pathway-sequence-diagram.png"
-                alt="Hosted pathway sequence diagram"
-                className="rounded-lg"
-                width="5408"
-                height="3606"
-              />
+              <a
+                href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658318620/Developer%20portal/hosted-pathway-sequence-diagram.png"
+                target="_blank"
+                rel="noreferrer"
+                className="custom-link"
+              >
+                <Image
+                  src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658318620/Developer%20portal/hosted-pathway-sequence-diagram.png"
+                  alt="Hosted pathway sequence diagram"
+                  className="rounded-lg"
+                  width="5408"
+                  height="3606"
+                />
+              </a>
             </div>
             <figcaption className="dark:text-slate-400 pt-1">
               Hosted pathway lifecycle © Awell Health
@@ -279,6 +286,7 @@ export default function HostedPathwayPage() {
                   <div className="mt-4">
                     <LinkButton
                       label="Try it out"
+                      newTab={true}
                       color="sky"
                       href={`${process.env.NEXT_PUBLIC_AWELL_STORIES_API_URL}/stories/hosted-pathway`}
                     />

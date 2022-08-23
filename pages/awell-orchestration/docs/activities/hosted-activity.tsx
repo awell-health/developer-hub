@@ -124,13 +124,20 @@ export default function HostedActivityPage() {
           </p>
           <figure className="w-full flex flex-col justify-center text-center pt-4">
             <div className="w-full sm:w-11/12 mx-auto text-center">
-              <Image
-                src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658845321/Developer%20portal/sequence-diagram-hosted-activity.png"
-                alt="Hosted activity sequence diagram"
-                className="rounded-lg"
-                width="5512"
-                height="4694"
-              />
+              <a
+                href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658845321/Developer%20portal/sequence-diagram-hosted-activity.png"
+                target="_blank"
+                rel="noreferrer"
+                className="custom-link"
+              >
+                <Image
+                  src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1658845321/Developer%20portal/sequence-diagram-hosted-activity.png"
+                  alt="Hosted activity sequence diagram"
+                  className="rounded-lg"
+                  width="5512"
+                  height="4694"
+                />
+              </a>
             </div>
             <figcaption className="dark:text-slate-400 pt-1">
               Hosted activity lifecycle © Awell Health

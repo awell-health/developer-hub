@@ -6,6 +6,7 @@ import { FAQ } from '@/components/FAQ'
 import { HowToUse } from '@/components/HowToUse'
 import { UseCasesComparisonTable } from '@/components/UseCasesComparisonTable'
 import { Effort } from '@/components/UseCasesComparisonTable/atoms'
+import { WebhooksList, WebhooksTable } from '@/components/Webhooks'
 
 export const mdxOptions = {
   mdxOptions: {
@@ -24,4 +25,6 @@ export const mdxComponents = {
   HowToUse,
   Alert,
   FAQ,
+  WebhooksList,
+  WebhooksTable,
 }

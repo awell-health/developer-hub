@@ -100,16 +100,16 @@ export const sections: SectionType[] = [
       {
         name: 'UI customization',
         tiers: {
-          'Hosted pathway': 'Awell branded',
-          'Hosted activity': 'Awell branded',
+          'Hosted pathway': 'Yes, but limited (logo, color, page title)',
+          'Hosted activity': 'Yes, but limited (logo, color, page title)',
           'Custom integration': true,
         },
       },
       {
         name: 'Authentication',
         tiers: {
-          'Hosted pathway': 'Light',
-          'Hosted activity': 'Full',
+          'Hosted pathway': 'Light (session based)',
+          'Hosted activity': 'Light (session based)',
           'Custom integration': 'Full',
         },
       },

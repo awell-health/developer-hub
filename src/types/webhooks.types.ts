@@ -6,6 +6,7 @@ type WebhookType = {
     jsonPath: string
   }[]
   comment: string
+  apiReferenceLink: string
 }
 
 export type WebhooksType = Array<WebhookType>

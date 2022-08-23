@@ -1,31 +1,37 @@
 ---
 title: Overview
-description: Interact with, explore, and visualize your data
+description: Learn how to get data out of Awell to interact with, explore, and visualize your data
 ---
 
 We offer different strategies to interact with, explore, and visualize data coming from care pathways.
 
 <figure className="w-full flex flex-col justify-center text-center">
-  <img
-    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/data_access_Awell.png"
-    alt="Data access"
-    className="w-full sm:w-5/6 mx-auto"
-  />
+  <a
+    href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/data_access_Awell.png"
+    target="_blank"
+    className="custom-link"
+  >
+    <img
+      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/data_access_Awell.png"
+      alt="Data access"
+      className="w-full sm:w-4/6 mx-auto rounded-lg"
+    />
+  </a>
   <figcaption className="dark:text-slate-400 pt-1">© Awell Health</figcaption>
 </figure>
 
-## Webhooks
+## Webhooks & events
 
-You can subscribe to Webhook events that are triggered every time a [form is submitted](/awell-orchestration/api-reference/webhooks/form-submitted) or when an individual [data point is collected](/awell-orchestration/api-reference/webhooks/data-point-collected). For more information, read [this page](/awell-orchestration/developer-tools/webhooks/introduction).
+You can leverage webhooks to track events happening within Awell and send them to any destination (Segment, Amplitude, Google Analytics, ...).
 
-## Elastic search
+## Connect to Awell's data repository (Elastic)
 
 We use Elastic as our data repository to store, index, and search pathway data sets. You can either **connect your own BI tool** to our data repository in Elastic or **use our analytics & dashboarding tool: Kibana**.
 
 Both Elastic and Kibana are running on our own infrastructure.
 
-## Kibana
+## Create dashboards with Kibana
 
-We use Kibana for dashboarding & data visualization. If you choose to work with Kibana (and not your own BI tool) then we create accounts so you can log in into the tool. In Kibana, you're able to create an unlimited amount of dashboards.
+We use Kibana for dashboarding & data visualization. If you choose to work with Kibana (and not your own BI tool), then we create accounts so you can log in into the tool. In Kibana, you're able to create an unlimited amount of dashboards.
 
-Integrations with your identity provider to log into Kibana are also possible.
+Integrations with your identity provider to log into Kibana are possible.
