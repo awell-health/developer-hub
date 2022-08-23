@@ -64,7 +64,7 @@ export const NextJS = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[33, 44]])}
+            onMouseEnter={() => setBackEndHighlights([[28, 39]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -96,7 +96,7 @@ export const NextJS = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[25, 29]])}
+            onMouseEnter={() => setBackEndHighlights([[20, 24]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -142,7 +142,7 @@ export const NextJS = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[25, 29]])}
+            onMouseEnter={() => setBackEndHighlights([[20, 24]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -198,7 +198,7 @@ export const NextJS = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[26, 28]])}
+            onMouseEnter={() => setBackEndHighlights([[20, 24]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
@@ -217,7 +217,7 @@ export const NextJS = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setBackEndHighlights([[46]])}
+            onMouseEnter={() => setBackEndHighlights([[41]])}
             onMouseLeave={() => setBackEndHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
