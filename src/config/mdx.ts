@@ -4,6 +4,7 @@ import { Alert } from '@/components/Alert'
 import { Code, CustomH2, CustomH3 } from '@/components/Docs/atoms'
 import { FAQ } from '@/components/FAQ'
 import { HowToUse } from '@/components/HowToUse'
+import { PostmanLinks } from '@/components/Links/PostmanLinks'
 import { UseCasesComparisonTable } from '@/components/UseCasesComparisonTable'
 import { Effort } from '@/components/UseCasesComparisonTable/atoms'
 import { WebhooksList, WebhooksTable } from '@/components/Webhooks'
@@ -15,7 +16,6 @@ export const mdxOptions = {
     ],
   },
 }
-
 export const mdxComponents = {
   h2: CustomH2,
   h3: CustomH3,
@@ -27,4 +27,5 @@ export const mdxComponents = {
   FAQ,
   WebhooksList,
   WebhooksTable,
+  PostmanLinks,
 }

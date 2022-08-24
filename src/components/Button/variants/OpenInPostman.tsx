@@ -1,10 +1,7 @@
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 
-import {
-  postmanMacCollectionLink,
-  postmanWebCollectionLink,
-} from '../../../config/postmanLinks'
+import { postManLinks } from '../../../config/postmanLinks'
 import { useOnClickOutside } from '../../../hooks'
 
 interface Props {
@@ -83,30 +80,20 @@ const PostmanSelect = () => {
         tabIndex={-1}
       >
         <div className="py-1" role="none">
-          <Link href={postmanWebCollectionLink}>
-            <a
-              target="_blank"
-              className="text-gray-700 block px-4 py-2 text-sm hover:bg-slate-100"
-              role="menuitem"
-              tabIndex={-1}
-              id="menu-item-0"
-              data-heap="download-postman-web-collection"
-            >
-              Open in Postman Web
-            </a>
-          </Link>
-          <Link href={postmanMacCollectionLink}>
-            <a
-              target="_blank"
-              className="text-gray-700 block px-4 py-2 text-sm  hover:bg-slate-100"
-              role="menuitem"
-              tabIndex={-1}
-              id="menu-item-1"
-              data-heap="download-postman-mac-windows-collection"
-            >
-              Open in Postman for Mac/Windows
-            </a>
-          </Link>
+          {postManLinks.map((link, i) => (
+            <Link href={link.url} key={link.title}>
+              <a
+                target="_blank"
+                className="text-gray-700 block px-4 py-2 text-sm hover:bg-slate-100"
+                role="menuitem"
+                tabIndex={-1}
+                id={`menu-item-${i}`}
+                data-heap={link.heapTracker}
+              >
+                {link.title}
+              </a>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
