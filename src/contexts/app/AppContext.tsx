@@ -118,8 +118,11 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   useEffect(() => {
     if (router.asPath.includes('awell-orchestration')) {
       setSpace('awell-orchestration')
-    } else {
+    } else if (router.asPath.includes('awell-score')) {
       setSpace('awell-score')
+    } else {
+      const DEFAULT_SPACE = 'awell-orchestration'
+      setSpace(DEFAULT_SPACE)
     }
   }, [router.asPath])
 
