@@ -285,7 +285,7 @@ export default function Home() {
                 <LinkButton
                   label="Compare solutions"
                   href={
-                    '/awell-orchestration/docs/getting-started/integrations-overview'
+                    '/awell-orchestration/docs/activities/overview-activities'
                   }
                   size="lg"
                   color="slate"
@@ -320,16 +320,6 @@ export default function Home() {
                   </Link>
                 ))}
               </div>
-              <div className="mt-4 mx-auto text-center">
-                <LinkButton
-                  label="Compare solutions"
-                  href={
-                    '/awell-orchestration/docs/getting-started/integrations-overview'
-                  }
-                  size="lg"
-                  color="slate"
-                />
-              </div>
             </>
           )}
           {activeTab.title === 'Manage and coordinate care' && (
@@ -358,16 +348,6 @@ export default function Home() {
                     </a>
                   </Link>
                 ))}
-              </div>
-              <div className="mt-4 mx-auto text-center">
-                <LinkButton
-                  label="Compare solutions"
-                  href={
-                    '/awell-orchestration/docs/getting-started/integrations-overview'
-                  }
-                  size="lg"
-                  color="slate"
-                />
               </div>
             </>
           )}
