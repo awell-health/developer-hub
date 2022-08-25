@@ -66,7 +66,7 @@ export default function Custom404() {
             </Link>
           </div>
           <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-slate-900">
-            Request your API keys
+            Get your API keys
           </h2>
           <p className="mt-2 text-center text-lg text-slate-600">
             Enter your email address below so we can send your API keys to you.
