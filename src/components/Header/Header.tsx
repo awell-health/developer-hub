@@ -87,7 +87,7 @@ export const Header = () => {
                 </div>
                 <div className="ml-4">
                   <LinkButton
-                    label="Request API keys"
+                    label="Get API keys"
                     href="/request-api-keys"
                     size="sm"
                     color="sky"
