@@ -17,6 +17,7 @@ export type SubmenuItemType = {
 
 export type MenuItemType = {
   title: string
+  path?: string
   submenu?: SubmenuItemType[]
 }
 

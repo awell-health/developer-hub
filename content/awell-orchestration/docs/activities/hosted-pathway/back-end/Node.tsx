@@ -281,7 +281,7 @@ app.use(express.static('public'));
 const AWELL_API_ENDPOINT = 'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql'
 const AWELL_API_KEY = 'YOUR_API_KEY'
 const YOUR_DOMAIN = 'https://your-domain.com'
-const PATHWAY_DEFINITION_ID = "ABC"
+const PATHWAY_DEFINITION_ID = "J0oNK2V91RL2"
 
 app.post('/start-pathway-session', async (req, res) => {
   const body = JSON.stringify({

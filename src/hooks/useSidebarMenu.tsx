@@ -8,9 +8,14 @@ import {
 } from '@/config/menus/awell-orchestration'
 import { scoreDocsMenu } from '@/config/menus/awell-score'
 import { AppContext } from '@/contexts/app/AppContext'
-import { MenuType } from '@/types/menu.types'
+import { MenuItemType, MenuType } from '@/types/menu.types'
 
-export const useSidebarMenu = (): { menu: MenuType } => {
+interface useSidebarMenuHook {
+  menu: MenuType
+  isChildActive: (menu: MenuItemType) => boolean
+}
+
+export const useSidebarMenu = (): useSidebarMenuHook => {
   const { menu, setMenu } = useContext(AppContext)
   const router = useRouter()
 
@@ -34,5 +39,15 @@ export const useSidebarMenu = (): { menu: MenuType } => {
     }
   })
 
-  return { menu }
+  const isChildActive = (menu: MenuItemType) => {
+    if (menu?.submenu) {
+      return menu.submenu.some((subMenuItem) =>
+        router.asPath.includes(subMenuItem.path)
+      )
+    }
+
+    return false
+  }
+
+  return { menu, isChildActive }
 }

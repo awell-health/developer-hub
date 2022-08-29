@@ -34,12 +34,19 @@ export const NextJS = () => {
               <p>
                 You will need an API key to authorize requests to the Awell API
                 and a pathway definition id to indicate what pathway you would
-                like to start.
+                like to start (see &quot;Prerequisites&quot;).
               </p>
               <p className="mt-4">
                 <strong>Resources:</strong>
               </p>
               <ul className="list-disc ml-4">
+                <li>
+                  <Link href="/awell-orchestration/api-reference/overview/endpoints">
+                    <a title="API endpoints" className="text-sky-500 underline">
+                      API endpoints
+                    </a>
+                  </Link>
+                </li>
                 <li>
                   <Link href="/awell-orchestration/api-reference/overview/authorization">
                     <a
@@ -58,7 +65,8 @@ export const NextJS = () => {
                     >
                       Get pathway definition ids
                     </a>
-                  </Link>
+                  </Link>{' '}
+                  (if not using the template pathway)
                 </li>
               </ul>
             </div>
@@ -244,7 +252,7 @@ export const NextJS = () => {
               {`
 const AWELL_API_ENDPOINT = process.env.AWELL_API_URL
 const AWELL_API_KEY = process.env.AWELL_API_KEY;
-const PATHWAY_DEFINITION_ID = "XYZ";
+const PATHWAY_DEFINITION_ID = "J0oNK2V91RL2";
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {

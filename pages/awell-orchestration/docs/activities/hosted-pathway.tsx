@@ -144,17 +144,40 @@ export default function HostedPathwayPage() {
             </li>
             <li>
               A <strong>published pathway</strong> that meets the{' '}
-              <Link href="/awell-orchestration/docs/getting-started/integrations-overview">
+              <Link href="/awell-orchestration/docs/activities/overview-activities">
                 <a title="requirements">requirements</a>
               </Link>{' '}
-              to be used with the Awell hosted pathway page. Click{' '}
-              <Link href="/coming-soon">
-                <a title="here">here</a>
-              </Link>{' '}
-              for a guide on creating such a pathway.
+              to be used with the Awell hosted pathway integration. To get
+              started quickly, you can use a template pathway that is available
+              for you in Awell Studio by default (see table below). You can also
+              use a pathway you created yourself.
             </li>
           </ol>
-          <h3>Webhooks (optional):</h3>
+          <h3>Published pathway</h3>
+          <p>
+            To get started quickly with this guide, use a template pathway to
+            test this integration. Choose the pathway definition id in the
+            environment you are integrating against.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Environment</th>
+                <th>Pathway definition id</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sandbox</td>
+                <td>J0oNK2V91RL2</td>
+              </tr>
+              <tr>
+                <td>Production</td>
+                <td>Not available yet</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3>Webhooks (optional)</h3>
           <p>
             <strong>
               You can configure Webhooks to get notified when a pathway is
