@@ -12,56 +12,95 @@ export const Node = () => {
       <div className="flex gap-8">
         <div className="w-5/12 flex flex-col gap-4">
           <div
-            onMouseEnter={() => setHighlights([[9, 44]])}
+            onMouseEnter={() => setHighlights([[4, 5]])}
             onMouseLeave={() => setHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
             <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
             <div className="relative">
               <p className="text-slate-700 dark:text-slate-200 mb-2">
-                <strong>Handle the event</strong>
+                <strong>Configure variables</strong>
+              </p>
+              <p>Give the variables and appropriate values.</p>
+              <p className="mt-4">
+                <strong>Resources:</strong>
+              </p>
+              <ul className="list-disc ml-4">
+                <li>
+                  <Link href="/awell-orchestration/api-reference/overview/endpoints">
+                    <a
+                      title="Endpoints"
+                      target="_blank"
+                      className="text-sky-500 underline"
+                    >
+                      Endpoints
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/awell-orchestration/api-reference/overview/authorization">
+                    <a
+                      title="Get your API keys"
+                      target="_blank"
+                      className="text-sky-500 underline"
+                    >
+                      Get your API keys
+                    </a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            onMouseEnter={() =>
+              setHighlights([
+                [12, 13],
+                [25, 26],
+              ])
+            }
+            onMouseLeave={() => setHighlights([])}
+            className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
+          >
+            <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+            <div className="relative">
+              <p className="text-slate-700 dark:text-slate-200 mb-2">
+                <strong>Get stakeholder and pathway id</strong>
               </p>
               <p>
-                Handle the{' '}
-                <span id="content-wrapper">
-                  <code>activity.created</code>
-                </span>{' '}
-                event on your server.
+                Make sure you have the id of the stakeholder the activity is for
+                and the pathway id. These parameters were returned in the body
+                of the webhook. In the example we passed them via query
+                parameters.
               </p>
             </div>
           </div>
           <div
-            onMouseEnter={() => setHighlights([[13, 39]])}
+            onMouseEnter={() => setHighlights([[27, 28]])}
             onMouseLeave={() => setHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
             <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
             <div className="relative">
               <p className="text-slate-700 dark:text-slate-200 mb-2">
-                <strong>Only handle user activities</strong>
+                <strong>Define success and cancel URL</strong>
               </p>
               <p>
-                Pathways in Awell consist of different types of activities. We
-                are only interested in activities that need an action by a
-                human.
+                Specifiy where the stakeholder needs to be redirected to when
+                the session is completed or interrupted.
               </p>
             </div>
           </div>
           <div
-            onMouseEnter={() => setHighlights([[14], [16]])}
+            onMouseEnter={() => setHighlights([[33, 43]])}
             onMouseLeave={() => setHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
             <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
             <div className="relative">
               <p className="text-slate-700 dark:text-slate-200 mb-2">
-                <strong>Store pathway id and stakeholder id</strong>
+                <strong>Start a session</strong>
               </p>
-              <p>
-                In order to create a Hosted activity session, you will need to
-                pass the pathway id and stakeholder id. So make sure you store
-                or pass these 2 properties.
-              </p>
+              <p>Create a session via the Awell API.</p>
               <p className="mt-4">
                 <strong>Resources:</strong>
               </p>
@@ -81,19 +120,18 @@ export const Node = () => {
             </div>
           </div>
           <div
-            onMouseEnter={() => setHighlights([[18, 38]])}
+            onMouseEnter={() => setHighlights([[45]])}
             onMouseLeave={() => setHighlights([])}
             className="group relative bg-slate-50 border border-slate-200 rounded-xl p-6 text-left dark:bg-slate-800 dark:border-slate-600"
           >
             <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
             <div className="relative">
               <p className="text-slate-700 dark:text-slate-200 mb-2">
-                <strong>Notify the stakeholders</strong>
+                <strong>Redirect to Hosted Pathway page</strong>
               </p>
               <p>
-                Depending for what stakeholder there is an activity to complete,
-                define and call the methods to notify these stakeholders via
-                your appropriate channels.
+                After creating the session, redirect your client to the URL for
+                the hosted pathway page returned in the response.
               </p>
             </div>
           </div>
@@ -151,7 +189,6 @@ app.post('/start-hosted-activity-session', express.json({type: 'application/json
   })
     .then((response) => response.json())
     .then((response) => response.data.startHostedActivitySession)
-
 
   res.redirect(303, session.session_url)
 });

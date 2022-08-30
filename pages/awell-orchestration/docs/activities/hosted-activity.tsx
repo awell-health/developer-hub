@@ -350,6 +350,40 @@ export default function HostedActivityPage() {
           </div>
           <NodeStartSessionDocs />
         </div>
+        {/* Test */}
+        <div className="mt-12">
+          <div className="flex flex-row mb-8">
+            <div className="leading-none text-sm bg-slate-200 text-slate-600 rounded-full font-semibold mr-4 px-2.5 py-0.5 flex items-center">
+              3
+            </div>
+            <div className="text-lg sm:text-xl text-slate-900 tracking-tight font-bold dark:text-slate-200">
+              Test your set-up
+            </div>
+          </div>
+          <div className="max-w-3xl mb-8" id="content-wrapper">
+            <p>
+              <strong>
+                In order to test your integration, make sure to do the following
+                steps:
+              </strong>
+            </p>
+            <ol>
+              <li>
+                Make sure your pathway has webhooks configured and they are sent
+                to your server responsible for handling them. More on testing
+                webhooks can be found
+                [here](/awell-orchestration/developer-tools/webhooks/test-webhooks).
+              </li>
+              <li>Make sure your pathway is published.</li>
+              <li>Make sure your server(s) are up and running.</li>
+              <li>Enroll a patient in your pathway.</li>
+              <li>
+                Your server should be receiving webhooks now and you should be
+                able to test your integration end-2-end.
+              </li>
+            </ol>
+          </div>
+        </div>
       </div>
       {/* FAQ */}
       <div className="mt-12">
