@@ -76,6 +76,11 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.activity,
       },
       {
+        title: 'Get scheduled steps',
+        path: '/awell-orchestration/api-reference/queries/get-scheduled-steps',
+        badge: badges.pathway,
+      },
+      {
         title: 'Search activities',
         path: '/awell-orchestration/api-reference/queries/search-activities',
         badge: badges.activity,
