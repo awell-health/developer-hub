@@ -8,11 +8,12 @@ import Script from 'next/script'
 import type { NextPage } from 'next/types'
 import type { ReactElement, ReactNode } from 'react'
 
+import { MobileNav } from '@/components/Header/MobileNav'
+import { MobileMenu } from '@/components/Sidebar/Menu/'
+import { AppProvider } from '@/contexts/app/AppContext'
+import { ThemeProvider } from '@/hooks/useTheme'
+
 import client from '../src/clients/awellOrchestrationGraphQlClient'
-import { MobileNav } from '../src/components/Header/MobileNav'
-import { MobileMenu } from '../src/components/Sidebar/Menu/'
-import { AppProvider } from '../src/contexts/app/AppContext'
-import { ThemeProvider } from '../src/hooks/useTheme'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode

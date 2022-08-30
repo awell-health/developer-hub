@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
-import { CodeTabs } from '../../../../../../src/components/CodeTabs'
-import { CodeBlock } from '../../../../../../src/components/CodeTabs/atoms'
+import { CodeTabs } from '@/components/CodeTabs'
+import { CodeBlock } from '@/components/CodeTabs/atoms'
 
 interface NodeProps {
   frontEnd: string

@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 
-import { DocsHeader } from '../../src/components/Docs/atoms'
-import { DocsLayoutWithoutToc } from '../../src/components/Layouts'
-import { SEO } from '../../src/components/SEO'
+import { DocsHeader } from '@/components/Docs/atoms'
+import { DocsLayoutWithoutToc } from '@/components/Layouts'
+import { SEO } from '@/components/SEO'
 
 export default function Community() {
   return (

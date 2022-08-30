@@ -3,7 +3,8 @@ import Form from '@rjsf/core'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { SEO } from '../../../../src/components/SEO'
+import { SEO } from '@/components/SEO'
+
 import { exampleForm as exampleFormInAwellFormat } from '../../../../src/examples/react-json-schema-form/data/exampleForm'
 import { useReactJsonSchemaForm } from '../../../../src/examples/react-json-schema-form/hooks'
 

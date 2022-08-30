@@ -1,6 +1,7 @@
 import { ReactNode, useContext } from 'react'
 
-import { TOC } from '../../../src/components/TOC'
+import { TOC } from '@/components/TOC'
+
 import { AppContext } from '../../contexts/app/AppContext'
 import { Header } from '../Header'
 import { Sidebar } from '../Sidebar'

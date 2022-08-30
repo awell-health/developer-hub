@@ -5,20 +5,20 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { SEO } from '../../../../src/components/SEO'
-import { Spinner } from '../../../../src/components/Spinner'
-import { useCreatePatient } from '../../../../src/hooks/awell-orchestration/useCreatePatient'
-import { usePublishedPathwayDefinitions } from '../../../../src/hooks/awell-orchestration/usePublishedPathwayDefinitions'
-import { useStartPathway } from '../../../../src/hooks/awell-orchestration/useStartPathway'
+import { SEO } from '@/components/SEO'
+import { Spinner } from '@/components/Spinner'
+import { useCreatePatient } from '@/hooks/awell-orchestration/useCreatePatient'
+import { usePublishedPathwayDefinitions } from '@/hooks/awell-orchestration/usePublishedPathwayDefinitions'
+import { useStartPathway } from '@/hooks/awell-orchestration/useStartPathway'
 import {
   type DataPointDefinition,
   type User,
-} from '../../../../src/types/generated/api.types'
+} from '@/types/generated/api.types'
 import {
   dataPointTypeToInputType,
   keyValueObjectToDataPointsArrayOfObjects,
-} from '../../../../src/utils/dataPoints'
-import { beautifySnakeCase } from '../../../../src/utils/string'
+} from '@/utils/dataPoints'
+import { beautifySnakeCase } from '@/utils/string'
 
 export default function OnboardingExample() {
   const PATHWAY_DEFINITION_ID = 'S7YmVI-Dfw9c'

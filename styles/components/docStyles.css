@@ -83,22 +83,27 @@
   margin: 0;
 }
 
-#content-wrapper blockquote code {
+#content-wrapper blockquote code,
+code.code {
   font-size: 0.8rem !important;
   line-height: 1.5rem !important;
 }
 
-#content-wrapper code {
+#content-wrapper code,
+code.code {
   @apply font-semibold text-sm;
   color: #0f172a;
   font-variant-ligatures: none;
 }
 
-.dark #content-wrapper code {
+.dark #content-wrapper code,
+.dark code.code {
   color: #fff;
 }
 
 #content-wrapper code:before,
-#content-wrapper code:after {
+#content-wrapper code:after,
+code.code:before,
+code.code:after {
   content: '`';
 }
