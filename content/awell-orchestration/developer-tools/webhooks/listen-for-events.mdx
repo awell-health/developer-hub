@@ -1,0 +1,91 @@
+---
+title: Listen for events
+description: Learn how to create a webhook endpoint and listen for events.
+---
+
+Creating a webhook endpoint is no different from creating any other page on your website. It's an HTTPS endpoint on your server with a URL. If you're still developing your endpoint on your local machine, it can be HTTP. After it's publicly accessible, it must be HTTPS. You can use one endpoint to handle several different event types at once, or set up individual endpoints for specific events.
+
+## Identify the events to monitor
+
+Based on the type of integration you want to set up, you will have to decide to which events you want to listen to. You can browse all our webhook events [here](/awell-orchestration/developer-tools/webhooks/events-overview).
+
+## Create a webhook endpoint
+
+Set up an endpoint on your server that can accept webhook requests with a POST method. Below you can find an example how this could be done in Node (with Express).
+
+<code className="language-javascript" fileName='server.js' numberOfLinesPreview={999}>
+  {`
+const express = require('express');
+const app = express();
+${''}
+// If you are using Express v4 - v4.16 you need to use body-parser, not express, to retrieve the request body
+app.post('/awell-webhooks', express.json({type: 'application/json'}), (request, response) => {
+  const event = request.body;
+  ${''}
+  // Handle the event
+  switch (event.event_type) {
+    case 'pathway.started': {
+      const pathway = event.pathway;
+      // Then define and call a method to handle the pathway started event.
+      break;
+    }
+    default:
+      console.log(${'`'}Unhandled event type ${'${event.event_type}'}${'`'});
+  }
+  ${''}
+  // Return a response to acknowledge receipt of the event
+  response.json({received: true});
+});
+${''}
+app.listen(8000, () => console.log('Running on port 8000'));
+`}
+
+</code>
+
+In this example, the `/awell-webhooks` route is configured to accept only POST requests and expects data to be delivered in a JSON payload.
+
+<Alert type="info" title="Interactive webhook builder">
+  <p>
+    You can use our interactive{' '}
+    <a
+      href="/awell-orchestration/developer-tools/webhook-builder"
+      title="Interactive webhook builder"
+    >
+      webhook builder
+    </a>{' '}
+    to build a webhook endpoint in your programming language.
+  </p>
+</Alert>
+
+<br />
+
+## Handle requests from Awell
+
+Your endpoint must be configured to read event objects for the type of event notifications you want to receive. Awell sends events to your webhook endpoint as part of a POST request with a JSON payload
+
+### Check event objects
+
+The payload structure of each event differs based on the type of event. All webhook payloads do have an `event_type` field that you must check. In our [API reference](/awell-orchestration/api-reference/webhooks/pathway-started) under `webhooks` you can find the exact payloads for each of the event types. Based on the event type, your endpoint can parse the payload of each event.
+
+Below an example of the `pathway.completed` webhook event
+
+```json
+{
+  "complete_date": "<PATHWAY_COMPLETE_DATE>",
+  "pathway": {
+    "id": "<PATHWAY_ID>",
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "start_date": "<PATHWAY_START_DATE>"
+  },
+  "event_type": "pathway.completed"
+}
+```
+
+### Return a 2xx response
+
+Your endpoint must quickly return a successful status code (2xx) prior to any complex logic that could cause a timeout.
+
+### Built-in retries
+
+Awell webhooks have built-in retry methods with an exponential back-off strategy. When we receive a non 2xx HTTP response, we mark the webhook as failed and will retry sending the request. We try re-sending the request up until 24 hours after the initial request.

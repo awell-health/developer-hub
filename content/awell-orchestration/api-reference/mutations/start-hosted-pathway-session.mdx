@@ -1,0 +1,91 @@
+---
+title: Start hosted pathway session
+description: Start a pathway and create a session to redirect to the Awell Hosted Pathway page
+---
+
+This page documents the `startHostedPathwaySession` mutation but we recommend to read the [full guide](/awell-orchestration/docs/activities/hosted-pathway) on how to get started with Awell in less than a day via the Awell Hosted Pathway integration.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation StartHostedPathwaySession($input: StartHostedPathwaySessionInput!) {
+  startHostedPathwaySession(input: $input) {
+    session_id
+    session_url
+    pathway_id
+    stakeholder {
+      id
+      type
+      name
+    }
+  }
+}
+```
+
+### Required variables
+
+`pathway_definition_id` specifies what pathway definition needs to be started.
+
+The `success_url` and `cancel_url` specify where the user should be redirected to when the pathway session is completed or canceled/interrupted respectively.
+
+<code className="language-json" highlightedRows={[[3, 5]]}>
+  {`
+{
+  "input": {
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "success_url": "https://yourdomain.com/success.html",
+    "cancel_url": "https://yourdomain.com/cancel.html"
+  }
+}
+`}
+</code>
+
+### Optional variables
+
+<code className="language-json" highlightedRows={[[6, 7]]}>
+  {`
+{
+  "input": {
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "success_url": "https://yourdomain.com/success.html",
+    "cancel_url": "https://yourdomain.com/cancel.html",
+    "patient_id": "{{PATIENT_ID}}",
+    "data_points": []
+  }
+}
+`}
+</code>
+<br />
+
+#### Patient id
+
+Every pathway is linked to a patient resource in our system. We automatically create an anonymous patient resource if `patient_id` is left blank.
+
+If you want to create a patient first, you will have to do an a priori API call to create the patient and use the id returned by that API call as the value for the `patient_id` field. See the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient) for more information on how to create a patient.
+
+#### Data points (or Baseline info)
+
+You have the ability to pass some initial data when starting a pathway. What data you can pass on pathway start needs to be configured in Awell Studio via the settings (see `Pathway > Settings > General`).
+
+When your baseline data points are configured and your pathway is published, you can query the available baseline data points via the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-pathways).
+
+> There are `required` and `optional` baseline data points. A pathway will not be started until all required baseline data points have a value.
+
+Passing baseline info is as easy as providing an array of objects in the following format
+
+```json
+{
+  "data_points": [
+    {
+      "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
+      "value": "{{DATA_POINT_VALUE}}"
+    }
+  ]
+}
+```
+
+## How to use
+
+<HowToUse storyIds={['hosted-pathway']} />

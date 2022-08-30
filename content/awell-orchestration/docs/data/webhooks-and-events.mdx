@@ -1,0 +1,26 @@
+---
+title: Webhook and events
+description: Track data and events with Webhooks and send it to your systems or a third party
+---
+
+You may choose to receive any or all of the below events. More information on how to configure webhooks for your pathway can be found [here](https://help.awellhealth.com/en/articles/6103339-configure-a-webhook).
+
+## Events
+
+<WebhooksTable />
+
+## Content included
+
+### PII
+
+Some of our webhooks (might) contain Personally Identifying Information (PII) in their payload:
+
+- **form.submitted** and **data_point.collected**: by default, we include the response of the form or data point in the payload of the webhook and depending on the data you collect, it might thus include PII.
+- **activity.created** and **activity.completed**: the `indirect_object` field in the payload might contain PII information about the stakeholder the activity is assigned to.
+- **reminder.created**: information about the recipient is included in the payload.
+
+All other webhooks don't have PII in their payload but might contain UUIDs to identify a resource (eg: patient id and pathway id).
+
+## Additional resources
+
+More detailed information on our Webhooks and an interactive webhook builder can be found in the [developer tools section](/awell-orchestration/developer-tools/webhooks/introduction).

@@ -1,0 +1,134 @@
+---
+title: Overview
+description: Learn about Awell's integration choices to interact with activities in a pathway
+---
+
+Depending on your appetite, we provide ways to get care flows up and running from a one day effort to full integration. For context, please have a look at our [Domain model](/awell-orchestration/docs/getting-started/domain-model) to make sense of what's below.
+
+## Integration choices
+
+<div className="reset-styles grid lg:grid-cols-3 gap-3 mt-4">
+  <a
+    href="/awell-orchestration/docs/activities/hosted-pathway"
+    className="custom-link block group relative rounded-xl border border-slate-200 dark:border-slate-800"
+  >
+    <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+    <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+        alt=""
+        className="w-full sm:w-11/12 hidden"
+      />
+      <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+        <div>
+          <h3 className="font-semibold dark:text-sky-400">Hosted pathways</h3>
+          <span className="pt-3">
+            Redirect users to an Awell pathway page without needing to build a
+            front-end yourself. Ideal for patient onboarding flows.
+          </span>
+        </div>
+        <div className="mt-auto">
+          <div className="pt-3">Effort:</div>
+          <div className="pt-1">
+            <Effort effort={1} />
+          </div>
+        </div>
+      </figcaption>
+    </figure>
+  </a>
+  <a
+    href="/awell-orchestration/docs/activities/hosted-activity"
+    className="custom-link block group relative rounded-xl border border-slate-200 dark:border-slate-800"
+  >
+    <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+    <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+        alt=""
+        className="w-full sm:w-11/12 hidden"
+      />
+      <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+        <div>
+          <h3 className="font-semibold dark:text-sky-400">Hosted activity</h3>
+          <span className="pt-3">
+            Send multiple stakeholders to an Awell-hosted page to complete
+            activities in more elaborate pathways. Ideal for triage flows,
+            outcomes / PROMs collection and more.
+          </span>
+        </div>
+        <div className="mt-auto">
+          <div className="pt-3">Effort:</div>
+          <div className="pt-1">
+            <Effort effort={2} />
+          </div>
+        </div>
+      </figcaption>
+    </figure>
+  </a>
+  <a
+    href="/awell-orchestration/docs/activities/custom-integration"
+    className="custom-link block group relative rounded-xl border border-slate-200 dark:border-slate-800"
+  >
+    <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+    <figure className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+        alt=""
+        className="w-full sm:w-11/12 hidden"
+      />
+      <figcaption className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+        <div>
+          <h3 className="font-semibold dark:text-sky-400">
+            Custom integration
+          </h3>
+          <span className="pt-3">
+            Build your own UI on Awell Orchestration for full customization and
+            flexibility.
+          </span>
+        </div>
+        <div className="mt-auto">
+          <div className="pt-3">Effort:</div>
+          <div className="pt-1">
+            <Effort effort={3} />
+          </div>
+        </div>
+      </figcaption>
+    </figure>
+  </a>
+</div>
+
+## Compare features and availability
+
+All integration types support building care flows with Awell Studio and data access through Elastic and Kibana. Read more about the [Awell ecosystem](/awell-orchestration/docs/getting-started/awell-ecosystem)
+
+<div className="mb-12">
+  <UseCasesComparisonTable />
+</div>
+
+## Compare use cases and effort
+
+### Hosted pathway
+
+This integration is ideal to quickly set up patient onboarding ([see example](https://orchestration-stories.vercel.app/stories/hosted-pathway)) or collect forms such as intake forms, PROMs/PREMs and pre-consultation questionnaires.
+
+One engineer can set this integration up in less than a day. This makes it also ideal to test an end-to-end use case with Awell with minimal effort before considering other integration alternatives.
+
+If your pathways are using scheduled steps to determine when activities are being activated or multiple stakeholders interacting in the same pathway, we recommend considering the Hosted activity custom integration.
+
+[Learn how to set up a Hosted Pathway integration.](/awell-orchestration/docs/activities/hosted-pathway)
+
+### Hosted activity
+
+Typical use cases supported by this integration are longitudinal outcomes (such as PROMs / PREMs) collection, triage & eligibility flows and clinicial decision support.
+
+This integration is more powerful, allowing the use of webhooks and taking full advantage of what Awell Studio has to offer. It is a good way to get the most out of the Awell platform with limited engineering effort.
+
+UI customization is still limited with this integration. This is often enough for care team facing flows such as clinical decision support and guidelines. If you are looking for full control over your UI, for example for patient facing applications, please consider the custom integration.
+
+[Learn how to set up a hosted activity integration.](/awell-orchestration/docs/activities/hosted-activity)
+
+### Full integration
+
+This integration offers the full power of Awell orchestration while ensuring full flexibility to define the patient and care team experience. Use this when you develop and manage your own care team and patient apps and want to integrate activities from complex care flows such as care pathways seamlessly for your end users.
+
+[View our examples stories and code examples](/awell-orchestration/docs/activities/custom-integration) to get started quickly with a custom integration.

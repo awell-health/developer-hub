@@ -1,0 +1,135 @@
+---
+title: Get calculation
+description: Retrieve calculation details for a single calculation
+---
+
+## Request
+
+### Endpoint
+
+<p>
+  <span className="pr-2 font-semibold text-sky-500 dark:text-sky-400">GET</span>
+  <span className="text-gray-600 dark:text-gray-300 font-semibold">
+    {`/v1/calculations/{calculationId}`}
+  </span>
+</p>
+
+### Path parameters
+
+This endpoint expects a `calculationId` to be passed as a path parameter. If not provided, the query will return all calculations.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>calculationId</td>
+        <td>string</td>
+        <td>yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Response
+
+### HTTP 200
+
+When successful, the API will return a HTTP status code of 200 and in the response a single calculation object. The schema of the response can be found [here](https://score-api.awellhealth.com/v1/docs/#/).
+
+**Below you can find an example response of the bmi calculation:**
+
+```json
+{
+  "calculation_id": "bmi",
+  "calculation_name": {
+    "en": "BMI (metric)"
+  },
+  "calculation_description": {
+    "en": "<h1 id=\"bodymassindexbmi\">Body Mass Index (BMI)</h1>..."
+  },
+  "calculation_blueprint": {
+    "input_definition": [
+      {
+        "id": "height",
+        "label": {
+          "nl": "Lengte",
+          "en": "Height",
+          "fr": "Longueur",
+          "de": "Länge"
+        },
+        "input_type": {
+          "type": "number",
+          "range": {
+            "min": {
+              "value": 20
+            },
+            "max": {
+              "value": 300
+            }
+          }
+        },
+        "format": "cm"
+      },
+      {
+        "id": "weight",
+        "label": {
+          "nl": "Gewicht",
+          "en": "Weight",
+          "fr": "Poids",
+          "de": "Gewicht"
+        },
+        "input_type": {
+          "type": "number",
+          "range": {
+            "min": {
+              "value": 10
+            },
+            "max": {
+              "value": 300
+            }
+          }
+        },
+        "format": "kg"
+      }
+    ],
+    "output_definition": [
+      {
+        "subresult_id": "BMI",
+        "label": {
+          "en": "Body Mass Index"
+        },
+        "unit": {
+          "en": "kg/m2"
+        },
+        "type": "number"
+      }
+    ]
+  },
+  "is_private": false
+}
+```
+
+### HTTP 404
+
+When a calculation for the given `calculationId` cannot be found, the API will return a 400 HTTP status code and the following response:
+
+```json
+{
+  "data": {
+    "error": {
+      "message": "Calculation with id \"nonExistentCalculationId\" could not be found."
+    }
+  }
+}
+```
+
+### HTTP 500
+
+When unsuccessful, the API will return a 500 HTTP status.

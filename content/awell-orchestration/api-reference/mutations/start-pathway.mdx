@@ -1,0 +1,92 @@
+---
+title: Start pathway
+description: Start a new pathway for a given patient
+---
+
+## Selecting the version
+
+When starting a pathway, Awell Orchestration automatically chooses the most recent published version of the specified pathway definition.
+
+> Improved support for versioning is coming soon, with the ability to select a specific version when starting a new pathway and upgrading started pathways to newer version.
+
+## Providing baseline data points
+
+You have the ability to pass some initial data when starting a pathway with baseline data points. What data you can pass on pathway start needs to be configured in Awell Studio.
+
+<Alert type="info" title="Configure baseline data points">
+  <p>
+    <a
+      href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points"
+      target="_blank"
+    >
+      Learn how to create and configure baseline data points for your pathways
+      in Awell Studio.
+    </a>
+  </p>
+</Alert>
+
+When your baseline data points are configured and your pathway is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-pathways)).
+
+> There are `required` and `optional` baseline data points. A pathway will not be started until all required baseline data points have a value.
+
+```graphql
+query GetPublishedPathwayDefinitions {
+  publishedPathwayDefinitions {
+    publishedPathwayDefinitions {
+      id
+      title
+      dataPointDefinitions {
+        id
+        key
+        valueType
+        optional
+      }
+    }
+  }
+}
+```
+
+## Request
+
+### Mutation
+
+```graphql
+mutation StartPathway($input: StartPathwayInput!) {
+  startPathway(input: $input) {
+    pathway_id
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "patient_id": "{{PATIENT_ID}}",
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
+  }
+}
+```
+
+### Variables - With baseline data points
+
+```json
+{
+  "input": {
+    "patient_id": "{{PATIENT_ID}}",
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "data_points": [
+      // Repeat for each input data point
+      {
+        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
+        "value": "{{DATA_POINT_VALUE}}"
+      }
+    ]
+  }
+}
+```
+
+## How to use
+
+<HowToUse storyIds={['start-pathway']} />

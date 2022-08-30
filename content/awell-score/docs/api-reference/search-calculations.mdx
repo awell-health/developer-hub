@@ -1,0 +1,54 @@
+---
+title: Search calculation
+description: Search a calculation based on its name
+---
+
+## Request
+
+### Endpoint
+
+<p>
+  <span className="pr-2 font-semibold text-sky-500 dark:text-sky-400">GET</span>
+  <span className="text-gray-600 dark:text-gray-300 font-semibold">
+    {`/v1/calculations/search?calculation_name={searchString}`}
+  </span>
+</p>
+
+### Query parameters
+
+This endpoint expects a `searchString` to be passed as a query parameter. If not provided, the query will return all calculations.
+
+The search is implemented by calculation name and we check if `searchString` appears as a substring of the calculation name. If there's no match, an empty array is returned
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>searchString</td>
+        <td>string</td>
+        <td>yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Response
+
+### HTTP 200
+
+When successful, the API will return a HTTP status code of 200 and in the response an array of calculations where the calculation's name (partially) matched the `searchString`. The schema of the response can be found [here](https://score-api.awellhealth.com/v1/docs/#/).
+
+### HTTP 400
+
+When the passed value for the searchString is not of type string, the API returns a 400 HTTP status code indicating a bad request.
+
+### HTTP 500
+
+When unsuccessful, the API will return a 500 HTTP status.

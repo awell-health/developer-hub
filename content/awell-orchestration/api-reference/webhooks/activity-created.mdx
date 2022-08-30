@@ -1,0 +1,69 @@
+---
+title: Activity created
+description: Activity created webhook payload
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+## Payload
+
+```json
+{
+  "activity": {
+    "id": "<ACTIVITY_ID>",
+    "stream_id": "<PATHWAY_ID>",
+    "date": "<CREATION_DATE>", // In ISO8601 format
+    "subject": {
+      "type": "awell",
+      "name": "Awell"
+    },
+    "action":  "<ACTION>",
+    "object": {
+      "id": "<OBJECT_ID>",
+      "type": "<OBJECT_TYPE>",
+      "name": "<OBJECT_NAME>"
+    },
+    "indirect_object": {
+      "id": "<OBJECT_ID>",
+      "type": "<OBJECT_TYPE>",
+      "name": "<OBJECT_NAME>"
+    },
+    "status": "active",
+    "track": {
+      "id": "<TRACK_ID>",
+      "title": "<TRACK_TITLE>"
+    },
+    "label": {
+      "color": "<COLOR_NAME>", // green, yellow etc.
+      "id": "<COLOR_ID>",
+      "text": "<COLOR_TEXT>"
+    },
+    "sub_activities": [
+      {
+        "id": "<SUB_ACTIVITY_ID>",
+        "subject": {
+          "type": "awell",
+          "name": "Awell"
+        },
+        "action": "activate",
+        "date": "SUB_ACTIVITY_ACTION_DATE>" // In ISO8601 format
+      }
+    ],
+    "isUserActivity": true,
+    "context": {
+      "action_id": "<ACTION_ID>",
+      "instance_id": "<ACTIVITY_ID>",
+      "pathway_id": "<PATHWAY_ID>",
+      "step_id": "<STEP_ID>",
+      "track_id": "<TRACK_ID>"
+    }
+  },
+  "pathway": {
+    "id": "<PATHWAY_ID>",
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
+  },
+  "event_type": "activity.created"
+}
+```

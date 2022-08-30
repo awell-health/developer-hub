@@ -1,0 +1,28 @@
+---
+title: Data point collected
+description: Data point collected webhook payload
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+## Payload
+
+```json
+{
+  "data_point": {
+    "id": "<DATA_POINT_ID>",
+    "data_point_definition_id": "<DATA_POINT_DEFINITION_ID>",
+    "valueType": "boolean / string / number / date / numbers_array",
+    "value": "<DATA_POINT_VALUE>",
+    "data_set_id": "<PATHWAY_ID>",
+    "date": "<COLLECTION_DATE>" // In ISO8601 format
+  },
+  "pathway": {
+    "id": "<PATHWAY_ID>",
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
+  },
+  "event_type": "data_point.collected"
+}
+```

@@ -1,14 +1,14 @@
 import '../styles/globals.css'
 
 import { ApolloProvider } from '@apollo/client'
-import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
+import type { NextPage } from 'next/types'
 import type { ReactElement, ReactNode } from 'react'
 
-import client from '../apollo-client'
+import client from '../src/clients/awellOrchestrationGraphQlClient'
 import { MobileNav } from '../src/components/Header/MobileNav'
 import { MobileMenu } from '../src/components/Sidebar/Menu/'
 import { AppProvider } from '../src/contexts/app/AppContext'

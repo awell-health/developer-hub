@@ -1,0 +1,64 @@
+---
+title: Submit checklist response
+description: Submit a completed checklist
+---
+
+This request allows us to complete a checklist. We do not track the completion of individual checklist items, only that the checklist has been completed so that we can continue orchestrating the pathway.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation SubmitChecklist($input: SubmitChecklistInput!) {
+  submitChecklist(input: $input) {
+    activity {
+      id
+      status
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+    "input": {
+        "activity_id": {{CHECKLIST_ID}}
+    }
+}
+```
+
+### Specifying the user
+
+The optional `X-User-ID` header can be used to specify which user has completed the checklist. When this header is present, Awell Orchestration will log a subactivity indicating that this specific user completed the checklist.
+
+```json
+{
+  "X-User-ID": "{{USER_ID}}"
+}
+```
+
+The following input fields are available:
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>activity_id</td>
+        <td>Yes</td>
+        <td>the id of the checklist activity</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 import { SEO as SeoSettings } from '../../config/seo'
@@ -20,12 +21,22 @@ export const SEO = ({
   canonicalUrl,
   preventCrawling,
 }: SeoProps) => {
+  const router = useRouter()
+
+  const titleSuffix =
+    router.asPath === '/'
+      ? SeoSettings.title
+      : router.asPath.includes('awell-orchestration')
+      ? 'Awell Orchestration'
+      : router.asPath.includes('awell-score')
+      ? 'Awell Score'
+      : 'Developer Hub'
+
+  const generatedTitle = `${title ? title + ' | ' : ''}${titleSuffix}`
+
   return (
     <Head>
-      <title>
-        {title && title + ' | '}
-        {SeoSettings.title}
-      </title>
+      <title>{generatedTitle}</title>
       <meta name="description" content={description} />
       <meta
         property="og:url"
@@ -36,10 +47,7 @@ export const SEO = ({
       <meta property="og:site_name" content={siteName} key="ogsitename" />
       <meta property="og:title" content={title} key="ogtitle" />
       <meta property="og:description" content={description} key="ogdesc" />
-      <link
-        rel="canonical"
-        href={`https://developers.awellhealth.com${canonicalUrl}`}
-      />
+      <link rel="canonical" href={`${SeoSettings.rootUrl}${canonicalUrl}`} />
     </Head>
   )
 }

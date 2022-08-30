@@ -1,0 +1,50 @@
+---
+title: Get patient
+description: Get a patient's profile
+---
+
+## Request
+
+### Query
+
+```graphql
+query GetPatient($patient_id: String!) {
+  patient(id: $patient_id) {
+    patient {
+      id
+      profile {
+        name
+        first_name
+        last_name
+        preferred_language
+        birth_date
+        sex
+        patient_code
+        address {
+          city
+          country
+          state
+          street
+          zip
+        }
+        email
+        national_registry_number
+        mobile_phone
+        phone
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "patient_id": "{{PATIENT_ID}}"
+}
+```
+
+## How to use
+
+<HowToUse storyIds={['patient-profile']} />

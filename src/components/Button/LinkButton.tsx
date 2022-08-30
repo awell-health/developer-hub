@@ -11,6 +11,7 @@ import {
 interface ButtonProps {
   label: string
   href: string
+  newTab?: boolean
   color?: ButtonColorType
   size?: ButtonSizeType
 }
@@ -18,6 +19,7 @@ interface ButtonProps {
 export const LinkButton = ({
   label,
   href,
+  newTab,
   color = DEFAULT_BUTTON_COLOR,
   size = DEFAULT_BUTTON_SIZE,
 }: ButtonProps) => {
@@ -25,6 +27,7 @@ export const LinkButton = ({
     <Link href={href}>
       <a
         title={label}
+        target={newTab ? '_blank' : ''}
         className={`btn-base ${buttonSizes[size]} ${buttonColors[color]}`}
       >
         <span>{label}</span>

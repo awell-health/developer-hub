@@ -1,0 +1,45 @@
+---
+title: Mark message as read
+description: Mark a message activity as read
+---
+
+This request allows us to update the status of the message activity to "DONE".
+
+## Request
+
+### Mutation
+
+```graphql
+mutation MarkMessageAsRead($input: MarkMessageAsReadInput!) {
+  markMessageAsRead(input: $input) {
+    activity {
+      id
+      status
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "activity_id": "{{MESSAGE_ACTIVITY_ID}}"
+  }
+}
+```
+
+### Specifying the user
+
+The optional `X-User-ID` header can be used to specify which user has read the message. When this header is present, Awell Orchestration will log a subactivity indicating that this specific user read the message.
+
+```json
+{
+  "X-User-ID": "{{USER_ID}}"
+}
+```
+
+## How to use
+
+<HowToUse storyIds={['message']} />

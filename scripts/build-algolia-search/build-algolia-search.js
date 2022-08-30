@@ -19,7 +19,14 @@ async function getAllPages() {
     const source = fs.readFileSync(path.join(CONTENT_PATH, filePath))
     const { content, data } = matter(source)
 
+    const space = filePath.includes('awell-orchestration')
+      ? 'Awell Orchestration'
+      : filePath.includes('awell-score')
+      ? 'Awell Score'
+      : 'Generic'
+
     return {
+      space,
       content, // this is the .mdx content
       data, // this is the frontmatter
       slug: filePath.split('.')[0], // this is the file path
@@ -33,6 +40,7 @@ function transformPagesToAlgoliaSearchObjects(pages) {
   const transformed = pages.map((page) => {
     return {
       objectID: page.slug,
+      space: page.space,
       title: page.data.title,
       description: page.data.description,
       content: page.content,

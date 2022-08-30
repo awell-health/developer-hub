@@ -1,0 +1,50 @@
+---
+title: Authorization
+description: Get access to our API
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+To interact with the Awell Orchestration API, you'll need an API key.
+
+## How to get your API key
+
+[Click here to request your API key.](/request-api-keys)
+
+## How to use the API key
+
+Once you have an API key, simply provide add it to the header (`apiKey`) of your requests, as shown below.
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>apiKey</td>
+      <td>{`{{ YOUR_API_KEY }}`}</td>
+    </tr>
+  </tbody>
+</table>
+
+## Machine to Machine (M2M) API
+
+**The Orchestration API is a Machine to Machine (M2M) API** and uses a secret API key for authentication and authorization. All requests to the orchestration API should be sent from backend services that can safely and securely access the API key and add it in the relevant header without creating a risk of disclosing the API key.
+
+<figure className="w-full flex flex-col justify-center text-center pt-4">
+  <a
+    href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/M2M.png"
+    target="_blank"
+    className="custom-link"
+  >
+    <img
+      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/M2M.png"
+      alt="Pathway versioning"
+      className="w-full sm:w-8/12 mx-auto"
+    />
+  </a>
+  <figcaption className="dark:text-slate-400 pt-1">© Awell Health</figcaption>
+</figure>

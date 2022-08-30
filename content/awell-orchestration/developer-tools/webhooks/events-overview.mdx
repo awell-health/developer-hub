@@ -1,0 +1,20 @@
+---
+title: Available events
+description: Learn about what types of webhooks are available
+---
+
+## Events
+
+<WebhooksTable />
+
+## Content included
+
+### PII
+
+Some of our webhooks (might) contain Personally Identifying Information (PII) in their payload:
+
+- **form.submitted** and **data_point.collected**: by default, we include the response of the form or data point in the payload of the webhook and depending on the data you collect, it might thus include PII.
+- **activity.created** and **activity.completed**: the `indirect_object` field in the payload might contain PII information about the stakeholder the activity is assigned to.
+- **reminder.created**: information about the recipient is included in the payload.
+
+All other webhooks don't have PII in their payload but might contain UUIDs to identify a resource (eg: patient id and pathway id).

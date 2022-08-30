@@ -1,0 +1,53 @@
+---
+title: Get pathway activities
+description: Get all activities in a given pathway
+---
+
+This query lets us fetch all of the pathway activities of any status for a specific orchestrated pathway, including system activities such as calculations or activations.
+
+> We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the activity model.
+
+## Request
+
+### Query
+
+```graphql
+query GetPathwayActivities($pathway_id: String!) {
+  pathwayActivities(pathway_id: $pathway_id) {
+    success
+    activities {
+      id
+      stream_id
+      status
+      date
+      subject {
+        type
+        name
+      }
+      action
+      object {
+        id
+        type
+        name
+      }
+      indirect_object {
+        id
+        type
+        name
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "pathway_id": "{{PATIENT_PATHWAY_ID}}"
+}
+```
+
+## How to use
+
+<HowToUse storyIds={['activity-feed']} />

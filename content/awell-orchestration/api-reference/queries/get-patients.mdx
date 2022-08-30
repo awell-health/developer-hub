@@ -1,0 +1,109 @@
+---
+title: Get patients
+description: Retrieve a list of patients in your organization
+---
+
+## Query
+
+```graphql
+query GetPatients(
+  $patient_code: String
+  $national_registry_number: String
+  $profile_id: [String!]
+  $count: Float!
+  $offset: Float!
+  $sort_field: String!
+  $sort_direction: String!
+) {
+  patients(
+    filters: {
+      patient_code: { eq: $patient_code }
+      national_registry_number: { eq: $national_registry_number }
+      profile_id: { in: $profile_id }
+    }
+    pagination: { count: $count, offset: $offset }
+    sorting: { field: $sort_field, direction: $sort_direction }
+  ) {
+    pagination {
+      offset
+      count
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
+    patients {
+      id
+      profile {
+        email
+        sex
+        birth_date
+        first_name
+        last_name
+        name
+        phone
+        mobile_phone
+        preferred_language
+        patient_code
+        national_registry_number
+        address {
+          street
+          city
+          zip
+          state
+          country
+        }
+      }
+    }
+  }
+}
+```
+
+## Variables
+
+### Filters
+
+All filter values are optional, if you don't provide any filter all patients in your tenant will be returned.
+Sending an empty filter will result in a search for the matching field to be empty.
+
+All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria.
+
+When specifying multiple filters, the resulting criteria is the conjuction of all filters.
+
+<code className="language-json" highlightedRows={[[2, 4]]}>
+  {`
+  {
+    "national_registry_number": "{{ NRNN }}",
+    "patient_code": "{{ PATIENT_CODE }}",
+    "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
+    "offset": 0,
+    "count": 20,
+    "sort_field": "last_name",
+    "sort_direction": "desc"
+  }
+  `}
+</code>
+
+### Pagination and sorting
+
+Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
+
+Default sorting is based on the `last_name` field, sorted ascending. Only top-level patient profile fields can be used for sorting (e.g. `birth_date`, `sex`, `patient_code`).
+
+<code className="language-json" highlightedRows={[[5, 8]]}>
+  {`
+  {
+    "national_registry_number": "{{ NRNN }}",
+    "patient_code": "{{ PATIENT_CODE }}",
+    "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
+    "offset": 0, // the number of records that need to be skipped
+    "count": 20,  // the number of results, also known as limit
+    "sort_field": "last_name",
+    "sort_direction": "desc"
+  }`}
+</code>
+
+## How to use
+
+<HowToUse storyIds={['patient-list']} />

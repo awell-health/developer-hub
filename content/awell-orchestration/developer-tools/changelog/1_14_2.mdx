@@ -1,0 +1,41 @@
+---
+title: 1.14.2
+description: Changelog for release v1.14.2
+releaseDate: '2022-05-09'
+---
+
+## Generic
+
+Improved error messages
+
+## Queries
+
+### activities
+
+Ability to paginate & sort the response
+
+### patients
+
+- Ability to filter on the following fields: `national_registry_number`, `patient_code`, and `profile_id`
+- Ability to paginate & sort the response
+
+### pathway
+
+Additional fields available in response: `version`, `release_id`, `stop_date`, `complete_date`, `status_explanation` (eg: reason why pathway was stopped)
+
+### pathways
+
+New query to search pathways by status, type, patient and other criteria (incl. filters, pagination, and sorting)
+
+### patientsPathways
+
+- Ability to filter by pathway status
+- Baseline info is now available in the response (`baseline_info` field)
+
+### pathwayDataPointDefinitions
+
+New query to fetch the data catalog for a given version of a pathway definition
+
+### publishedPathwayDefinitions
+
+Additional fields available in response: `version`

@@ -1,0 +1,45 @@
+---
+title: Evaluate form rules
+description: Evaluate what question needs to be shown next
+---
+
+This mutation evaluates all conditional logic defined in a form and lets you know which questions should be shown or hidden to the form assignee.
+
+When working with forms that use conditional logic, it is recommended that you call this mutation every time a user answers any question in the form. This guarantees that you will always show the relevant questions only.
+
+> Improved support for conditional logic in forms is coming soon, with a new property on questions to let you know whether they have conditional logic attached or not. This will remove the need to evaluate form rules for each new response provided.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation EvaluateFormRules($input: EvaluateFormRulesInput!) {
+  evaluateFormRules(input: $input) {
+    results {
+      question_id
+      satisfied
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "form_id": "{{FORM_ID}}",
+    "answers": [
+      {
+        "question_id": "{{HEIGHT_QUESTION_ID}}",
+        "value": "183"
+      }
+    ]
+  }
+}
+```
+
+## How to use
+
+<HowToUse storyIds={['conversational-form', 'form-page']} />

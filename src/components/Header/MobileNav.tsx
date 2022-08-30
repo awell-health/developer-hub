@@ -1,12 +1,22 @@
 import Link from 'next/link'
 import { useContext } from 'react'
 
-import { nav } from '../../config/nav'
+import { orchestrationNavigation } from '@/config/navigation'
+import { MainNavType } from '@/types/nav.types'
+
 import { AppContext } from '../../contexts/app/AppContext'
 import { ThemeSelect } from '../ThemeToggle'
 
 export const MobileNav = () => {
-  const { isMobileMainMenuOpen, toggleMobileMainMenu } = useContext(AppContext)
+  const { space, isMobileMainMenuOpen, toggleMobileMainMenu } =
+    useContext(AppContext)
+
+  let navigation: MainNavType = []
+
+  if (space === 'awell-orchestration') {
+    navigation = orchestrationNavigation
+  } else {
+  }
 
   if (!isMobileMainMenuOpen) return null
 
@@ -45,27 +55,47 @@ export const MobileNav = () => {
           </svg>
         </button>
         <ul className="space-y-6">
-          {nav.map((navItem, index) => (
-            <li key={index}>
-              <Link href={navItem.path}>
+          {navigation.map((navItem) => (
+            <li key={navItem.slug}>
+              <Link href={navItem.slug}>
                 <a
                   className="hover:text-sky-500 dark:hover:text-sky-400"
-                  title={navItem.label}
+                  title={navItem.title}
                 >
-                  {navItem.label}
+                  {navItem.title}
                 </a>
               </Link>
             </li>
           ))}
           <li>
+            <Link href="/faq">
+              <a
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title="FAQ"
+              >
+                FAQ
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/system-status">
+              <a
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title="System status"
+              >
+                System status
+              </a>
+            </Link>
+          </li>
+          <li>
             <a
-              href="https://github.com/nckhell/awell-developers"
+              href="https://awell.health"
               target="_blank"
+              title="Awell website"
               className="hover:text-sky-500 dark:hover:text-sky-400"
               rel="noreferrer"
-              data-track-heap="open-github-repo"
             >
-              GitHub
+              Awell Website
             </a>
           </li>
         </ul>

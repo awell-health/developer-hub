@@ -1,0 +1,35 @@
+---
+title: Reminder created
+description: Reminder created webhook payload
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+## Payload
+
+```json
+{
+  "reminder": {
+    "recipient": {
+      "id": "<USER_ID>",
+      "type": "<RECIPIENT_TYPE>" // e.g. "patient"
+    },
+    "recipient_profile": {
+      "name": "<RECIPIENT_NAME>",
+      "email": "<RECIPIENT_EMAIL>",
+      "id": "<USER_ID>",
+      "preferred_language": "<USER_LANGUAGE>",
+      "type": "<RECIPIENT_TYPE>" // e.g. "patient"
+    },
+    "count_new_activities": <PENDING_ACTIVITIY_COUNT>, // number
+    "count_reminders": <REMINDERS_SENT>  // number
+  },
+  "pathway": {
+    "id": "<PATHWAY_ID>",
+    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
+  },
+  "event_type": "reminder.created"
+}
+```

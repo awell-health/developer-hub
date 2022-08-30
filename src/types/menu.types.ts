@@ -1,6 +1,10 @@
 import { BadgeColorType } from '../components/Badge/badge.types'
 
-export type NavType = { label: string; path: string; slug: string }
+export type NavType = {
+  label: string
+  path: string
+  external?: boolean
+}
 
 export type BadgeType = { label: string; color?: BadgeColorType }
 
@@ -13,6 +17,7 @@ export type SubmenuItemType = {
 
 export type MenuItemType = {
   title: string
+  path?: string
   submenu?: SubmenuItemType[]
 }
 

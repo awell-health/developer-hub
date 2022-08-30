@@ -1,0 +1,32 @@
+---
+title: Stop pathway
+description: Stopping a pathway will stop the orchestration of the pathway
+---
+
+When a pathway is stopped, all scheduled steps will be cancelled and no notifications (eg reminders) will be sent anymore. The pathway will come to a halt at the state it's currently in.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation StopPathway($input: StopPathwayInput!) {
+  stopPathway(input: $input) {
+    code
+    success
+  }
+}
+```
+
+### Variables
+
+We highly recommend to pass a reason for stopping the pathway as this creates transparency for why a pathway was stopped.
+
+```json
+{
+  "input": {
+    "pathway_id": "{{PATHWAY_ID}}",
+    "reason": "{{REASON}}"
+  }
+}
+```

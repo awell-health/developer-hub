@@ -9,7 +9,7 @@ export const CustomH3 = ({ id, ...rest }: PropsType) => {
     return (
       <h3
         id={id}
-        className="group relative flex whitespace-pre-wrap scroll-mt-24"
+        className="group relative flex whitespace-pre-wrap scroll-mt-32"
       >
         <Link href={`#${id}`}>
           <a

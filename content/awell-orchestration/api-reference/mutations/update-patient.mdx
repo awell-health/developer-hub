@@ -1,0 +1,33 @@
+---
+title: Update patient
+description: Update the patient's profile
+---
+
+## Request
+
+### Mutation
+
+```graphql
+mutation UpdatePatient($input: UpdatePatientInput!) {
+  updatePatient(input: $input) {
+    patient {
+      id
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "patient_id": "{{PATIENT_ID}}",
+    "profile": {...}
+  }
+}
+```
+
+## How to use
+
+<HowToUse storyIds={['patient-profile']} />

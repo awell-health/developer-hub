@@ -1,0 +1,1 @@
+export { UseCasesComparisonTable } from './UseCasesComparisonTable'

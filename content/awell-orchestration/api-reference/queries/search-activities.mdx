@@ -1,0 +1,116 @@
+---
+title: Search activities
+description: Search activities by status, type, patient and other criteria
+---
+
+> We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the activity model.
+
+## Query
+
+```graphql
+query GetActivities(
+  $activity_type: [String!]
+  $activity_status: [String!]
+  $pathway_definition_id: [String!]
+  $action: [String!]
+  $patient_id: String
+  $count: Float!
+  $offset: Float!
+  $sort_field: String!
+  $sort_direction: String!
+) {
+  activities(
+    filters: {
+      activity_type: { in: $activity_type }
+      action: { in: $action }
+      pathway_definition_id: { in: $pathway_definition_id }
+      patient_id: { eq: $patient_id }
+      activity_status: { in: $activity_status }
+    }
+    pagination: { count: $count, offset: $offset }
+    sorting: { field: $sort_field, direction: $sort_direction }
+  ) {
+    pagination {
+      offset
+      count
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
+    activities {
+      id
+      stream_id # pathway id
+      date
+      subject {
+        id
+        name
+        type
+      }
+      action
+      object {
+        id
+        name
+        type
+      }
+      indirect_object {
+        id
+        name
+        type
+      }
+      resolution
+      status
+    }
+  }
+}
+```
+
+## Variables
+
+### Filters
+
+All filter values are optional, if you don't provide any filter all activities in your tenant will be returned.
+Sending an empty filter will result in a search for the matching field to be empty.
+
+All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria.
+
+When specifying multiple filters, the resulting criteria is the conjuction of all filters.
+
+<code className="language-json" highlightedRows={[[2, 6]]}>
+  {`
+  {
+    "action": ["ASSIGNED", "ACTIVATE"], // See ActivityAction enum
+    "activity_type": ["FORM", "MESSAGE"], // See ActivityObjectType enum
+    "activity_status": ["DONE", "ACTIVE"], // See ActivityStatus enum
+    "pathway_definition_id": ["{{ PATHWAY_DEFINITION_ID }}"],
+    "patient_id": "{{ PATIENT_ID }}",
+    "offset": 0,
+    "count": 20,
+    "sort_field": "date",
+    "sort_direction": "desc"
+  }
+  `}
+</code>
+
+### Pagination and sorting
+
+Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
+
+Default sorting is based on the `date` field, sorted descendingly (i.e. newest to oldest).
+
+<code className="language-json" highlightedRows={[[7, 10]]}>
+  {`
+  {
+    "action": ["ASSIGNED", "ACTIVATE"], // See ActivityAction enum
+    "activity_type": ["FORM", "MESSAGE"], // See ActivityObjectType enum
+    "activity_status": ["DONE", "ACTIVE"], // See ActivityStatus enum
+    "pathway_definition_id": ["{{ PATHWAY_DEFINITION_ID }}"],
+    "patient_id": "{{ PATIENT_ID }}",
+    "offset": 0,
+    "count": 20,
+    "sort_field": "date",
+    "sort_direction": "desc"
+  }
+  `}
+</code>

@@ -4,6 +4,7 @@
 @import './components/layout.css';
 @import './components/typography.css';
 @import './components/code.css';
+/* @import './components/prism.css'; */
 @import './components/button.css';
 @import './components/docStyles.css';
 @import './components/table.css';

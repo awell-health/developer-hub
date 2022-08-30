@@ -74,15 +74,15 @@ export default function BenchmarkDocument() {
     <>
       <SEO
         title="Orchestration API benchmark"
-        url={`/documents/orchestration-api-benchmark`}
-        canonicalUrl={`/documents/orchestration-api-benchmark`}
+        url={`/awell-orchestration/documents/orchestration-api-benchmark`}
+        canonicalUrl={`/awell-orchestration/documents/orchestration-api-benchmark`}
         preventCrawling={true}
       />
       <DocsHeader
         heading="Documents"
         title="Orchestration API benchmark"
         description="This benchmark is meant to document the horizontal scalability of Awell Systems by measuring the responsiveness of the API."
-        githubUrl="/pages/documents/orchestration-api-benchmark.tsx"
+        githubUrl="/pages/awell-orchestration/documents/orchestration-api-benchmark.tsx"
       />
       <div>
         <div id="content-wrapper">
@@ -239,7 +239,7 @@ export default function BenchmarkDocument() {
           </p>
         </div>
       </div>
-      <div className="fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto hidden xl:block">
+      <div className="fixed z-20 top-[6.5rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto hidden xl:block">
         <h5 className="text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
           On this page
         </h5>
@@ -257,5 +257,5 @@ export default function BenchmarkDocument() {
 }
 
 BenchmarkDocument.getLayout = function getLayout(page: ReactNode) {
-  return <DocsLayout>{page}</DocsLayout>
+  return <DocsLayout withSidebar={false}>{page}</DocsLayout>
 }
