@@ -1,10 +1,11 @@
 import { ReactNode } from 'react'
 
-import { DocsHeader } from '../../../../src/components/Docs/atoms'
-import { DocsLayoutWithoutToc } from '../../../../src/components/Layouts'
-import { QuickNav } from '../../../../src/components/QuickNavigation'
-import { ScoreExplorer } from '../../../../src/components/ScoreExplorer'
-import { SEO } from '../../../../src/components/SEO'
+import { DocsHeader } from '@/components/Docs/atoms'
+import { DocsLayoutWithoutToc } from '@/components/Layouts'
+import { QuickNav } from '@/components/QuickNavigation'
+import { ScoreExplorer } from '@/components/ScoreExplorer'
+import { SEO } from '@/components/SEO'
+
 import { useHeading, useQuickNavigation } from '../../../../src/hooks'
 
 export default function Playground() {

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { SEO } from '../src/components/SEO'
+import { SEO } from '@/components/SEO'
 
 export default function Custom404() {
   const [apiStatus, setApiStatus] = useState<'success' | 'fail' | null>(null)

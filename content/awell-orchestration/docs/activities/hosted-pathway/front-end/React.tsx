@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { CodeTabs } from '../../../../../../src/components/CodeTabs'
-import { CodeBlock } from '../../../../../../src/components/CodeTabs/atoms'
+import { CodeTabs } from '@/components/CodeTabs'
+import { CodeBlock } from '@/components/CodeTabs/atoms'
 
 export const ReactDocs = () => {
   const [frontEndHighlights, setFrontEndHighlights] = useState<Array<number[]>>(
