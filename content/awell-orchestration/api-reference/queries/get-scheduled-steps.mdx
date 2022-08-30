@@ -1,0 +1,41 @@
+---
+title: Get scheduled steps
+description: Retrieve a list of scheduled steps
+---
+
+Scheduled steps are steps we know for certain will be activated in the future. A useful query to know what's upcoming in a pathway.
+
+## Query
+
+```graphql
+query GetScheduledSteps($pathway_id: String!) {
+  scheduledSteps(pathway_id: $pathway_id) {
+    steps {
+      id
+      parent_id
+      name
+      label
+      start_date
+      status
+      stakeholders {
+        id
+        name
+      }
+      context {
+        instance_id
+        pathway_id
+        step_id
+        track_id
+      }
+    }
+  }
+}
+```
+
+## Variables
+
+```json
+{
+  "pathway_id": "{{ PATHWAY_ID }}"
+}
+```
