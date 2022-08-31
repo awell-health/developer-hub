@@ -32,7 +32,7 @@ export const Menu = () => {
                       router.query.slug ? router.query.slug : router.pathname
                     )
                       ? 'font-bold'
-                      : 'font-semibold',
+                      : '',
                     'text-slate-8000 dark:text-slate-200 group w-full flex items-center ml-2.5 pl-2 pr-2 text-base rounded-md'
                   )}
                 >
