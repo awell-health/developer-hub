@@ -2,7 +2,8 @@ import 'graphiql/graphiql.css'
 
 import { createGraphiQLFetcher } from '@graphiql/toolkit'
 
-import { SEO } from '../../src/components/SEO'
+import { SEO } from '@/components/SEO'
+
 import { defaultQuery } from '../../src/config/graphiql/graphiql'
 import { useGraphQLSchema } from '../../src/hooks/useGraphQLSchema'
 

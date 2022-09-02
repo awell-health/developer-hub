@@ -2,40 +2,38 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
 
-// import {
-//   Html,
-//   NextJsBackEndDocs,
-//   NextJsFrontEndDocs,
-//   Node,
-//   ReactDocs,
-//   stack,
-// } from '../../../../content/awell-orchestration/docs/activities/hosted-pathway'
-import { Alert } from '../../../../src/components/Alert'
-// import { LinkButton } from '../../../../src/components/Button'
-import { DocsHeader } from '../../../../src/components/Docs/atoms'
-import { FAQ } from '../../../../src/components/FAQ'
-import { DocsLayoutWithoutToc } from '../../../../src/components/Layouts'
-import { SEO } from '../../../../src/components/SEO'
-// import { StackSelector } from '../../../../src/components/StackSelector'
-// import { useStack } from '../../../../src/hooks/useStack'
+import { Alert } from '@/components/Alert'
+// import { LinkButton } from '@/components/Button'
+import { DocsHeader } from '@/components/Docs/atoms'
+import { FAQ } from '@/components/FAQ'
+import { DocsLayoutWithoutToc } from '@/components/Layouts'
+import { SEO } from '@/components/SEO'
+import { StackSelector } from '@/components/StackSelector'
+import {
+  NodeStartSessionDocs,
+  NodeWebhookListenerDocs,
+  // NextJsBackEndDocs,
+  stack,
+} from '@/content/awell-orchestration/docs/activities/hosted-activity'
+import { useStack } from '@/hooks/useStack'
 
 export default function HostedActivityPage() {
-  //   const { frontEnd, backEnd, changeBackEnd, changeFrontEnd } = useStack()
+  const { frontEnd, backEnd, changeBackEnd, changeFrontEnd } = useStack()
 
-  //   const onChangeStack = ({
-  //     newFrontEnd,
-  //     newBackEnd,
-  //   }: {
-  //     newFrontEnd?: string
-  //     newBackEnd?: string
-  //   }) => {
-  //     if (newFrontEnd) {
-  //       changeFrontEnd(newFrontEnd)
-  //     }
-  //     if (newBackEnd) {
-  //       changeBackEnd(newBackEnd)
-  //     }
-  //   }
+  const onChangeStack = ({
+    newFrontEnd,
+    newBackEnd,
+  }: {
+    newFrontEnd?: string
+    newBackEnd?: string
+  }) => {
+    if (newFrontEnd) {
+      changeFrontEnd(newFrontEnd)
+    }
+    if (newBackEnd) {
+      changeBackEnd(newBackEnd)
+    }
+  }
 
   return (
     <div>
@@ -45,7 +43,7 @@ export default function HostedActivityPage() {
         url={`/awell-orchestration/docs/activities/hosted-activity`}
         canonicalUrl={`/awell-orchestration/docs/activities/hosted-activity`}
       />
-      {/* <div className="flex mb-8">
+      <div className="flex mb-8">
         <StackSelector
           selectedStack={{
             frontEnd: frontEnd,
@@ -54,7 +52,7 @@ export default function HostedActivityPage() {
           onStackChange={onChangeStack}
           stacks={stack}
         />
-      </div> */}
+      </div>
       <DocsHeader
         heading={'Interact with activities'}
         title={'Awell hosted activity'}
@@ -214,9 +212,177 @@ export default function HostedActivityPage() {
       {/* Guide section */}
       <div>
         <h2>Get started</h2>
-        {/* Set up front-end */}
-        <div id="content-wrapper">
-          <p>We are currently finalizing this guide.</p>
+        {/* Set up webhook listener */}
+        <div>
+          <div className="flex flex-row mb-8">
+            <div className="leading-none text-sm bg-slate-200 text-slate-600 rounded-full font-semibold mr-4 px-2.5 py-0.5 flex items-center">
+              1
+            </div>
+            <div className="text-lg sm:text-xl text-slate-900 tracking-tight font-bold dark:text-slate-200">
+              Create Webhook listener and notify stakeholders
+            </div>
+          </div>
+          <div id="content-wrapper">
+            <p>
+              We will create a Webhook listener that is able to process and
+              handle incoming webhooks from Awell every time an activity is
+              created.
+            </p>
+          </div>
+          <NodeWebhookListenerDocs />
+          <div className="mt-8" id="content-wrapper">
+            <p>
+              <strong>
+                Table to help you map user activities to the right stakeholder:
+              </strong>
+            </p>
+            <div className="flex flex-col">
+              <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                  <table className="ignore-default-style min-w-full divide-y divide-slate-300 dark:divide-slate-500">
+                    <thead>
+                      <tr className="text-slate-900 dark:text-white text-base font-semibold">
+                        <th
+                          scope="col"
+                          className="py-3.5 pl-4 pr-3 text-left sm:pl-6 md:pl-0"
+                        >
+                          Stakeholder type <br />
+                          (indirect_object.type)
+                        </th>
+                        <th scope="col" className="py-3.5 px-3 text-left">
+                          Stakeholder name <br />
+                          (indirect_object.name)
+                        </th>
+                        <th scope="col" className="py-3.5 px-3 text-left">
+                          Contact details of stakeholder
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                      <tr className="text-slate-900 dark:text-slate-100">
+                        <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+                          patient
+                        </td>
+                        <td className="py-4 px-3 text-base">
+                          Name of the actual patient as stored in the Awell
+                          patient profile
+                        </td>
+                        <td className="py-4 px-3 text-base">
+                          See <code className="code">stakeholder.email</code>{' '}
+                          (if contact details are stored in Awell) or look up in
+                          your internal systems.
+                        </td>
+                      </tr>
+                      <tr className="text-slate-900 dark:text-slate-100">
+                        <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+                          stakeholder
+                        </td>
+                        <td className="py-4 px-3 text-base">nurse</td>
+                        <td className="py-4 px-3 text-base">
+                          Look up in your internal systems.
+                        </td>
+                      </tr>
+                      <tr className="text-slate-900 dark:text-slate-100">
+                        <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+                          stakeholder
+                        </td>
+                        <td className="py-4 px-3 text-base">physician</td>
+                        <td className="py-4 px-3 text-base">
+                          Look up in your internal systems.
+                        </td>
+                      </tr>
+                      <tr className="text-slate-900 dark:text-slate-100">
+                        <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+                          stakeholder
+                        </td>
+                        <td className="py-4 px-3 text-base">dietician</td>
+                        <td className="py-4 px-3 text-base">
+                          Look up in your internal systems.
+                        </td>
+                      </tr>
+                      <tr className="text-slate-900 dark:text-slate-100">
+                        <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+                          stakeholder
+                        </td>
+                        <td className="py-4 px-3 text-base">
+                          (any other stakeholder that is not the patient)
+                        </td>
+                        <td className="py-4 px-3 text-base">
+                          Look up in your internal systems.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Start hosted activity session */}
+        <div className="mt-12">
+          <div className="flex flex-row mb-8">
+            <div className="leading-none text-sm bg-slate-200 text-slate-600 rounded-full font-semibold mr-4 px-2.5 py-0.5 flex items-center">
+              2
+            </div>
+            <div className="text-lg sm:text-xl text-slate-900 tracking-tight font-bold dark:text-slate-200">
+              Start hosted activity session
+            </div>
+          </div>
+          <div className="max-w-3xl mb-8" id="content-wrapper">
+            <p>
+              In the previous step we created a webhook listener and notified
+              the relevant stakeholders of an activity that needs to be
+              completed. When the stakeholder react to the notification (eg:
+              presses a button), we will create a hosted activity session we can
+              redirect the stakeholder to.
+            </p>
+            <p>
+              <strong>Prerequisites</strong>
+              <br />
+              You will need to have stored or passed (eg: via query parameters)
+              the following data in order to start a hosted activity session
+              (see step 1):
+            </p>
+            <ol>
+              <li>Stakeholder id</li>
+              <li>Pathway id</li>
+            </ol>
+          </div>
+          <NodeStartSessionDocs />
+        </div>
+        {/* Test */}
+        <div className="mt-12">
+          <div className="flex flex-row mb-8">
+            <div className="leading-none text-sm bg-slate-200 text-slate-600 rounded-full font-semibold mr-4 px-2.5 py-0.5 flex items-center">
+              3
+            </div>
+            <div className="text-lg sm:text-xl text-slate-900 tracking-tight font-bold dark:text-slate-200">
+              Test your set-up
+            </div>
+          </div>
+          <div className="max-w-3xl mb-8" id="content-wrapper">
+            <p>
+              <strong>
+                In order to test your integration, make sure to do the following
+                steps:
+              </strong>
+            </p>
+            <ol>
+              <li>
+                Make sure your pathway has webhooks configured and they are sent
+                to your server responsible for handling them. More on testing
+                webhooks can be found
+                [here](/awell-orchestration/developer-tools/webhooks/test-webhooks).
+              </li>
+              <li>Make sure your pathway is published.</li>
+              <li>Make sure your server(s) are up and running.</li>
+              <li>Enroll a patient in your pathway.</li>
+              <li>
+                Your server should be receiving webhooks now and you should be
+                able to test your integration end-2-end.
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
       {/* FAQ */}

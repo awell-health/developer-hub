@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
-import { CodeTabs } from '../../../../../../src/components/CodeTabs'
-import { CodeBlock } from '../../../../../../src/components/CodeTabs/atoms'
+import { CodeTabs } from '@/components/CodeTabs'
+import { CodeBlock } from '@/components/CodeTabs/atoms'
 
 export const NextJS = () => {
   const [backEndHighlights, setBackEndHighlights] = useState<Array<number[]>>(
@@ -308,6 +308,7 @@ export default async function handler(req, res) {
               highlightedRows={backEndHighlights}
             >
               {`
+AWELL_API_ENDPOINT=AWELL_API_ENDPOINT
 AWELL_API_KEY=YOUR_API_KEY
                     `}
             </CodeBlock>

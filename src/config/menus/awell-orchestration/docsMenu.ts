@@ -99,4 +99,13 @@ export const docsMenu: MenuItemType[] = [
       },
     ],
   },
+  {
+    title: 'Going live',
+    submenu: [
+      {
+        title: 'Preflight checklist',
+        path: '/awell-orchestration/docs/going-live/preflight-checklist',
+      },
+    ],
+  },
 ]

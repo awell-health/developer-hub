@@ -1,10 +1,11 @@
 import { CodeIcon } from '@heroicons/react/outline'
 import { useEffect, useState } from 'react'
 
-import { AwellActivity } from '../../../../src/components/AwellActivity'
-import { Button } from '../../../../src/components/Button'
-import { SEO } from '../../../../src/components/SEO'
-import { Spinner } from '../../../../src/components/Spinner'
+import { AwellActivity } from '@/components/AwellActivity'
+import { Button } from '@/components/Button'
+import { SEO } from '@/components/SEO'
+import { Spinner } from '@/components/Spinner'
+
 import { usePathwayActivities } from '../../../../src/hooks/awell-orchestration/usePathwayActivities'
 import { useStartPathway } from '../../../../src/hooks/awell-orchestration/useStartPathway'
 import { type Activity } from '../../../../src/types/generated/api.types'

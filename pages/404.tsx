@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-import { Search } from '../src/components/Search'
-import { SEO } from '../src/components/SEO'
+import { Search } from '@/components/Search'
+import { SEO } from '@/components/SEO'
 
 export default function Custom404() {
   return (

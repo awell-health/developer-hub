@@ -10,10 +10,10 @@ import {
   YAxis,
 } from 'recharts'
 
-import { DocsHeader } from '../../src/components/Docs/atoms'
-import { DocsLayout } from '../../src/components/Layouts'
-import { SEO } from '../../src/components/SEO'
-import { TOC } from '../../src/components/TOC'
+import { DocsHeader } from '@/components/Docs/atoms'
+import { DocsLayout } from '@/components/Layouts'
+import { SEO } from '@/components/SEO'
+import { TOC } from '@/components/TOC'
 
 const BenchmarkChart = ({
   data,
