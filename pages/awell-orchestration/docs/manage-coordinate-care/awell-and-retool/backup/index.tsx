@@ -105,12 +105,6 @@ export default function RetoolPage({ pages }: PageProps) {
             EHR/EMR and then nothing prevents you to use our API to add native
             views to your system.
           </p>
-          <p>
-            Are you using another EHR/EMR system like Healthie, Athena Health,
-            ...? We currently do not have a native integration with these
-            vendors so if you would require some views to manage & operate Awell
-            pathways your best bet is also to leverage a tool like Retool.
-          </p>
           <p></p>
           <h3 id="who-it-is-for">Who it is for</h3>
           <ul className="no-pl">

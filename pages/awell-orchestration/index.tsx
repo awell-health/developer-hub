@@ -111,10 +111,10 @@ const manageAndCoordinateCareSolutions = [
     effort: 3,
   },
   {
-    url: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/overview-vendors',
-    title: 'Integrations with vendors',
+    url: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/overview-3rd-parties',
+    title: 'Integrations with 3rd parties',
     description:
-      'Native integrations with vendors like Athena Health, Healthie, and more.',
+      'Native integrations with 3rd parties like Athena Health, Healthie, and more.',
     effort: 1,
   },
 ]

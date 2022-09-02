@@ -68,7 +68,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     content: string,
     tocArray?: { title: string; link: string; level: 'h2' | 'h3' }[]
   ) => {
-    console.log(content)
     if (tocArray) {
       setToc(tocArray)
     } else {

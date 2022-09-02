@@ -27,7 +27,28 @@ export type MenuItemType = {
   title: string
   path?: string
   submenu?: SubmenuItemType[]
+  openInNewTab?: boolean
+  badge?: BadgeType
 }
+
+// ;[
+//   {
+//     title: 'hello',
+//     path: '/hello',
+//     submenu: [
+//       {
+//         title: 'hello',
+//         path: '/hello',
+//         submenu: [
+//           {
+//             title: 'hello',
+//             path: '/hello',
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ]
 
 export type MenuType = MenuItemType[]
 

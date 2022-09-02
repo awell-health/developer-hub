@@ -87,24 +87,21 @@ const SubMenuLevelOne = ({ menuItem }: { menuItem: MenuItemType }) => {
     'border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
 
   return (
-    <Disclosure
-      as="div"
-      defaultOpen={isChildActive(menuItem)}
-      key={menuItem.title}
-      className="space-y-1"
-    >
+    <Disclosure as="div" key={menuItem.title} className="space-y-1">
       {({ open }) => (
         <>
           <Disclosure.Button
             className={clsx(
-              open ? 'font-bold' : 'font-semibold',
+              open || isChildActive(menuItem) ? 'font-bold' : 'font-semibold',
               'dark:text-slate-200 group w-full flex items-center pr-2 text-left text-base rounded-md'
             )}
           >
             <svg
               aria-hidden="true"
               className={clsx(
-                open ? 'text-slate-400 rotate-90' : 'text-slate-400',
+                open || isChildActive(menuItem)
+                  ? 'text-slate-400 rotate-90'
+                  : 'text-slate-400',
                 'mr-2 flex-shrink-0 h-2.5 w-2.5 transform group-hover:text-slate-400 transition-colors ease-in-out duration-150'
               )}
               viewBox="0 0 16 16"
@@ -117,13 +114,16 @@ const SubMenuLevelOne = ({ menuItem }: { menuItem: MenuItemType }) => {
             </svg>
             {menuItem.title}
           </Disclosure.Button>
-          {open && (
+          {(open || isChildActive(menuItem)) && (
             <Disclosure.Panel static className="pl-2.5 ml-2">
               <ul className="space-y-2 lg:space-y-4 mt-2 lg:mt-4 border-l border-slate-200 dark:border-slate-700 lg:dark:border-slate-800">
                 {menuItem?.submenu &&
                   menuItem.submenu.map((subMenuItem) => {
                     return subMenuItem?.submenu ? (
-                      <SubMenuLevelTwo menuItem={subMenuItem} />
+                      <SubMenuLevelTwo
+                        menuItem={subMenuItem}
+                        key={subMenuItem.title}
+                      />
                     ) : (
                       <li key={subMenuItem.title}>
                         <a
@@ -190,7 +190,7 @@ export const Menu = () => {
                 </a>
               </div>
             ) : (
-              <SubMenuLevelOne menuItem={menuItem} />
+              <SubMenuLevelOne menuItem={menuItem} key={menuItem.title} />
             )
           )}
         </nav>

@@ -1,30 +1,19 @@
 import { useRouter } from 'next/router'
 
-import {
-  orchestrationApiMenu,
-  orchestrationDeveloperToolsMenu,
-  orchestrationDocsMenu,
-} from '../config/menus/awell-orchestration'
-import { scoreDocsMenu } from '../config/menus/awell-score'
+import { useMenus } from './useMenus'
 
 export const useHeading = (): { heading: string } => {
   const router = useRouter()
-  const menus = [
-    ...orchestrationApiMenu,
-    ...orchestrationDocsMenu,
-    ...orchestrationDeveloperToolsMenu,
-    ...scoreDocsMenu,
-  ]
+  const { menus } = useMenus()
 
-  const matchedMenuCategory = menus.find((menuSection) => {
-    const subMenu = menuSection?.submenu || []
-
-    return subMenu.some((subMenuItem) =>
-      router.asPath.includes(subMenuItem.path)
-    )
+  const matchedMenuCategory = menus.find((menuItem) => {
+    return router.asPath.includes(menuItem.path || '')
   })
 
-  if (matchedMenuCategory) return { heading: matchedMenuCategory?.title }
+  if (matchedMenuCategory)
+    return {
+      heading: matchedMenuCategory?.parentTitle || matchedMenuCategory.title,
+    }
 
   return { heading: '' }
 }

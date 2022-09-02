@@ -59,20 +59,20 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/manage-coordinate-care/embed-ehr-emr',
       },
       {
-        title: 'Integrations with vendors',
-        path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/overview-vendors',
+        title: 'Integrations with 3rd parties',
+        path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/overview-3rd-parties',
         submenu: [
           {
             title: 'Overview',
-            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/overview-vendors',
+            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/overview-3rd-parties',
           },
           {
             title: 'Healthie',
-            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/healthie',
+            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/healthie',
           },
           {
             title: 'Athena Health',
-            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/athena-health',
+            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/athena-health',
           },
         ],
       },

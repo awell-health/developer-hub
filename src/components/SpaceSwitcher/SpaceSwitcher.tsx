@@ -9,7 +9,6 @@ import { AppContext } from '@/contexts/app/AppContext'
 export const SpaceSwitcher = () => {
   const { space } = useContext(AppContext)
 
-  console.log(space)
   const currentSpaceLabel =
     spaces.find((s) => s.path.includes(space))?.label || ''
 

@@ -39,11 +39,25 @@ export const useSidebarMenu = (): useSidebarMenuHook => {
     }
   })
 
-  const isChildActive = (menu: MenuItemType) => {
-    if (menu?.submenu) {
-      return menu.submenu.some((subMenuItem) =>
+  const isChildActive = (menuItem: MenuItemType) => {
+    if (menuItem?.submenu) {
+      const levelOneSubMenuItemsActive = menuItem.submenu.some((subMenuItem) =>
         router.asPath.includes(subMenuItem.path)
       )
+
+      const levelTwoSubMenuItemsActive = menuItem.submenu.some(
+        (subMenuItem) => {
+          if (subMenuItem?.submenu) {
+            return subMenuItem.submenu.some((subMenuItem) =>
+              router.asPath.includes(subMenuItem.path)
+            )
+          }
+
+          return false
+        }
+      )
+
+      return levelOneSubMenuItemsActive || levelTwoSubMenuItemsActive
     }
 
     return false
