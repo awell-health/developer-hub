@@ -60,8 +60,12 @@ export const docsMenu: MenuItemType[] = [
       },
       {
         title: 'Integrations with vendors',
-        path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors',
+        path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/overview-vendors',
         submenu: [
+          {
+            title: 'Overview',
+            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/overview-vendors',
+          },
           {
             title: 'Healthie',
             path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/healthie',
