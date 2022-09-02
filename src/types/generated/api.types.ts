@@ -1328,16 +1328,19 @@ export type SubscriptionActivityUpdatedArgs = {
 
 
 export type SubscriptionElementCompletedArgs = {
+  element_type?: InputMaybe<ElementType>;
   pathway_id: Scalars['String'];
 };
 
 
 export type SubscriptionElementCreatedArgs = {
+  element_type?: InputMaybe<ElementType>;
   pathway_id: Scalars['String'];
 };
 
 
 export type SubscriptionElementUpdatedArgs = {
+  element_type?: InputMaybe<ElementType>;
   pathway_id: Scalars['String'];
 };
 

@@ -8,11 +8,19 @@ export type NavType = {
 
 export type BadgeType = { label: string; color?: BadgeColorType }
 
+export type SubMenuType = {
+  title: string
+  path: string
+  badge?: BadgeType
+  openInNewTab?: boolean
+}
+
 export type SubmenuItemType = {
   title: string
   path: string
   badge?: BadgeType
   openInNewTab?: boolean
+  submenu?: SubMenuType[]
 }
 
 export type MenuItemType = {

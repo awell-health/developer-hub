@@ -61,6 +61,16 @@ export const docsMenu: MenuItemType[] = [
       {
         title: 'Integrations with vendors',
         path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors',
+        submenu: [
+          {
+            title: 'Healthie',
+            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/healthie',
+          },
+          {
+            title: 'Athena Health',
+            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-vendors/athena-health',
+          },
+        ],
       },
     ],
   },
