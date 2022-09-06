@@ -404,7 +404,7 @@ export default function HostedActivityPage() {
             {
               question: 'How long before a hosted activity session expires?',
               answer:
-                'By default, sessions expire after 15 minutes but the timer is reset after every completion of an activity. A session also expires when the pathway is completed.',
+                'By default, sessions expire after 15 minutes but the timer is reset after every completion of an activity. A session also expires when there are no pending activities left for stakeholder in the pathway.',
             },
             {
               question:
