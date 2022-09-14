@@ -24,6 +24,7 @@ export type ActionPayload = Payload & {
 
 export enum ActionType {
   ApiCall = 'API_CALL',
+  ApiCallGraphql = 'API_CALL_GRAPHQL',
   Calculation = 'CALCULATION',
   Checklist = 'CHECKLIST',
   Form = 'FORM',
@@ -198,10 +199,16 @@ export type ApiCallPayload = Payload & {
 
 export type ApiCallRequest = {
   __typename?: 'ApiCallRequest';
-  body: Scalars['String'];
+  body?: Maybe<Scalars['String']>;
   endpoint: Scalars['String'];
   headers: Array<ApiCallHeader>;
+  method: ApiCallRequestMethod;
 };
+
+export enum ApiCallRequestMethod {
+  Get = 'GET',
+  Post = 'POST'
+}
 
 export type ApiCallResponse = {
   __typename?: 'ApiCallResponse';
