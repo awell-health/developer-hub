@@ -5,6 +5,6 @@ export const spaces: { label: string; path: string }[] = [
   },
   {
     label: 'Awell Score',
-    path: '/awell-score/docs/getting-started/what-is-awell-score',
+    path: '/awell-score',
   },
 ]
