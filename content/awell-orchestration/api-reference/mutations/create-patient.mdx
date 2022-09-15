@@ -3,6 +3,14 @@ title: Create patient
 description: Create a new patient, anonymous patients are also supported.
 ---
 
+### Patient deduplication
+
+In order to make sure you there's only one single reference to each unique patient, we advise you to first search whether the patient already exists ([see "searchPatient" queries](/awell-orchestration/api-reference/queries/search-patient)).
+
+### Establish a link between your patient resource and the Awell patient resource
+
+In order to establish a link between the patient resource on your end and the patient resource in Awell, we advise you to store the identifier of the patient resource in your system in the `patient_code` field. This way its easy to establish a link between the patient record in your system and in Awell's system.
+
 ## Request
 
 ### Mutation
@@ -21,7 +29,9 @@ mutation CreatePatient($input: CreatePatientInput!) {
 
 ```json
 {
-  "input": {}
+  "input": {
+    "patient_code": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}" // recommended
+  }
 }
 ```
 
@@ -32,9 +42,9 @@ Use our <a target="_blank" rel="noopener noreferrer" href="/playground">GraphQL 
 ```json
 {
   "input": {
-    "first_name": "{{PATIENT FIRST NAME}}",
-    "last_name": "{{PATIENT LAST NAME}}",
-    "patient_code": "{{YOUR PATIENT IDENTIFIER}}"
+    "first_name": "{{PATIENT_FIRST_NAME}}",
+    "last_name": "{{PATIENT_LAST_NAME}}",
+    "patient_code": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}"
   }
 }
 ```
