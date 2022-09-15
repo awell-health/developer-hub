@@ -7,10 +7,6 @@ description: Start a new pathway for a given patient
 
 Pathways can only be started for patients so you need a patient resource first (more specifically the id of the patient) before you can start a pathway. You can create a new patient resource with the [`createPatient` mutation](/awell-orchestration/api-reference/mutations/create-patient).
 
-### Patient deduplication
-
-In order to make sure you there's only one single reference to each unique patient, we advise you to first search whether the patient already exists ([see "searchPatient" queries](/awell-orchestration/api-reference/queries/search-patient)).
-
 ## Selecting the version
 
 When starting a pathway, Awell Orchestration automatically chooses the most recent published version of the specified pathway definition.
