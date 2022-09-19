@@ -49,7 +49,7 @@ export const RunQueryButton = ({
     <Button
       label="Run request"
       onClick={() => onClick()}
-      color="indigo"
+      color="sky"
       fullWidth={true}
       disabled={endpointId === null ? true : false}
     />

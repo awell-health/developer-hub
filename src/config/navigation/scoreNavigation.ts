@@ -11,4 +11,9 @@ export const scoreNavigation: MainNavType = [
     slug: '/awell-score/docs/getting-started/what-is-awell-score',
     activeSlugCheck: 'docs',
   },
+  {
+    title: 'Developer tools',
+    slug: '/awell-score/developer-tools/api-playground',
+    activeSlugCheck: 'developer-tools',
+  },
 ]
