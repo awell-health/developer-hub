@@ -125,7 +125,11 @@ showPlaygroundButton: false
     },
     {
       question: 'Is data encrypted?',
-      answer: 'Data is encrypted at rest and in transit.',
+      answer: `
+<p>Data is encrypted at rest and in transit.</>
+<p>Our database is deployed on a kubernetes cluster in the Google Kubernetes Engine. It is backed by a kubernetes persistent volume, which is covered by Google Cloud’s Default encryption of data at rest.</p>
+<p>In cluster db connections use the HTTPS channel and therefore benefit from encryption in transit through TLS. HTTP access to the database is disabled to prevent connections without encryption in transit.</p>
+  `,
     },
     {
       question:
