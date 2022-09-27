@@ -30,6 +30,28 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/activities/overview-activities',
       },
       {
+        title: 'Notifications',
+        path: '/awell-orchestration/docs/activities/notifications/overview-notifications',
+        submenu: [
+          {
+            title: 'Overview',
+            path: '/awell-orchestration/docs/activities/notifications/overview-notifications',
+          },
+          {
+            title: 'Notifying the patient',
+            path: '/awell-orchestration/docs/activities/notifications/patient-notifications',
+          },
+          {
+            title: 'Notifying other stakeholders',
+            path: '/awell-orchestration/docs/activities/notifications/stakeholder-notifications',
+          },
+          {
+            title: 'Notifications to a specific destination',
+            path: '/awell-orchestration/docs/activities/notifications/specific-notifications',
+          },
+        ],
+      },
+      {
         title: 'Hosted pathway',
         path: '/awell-orchestration/docs/activities/hosted-pathway',
       },

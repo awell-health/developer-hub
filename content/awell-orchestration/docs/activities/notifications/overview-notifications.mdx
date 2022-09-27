@@ -1,0 +1,58 @@
+---
+title: Notifying stakeholders
+description: Learn how to notify the relevant stakeholders of new activities in a care flow.
+---
+
+## Stakeholders in a care flow
+
+In Awell Studio, you assign actions to stakeholders when designing your care flow. The stakeholders you assign to an action are a-specific, eg: this action needs to be completed by a nurse, a physician, or a patient (without specifying who the actual nurse is). During design time, we thus don't know by who exactly an activity needs to be completed but we only know it needs to be completed by a specific stakeholder.
+
+## Design vs. runtime
+
+Where during design time you assign very generic stakeholders to an action, during Orchestration of a pathway (i.e. run time) you want to make sure the activities are completed by a user/human representing that stakeholder in a patient's care flow.
+
+It might be that a stakeholder (eg nurse) is represented by one or multiple users and that per patient or pathway we might have different users representing the same stakeholder (see example below).
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th style={{ width: '100px' }}></th>
+        <th>Design time</th>
+        <th>Runtime</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Patient A</td>
+        <td rowspan={3}>
+          An activity needs to be completed by <u>a nurse</u>
+        </td>
+        <td>
+          The activity needs to be completed by <u>Nick the nurse</u>
+        </td>
+      </tr>
+      <tr>
+        <td>Patient B</td>
+        <td>
+          The activity needs to be completed by <u>Sanne the nurse</u> or{' '}
+          <u>Nick the nurse</u>
+        </td>
+      </tr>
+      <tr>
+        <td>Patient C</td>
+        <td>
+          The activity needs to be completed by <u>Ada the nurse</u>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Mapping users to stakeholders
+
+In essence, you need to be able to map a human/user to a stakeholder in a pathway, eg: we know that for this patient Ada is the nurse. This means every time an activity is created for the nurse, we can send a notification to Ada so she can complete the activity in the care flow.
+
+**The Awell platform does not take care of mapping users to stakeholders** so this is something you will have to take care of on your end.
+
+Have a look at the subpages of this section to learn more about notifying different type of stakeholders.

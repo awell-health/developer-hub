@@ -69,10 +69,11 @@ export enum ActivityAction {
   Complete = 'COMPLETE',
   Computed = 'COMPUTED',
   Deliver = 'DELIVER',
-  Discard = 'DISCARD',
+  Discarded = 'DISCARDED',
   Failed = 'FAILED',
   FailedToSend = 'FAILED_TO_SEND',
   IsWaitingOn = 'IS_WAITING_ON',
+  Postponed = 'POSTPONED',
   Processed = 'PROCESSED',
   Read = 'READ',
   Remind = 'REMIND',
@@ -313,6 +314,8 @@ export type DataPointPossibleValue = {
 };
 
 export enum DataPointSourceType {
+  ApiCall = 'API_CALL',
+  ApiCallStatus = 'API_CALL_STATUS',
   Calculation = 'CALCULATION',
   Form = 'FORM',
   Pathway = 'PATHWAY',
