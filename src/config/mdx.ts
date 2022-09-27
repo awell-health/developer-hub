@@ -2,6 +2,7 @@ import rehypeSlug from 'rehype-slug'
 
 import { Alert } from '@/components/Alert'
 import { Code, CustomH2, CustomH3 } from '@/components/Docs/atoms'
+import { EmailTemplate } from '@/components/EmailTemplate'
 import { FAQ } from '@/components/FAQ'
 import { HowToUse } from '@/components/HowToUse'
 import { PostmanLinks } from '@/components/Links/PostmanLinks'
@@ -28,4 +29,5 @@ export const mdxComponents = {
   WebhooksList,
   WebhooksTable,
   PostmanLinks,
+  EmailTemplate,
 }
