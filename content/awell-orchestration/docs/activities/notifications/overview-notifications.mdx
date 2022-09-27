@@ -49,10 +49,10 @@ It might be that a stakeholder is represented by one or multiple users:
   </table>
 </div>
 
-## Mapping users to stakeholders
-
-In essence, you need to be able to map a human/user to a stakeholder in a pathway, e.g. once enrolled we know that for patient A, Sanne is the nurse. This means every time an activity is created for stakeholder "nurse", we can send a communication to Sanne so she can complete the activity in the care flow.
+## Mapping users to stakeholders and sending notifications
 
 **The Awell platform does not take care of mapping users to stakeholders** so this is something that needs to be taken care of on your end.
+
+On creation of a user in your system, you assign one or more roles to that user. So in our example, Sanne, Nick and Ada will all be "nurses". This in itself is enough to generate views in your system that only show care flow activities assigned to nurses and will enable your team to collaborate on these activities. Taking this one step further, upon enrollment of a patient in a care flow you can assign an individual user to that patient, e.g. for Patient A, Nick is the assigned nurse. Each time Awell sends out a notification for patient A with recipient "nurse", you know that this is intended for Nick so he can complete the activity in the flow.
 
 Have a look at the subpages of this section to learn more about sending communications to different type of stakeholders.
