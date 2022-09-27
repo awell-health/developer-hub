@@ -3,23 +3,23 @@ title: Notifying stakeholders
 description: Learn how to notify the relevant stakeholders of new activities in a care flow.
 ---
 
-## Stakeholders in a care flow
+## When designing in Awell Studio
 
-In Awell Studio, you assign actions to stakeholders when designing your care flow. The stakeholders you assign to an action are a-specific, eg: this action needs to be completed by a nurse, a physician, or a patient (without specifying who the actual nurse is). During design time, we thus don't know by who exactly an activity needs to be completed but we only know it needs to be completed by a specific stakeholder.
+When designing your care flow in Awell Studio, you assign stakeholders to actions. These stakeholders are a-specific, e.g. action X needs to be completed by a "nurse", without specifying who the actual nurse will be. This is because when you're designing care flows you probably don't know by who exactly an action needs to be completed, only that it needs to be completed by a certain stakeholder.
 
-## Design vs. runtime
+## At run time
 
-Where during design time you assign very generic stakeholders to an action, during Orchestration of a pathway (i.e. run time) you want to make sure the activities are completed by a user/human representing that stakeholder in a patient's care flow.
+Opposite to design time in Awell Studio, during Orchestration of a pathway (i.e. at run time) you want to make sure the actions are completed by an actual human user representing that stakeholder in a patient's care flow.
 
-It might be that a stakeholder (eg nurse) is represented by one or multiple users and that per patient or pathway we might have different users representing the same stakeholder (see example below).
+It might be that a stakeholder is represented by one or multiple users:
 
 <div className="table-wrapper">
   <table>
     <thead>
       <tr>
         <th style={{ width: '100px' }}></th>
-        <th>Design time</th>
-        <th>Runtime</th>
+        <th>Design time (Awell Studio)</th>
+        <th>Run time (Awell Orchestration)</th>
       </tr>
     </thead>
     <tbody>
@@ -51,8 +51,8 @@ It might be that a stakeholder (eg nurse) is represented by one or multiple user
 
 ## Mapping users to stakeholders
 
-In essence, you need to be able to map a human/user to a stakeholder in a pathway, eg: we know that for this patient Ada is the nurse. This means every time an activity is created for the nurse, we can send a notification to Ada so she can complete the activity in the care flow.
+In essence, you need to be able to map a human/user to a stakeholder in a pathway, e.g. once enrolled we know that for patient A, Sanne is the nurse. This means every time an activity is created for stakeholder "nurse", we can send a communication to Sanne so she can complete the activity in the care flow.
 
-**The Awell platform does not take care of mapping users to stakeholders** so this is something you will have to take care of on your end.
+**The Awell platform does not take care of mapping users to stakeholders** so this is something that needs to be taken care of on your end.
 
-Have a look at the subpages of this section to learn more about notifying different type of stakeholders.
+Have a look at the subpages of this section to learn more about sending communications to different type of stakeholders.
