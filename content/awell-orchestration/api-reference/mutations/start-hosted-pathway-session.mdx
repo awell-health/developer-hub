@@ -44,7 +44,7 @@ The `success_url` and `cancel_url` specify where the user should be redirected t
 
 ### Optional variables
 
-<code className="language-json" highlightedRows={[[6, 7]]}>
+<code className="language-json" highlightedRows={[[6, 8]]}>
   {`
 {
   "input": {
@@ -52,12 +52,48 @@ The `success_url` and `cancel_url` specify where the user should be redirected t
     "success_url": "https://yourdomain.com/success.html",
     "cancel_url": "https://yourdomain.com/cancel.html",
     "patient_id": "{{PATIENT_ID}}",
-    "data_points": []
+    "data_points": [],
+    "language": "en" // nl, fr, et
   }
 }
 `}
 </code>
 <br />
+
+#### Language
+
+You can specify the language you'd like the hosted pages app to be loaded in. If no language is passed, it defaults to English.
+
+**Supported languages:**
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Language</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>English</td>
+        <td>en</td>
+      </tr>
+      <tr>
+        <td>Dutch</td>
+        <td>nl</td>
+      </tr>
+      <tr>
+        <td>French</td>
+        <td>fr</td>
+      </tr>
+      <tr>
+        <td>Estonian</td>
+        <td>et</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 #### Patient id
 
