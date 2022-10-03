@@ -97,11 +97,11 @@ const interactWithActivitiesSolutions = [
 
 const manageAndCoordinateCareSolutions = [
   {
-    url: '/awell-orchestration/docs/manage-coordinate-care/awell-and-retool',
-    title: 'Awell & Retool',
+    url: '/awell-orchestration/docs/manage-coordinate-care/awell-careops',
+    title: 'Awell CareOps',
     description:
-      'Learn how to build a Retool app to manage, operate, and coordinate Awell care pathways. Get started quickly with the templates we provide you.',
-    effort: 2,
+      "Leverage Awell's CareOps dashboard to operate, manage, and monitor care flows",
+    effort: 0,
   },
   {
     url: '/awell-orchestration/docs/manage-coordinate-care/embed-ehr-emr',

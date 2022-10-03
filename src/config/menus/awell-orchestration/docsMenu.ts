@@ -73,8 +73,8 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/manage-coordinate-care/overview-care',
       },
       {
-        title: 'Awell & Retool',
-        path: '/awell-orchestration/docs/manage-coordinate-care/awell-and-retool',
+        title: 'Awell CareOps',
+        path: '/awell-orchestration/docs/manage-coordinate-care/awell-careops',
       },
       {
         title: 'Embed in your in-house built EHR/EMR',

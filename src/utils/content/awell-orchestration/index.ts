@@ -14,4 +14,3 @@ export {
   getAllDocs as getAllOrchestrationDocs,
   getDoc as getOrchestrationDoc,
 } from './docsUtils'
-export { getAllRetoolPages, getRetoolPage } from './retoolUtils'
