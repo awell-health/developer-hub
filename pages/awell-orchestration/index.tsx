@@ -104,18 +104,18 @@ const manageAndCoordinateCareSolutions = [
     effort: 0,
   },
   {
-    url: '/awell-orchestration/docs/manage-coordinate-care/embed-ehr-emr',
-    title: 'Embed in your in-house built EHR/EMR',
-    description:
-      'Have you built your own EHR/EMR? Leverage the Awell API to build some native views in your existing system.',
-    effort: 3,
-  },
-  {
     url: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/overview-3rd-parties',
     title: 'Integrations with 3rd parties',
     description:
       'Native integrations with 3rd parties like Athena Health, Healthie, and more.',
     effort: 1,
+  },
+  {
+    url: '/awell-orchestration/docs/manage-coordinate-care/embed-ehr-emr',
+    title: 'Embed in your in-house built EHR/EMR',
+    description:
+      'Have you built your own EHR/EMR? Leverage the Awell API to build some native views in your existing system.',
+    effort: 3,
   },
 ]
 
