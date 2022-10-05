@@ -180,9 +180,12 @@ export type AnswerInput = {
 
 export type ApiCall = {
   __typename?: 'ApiCall';
+  created_at: Scalars['String'];
   id: Scalars['ID'];
   request: ApiCallRequest;
   responses: Array<ApiCallResponse>;
+  status: ApiCallStatus;
+  title: Scalars['String'];
 };
 
 export type ApiCallHeader = {
@@ -216,6 +219,22 @@ export type ApiCallResponse = {
   body: Scalars['String'];
   date: Scalars['String'];
   status: Scalars['Float'];
+};
+
+export enum ApiCallStatus {
+  Failed = 'Failed',
+  InProgress = 'InProgress',
+  Pending = 'Pending',
+  PermanentlyFailed = 'PermanentlyFailed',
+  Skipped = 'Skipped',
+  Success = 'Success'
+}
+
+export type ApiCallsPayload = Payload & {
+  __typename?: 'ApiCallsPayload';
+  api_calls: Array<ApiCall>;
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
 };
 
 export type ApiPathwayContext = {
@@ -368,7 +387,9 @@ export type ElementStakeholder = {
 
 export enum ElementStatus {
   Active = 'ACTIVE',
+  Discarded = 'DISCARDED',
   Done = 'DONE',
+  Postponed = 'POSTPONED',
   Scheduled = 'SCHEDULED',
   Stopped = 'STOPPED'
 }
@@ -534,6 +555,13 @@ export type IdFilter = {
   eq?: InputMaybe<Scalars['String']>;
 };
 
+export enum Language {
+  Dutch = 'DUTCH',
+  English = 'ENGLISH',
+  Estonian = 'ESTONIAN',
+  French = 'FRENCH'
+}
+
 export type MarkMessageAsReadInput = {
   activity_id: Scalars['String'];
 };
@@ -586,9 +614,12 @@ export type Mutation = {
   evaluateFormRules: EvaluateFormRulesPayload;
   markMessageAsRead: MarkMessageAsReadPayload;
   retryActivity: EmptyPayload;
+  retryAllApiCalls: EmptyPayload;
+  retryAllFailedApiCalls: EmptyPayload;
   retryAllFailedWebhookCalls: EmptyPayload;
   retryAllFailedWebhookCallsForPathwayDefinition: EmptyPayload;
   retryAllWebhookCalls: EmptyPayload;
+  retryApiCall: RetryApiCallPayload;
   retryPushToEmr: EmptyPayload;
   retryWebhookCall: RetryWebhookCallPayload;
   saveBaselineInfo: EmptyPayload;
@@ -635,6 +666,16 @@ export type MutationRetryActivityArgs = {
 };
 
 
+export type MutationRetryAllApiCallsArgs = {
+  input: RetryAllApiCallsInput;
+};
+
+
+export type MutationRetryAllFailedApiCallsArgs = {
+  input: RetryAllFailedApiCallsInput;
+};
+
+
 export type MutationRetryAllFailedWebhookCallsArgs = {
   input: RetryAllFailedWebhookCallsInput;
 };
@@ -647,6 +688,11 @@ export type MutationRetryAllFailedWebhookCallsForPathwayDefinitionArgs = {
 
 export type MutationRetryAllWebhookCallsArgs = {
   input: RetryAllWebhookCallsInput;
+};
+
+
+export type MutationRetryApiCallArgs = {
+  input: RetryApiCallInput;
 };
 
 
@@ -896,6 +942,7 @@ export type Query = {
   __typename?: 'Query';
   activities: ActivitiesPayload;
   apiCall: ApiCallPayload;
+  apiCalls: ApiCallsPayload;
   baselineInfo: BaselineInfoPayload;
   calculationAction: ActionPayload;
   calculationResults: CalculationResultsPayload;
@@ -939,6 +986,11 @@ export type QueryActivitiesArgs = {
 
 export type QueryApiCallArgs = {
   id: Scalars['String'];
+};
+
+
+export type QueryApiCallsArgs = {
+  pathway_id: Scalars['String'];
 };
 
 
@@ -1122,6 +1174,14 @@ export type RetryActivityInput = {
   activity_id: Scalars['String'];
 };
 
+export type RetryAllApiCallsInput = {
+  pathway_id: Scalars['String'];
+};
+
+export type RetryAllFailedApiCallsInput = {
+  pathway_id: Scalars['String'];
+};
+
 export type RetryAllFailedWebhookCallsForPathwayDefinitionInput = {
   pathway_definition_id: Scalars['String'];
 };
@@ -1132,6 +1192,17 @@ export type RetryAllFailedWebhookCallsInput = {
 
 export type RetryAllWebhookCallsInput = {
   pathway_id: Scalars['String'];
+};
+
+export type RetryApiCallInput = {
+  api_call_id: Scalars['String'];
+};
+
+export type RetryApiCallPayload = Payload & {
+  __typename?: 'RetryApiCallPayload';
+  api_call: ApiCall;
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
 };
 
 export type RetryPushToEmrInput = {
@@ -1208,6 +1279,7 @@ export type SortingParams = {
 
 export type StartHostedActivitySessionInput = {
   cancel_url: Scalars['String'];
+  language?: InputMaybe<Language>;
   pathway_id: Scalars['String'];
   stakeholder_id: Scalars['String'];
   success_url: Scalars['String'];
@@ -1224,6 +1296,7 @@ export type StartHostedActivitySessionPayload = Payload & {
 export type StartHostedPathwaySessionInput = {
   cancel_url: Scalars['String'];
   data_points?: InputMaybe<Array<DataPointInput>>;
+  language?: InputMaybe<Language>;
   pathway_definition_id: Scalars['String'];
   patient_id?: InputMaybe<Scalars['String']>;
   success_url: Scalars['String'];
@@ -1305,6 +1378,8 @@ export type Subscription = {
   activityCompleted: Activity;
   activityCreated: Activity;
   activityUpdated: Activity;
+  apiCallCreated: ApiCall;
+  apiCallUpdated: ApiCall;
   elementCompleted: Element;
   elementCreated: Element;
   elementUpdated: Element;
@@ -1334,6 +1409,16 @@ export type SubscriptionActivityCreatedArgs = {
 export type SubscriptionActivityUpdatedArgs = {
   only_patient_activities?: InputMaybe<Scalars['Boolean']>;
   pathway_id?: InputMaybe<Scalars['String']>;
+};
+
+
+export type SubscriptionApiCallCreatedArgs = {
+  pathway_id: Scalars['String'];
+};
+
+
+export type SubscriptionApiCallUpdatedArgs = {
+  pathway_id: Scalars['String'];
 };
 
 
