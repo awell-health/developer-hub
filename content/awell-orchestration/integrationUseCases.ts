@@ -5,7 +5,7 @@ export const tiers: TierType[] = [
     name: 'Hosted pathway',
     href: '/awell-orchestration/docs/activities/hosted-pathway',
     description:
-      'Redirect users to an Awell pathway page without needing to build a front-end yourself. Ideal for patient onboarding flows.',
+      'Redirect users to an Awell page without needing to build a front-end yourself. Ideal for patient onboarding flows.',
     effort: 1,
   },
   {

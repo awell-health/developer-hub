@@ -3,11 +3,11 @@ title: Get data point definitions
 description: Retrieve the data dictionary for a pathway
 ---
 
-For any given pathway a patient is included in, you might want to know what data points are captured in that pathway (i.e a data dictionary). Via the `pathwayDataPointDefinitions` query, you're able to retrieve all data points definitions for a given pathway version.
+For any given care flow/pathway a patient is included in, you might want to know what data points are captured in that pathway (i.e a data dictionary). Via the `pathwayDataPointDefinitions` query, you're able to retrieve all data points definitions for a given pathway version.
 
 ## Release id
 
-Every patient enrolled in a pathway is included in the last version of the pathway at the moment of pathway start. Because pathways can evolve over time, it might be that the oldest version of your pathway has a totally different data dictionary compared to the most recent version.
+Every patient enrolled in a pathway is included in the last version of the pathway at the moment of pathway start. Because care flows/pathways can evolve over time, it might be that the oldest version of your pathway has a totally different data dictionary compared to the most recent version.
 
 Therefore, to query all the data point definitions for a given pathway version, you need to specify the `release_id` as an input parameter for this query.
 

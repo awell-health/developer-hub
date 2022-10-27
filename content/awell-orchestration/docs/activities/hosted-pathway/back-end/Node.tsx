@@ -187,8 +187,9 @@ export const Node = ({ frontEnd }: NodeProps) => {
                 </strong>
               </p>
               <p className="mb-4">
-                Pathways can be configured to accept sending baseline data point
-                values (i.e. baseline information) when starting the pathway.
+                Care flows/pathways can be configured to accept sending baseline
+                data point values (i.e. baseline information) when starting the
+                pathway.
               </p>
               <p>
                 Add a{' '}

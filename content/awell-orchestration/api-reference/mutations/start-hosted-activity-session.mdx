@@ -20,11 +20,11 @@ mutation StartHostedActivitySession($input: StartHostedActivitySessionInput!) {
 
 ### Required variables
 
-`pathway_id` specifies the pathway instance where there are activities to complete for.
+`pathway_id` specifies the care flow/pathway instance where there are activities to complete for.
 
 `stakeholder_id` specifies for what stakeholder there are activities to compelete for.
 
-The `success_url` and `cancel_url` specify where the stakeholder should be redirected to when the pathway session is completed or canceled/interrupted respectively.
+The `success_url` and `cancel_url` specify where the stakeholder should be redirected to when the care flow/pathway session is completed or canceled/interrupted respectively.
 
 <code className="language-json" highlightedRows={[[3, 6]]}>
   {`

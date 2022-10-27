@@ -3,7 +3,7 @@ import { type WebhooksType } from '@/types/webhooks.types'
 export const webhooks: WebhooksType = [
   {
     event: 'pathway.started',
-    description: 'Triggered every time a pathway is started.',
+    description: 'Triggered every time a care flow/pathway is started.',
     eventVariables: [
       {
         variableName: 'pathway',
@@ -11,13 +11,13 @@ export const webhooks: WebhooksType = [
       },
     ],
     comment:
-      'Then define and call a method to handle the start of the pathway in your system.',
+      'Then define and call a method to handle the start of the care flow/pathway in your system.',
     apiReferenceLink:
       '/awell-orchestration/api-reference/webhooks/pathway-started',
   },
   {
     event: 'pathway.completed',
-    description: 'Triggered every time a pathway is completed.',
+    description: 'Triggered every time a care flow/pathway is completed.',
     eventVariables: [
       {
         variableName: 'pathway',
@@ -25,14 +25,14 @@ export const webhooks: WebhooksType = [
       },
     ],
     comment:
-      'Then define and call a method to handle the completion of the pathway in your system.',
+      'Then define and call a method to handle the completion of the care flow/pathway in your system.',
     apiReferenceLink:
       '/awell-orchestration/api-reference/webhooks/pathway-completed',
   },
   {
     event: 'activity.created',
     description:
-      'Triggered every time an activity in the pathway is created, including system activities.',
+      'Triggered every time an activity in the care flow/pathway is created, including system activities.',
     eventVariables: [
       {
         variableName: 'activity',
@@ -47,7 +47,7 @@ export const webhooks: WebhooksType = [
   {
     event: 'activity.completed',
     description:
-      'Triggered every time an activity in the pathway is completed, including system activities.',
+      'Triggered every time an activity in the care flow/pathway is completed, including system activities.',
     eventVariables: [
       {
         variableName: 'activity',

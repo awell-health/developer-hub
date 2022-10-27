@@ -165,7 +165,7 @@ export default function Home() {
         </div>
         <div className="mt-12">
           <h2 className="text-slate-900 text-xl lg:text-2xl font-bold dark:text-white m-0 p-0">
-            Orchestrate pathways with Awell Health
+            Orchestrate care flows with Awell Health
           </h2>
           <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
             An overview of the different domains to start orchestrating pathways

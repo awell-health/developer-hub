@@ -216,8 +216,8 @@ export default function OnboardingExample() {
                     as="span"
                     className="text-base text-gray-500"
                   >
-                    We suppport pathways for &quot;anonymous&quot; users out of
-                    the box.
+                    We suppport care flows for &quot;anonymous&quot; users out
+                    of the box.
                   </Switch.Description>
                 </span>
                 <Switch

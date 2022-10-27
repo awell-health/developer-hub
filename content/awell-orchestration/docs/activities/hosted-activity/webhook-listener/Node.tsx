@@ -58,9 +58,9 @@ export const Node = () => {
                 <strong>Only handle user activities</strong>
               </p>
               <p>
-                Pathways in Awell consist of different types of activities. We
-                are only interested in activities that need an action by a
-                human.
+                Care flows/pathways in Awell consist of different types of
+                activities. We are only interested in activities that need an
+                action by a human.
               </p>
             </div>
           </div>
