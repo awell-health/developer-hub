@@ -12,7 +12,7 @@ This query allows us to fetch the details and questions for all form defintions 
 ```graphql
 query GetFormsInPublishedPathway(
   $pathway_definition_id: String!
-  $release_id: String # If no release id is passed, return the forms in the last version
+  $release_id: String # release_id is optional: if not specified, we return forms for the latest published version of the pathway
 ) {
   forms(
     pathway_definition_id: $pathway_definition_id
