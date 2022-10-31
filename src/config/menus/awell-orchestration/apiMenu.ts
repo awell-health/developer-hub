@@ -111,6 +111,11 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.activity,
       },
       {
+        title: 'Get all forms in a pathway',
+        path: '/awell-orchestration/api-reference/queries/get-forms-in-pathway',
+        badge: badges.activity,
+      },
+      {
         title: 'Get form response',
         path: '/awell-orchestration/api-reference/queries/get-form-response',
         badge: badges.activity,
