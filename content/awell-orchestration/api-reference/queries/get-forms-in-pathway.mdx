@@ -3,7 +3,29 @@ title: Get all forms in a published pathway
 description: Get all the form definitions in a published pathway
 ---
 
-This query allows us to fetch the details and questions for all form defintions in a published pathway.
+This query allows us to fetch the form details for all form defintions in a published care flow/pathway.
+
+## All forms vs. forms that will be activated
+
+Please note that this query returns all forms in a published care flow or pathway but that this doesn't neccesarely mean that all these forms will be completed as that is dependent on the logic built into the care flow.
+
+**See the example below:**
+
+- There are 3 forms: Form A, B, and C.
+- However, Form B is only activated when the subject is a male and Form C when the subject is a female
+- The query will return all published forms in the care flow or pathway so Form A, B, and C but depending on the workflow some forms might never be completed.
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="bg-[#F0F6FF] p-12 w-full sm:w-8/12 mx-auto rounded-md">
+    <img
+      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1667379532/Developer%20portal/getforms.png"
+      alt="Get forms query"
+    />
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    Depending on the care flow, some forms might never be completed.
+  </figcaption>
+</figure>
 
 ## Request
 
@@ -12,7 +34,7 @@ This query allows us to fetch the details and questions for all form defintions 
 ```graphql
 query GetFormsForPublishedPathway(
   $pathway_definition_id: String!
-  $release_id: String # release_id is optional: if not specified, we return forms for the latest published version of the pathway
+  $release_id: String
 ) {
   forms(
     pathway_definition_id: $pathway_definition_id
@@ -31,7 +53,8 @@ query GetFormsForPublishedPathway(
           value
           label
         }
-        rule { # visibility conditions of a question
+        rule {
+          # visibility conditions of a question
           boolean_operator
           conditions {
             id
@@ -49,10 +72,11 @@ query GetFormsForPublishedPathway(
 
 ### Variables
 
+The `release_id` is optional. If not specified, we return the forms for the latest published version of the care flow or pathway.
+
 ```json
 {
   "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
   "release_id": "{{PATHWAY_RELEASE_ID}}"
 }
 ```
-

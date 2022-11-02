@@ -25,7 +25,8 @@ query GetForm($id: String!) {
           value
           label
         }
-        rule { # visibility conditions of a question
+        rule {
+          # visibility conditions of a question
           boolean_operator
           conditions {
             id
