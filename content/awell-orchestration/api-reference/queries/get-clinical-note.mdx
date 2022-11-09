@@ -15,7 +15,7 @@ query GetClinicalNote($id: String!) {
     clinical_note {
       id
       narratives {
-        id
+        id  // Our unique id for each narrative across a pathway
         key
         title
         body
