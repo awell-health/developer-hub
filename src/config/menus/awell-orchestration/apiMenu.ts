@@ -101,6 +101,11 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.activity,
       },
       {
+        title: 'Get clinical note',
+        path: '/awell-orchestration/api-reference/queries/get-clinical-note',
+        badge: badges.activity,
+      },
+      {
         title: 'Get EMR report',
         path: '/awell-orchestration/api-reference/queries/get-emr-report',
         badge: badges.activity,
