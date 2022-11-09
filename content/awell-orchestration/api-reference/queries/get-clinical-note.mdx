@@ -1,0 +1,38 @@
+---
+title: Get clinical note
+description: Get the generated clinical note with a given id
+---
+
+This query allows us to fetch the content for a specific clinical note.
+
+## Request
+
+### Query
+
+```graphql
+query GetClinicalNote($id: String!) {
+  clinicalNote(id: $id) {
+    clinical_note {
+      id
+      narratives {
+        id
+        key
+        title
+        body
+      }
+      context {
+        key
+        value
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "id": "{{CLINICAL_NOTE_ID}}"
+}
+```
