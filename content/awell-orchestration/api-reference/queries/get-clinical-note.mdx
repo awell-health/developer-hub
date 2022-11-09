@@ -18,7 +18,7 @@ query GetClinicalNote($id: String!) {
         id  // Our unique id for each narrative across a pathway
         key
         title
-        body
+        body  // a string containing html content
       }
       context {
         key
