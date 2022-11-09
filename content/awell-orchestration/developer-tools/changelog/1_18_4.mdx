@@ -1,0 +1,31 @@
+---
+title: 1.18.4
+description: Changelog for release v1.18.4
+releaseDate: '2022-11-09'
+---
+
+## Added
+
+### GetClinicalNote query
+
+GraphQL query to fetch clinical note for a given ID.
+
+```graphql
+query GetClinicalNote($id: String!) {
+  clinicalNote(id: $id) {
+    clinical_note {
+      id
+      narratives {
+        id
+        key
+        title
+        body
+      }
+      context {
+        key
+        value
+      }
+    }
+  }
+}
+```
