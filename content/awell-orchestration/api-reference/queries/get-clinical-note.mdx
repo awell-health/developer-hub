@@ -1,0 +1,38 @@
+---
+title: Get clinical note activity
+description: Get the narratives and context of a clinical note activity
+---
+
+This query allows us to fetch the details of a specific clinical note activity.
+
+## Request
+
+### Query
+
+```graphql
+query GetClinicalNote($id: String!) {
+  clinicalNote(id: $id) {
+    clinical_note {
+      id
+      narratives {
+        id  // Our unique id for each narrative across a pathway
+        key
+        title
+        body  // a string containing html content
+      }
+      context {
+        key
+        value
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "id": "{{CLINICAL_NOTE_ID}}"
+}
+```

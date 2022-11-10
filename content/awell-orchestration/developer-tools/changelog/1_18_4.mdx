@@ -1,0 +1,31 @@
+---
+title: 1.18.4
+description: Changelog for release v1.18.4
+releaseDate: '2022-11-09'
+---
+
+## Added
+
+### GetClinicalNote query
+
+With the introduction of Clinical Notes as a new activity type, we have added a GraphQL query to enable fetching of the narrative and context details for a single Clinical Note activity.
+
+```graphql
+query GetClinicalNote($id: String!) {
+  clinicalNote(id: $id) {
+    clinical_note {
+      id
+      narratives {
+        id
+        key
+        title
+        body
+      }
+      context {
+        key
+        value
+      }
+    }
+  }
+}
+```
