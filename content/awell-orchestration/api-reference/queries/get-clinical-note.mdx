@@ -36,3 +36,21 @@ query GetClinicalNote($id: String!) {
   "id": "{{CLINICAL_NOTE_ID}}"
 }
 ```
+
+#### Where to found the clinical note id
+
+The id of the clinical note can be found in the `object.id` field of an activity.
+
+```json
+{
+  "activity": {
+    "id": "{{ACTIVITY_ID}}",
+    "object": {
+      "id": "{{CLINICAL_NOTE_ID}}",
+      "type": "clinical_note",
+      "name": "Clinical note"
+    },
+    ...
+  }
+}
+```
