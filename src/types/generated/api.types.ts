@@ -27,8 +27,10 @@ export enum ActionType {
   ApiCallGraphql = 'API_CALL_GRAPHQL',
   Calculation = 'CALCULATION',
   Checklist = 'CHECKLIST',
+  ClinicalNote = 'CLINICAL_NOTE',
   Form = 'FORM',
   Message = 'MESSAGE',
+  Plugin = 'PLUGIN',
   PushToEmr = 'PUSH_TO_EMR'
 }
 
@@ -72,6 +74,7 @@ export enum ActivityAction {
   Discarded = 'DISCARDED',
   Failed = 'FAILED',
   FailedToSend = 'FAILED_TO_SEND',
+  Generated = 'GENERATED',
   IsWaitingOn = 'IS_WAITING_ON',
   Postponed = 'POSTPONED',
   Processed = 'PROCESSED',
@@ -104,6 +107,7 @@ export enum ActivityObjectType {
   ApiCall = 'API_CALL',
   Calculation = 'CALCULATION',
   Checklist = 'CHECKLIST',
+  ClinicalNote = 'CLINICAL_NOTE',
   EmrReport = 'EMR_REPORT',
   EmrRequest = 'EMR_REQUEST',
   EvaluatedRule = 'EVALUATED_RULE',
@@ -289,6 +293,13 @@ export type Checklist = {
 export type ChecklistPayload = Payload & {
   __typename?: 'ChecklistPayload';
   checklist?: Maybe<Checklist>;
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
+};
+
+export type ClinicalNotePayload = Payload & {
+  __typename?: 'ClinicalNotePayload';
+  clinical_note: GeneratedClinicalNote;
   code: Scalars['String'];
   success: Scalars['Boolean'];
 };
@@ -553,6 +564,27 @@ export type FormsPayload = Payload & {
   code: Scalars['String'];
   forms?: Maybe<Array<Form>>;
   success: Scalars['Boolean'];
+};
+
+export type GeneratedClinicalNote = {
+  __typename?: 'GeneratedClinicalNote';
+  context: Array<GeneratedClinicalNoteContextField>;
+  id: Scalars['ID'];
+  narratives: Array<GeneratedClinicalNoteNarrative>;
+};
+
+export type GeneratedClinicalNoteContextField = {
+  __typename?: 'GeneratedClinicalNoteContextField';
+  key: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type GeneratedClinicalNoteNarrative = {
+  __typename?: 'GeneratedClinicalNoteNarrative';
+  body: Scalars['String'];
+  id: Scalars['ID'];
+  key: Scalars['String'];
+  title: Scalars['String'];
 };
 
 export type HostedSession = {
@@ -1000,6 +1032,7 @@ export type Query = {
   calculationAction: ActionPayload;
   calculationResults: CalculationResultsPayload;
   checklist: ChecklistPayload;
+  clinicalNote: ClinicalNotePayload;
   emrReport: EmrReportPayload;
   form: FormPayload;
   formResponse: FormResponsePayload;
@@ -1065,6 +1098,11 @@ export type QueryCalculationResultsArgs = {
 
 
 export type QueryChecklistArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryClinicalNoteArgs = {
   id: Scalars['String'];
 };
 
