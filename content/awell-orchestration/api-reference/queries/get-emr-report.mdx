@@ -34,3 +34,22 @@ An example `id` for an EMR report is "9rjfb9qE4pEY".
   "id": "{{EMR_REPORT_ID}}"
 }
 ```
+
+<br />
+
+#### Where to find the EMR report id
+
+The id of the EMR report can be found in the `object.id` field of an activity.
+
+```json
+{
+  "activity": {
+    "id": "{{ACTIVITY_ID}}",
+    "object": {
+      "id": "{{EMR_REPORT_ID}}",
+      "type": "emr_report"
+    },
+    ...
+  }
+}
+```

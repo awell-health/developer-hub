@@ -29,3 +29,22 @@ An example `id` for a checklist is "9rjfb9qE4pEY".
   "id": "{{CHECKLIST_ID}}"
 }
 ```
+
+<br />
+
+#### Where to find the checklist id
+
+The id of the checklist can be found in the `object.id` field of an activity.
+
+```json
+{
+  "activity": {
+    "id": "{{ACTIVITY_ID}}",
+    "object": {
+      "id": "{{CHECKLIST_ID}}",
+      "type": "checklist"
+    },
+    ...
+  }
+}
+```

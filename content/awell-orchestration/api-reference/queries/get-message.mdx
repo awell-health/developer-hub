@@ -38,6 +38,25 @@ An example `id` for a message is "9rjfb9qE4pEY".
 }
 ```
 
+<br />
+
+#### Where to find the message id
+
+The id of the message can be found in the `object.id` field of an activity.
+
+```json
+{
+  "activity": {
+    "id": "{{ACTIVITY_ID}}",
+    "object": {
+      "id": "{{MESSAGE_ID}}",
+      "type": "message"
+    },
+    ...
+  }
+}
+```
+
 ## How to use
 
 <HowToUse storyIds={['message']} />

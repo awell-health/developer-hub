@@ -50,6 +50,25 @@ query GetForm($id: String!) {
 }
 ```
 
+<br />
+
+#### Where to find the form id
+
+The id of the form can be found in the `object.id` field of an activity.
+
+```json
+{
+  "activity": {
+    "id": "{{ACTIVITY_ID}}",
+    "object": {
+      "id": "{{FORM_ID}}",
+      "type": "form"
+    },
+    ...
+  }
+}
+```
+
 ## How to use
 
 <HowToUse storyIds={['conversational-form', 'form-page']} />
