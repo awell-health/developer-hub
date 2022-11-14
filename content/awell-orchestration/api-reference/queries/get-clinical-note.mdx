@@ -1,9 +1,9 @@
 ---
-title: Get clinical note activity
-description: Get the narratives and context of a clinical note activity
+title: Get clinical note
+description: Get the narratives and context of a clinical note
 ---
 
-This query allows us to fetch the details of a specific clinical note activity.
+This query allows us to fetch the details of a clinical note.
 
 ## Request
 
@@ -15,10 +15,10 @@ query GetClinicalNote($id: String!) {
     clinical_note {
       id
       narratives {
-        id  // Our unique id for each narrative across a pathway
-        key
+        id # Our unique id for each narrative in a care flow
+        key # A unique id you have set for your narrative
         title
-        body  // a string containing html content
+        body # A string containing html content
       }
       context {
         key
