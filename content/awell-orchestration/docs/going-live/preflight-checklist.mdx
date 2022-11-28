@@ -1,24 +1,54 @@
 ---
 title: Preflight checklist
-description: Use our preflight checklist to make sure you got everything covered to start enrolling patients in your flows
+description: Use our preflight checklist to make sure you got everything covered to start enrolling patients in your care flows
 ---
 
-## Pathway
+You want to go live with your care flows in production? Use our preflight checklist to make sure you got everything covered.
 
-- Re-name your question keys to something consistent that is not verbose but captures the semantic meaning of the information collected.
-- Validate your pathway with the preview by creating cases
-- Make sure your pathway is published
+<Alert
+  type="info"
+  title="Do you use our Sandbox environment to test care flows & integrations?"
+>
+  <p>
+    Have a look at our{' '}
+    <a
+      href="/awell-orchestration/docs/going-live/migration-from-sandbox-to-production"
+      title="migration
+    guide"
+    >
+      migration guide
+    </a>{' '}
+    to get you started with migrating care flows between environments.
+  </p>
+</Alert>
 
-## Integrations
+## Care flow
+
+### Publishing
+
+Make sure your care flow is published. An unpublished care flow cannot be orchestrated.
 
 ### API call actions
 
-- If using API call actions in your care flows, make sure they are configured for production
+If you're using API call actions in your care flows, make sure they are configured to call the production endpoint.
+
+**Tip:** Use [constants](https://help.awellhealth.com/en/articles/6671868-constants-keep-your-static-data-clean) to store parameters like endpoint URLs and API keys to quickly substitute them in all your actions and keep everything nice and clean.
+
+## Integrations
+
+### Environments
+
+- Make sure to call the [production environment](https://developers.awellhealth.com/awell-orchestration/api-reference/overview/endpoints) with an API key associated to the production environment.
 
 ### Webhooks
 
-- Configure the webhook endpoints across environments (see [testing webhooks](/awell-orchestration/developer-tools/webhooks/test-webhooks) and [go live](/awell-orchestration/developer-tools/webhooks/go-live))
+- Configure the webhook endpoints to call a production-ready endpoint (see [testing webhooks](/awell-orchestration/developer-tools/webhooks/test-webhooks) and [go live](/awell-orchestration/developer-tools/webhooks/go-live))
 
 ## Data
 
+- [Rename your question keys](https://help.awellhealth.com/en/articles/4815388-encode-questions-and-answer-options) to something consistent that is not verbose but captures the semantic meaning of the information collected.
+
 ## Testing
+
+- Validate your care flow with the preview by creating cases
+- Test your published flow in Orchestration with a test patient
