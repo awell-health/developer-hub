@@ -97,10 +97,10 @@ const interactWithActivitiesSolutions = [
 
 const manageAndCoordinateCareSolutions = [
   {
-    url: '/awell-orchestration/docs/manage-coordinate-care/awell-careops',
-    title: 'Awell CareOps',
+    url: '/awell-orchestration/docs/manage-coordinate-care/awell-platform',
+    title: 'Awell Platform',
     description:
-      "Leverage Awell's CareOps dashboard to operate, manage, and monitor care flows",
+      "Leverage Awell's platform, the leading CareOps center to operate, manage, and monitor care flows",
     effort: 0,
   },
   {

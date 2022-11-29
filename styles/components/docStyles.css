@@ -28,6 +28,11 @@
   @apply mt-8;
 }
 
+#content-wrapper h2.no-mt,
+#content-wrapper h3.no-mt {
+  @apply mt-0;
+}
+
 #content-wrapper h2 + p,
 #content-wrapper h3 + p {
   @apply mt-0;

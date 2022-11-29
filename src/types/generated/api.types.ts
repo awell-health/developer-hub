@@ -58,6 +58,7 @@ export type Activity = {
   reference_id: Scalars['String'];
   resolution?: Maybe<ActivityResolution>;
   session_id?: Maybe<Scalars['String']>;
+  stakeholders?: Maybe<Array<ActivityObject>>;
   status: ActivityStatus;
   stream_id: Scalars['String'];
   sub_activities: Array<SubActivity>;
@@ -146,6 +147,7 @@ export type ActivitySubject = {
 
 export enum ActivitySubjectType {
   Awell = 'AWELL',
+  Plugin = 'PLUGIN',
   Stakeholder = 'STAKEHOLDER',
   User = 'USER'
 }
@@ -1009,6 +1011,40 @@ export type Payload = {
   success: Scalars['Boolean'];
 };
 
+export type PluginActionField = {
+  __typename?: 'PluginActionField';
+  id: Scalars['ID'];
+  label: Scalars['String'];
+  type: PluginActionFieldType;
+  value: Scalars['String'];
+};
+
+export enum PluginActionFieldType {
+  Html = 'HTML',
+  Json = 'JSON',
+  Numeric = 'NUMERIC',
+  String = 'STRING',
+  Text = 'TEXT'
+}
+
+export type PluginActivityRecord = {
+  __typename?: 'PluginActivityRecord';
+  activity_id: Scalars['String'];
+  date: Scalars['String'];
+  fields: Array<PluginActionField>;
+  id: Scalars['ID'];
+  pathway_id: Scalars['String'];
+  plugin_action_key: Scalars['String'];
+  plugin_key: Scalars['String'];
+};
+
+export type PluginActivityRecordPayload = Payload & {
+  __typename?: 'PluginActivityRecordPayload';
+  code: Scalars['String'];
+  record: PluginActivityRecord;
+  success: Scalars['Boolean'];
+};
+
 export type PublishedPathwayDefinition = {
   __typename?: 'PublishedPathwayDefinition';
   /** Starting/baseline data point definitions for the pathway */
@@ -1055,6 +1091,7 @@ export type Query = {
   patient: PatientPayload;
   patientPathways: PatientPathwaysPayload;
   patients: PatientsPayload;
+  pluginActivityRecord: PluginActivityRecordPayload;
   publishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
   scheduledSteps: ScheduledStepsPayload;
   searchPatientsByNationalRegistryNumber: SearchPatientsPayload;
@@ -1197,6 +1234,11 @@ export type QueryPatientsArgs = {
   filters?: InputMaybe<FilterPatients>;
   pagination?: InputMaybe<PaginationParams>;
   sorting?: InputMaybe<SortingParams>;
+};
+
+
+export type QueryPluginActivityRecordArgs = {
+  id: Scalars['String'];
 };
 
 

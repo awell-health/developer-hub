@@ -6,6 +6,7 @@ import { EmailTemplate } from '@/components/EmailTemplate'
 import { FAQ } from '@/components/FAQ'
 import { HowToUse } from '@/components/HowToUse'
 import { PostmanLinks } from '@/components/Links/PostmanLinks'
+import { StoryBrowser } from '@/components/StoryBrowser'
 import { UseCasesComparisonTable } from '@/components/UseCasesComparisonTable'
 import { Effort } from '@/components/UseCasesComparisonTable/atoms'
 import { WebhooksList, WebhooksTable } from '@/components/Webhooks'
@@ -17,6 +18,7 @@ export const mdxOptions = {
     ],
   },
 }
+
 export const mdxComponents = {
   h2: CustomH2,
   h3: CustomH3,
@@ -30,4 +32,5 @@ export const mdxComponents = {
   WebhooksTable,
   PostmanLinks,
   EmailTemplate,
+  StoryBrowser,
 }
