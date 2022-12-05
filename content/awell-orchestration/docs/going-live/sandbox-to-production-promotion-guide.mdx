@@ -1,6 +1,6 @@
 ---
-title: Sandbox to production migration guide
-description: Learn how to migrate care flows from Sandbox to Production.
+title: Sandbox to production promote guide
+description: Learn how to promote care flows from Sandbox to Production.
 ---
 
 If you're using our Sandbox environment to test care flows & integrations then at one point you'd like to promote them to production to start enrolling patients in them.
@@ -22,41 +22,52 @@ If you're using our Sandbox environment to test care flows & integrations then a
 
 Our Sandbox & Production environment are completely separate environments. They have their own dedicated user management / authentication provider, data storage, deployments, etc.
 
+Given that they are completely separate environments, there is no synchronization between them. If you have transferred a flow to production before but apply edits on sandbox, then you'll have to request promotion again.
+
 **The Sandbox environment should only be used for testing & evaluation purposes**. No care flows with real patients should be orchestrated on Sandbox.
 
-## Migration
+## Promotion
 
-There's no UI or feature in Awell Studio to migrate care flows from Sandbox to Production yourself. However, **we don't want you to manually rebuild your care flows** so our team has internal tooling to easily transfer your flows between environments. You can request care flow migration by clicking the button below.
+There's no UI or feature in Awell Studio to promote care flows from Sandbox to Production yourself. However, **we don't want you to manually rebuild your care flows** so our team has internal tooling to easily transfer your flows between environments. You can request care flow promotion by clicking the button below.
 
 <div className="flex justify-center">
   <a
-    title="Request migration"
+    title="Request promotion"
     class="custom-link btn-base py-3 px-5 text-base text-white bg-blue-600 highlight-white/20 hover:bg-blue-500 dark:bg-sky-500 dark:hover:bg-sky-400"
-    href="/request-migration"
+    href="/request-promotion"
   >
-    <span>Request migration</span>
+    <span>Request promotion</span>
   </a>
 </div>
 
-### What will be migrated?
+### What will be promoted?
 
-When you request a migration of your care flow from Sandbox to Production, we'll create a snapshot of the current state of your flow and move that to your production tenant. **Please note that your care flow history is not transferred**, but only a snapshot of the current state of your flow.
+When you request a promotion of your care flow from Sandbox to Production, we'll create a snapshot of the current state (i.e. the latest published version) of your flow and move that to your production tenant.
 
-### Synchronization
+**Please note that your care flow history is not transferred**, but only a snapshot of the current state of your flow.
 
-**Given that Sandbox & Production are completely separate environments, there is no synchronization between environments.** If you have transferred a flow to production before but apply edits on sandbox, then you'll have to request a transfer again.
+### Promotion should be unidirectionally
+
+**Promoting care flows should be unidirectionally and we advise to only promote from Sandbox to Production.** However, we can support you with doing the inverse and promote a version of your care flow in Production to Sandbox.
+
+If, for compliance reasons, you prefer doing edits to your care flows in Sandbox first, we advise you to only design in Sandbox and to not do any edits to your care flows in the Production environment.
+
+### Requesting promotion for an already promoted pathway
+
+There are 2 possible scenarios when requesting promotion of a care flow from Sandbox to Production:
+
+1. The care flow doesn't exist yet in Production, i.e. first time promotion
+2. The care flow already exists in Production, i.e. the care flow was already promoted before
+
+**If the care flow doesn't exist yet in Production**, we'll make sure to create it and immediately publish a new version (in this case version 1) that represents the latest published version of the care flow in the Sandbox environment.
+
+**If the care flow already exists in Production,** we'll publish a new version into the already existing care flow that represents the latest published version of the care flow in the Sandbox environment.
 
 ## Identifiers
 
-You might have some integrations running on Sandbox that depend on identifiers, eg: pathway definition ids or data point ids. When care flows are migrated to production, these identifiers do change as well and you'll thus have to update any hardcoded identifier in your system.
+You might have some integrations running on Sandbox that depend on identifiers, eg: pathway definition ids or data point ids. When care flows are promoted to production, these identifiers will remain the same so it doesn't impact any integrations you've already set up.
 
-Please note that there are some strategies to prevent hardcoding identifiers in your systems, which we described below.
-
-<Alert type="info" title="Tip">
-  You can use keys - which are user defined - instead of identifiers - which are
-  auto-generated by the system - to identify identical data points between
-  environments.
-</Alert>
+However, we do recommmend to limit hardcoding identifiers to a minimum. You can find more information on how to do that below.
 
 ### Pathway definition id
 

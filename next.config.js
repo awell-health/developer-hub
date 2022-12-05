@@ -29,6 +29,18 @@ const nextConfig = {
         destination: '/awell-orchestration/developer-tools/playground',
         permanent: true,
       },
+      {
+        source:
+          '/awell-orchestration/docs/going-live/sandbox-to-production-migration-guide',
+        destination:
+          '/awell-orchestration/docs/going-live/sandbox-to-production-promotion-guide',
+        permanent: true,
+      },
+      {
+        source: '/request-migration',
+        destination: 'request-promotion',
+        permanent: true,
+      },
     ]
   },
 }

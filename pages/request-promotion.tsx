@@ -16,7 +16,7 @@ export default function Custom404() {
 
   const onSubmit = () => {
     handleSubmit(async (data) => {
-      fetch('/api/request-migration', {
+      fetch('/api/request-promotion', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,9 +36,9 @@ export default function Custom404() {
   return (
     <>
       <SEO
-        title="Request migration"
-        url="/request-migration"
-        canonicalUrl="/request-migration"
+        title="Request promotion"
+        url="/request-promotion"
+        canonicalUrl="/request-promotion"
       />
       <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-slate-100">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -66,7 +66,7 @@ export default function Custom404() {
             </Link>
           </div>
           <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-slate-900">
-            Request care flow migration
+            Request care flow promotion
           </h2>
         </div>
 
@@ -86,7 +86,7 @@ export default function Custom404() {
                     id="modal-title"
                   >
                     We received your request. We will get back to you when
-                    migration was successful!
+                    promotion was successful!
                   </h3>
                 </div>
               </div>
@@ -183,14 +183,14 @@ export default function Custom404() {
                     type="submit"
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                   >
-                    Request migration
+                    Request promotion
                   </button>
                 </div>
               </form>
             )}
           </div>
           <div className="mt-4 text-center">
-            <Link href="/awell-orchestration/docs/going-live/sandbox-to-production-migration-guide">
+            <Link href="/awell-orchestration/docs/going-live/sandbox-to-production-promotion-guide">
               <a
                 title="Back to the Developer Hub"
                 className="text-blue-600 text-base"

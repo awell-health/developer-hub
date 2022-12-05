@@ -133,8 +133,8 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/going-live/preflight-checklist',
       },
       {
-        title: 'Sandbox to production migration guide',
-        path: '/awell-orchestration/docs/going-live/sandbox-to-production-migration-guide',
+        title: 'Sandbox to production promotion guide',
+        path: '/awell-orchestration/docs/going-live/sandbox-to-production-promotion-guide',
       },
     ],
   },
