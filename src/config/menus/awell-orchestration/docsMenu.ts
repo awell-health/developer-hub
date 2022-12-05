@@ -9,6 +9,10 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/getting-started/what-is-awell-orchestration',
       },
       {
+        title: 'Design & Orchestrate care flows',
+        path: '/awell-orchestration/docs/getting-started/design-and-orchestrate-care-flows',
+      },
+      {
         title: 'Awell ecosystem',
         path: '/awell-orchestration/docs/getting-started/awell-ecosystem',
       },
