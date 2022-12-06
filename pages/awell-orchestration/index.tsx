@@ -27,7 +27,7 @@ const domains = [
       </svg>
     ),
     description:
-      'Let stakeholders interact with activities like messages and forms in your care pathway.',
+      'Set up how stakeholders like patients, doctors and other care team members interact with activities in a care flow.',
   },
   {
     url: '/awell-orchestration/docs/manage-coordinate-care/overview-care',
@@ -47,7 +47,7 @@ const domains = [
       </svg>
     ),
     description:
-      'Manage your care pathways, see who needs attention and coordinate care efficiently.',
+      'Manage your care flows on organization level, see who needs attention and coordinate care efficiently.',
   },
   {
     url: '/awell-orchestration/docs/data/overview-data',
@@ -65,7 +65,7 @@ const domains = [
       </svg>
     ),
     description:
-      'Get data out of the platform and use it for analysis, push data to any other system and leverage events for analytics.',
+      'Get data out of the platform for analysis, push data to any other system and leverage events for automation.',
   },
 ]
 
@@ -156,20 +156,29 @@ export default function Home() {
       <div className="relative max-w-6xl mx-auto pt-4 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-8">
         <div>
           <h1 className="text-slate-900 font-extrabold text-xl sm:text-2xl lg:text-3xl tracking-tight dark:text-white">
-            Documentation
+            Welcome
           </h1>
           <p className="mt-2 text-xl text-slate-600 dark:text-slate-400">
-            Explore our guides, API references, and examples to start
-            integrating with Awell Orchestration.
+            It's Awell's mission to make care flows work harder than care teams.
+          </p>
+          <p className="mt-2 text-xl text-slate-600 dark:text-slate-400">
+            Use Awell to build care flows in our no-code editor and embed them into your tech stack. Explore our guides, API references, and examples to start
+            integrating with Awell.
+          </p>
+          <p>
+            Here are a few more resources to help you get started:
+            <ul>
+              <li>If you're new to Awell and care flows, familiarize yourself with our core concepts in the <a href="/awell-orchestration/docs/getting-started/what-is-awell-orchestration">introduction</a></li>
+              <li>You want to get up and running? Head over to the <a href="/awell-orchestration/docs/getting-started/design-and-orchestrate-care-flows">Quickstart</a></li>
+              <li>Curious to understand the different ways to integrate with Awell? Click on the options below.
           </p>
         </div>
         <div className="mt-12">
           <h2 className="text-slate-900 text-xl lg:text-2xl font-bold dark:text-white m-0 p-0">
-            Orchestrate care flows with Awell Health
+            Integrate with Awell
           </h2>
           <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
-            An overview of the different domains to start orchestrating pathways
-            with Awell Health
+            Once you've designed and published a care flow, you can interact with it in different ways to support care delivery, coordination, automation and analysis of the data collected in that care flow.
           </p>
           <div className="grid md:grid-cols-3 gap-8 mt-6">
             {domains.map((d) => (
@@ -192,165 +201,6 @@ export default function Home() {
               </Link>
             ))}
           </div>
-        </div>
-        <div className="mt-12">
-          <h2 className="text-slate-900 text-xl lg:text-2xl font-bold dark:text-white m-0 p-0">
-            Browse by solution
-          </h2>
-          <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
-            Learn what the different solutions are for every domain
-          </p>
-          {/* TABS */}
-          <div>
-            <div className="sm:hidden mt-2">
-              <label htmlFor="tabs" className="sr-only">
-                Select a tab
-              </label>
-              {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
-              <select
-                id="tabs"
-                name="tabs"
-                className="block dark:bg-slate-800 dark:border-slate-600 w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-                defaultValue={activeTab.title}
-                onChange={(e) => {
-                  const newActiveTab =
-                    tabs.find((tab) => tab.title === e.target.value) || tabs[0]
-
-                  setActiveTab(newActiveTab)
-                }}
-              >
-                {tabs.map((tab) => (
-                  <option key={tab.title}>{tab.title}</option>
-                ))}
-              </select>
-            </div>
-            <div className="hidden sm:block">
-              <div className="border-b border-slate-200 dark:border-slate-600">
-                <nav className="-mb-px flex space-x-8" aria-label="Tabs">
-                  {tabs.map((tab) => (
-                    <button
-                      key={tab.title}
-                      type="button"
-                      className={clsx(
-                        activeTab.title === tab.title
-                          ? 'border-blue-500 text-blue-600 dark:text-sky-400 dark:border-sky-400'
-                          : 'border-transparent text-slate-500 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 hover:border-slate-300 dark:hover:border-slate-300',
-                        'whitespace-nowrap py-4 px-1 border-b-2 font-semibold text-base'
-                      )}
-                      aria-current={
-                        activeTab.title === tab.title ? 'page' : undefined
-                      }
-                      onClick={() => {
-                        const newActiveTab =
-                          tabs.find((t) => t.title === tab.title) || tabs[0]
-
-                        setActiveTab(newActiveTab)
-                      }}
-                    >
-                      {tab.title}
-                    </button>
-                  ))}
-                </nav>
-              </div>
-            </div>
-          </div>
-          {activeTab.title === 'Interact with activities' && (
-            <>
-              <div className="grid md:grid-cols-3 gap-3 mt-4">
-                {interactWithActivitiesSolutions.map((solution, i) => (
-                  <Link href={solution.url} key={i}>
-                    <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
-                      <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
-                      <div className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
-                        <div className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
-                          <div>
-                            <h3 className="font-semibold dark:text-sky-400">
-                              {solution.title}
-                            </h3>
-                            <span className="pt-3">{solution.description}</span>
-                          </div>
-                          <div className="mt-auto">
-                            <div className="pt-3">Effort:</div>
-                            <div className="pt-1">
-                              <Effort effort={solution.effort} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-4 mx-auto text-center">
-                <LinkButton
-                  label="Compare solutions"
-                  href={
-                    '/awell-orchestration/docs/activities/overview-activities'
-                  }
-                  size="lg"
-                  color="slate"
-                />
-              </div>
-            </>
-          )}
-          {activeTab.title === 'Get data and events out' && (
-            <>
-              <div className="grid md:grid-cols-3 gap-3 mt-4">
-                {dataSolutions.map((solution, i) => (
-                  <Link href={solution.url} key={i}>
-                    <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
-                      <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
-                      <div className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
-                        <div className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
-                          <div>
-                            <h3 className="font-semibold dark:text-sky-400">
-                              {solution.title}
-                            </h3>
-                            <span className="pt-3">{solution.description}</span>
-                          </div>
-                          <div className="mt-auto">
-                            <div className="pt-3">Effort:</div>
-                            <div className="pt-1">
-                              <Effort effort={solution.effort} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </div>
-            </>
-          )}
-          {activeTab.title === 'Manage and coordinate care' && (
-            <>
-              <div className="grid md:grid-cols-3 gap-3 mt-4">
-                {manageAndCoordinateCareSolutions.map((solution, i) => (
-                  <Link href={solution.url} key={i}>
-                    <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
-                      <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
-                      <div className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
-                        <div className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
-                          <div>
-                            <h3 className="font-semibold dark:text-sky-400">
-                              {solution.title}
-                            </h3>
-                            <span className="pt-3">{solution.description}</span>
-                          </div>
-                          <div className="mt-auto">
-                            <div className="pt-3">Effort:</div>
-                            <div className="pt-1">
-                              <Effort effort={solution.effort} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </div>
-            </>
-          )}
         </div>
       </div>
       <footer className="pb-16 text-sm leading-6">
