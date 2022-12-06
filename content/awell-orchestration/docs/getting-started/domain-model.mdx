@@ -1,15 +1,46 @@
 ---
 title: Domain model
-description: Familiarize yourself with our domain model
+description: Familiarize yourself with our API domain model
 ---
 
-The core concepts of our Domain model are Patient, Pathway and Activity.
+## Introduction: Awell Orchestration as a "State Machine"
 
-In short, Patients are enrolled in care flows/pathways that consist of Activities assigned to stakeholders such as those Patients themselves but also members of the care team: physician, nurse, care coordinator, therapist, coach, you name it.
+In essence, Awell Orchestration and its corresponding API can be seen as a state machine. For every patient enrolled in a care flow you've designed and published, Awell knows exactly what happened, what inputs are needed next and what activities need to happen by whom and when. You can feed data into the machine (eg: a patient submits a form) to let Awell Orchestration recompute what's next.
 
-## Patient
+<Alert type="info">
+  <p>
+    Note that integrating directly with our API is only one of the ways you can orchestrate care flows in Awell. Check out how to [Interact with activities](/awell-orchestration/docs/activities/overview-activities)
+  </p>
+</Alert>
 
-A patient refers to a user that can be included in pathways.
+## High level lifecycle of interacting with a care flow through our API
+
+All of the interactions with Awell Orchestration are accessible through our API. For full detail, see our [API Reference](/awell-orchestration/api-reference/overview/endpoints). 
+
+Below is a typical, although very basic, lifecycle of interacting with our API.
+
+1. [Create a Patient](/awell-orchestration/api-reference/mutations/create-patient) in Awell
+2. [Start a Pathway](/awell-orchestration/api-reference/mutations/start-pathway) for this patient
+3. [Get the pending activities](/awell-orchestration/api-reference/queries/get-patient-pending-activities) for this Pathway
+4. Request the details of the next activity, e.g. [get form](/awell-orchestration/api-reference/queries/get-form) details
+5. Complete the next activity, e.g. [submit form response](/awell-orchestration/api-reference/mutations/submit-form-response)
+6. Request the details of the next activity, e.g. [get message](/awell-orchestration/api-reference/queries/get-message) details
+7. Complete the next activity (e.g. [mark the message as read](/awell-orchestration/api-reference/mutations/mark-message-as-read)
+8. ... and so on until the pathway is completed, at which point you can receive a [pathway completed](/awell-orchestration/api-reference/webhooks/pathway-completed) webhook
+
+## Core concepts
+
+The core concepts of our API domain model are the following:
+- Patient and other stakeholders
+- Pathway
+- Activity
+- Data Point
+
+### Patient and other stakeholders
+
+A patient refers to a user that can be enrolled in a care flow. Activities in those care flows can be assigned to that patient but also other stakeholders: physician, nurse, care coordinator, therapist, coach, you name it.
+
+Awell Orchestration does not need to know anything about a patient when orchestrating pathways. Any information saved in a patient profile can be used inside pathway definitions (to customise message content, or enrich api calls / webhook payloads for example), but none of it is required. This means there is no requirement to store PII in Awell.
 
 ```graphql
 type User {
@@ -23,17 +54,22 @@ type UserProfile {
 }
 ```
 
-Awell Orchestration does not need to know anything about a patient when orchestrating pathways. Any information saved in a patient profile can be used inside pathway definitions (to customise message content, or enrich api calls / webhook payloads for example), but none of it is required.
-
-The only recommended property to set when creating patients is the `patient_code`, which can be used as a custom identifier to help you reconciliate data with your own patient records.
+The only recommended property to set when creating patients is the `patient_code`, which can be used as a unique identifier to match data in Awell with your own patient records.
 
 > Awell does not enforce the uniqueness of the `patient_code` amongst your patients. If you use unique identifiers, you can use the [`searchPatientsByPatientCode` query](/awell-orchestration/api-reference/queries/search-patient) before creating patients to enforce the uniqueness constraint on your end.
 
 See the [API Reference](/awell-orchestration/developer-tools/schema) for more information about the user type.
 
-## Pathway
+### Pathway
 
-A pathway refers to an instance of a pathway definition that has been started for a specific patient.
+<Alert type="info">
+  <p>
+    In our documentation and software, we are evolving towards use of the term "care flow". However, in our API this is currently called a "Pathway".
+  </p>
+</Alert>
+
+A pathway definition is what's automatically created by the Awell Platform when publishing a care flow.
+A pathway refers to an instance of a pathway definition in which a patient has been enrolled.
 
 ```graphql
 type Pathway {
@@ -49,7 +85,7 @@ type Pathway {
 
 See the [API Reference](/awell-orchestration/developer-tools/schema) for more information about the pathway type.
 
-## Activities
+### Activities
 
 Activities are the atomic build blocks in an orchestrated pathway. Each activity describes a specific task that needs to be performed by a specific stakeholder at a given point in time.
 
