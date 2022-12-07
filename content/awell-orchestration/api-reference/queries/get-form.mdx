@@ -40,7 +40,10 @@ query GetForm($id: String!) {
             reference
             reference_key
             operator
-            operand
+            operand {
+              type
+              value
+            }
           }
         }
       }
