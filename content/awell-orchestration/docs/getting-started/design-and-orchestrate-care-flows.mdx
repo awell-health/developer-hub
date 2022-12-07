@@ -1,48 +1,41 @@
 ---
-title: Design and Orchestrate care flows
+title: Quickstart
 description: Learn the basic principles of designing and orchestrating care flows with Awell
 ---
 
-Awell has built a platform that allows users to design and orchestrate care flows. These 2 domains, design and orchestrate, can also be seen as two distinct stages you have to go through in the lifecycle of a care flow:
+<Alert type="info">
+  <p>
+    This page assumes you have a high level understanding of Awell and its core
+    concepts. If you haven't, see{' '}
+    <a href="/awell-orchestration/docs/getting-started/what-is-awell-orchestration">
+      introduction
+    </a>
+    .
+  </p>
+</Alert>
 
-1. You start with designing a care flow: create the blueprint of your care flow
-2. You then orchestrate your care flow: enroll a patient in the blueprint you've created
+## High level
 
-There's a lot of similarities with building a house: you'll have first have to create a blueprint upon which you can then execute and build the actual physical house.
+1. First, you'll need to design a care flow. We can provide you with template care flows so you don't have to start from scratch. Learn [how to design a basic care flow here](https://help.awellhealth.com/en/collections/3362788-tutorial-build-a-care-flow-basic) or click the Intercom button bottom right to request a template care flow from our customer success team.
+2. Depending on your existing tech stack as well as the activities and the assigned stakeholders in your care flow, you'll need to set up an integration with our API or use one of our low-code user interfaces for patients and care team. [Request your API keys](/request-api-keys) to get started
+3. After designing and validating your care flow, you need to publish it. This makes the care flow available for orchestration.
+4. Next is enrolling a patient in a care flow, this depends on the set-up decided under point 2.
+5. The activities to complete will now be surfaced in the relevant end-user facing applications.
 
-## Design
+## Guides
 
-**Designing your care flows happens with Awell Studio**. This is where you will build, validate, and manage all of your care flows. Here you are basically building a blueprint or model of your care flow.
+Discover our Guides including code samples so you can easily get started.
 
-In order to build your care flows, we have developed a design and modelling language that allows you to structure and logically connect the different building blocks in your care flows.
+### Set up a patient onboarding flow with Awell Hosted Pathway
 
-### The building blocks: care flow anatomy
+Awell Hosted Pathway is our low-code option to provide a user interface for the patient to complete activities such as filling in a form. It's ideal for a care flow that is initiated and completed in a single session, like an onboarding flow.
 
-The design language we've developed consists of different building blocks, this can be considered the "anatomy" of a care flow. These building blocks can be hierarchicaly ordered as follows:
+[Go to the guide](pages/awell-orchestration/docs/activities/hosted-pathway)
 
-```text
-Care flow
-    Tracks
-        Steps
-            Actions
-```
+### Set up a multi-stakeholder care flow with Awell Hosted Activity
 
-Tracks can be started based on events whereas within a track steps are logically connected with transitions. **The actions are the lowest level of building block we have and are also the actionable units in care flows** whereas tracks and steps are more used to create structure and the logical flow.
+Do you have a care flow with interactions for other stakeholders than the patient or that spans multiple sessions (e.g. activities at day of discharge and activities at day +10 after discharge)?
 
-## Orchestrate
+Then Awell Hosted Activity is our low-code option to provide a user interface and handle the necessary orchestration to complete all activities for all stakeholders.
 
-**Orchestrating care flows is the act of enrolling a patient into the care flow you have designed and published.** The orchestration domain is exposed by an API, the "Orchestration API" and this is the API can integrate against.
-
-Whereas in the design domain you've built a theoretical model or blueprint of your care flow, when orchestrating care flows you'll be actually executing a care flow for patient against that model or blueprint.
-
-**The Orchestration domain will therefore help you with answering the following questions:**
-
-- For a given patient in a care flow, what are the current actions to complete?
-- For a given patient in a care flow, what are the upcoming steps that will be activated?
-- For a given patient in a care flow, what are the completed tracks, steps, and actions?
-
-Additionally, you can also let the Orchestration API know that certain pieces of data were collected, actions were completed, etc. Which could be a trigger to go to the next step or activate a new track.
-
-### "The State Machine"
-
-In essence, the Orchestration domain can be seen as some kind of state machine. For every patient enrolled in a care flow you've designed it knows exactly what happened and what needs to happen by whom and when. You can feed data into the machine (eg: a patient submits a form) to let the Orchestration domain recompute what's next.
+[Go to the guide](pages/awell-orchestration/docs/activities/hosted-activity)
