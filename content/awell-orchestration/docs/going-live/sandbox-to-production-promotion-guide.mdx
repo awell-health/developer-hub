@@ -22,13 +22,13 @@ If you're using our Sandbox environment to test care flows & integrations then a
 
 Our Sandbox & Production environment are completely separate environments. They have their own dedicated user management / authentication provider, data storage, deployments, etc.
 
-Given that they are completely separate environments, there is no synchronization between them. If you have transferred a flow to production before but apply edits on sandbox, then you'll have to request promotion again.
-
 **The Sandbox environment should only be used for testing & evaluation purposes**. No care flows with real patients should be orchestrated on Sandbox.
 
 ## Promotion
 
 There's no UI or feature in Awell Studio to promote care flows from Sandbox to Production yourself. However, **we don't want you to manually rebuild your care flows** so our team has internal tooling to easily transfer your flows between environments. You can request care flow promotion by clicking the button below.
+
+Given that Sandbox and Production are completely separate environments, there is no synchronization between them. If you have promoted a care flow to production before but apply edits on sandbox, then you'll have to request promotion again.
 
 <div className="flex justify-center">
   <a
@@ -42,26 +42,44 @@ There's no UI or feature in Awell Studio to promote care flows from Sandbox to P
 
 ### What will be promoted?
 
-When you request a promotion of your care flow from Sandbox to Production, we'll create a snapshot of the current state (i.e. the latest published version) of your flow and move that to your production tenant.
+When you request a promotion of your care flow from Sandbox to Production, we'll create a snapshot of the current state (=working version) of your flow and move that to your production tenant.
 
-**Please note that your care flow history is not transferred**, but only a snapshot of the current state of your flow.
+**Please note that your care flow history is not promoted**, but only a snapshot of the current state of your flow.
 
 ### Promotion should be unidirectionally
 
 **Promoting care flows should be unidirectionally and we advise to only promote from Sandbox to Production.** However, we can support you with doing the inverse and promote a version of your care flow in Production to Sandbox.
 
-If, for compliance reasons, you prefer doing edits to your care flows in Sandbox first, we advise you to only design in Sandbox and to not do any edits to your care flows in the Production environment.
+If, f.e. for compliance reasons, you prefer doing edits to your care flows in Sandbox first, we advise you to only design in Sandbox and to not do any edits to your care flows in the Production environment. When you design or edit care flows in both environments, you might lose changes you have done when care flows are promoted.
 
 ### Requesting promotion for an already promoted pathway
 
-There are 2 possible scenarios when requesting promotion of a care flow from Sandbox to Production:
+There are 2 possible scenarios when requesting promotion of a care flow:
 
-1. The care flow doesn't exist yet in Production, i.e. first time promotion
-2. The care flow already exists in Production, i.e. the care flow was already promoted before
+1. The care flow doesn't exist yet in the destination environment, i.e. first time promotion
+2. The care flow already exists in the destination environment, i.e. the care flow was already promoted before
 
-**If the care flow doesn't exist yet in Production**, we'll make sure to create it and immediately publish a new version (in this case version 1) that represents the latest published version of the care flow in the Sandbox environment.
+**If the care flow doesn't exist yet in destination environment**, it will be created.
 
-**If the care flow already exists in Production,** we'll publish a new version into the already existing care flow that represents the latest published version of the care flow in the Sandbox environment.
+**If the care flow already exists in the destination environment,** we'll just update the working version of the already existing care flow in the destination environment so it represents the working version of the care flow in the source environment.
+
+<Alert type="info" title="Publish your care flows after promotion">
+  <p>
+    <strong>
+      Please note that we're always promoting the current working version of
+      your care flow
+    </strong>{' '}
+    from the source environment and make it the new working version in the
+    destination environment.
+  </p>
+  <br />
+  <p>
+    We're not automatically publishing a new version of your care flow in the
+    destination environment as part of the promotion so you still have to
+    publish your care flows manually in the destination environment to start
+    enrolling patients.
+  </p>
+</Alert>
 
 ## Identifiers
 
