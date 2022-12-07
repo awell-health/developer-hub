@@ -7,7 +7,11 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const { email = '', care_flows = '' } = req.body
+    const {
+      email = '',
+      care_flows = '',
+      from_source_to_destination_environment = '',
+    } = req.body
 
     await fetch(SLACK_ENDPOINT, {
       method: 'POST',
@@ -18,6 +22,7 @@ export default async function handler(
       body: JSON.stringify({
         email,
         care_flows,
+        from_source_to_destination_environment,
       }),
       cache: 'default',
     })

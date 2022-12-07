@@ -176,6 +176,62 @@ export default function Custom404() {
                       )}
                     </div>
                   </div>
+
+                  <div>
+                    <label
+                      htmlFor="environment"
+                      className="block text-base font-semibold text-slate-700"
+                    >
+                      Environment
+                    </label>
+                    <p className="text-sm text-slate-500">
+                      Select the source and destination environment
+                    </p>
+                    <div className="mt-2 grid gap-4 md:grid-cols-2">
+                      <div className="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700">
+                        <input
+                          {...register(
+                            'from_source_to_destination_environment',
+                            { required: true }
+                          )}
+                          id="sandbox_to_production"
+                          defaultChecked
+                          value="Sandbox to Production"
+                          type="radio"
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        />
+                        <label
+                          htmlFor="sandbox"
+                          className="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                        >
+                          Sandbox &#8594; Prod
+                        </label>
+                      </div>
+                      <div className="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700">
+                        <input
+                          {...register(
+                            'from_source_to_destination_environment',
+                            { required: true }
+                          )}
+                          id="production_to_sandbox"
+                          value="Production to Sandbox"
+                          type="radio"
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        />
+                        <label
+                          htmlFor="production"
+                          className="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                        >
+                          Prod &#8594; Sandbox
+                        </label>
+                      </div>
+                    </div>
+                    {errors?.from_source_to_destination_environment && (
+                      <p className="pt-1 text-sm text-red-500">
+                        Select a source and destination environment
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div>
