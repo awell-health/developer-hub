@@ -105,7 +105,7 @@ export default function Home() {
                 <h2 className="mb-0 text-center text-3xl font-bold leading-8 tracking-tight text-slate-900 sm:text-4xl">
                   Welcome
                 </h2>
-                <p className="mx-auto mt-2 max-w-3xl text-center text-xl text-slate-500">
+                <p className="mx-auto mt-2 max-w-3xl text-center text-xl text-slate-500 dark:text-slate-400">
                   It&apos;s Awell&apos;s mission to make care flows work harder
                   than care teams.
                 </p>
@@ -116,7 +116,7 @@ export default function Home() {
                   <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                     Get Started
                   </h3>
-                  <p className="mt-3 text-lg text-slate-500">
+                  <p className="mt-3 text-lg text-slate-500 dark:text-slate-400">
                     Use Awell to build care flows in our no-code editor and
                     embed them into your tech stack. Explore our guides, API
                     references, and examples to start integrating with Awell.
@@ -128,14 +128,14 @@ export default function Home() {
                         <a title={item.name} className="block group">
                           <div className="relative">
                             <dt>
-                              <div className="absolute flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-blue-600 font-semibold text-xl">
+                              <div className="absolute flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-blue-600 font-semibold text-xl dark:bg-slate-800 dark:text-slate-100">
                                 {item.id}
                               </div>
-                              <p className="ml-16 text-lg font-semibold leading-6 text-slate-900 group-hover:text-blue-600">
+                              <p className="ml-16 text-lg font-semibold leading-6 text-slate-900 group-hover:text-blue-600 dark:text-sky-400 dark:group-hover:text-sky-500">
                                 {item.name}
                               </p>
                             </dt>
-                            <dd className="mt-1 ml-16 text-base text-slate-500">
+                            <dd className="mt-1 ml-16 text-base text-slate-500 dark:text-slate-400">
                               {item.description}
                             </dd>
                           </div>
