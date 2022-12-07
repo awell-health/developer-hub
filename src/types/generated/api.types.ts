@@ -1027,6 +1027,13 @@ export enum PluginActionFieldType {
   Text = 'TEXT'
 }
 
+export type PluginActionSettingsProperty = {
+  __typename?: 'PluginActionSettingsProperty';
+  key: Scalars['String'];
+  label: Scalars['String'];
+  value: Scalars['String'];
+};
+
 export type PluginActivityRecord = {
   __typename?: 'PluginActivityRecord';
   activity_id: Scalars['String'];
@@ -1036,6 +1043,7 @@ export type PluginActivityRecord = {
   pathway_id: Scalars['String'];
   plugin_action_key: Scalars['String'];
   plugin_key: Scalars['String'];
+  settings?: Maybe<Array<PluginActionSettingsProperty>>;
 };
 
 export type PluginActivityRecordPayload = Payload & {

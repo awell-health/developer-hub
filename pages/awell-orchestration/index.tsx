@@ -1,12 +1,32 @@
 /* eslint-disable @next/next/no-img-element */
-import clsx from 'clsx'
 import Link from 'next/link'
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 
-import { LinkButton } from '@/components/Button'
 import { HomeLayout } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
-import { Effort } from '@/components/UseCasesComparisonTable/atoms'
+
+const getStartedItems = [
+  {
+    id: 1,
+    name: 'Introduction & Core concepts',
+    description:
+      'If you are new to Awell and care flows, familiarize yourself with our core concepts in the introduction',
+    href: '/awell-orchestration/docs/getting-started/what-is-awell-orchestration',
+  },
+  {
+    id: 2,
+    name: 'Quickstart',
+    description: 'You want to get up and running? Head over to the Quickstart',
+    href: '/awell-orchestration/docs/getting-started/design-and-orchestrate-care-flows',
+  },
+  {
+    id: 3,
+    name: 'Integration options',
+    description:
+      'Curious to understand the different ways to integrate with Awell? Click on the options below.',
+    href: '#integrate-with-awell',
+  },
+]
 
 const domains = [
   {
@@ -69,83 +89,7 @@ const domains = [
   },
 ]
 
-const tabs = domains
-
-const interactWithActivitiesSolutions = [
-  {
-    url: '/awell-orchestration/docs/activities/hosted-pathway',
-    title: 'Hosted pathways',
-    description:
-      'Redirect users to an Awell-hosted page without needing to build a front-end yourself. Ideal for patient onboarding flows.',
-    effort: 1,
-  },
-  {
-    url: '/awell-orchestration/docs/activities/hosted-activity',
-    title: 'Hosted activity',
-    description:
-      'Send multiple stakeholders to an Awell-hosted page to complete activities in more elaborate pathways. Ideal for triage flows, outcomes / PROMs collection and more.',
-    effort: 2,
-  },
-  {
-    url: '/awell-orchestration/docs/activities/custom-integration',
-    title: 'Custom integration',
-    description:
-      'Build your own UI on top of the Awell API for full customization and flexibility. Perfect for teams that have their own patient app and care deeply about patient engagement.',
-    effort: 3,
-  },
-]
-
-const manageAndCoordinateCareSolutions = [
-  {
-    url: '/awell-orchestration/docs/manage-coordinate-care/awell-platform',
-    title: 'Awell Platform',
-    description:
-      "Leverage Awell's platform, the leading CareOps center to operate, manage, and monitor care flows",
-    effort: 0,
-  },
-  {
-    url: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/overview-3rd-parties',
-    title: 'Integrations with 3rd parties',
-    description:
-      'Native integrations with 3rd parties like Athena Health, Healthie, and more.',
-    effort: 1,
-  },
-  {
-    url: '/awell-orchestration/docs/manage-coordinate-care/embed-ehr-emr',
-    title: 'Embed in your in-house built EHR/EMR',
-    description:
-      'Have you built your own EHR/EMR? Leverage the Awell API to build some native views in your existing system.',
-    effort: 3,
-  },
-]
-
-const dataSolutions = [
-  {
-    url: '/awell-orchestration/docs/data/webhooks-and-events',
-    title: 'Webhooks & analytic events',
-    description:
-      'Leverage webhooks to send data or analytic events to any other system.',
-    effort: 1,
-  },
-  {
-    url: '/awell-orchestration/docs/data/create-dashboards-with-awell',
-    title: 'Create dashboards and data visualizations with Awell',
-    description:
-      "Leverage Awell's analytic tools (Kibana) for dashboarding & data visualization.",
-    effort: 1,
-  },
-  {
-    url: '/awell-orchestration/docs/data/connect-to-awell-data-repository',
-    title: "Connect to Awell's data repository (Elastic)",
-    description:
-      "Connect your in-house analytic tools to Awell's data repository and run analytics in no time.",
-    effort: 2,
-  },
-]
-
 export default function Home() {
-  const [activeTab, setActiveTab] = useState(tabs[0])
-
   return (
     <>
       <SEO
@@ -155,46 +99,99 @@ export default function Home() {
       />
       <div className="relative max-w-6xl mx-auto pt-4 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-8">
         <div>
-          <h1 className="text-slate-900 font-extrabold text-xl sm:text-2xl lg:text-3xl tracking-tight dark:text-white">
-            Welcome
-          </h1>
-          <p className="mt-2 text-xl text-slate-600 dark:text-slate-400">
-            It's Awell's mission to make care flows work harder than care teams.
-          </p>
-          <p className="mt-2 text-xl text-slate-600 dark:text-slate-400">
-            Use Awell to build care flows in our no-code editor and embed them into your tech stack. Explore our guides, API references, and examples to start
-            integrating with Awell.
-          </p>
-          <p>
-            Here are a few more resources to help you get started:
-            <ul>
-              <li>If you're new to Awell and care flows, familiarize yourself with our core concepts in the <a href="/awell-orchestration/docs/getting-started/what-is-awell-orchestration">introduction</a></li>
-              <li>You want to get up and running? Head over to the <a href="/awell-orchestration/docs/getting-started/design-and-orchestrate-care-flows">Quickstart</a></li>
-              <li>Curious to understand the different ways to integrate with Awell? Click on the options below.
-          </p>
+          <div className="overflow-hidden py-4 lg:py-8">
+            <div>
+              <div className="relative">
+                <h2 className="mb-0 text-center text-3xl font-bold leading-8 tracking-tight text-slate-900 sm:text-4xl">
+                  Welcome
+                </h2>
+                <p className="mx-auto mt-2 max-w-3xl text-center text-xl text-slate-500">
+                  It&apos;s Awell&apos;s mission to make care flows work harder
+                  than care teams.
+                </p>
+              </div>
+
+              <div className="relative mt-12 lg:mt-16 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
+                <div className="relative">
+                  <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                    Get Started
+                  </h3>
+                  <p className="mt-3 text-lg text-slate-500">
+                    Use Awell to build care flows in our no-code editor and
+                    embed them into your tech stack. Explore our guides, API
+                    references, and examples to start integrating with Awell.
+                  </p>
+
+                  <dl className="mt-10 space-y-10">
+                    {getStartedItems.map((item) => (
+                      <Link key={item.id} href={item.href}>
+                        <a title={item.name} className="block group">
+                          <div className="relative">
+                            <dt>
+                              <div className="absolute flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-blue-600 font-semibold text-xl">
+                                {item.id}
+                              </div>
+                              <p className="ml-16 text-lg font-semibold leading-6 text-slate-900 group-hover:text-blue-600">
+                                {item.name}
+                              </p>
+                            </dt>
+                            <dd className="mt-1 ml-16 text-base text-slate-500">
+                              {item.description}
+                            </dd>
+                          </div>
+                        </a>
+                      </Link>
+                    ))}
+                  </dl>
+                </div>
+
+                <div
+                  className="relative -mx-4 mt-10 lg:mt-0"
+                  aria-hidden="true"
+                >
+                  <figure className="w-full flex flex-col justify-center text-center">
+                    <img
+                      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/628df8e945c036bc4dc479bf_Home_Visual-p-1080.png"
+                      alt="Pathway versioning"
+                      className="w-full sm:w-11/12 mx-auto"
+                    />
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="mt-12">
-          <h2 className="text-slate-900 text-xl lg:text-2xl font-bold dark:text-white m-0 p-0">
+          <h2
+            id="integrate-with-awell"
+            className="text-slate-900 text-xl lg:text-2xl font-bold dark:text-white m-0 p-0"
+          >
             Integrate with Awell
           </h2>
           <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
-            Once you've designed and published a care flow, you can interact with it in different ways to support care delivery, coordination, automation and analysis of the data collected in that care flow.
+            Once you&apos;ve designed and published a care flow, you can
+            interact with it in different ways to support care delivery,
+            coordination, automation and analysis of the data collected in that
+            care flow.
           </p>
           <div className="grid md:grid-cols-3 gap-8 mt-6">
             {domains.map((d) => (
               <Link href={d.url} key={d.title}>
-                <a className="block group">
-                  <div className="rounded-xl flex flex-col justify-start h-full">
-                    <div>
-                      <div className="bg-blue-600 text-white dark:bg-sky-400 rounded-lg p-1.5 inline-block">
-                        {d.icon}
+                <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
+                  <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+                  <div className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+                    <div className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+                      <div>
+                        <div className="bg-blue-600 text-white dark:bg-sky-400 rounded-lg p-1.5 inline-block">
+                          {d.icon}
+                        </div>
                       </div>
-                    </div>
-                    <div className="dark:text-slate-400 flex flex-col flex-grow">
-                      <h3 className="mb-0 font-semibold text-blue-600 dark:text-sky-400 group-hover:text-blue-800 dark:group-hover:text-sky-500">
-                        {d.title}
-                      </h3>
-                      <span className="mt-2">{d.description}</span>
+                      <div>
+                        <h3 className="font-semibold dark:text-sky-400">
+                          {d.title}
+                        </h3>
+                        <span className="pt-3">{d.description}</span>
+                      </div>
                     </div>
                   </div>
                 </a>

@@ -22,11 +22,15 @@ Awell is a low-code platform used by clinical and product teams to **design clin
 
 Each **care flow** can have one or more **tracks**. These tracks are triggered by events happening in the care flow or in external systems. Inside tracks, the main building blocks are **steps** that you tie together using "if-this-then-that" logic. Inside steps, you define **actions** such as forms for data collection, messages to provide information, checklists to manage tasks and more.
 
-These 4 levels (Care flow > Tracks > Steps > Actions) are the result of many iterations of the Awell Platform to come to a visual workflow modeling language that is fit for healthcare processes. 
+These 4 levels (Care flow > Tracks > Steps > Actions) are the result of many iterations of the Awell Platform to come to a visual workflow modeling language that is fit for healthcare processes.
 
 <Alert type="info">
   <p>
-    Note that we have deviated on purpose from Business Process Modeling (BPM) language despite it being considered a standard process modeling language. The main reason is that healthcare processes are significantly different from regular business processes and they have several unique requirements that are not solved in BPM.
+    Note that we have deviated on purpose from Business Process Modeling (BPM)
+    language despite it being considered a standard process modeling language.
+    The main reason is that healthcare processes are significantly different
+    from regular business processes and they have several unique requirements
+    that are not solved in BPM.
   </p>
 </Alert>
 
@@ -44,11 +48,9 @@ This powerful concept deserves some more context.
 
 After you publishing a care flow you start enrolling patients in it. From that point onwards, Awell takes care of orchestrating user activities and automation of the data flow between Awell and other systems.
 
-
-
 After publishing a care flow, you start enrolling patients in that flow. From that point onwards, Awell orchestrates all activities for all stakeholders in the care flow in the back-end. To allow users to interact with these activities you can integrate with our API for full control over the end-user experience or leverage one of our low-code options to provide user interfaces to your patient and care team members. Orchestration also means automating data flow and integrations with 3d party systems like your EMR.
 
-**Orchestrating care flows is the act of enrolling a patient into the care flow you have designed and published.** The orchestration domain is exposed by an API, the "Orchestration API" and this is the API can integrate against.
+**Orchestrating care flows is the act of enrolling a patient into the care flow you have designed and published.** The orchestration domain is exposed by an API, the "Orchestration API" and this is the API you'll integrate against.
 
 Whereas in the design domain you've built a theoretical model or blueprint of your care flow, when orchestrating care flows you'll be actually executing a care flow for patient against that model or blueprint.
 
