@@ -1,6 +1,7 @@
 import rehypeSlug from 'rehype-slug'
 
 import { Alert } from '@/components/Alert'
+import { ActivityIndexSpecs, DataPointIndexSpecs, PathwayIndexSpecs, StepIndexSpecs } from '@/components/DataRepository'
 import { Code, CustomH2, CustomH3 } from '@/components/Docs/atoms'
 import { EmailTemplate } from '@/components/EmailTemplate'
 import { FAQ } from '@/components/FAQ'
@@ -33,4 +34,8 @@ export const mdxComponents = {
   PostmanLinks,
   EmailTemplate,
   StoryBrowser,
+  DataPointIndexSpecs,
+  PathwayIndexSpecs,
+  StepIndexSpecs,
+  ActivityIndexSpecs
 }
