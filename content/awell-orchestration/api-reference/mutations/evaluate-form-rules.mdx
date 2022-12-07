@@ -16,7 +16,7 @@ When working with forms that use conditional logic, you have to call this mutati
     className="custom-link"
   >
     <img
-      src="https://static.swimlanes.io/8825aba66c32d85b596003378c23f3df.png"
+      src="https://static.swimlanes.io/54ee93b729b4863912d1168ae6ec6141.png"
       alt="Rendering a form with Awell"
       className="w-full sm:w-11/12 mx-auto rounded"
     />
@@ -59,9 +59,11 @@ mutation EvaluateFormRules($input: EvaluateFormRulesInput!) {
 
 ## Response
 
-Important to note is that the response of this mutation returns an array of results stating what questions should be hidden (i.e. the conditions to show a given question are not satisfied).
+Important to note is that the response of this mutation returns an array of results stating what questions should be shown/hidden based on the configured display logic (=rules).
 
-**Example:**
+If a question is always visible because it has no display logic configured, then it won't be included in the response. **This means that, by default, questions not included in the response should be visible**.
+
+### Example
 
 - A form has 4 questions: Q1, Q2, Q3, and Q4
 - Given the below response, we know that Q1, Q2, and Q3 should be shown and that Q4 needs to be hidden
@@ -72,12 +74,44 @@ Important to note is that the response of this mutation returns an array of resu
     "evaluateFormRules": {
       "results": [
         {
+          "question_id": "Q3",
+          "satisfied": true
+        },
+        {
           "question_id": "Q4",
           "satisfied": false
         }
       ]
     }
   }
+}
+```
+
+### Code snippet to get you going
+
+```typescript
+type QuestionRuleResult = {
+  question_id: string
+  satisfied: boolean
+}
+
+const isQuestionVisible = (
+  questionId: string,
+  evaluationResults: Array<QuestionRuleResult>
+): boolean => {
+  const questionEvaluationResult = evaluationResults.find(
+    (result) => result.question_id === questionId
+  )
+
+  /**
+   * If there's no evaluation result for our question (i.e. question has no display logic) --> show it by default
+   * If there's an evaluation result for our question: see whether the display logic rule was satisfied
+   */
+  const isVisible = isNil(questionEvaluationResult)
+    ? true
+    : questionEvaluationResult.satisfied
+
+  return isVisible
 }
 ```
 
