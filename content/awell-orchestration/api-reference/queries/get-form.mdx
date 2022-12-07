@@ -3,7 +3,14 @@ title: Get form
 description: Get the form definition of a given form
 ---
 
-This query allows us to fetch the details and questions for a specific form.
+This query allows us to fetch the details and questions for a specific form and can be used to render the form and its questions in your UI.
+
+## Evaluating display logic
+
+Forms in Awell can have questions with display / visibility logic. Meaning that you can conditionally show/hide questions based on previous answers in the form. In order to render the form to the user and show the right questions, you have 2 options:
+
+1. Implement the logic yourself to evaluate the display logic and show/hide questions based on the answers given in a form. You can find the display logic under the `rule` field.
+2. Use the `evaluateFormRules` mutation and just send us the intermediary responses on the questions and we'll let you know what questions need to be shown/hidden. [Click here for more information on this mutation](/awell-orchestration/api-reference/mutations/evaluate-form-rules).
 
 ## Request
 
