@@ -3,7 +3,7 @@ title: Evaluate form rules
 description: Evaluate what question needs to be shown next
 ---
 
-This mutation evaluates all conditional logic defined in a form and lets you know which questions should be shown or hidden.
+This mutation evaluates all conditional logic defined in a form and lets you know which questions (that have display logic) should be visible or hidden.
 
 When working with forms that use conditional logic, you have to call this mutation every time a user answers any question in the form. This guarantees that you will always show the relevant questions only.
 
@@ -59,14 +59,15 @@ mutation EvaluateFormRules($input: EvaluateFormRulesInput!) {
 
 ## Response
 
-Important to note is that the response of this mutation returns an array of results stating what questions should be shown/hidden based on the configured display logic (=rules).
+Important to note is that the response of this mutation returns an array of results stating what questions should be visible or hidden based on the configured display logic (=rules).
 
 If a question is always visible because it has no display logic configured, then it won't be included in the response. **This means that, by default, questions not included in the response should be visible**.
 
 ### Example
 
 - A form has 4 questions: Q1, Q2, Q3, and Q4
-- Given the below response, we know that Q1, Q2, and Q3 should be shown and that Q4 needs to be hidden
+- Q1 and Q2 don't have display logic defined
+- Q3 and Q4 do have display logic defined
 
 ```json
 {
@@ -86,6 +87,8 @@ If a question is always visible because it has no display logic configured, then
   }
 }
 ```
+
+**Given the above response**, we know that Q1, Q2, and Q3 should be visible and that Q4 needs to be hidden.
 
 ### Code snippet to get you going
 
