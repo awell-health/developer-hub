@@ -116,12 +116,12 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/data/webhooks-and-events',
       },
       {
-        title: 'Create dashboards with Awell',
-        path: '/awell-orchestration/docs/data/create-dashboards-with-awell',
+        title: 'Data repository',
+        path: '/awell-orchestration/docs/data/data-repository',
       },
       {
-        title: 'Connect to Awell data repository',
-        path: '/awell-orchestration/docs/data/connect-to-awell-data-repository',
+        title: 'Create dashboards',
+        path: '/awell-orchestration/docs/data/create-dashboards',
       },
       {
         title: 'Healthcare interoperability',

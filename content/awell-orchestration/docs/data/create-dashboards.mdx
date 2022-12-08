@@ -1,0 +1,84 @@
+---
+title: Create dashboards with Awell
+description: Use Awell's analytics tool, Kibana, for dashboarding & data visualization
+---
+
+This small tutorial will show you how to create population dashboards and patient centric dashboards.
+
+## Explore the data catalog
+
+The data catalog lists all the data points that are collected in the lifecycle of a care flow (more information [here](https://help.awellhealth.com/en/articles/4791428-data-catalog)). Using the data catalog you can identify the data points that you would like to track in a dashboard.
+
+In this example we will look at the data catalog of the `Onboarding flow` template that is available in all accounts.
+
+In this care flow we collect patient reported outcomes that then feed into the calculation of the Promis 10 score. Notice the keys associated with the different results of the score, they will be used later in the dashboards.
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <a
+    href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1670507794/Developer%20portal/Dashboards_tutorial_-_data_catalog.png"
+    target="_blank"
+    className="custom-link"
+  >
+    <img
+      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1670507794/Developer%20portal/Dashboards_tutorial_-_data_catalog.png"
+      alt="Onboarding flow - Data catalog"
+      className="mx-auto"
+    />
+  </a>
+  <figcaption className="dark:text-slate-400">
+    Onboarding flow - Data catalog
+  </figcaption>
+</figure>
+
+## Create population dashboard
+
+Using Kibana, we can create a dashboard that tracks the distribution of the physical and mental health T Scores for Promis 10 across a population.
+
+To create this dashboard we simply need to:
+* Query the `orchestration-datapoint` index that contains all the collected data
+* Filter on the qualified key to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
+* Group by value to show the distribution of physical and mental health score across a population
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <a
+    href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1670507794/Developer%20portal/Dashboards_tutorial_-_population_dashboard.png"
+    target="_blank"
+    className="custom-link"
+  >
+    <img
+      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1670507794/Developer%20portal/Dashboards_tutorial_-_population_dashboard.png"
+      alt="Promis 10 - Population dashboard"
+      className="mx-auto"
+    />
+  </a>
+  <figcaption className="dark:text-slate-400">
+    Promis 10 - Population dashboard
+  </figcaption>
+</figure>
+
+## Create patient centric dashboard
+
+Using Kibana, we can create a dashboard that tracks the evoluation of the physical and mental health T Scores for a specific patient.
+
+To create this dashboard we simply need to:
+* Query the `orchestration-datapoint` index that contains all the collected data
+* Filter on the qualified key to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
+* Filter on the data set id to restrict the results to a given care flow / patient.
+* Show the evaluation over time for the results
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <a
+    href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1670507794/Developer%20portal/Dashboards_tutorial_-_patient_evolution_dashboard.png"
+    target="_blank"
+    className="custom-link"
+  >
+    <img
+      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1670507794/Developer%20portal/Dashboards_tutorial_-_patient_evolution_dashboard.png"
+      alt="Promis 10 - Patient evolution"
+      className="mx-auto"
+    />
+  </a>
+  <figcaption className="dark:text-slate-400">
+    Promis 10 - Patient evolution
+  </figcaption>
+</figure>
