@@ -3,15 +3,15 @@ title: Create dashboards with Awell
 description: Use Awell's analytics tool, Kibana, for dashboarding & data visualization
 ---
 
-This small tutorial will show you how to create population dashboards and patient centric dashboards.
+This small tutorial will show you how to create population and patient centric dashboards.
 
 ## Explore the data catalog
 
-The data catalog lists all the data points that are collected in the lifecycle of a care flow (more information on the data catalog [here](https://help.awellhealth.com/en/articles/4791428-data-catalog)). Using the data catalog you can identify the data points that you would like to track in a dashboard.
+The data catalog lists all data points that are collected in the lifecycle of a care flow (more information on the data catalog [here](https://help.awellhealth.com/en/articles/4791428-data-catalog)). Using the data catalog, you can identify the data points that you would like to track in a dashboard.
 
 In this example we will look at the data catalog of the `Onboarding flow` template that is available in all accounts.
 
-In this care flow we collect patient reported outcomes that then feed into the calculation of the Promis 10 score. Notice the keys associated with the different results of the score, they will be used later in the dashboards.
+In this care flow we collect patient reported outcomes that then feed into the calculation of the PROMIS 10 score. Notice the keys associated with the different results of the score, they will be used later in the dashboards.
 
 <figure className="w-full flex flex-col justify-center text-center relative">
   <a
@@ -25,19 +25,22 @@ In this care flow we collect patient reported outcomes that then feed into the c
       className="mx-auto"
     />
   </a>
-  <figcaption className="dark:text-slate-400">
+  <figcaption className="pt-2 dark:text-slate-400">
     Onboarding flow - Data catalog
   </figcaption>
 </figure>
 
 ## Create population dashboard
 
-Using Kibana, we can create a dashboard that tracks the distribution of the physical and mental health T Scores for Promis 10 across a population.
+Using Kibana, we can create a dashboard that tracks the distribution of the physical and mental health T Scores for the PROMIS 10 across a population.
 
-To create this dashboard we simply need to:
-* Query the `orchestration-datapoint` index that contains all the collected data
-* Filter on the qualified key to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
-* Group by value to show the distribution of physical and mental health score across a population
+**To create this dashboard we simply need to:**
+
+1. Query the `orchestration-datapoint` index that contains all the collected data
+2. Filter on the qualified key to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
+3. Group by value to show the distribution of physical and mental health score across a population
+
+<br />
 
 <figure className="w-full flex flex-col justify-center text-center relative">
   <a
@@ -51,8 +54,8 @@ To create this dashboard we simply need to:
       className="mx-auto"
     />
   </a>
-  <figcaption className="dark:text-slate-400">
-    Promis 10 - Population dashboard
+  <figcaption className="pt-2 dark:text-slate-400">
+    PROMIS 10 - Population dashboard
   </figcaption>
 </figure>
 
@@ -60,11 +63,14 @@ To create this dashboard we simply need to:
 
 Using Kibana, we can create a dashboard that tracks the evoluation of the physical and mental health T Scores for a specific patient.
 
-To create this dashboard we simply need to:
-* Query the `orchestration-datapoint` index that contains all the collected data
-* Filter on the qualified key to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
-* Filter on the data set id to restrict the results to a given care flow / patient.
-* Show the evaluation over time for the results
+**To create this dashboard we simply need to:**
+
+1. Query the `orchestration-datapoint` index that contains all the collected data
+2. Filter on the qualified key to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
+3. Filter on the data set id to restrict the results to a given care flow / patient.
+4. Show the evaluation over time for the results
+
+<br />
 
 <figure className="w-full flex flex-col justify-center text-center relative">
   <a
@@ -79,6 +85,6 @@ To create this dashboard we simply need to:
     />
   </a>
   <figcaption className="dark:text-slate-400">
-    Promis 10 - Patient evolution
+    PROMIS 10 - Patient evolution
   </figcaption>
 </figure>

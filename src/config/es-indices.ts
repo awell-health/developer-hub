@@ -9,7 +9,8 @@ export const datapoint: EsIndexType = [
   {
     property: 'value_type',
     type: 'string',
-    description: 'Primitive type of the value before serialisation (boolean, date, numberm string)',
+    description:
+      'Primitive type of the value before serialisation (boolean, date, number, string)',
   },
   {
     property: 'data_point_definition.category',
@@ -29,12 +30,14 @@ export const datapoint: EsIndexType = [
   {
     property: 'data_set_id',
     type: 'string',
-    description: 'Identifier of the pathway in which the data point was collected',
+    description:
+      'Identifier of the pathway in which the data point was collected',
   },
   {
     property: 'activity_id',
     type: 'string',
-    description: 'Identifier of the activity in which the data point was collected',
+    description:
+      'Identifier of the activity in which the data point was collected',
   },
 ]
 
@@ -42,32 +45,32 @@ export const pathway: EsIndexType = [
   {
     property: 'id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'pathway_definition_id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'release_id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'patient_id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'start_date',
     type: 'date',
-    description: ''
+    description: '',
   },
   {
     property: 'status',
     type: 'string',
-    description: ''
+    description: '',
   },
 ]
 
@@ -75,37 +78,37 @@ export const step: EsIndexType = [
   {
     property: 'id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'pathway_definition_id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'release_id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'status',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'scheduled_date',
     type: 'date',
-    description: ''
+    description: '',
   },
   {
     property: 'activation_date',
     type: 'date',
-    description: ''
+    description: '',
   },
   {
     property: 'completion_date',
     type: 'date',
-    description: ''
+    description: '',
   },
 ]
 
@@ -113,71 +116,71 @@ export const activity: EsIndexType = [
   {
     property: 'id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'stream_id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'subject.type',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'subject.name',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'action',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'object.id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'object.type',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'object.name',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
-    property: 'indirec_object.id',
+    property: 'indirect_object.id',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
-    property: 'indirec_object.type',
+    property: 'indirect_object.type',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
-    property: 'indirec_object.name',
+    property: 'indirect_object.name',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'status',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'resolution',
     type: 'string',
-    description: ''
+    description: '',
   },
   {
     property: 'date',
     type: 'date',
-    description: ''
+    description: '',
   },
 ]
