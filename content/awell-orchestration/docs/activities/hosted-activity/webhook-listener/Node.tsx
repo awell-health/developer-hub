@@ -151,11 +151,11 @@ app.post('/awell-webhooks', express.json({type: 'application/json'}), (request, 
         }
         if (stakeholder.type === 'STAKEHOLDER') {
           switch (stakeholder.name) {
-            case 'nurse': {
+            case 'Nurse': {
               // Then define and call a method to notify the nurse of the patient
               break
             }
-            case 'physician': {
+            case 'Physician': {
               // Then define and call a method to notify the physician of the patient
               break
             }

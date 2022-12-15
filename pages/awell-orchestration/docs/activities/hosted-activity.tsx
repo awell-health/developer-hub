@@ -286,7 +286,7 @@ export default function HostedActivityPage() {
                         <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
                           STAKEHOLDER
                         </td>
-                        <td className="py-4 px-3 text-base">physician</td>
+                        <td className="py-4 px-3 text-base">Physician</td>
                         <td className="py-4 px-3 text-base">
                           Look up in your internal systems.
                         </td>
@@ -295,7 +295,7 @@ export default function HostedActivityPage() {
                         <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
                           STAKEHOLDER
                         </td>
-                        <td className="py-4 px-3 text-base">dietician</td>
+                        <td className="py-4 px-3 text-base">Dietician</td>
                         <td className="py-4 px-3 text-base">
                           Look up in your internal systems.
                         </td>
