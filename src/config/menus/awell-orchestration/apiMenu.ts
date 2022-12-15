@@ -131,8 +131,8 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.activity,
       },
       {
-        title: 'Get patient pending activities',
-        path: '/awell-orchestration/api-reference/queries/get-patient-pending-activities',
+        title: 'Get user pending activities',
+        path: '/awell-orchestration/api-reference/queries/get-user-pending-activities',
         badge: badges.activity,
       },
       {

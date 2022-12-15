@@ -1,0 +1,39 @@
+---
+title: Get a user's pending activities
+description: Get all pending activities for a given user over all care flows
+---
+
+This query allows us to fetch a specific user's pending pathway activities (i.e. activities that require them to take action) **for all care flows/pathways they are involved in**. An activity is pending if its status is 'ACTIVE'.
+
+**If you'd like to fetch the pending activities in a specific care flow / pathay**, use the [GetPathwayActivities query](/awell-orchestration/api-reference/queries/get-pathway-activities).
+
+> We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the activity model.
+
+## Request
+
+### Headers
+
+Use the `X-User-ID` header to specify for what user you'd like to fetch the pending activities for. Eg: you can pass the Awell patient ID as the value which will return all pending activities over all care flows the patient is included in.
+
+We use the value of the `X-User-ID` header to find all activities where the value matches the `activity.indirect_object.id` field.
+
+### Query
+
+```graphql
+query GetPatientPendingActivities {
+  myPendingActivities {
+    activities {
+      stream_id
+      id
+      status
+      action
+      date
+      object {
+        id
+        type
+        name
+      }
+    }
+  }
+}
+```

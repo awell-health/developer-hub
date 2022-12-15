@@ -20,6 +20,7 @@ query GetPathwayActivities($pathway_id: String!) {
       stream_id
       status
       date
+      isUserActivity
       subject {
         type
         name
@@ -49,5 +50,91 @@ query GetPathwayActivities($pathway_id: String!) {
 ```
 
 ## How to use
+
+### Get all pending user activities
+
+**An orchesrated care flow consists of system activities and user actionable activities (forms, messages, checklists, ...).** System activities are activities related to the Orchestration of the care flow whereas user actionable activities are the actual activities a stakeholder (eg: patient) needs to interact with.
+
+In most cases, you're only interested in the user actionable activities which you can get by filtering the activities array by the `isUserActivity` field.
+
+Additionally, you can filter the results by `status === 'ACTIVE'` to only get the pending activities.
+
+<Alert type="info">
+  <p>
+    The query doesn't support server-side filtering yet so the filters have to
+    be applied on the response of the query.
+  </p>
+</Alert>
+
+### Filter activities by stakeholder
+
+User actionable activities need to be completed by a certain stakeholder. The stakeholder who needs to complete an activity is determined by the stakeholder you assigned to an action in Awell Studio. To get all pending activities for a given stakeholder, you can filter on the `activity.indirect_object.type` and the `activity.indirect_object.name` field.
+
+**Example:**<br/>
+If you'd like to get all pending activities for the patient, you can filter the activities array by `activity.indirect_object.type === patient`.
+
+The table below can help you with filtering activities for the right stakeholder:
+
+<div className="flex flex-col">
+  <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+      <table className="ignore-default-style min-w-full divide-y divide-slate-300 dark:divide-slate-500">
+        <thead>
+          <tr className="text-slate-900 dark:text-white text-base font-semibold">
+            <th
+              scope="col"
+              className="py-3.5 pl-4 pr-3 text-left sm:pl-6 md:pl-0"
+            >
+              Stakeholder type <br />
+              (activity.indirect_object.type)
+            </th>
+            <th scope="col" className="py-3.5 px-3 text-left">
+              Stakeholder name <br />
+              (activity.indirect_object.name)
+            </th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+          <tr className="text-slate-900 dark:text-slate-100">
+            <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+              patient
+            </td>
+            <td className="py-4 px-3 text-base">
+              Name of the actual patient as stored in the Awell patient profile
+            </td>
+          </tr>
+          <tr className="text-slate-900 dark:text-slate-100">
+            <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+              stakeholder
+            </td>
+            <td className="py-4 px-3 text-base">nurse</td>
+          </tr>
+          <tr className="text-slate-900 dark:text-slate-100">
+            <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+              stakeholder
+            </td>
+            <td className="py-4 px-3 text-base">physician</td>
+          </tr>
+          <tr className="text-slate-900 dark:text-slate-100">
+            <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+              stakeholder
+            </td>
+            <td className="py-4 px-3 text-base">dietician</td>
+          </tr>
+          <tr className="text-slate-900 dark:text-slate-100">
+            <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+              stakeholder
+            </td>
+            <td className="py-4 px-3 text-base">
+              (any other stakeholder that is not the patient)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+## Examples
 
 <HowToUse storyIds={['activity-feed']} />
