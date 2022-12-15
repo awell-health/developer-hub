@@ -71,7 +71,7 @@ Additionally, you can filter the results by `status === 'ACTIVE'` to only get th
 User actionable activities need to be completed by a certain stakeholder. The stakeholder who needs to complete an activity is determined by the stakeholder you assigned to an action in Awell Studio. To get all pending activities for a given stakeholder, you can filter on the `activity.indirect_object.type` and the `activity.indirect_object.name` field.
 
 **Example:**<br/>
-If you'd like to get all pending activities for the patient, you can filter the activities array by `activity.indirect_object.type === patient`.
+If you'd like to get all pending activities for the patient, you can filter the activities array by `activity.indirect_object.type === PATIENT`.
 
 The table below can help you with filtering activities for the right stakeholder:
 
@@ -97,7 +97,7 @@ The table below can help you with filtering activities for the right stakeholder
         <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
           <tr className="text-slate-900 dark:text-slate-100">
             <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-              patient
+              PATIENT
             </td>
             <td className="py-4 px-3 text-base">
               Name of the actual patient as stored in the Awell patient profile
@@ -105,25 +105,25 @@ The table below can help you with filtering activities for the right stakeholder
           </tr>
           <tr className="text-slate-900 dark:text-slate-100">
             <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-              stakeholder
+              STAKEHOLDER
             </td>
             <td className="py-4 px-3 text-base">nurse</td>
           </tr>
           <tr className="text-slate-900 dark:text-slate-100">
             <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-              stakeholder
+              STAKEHOLDER
             </td>
             <td className="py-4 px-3 text-base">physician</td>
           </tr>
           <tr className="text-slate-900 dark:text-slate-100">
             <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-              stakeholder
+              STAKEHOLDER
             </td>
             <td className="py-4 px-3 text-base">dietician</td>
           </tr>
           <tr className="text-slate-900 dark:text-slate-100">
             <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-              stakeholder
+              STAKEHOLDER
             </td>
             <td className="py-4 px-3 text-base">
               (any other stakeholder that is not the patient)

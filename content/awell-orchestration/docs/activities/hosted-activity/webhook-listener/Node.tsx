@@ -142,14 +142,14 @@ app.post('/awell-webhooks', express.json({type: 'application/json'}), (request, 
         const { stakeholder } = event.activity.indirect_object
         const stakeholderId = stakeholder.id
 
-        if (stakeholder.type === 'patient') {
+        if (stakeholder.type === 'PATIENT') {
           // Email is only available if this property is set in the patient's Awell profile
           // Contact details can also be fetched from your internal systems.
           const patientEmail = stakeholder.email
 
           // Then define and call a method to notify the patient
         }
-        if (stakeholder.type === 'stakeholder') {
+        if (stakeholder.type === 'STAKEHOLDER') {
           switch (stakeholder.name) {
             case 'nurse': {
               // Then define and call a method to notify the nurse of the patient

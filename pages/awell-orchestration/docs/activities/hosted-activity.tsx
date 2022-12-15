@@ -261,7 +261,7 @@ export default function HostedActivityPage() {
                     <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                       <tr className="text-slate-900 dark:text-slate-100">
                         <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-                          patient
+                          PATIENT
                         </td>
                         <td className="py-4 px-3 text-base">
                           Name of the actual patient as stored in the Awell
@@ -275,7 +275,7 @@ export default function HostedActivityPage() {
                       </tr>
                       <tr className="text-slate-900 dark:text-slate-100">
                         <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-                          stakeholder
+                          STAKEHOLDER
                         </td>
                         <td className="py-4 px-3 text-base">nurse</td>
                         <td className="py-4 px-3 text-base">
@@ -284,7 +284,7 @@ export default function HostedActivityPage() {
                       </tr>
                       <tr className="text-slate-900 dark:text-slate-100">
                         <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-                          stakeholder
+                          STAKEHOLDER
                         </td>
                         <td className="py-4 px-3 text-base">physician</td>
                         <td className="py-4 px-3 text-base">
@@ -293,7 +293,7 @@ export default function HostedActivityPage() {
                       </tr>
                       <tr className="text-slate-900 dark:text-slate-100">
                         <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-                          stakeholder
+                          STAKEHOLDER
                         </td>
                         <td className="py-4 px-3 text-base">dietician</td>
                         <td className="py-4 px-3 text-base">
@@ -302,7 +302,7 @@ export default function HostedActivityPage() {
                       </tr>
                       <tr className="text-slate-900 dark:text-slate-100">
                         <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-                          stakeholder
+                          STAKEHOLDER
                         </td>
                         <td className="py-4 px-3 text-base">
                           (any other stakeholder that is not the patient)
