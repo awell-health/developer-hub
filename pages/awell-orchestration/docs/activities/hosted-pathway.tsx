@@ -339,7 +339,7 @@ export default function HostedPathwayPage() {
             {
               question: 'How long before a hosted pathway session expires?',
               answer:
-                'By default, sessions expire after 15 minutes but the timer is reset after every completion of an activity. A session also expires when there are no pending activities left in a pathway.',
+                'By default, sessions expire after 60 minutes but the timer is reset after every completion of an activity. A session also expires when there are no pending activities left in a pathway.',
             },
           ]}
         />
