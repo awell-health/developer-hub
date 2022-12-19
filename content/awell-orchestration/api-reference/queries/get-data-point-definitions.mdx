@@ -40,12 +40,21 @@ query GetPathwayDataPointDefinitions(
         value
         label
       }
-      range
+      range {
+        min
+        max
+      }
       unit
       optional
+      pii
+      metadata {
+        value
+        key
+      }
     }
   }
 }
+
 ```
 
 ## Variables
