@@ -1,0 +1,48 @@
+---
+title: 1.19.4
+description: Changelog for release v1.19.4
+releaseDate: '2022-12-19'
+---
+
+## Added
+
+### Added `metadata` and `pii` in GetPathwayDataPointDefinitions query
+
+For a data point definition, meta data represents more context to the data point and PII (Personally identifiable information) is a boolean indicating if the data point is PII.
+
+```graphql
+query GetPathwayDataPointDefinitions(
+  $release_id: String!
+  $category: [String!]
+  $value_type: [String!]
+) {
+  pathwayDataPointDefinitions(
+    filters: { category: { in: $category }, value_type: { in: $value_type } }
+    release_id: $release_id
+  ) {
+    data_point_definitions {
+      id
+      title
+      key
+      category
+      valueType
+      possibleValues {
+        value
+        label
+      }
+      range {
+        min
+        max
+      }
+      unit
+      optional
+      pii
+      metadata {
+        value
+        key
+      }
+    }
+  }
+}
+
+```
