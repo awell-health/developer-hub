@@ -3,7 +3,7 @@ title: Sandbox to production promote guide
 description: Learn how to promote care flows from Sandbox to Production.
 ---
 
-If you're using a Sandbox environment to test care flows & integrations, at one point you'll need to promote them to your Production environment to start enrolling patients in your care flows.
+If you're using a Sandbox environment to test care flows & integrations, eventually you'll need to promote them to your Production environment to start enrolling patients in your care flows.
 
 <Alert type="info" title="Preflight checklist">
   <p>
@@ -20,7 +20,7 @@ If you're using a Sandbox environment to test care flows & integrations, at one 
 
 ## Sandbox vs. production
 
-Our Sandbox & Production environments are completely separate environments. They have their own dedicated user management / authentication provider, data storage, deployments, etc.
+Our Sandbox & Production environments are completely separate environments. They have their own dedicated user management / authentication provider, data storage, deployments, etc. Additionally, our production environments are available regionally, currently they are available in the EU and US.
 
 **The Sandbox environment should only be used for testing & evaluation purposes**. No care flows with real patients should be orchestrated on Sandbox environments.
 
@@ -48,9 +48,9 @@ When you request a promotion of your care flow from Sandbox to Production, we'll
 
 ### Promotion should be unidirectional
 
-**Promoting care flows should be unidirectional and we advise to only promote from Sandbox to Production.** However, we can support you with doing the inverse and promote a version of your care flow from Production to Sandbox.
+**Promoting care flows should be unidirectional and we advise to only promote from Sandbox to Production.** However, we can support you with doing the reverse and transferring a version of your care flow from Production to Sandbox. This should ideally only be done once in this direction, however.
 
-If you are building and validating your care flows in Sandbox, we advise you agree with your team to only make edits to your care flows in Sandbox and to not do any edits to your care flows in Production. When you edit a care flow in Sandbox and promote it to Production, it will overwrite any changes made in Production so these changes will be lost.
+If you are building and validating your care flows in Sandbox, we advise you agree with your team to only make edits to your care flows in the Sandbox environment and to not do any edits to your care flows in Production. When you edit a care flow in Sandbox and promote it to Production, it will overwrite any changes made in Production so these changes will be lost.
 
 ### Requesting promotion for an already promoted pathway
 

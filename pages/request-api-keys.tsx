@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 
 import { SEO } from '@/components/SEO'
 
-export default function Custom404() {
+export default function RequestApiKeys() {
   const [apiStatus, setApiStatus] = useState<'success' | 'fail' | null>(null)
 
   const {

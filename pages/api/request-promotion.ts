@@ -11,6 +11,7 @@ export default async function handler(
       email = '',
       care_flows = '',
       from_source_to_destination_environment = '',
+      comments = '',
     } = req.body
 
     await fetch(SLACK_ENDPOINT, {
@@ -23,6 +24,7 @@ export default async function handler(
         email,
         care_flows,
         from_source_to_destination_environment,
+        comments,
       }),
       cache: 'default',
     })
