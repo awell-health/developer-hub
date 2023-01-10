@@ -1,18 +1,25 @@
 import { CakeIcon, EmojiSadIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { SEO } from '@/components/SEO'
 
-export default function Custom404() {
+export default function RequestPromotion() {
   const [apiStatus, setApiStatus] = useState<'success' | 'fail' | null>(null)
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm()
+
+  useEffect(() => {
+    if (setValue) {
+      setValue('from_source_to_destination_environment', 'Sandbox to Production')
+    }
+  }, [setValue])
 
   const onSubmit = () => {
     handleSubmit(async (data) => {
@@ -40,7 +47,7 @@ export default function Custom404() {
         url="/request-promotion"
         canonicalUrl="/request-promotion"
       />
-      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-slate-100">
+      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-slate-100 dark:bg-slate-900">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="flex justify-center w-auto text-blue-600">
             <Link href="/">
@@ -82,7 +89,7 @@ export default function Custom404() {
                 </div>
                 <div className="mt-3 text-center sm:mt-5">
                   <h3
-                    className="text-lg leading-6 font-semibold text-slate-900"
+                    className="text-lg leading-6 font-semibold text-slate-900 dark:text-slate-900"
                     id="modal-title"
                   >
                     We received your request. We will get back to you when
@@ -106,7 +113,7 @@ export default function Custom404() {
                   >
                     Something went wrong
                   </h3>
-                  <p className="mt-1 max-w-2xl text-base text-slate-500">
+                  <p className="text-lg leading-6 font-semibold text-slate-900 dark:text-slate-900">
                     We had troubles receiving your request, please try again.
                   </p>
                 </div>
@@ -134,7 +141,7 @@ export default function Custom404() {
                         {...register('email', { required: true })}
                         type="email"
                         autoComplete="email"
-                        className="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-slate-700"
                       />
                       {errors.email && (
                         <p
@@ -164,7 +171,7 @@ export default function Custom404() {
                         id="care_flows"
                         {...register('care_flows', { required: true })}
                         type="text"
-                        className="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-slate-700"
                       />
                       {errors.care_flows && (
                         <p
@@ -195,14 +202,13 @@ export default function Custom404() {
                             { required: true }
                           )}
                           id="sandbox_to_production"
-                          defaultChecked
                           value="Sandbox to Production"
                           type="radio"
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
                           htmlFor="sandbox"
-                          className="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                          className="py-4 ml-2 w-full text-sm font-medium text-gray-900"
                         >
                           Sandbox &#8594; Prod
                         </label>
@@ -220,7 +226,7 @@ export default function Custom404() {
                         />
                         <label
                           htmlFor="production"
-                          className="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                          className="py-4 ml-2 w-full text-sm font-medium text-gray-900"
                         >
                           Prod &#8594; Sandbox
                         </label>
@@ -233,6 +239,26 @@ export default function Custom404() {
                     )}
                   </div>
                 </div>
+
+                <div>
+                    <label
+                      htmlFor="comments"
+                      className="block text-base font-semibold text-slate-700"
+                    >
+                      Any other comments
+                    </label>
+                    <p className="text-sm text-slate-500">
+                      Please include any additional context here for this request, such as if you are interested in promoting to a region-specific production environment (e.g. US or EU).
+                    </p>
+                    <div className="mt-1">
+                      <textarea
+                        id="comments"
+                        {...register('comments', { required: false })}
+                        rows={3}
+                        className="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-slate-700"
+                      ></textarea>
+                    </div>
+                  </div>
 
                 <div>
                   <button

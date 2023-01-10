@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Search } from '@/components/Search'
 import { SEO } from '@/components/SEO'
 
-export default function Custom404() {
+export default function ComingSoon() {
   return (
     <div className="h-screen pt-16 pb-12 flex flex-col">
       <SEO title="Coming soon" url="/coming-soon" canonicalUrl="/coming-soon" />

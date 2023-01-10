@@ -1,6 +1,6 @@
 export type ChangelogType = {
   frontMatter: {
-    [key: string]: any
+    [key: string]: unknown
   }
   slug: string
   content: string
