@@ -30,26 +30,6 @@ const getStartedItems = [
 
 const domains = [
   {
-    url: '/awell-orchestration/docs/activities/overview-activities',
-    title: 'Interact with activities',
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fillRule="evenodd"
-          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-          clipRule="evenodd"
-        />
-      </svg>
-    ),
-    description:
-      'Set up how stakeholders like patients, doctors and other care team members interact with activities in a care flow.',
-  },
-  {
     url: '/awell-orchestration/docs/manage-coordinate-care/overview-care',
     title: 'Manage and coordinate care',
     icon: (
@@ -68,6 +48,26 @@ const domains = [
     ),
     description:
       'Manage your care flows on organization level, see who needs attention and coordinate care efficiently.',
+  },
+  {
+    url: '/awell-orchestration/docs/activities/overview-activities',
+    title: 'Interact with activities',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
+    description:
+      'Set up how stakeholders like patients, doctors and other care team members interact with activities in a care flow.',
   },
   {
     url: '/awell-orchestration/docs/data/overview-data',

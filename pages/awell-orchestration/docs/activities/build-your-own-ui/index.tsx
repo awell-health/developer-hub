@@ -10,14 +10,14 @@ export default function CustomIntegrationPage() {
   return (
     <div>
       <SEO
-        title="Custom integration"
-        description="Build your own UI on Awell Orchestration for full customization and flexibility."
-        url={`/awell-orchestration/docs/activities/custom-integration`}
-        canonicalUrl={`/awell-orchestration/docs/activities/custom-integration`}
+        title="Build Your Own UI"
+        description="Build your own UI on Awell's API for full customization and flexibility."
+        url={`/awell-orchestration/docs/activities/build-your-own-ui`}
+        canonicalUrl={`/awell-orchestration/docs/activities/build-your-own-ui`}
       />
       <DocsHeader
-        heading={'Use cases'}
-        title={'Custom integration'}
+        heading={'Interact with activities'}
+        title={'Build Your Own UI'}
         description={
           'Build your own UI on Awell Orchestration for full customization and flexibility.'
         }
@@ -26,8 +26,8 @@ export default function CustomIntegrationPage() {
       <div className="max-w-4xl">
         <div id="content-wrapper">
           <p>
-            If you want full flexibility on how things look and feel, building a
-            custom integration would be your best bet.{' '}
+            If you want full flexibility on the look and feel, building a custom
+            integration on top of Awell&apos;s API would be your best bet.{' '}
             <strong>To get you started, we prepared a couple of stories</strong>{' '}
             that could help you get started with building things on top of our
             API.

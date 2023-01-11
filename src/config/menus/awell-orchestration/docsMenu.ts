@@ -27,49 +27,6 @@ export const docsMenu: MenuItemType[] = [
     ],
   },
   {
-    title: 'Interact with activities',
-    submenu: [
-      {
-        title: 'Overview',
-        path: '/awell-orchestration/docs/activities/overview-activities',
-      },
-      {
-        title: 'Notifications',
-        path: '/awell-orchestration/docs/activities/notifications/overview-notifications',
-        submenu: [
-          {
-            title: 'Overview',
-            path: '/awell-orchestration/docs/activities/notifications/overview-notifications',
-          },
-          {
-            title: 'Notifying the patient',
-            path: '/awell-orchestration/docs/activities/notifications/patient-notifications',
-          },
-          {
-            title: 'Notifying other stakeholders',
-            path: '/awell-orchestration/docs/activities/notifications/stakeholder-notifications',
-          },
-          {
-            title: 'Notifications to a specific destination',
-            path: '/awell-orchestration/docs/activities/notifications/specific-notifications',
-          },
-        ],
-      },
-      {
-        title: 'Hosted pathway',
-        path: '/awell-orchestration/docs/activities/hosted-pathway',
-      },
-      {
-        title: 'Hosted activity',
-        path: '/awell-orchestration/docs/activities/hosted-activity',
-      },
-      {
-        title: 'Custom integration',
-        path: '/awell-orchestration/docs/activities/custom-integration',
-      },
-    ],
-  },
-  {
     title: 'Manage and coordinate care',
     submenu: [
       {
@@ -105,6 +62,41 @@ export const docsMenu: MenuItemType[] = [
     ],
   },
   {
+    title: 'Interact with activities',
+    submenu: [
+      {
+        title: 'Overview',
+        path: '/awell-orchestration/docs/activities/overview-activities',
+      },
+      {
+        title: 'Awell Hosted Pages',
+        path: '/awell-orchestration/docs/activities/awell-hosted-pages',
+        submenu: [
+          {
+            title: 'What are Awell Hosted Pages?',
+            path: '/awell-orchestration/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages',
+          },
+          {
+            title: 'Hosted Pathway guide',
+            path: '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide',
+          },
+          {
+            title: 'Hosted Activity guide',
+            path: '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide',
+          },
+        ],
+      },
+      {
+        title: 'Awell Platform',
+        path: '/awell-orchestration/docs/activities/awell-platform',
+      },
+      {
+        title: 'Build Your Own UI',
+        path: '/awell-orchestration/docs/activities/build-your-own-ui',
+      },
+    ],
+  },
+  {
     title: 'Get data and events out',
     submenu: [
       {
@@ -120,8 +112,14 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/data/data-repository',
       },
       {
-        title: 'Create dashboards',
+        title: 'Kibana',
         path: '/awell-orchestration/docs/data/create-dashboards',
+        submenu: [
+          {
+            title: 'Create dashboards',
+            path: '/awell-orchestration/docs/data/kibana/create-dashboards',
+          },
+        ],
       },
       {
         title: 'Healthcare interoperability',

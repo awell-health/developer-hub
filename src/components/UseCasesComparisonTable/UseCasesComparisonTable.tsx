@@ -117,20 +117,16 @@ export const UseCasesComparisonTable = () => {
         {/* lg+ */}
         <div className="hidden xl:block">
           <table className="w-full h-px table-fixed ignore-default-style">
-            <caption className="sr-only">Pricing plan comparison</caption>
             <thead>
               <tr>
                 <th
-                  className="pb-4 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left"
+                  className="w-1/3 pb-4 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left"
                   scope="col"
-                >
-                  <span className="sr-only">Feature by</span>
-                  <span>Use cases</span>
-                </th>
+                ></th>
                 {tiers.map((tier) => (
                   <th
                     key={tier.name}
-                    className="w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-slate-900 dark:text-slate-400 text-left"
+                    className="w-1/3 pb-4 px-6 text-lg leading-6 font-medium text-slate-900 dark:text-slate-400 text-left"
                     scope="col"
                   >
                     {tier.name}
@@ -149,7 +145,7 @@ export const UseCasesComparisonTable = () => {
                 {tiers.map((tier) => (
                   <td key={tier.name} className="h-full py-4 px-6 align-top">
                     <div className="relative h-full table">
-                      <p className="text-sm text-slate-500">
+                      <p className="text-xs text-slate-500">
                         {tier.description}
                       </p>
                     </div>
