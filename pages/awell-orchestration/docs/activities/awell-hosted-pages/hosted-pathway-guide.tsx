@@ -40,10 +40,10 @@ export default function HostedPathwayPage() {
   return (
     <div>
       <SEO
-        title="Hosted pathway"
+        title="Hosted Pathway"
         description="Get up and running with Awell Orchestration in less than a day"
-        url={`/awell-orchestration/docs/activities/hosted-pathway`}
-        canonicalUrl={`/awell-orchestration/docs/activities/hosted-pathway`}
+        url={`/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide`}
+        canonicalUrl={`/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide`}
       />
       <div className="flex mb-8">
         <StackSelector
@@ -57,7 +57,7 @@ export default function HostedPathwayPage() {
       </div>
       <DocsHeader
         heading={'Interact with activities'}
-        title={'Awell hosted pathway'}
+        title={'Awell Hosted Pathway'}
         description={
           'Get up and running with Awell Orchestration in less than a day'
         }
@@ -70,10 +70,6 @@ export default function HostedPathwayPage() {
       <div className="max-w-4xl">
         <div id="content-wrapper">
           <p>
-            <strong>
-              The quickest way to get up and running with Awell is the
-              &quot;Awell-hosted pathway page&quot;.
-            </strong>{' '}
             This page will allow users to complete a pathway or flow and is a
             low-code integration.
           </p>

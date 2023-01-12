@@ -11,6 +11,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** Safe date scalar that can serialize string or date */
   SafeDate: any;
 };
 

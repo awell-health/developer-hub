@@ -35,34 +35,26 @@ const manualIndexes = [
     slug: 'awell-orchestration/developer-tools/webhook-builder',
   },
   {
-    objectID: 'awell-orchestration/docs/activities/hosted-pathway',
+    objectID:
+      '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide',
     space: 'Awell Orchestration',
-    title: 'Hosted pathway',
+    title: 'Hosted Pathway Guide',
     description:
       'Get up and running with Awell Orchestration in less than a day',
     content:
       'The quickest way to get up and running with Awell is the "Awell-hosted pathway page". This page will allow users to complete a pathway or flow and is a low-code integration.',
-    slug: 'awell-orchestration/docs/activities/hosted-pathway',
+    slug: 'awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide',
   },
   {
-    objectID: 'awell-orchestration/docs/activities/hosted-activity',
+    objectID:
+      '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide',
     space: 'Awell Orchestration',
-    title: 'Hosted activity',
+    title: 'Hosted Activity Guide',
     description:
       'Redirect stakeholders to an Awell Hosted Activity page to complete activities',
     content:
       'This integration enables you to orchestrate activities over time for multiple stakeholders on an Awell Hosted Activity page.',
-    slug: 'awell-orchestration/docs/activities/hosted-activity',
-  },
-  {
-    objectID: 'awell-orchestration/docs/activities/custom-integration',
-    space: 'Awell Orchestration',
-    title: 'Custom integration',
-    description:
-      'Build your own UI on Awell Orchestration for full customization and flexibility.',
-    content:
-      'If you want full flexibility on how things look and feel, building a custom integration would be your best bet. To get you started, we prepared a couple of stories that could help you get started with building things on top of our API.',
-    slug: 'awell-orchestration/docs/activities/custom-integration',
+    slug: 'awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide',
   },
 ]
 

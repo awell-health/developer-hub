@@ -38,10 +38,10 @@ export default function HostedActivityPage() {
   return (
     <div>
       <SEO
-        title="Hosted activity"
-        description="Redirect stakeholders to an Awell Hosted Activity page to complete activities"
-        url={`/awell-orchestration/docs/activities/hosted-activity`}
-        canonicalUrl={`/awell-orchestration/docs/activities/hosted-activity`}
+        title="Hosted Activity"
+        description="Redirect stakeholders to an Awell Hosted page to complete activities"
+        url={`/awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide`}
+        canonicalUrl={`/awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide`}
       />
       <div className="flex mb-8">
         <StackSelector
@@ -55,9 +55,9 @@ export default function HostedActivityPage() {
       </div>
       <DocsHeader
         heading={'Interact with activities'}
-        title={'Awell hosted activity'}
+        title={'Awell Hosted Activity'}
         description={
-          'Redirect stakeholders to an Awell Hosted Activity page to complete activities'
+          'Redirect stakeholders to an Awell Hosted Page to complete activities'
         }
         customLink={{
           url: `${process.env.NEXT_PUBLIC_AWELL_STORIES_API_URL}/stories/hosted-activity`,
