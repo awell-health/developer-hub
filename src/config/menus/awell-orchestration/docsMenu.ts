@@ -27,37 +27,19 @@ export const docsMenu: MenuItemType[] = [
     ],
   },
   {
-    title: 'Manage and coordinate care',
+    title: 'Operate and manage care',
     submenu: [
       {
         title: 'Overview',
-        path: '/awell-orchestration/docs/manage-coordinate-care/overview-care',
+        path: '/awell-orchestration/docs/operate-and-manage-care-flows/overview-care',
       },
       {
         title: 'Awell Platform',
-        path: '/awell-orchestration/docs/manage-coordinate-care/awell-platform',
+        path: '/awell-orchestration/docs/operate-and-manage-care-flows/awell-platform-care',
       },
       {
-        title: 'Embed in your in-house built EHR/EMR',
-        path: '/awell-orchestration/docs/manage-coordinate-care/embed-ehr-emr',
-      },
-      {
-        title: 'Integrations with 3rd parties',
-        path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/overview-3rd-parties',
-        submenu: [
-          {
-            title: 'Overview',
-            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/overview-3rd-parties',
-          },
-          {
-            title: 'Healthie',
-            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/healthie',
-          },
-          {
-            title: 'Athena Health',
-            path: '/awell-orchestration/docs/manage-coordinate-care/integrations-with-3rd-parties/athena-health',
-          },
-        ],
+        title: 'Build Your Own UI',
+        path: '/awell-orchestration/docs/operate-and-manage-care-flows/build-your-own-ui-care',
       },
     ],
   },
@@ -88,11 +70,11 @@ export const docsMenu: MenuItemType[] = [
       },
       {
         title: 'Awell Platform',
-        path: '/awell-orchestration/docs/activities/awell-platform',
+        path: '/awell-orchestration/docs/activities/awell-platform-activities',
       },
       {
         title: 'Build Your Own UI',
-        path: '/awell-orchestration/docs/activities/build-your-own-ui',
+        path: '/awell-orchestration/docs/activities/build-your-own-ui-activities',
       },
     ],
   },

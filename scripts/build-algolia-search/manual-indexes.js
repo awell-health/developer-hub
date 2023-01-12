@@ -56,16 +56,6 @@ const manualIndexes = [
       'This integration enables you to orchestrate activities over time for multiple stakeholders on an Awell Hosted Activity page.',
     slug: 'awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide',
   },
-  {
-    objectID: 'awell-orchestration/docs/activities/custom-integration',
-    space: 'Awell Orchestration',
-    title: 'Custom integration',
-    description:
-      'Build your own UI on Awell Orchestration for full customization and flexibility.',
-    content:
-      'If you want full flexibility on how things look and feel, building a custom integration would be your best bet. To get you started, we prepared a couple of stories that could help you get started with building things on top of our API.',
-    slug: 'awell-orchestration/docs/activities/custom-integration',
-  },
 ]
 
 module.exports = manualIndexes

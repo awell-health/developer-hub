@@ -98,3 +98,44 @@ When activities are assigned to care team stakeholders (eg: physician, care coor
 2. Build Yourn Own UI on top of the Awell API and render Awell activities like forms, messages, and checklists natively in your care team app.
 
 **Please note that both options are not mutually exclusive.** You have the ability to build some native views in your care team app (eg: show a todo list of activities that need to be completed by a care team stakeholder) but for the actual interaction with the activity (eg: completing the form, reading the message) you can redirect the stakeholder to the [Awell Hosted Pages](/awell-orchestration/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages) app. Have a look at a demo and code example [here](https://orchestration-stories.vercel.app/stories/patient-activity-feed-with-hosted-pages).
+
+## Summary
+
+You have the following options to let stakeholders interact with activities:
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th className="w-1/2 text-center">Patient</th>
+        <th className="w-1/2 text-center">Clinical stakeholders</th>
+      </tr>
+    </thead>
+    <tbody className="text-center">
+      <tr>
+        <td>Awell Hosted Pages</td>
+        <td>Awell Hosted Pages</td>
+      </tr>
+      <tr>
+        <td>
+          Build Your Own UI
+          <br />
+          <i>(build natively into your patient app)</i>
+        </td>
+        <td>
+          Build Your Own UI
+          <br />
+          <i>(build natively into your care team/provider app)</i>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Awell Platform</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Please note that Awell Hosted Pages and Building Your Own UI are not mutually exclusive.** You have the ability to build some native views in your patient or care team app (eg: show a todo list of activities that need to be completed) but for the actual interaction with the activity (eg: completing the form, reading the message) you can redirect the stakeholder to the [Awell Hosted Pages](/awell-orchestration/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages) app.
+
+Have a look at a demo and code example [here](https://orchestration-stories.vercel.app/stories/patient-activity-feed-with-hosted-pages).

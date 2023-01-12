@@ -30,8 +30,8 @@ const getStartedItems = [
 
 const domains = [
   {
-    url: '/awell-orchestration/docs/manage-coordinate-care/overview-care',
-    title: 'Manage and coordinate care',
+    url: '/awell-orchestration/docs/operate-and-manage-care-flows/overview-care',
+    title: 'Operate and manage care flows',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
