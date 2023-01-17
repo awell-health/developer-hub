@@ -46,6 +46,55 @@ When you request a promotion of your care flow from Sandbox to Production, we'll
 
 **Please note that your care flow history is not promoted**, but only a snapshot of the current state of your flow.
 
+### Constants
+
+[Constants can be used to save time and safely store data](https://help.awellhealth.com/en/articles/6671868-constants-keep-your-static-data-clean). It are variables with a constant value that are accessible everywhere in your care flow and especially useful for storing API keys, URLs, and anything you find yourself typing multiple times in a care flow.
+
+With the ability to conceal the value of a constant, they are also perfectly suitable for storing sensitive information.
+
+**When your care flow gets promoted, constants will be handled as follows:**
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th className="w-1/2 text-center">Non-concelead constants</th>
+        <th className="w-1/2 text-center">Concealed constants</th>
+      </tr>
+    </thead>
+    <tbody className="text-center">
+      <tr>
+        <td>
+          The value of the constant will be imported into the destination
+          environment
+        </td>
+        <td>
+          The value of the constant will not be imported into the destination
+          environment but instead a blank value is imported
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          If you are "re-promoting" your care flow but have set or updated the
+          value in the destination system, we will not overwrite that value.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<br />
+<br />
+
+<Alert type="info" title="Tip">
+  <p>
+    Although we have built some smart defaults to make sure your consants are
+    imported correctly into the destination environment, we advise you to do a
+    manual check of your constants before using the care flow in a production
+    setting.
+  </p>
+</Alert>
+
 ### Promotion should be unidirectional
 
 **Promoting care flows should be unidirectional and we advise to only promote from Sandbox to Production.** However, we can support you with doing the reverse and transferring a version of your care flow from Production to Sandbox. This should ideally only be done once in this direction, however.
