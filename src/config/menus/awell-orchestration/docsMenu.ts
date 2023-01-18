@@ -98,6 +98,10 @@ export const docsMenu: MenuItemType[] = [
         path: '/awell-orchestration/docs/data/create-dashboards',
         submenu: [
           {
+            title: 'Introduction',
+            path: '/awell-orchestration/docs/data/kibana/introduction',
+          },
+          {
             title: 'Create dashboards',
             path: '/awell-orchestration/docs/data/kibana/create-dashboards',
           },

@@ -6,6 +6,7 @@ const badges: { [key in string]: BadgeType } = {
   activity: { label: 'Activity', color: 'indigo' },
   datapoint: { label: 'Data Point', color: 'slate' },
   session: { label: 'Session', color: 'red' },
+  elements: { label: 'Elements', color: 'sky' },
 }
 
 export const apiMenu: MenuItemType[] = [
@@ -86,38 +87,8 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.activity,
       },
       {
-        title: 'Get API call',
-        path: '/awell-orchestration/api-reference/queries/get-api-call',
-        badge: badges.activity,
-      },
-      {
         title: 'Get calculation results',
         path: '/awell-orchestration/api-reference/queries/get-calculation-results',
-        badge: badges.activity,
-      },
-      {
-        title: 'Get checklist',
-        path: '/awell-orchestration/api-reference/queries/get-checklist',
-        badge: badges.activity,
-      },
-      {
-        title: 'Get clinical note',
-        path: '/awell-orchestration/api-reference/queries/get-clinical-note',
-        badge: badges.activity,
-      },
-      {
-        title: 'Get EMR report',
-        path: '/awell-orchestration/api-reference/queries/get-emr-report',
-        badge: badges.activity,
-      },
-      {
-        title: 'Get form',
-        path: '/awell-orchestration/api-reference/queries/get-form',
-        badge: badges.activity,
-      },
-      {
-        title: 'Get all forms in a pathway',
-        path: '/awell-orchestration/api-reference/queries/get-forms-in-pathway',
         badge: badges.activity,
       },
       {
@@ -126,19 +97,49 @@ export const apiMenu: MenuItemType[] = [
         badge: badges.activity,
       },
       {
-        title: 'Get message',
-        path: '/awell-orchestration/api-reference/queries/get-message',
-        badge: badges.activity,
-      },
-      {
         title: 'Get user pending activities',
         path: '/awell-orchestration/api-reference/queries/get-user-pending-activities',
         badge: badges.activity,
       },
       {
+        title: 'Get API call',
+        path: '/awell-orchestration/api-reference/queries/get-api-call',
+        badge: badges.elements,
+      },
+      {
+        title: 'Get checklist',
+        path: '/awell-orchestration/api-reference/queries/get-checklist',
+        badge: badges.elements,
+      },
+      {
+        title: 'Get clinical note',
+        path: '/awell-orchestration/api-reference/queries/get-clinical-note',
+        badge: badges.elements,
+      },
+      {
+        title: 'Get EMR report',
+        path: '/awell-orchestration/api-reference/queries/get-emr-report',
+        badge: badges.elements,
+      },
+      {
+        title: 'Get form',
+        path: '/awell-orchestration/api-reference/queries/get-form',
+        badge: badges.elements,
+      },
+      {
+        title: 'Get all forms in a pathway',
+        path: '/awell-orchestration/api-reference/queries/get-forms-in-pathway',
+        badge: badges.elements,
+      },
+      {
+        title: 'Get message',
+        path: '/awell-orchestration/api-reference/queries/get-message',
+        badge: badges.elements,
+      },
+      {
         title: 'Get data point definitions',
         path: '/awell-orchestration/api-reference/queries/get-data-point-definitions',
-        badge: badges.datapoint,
+        badge: badges.elements,
       },
     ],
   },
