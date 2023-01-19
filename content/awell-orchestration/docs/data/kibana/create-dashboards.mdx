@@ -3,15 +3,19 @@ title: Create dashboards with Awell
 description: Use Awell's analytics tool, Kibana, for dashboarding & data visualization
 ---
 
-This small tutorial will show you how to create population and patient centric dashboards.
+This small tutorial will show you how to create data dashboards with [collected data](https://developers.awellhealth.com/awell-orchestration/docs/data/data-repository#collected-data) in Kibana.
+
+Note: if you haven't used Kibana before, we can recommend to also read [Kibana introduction](https://developers.awellhealth.com/awell-orchestration/docs/data/kibana/introduction).
 
 ## Explore the data catalog
 
-The data catalog lists all data points that are collected in the lifecycle of a care flow (more information on the data catalog [here](https://help.awellhealth.com/en/articles/4791428-data-catalog)). Using the data catalog, you can identify the data points that you would like to track in a dashboard.
+When starting to build data visualizations, the data catalog in the Awell platform is often a good place to start.
 
-In this example we will look at the data catalog of the `Onboarding flow` template that is available in all accounts.
+The data catalog lists all the data points that are collected in the lifecycle of a care flow and that can be used to create data visualizations. This means it is a useful resource to define which visualizations you can and would like to create (more info about the data catalog can be found [here](https://help.awellhealth.com/en/articles/4791428-data-catalog)).
 
-In this care flow we collect patient reported outcomes that then feed into the calculation of the PROMIS 10 score. Notice the keys associated with the different results of the score, they will be used later in the dashboards.
+In this example, we will look at the data catalog of the `Onboarding flow` template that is available in all accounts.
+
+The onboarding care flow collects the PROMIS-10 patient reported outcomes through forms that then feed into the calculation of the PROMIS-10 score. Notice the data point keys associated with the different results of the score - they will be used later in this tutorial.
 
 <figure className="w-full flex flex-col justify-center text-center relative">
   <a
@@ -26,18 +30,20 @@ In this care flow we collect patient reported outcomes that then feed into the c
     />
   </a>
   <figcaption className="pt-2 dark:text-slate-400">
-    Onboarding flow - Data catalog
+    Onboarding flow - Data catalog in the Awell platform
   </figcaption>
 </figure>
 
 ## Create population dashboard
 
-Using Kibana, we can create a dashboard that tracks the distribution of the physical and mental health T Scores for the PROMIS 10 across a population.
+Moving to Kibana, we can now create a dashboard that tracks the distribution of the physical and mental health T Scores for the PROMIS-10 calculation _across a population_.
+
+Note: As mentioned on [Kibana introduction](https://developers.awellhealth.com/awell-orchestration/docs/data/kibana/introduction), you will only be able to create new dashboards in your dedicated Kibana space. The 'Care Flow Metrics' space is read-only.
 
 **To create this dashboard we simply need to:**
 
-1. Query the `orchestration-datapoint` index that contains all the collected data
-2. Filter on the qualified key to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
+1. Query the `orchestration-datapoint` dataview that contains all the [collected data](https://developers.awellhealth.com/awell-orchestration/docs/data/data-repository#collected-data).
+2. Filter on the field `data_point_definition.qualified_key` to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
 3. Group by value to show the distribution of physical and mental health score across a population
 
 <br />
@@ -61,13 +67,13 @@ Using Kibana, we can create a dashboard that tracks the distribution of the phys
 
 ## Create patient centric dashboard
 
-Using Kibana, we can create a dashboard that tracks the evoluation of the physical and mental health T Scores for a specific patient.
+Using Kibana, we can also create a dashboard that tracks the evoluation of the physical and mental health T Scores for _a specific patient_.
 
 **To create this dashboard we simply need to:**
 
-1. Query the `orchestration-datapoint` index that contains all the collected data
-2. Filter on the qualified key to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
-3. Filter on the data set id to restrict the results to a given care flow / patient.
+1. Query the `orchestration-datapoint` index that contains all the [collected data](https://developers.awellhealth.com/awell-orchestration/docs/data/data-repository#collected-data).
+2. Filter on the field `data_point_definition.qualified_key` to select only values collected for `promis_10.GLOBAL_PHYSICAL_HEALTH_T_SCORE` and `promis_10.GLOBAL_MENTAL_HEALTH_T_SCORE`.
+3. Filter on the `data_set_id` to restrict the results to a given care flow / patient.
 4. Show the evaluation over time for the results
 
 <br />
