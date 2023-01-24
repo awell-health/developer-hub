@@ -37,6 +37,12 @@ const nextConfig = {
         destination: 'request-promotion',
         permanent: true,
       },
+      {
+        source: '/awell-orchestration/docs/activities/hosted-pathway',
+        destination:
+          '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide',
+        permanent: true,
+      },
     ]
   },
 }
