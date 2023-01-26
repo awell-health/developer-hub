@@ -25,6 +25,16 @@ export default function ChangelogPage({ releases }: ChangelogPageProps) {
     'awell-orchestration/api-reference/overview/changelog'
   )
 
+  const isReleaseInTheFuture = (releaseDate: Date) => {
+    const now = new Date()
+
+    if (releaseDate >= now) {
+      return true
+    }
+
+    return false
+  }
+
   return (
     <>
       <SEO
@@ -54,22 +64,18 @@ export default function ChangelogPage({ releases }: ChangelogPageProps) {
       </div>
       <div className="grid gap-3 sm:gap-6 mx-auto grid-cols-2 sm:grid-cols-3">
         {releases.map((release) => (
-          <a
-            href={`changelog/${release.slug}`}
-            key={release.slug} >
-            <div
-              className="p-6 w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
-            >
+          <a href={`changelog/${release.slug}`} key={release.slug}>
+            <div className="p-6 w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 v{release.frontMatter.title}
               </h5>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Released on{' '}
+                {isReleaseInTheFuture(new Date(release.frontMatter.releaseDate))
+                  ? 'Will be released on '
+                  : 'Released on '}
                 {format(new Date(release.frontMatter.releaseDate), 'MMMM d, y')}
               </p>
-              <div
-                className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
+              <div className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Read more
               </div>
             </div>
@@ -93,8 +99,8 @@ export const getStaticProps: GetStaticProps = async () => {
     return a.frontMatter.releaseDate < b.frontMatter.releaseDate
       ? 1
       : a.frontMatter.releaseDate > b.frontMatter.releaseDate
-        ? -1
-        : 0
+      ? -1
+      : 0
   })
 
   return {
