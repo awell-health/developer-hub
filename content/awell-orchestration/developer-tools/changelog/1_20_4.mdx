@@ -1,0 +1,58 @@
+---
+title: 1.20.4
+description: Changelog for release v1.20.4
+releaseDate: '2023-1-30'
+---
+
+## Added
+
+### Added `form` field to GetPathwayActivities query
+
+It's now possible to additionally query for form content on form activities when fetching all activities for a care flow.
+
+```graphql
+query GetPathwayActivities($pathway_id: String!) {
+  pathwayActivities(pathway_id: $pathway_id) {
+    success
+    activities {
+      object {
+        # previously you needed this id to get a form in a separate query
+        id
+        type
+        name
+      }
+      # ...now you can just get the form here
+      form {
+        id
+        title
+        questions {
+            id
+            title
+            dataPointValueType
+            questionType
+            options {
+            id
+            value
+            label
+            }
+            rule {
+                boolean_operator
+                conditions {
+                    id
+                    reference
+                    reference_key
+                    operator
+                    operand {
+                    type
+                    value
+                    }
+                }
+            }
+        }
+      }
+    }
+  }
+}
+```
+
+With this change, when fetching the activities of a pathway with the intention to display form content, you no longer need to make a separate query `GetForm` after. You can see the details of this query [here](/awell-orchestration/api-reference/queries/get-pathway-activities).

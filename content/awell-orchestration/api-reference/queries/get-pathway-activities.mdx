@@ -36,6 +36,10 @@ query GetPathwayActivities($pathway_id: String!) {
         type
         name
       }
+      # For form content
+      form {
+        ...Form
+      }
     }
   }
 }
@@ -134,6 +138,49 @@ The table below can help you with filtering activities for the right stakeholder
     </div>
   </div>
 </div>
+
+### Including Form Content in Form Activities
+
+To simplify obtaining the content of a form for a form activity, there are two options:
+- as with all actions, you can use the `activity.object.id` and the related getter query (e.g. GetForm, GetMessage) to fetch the content you need
+- expand this query by including the `form` field at the `activity` root (see `...Form` in the query above), along with the form fields you are interested in. The schema of a form is identical to what you would use in the [GetForm](/awell-orchestration/api-reference/queries/get-form) query:
+
+```graphql
+form {
+  id
+  title
+  questions {
+    id
+    title
+    dataPointValueType
+    questionType
+    options {
+      id
+      value
+      label
+    }
+    rule {
+      # visibility conditions of a question
+      boolean_operator
+      conditions {
+        id
+        reference
+        reference_key
+        operator
+        operand {
+          type
+          value
+        }
+      }
+    }
+  }
+}
+```
+
+For non-Form activities, this field will return `null`. Currently, the `form` field is only available on this activity query. 
+
+**Example:**<br/>
+If you'd like to get all pending activities for the patient, you can filter the activities array by `activity.indirect_object.type === PATIENT`.
 
 ## Examples
 
