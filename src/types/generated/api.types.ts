@@ -539,9 +539,11 @@ export type FilterPatientPathways = {
 };
 
 export type FilterPatients = {
-  national_registry_number?: InputMaybe<TextFilter>;
-  patient_code?: InputMaybe<TextFilter>;
+  name?: InputMaybe<TextFilter>;
+  national_registry_number?: InputMaybe<TextFilterEquals>;
+  patient_code?: InputMaybe<TextFilterEquals>;
   profile_id?: InputMaybe<StringArrayFilter>;
+  search?: InputMaybe<TextFilterContains>;
 };
 
 export type Form = {
@@ -1698,6 +1700,15 @@ export type Tenant = {
 };
 
 export type TextFilter = {
+  contains?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+};
+
+export type TextFilterContains = {
+  contains?: InputMaybe<Scalars['String']>;
+};
+
+export type TextFilterEquals = {
   eq?: InputMaybe<Scalars['String']>;
 };
 
