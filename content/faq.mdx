@@ -51,7 +51,60 @@ showPlaygroundButton: false
     {
       question: 'Is your system secure?',
       answer:
-        'All interactions with our software as well as all data processing is end to end encrypted according to standards set for the banking industry. We are GDPR and HIPAA compliant and ISO27001 certified. That is a certification for how we deal with information security. We do regular external audits of our processes as well as our infrastructure in order to evolve our security continuously.',
+        'All interactions with our software as well as all data processing are end-to-end encrypted according to standards set for the banking industry. We are GDPR and HIPAA compliant and ISO27001 certified. That is a certification for how we deal with information security. We do regular internal and external audits of our processes as well as our infrastructure in order to evolve our security continuously.',
+    },
+    {
+      question:
+        'Are you SOC 2 certified (developed by the American Institute of CPAs)?',
+      answer:
+        'We are not SOC 2 certified yet, but we are ISO 27001 certified. We work with some of the biggest pharmaceutical and medical device companies worldwide, which each have strict security and compliance requirements. Compliance has never been an issue with our customers in the past, and we are confident that it won’t be in the future.',
+    },
+     {
+      question: 'Is data encrypted?',
+      answer: `
+<p>Data is encrypted at rest and in transit.</>
+<p>Our database is deployed on a kubernetes cluster in the Google Kubernetes Engine. It is backed by a kubernetes persistent volume, which is covered by Google Cloud’s Default encryption of data at rest.</p>
+<p>In cluster db connections use the HTTPS channel and therefore benefit from encryption in transit through TLS. HTTP access to the database is disabled to prevent connections without encryption in transit.</p>
+  `,
+    },
+    {
+      question: 'How often are pen tests & audits performed?',
+      answer:
+        'Penetration tests are scheduled every year and performed by an external party.',
+    },
+     {
+      question: 'Do you require multi-factor authentication on all enterprise applications and production systems?',
+      answer:
+        'Yes.',
+    },
+     {
+      question: 'Does your company assess the security and privacy practices of all third-party companies with access to customer data?',
+      answer:
+        'Yes. We annually review all 3rd parties according to our Supplier Security Policy (part of our Information Security Management System which is audited yearly as part of our ISO-27001 certification). This includes risk assessments, background verification checks, ensuring the right clauses are part of the contract, training and awareness, etc.',
+    {
+      question: 'How does your company securely back up all product data?',
+      answer:
+        'All data is backed up daily and stored for 30 days in Google Cloud. Data is encrypted in transit and at rest.',
+     {
+      question:
+        'What are the measures that are taken to prevent malicious spread/malware introduction to customers?',
+      answer: `<p>We follow industry standard best practices to prevent malicious code to be included in our web applications (HTTPS traffic allowed only, up to date certificates, user input sanitisation, no 3rd party scripts beyond trusted partners, etc.).</p>
+        <p>As part of our ISO27001 certification, all of our staff members are required to keep their devices secure through antivirus & firewall software.</p>
+        `,
+    },
+  ]}
+/>
+
+## Data privacy
+
+<FAQ
+  withHeader={false}
+  condensed={true}
+  faqs={[
+    {
+      question: 'Are you HIPAA and/or GDPR compliant?',
+      answer:
+        'Yes, the Awell platform is both HIPAA and GDPR compliant.',
     },
     {
       question: 'How does your system handle PII/PHI data storage?',
@@ -65,21 +118,13 @@ showPlaygroundButton: false
     },
     {
       question:
-        'Are you SOC 2 certified (developed by the American Institute of CPAs)?',
-      answer:
-        'We are not SOC 2 certified yet, but we are ISO 27001 certified, HIPAA and GDPR compliant. Part of our product is MDD Class Ia certified. We work with some of the biggest pharmaceutical and medical device companies worldwide, which each have strict compliance requirements. Compliance has never been an issue with our customers in the past, and we are confident that it won’t be in the future.',
-    },
-    {
-      question: 'How often are pen tests & audits performed?',
-      answer:
-        'Penetration tests are scheduled every year and performed by an external party.',
-    },
-    {
-      question:
-        'What are the measures that are taken to prevent malicious spread/malware introduction to customers?',
-      answer: `<p>We follow industry standard best practices to prevent malicious code to be included in our web applications (HTTPS traffic allowed only, up to date certificates, user input sanitisation, no 3rd party scripts beyond trusted partners, etc.).</p>
-        <p>As part of our ISO27001 certification, all of our staff members are required to keep their devices secure through antivirus & firewall software.</p>
-        `,
+        'How does Awell Health prevent sensitive (medical) data from being leaked?',
+      answer: `
+<p>We follow industry standard best practices to reduce the surface area of attack on the databases containing sensitive data (no sensitive data in logs, strong password rules enforced for database access, no shared credentials for database access, no public endpoint for databases, etc.). Internal access to those databases is granted only when necessary (ie. when troubleshooting issues).</p>
+<p>We follow industry standard best practices for data encryption (data is encrypted at rest and in transit).</p>
+<p>We are ISO27001 certified, which requires following strict hardware and software controls and staff training  to prevent data leaks.</p>
+<p>In our multi tenants deployments, all data is logically isolated by tenant to prevent leaks between customers.</p>
+      `,
     },
   ]}
 />
@@ -119,28 +164,6 @@ showPlaygroundButton: false
   withHeader={false}
   condensed={true}
   faqs={[
-    {
-      question: 'What is the current backup frequency for data in Awell?',
-      answer: 'Once a day.',
-    },
-    {
-      question: 'Is data encrypted?',
-      answer: `
-<p>Data is encrypted at rest and in transit.</>
-<p>Our database is deployed on a kubernetes cluster in the Google Kubernetes Engine. It is backed by a kubernetes persistent volume, which is covered by Google Cloud’s Default encryption of data at rest.</p>
-<p>In cluster db connections use the HTTPS channel and therefore benefit from encryption in transit through TLS. HTTP access to the database is disabled to prevent connections without encryption in transit.</p>
-  `,
-    },
-    {
-      question:
-        'How does Awell Health prevent sensitive (medical) data from being leaked?',
-      answer: `
-<p>We follow industry standard best practices to reduce the surface area of attack on the databases containing sensitive data (no sensitive data in logs, strong password rules enforced for database access, no shared credentials for database access, no public endpoint for databases, etc.). Internal access to those databases is granted only when necessary (ie. when troubleshooting issues).</p>
-<p>We follow industry standard best practices for data encryption (data is encrypted at rest and in transit).</p>
-<p>We are ISO27001 certified, which requires following strict hardware and software controls and staff training  to prevent data leaks.</p>
-<p>In our multi tenants deployments, all data is logically isolated by tenant to prevent leaks between customers.</p>
-      `,
-    },
     {
       question:
         'Are all questions or data points and the corresponding answers uniquely identifiable in your system?',
