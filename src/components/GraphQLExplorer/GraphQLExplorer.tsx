@@ -1,7 +1,18 @@
-import { DocExplorer } from 'graphiql'
+import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 
 import { useGraphQLSchema } from '@/hooks/useGraphQLSchema'
+
+/**
+ * The graphiql library can only be rendered on the client side.
+ * SSR is not supported.
+ */
+const DocExplorer = dynamic(
+  () => import('graphiql').then((lib) => lib.DocExplorer),
+  {
+    ssr: false,
+  }
+)
 
 export const GraphQLExplorer = () => {
   const [isClientRendering, setIsClientRendering] = useState(false)
