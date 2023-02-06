@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 
 import { DocsHeader } from '@/components/Docs/atoms'
-import { GraphQLExplorer } from '@/components/GraphQLExplorer'
 import { DocsLayoutWithoutToc } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
@@ -45,7 +44,7 @@ export default function Schema() {
             />
           </a>
           <figcaption className="dark:text-slate-400 pt-2">
-            Awell's GraphQL Playground - Schema browser
+            Awell&apos;s GraphQL Playground - Schema browser
           </figcaption>
         </figure>
       </div>
