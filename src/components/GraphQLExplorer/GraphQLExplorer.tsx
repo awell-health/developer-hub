@@ -8,6 +8,8 @@ export const GraphQLExplorer = () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { DocExplorer } = require('graphiql')
 
+  console.log(schema)
+
   if (typeof window === 'undefined') return null
 
   return (
