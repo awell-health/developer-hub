@@ -49,6 +49,7 @@ export type Activity = {
   container_name?: Maybe<Scalars['String']>;
   context?: Maybe<PathwayContext>;
   date: Scalars['String'];
+  form?: Maybe<Form>;
   id: Scalars['ID'];
   indirect_object?: Maybe<ActivityObject>;
   isUserActivity: Scalars['Boolean'];
@@ -517,7 +518,7 @@ export type FilterActivitiesParams = {
   activity_status: StringArrayFilter;
   activity_type: StringArrayFilter;
   pathway_definition_id: StringArrayFilter;
-  patient_id: TextFilter;
+  patient_id: TextFilterEquals;
 };
 
 export type FilterPathwayDataPointDefinitionsParams = {

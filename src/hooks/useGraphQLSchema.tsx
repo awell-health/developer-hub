@@ -7,11 +7,11 @@ export const useGraphQLSchema = (): {
 } => {
   const { introspection } = useIntrospection()
 
-  let graphQLSchema = null
-
   if (introspection) {
-    graphQLSchema = buildClientSchema(introspection)
+    return {
+      schema: buildClientSchema(introspection),
+    }
   }
 
-  return { schema: graphQLSchema }
+  return { schema: null }
 }
