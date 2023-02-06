@@ -8,6 +8,7 @@ import { useGraphQLSchema } from '@/hooks/useGraphQLSchema'
  * SSR is not supported.
  */
 const DocExplorer = dynamic(
+  //@ts-expect-error do not check the next line
   () => import('graphiql').then((lib) => lib.DocExplorer),
   {
     ssr: false,
@@ -27,6 +28,7 @@ export const GraphQLExplorer = () => {
 
   return isClientRendering ? (
     <div id="graphiql-embed">
+      {/* @ts-expect-error do not check the next line */}
       <DocExplorer schema={schema} />
     </div>
   ) : null
