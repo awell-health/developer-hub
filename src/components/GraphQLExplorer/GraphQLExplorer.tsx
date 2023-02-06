@@ -6,7 +6,7 @@ export const GraphQLExplorer = () => {
   const { schema } = useGraphQLSchema()
   // https://github.com/graphql/graphiql/issues/118
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { DocExplorer } = require('graphiql')
+  // const { DocExplorer } = require('graphiql')
 
   console.log(schema)
 
@@ -14,7 +14,7 @@ export const GraphQLExplorer = () => {
 
   return (
     <div id="graphiql-embed">
-      <DocExplorer schema={schema} />
+      <p>Hello</p>
     </div>
   )
 }
