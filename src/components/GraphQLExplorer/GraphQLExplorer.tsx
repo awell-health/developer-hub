@@ -1,14 +1,22 @@
-// import { useGraphQLSchema } from '../../hooks/useGraphQLSchema'
+import { DocExplorer } from 'graphiql'
+import { useEffect, useState } from 'react'
+
+import { useGraphQLSchema } from '@/hooks/useGraphQLSchema'
 
 export const GraphQLExplorer = () => {
-  // https://github.com/graphql/graphiql/issues/118
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { DocExplorer } = require('graphiql')
-  // const { schema } = useGraphQLSchema()
+  const [isClientRendering, setIsClientRendering] = useState(false)
+  const { schema } = useGraphQLSchema()
 
-  return (
+  /**
+   * See https://github.com/graphql/graphiql/issues/2368
+   */
+  useEffect(() => {
+    setIsClientRendering(true)
+  }, [])
+
+  return isClientRendering ? (
     <div id="graphiql-embed">
-      <DocExplorer schema={null} />
+      <DocExplorer schema={schema} />
     </div>
-  )
+  ) : null
 }
