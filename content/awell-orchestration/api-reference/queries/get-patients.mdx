@@ -8,6 +8,8 @@ description: Retrieve a list of patients in your organization
 ```graphql
 query GetPatients(
   $search: String
+  $name_contains: String
+  $name_equals: String
   $patient_code: String
   $national_registry_number: String
   $profile_id: [String!]
@@ -19,6 +21,7 @@ query GetPatients(
   patients(
     filters: {
       search: { contains: $search }
+      name: { contains: $name_contains, eq: $name_equals }
       patient_code: { eq: $patient_code }
       national_registry_number: { eq: $national_registry_number }
       profile_id: { in: $profile_id }
@@ -69,7 +72,7 @@ query GetPatients(
 All filter values are optional, if you don't provide any filter all patients in your tenant will be returned.
 Sending an empty filter will result in a search for the matching field to be empty.
 
-All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria. The `contains` filter accepts a single string and returns any results that partially match (case-insensitively) a set of fields. For this query, the fields searched against are `name`, `patient_code` and `email`.
+All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria. The `contains` filter accepts a single string and returns any results that partially match (case-insensitively) a set of fields. For this query, the fields searched against are `name`, `patient_code` and `email`. `name` is a user's full name, if you wish to partial match on first or last name, then use the `search` filter rather than the `name` contains or equals filters.
 
 When specifying multiple filters, the resulting criteria is the conjuction of all filters.
 
@@ -77,6 +80,8 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
   {`
     {
       "search": "Henriet",
+      "name_contains": "Henriet",
+      "name_equals": "Henrietta Lacks",
       "national_registry_number": "{{ NRNN }}",
       "patient_code": "{{ PATIENT_CODE }}",
       "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
