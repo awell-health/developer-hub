@@ -95,7 +95,7 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 ### Pagination and sorting
 
-Pagination and sorting are required for this query. If no pagination values are supplied, the API will return only the first 10 patients, or 10 patients from the specified offset.
+Pagination and sorting are required for this query. If no pagination values are supplied, the API will return only the first 10 patients, or 10 patients from the specified offset. There is also an upper limit of 100 records per query. Please be aware that setting `count` greater than 100 will successfully execute but return only 100 records.
 
 Default sorting is based on the `last_name` field, sorted ascending. Only top-level patient profile fields can be used for sorting (e.g. `birth_date`, `sex`, `patient_code`).
 
