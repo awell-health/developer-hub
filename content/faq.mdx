@@ -72,6 +72,11 @@ showPlaygroundButton: false
       answer:
         'Penetration tests are scheduled every year and performed by an external party.',
     },
+     {
+      question: 'Could you give me some info on your disaster recovery/back up setup?',
+      answer:
+        'Our product is deployed on Google Kubernetes Engine, and we use regional clusters which already come with built in redundancy (3 zones per region). Adding another layer of redundancy (replicate the US deployment to different data centers for example) is on the technical roadmap but not available yet. We have daily backups in all environments, and the provisioning of new environments is fully automated so in the worst case scenario where a google data center is fully down we can create a new deployment in a different datacenter and be up and running with the latest backup in a day max (as defined in our ISMS disaster recovery policy), but realistically it can be as quick as one hour.',
+    },
     {
       question:
         'Do you require multi-factor authentication on all enterprise applications and production systems?',
