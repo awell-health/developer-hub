@@ -27,15 +27,24 @@ mutation SubmitFormResponse($input: SubmitFormResponseInput!) {
     "response": [
       {
         "question_id": "{{HEIGHT_QUESTION_ID}}",
-        "value": "183"
+        "value": "183" // String format
       },
       {
         "question_id": "{{WEIGHT_QUESTION_ID}}",
-        "value": "95"
+        "value": "95" // String format
       }
     ]
   }
 }
+```
+
+### Data format
+
+Please note that all data submitted to the Awell API need to be strings (see `value` field above). You can use a simple function like below to make sure all answer values you post to our API are indeed strings.
+
+```javascript
+const ensureString = (val) =>
+  typeof val === 'string' ? val : JSON.stringify(val)
 ```
 
 ### Specifying the user
