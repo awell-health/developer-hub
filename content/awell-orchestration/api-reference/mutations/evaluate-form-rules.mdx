@@ -57,14 +57,93 @@ mutation EvaluateFormRules($input: EvaluateFormRulesInput!) {
 }
 ```
 
-### Data format
+### Answer value format
 
-Please note that all data submitted to the Awell API need to be strings (see `value` field above). You can use a simple function like below to make sure all answer values you post to our API are indeed strings.
+**Given form responses are polymorphic, the value for a question should always be sent as a string.** Values are validated and deserialized on the Awell side and we will throw an error if a value cannot be converted to the corresponding data point value type.
 
-```javascript
-const ensureString = (val) =>
-  typeof val === 'string' ? val : JSON.stringify(val)
-```
+In the below table you find all question types and some example values for reference.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Question type</th>
+        <th>Data point value type</th>
+        <th>Value type to send</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Date</td>
+        <td>date</td>
+        <td>ISO8601 string</td>
+        <td>"2023-01-01"</td>
+      </tr>
+      <tr>
+        <td>Number</td>
+        <td>number</td>
+        <td>string</td>
+        <td>"10"</td>
+      </tr>
+      <tr>
+        <td>Short Text</td>
+        <td>string</td>
+        <td>string</td>
+        <td>"Awell is great"</td>
+      </tr>
+      <tr>
+        <td>Long Text</td>
+        <td>string</td>
+        <td>string</td>
+        <td>"A long story about why Awell is so great"</td>
+      </tr>
+      <tr>
+        <td>Multiple Choice</td>
+        <td>number</td>
+        <td>
+          string
+          <br /> (value of selected option)
+        </td>
+        <td>"1"</td>
+      </tr>
+      <tr>
+        <td>Multiple Select</td>
+        <td>numbers_array</td>
+        <td>
+          string
+          <br /> (array of values of the selected options)
+        </td>
+        <td>
+          "[1, 2, 4]"
+          <br />
+          "['1', '2', '4']"
+        </td>
+      </tr>
+      <tr>
+        <td>Slider</td>
+        <td>number</td>
+        <td>string</td>
+        <td>"50"</td>
+      </tr>
+      <tr>
+        <td>Yes/No</td>
+        <td>boolean</td>
+        <td>
+          string
+          <br /> (we accept different values for booleans)
+        </td>
+        <td>
+          "true" | "false"
+          <br /> "t" | "f"
+          <br /> "yes" | "no"
+          <br /> "y" | "n"
+          <br /> "1" | "0"
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Response
 
