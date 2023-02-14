@@ -38,11 +38,11 @@ mutation SubmitFormResponse($input: SubmitFormResponseInput!) {
 }
 ```
 
-### Answer value format
+### Serialization
 
-**Given form responses are polymorphic, the value for a question should always be sent as a string.** Values are validated and deserialized on the Awell side and we will throw an error if a value cannot be converted to the corresponding data point value type.
+**Given form responses are polymorphic, the answer value for a question should always be sent as a string.** Values are validated and deserialized on the Awell side and we will throw an error if a value does not match the corresponding data point value type.
 
-In the below table you find all question types and some example values for reference.
+In table below you can find an overview of all question types, their corresponding data point value type, and the value type you should be sending to the Awell API.
 
 <div className="table-wrapper">
   <table>
