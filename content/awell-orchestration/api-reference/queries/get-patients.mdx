@@ -7,6 +7,9 @@ description: Retrieve a list of patients in your organization
 
 ```graphql
 query GetPatients(
+  $search: String
+  $name_contains: String
+  $name_equals: String
   $patient_code: String
   $national_registry_number: String
   $profile_id: [String!]
@@ -17,6 +20,8 @@ query GetPatients(
 ) {
   patients(
     filters: {
+      search: { contains: $search }
+      name: { contains: $name_contains, eq: $name_equals }
       patient_code: { eq: $patient_code }
       national_registry_number: { eq: $national_registry_number }
       profile_id: { in: $profile_id }
@@ -67,41 +72,45 @@ query GetPatients(
 All filter values are optional, if you don't provide any filter all patients in your tenant will be returned.
 Sending an empty filter will result in a search for the matching field to be empty.
 
-All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria.
+All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria. The `contains` filter accepts a single string and returns any results that partially match (case-insensitively) a set of fields. For this query, the fields searched against are `name`, `patient_code` and `email`. `name` is a user's full name, if you wish to partial match on first or last name, then use the `search` filter rather than the `name` contains or equals filters.
 
 When specifying multiple filters, the resulting criteria is the conjuction of all filters.
 
 <code className="language-json" highlightedRows={[[2, 4]]}>
   {`
-  {
-    "national_registry_number": "{{ NRNN }}",
-    "patient_code": "{{ PATIENT_CODE }}",
-    "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
-    "offset": 0,
-    "count": 20,
-    "sort_field": "last_name",
-    "sort_direction": "desc"
-  }
+    {
+      "search": "Henriet",
+      "name_contains": "Henriet",
+      "name_equals": "Henrietta Lacks",
+      "national_registry_number": "{{ NRNN }}",
+      "patient_code": "{{ PATIENT_CODE }}",
+      "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
+      "offset": 0,
+      "count": 20,
+      "sort_field": "last_name",
+      "sort_direction": "desc"
+    }
   `}
 </code>
 
 ### Pagination and sorting
 
-Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
+Pagination and sorting are required for this query. If no pagination values are supplied, the API will return only the first 10 patients, or 10 patients from the specified offset. There is also an upper limit of 100 records per query. Please be aware that setting `count` greater than 100 will successfully execute but return only 100 records.
 
 Default sorting is based on the `last_name` field, sorted ascending. Only top-level patient profile fields can be used for sorting (e.g. `birth_date`, `sex`, `patient_code`).
 
 <code className="language-json" highlightedRows={[[5, 8]]}>
   {`
-  {
-    "national_registry_number": "{{ NRNN }}",
-    "patient_code": "{{ PATIENT_CODE }}",
-    "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
-    "offset": 0, // the number of records that need to be skipped
-    "count": 20,  // the number of results, also known as limit
-    "sort_field": "last_name",
-    "sort_direction": "desc"
-  }`}
+    {
+      "national_registry_number": "{{ NRNN }}",
+      "patient_code": "{{ PATIENT_CODE }}",
+      "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
+      "offset": 0, // the number of records that need to be skipped
+      "count": 20,  // the number of results, also known as limit
+      "sort_field": "last_name",
+      "sort_direction": "desc"
+    }`
+  }
 </code>
 
 ## How to use

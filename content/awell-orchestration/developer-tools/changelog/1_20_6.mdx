@@ -1,0 +1,20 @@
+---
+title: 1.20.6
+description: Changelog for release v1.20.6
+releaseDate: '2023-2-20'
+---
+
+## Breaking Change
+
+### New limits and defaults for paginated queries
+
+As of v1.20.6, we now impose limits and defaults for queries that support pagination. When using the impacted queries, we highly recommend that you start including pagination parameters immediately. If no pagination values are supplied, the API will return only the first 10 records, or 10 records from any specified offset. Existing queries will continue to work, but be aware that only the first 10 records will be returned, so if your logic relies on implicitly fetching more than 10 records at a time, then please update them to explicitly fetch the required number, up to other upper limit.
+
+On that note, there is now an upper limit of **100** records per query. Please be aware that setting `count` greater than 100 will successfully execute but return only 100 records. 
+
+The affected queries are:
+- [SearchActivities](awell-orchestration/api-reference/queries/search-activities)
+- [GetPathways](awell-orchestration/api-reference/queries/get-pathways)
+- [GetPatients](awell-orchestration/api-reference/queries/get-patients)
+
+If you have any questions or feedback about the impact of this change on you, please let us know.

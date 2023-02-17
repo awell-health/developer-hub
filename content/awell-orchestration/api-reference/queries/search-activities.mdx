@@ -55,7 +55,7 @@ query GetActivities(
         type
       }
       indirect_object {
-        id
+        id # typically the stakeholder id
         name
         type
       }
@@ -84,7 +84,7 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
     "activity_type": ["FORM", "MESSAGE"], // See ActivityObjectType enum
     "activity_status": ["DONE", "ACTIVE"], // See ActivityStatus enum
     "pathway_definition_id": ["{{ PATHWAY_DEFINITION_ID }}"],
-    "patient_id": "{{ PATIENT_ID }}",
+    "patient_id": "{{ PATIENT_ID }}",
     "offset": 0,
     "count": 20,
     "sort_field": "date",
@@ -95,9 +95,9 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 ### Pagination and sorting
 
-Pagination and sorting are highly recommended. Not using pagination means that the API will return all activities at once which will cause performance issues.
+Pagination and sorting are required for this query. If no pagination values are supplied, the API will return only the first 10 activities, or 10 activities from the specified offset. There is also an upper limit of 100 records per query. Please be aware that setting `count` greater than 100 will successfully execute but return only 100 records.
 
-Default sorting is based on the `date` field, sorted descendingly (i.e. newest to oldest).
+Default sorting is based on the `date` field, in descending order (i.e. newest to oldest).
 
 <code className="language-json" highlightedRows={[[7, 10]]}>
   {`
@@ -106,7 +106,7 @@ Default sorting is based on the `date` field, sorted descendingly (i.e. newest t
     "activity_type": ["FORM", "MESSAGE"], // See ActivityObjectType enum
     "activity_status": ["DONE", "ACTIVE"], // See ActivityStatus enum
     "pathway_definition_id": ["{{ PATHWAY_DEFINITION_ID }}"],
-    "patient_id": "{{ PATIENT_ID }}",
+    "patient_id": "{{ PATIENT_ID }}",
     "offset": 0,
     "count": 20,
     "sort_field": "date",

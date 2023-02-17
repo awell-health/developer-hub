@@ -86,7 +86,7 @@ When specifying multiple filters, the resulting criteria is the conjunction of a
 
 ### Pagination and sorting
 
-Pagination and sorting are highly recommended. Not using pagination means that the API will return all pathways at once which will cause performance issues.
+Pagination and sorting are required for this query. If no pagination values are supplied, the API will return only the first 10 care flows, or 10 care flows from any specified offset. There is also an upper limit of 100 records per query. Please be aware that setting `count` greater than 100 will successfully execute but return only 100 records.
 
 Default sorting is based on the `start_date` field, sorted from newest to oldest (i.e. descending).
 
