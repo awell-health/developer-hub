@@ -1696,7 +1696,10 @@ export type Swimlanes = {
 
 export type Tenant = {
   __typename?: 'Tenant';
+  accent_color: Scalars['String'];
+  hosted_page_title: Scalars['String'];
   is_default: Scalars['Boolean'];
+  logo_path: Scalars['String'];
   name: Scalars['String'];
 };
 

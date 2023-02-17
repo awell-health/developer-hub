@@ -27,16 +27,104 @@ mutation SubmitFormResponse($input: SubmitFormResponseInput!) {
     "response": [
       {
         "question_id": "{{HEIGHT_QUESTION_ID}}",
-        "value": "183"
+        "value": "183" // String format
       },
       {
         "question_id": "{{WEIGHT_QUESTION_ID}}",
-        "value": "95"
+        "value": "95" // String format
       }
     ]
   }
 }
 ```
+
+### Serialization
+
+**Given form responses are polymorphic, the answer value for a question should always be sent as a string.** Values are validated and deserialized on the Awell side and we will throw an error if a value does not match the corresponding data point value type.
+
+In table below you can find an overview of all question types, their corresponding data point value type, and the value type you should be sending to the Awell API.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Question type</th>
+        <th>Data point value type</th>
+        <th>Value type to send</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Date</td>
+        <td>date</td>
+        <td>ISO8601 string</td>
+        <td>"2023-01-01"</td>
+      </tr>
+      <tr>
+        <td>Number</td>
+        <td>number</td>
+        <td>string</td>
+        <td>"10"</td>
+      </tr>
+      <tr>
+        <td>Short Text</td>
+        <td>string</td>
+        <td>string</td>
+        <td>"Awell is great"</td>
+      </tr>
+      <tr>
+        <td>Long Text</td>
+        <td>string</td>
+        <td>string</td>
+        <td>"A long story about why Awell is so great"</td>
+      </tr>
+      <tr>
+        <td>Multiple Choice</td>
+        <td>number</td>
+        <td>
+          string
+          <br /> (value of selected option)
+        </td>
+        <td>"1"</td>
+      </tr>
+      <tr>
+        <td>Multiple Select</td>
+        <td>numbers_array</td>
+        <td>
+          string
+          <br /> (array of values of the selected options)
+        </td>
+        <td>
+          "[1, 2, 4]"
+          <br />
+          "['1', '2', '4']"
+        </td>
+      </tr>
+      <tr>
+        <td>Slider</td>
+        <td>number</td>
+        <td>string</td>
+        <td>"50"</td>
+      </tr>
+      <tr>
+        <td>Yes/No</td>
+        <td>boolean</td>
+        <td>
+          string
+          <br /> (we accept different values for booleans)
+        </td>
+        <td>
+          "true" | "false"
+          <br /> "t" | "f"
+          <br /> "yes" | "no"
+          <br /> "y" | "n"
+          <br /> "1" | "0"
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Specifying the user
 
@@ -94,4 +182,4 @@ The following input fields are available:
 
 ## How to use
 
-<HowToUse storyIds={['conversational-form', 'form-page']} />
+<HowToUse storyIds={['conversational-form', 'form']} />

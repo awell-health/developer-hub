@@ -85,3 +85,38 @@ To update the baseline info data points in an existing pathway, the request need
     </tbody>
   </table>
 </div>
+
+### Serialization
+
+**Given data point values are polymorphic, the value for a data point should always be sent as a string.** Values are validated and deserialized on the Awell side and we will throw an error if a value does not match the corresponding data point value type.
+
+In table below you can find an overview of all baseline data point types and the value type you should be sending to the Awell API.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Data point value type</th>
+        <th>Value type to send</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>date</td>
+        <td>ISO8601 string</td>
+        <td>"2023-01-01"</td>
+      </tr>
+      <tr>
+        <td>number</td>
+        <td>string</td>
+        <td>"10"</td>
+      </tr>
+      <tr>
+        <td>string</td>
+        <td>string</td>
+        <td>"Awell is great"</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
