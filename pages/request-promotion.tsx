@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { SEO } from '@/components/SEO'
+import { Space } from '@/types/space.types'
 
 export default function RequestPromotion() {
   const [apiStatus, setApiStatus] = useState<'success' | 'fail' | null>(null)
@@ -17,7 +18,10 @@ export default function RequestPromotion() {
 
   useEffect(() => {
     if (setValue) {
-      setValue('from_source_to_destination_environment', 'Sandbox to Production')
+      setValue(
+        'from_source_to_destination_environment',
+        'Sandbox to Production'
+      )
     }
   }, [setValue])
 
@@ -241,24 +245,26 @@ export default function RequestPromotion() {
                 </div>
 
                 <div>
-                    <label
-                      htmlFor="comments"
-                      className="block text-base font-semibold text-slate-700"
-                    >
-                      Any other comments
-                    </label>
-                    <p className="text-sm text-slate-500">
-                      Please include any additional context here for this request, such as if you are interested in promoting to a region-specific production environment (e.g. US or EU).
-                    </p>
-                    <div className="mt-1">
-                      <textarea
-                        id="comments"
-                        {...register('comments', { required: false })}
-                        rows={3}
-                        className="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-slate-700"
-                      ></textarea>
-                    </div>
+                  <label
+                    htmlFor="comments"
+                    className="block text-base font-semibold text-slate-700"
+                  >
+                    Any other comments
+                  </label>
+                  <p className="text-sm text-slate-500">
+                    Please include any additional context here for this request,
+                    such as if you are interested in promoting to a
+                    region-specific production environment (e.g. US or EU).
+                  </p>
+                  <div className="mt-1">
+                    <textarea
+                      id="comments"
+                      {...register('comments', { required: false })}
+                      rows={3}
+                      className="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-slate-700"
+                    ></textarea>
                   </div>
+                </div>
 
                 <div>
                   <button
@@ -272,7 +278,9 @@ export default function RequestPromotion() {
             )}
           </div>
           <div className="mt-4 text-center">
-            <Link href="/awell-orchestration/docs/going-live/sandbox-to-production-promotion-guide">
+            <Link
+              href={`/${Space.AWELL_ORCHESTRATION}/docs/going-live/sandbox-to-production-promotion-guide`}
+            >
               <a
                 title="Back to the Developer Hub"
                 className="text-blue-600 text-base"

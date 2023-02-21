@@ -3,6 +3,7 @@ import 'graphiql/graphiql.css'
 import { createGraphiQLFetcher } from '@graphiql/toolkit'
 
 import { SEO } from '@/components/SEO'
+import { Space } from '@/types/space.types'
 
 import { defaultQuery } from '../../src/config/graphiql/graphiql'
 import { useGraphQLSchema } from '../../src/hooks/useGraphQLSchema'
@@ -27,8 +28,8 @@ export default function Playground() {
     <div id="graphql-embed" className="h-screen">
       <SEO
         title="GraphQL Playground"
-        url={`/awell-orchestration/developer-tools/playground`}
-        canonicalUrl={`/awell-orchestration/developer-tools/playground`}
+        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/playground`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/playground`}
       />
       <GraphiQL
         schema={schema}

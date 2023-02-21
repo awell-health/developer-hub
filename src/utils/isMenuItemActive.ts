@@ -1,3 +1,5 @@
+import { Space } from '@/types/space.types'
+
 export const isMenuItemActive = (
   menuItemPath: string,
   pathName: string,
@@ -11,7 +13,8 @@ export const isMenuItemActive = (
   /** Hacky solution to have active link when viewing release page */
   if (
     /** Don't use includes() here as it caused a client error in production */
-    menuItemPath === '/awell-orchestration/developer-tools/changelog' &&
+    menuItemPath ===
+      `/${Space.AWELL_ORCHESTRATION}/developer-tools/changelog` &&
     pathName.includes('changelog')
   ) {
     return true

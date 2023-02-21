@@ -549,8 +549,10 @@ export type FilterPatients = {
 
 export type Form = {
   __typename?: 'Form';
+  definition_id: Scalars['String'];
   id: Scalars['ID'];
   questions: Array<Question>;
+  release_id: Scalars['String'];
   title: Scalars['String'];
 };
 
@@ -1295,10 +1297,12 @@ export type QueryWebhookCallsForPathwayDefinitionArgs = {
 export type Question = {
   __typename?: 'Question';
   dataPointValueType?: Maybe<DataPointValueType>;
+  definition_id: Scalars['String'];
   id: Scalars['ID'];
   options?: Maybe<Array<Option>>;
   questionConfig?: Maybe<QuestionConfig>;
   questionType?: Maybe<QuestionType>;
+  release_id: Scalars['String'];
   rule?: Maybe<Rule>;
   title: Scalars['String'];
   userQuestionType?: Maybe<UserQuestionType>;

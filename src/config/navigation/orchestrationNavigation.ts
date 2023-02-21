@@ -1,20 +1,27 @@
 import { MainNavType } from '@/types/nav.types'
+import { Space } from '@/types/space.types'
+
+import { rootRoutes } from '../routes'
 
 export const orchestrationNavigation: MainNavType = [
-  { title: 'Home', slug: '/awell-orchestration', activeSlugCheck: 'home' },
+  {
+    title: 'Home',
+    slug: rootRoutes[Space.AWELL_ORCHESTRATION].home,
+    activeSlugCheck: Space.AWELL_ORCHESTRATION,
+  },
   {
     title: 'Docs',
-    slug: '/awell-orchestration/docs/getting-started/what-is-awell-orchestration',
+    slug: rootRoutes[Space.AWELL_ORCHESTRATION].docs,
     activeSlugCheck: 'docs',
   },
   {
     title: 'API reference',
-    slug: '/awell-orchestration/api-reference/overview/endpoints',
+    slug: rootRoutes[Space.AWELL_ORCHESTRATION].api,
     activeSlugCheck: 'api-reference',
   },
   {
     title: 'Developer tools',
-    slug: '/awell-orchestration/developer-tools/changelog',
+    slug: rootRoutes[Space.AWELL_ORCHESTRATION].developerTools,
     activeSlugCheck: 'developer-tools',
   },
 ]

@@ -8,6 +8,7 @@ import { DocsHeader } from '@/components/Docs/atoms'
 import { DocsLayout } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
+import { Space } from '@/types/space.types'
 
 import { mdxComponents, mdxOptions } from '../../../src/config/mdx'
 import { AppContext } from '../../../src/contexts/app/AppContext'
@@ -50,8 +51,8 @@ export default function ApiPage({
       <SEO
         title={frontMatter.title}
         description={frontMatter.description}
-        url={`/awell-orchestration/api-reference/${slug}`}
-        canonicalUrl={`/awell-orchestration/api-reference/${slug}`}
+        url={`/${Space.AWELL_ORCHESTRATION}/api-reference/${slug}`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/api-reference/${slug}`}
       />
       {heading && (
         <DocsHeader
@@ -59,7 +60,7 @@ export default function ApiPage({
           title={frontMatter.title}
           description={frontMatter.description}
           badge={badge}
-          githubUrl={`/content/awell-orchestration/api-reference/${slug}.mdx`}
+          githubUrl={`/content/${Space.AWELL_ORCHESTRATION}/api-reference/${slug}.mdx`}
           postman={{
             showPostmanButton: frontMatter.showPostmanButton !== false,
           }}

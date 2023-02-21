@@ -19,11 +19,18 @@ async function getAllPages() {
     const source = fs.readFileSync(path.join(CONTENT_PATH, filePath))
     const { content, data } = matter(source)
 
-    const space = filePath.includes('awell-orchestration')
-      ? 'Awell Orchestration'
-      : filePath.includes('awell-score')
-      ? 'Awell Score'
-      : 'Generic'
+    let space = 'Generic'
+
+    switch (true) {
+      case filePath.includes('awell-orchestration'):
+        space = 'Awell Orchestration'
+        break
+      case filePath.includes('awell-score'):
+        space = 'Awell Score'
+        break
+      default:
+        break
+    }
 
     return {
       space,

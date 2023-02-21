@@ -1,3 +1,5 @@
+import { Space } from '@/types/space.types'
+
 import { type MenuItemType } from '../../../types/menu.types'
 
 export const docsMenu: MenuItemType[] = [
@@ -6,23 +8,23 @@ export const docsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'What is Awell Orchestration?',
-        path: '/awell-orchestration/docs/getting-started/what-is-awell-orchestration',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/what-is-awell-orchestration`,
       },
       {
         title: 'Design & Orchestrate care flows',
-        path: '/awell-orchestration/docs/getting-started/design-and-orchestrate-care-flows',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/design-and-orchestrate-care-flows`,
       },
       {
         title: 'Awell ecosystem',
-        path: '/awell-orchestration/docs/getting-started/awell-ecosystem',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/awell-ecosystem`,
       },
       {
         title: 'Domain model',
-        path: '/awell-orchestration/docs/getting-started/domain-model',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/domain-model`,
       },
       {
         title: 'Pathway versioning',
-        path: '/awell-orchestration/docs/getting-started/pathway-versioning',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/pathway-versioning`,
       },
     ],
   },
@@ -31,15 +33,15 @@ export const docsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'Overview',
-        path: '/awell-orchestration/docs/operate-and-manage-care-flows/overview-care',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows/overview-care`,
       },
       {
         title: 'Awell Platform',
-        path: '/awell-orchestration/docs/operate-and-manage-care-flows/awell-platform-care',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows/awell-platform-care`,
       },
       {
         title: 'Build Your Own UI',
-        path: '/awell-orchestration/docs/operate-and-manage-care-flows/build-your-own-ui-care',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows/build-your-own-ui-care`,
       },
     ],
   },
@@ -48,33 +50,33 @@ export const docsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'Overview',
-        path: '/awell-orchestration/docs/activities/overview-activities',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/overview-activities`,
       },
       {
         title: 'Awell Hosted Pages',
-        path: '/awell-orchestration/docs/activities/awell-hosted-pages',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages`,
         submenu: [
           {
             title: 'What are Awell Hosted Pages?',
-            path: '/awell-orchestration/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages`,
           },
           {
             title: 'Hosted Pathway guide',
-            path: '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`,
           },
           {
             title: 'Hosted Activity guide',
-            path: '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-activity-guide`,
           },
         ],
       },
       {
         title: 'Awell Platform',
-        path: '/awell-orchestration/docs/activities/awell-platform-activities',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-platform-activities`,
       },
       {
         title: 'Build Your Own UI',
-        path: '/awell-orchestration/docs/activities/build-your-own-ui-activities',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/build-your-own-ui-activities`,
       },
     ],
   },
@@ -83,33 +85,33 @@ export const docsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'Overview',
-        path: '/awell-orchestration/docs/data/overview-data',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/overview-data`,
       },
       {
         title: 'Webhooks & events',
-        path: '/awell-orchestration/docs/data/webhooks-and-events',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/webhooks-and-events`,
       },
       {
         title: 'Data repository',
-        path: '/awell-orchestration/docs/data/data-repository',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/data-repository`,
       },
       {
         title: 'Kibana',
-        path: '/awell-orchestration/docs/data/create-dashboards',
+        path: '/${Space.AWELL_ORCHESTRATION}/docs/data/create-dashboards',
         submenu: [
           {
             title: 'Introduction',
-            path: '/awell-orchestration/docs/data/kibana/introduction',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/data/kibana/introduction`,
           },
           {
             title: 'Create dashboards',
-            path: '/awell-orchestration/docs/data/kibana/create-dashboards',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/data/kibana/create-dashboards`,
           },
         ],
       },
       {
         title: 'Healthcare interoperability',
-        path: '/awell-orchestration/docs/data/healthcare-interoperability',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/healthcare-interoperability`,
       },
     ],
   },
@@ -118,11 +120,11 @@ export const docsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'Preflight checklist',
-        path: '/awell-orchestration/docs/going-live/preflight-checklist',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/going-live/preflight-checklist`,
       },
       {
         title: 'Sandbox to production promotion guide',
-        path: '/awell-orchestration/docs/going-live/sandbox-to-production-promotion-guide',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/going-live/sandbox-to-production-promotion-guide`,
       },
     ],
   },

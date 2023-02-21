@@ -3,6 +3,11 @@ import {
   orchestrationDeveloperToolsMenu,
   orchestrationDocsMenu,
 } from '@/config/menus/awell-orchestration'
+import {
+  pluginsApiMenu,
+  pluginsDeveloperToolsMenu,
+  pluginsDocsMenu,
+} from '@/config/menus/awell-plugins'
 import { scoreDocsMenu } from '@/config/menus/awell-score'
 import { BadgeType } from '@/types/menu.types'
 
@@ -20,9 +25,12 @@ interface useMenusHook {
 
 export const useMenus = (): useMenusHook => {
   const menus = [
-    ...orchestrationApiMenu,
     ...orchestrationDocsMenu,
+    ...orchestrationApiMenu,
     ...orchestrationDeveloperToolsMenu,
+    ...pluginsDocsMenu,
+    ...pluginsApiMenu,
+    ...pluginsDeveloperToolsMenu,
     ...scoreDocsMenu,
   ]
 

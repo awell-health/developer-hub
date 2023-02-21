@@ -1,22 +1,29 @@
 import Link from 'next/link'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
-import { orchestrationNavigation } from '@/config/navigation'
+import { orchestrationNavigation, scoreNavigation } from '@/config/navigation'
+import { pluginsNavigation } from '@/config/navigation/pluginsNavigation'
 import { MainNavType } from '@/types/nav.types'
+import { Space } from '@/types/space.types'
 
 import { AppContext } from '../../contexts/app/AppContext'
 import { ThemeSelect } from '../ThemeToggle'
 
 export const MobileNav = () => {
+  const [navigation, setNavigation] = useState<MainNavType>([])
+
   const { space, isMobileMainMenuOpen, toggleMobileMainMenu } =
     useContext(AppContext)
 
-  let navigation: MainNavType = []
-
-  if (space === 'awell-orchestration') {
-    navigation = orchestrationNavigation
-  } else {
-  }
+  useEffect(() => {
+    if (space === Space.AWELL_ORCHESTRATION) {
+      setNavigation(orchestrationNavigation)
+    } else if (space === Space.AWELL_SCORE) {
+      setNavigation(scoreNavigation)
+    } else if (space === Space.AWELL_PLUGINS) {
+      setNavigation(pluginsNavigation)
+    }
+  }, [space])
 
   if (!isMobileMainMenuOpen) return null
 
@@ -56,7 +63,7 @@ export const MobileNav = () => {
         </button>
         <ul className="space-y-6">
           {navigation.map((navItem) => (
-            <li key={navItem.slug}>
+            <li key={`${space}-${navItem.slug}`}>
               <Link href={navItem.slug}>
                 <a
                   className="hover:text-sky-500 dark:hover:text-sky-400"
@@ -67,37 +74,41 @@ export const MobileNav = () => {
               </Link>
             </li>
           ))}
-          <li>
-            <Link href="/faq">
-              <a
-                className="hover:text-sky-500 dark:hover:text-sky-400"
-                title="FAQ"
-              >
-                FAQ
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/system-status">
-              <a
-                className="hover:text-sky-500 dark:hover:text-sky-400"
-                title="System status"
-              >
-                System status
-              </a>
-            </Link>
-          </li>
-          <li>
-            <a
-              href="https://awell.health"
-              target="_blank"
-              title="Awell website"
-              className="hover:text-sky-500 dark:hover:text-sky-400"
-              rel="noreferrer"
-            >
-              Awell Website
-            </a>
-          </li>
+          {space === Space.AWELL_ORCHESTRATION && (
+            <>
+              <li>
+                <Link href="/faq">
+                  <a
+                    className="hover:text-sky-500 dark:hover:text-sky-400"
+                    title="FAQ"
+                  >
+                    FAQ
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/system-status">
+                  <a
+                    className="hover:text-sky-500 dark:hover:text-sky-400"
+                    title="System status"
+                  >
+                    System status
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://awell.health"
+                  target="_blank"
+                  title="Awell website"
+                  className="hover:text-sky-500 dark:hover:text-sky-400"
+                  rel="noreferrer"
+                >
+                  Awell Website
+                </a>
+              </li>
+            </>
+          )}
         </ul>
         <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-200/10">
           <ThemeSelect />

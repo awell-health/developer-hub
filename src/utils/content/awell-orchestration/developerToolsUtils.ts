@@ -3,11 +3,13 @@ import glob from 'glob'
 import matter from 'gray-matter'
 import { join } from 'path'
 
+import { Space } from '@/types/space.types'
+
 import { DocType } from '../../../types/doc.types'
 
 const API_REFERENCE_PATH = join(
   process.cwd(),
-  'content/awell-orchestration/developer-tools'
+  `content/${Space.AWELL_ORCHESTRATION}/developer-tools`
 )
 
 export const getDeveloperToolsPage = (slug: string): DocType => {

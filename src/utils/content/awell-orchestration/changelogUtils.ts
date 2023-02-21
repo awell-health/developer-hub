@@ -3,11 +3,13 @@ import glob from 'glob'
 import matter from 'gray-matter'
 import { join } from 'path'
 
+import { Space } from '@/types/space.types'
+
 import { ChangelogType } from '../../../types/changelog.types'
 
 const CHANGELOG_PATH = join(
   process.cwd(),
-  'content/awell-orchestration/developer-tools/changelog'
+  `content/${Space.AWELL_ORCHESTRATION}/developer-tools/changelog`
 )
 
 export const getReleaseChangelog = (slug: string): ChangelogType => {

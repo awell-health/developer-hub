@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 
 import { HomeLayout } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
+import { Space } from '@/types/space.types'
 
 const getStartedItems = [
   {
@@ -11,26 +12,26 @@ const getStartedItems = [
     name: 'Introduction & Core concepts',
     description:
       'If you are new to Awell and care flows, familiarize yourself with our core concepts in the introduction',
-    href: '/awell-orchestration/docs/getting-started/what-is-awell-orchestration',
+    href: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/what-is-awell-orchestration`,
   },
   {
     id: 2,
     name: 'Quickstart',
     description: 'You want to get up and running? Head over to the Quickstart',
-    href: '/awell-orchestration/docs/getting-started/design-and-orchestrate-care-flows',
+    href: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/design-and-orchestrate-care-flows`,
   },
   {
     id: 3,
     name: 'Integration options',
     description:
       'Curious to understand the different ways to integrate with Awell? Click on the options below.',
-    href: '#integrate-with-awell',
+    href: `#integrate-with-awell`,
   },
 ]
 
 const domains = [
   {
-    url: '/awell-orchestration/docs/operate-and-manage-care-flows/overview-care',
+    url: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows/overview-care`,
     title: 'Operate and manage care flows',
     icon: (
       <svg
@@ -50,7 +51,7 @@ const domains = [
       'Manage your care flows on organization level, see who needs attention and coordinate care efficiently.',
   },
   {
-    url: '/awell-orchestration/docs/activities/overview-activities',
+    url: `/${Space.AWELL_ORCHESTRATION}/docs/activities/overview-activities`,
     title: 'Interact with activities',
     icon: (
       <svg
@@ -70,7 +71,7 @@ const domains = [
       'Set up how stakeholders like patients, doctors and other care team members interact with activities in a care flow.',
   },
   {
-    url: '/awell-orchestration/docs/data/overview-data',
+    url: `/${Space.AWELL_ORCHESTRATION}/docs/data/overview-data`,
     title: 'Get data and events out',
     icon: (
       <svg

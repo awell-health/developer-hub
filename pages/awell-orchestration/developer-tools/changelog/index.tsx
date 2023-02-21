@@ -7,6 +7,7 @@ import { DocsLayoutWithoutToc } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
 import { useQuickNavigation } from '@/hooks/useQuickNavigation'
+import { Space } from '@/types/space.types'
 import { getAllOrchestrationReleasesChangelogs } from '@/utils/content/awell-orchestration'
 
 type ChangelogPageProps = {
@@ -40,8 +41,8 @@ export default function ChangelogPage({ releases }: ChangelogPageProps) {
       <SEO
         title="Changelog"
         description="An overview of all releases and their changelog"
-        url={`/awell-orchestration/developer-tools/changelog`}
-        canonicalUrl={`/awell-orchestration/developer-tools/changelog`}
+        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/changelog`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/changelog`}
       />
       <div className="max-w-3xl mx-auto xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16">
         <DocsHeader

@@ -3,9 +3,14 @@ import glob from 'glob'
 import matter from 'gray-matter'
 import { join } from 'path'
 
+import { Space } from '@/types/space.types'
+
 import { DocType } from '../../../types/doc.types'
 
-const DOCS_PATH = join(process.cwd(), 'content/awell-orchestration/docs')
+const DOCS_PATH = join(
+  process.cwd(),
+  `content/${Space.AWELL_ORCHESTRATION}/docs`
+)
 
 export const getDoc = (slug: string): DocType => {
   const fullPath = join(DOCS_PATH, `${slug}.mdx`)

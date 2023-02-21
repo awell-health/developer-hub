@@ -3,14 +3,15 @@ import { ReactNode } from 'react'
 import { DocsHeader } from '@/components/Docs/atoms'
 import { DocsLayoutWithoutToc } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
+import { Space } from '@/types/space.types'
 
 export default function Community() {
   return (
     <div>
       <SEO
         title="Support"
-        url={`/awell-score/support`}
-        canonicalUrl={`/awell-score/support`}
+        url={`/${Space.AWELL_SCORE}/support`}
+        canonicalUrl={`/${Space.AWELL_SCORE}/support`}
       />
       <DocsHeader heading="Support" title="Help when you need it" />
       <div id="content-wrapper">

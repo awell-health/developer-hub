@@ -6,6 +6,7 @@ import { CodeBlock } from '@/components/CodeTabs/atoms'
 import { HomeLayout } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
 import { Effort } from '@/components/UseCasesComparisonTable/atoms/Effort'
+import { Space } from '@/types/space.types'
 
 export default function Home() {
   return (
@@ -43,7 +44,7 @@ export default function Home() {
               <div className="mt-4">
                 <LinkButton
                   label="Discover the API"
-                  href="/awell-score/docs/getting-started/playground"
+                  href={`/${Space.AWELL_SCORE}/docs/getting-started/playground`}
                   size="base"
                   color="sky"
                 />
