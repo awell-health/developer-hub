@@ -3,17 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "generate-types": "graphql-codegen --config codegen.js",
+    "prebuild": "npm run generate-types",
     "build": "next build",
     "postbuild": "node ./scripts/build-algolia-search/build-algolia-search.js",
     "start": "next start",
+    "predev": "npm run generate-types",
+    "dev": "next dev",
+    "pre-commit": "npm run generate-types && npm run ts && next lint --fix",
+    "prepare": "husky install",
     "ts": "tsc --noEmit --incremental",
     "lint": "next lint",
-    "prepare": "husky install",
-    "pre-commit": "npm run generate-types && npm run ts && next lint --fix",
-    "generate-types": "graphql-codegen --config codegen.yml",
-    "prebuild": "npm run generate-types",
-    "predev": "npm run generate-types"
+    "clean": "rm -rf ./.next && rm ./tsconfig.tsbuildinfo"
+
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.5.6",
@@ -47,8 +49,6 @@
     "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "2.6.2",
-    "@graphql-codegen/typescript": "2.4.8",
     "@graphql-codegen/typescript-operations": "2.3.5",
     "@graphql-codegen/typescript-react-apollo": "3.2.11",
     "@tailwindcss/forms": "^0.5.0",
