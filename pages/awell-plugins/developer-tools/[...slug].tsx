@@ -12,8 +12,8 @@ import { mdxComponents, mdxOptions } from '@/config/mdx'
 import { AppContext } from '@/contexts/app/AppContext'
 import { Space } from '@/types/space.types'
 import {
-  getAllDeveloperToolsPages,
-  getDeveloperToolsPage,
+  getAllPluginsDeveloperToolsPages,
+  getPluginsDeveloperToolsPage,
 } from '@/utils/content/awell-plugins'
 
 import { useBadge, useHeading, useQuickNavigation } from '../../../src/hooks'
@@ -83,7 +83,9 @@ interface Iparams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params as Iparams
   const slugString = slug.join('/')
-  const { frontMatter, content } = await getDeveloperToolsPage(slugString)
+  const { frontMatter, content } = await getPluginsDeveloperToolsPage(
+    slugString
+  )
 
   // https://github.com/hashicorp/next-mdx-remote/issues/86
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -101,7 +103,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const docs = getAllDeveloperToolsPages()
+  const docs = getAllPluginsDeveloperToolsPages()
 
   const paths = docs.map((doc) => ({
     params: {

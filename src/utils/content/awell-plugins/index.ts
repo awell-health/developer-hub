@@ -1,12 +1,12 @@
 export {
-  getAllApiDocs as getAllOrchestrationApiDocs,
-  getApiDoc as getOrchestrationApiDoc,
+  getAllApiDocs as getAllPluginsApiDocs,
+  getApiDoc as getPluginsApiDoc,
 } from './apiReferenceUtils'
 export {
-  getAllDeveloperToolsPages,
-  getDeveloperToolsPage,
+  getAllDeveloperToolsPages as getAllPluginsDeveloperToolsPages,
+  getDeveloperToolsPage as getPluginsDeveloperToolsPage,
 } from './developerToolsUtils'
 export {
-  getAllDocs as getAllOrchestrationDocs,
-  getDoc as getOrchestrationDoc,
+  getAllDocs as getAllPluginsDocs,
+  getDoc as getPluginsDoc,
 } from './docsUtils'
