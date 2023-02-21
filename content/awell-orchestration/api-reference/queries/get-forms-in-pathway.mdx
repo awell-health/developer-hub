@@ -41,11 +41,14 @@ query GetFormsForPublishedPathway(
     release_id: $release_id
   ) {
     forms {
-      id
+      id # static id from Studio
+      definition_id
       title
+      key
       questions {
         id
-        title
+        definition_id # static id from Studio
+        title # string or html string (for description questions)
         dataPointValueType
         questionType
         options {
@@ -58,8 +61,7 @@ query GetFormsForPublishedPathway(
           boolean_operator
           conditions {
             id
-            reference
-            reference_key
+            reference # definition id of the question this condition is based on
             operator
             operand {
               type

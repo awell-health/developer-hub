@@ -20,11 +20,14 @@ Forms in Awell can have questions with display / visibility logic. Meaning that 
 query GetForm($id: String!) {
   form(id: $id) {
     form {
-      id
+      id # static id from Studio
+      definition_id
       title
+      key
       questions {
         id
-        title
+        definition_id # static id from Studio
+        title # string or html string (for description questions)
         dataPointValueType
         questionType
         options {
@@ -37,8 +40,7 @@ query GetForm($id: String!) {
           boolean_operator
           conditions {
             id
-            reference
-            reference_key
+            reference # definition id of the question this condition is based on
             operator
             operand {
               type
