@@ -11,7 +11,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** Safe date scalar that can serialize string or date */
   SafeDate: any;
 };
 
@@ -360,11 +359,9 @@ export type CreatePatientInput = {
   sex?: InputMaybe<Sex>;
 };
 
-export type CreatePatientPayload = Payload & {
+export type CreatePatientPayload = {
   __typename?: 'CreatePatientPayload';
-  code: Scalars['String'];
   patient?: Maybe<User>;
-  success: Scalars['Boolean'];
 };
 
 export type DataPointDefinition = {
@@ -510,11 +507,9 @@ export type EvaluateFormRulesInput = {
   form_id: Scalars['String'];
 };
 
-export type EvaluateFormRulesPayload = Payload & {
+export type EvaluateFormRulesPayload = {
   __typename?: 'EvaluateFormRulesPayload';
-  code: Scalars['String'];
   results: Array<QuestionRuleResult>;
-  success: Scalars['Boolean'];
 };
 
 export type FilterActivitiesParams = {
@@ -555,7 +550,6 @@ export type Form = {
   __typename?: 'Form';
   definition_id: Scalars['String'];
   id: Scalars['ID'];
-  key: Scalars['String'];
   questions: Array<Question>;
   release_id: Scalars['String'];
   title: Scalars['String'];
@@ -573,11 +567,9 @@ export type FormResponse = {
   answers: Array<Answer>;
 };
 
-export type FormResponsePayload = Payload & {
+export type FormResponsePayload = {
   __typename?: 'FormResponsePayload';
-  code: Scalars['String'];
   response: FormResponse;
-  success: Scalars['Boolean'];
 };
 
 export type FormattedText = {
@@ -672,11 +664,9 @@ export type MarkMessageAsReadInput = {
   activity_id: Scalars['String'];
 };
 
-export type MarkMessageAsReadPayload = Payload & {
+export type MarkMessageAsReadPayload = {
   __typename?: 'MarkMessageAsReadPayload';
   activity: Activity;
-  code: Scalars['String'];
-  success: Scalars['Boolean'];
 };
 
 export type Message = {
@@ -1308,10 +1298,10 @@ export type Question = {
   dataPointValueType?: Maybe<DataPointValueType>;
   definition_id: Scalars['String'];
   id: Scalars['ID'];
-  key: Scalars['String'];
   options?: Maybe<Array<Option>>;
   questionConfig?: Maybe<QuestionConfig>;
   questionType?: Maybe<QuestionType>;
+  release_id: Scalars['String'];
   rule?: Maybe<Rule>;
   title: Scalars['String'];
   userQuestionType?: Maybe<UserQuestionType>;
@@ -1554,11 +1544,9 @@ export type SubmitFormResponseInput = {
   response: Array<QuestionResponseInput>;
 };
 
-export type SubmitFormResponsePayload = Payload & {
+export type SubmitFormResponsePayload = {
   __typename?: 'SubmitFormResponsePayload';
   activity: Activity;
-  code: Scalars['String'];
-  success: Scalars['Boolean'];
 };
 
 export type Subscription = {
