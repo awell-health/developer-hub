@@ -1,9 +1,9 @@
 ---
 title: Search patients
-description: Search patients on patient code or national registry number
+description: Search patients by patient code or national registry number
 ---
 
-Search for a patient in your tenant by patient code or national registry number. The search is done via an exact text match.
+Search for a patient in your tenant by patient code or national registry number. The search is done via an exact text match, and returns up to 100 matches. If you require a more powerful search then consider the [patients](/awell-orchestration/api-reference/queries/get-patients) query.
 
 ### Query
 
@@ -19,7 +19,7 @@ query SearchPatientsByPatientCode($patient_code: String!) {
 }
 ```
 
-Search by national regsitry number:
+Search by national registry number:
 
 ```graphql
 query SearchPatientsByNationalRegistryNumber(
