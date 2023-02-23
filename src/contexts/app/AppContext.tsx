@@ -2,14 +2,14 @@ import { useRouter } from 'next/router'
 import React, { ReactNode, useCallback, useEffect, useState } from 'react'
 import slugify from 'slugify'
 
-import { SpaceType } from '@/types/space.types'
+import { Space } from '@/types/space.types'
 
 import { type MenuType } from '../../types/menu.types'
 import { TableOfContentsType } from '../../types/toc.types'
 
 interface AppContextStateType {
   menu: MenuType
-  space: SpaceType
+  space: Space
   isMobileSideMenuOpen: boolean
   isMobileMainMenuOpen: boolean
   setMenu: (menu: MenuType) => void
@@ -24,7 +24,7 @@ interface AppContextStateType {
 
 const initialState: AppContextStateType = {
   menu: [],
-  space: 'awell-orchestration',
+  space: Space.AWELL_ORCHESTRATION,
   isMobileSideMenuOpen: false,
   isMobileMainMenuOpen: false,
   setMenu: () => null,
@@ -115,12 +115,14 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   }, [hideMenu, router.events])
 
   useEffect(() => {
-    if (router.asPath.includes('awell-orchestration')) {
-      setSpace('awell-orchestration')
-    } else if (router.asPath.includes('awell-score')) {
-      setSpace('awell-score')
+    if (router.asPath.includes(Space.AWELL_ORCHESTRATION)) {
+      setSpace(Space.AWELL_ORCHESTRATION)
+    } else if (router.asPath.includes(Space.AWELL_SCORE)) {
+      setSpace(Space.AWELL_SCORE)
+    } else if (router.asPath.includes(Space.AWELL_PLUGINS)) {
+      setSpace(Space.AWELL_PLUGINS)
     } else {
-      const DEFAULT_SPACE = 'awell-orchestration'
+      const DEFAULT_SPACE = Space.AWELL_ORCHESTRATION
       setSpace(DEFAULT_SPACE)
     }
   }, [router.asPath])

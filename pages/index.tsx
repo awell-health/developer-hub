@@ -1,3 +1,5 @@
+import { Space } from '@/types/space.types'
+
 export default function Home() {
   return <div />
 }
@@ -5,7 +7,7 @@ export default function Home() {
 export async function getServerSideProps() {
   return {
     redirect: {
-      destination: '/awell-orchestration',
+      destination: `/${Space.AWELL_ORCHESTRATION}`,
       permanent: false,
     },
   }

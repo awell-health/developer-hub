@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { orchestrationNavigation, scoreNavigation } from '@/config/navigation'
+import { pluginsNavigation } from '@/config/navigation/pluginsNavigation'
 import { MainNavType } from '@/types/nav.types'
+import { Space } from '@/types/space.types'
 
 import { AppContext } from '../../contexts/app/AppContext'
 import { Badge } from '../Badge'
@@ -14,7 +16,7 @@ import { ThemeToggle } from '../ThemeToggle'
 
 const MobileMainMenu = ({ onClick }: { onClick: () => void }) => {
   return (
-    <div className="ml-2 -my-1 lg:hidden ml-auto">
+    <div className="ml-2 -my-1 lg:hidden lg:ml-auto">
       <button
         type="button"
         onClick={() => onClick()}
@@ -37,15 +39,19 @@ const MobileMainMenu = ({ onClick }: { onClick: () => void }) => {
 
 export const Header = () => {
   const router = useRouter()
+  const [navigation, setNavigation] = useState<MainNavType>([])
   const { menu, space, toggleMobileSideMenu, toggleMobileMainMenu } =
     useContext(AppContext)
-  let navigation: MainNavType = []
 
-  if (space === 'awell-orchestration') {
-    navigation = orchestrationNavigation
-  } else {
-    navigation = scoreNavigation
-  }
+  useEffect(() => {
+    if (space === Space.AWELL_ORCHESTRATION) {
+      setNavigation(orchestrationNavigation)
+    } else if (space === Space.AWELL_SCORE) {
+      setNavigation(scoreNavigation)
+    } else if (space === Space.AWELL_PLUGINS) {
+      setNavigation(pluginsNavigation)
+    }
+  }, [space])
 
   return (
     <>
@@ -82,10 +88,10 @@ export const Header = () => {
                 <SpaceSwitcher />
               </div>
               <div className="flex ml-auto">
-                <div className="md:w-56">
+                <div className="flex items-center lg:w-56 lg:block">
                   <Search />
                 </div>
-                <div className="ml-4">
+                <div className="ml-4 hidden sm:block">
                   <LinkButton
                     label="Get API keys"
                     href="/request-api-keys"
@@ -134,11 +140,11 @@ export const Header = () => {
                   {navigation.map((navItem) => {
                     const isNavItemActive =
                       navItem.title === 'Home'
-                        ? router.asPath === navItem.activeSlugCheck
+                        ? router.asPath === `/${navItem.activeSlugCheck}`
                         : router.asPath.includes(navItem.activeSlugCheck)
 
                     return (
-                      <li className="mr-8" key={navItem.slug}>
+                      <li className="mr-8" key={`${space}-${navItem.slug}`}>
                         <Link href={navItem.slug}>
                           <a
                             title={navItem.title}

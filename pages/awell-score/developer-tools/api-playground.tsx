@@ -6,9 +6,10 @@ import { QuickNav } from '@/components/QuickNavigation'
 import { ScoreExplorer } from '@/components/ScoreExplorer'
 import { SEO } from '@/components/SEO'
 import { useHeading, useQuickNavigation } from '@/hooks/index'
+import { Space } from '@/types/space.types'
 
 export default function Playground() {
-  const path = 'awell-score/docs/getting-started/playground'
+  const path = `${Space.AWELL_SCORE}/docs/getting-started/playground`
   const { next, prev } = useQuickNavigation(path)
   const { heading } = useHeading()
 
@@ -17,8 +18,8 @@ export default function Playground() {
       <div className="">
         <SEO
           title="API Playground"
-          url={`/awell-score/developer-tools/api-playground`}
-          canonicalUrl={`/awell-score/developer-tools/api-playground`}
+          url={`/${Space.AWELL_SCORE}/developer-tools/api-playground`}
+          canonicalUrl={`/${Space.AWELL_SCORE}/developer-tools/api-playground`}
         />
         <DocsHeader
           heading={heading}

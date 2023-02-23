@@ -16,11 +16,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/examples/:slug',
-        destination: '/awell-orchestration/examples/:slug',
-        permanent: true,
-      },
-      {
         source: '/playground',
         destination: '/awell-orchestration/developer-tools/playground',
         permanent: true,

@@ -1,3 +1,4 @@
+import { Space } from '@/types/space.types'
 import { type WebhooksType } from '@/types/webhooks.types'
 
 export const webhooks: WebhooksType = [
@@ -12,8 +13,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the start of the care flow/pathway in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/pathway-started',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-started`,
   },
   {
     event: 'pathway.completed',
@@ -26,8 +26,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the completion of the care flow/pathway in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/pathway-completed',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-completed`,
   },
   {
     event: 'activity.created',
@@ -41,8 +40,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the creation of an activity in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/activity-created',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/activity-created`,
   },
   {
     event: 'activity.completed',
@@ -56,8 +54,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the completion of an activity in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/activity-completed',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/activity-completed`,
   },
   {
     event: 'form.submitted',
@@ -82,8 +79,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle submission of a form in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/form-submitted',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/form-submitted`,
   },
   {
     event: 'data_point.collected',
@@ -101,8 +97,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the collection of a data point in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/data-point-collected',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/data-point-collected`,
   },
   {
     event: 'reminder.created',
@@ -120,8 +115,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the creation of a reminder in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/reminder-created',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/reminder-created`,
   },
   {
     event: 'session.started',
@@ -138,8 +132,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the creation of a session in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/session-started',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/session-started`,
   },
   {
     event: 'session.completed',
@@ -156,8 +149,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the completion of a session in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/session-completed',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/session-completed`,
   },
   {
     event: 'session.expired',
@@ -174,7 +166,6 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the expiration of a session in your system.',
-    apiReferenceLink:
-      '/awell-orchestration/api-reference/webhooks/session-expired',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/session-expired`,
   },
 ]

@@ -1,1 +1,0 @@
-export { AwellActivity } from './AwellActivity'

@@ -14,6 +14,7 @@ import { DocsHeader } from '@/components/Docs/atoms'
 import { DocsLayout } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
 import { TOC } from '@/components/TOC'
+import { Space } from '@/types/space.types'
 
 const BenchmarkChart = ({
   data,
@@ -74,15 +75,15 @@ export default function BenchmarkDocument() {
     <>
       <SEO
         title="Orchestration API benchmark"
-        url={`/awell-orchestration/documents/orchestration-api-benchmark`}
-        canonicalUrl={`/awell-orchestration/documents/orchestration-api-benchmark`}
+        url={`/${Space.AWELL_ORCHESTRATION}/documents/orchestration-api-benchmark`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/documents/orchestration-api-benchmark`}
         preventCrawling={true}
       />
       <DocsHeader
         heading="Documents"
         title="Orchestration API benchmark"
         description="This benchmark is meant to document the horizontal scalability of Awell Systems by measuring the responsiveness of the API."
-        githubUrl="/pages/awell-orchestration/documents/orchestration-api-benchmark.tsx"
+        githubUrl={`/pages/${Space.AWELL_ORCHESTRATION}/documents/orchestration-api-benchmark.tsx`}
       />
       <div>
         <div id="content-wrapper">

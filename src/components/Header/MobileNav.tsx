@@ -1,22 +1,29 @@
 import Link from 'next/link'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
-import { orchestrationNavigation } from '@/config/navigation'
+import { orchestrationNavigation, scoreNavigation } from '@/config/navigation'
+import { pluginsNavigation } from '@/config/navigation/pluginsNavigation'
 import { MainNavType } from '@/types/nav.types'
+import { Space } from '@/types/space.types'
 
 import { AppContext } from '../../contexts/app/AppContext'
 import { ThemeSelect } from '../ThemeToggle'
 
 export const MobileNav = () => {
+  const [navigation, setNavigation] = useState<MainNavType>([])
+
   const { space, isMobileMainMenuOpen, toggleMobileMainMenu } =
     useContext(AppContext)
 
-  let navigation: MainNavType = []
-
-  if (space === 'awell-orchestration') {
-    navigation = orchestrationNavigation
-  } else {
-  }
+  useEffect(() => {
+    if (space === Space.AWELL_ORCHESTRATION) {
+      setNavigation(orchestrationNavigation)
+    } else if (space === Space.AWELL_SCORE) {
+      setNavigation(scoreNavigation)
+    } else if (space === Space.AWELL_PLUGINS) {
+      setNavigation(pluginsNavigation)
+    }
+  }, [space])
 
   if (!isMobileMainMenuOpen) return null
 
@@ -56,7 +63,7 @@ export const MobileNav = () => {
         </button>
         <ul className="space-y-6">
           {navigation.map((navItem) => (
-            <li key={navItem.slug}>
+            <li key={`${space}-${navItem.slug}`}>
               <Link href={navItem.slug}>
                 <a
                   className="hover:text-sky-500 dark:hover:text-sky-400"
