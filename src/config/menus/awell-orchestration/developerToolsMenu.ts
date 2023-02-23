@@ -7,10 +7,6 @@ export const developerToolsMenu: MenuItemType[] = [
     title: 'API',
     submenu: [
       {
-        title: 'Changelog',
-        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/changelog`,
-      },
-      {
         title: 'Browse API schema',
         path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/schema`,
       },

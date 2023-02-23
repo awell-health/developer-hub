@@ -74,41 +74,47 @@ export const MobileNav = () => {
               </Link>
             </li>
           ))}
-          {space === Space.AWELL_ORCHESTRATION && (
-            <>
-              <li>
-                <Link href="/faq">
-                  <a
-                    className="hover:text-sky-500 dark:hover:text-sky-400"
-                    title="FAQ"
-                  >
-                    FAQ
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/system-status">
-                  <a
-                    className="hover:text-sky-500 dark:hover:text-sky-400"
-                    title="System status"
-                  >
-                    System status
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://awell.health"
-                  target="_blank"
-                  title="Awell website"
-                  className="hover:text-sky-500 dark:hover:text-sky-400"
-                  rel="noreferrer"
-                >
-                  Awell Website
-                </a>
-              </li>
-            </>
-          )}
+          <li>
+            <Link href="https://awellhealth.atlassian.net/wiki/spaces/AR/pages/3454500981/What+s+New">
+              <a
+                title="Changelog"
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+              >
+                Changelog
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/faq">
+              <a
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title="FAQ"
+              >
+                FAQ
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/system-status">
+              <a
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title="System status"
+              >
+                System status
+              </a>
+            </Link>
+          </li>
+          <li>
+            <a
+              href="https://awell.health"
+              target="_blank"
+              title="Awell website"
+              className="hover:text-sky-500 dark:hover:text-sky-400"
+              rel="noreferrer"
+            >
+              Awell Website
+            </a>
+          </li>
         </ul>
         <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-200/10">
           <ThemeSelect />

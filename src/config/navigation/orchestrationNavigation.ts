@@ -21,7 +21,7 @@ export const orchestrationNavigation: MainNavType = [
   },
   {
     title: 'Developer tools',
-    slug: rootRoutes[Space.AWELL_ORCHESTRATION].developerTools,
-    activeSlugCheck: 'developer-tools',
+    slug: '/awell-orchestration/developer-tools/schema',
+    activeSlugCheck: 'schema',
   },
 ]
