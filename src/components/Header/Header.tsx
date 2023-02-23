@@ -159,6 +159,16 @@ export const Header = () => {
               <div className="ml-auto">
                 <ul className="flex">
                   <li>
+                    <Link href="https://awellhealth.atlassian.net/wiki/spaces/AR/pages/3454500981/What+s+New">
+                      <a
+                        title="Changelog"
+                        className="mr-8 block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400"
+                      >
+                        Changelog
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/faq">
                       <a
                         title="FAQ"

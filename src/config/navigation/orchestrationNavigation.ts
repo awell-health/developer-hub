@@ -14,7 +14,7 @@ export const orchestrationNavigation: MainNavType = [
   },
   {
     title: 'Developer tools',
-    slug: '/awell-orchestration/developer-tools/changelog',
-    activeSlugCheck: 'developer-tools',
+    slug: '/awell-orchestration/developer-tools/schema',
+    activeSlugCheck: 'schema',
   },
 ]

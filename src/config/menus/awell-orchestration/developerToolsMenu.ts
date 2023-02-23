@@ -5,10 +5,6 @@ export const developerToolsMenu: MenuItemType[] = [
     title: 'API',
     submenu: [
       {
-        title: 'Changelog',
-        path: '/awell-orchestration/developer-tools/changelog',
-      },
-      {
         title: 'Browse API schema',
         path: '/awell-orchestration/developer-tools/schema',
       },

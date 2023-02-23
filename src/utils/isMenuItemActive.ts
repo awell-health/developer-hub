@@ -8,15 +8,6 @@ export const isMenuItemActive = (
     return false
   }
 
-  /** Hacky solution to have active link when viewing release page */
-  if (
-    /** Don't use includes() here as it caused a client error in production */
-    menuItemPath === '/awell-orchestration/developer-tools/changelog' &&
-    pathName.includes('changelog')
-  ) {
-    return true
-  }
-
   if (pathName === menuItemPath) return true
 
   if (!slug) return false
