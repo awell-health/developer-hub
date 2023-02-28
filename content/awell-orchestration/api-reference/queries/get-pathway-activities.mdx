@@ -147,15 +147,15 @@ To simplify obtaining the content of a form for a form activity, there are two o
 
 ```graphql
 form {
-  id # static id from Studio
-  definition_id
+  id
+  definition_id # static id from Studio
   title
-  key
+  key # form key set in Studio
   questions {
     id
     definition_id # static id from Studio
     title # string or html string (for description questions)
-    key
+    key # question key set in Studio
     dataPointValueType
     questionType
     options {
