@@ -4,6 +4,7 @@ import { DocsHeader } from '@/components/Docs/atoms'
 import { DocsLayoutWithoutToc } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
+import { Space } from '@/types/space.types'
 
 import { useHeading, useQuickNavigation } from '../../../src/hooks'
 
@@ -15,8 +16,8 @@ export default function Schema() {
     <div>
       <SEO
         title="Schema"
-        url={`/awell-orchestration/developer-tools/schema`}
-        canonicalUrl={`/awell-orchestration/developer-tools/schema`}
+        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/schema`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/schema`}
       />
       <DocsHeader
         heading={heading}
@@ -31,7 +32,7 @@ export default function Schema() {
         </p>
         <figure className="w-full flex flex-col justify-center text-center pt-4">
           <a
-            href="/awell-orchestration/playground"
+            href={`/${Space.AWELL_ORCHESTRATION}/playground`}
             target="_blank"
             className="custom-link"
             rel="noreferrer"

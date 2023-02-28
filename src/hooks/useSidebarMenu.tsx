@@ -7,11 +7,17 @@ import {
   orchestrationDocsMenu,
 } from '@/config/menus/awell-orchestration'
 import {
+  pluginsApiMenu,
+  pluginsDeveloperToolsMenu,
+  pluginsDocsMenu,
+} from '@/config/menus/awell-plugins'
+import {
   scoreDeveloperToolsMenu,
   scoreDocsMenu,
 } from '@/config/menus/awell-score'
 import { AppContext } from '@/contexts/app/AppContext'
 import { MenuItemType, MenuType } from '@/types/menu.types'
+import { Space } from '@/types/space.types'
 
 interface useSidebarMenuHook {
   menu: MenuType
@@ -23,7 +29,7 @@ export const useSidebarMenu = (): useSidebarMenuHook => {
   const router = useRouter()
 
   useEffect(() => {
-    if (router.asPath.includes('awell-orchestration')) {
+    if (router.asPath.includes(Space.AWELL_ORCHESTRATION)) {
       if (router.asPath.includes('api-reference')) {
         setMenu(orchestrationApiMenu)
       } else if (router.asPath.includes('docs')) {
@@ -33,18 +39,26 @@ export const useSidebarMenu = (): useSidebarMenuHook => {
       } else {
         setMenu([])
       }
-    } else {
-      if (router.asPath.includes('awell-score')) {
-        if (router.asPath.includes('docs')) {
-          setMenu(scoreDocsMenu)
-        } else if (router.asPath.includes('developer-tools')) {
-          setMenu(scoreDeveloperToolsMenu)
-        } else {
-          setMenu([])
-        }
+    } else if (router.asPath.includes(Space.AWELL_SCORE)) {
+      if (router.asPath.includes('docs')) {
+        setMenu(scoreDocsMenu)
+      } else if (router.asPath.includes('developer-tools')) {
+        setMenu(scoreDeveloperToolsMenu)
       } else {
         setMenu([])
       }
+    } else if (router.asPath.includes(Space.AWELL_PLUGINS)) {
+      if (router.asPath.includes('api-reference')) {
+        setMenu(pluginsApiMenu)
+      } else if (router.asPath.includes('docs')) {
+        setMenu(pluginsDocsMenu)
+      } else if (router.asPath.includes('developer-tools')) {
+        setMenu(pluginsDeveloperToolsMenu)
+      } else {
+        setMenu([])
+      }
+    } else {
+      setMenu([])
     }
   })
 

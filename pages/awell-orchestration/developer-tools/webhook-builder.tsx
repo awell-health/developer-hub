@@ -9,6 +9,7 @@ import { StackSelector } from '@/components/StackSelector'
 import { webhooks } from '@/config/webhooks'
 import { stack } from '@/content/awell-orchestration/developer-tools/webhooks/webhook-builder'
 import { useStack } from '@/hooks/useStack'
+import { Space } from '@/types/space.types'
 import { type WebhooksType } from '@/types/webhooks.types'
 
 export default function WebhookBuilderPage() {
@@ -35,8 +36,8 @@ export default function WebhookBuilderPage() {
       <SEO
         title="Webhook builder"
         description="Interactive webhook endpoint builder"
-        url={`/awell-orchestration/developer-tools/webhooks/webhook-builder`}
-        canonicalUrl={`/awell-orchestration/developer-tools/webhooks/webhook-builder`}
+        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/webhook-builder`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/webhook-builder`}
       />
       <div className="flex mb-8">
         <StackSelector

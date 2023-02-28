@@ -1,3 +1,5 @@
+import { Space } from '@/types/space.types'
+
 import { type MenuItemType } from '../../../types/menu.types'
 
 export const developerToolsMenu: MenuItemType[] = [
@@ -5,20 +7,16 @@ export const developerToolsMenu: MenuItemType[] = [
     title: 'API',
     submenu: [
       {
-        title: 'Changelog',
-        path: '/awell-orchestration/developer-tools/changelog',
-      },
-      {
         title: 'Browse API schema',
-        path: '/awell-orchestration/developer-tools/schema',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/schema`,
       },
       {
         title: 'Playground',
-        path: '/awell-orchestration/developer-tools/playground',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/playground`,
       },
       {
         title: 'Postman collection',
-        path: '/awell-orchestration/developer-tools/api/postman-collection',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/api/postman-collection`,
       },
     ],
   },
@@ -27,35 +25,35 @@ export const developerToolsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'Introduction',
-        path: '/awell-orchestration/developer-tools/webhooks/introduction',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/introduction`,
       },
       {
         title: 'Events overview',
-        path: '/awell-orchestration/developer-tools/webhooks/events-overview',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/events-overview`,
       },
       {
         title: 'Listen for events',
-        path: '/awell-orchestration/developer-tools/webhooks/listen-for-events',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/listen-for-events`,
       },
       {
         title: 'Webhook builder',
-        path: '/awell-orchestration/developer-tools/webhook-builder',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhook-builder`,
       },
       {
         title: 'Test webhooks',
-        path: '/awell-orchestration/developer-tools/webhooks/test-webhooks',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/test-webhooks`,
       },
       {
         title: 'Security',
-        path: '/awell-orchestration/developer-tools/webhooks/security',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/security`,
       },
       {
         title: 'Best practices',
-        path: '/awell-orchestration/developer-tools/webhooks/best-practices',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/best-practices`,
       },
       {
         title: 'Go live',
-        path: '/awell-orchestration/developer-tools/webhooks/go-live',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/go-live`,
       },
     ],
   },
@@ -64,7 +62,7 @@ export const developerToolsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'Orchestration stories',
-        path: '/awell-orchestration/developer-tools/example-projects/orchestration-stories',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/example-projects/orchestration-stories`,
       },
     ],
   },
@@ -73,7 +71,7 @@ export const developerToolsMenu: MenuItemType[] = [
     submenu: [
       {
         title: 'UI library',
-        path: '/awell-orchestration/developer-tools/sdks/ui-library',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/sdks/ui-library`,
       },
     ],
   },

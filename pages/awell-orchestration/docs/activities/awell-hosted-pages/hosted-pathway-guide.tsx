@@ -18,6 +18,7 @@ import {
   stack,
 } from '@/content/awell-orchestration/docs/activities/hosted-pathway'
 import { useStack } from '@/hooks/useStack'
+import { Space } from '@/types/space.types'
 
 export default function HostedPathwayPage() {
   const { frontEnd, backEnd, changeBackEnd, changeFrontEnd } = useStack()
@@ -42,8 +43,8 @@ export default function HostedPathwayPage() {
       <SEO
         title="Hosted Pathway"
         description="Get up and running with Awell Orchestration in less than a day"
-        url={`/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide`}
-        canonicalUrl={`/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide`}
+        url={`/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`}
       />
       <div className="flex mb-8">
         <StackSelector

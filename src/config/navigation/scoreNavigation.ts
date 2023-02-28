@@ -1,19 +1,22 @@
 import { MainNavType } from '@/types/nav.types'
+import { Space } from '@/types/space.types'
+
+import { rootRoutes } from '../routes'
 
 export const scoreNavigation: MainNavType = [
   {
     title: 'Home',
-    slug: '/awell-score',
-    activeSlugCheck: '/awell-score',
+    slug: rootRoutes[Space.AWELL_SCORE].home,
+    activeSlugCheck: Space.AWELL_SCORE,
   },
   {
     title: 'Docs',
-    slug: '/awell-score/docs/getting-started/what-is-awell-score',
+    slug: rootRoutes[Space.AWELL_SCORE].docs,
     activeSlugCheck: 'docs',
   },
   {
     title: 'Developer tools',
-    slug: '/awell-score/developer-tools/api-playground',
+    slug: rootRoutes[Space.AWELL_SCORE].developerTools,
     activeSlugCheck: 'developer-tools',
   },
 ]

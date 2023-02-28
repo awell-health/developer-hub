@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
 
+import { Space } from '@/types/space.types'
+
 import { SEO as SeoSettings } from '../../config/seo'
 
 interface SeoProps {
@@ -26,9 +28,9 @@ export const SEO = ({
   const titleSuffix =
     router.asPath === '/'
       ? SeoSettings.title
-      : router.asPath.includes('awell-orchestration')
+      : router.asPath.includes(Space.AWELL_ORCHESTRATION)
       ? 'Awell Orchestration'
-      : router.asPath.includes('awell-score')
+      : router.asPath.includes(Space.AWELL_SCORE)
       ? 'Awell Score'
       : 'Developer Hub'
 

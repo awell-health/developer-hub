@@ -10,6 +10,7 @@ import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
 import { mdxComponents, mdxOptions } from '@/config/mdx'
 import { AppContext } from '@/contexts/app/AppContext'
+import { Space } from '@/types/space.types'
 import {
   getAllDeveloperToolsPages,
   getDeveloperToolsPage,
@@ -48,8 +49,8 @@ export default function Page({
       <SEO
         title={frontMatter.title}
         description={frontMatter.description}
-        url={`/awell-orchestration/developer-tools/${slug}`}
-        canonicalUrl={`/awell-orchestration/developer-tools/${slug}`}
+        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/${slug}`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/${slug}`}
       />
       {heading && (
         <DocsHeader
@@ -57,7 +58,7 @@ export default function Page({
           title={frontMatter.title}
           description={frontMatter.description}
           badge={badge}
-          githubUrl={`/content/awell-orchestration/developer-tools/${slug}.mdx`}
+          githubUrl={`/content/${Space.AWELL_ORCHESTRATION}/developer-tools/${slug}.mdx`}
           playgroundButton={frontMatter.showPlaygroundButton || false}
         />
       )}

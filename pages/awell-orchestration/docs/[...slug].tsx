@@ -8,6 +8,7 @@ import { DocsHeader } from '@/components/Docs/atoms'
 import { DocsLayout } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
+import { Space } from '@/types/space.types'
 
 import { mdxComponents, mdxOptions } from '../../../src/config/mdx'
 import { AppContext } from '../../../src/contexts/app/AppContext'
@@ -48,15 +49,15 @@ export default function DocsPage({
       <SEO
         title={frontMatter.title}
         description={frontMatter.description}
-        url={`/awell-orchestration/docs/${slug}`}
-        canonicalUrl={`/awell-orchestration/docs/${slug}`}
+        url={`/${Space.AWELL_ORCHESTRATION}/docs/${slug}`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/docs/${slug}`}
       />
       {heading && (
         <DocsHeader
           heading={heading}
           title={frontMatter.title}
           description={frontMatter.description}
-          githubUrl={`/content/awell-orchestration/docs/${slug}.mdx`}
+          githubUrl={`/content/${Space.AWELL_ORCHESTRATION}/docs/${slug}.mdx`}
           postman={{
             showPostmanButton: frontMatter.showPostmanButton,
             postmanButtonUrl: frontMatter.postmanUrl,
