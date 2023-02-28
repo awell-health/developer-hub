@@ -72,8 +72,9 @@ showPlaygroundButton: false
       answer:
         'Penetration tests are scheduled every year and performed by an external party.',
     },
-     {
-      question: 'Could you give me some info on your disaster recovery/back up setup?',
+    {
+      question:
+        'Could you give me some info on your disaster recovery/back up setup?',
       answer:
         'Our product is deployed on Google Kubernetes Engine, and we use regional clusters which already come with built in redundancy (3 zones per region). Adding another layer of redundancy (replicate the US deployment to different data centers for example) is on the technical roadmap but not available yet. We have daily backups in all environments, and the provisioning of new environments is fully automated so in the worst case scenario where a google data center is fully down we can create a new deployment in a different datacenter and be up and running with the latest backup in a day max (as defined in our ISMS disaster recovery policy), but realistically it can be as quick as one hour.',
     },
@@ -192,34 +193,26 @@ showPlaygroundButton: false
   condensed={true}
   faqs={[
     {
-      question:
-        'Is the Awell Platform a medical device?',
-      answer:
-        '<p>No, the Awell Platform is not a medical device. It is general software used for building and operating care flows.</p>
-<p>However, depending on its intended purpose, a care flow built and operated on the Awell platform could be a medical device, according to the MDR(EU Medical Device Regulation) or FDA (US Food and Drug Administration). Care flows might therefore require CE certification or FDA approval.</p>
-<p>We recommend all our customers to be aware of the potential regulatory requirements before implementing their care flows.</p>',
+      question: 'Is the Awell Platform a medical device?',
+      answer: `<p>No, the Awell Platform is not a medical device. It is general software used for building and operating care flows.</p>
+        <p>However, depending on its intended purpose, a care flow built and operated on the Awell platform could be a medical device, according to the MDR(EU Medical Device Regulation) or FDA (US Food and Drug Administration). Care flows might therefore require CE certification or FDA approval.</p>
+        <p>We recommend all our customers to be aware of the potential regulatory requirements before implementing their care flows.</p>`,
     },
     {
       question:
         'Do I need to certify my care flow under the Medical Device Regulation (MDR)?',
-      answer: '<p>If your care flow is intended only to collect information from patients and send it to a healthcare professional, then it most likely isn’t a medical device. Examples of care flows that probably don’t require a CE certification are onboarding care flows, care flows with pre-consultation questionnaires, etc.</p>
-     <p> It is most likely a medical device if your care flow is designed for diagnosing, monitoring or treating patients. Please be aware that if you are a health institution, you might only need to comply with article 5(5) of MDR (in-house medical devices). Go through article 5(5) and the <a href="https://dskb.dk/wp-content/uploads/2021/09/In-house-guidance_stakeholders.pdf" title="Guidance for in-house devices">guidance for in-house devices</a> and check if you are eligible for this type of assessment. You can use <a href="https://health.ec.europa.eu/system/files/2020-09/md_mdcg_2019_11_guidance_qualification_classification_software_en_0.pdf" title="MDCG 2019-11">MDCG 2019-11</a> for guidance on classifying your care flow.</p>
-     <p> Note: according to the <a href="https://health.ec.europa.eu/system/files/2022-12/md_borderline_manual_12-2022_en.pdf" title="borderline manual">borderline manual</a>, released in December 2022, any simple calculation requiring patient variables is considered a medical calculation, hence a medical device. For example, a calculation of stroke risk for patients with atrial fibrillation using the CHA₂DS₂-VASc Score falls under the medical calculations requirements.</p>',
-    },
-    
-     {
-      question:
-        'Do I need FDA approval for my care flow?',
-      answer: '<p>Depending on its intended purpose, a care flow built and operated on the Awell platform could be a clinical decision support software (CDS) with device functions.  Look at the <a href="https://www.fda.gov/media/109618/download" title="Clinical Decision Support Software Guidance">Clinical Decision Support Software Guidance</a> examples and see if your care flow fulfils the criteria. You can also find guidance on FDA exemptions in the <a href="https://www.fda.gov/media/80958/download" title="Policy for Device Software Functions and Mobile Medical Applications Guidance">Policy for Device Software Functions and Mobile Medical Applications Guidance</a>.</p>
-<p>We recommend all our customers to be aware of the potential regulatory requirements before implementing their care flows.</p>',
+      answer: `<p>If your care flow is intended only to collect information from patients and send it to a healthcare professional, then it most likely isn’t a medical device. Examples of care flows that probably don’t require a CE certification are onboarding care flows, care flows with pre-consultation questionnaires, etc.</p>
+      <p> It is most likely a medical device if your care flow is designed for diagnosing, monitoring or treating patients. Please be aware that if you are a health institution, you might only need to comply with article 5(5) of MDR (in-house medical devices). Go through article 5(5) and the <a href="https://dskb.dk/wp-content/uploads/2021/09/In-house-guidance_stakeholders.pdf" title="Guidance for in-house devices">guidance for in-house devices</a> and check if you are eligible for this type of assessment. You can use <a href="https://health.ec.europa.eu/system/files/2020-09/md_mdcg_2019_11_guidance_qualification_classification_software_en_0.pdf" title="MDCG 2019-11">MDCG 2019-11</a> for guidance on classifying your care flow.</p>
+      <p> Note: according to the <a href="https://health.ec.europa.eu/system/files/2022-12/md_borderline_manual_12-2022_en.pdf" title="borderline manual">borderline manual</a>, released in December 2022, any simple calculation requiring patient variables is considered a medical calculation, hence a medical device. For example, a calculation of stroke risk for patients with atrial fibrillation using the CHA₂DS₂-VASc Score falls under the medical calculations requirements.</p>`,
     },
     {
-      question:
-        'Are you ISO 13485 certified?',
-      answer: 'No, Awell is not ISO 13485 certified since it does not manufacture medical devices. We do care about quality and therefore follow industry best practices.',
+      question: 'Do I need FDA approval for my care flow?',
+      answer: `<p>Depending on its intended purpose, a care flow built and operated on the Awell platform could be a clinical decision support software (CDS) with device functions.  Look at the <a href="https://www.fda.gov/media/109618/download" title="Clinical Decision Support Software Guidance">Clinical Decision Support Software Guidance</a> examples and see if your care flow fulfils the criteria. You can also find guidance on FDA exemptions in the <a href="https://www.fda.gov/media/80958/download" title="Policy for Device Software Functions and Mobile Medical Applications Guidance">Policy for Device Software Functions and Mobile Medical Applications Guidance</a>.</p><p>We recommend all our customers to be aware of the potential regulatory requirements before implementing their care flows.</p>`,
     },
-     
+    {
+      question: 'Are you ISO 13485 certified?',
+      answer:
+        'No, Awell is not ISO 13485 certified since it does not manufacture medical devices. We do care about quality and therefore follow industry best practices.',
+    },
   ]}
 />
-
-
