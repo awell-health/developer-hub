@@ -42,10 +42,14 @@ query GetFormsForPublishedPathway(
   ) {
     forms {
       id
+      definition_id # static id from Studio
       title
+      key # form key set in Studio
       questions {
         id
-        title
+        definition_id # static id from Studio
+        title # string or html string (for description questions)
+        key # question key set in Studio
         dataPointValueType
         questionType
         options {
@@ -58,8 +62,7 @@ query GetFormsForPublishedPathway(
           boolean_operator
           conditions {
             id
-            reference
-            reference_key
+            reference # definition id of the question this condition is based on
             operator
             operand {
               type
