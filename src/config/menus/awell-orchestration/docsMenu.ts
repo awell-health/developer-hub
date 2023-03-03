@@ -61,6 +61,10 @@ export const docsMenu: MenuItemType[] = [
             path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages`,
           },
           {
+            title: 'Accessibility',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/accessibility-awell-hosted-pages`,
+          },
+          {
             title: 'Hosted Pathway guide',
             path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`,
           },
