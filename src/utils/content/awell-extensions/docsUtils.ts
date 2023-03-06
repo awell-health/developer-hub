@@ -7,7 +7,7 @@ import { Space } from '@/types/space.types'
 
 import { DocType } from '../../../types/doc.types'
 
-const DOCS_PATH = join(process.cwd(), `content/${Space.AWELL_PLUGINS}/docs`)
+const DOCS_PATH = join(process.cwd(), `content/${Space.AWELL_EXTENSIONS}/docs`)
 
 export const getDoc = (slug: string): DocType => {
   const fullPath = join(DOCS_PATH, `${slug}.mdx`)

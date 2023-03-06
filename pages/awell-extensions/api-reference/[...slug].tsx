@@ -8,28 +8,30 @@ import { DocsHeader } from '@/components/Docs/atoms'
 import { DocsLayout } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
-import { mdxComponents, mdxOptions } from '@/config/mdx'
-import { AppContext } from '@/contexts/app/AppContext'
 import { Space } from '@/types/space.types'
-import {
-  getAllPluginsDeveloperToolsPages,
-  getPluginsDeveloperToolsPage,
-} from '@/utils/content/awell-plugins'
 
+import { mdxComponents, mdxOptions } from '../../../src/config/mdx'
+import { AppContext } from '../../../src/contexts/app/AppContext'
 import { useBadge, useHeading, useQuickNavigation } from '../../../src/hooks'
+import {
+  getAllExtensionsApiDocs,
+  getExtensionsApiDoc,
+} from '../../../src/utils/content/awell-extensions'
 
 type ApiPageProps = {
   frontMatter: {
     title: string
     description?: string
-    showPlaygroundButton: boolean
+    postmanUrl?: string
+    showPostmanButton?: boolean
+    showPlaygroundButton?: boolean
   }
   mdxSource: MDXRemoteSerializeResult
   slug: string
   content: string
 }
 
-export default function Page({
+export default function ApiPage({
   frontMatter,
   mdxSource,
   slug,
@@ -49,8 +51,8 @@ export default function Page({
       <SEO
         title={frontMatter.title}
         description={frontMatter.description}
-        url={`/${Space.AWELL_PLUGINS}/developer-tools/${slug}`}
-        canonicalUrl={`/${Space.AWELL_PLUGINS}/developer-tools/${slug}`}
+        url={`/${Space.AWELL_EXTENSIONS}/api-reference/${slug}`}
+        canonicalUrl={`/${Space.AWELL_EXTENSIONS}/api-reference/${slug}`}
       />
       {heading && (
         <DocsHeader
@@ -58,8 +60,11 @@ export default function Page({
           title={frontMatter.title}
           description={frontMatter.description}
           badge={badge}
-          githubUrl={`/content/${Space.AWELL_PLUGINS}/developer-tools/${slug}.mdx`}
-          playgroundButton={frontMatter.showPlaygroundButton || false}
+          githubUrl={`/content/${Space.AWELL_EXTENSIONS}/api-reference/${slug}.mdx`}
+          postman={{
+            showPostmanButton: frontMatter.showPostmanButton !== false,
+          }}
+          playgroundButton={true && frontMatter.showPlaygroundButton !== false}
         />
       )}
       <div id="content-wrapper">
@@ -72,7 +77,7 @@ export default function Page({
   )
 }
 
-Page.getLayout = function getLayout(page: ReactNode) {
+ApiPage.getLayout = function getLayout(page: ReactNode) {
   return <DocsLayout>{page}</DocsLayout>
 }
 
@@ -83,9 +88,7 @@ interface Iparams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params as Iparams
   const slugString = slug.join('/')
-  const { frontMatter, content } = await getPluginsDeveloperToolsPage(
-    slugString
-  )
+  const { frontMatter, content } = await getExtensionsApiDoc(slugString)
 
   // https://github.com/hashicorp/next-mdx-remote/issues/86
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -103,7 +106,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const docs = getAllPluginsDeveloperToolsPages()
+  const docs = getAllExtensionsApiDocs()
 
   const paths = docs.map((doc) => ({
     params: {

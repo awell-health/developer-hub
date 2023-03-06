@@ -119,8 +119,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       setSpace(Space.AWELL_ORCHESTRATION)
     } else if (router.asPath.includes(Space.AWELL_SCORE)) {
       setSpace(Space.AWELL_SCORE)
-    } else if (router.asPath.includes(Space.AWELL_PLUGINS)) {
-      setSpace(Space.AWELL_PLUGINS)
+    } else if (router.asPath.includes(Space.AWELL_EXTENSIONS)) {
+      setSpace(Space.AWELL_EXTENSIONS)
     } else {
       const DEFAULT_SPACE = Space.AWELL_ORCHESTRATION
       setSpace(DEFAULT_SPACE)

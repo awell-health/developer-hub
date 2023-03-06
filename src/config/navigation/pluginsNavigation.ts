@@ -6,17 +6,17 @@ import { rootRoutes } from '../routes'
 export const pluginsNavigation: MainNavType = [
   {
     title: 'Docs',
-    slug: rootRoutes[Space.AWELL_PLUGINS].docs,
+    slug: rootRoutes[Space.AWELL_EXTENSIONS].docs,
     activeSlugCheck: 'docs',
   },
   {
     title: 'API reference',
-    slug: rootRoutes[Space.AWELL_PLUGINS].api,
+    slug: rootRoutes[Space.AWELL_EXTENSIONS].api,
     activeSlugCheck: 'api-reference',
   },
   {
     title: 'Developer tools',
-    slug: rootRoutes[Space.AWELL_PLUGINS].developerTools,
+    slug: rootRoutes[Space.AWELL_EXTENSIONS].developerTools,
     activeSlugCheck: 'developer-tools',
   },
 ]

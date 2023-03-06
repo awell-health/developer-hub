@@ -2,15 +2,15 @@ import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 
 import {
+  extensionsApiMenu,
+  extensionsDeveloperToolsMenu,
+  extensionsDocsMenu,
+} from '@/config/menus/awell-extensions'
+import {
   orchestrationApiMenu,
   orchestrationDeveloperToolsMenu,
   orchestrationDocsMenu,
 } from '@/config/menus/awell-orchestration'
-import {
-  pluginsApiMenu,
-  pluginsDeveloperToolsMenu,
-  pluginsDocsMenu,
-} from '@/config/menus/awell-plugins'
 import {
   scoreDeveloperToolsMenu,
   scoreDocsMenu,
@@ -47,13 +47,13 @@ export const useSidebarMenu = (): useSidebarMenuHook => {
       } else {
         setMenu([])
       }
-    } else if (router.asPath.includes(Space.AWELL_PLUGINS)) {
+    } else if (router.asPath.includes(Space.AWELL_EXTENSIONS)) {
       if (router.asPath.includes('api-reference')) {
-        setMenu(pluginsApiMenu)
+        setMenu(extensionsApiMenu)
       } else if (router.asPath.includes('docs')) {
-        setMenu(pluginsDocsMenu)
+        setMenu(extensionsDocsMenu)
       } else if (router.asPath.includes('developer-tools')) {
-        setMenu(pluginsDeveloperToolsMenu)
+        setMenu(extensionsDeveloperToolsMenu)
       } else {
         setMenu([])
       }

@@ -14,9 +14,9 @@ export const rootRoutes: Record<Space, Routes> = {
     api: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/endpoints`,
     developerTools: `/${Space.AWELL_ORCHESTRATION}/developer-tools/changelog`,
   },
-  [Space.AWELL_PLUGINS]: {
-    home: `/${Space.AWELL_PLUGINS}`,
-    docs: `/${Space.AWELL_PLUGINS}/docs/getting-started/what-are-awell-plugins`,
+  [Space.AWELL_EXTENSIONS]: {
+    home: `/${Space.AWELL_EXTENSIONS}`,
+    docs: `/${Space.AWELL_EXTENSIONS}/docs/getting-started/what-are-awell-extensions`,
     api: `#api-route`,
     developerTools: `#developer-tools-route`,
   },

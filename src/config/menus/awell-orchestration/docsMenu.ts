@@ -101,7 +101,7 @@ export const docsMenu: MenuItemType[] = [
       },
       {
         title: 'Kibana',
-        path: '/${Space.AWELL_ORCHESTRATION}/docs/data/create-dashboards',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/create-dashboards`,
         submenu: [
           {
             title: 'Introduction',

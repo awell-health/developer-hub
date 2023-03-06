@@ -20,7 +20,7 @@ export const MobileNav = () => {
       setNavigation(orchestrationNavigation)
     } else if (space === Space.AWELL_SCORE) {
       setNavigation(scoreNavigation)
-    } else if (space === Space.AWELL_PLUGINS) {
+    } else if (space === Space.AWELL_EXTENSIONS) {
       setNavigation(pluginsNavigation)
     }
   }, [space])

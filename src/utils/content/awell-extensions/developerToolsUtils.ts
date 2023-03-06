@@ -9,10 +9,10 @@ import { DocType } from '../../../types/doc.types'
 
 const API_REFERENCE_PATH = join(
   process.cwd(),
-  `content/${Space.AWELL_PLUGINS}/api-reference`
+  `content/${Space.AWELL_EXTENSIONS}/developer-tools`
 )
 
-export const getApiDoc = (slug: string): DocType => {
+export const getDeveloperToolsPage = (slug: string): DocType => {
   const fullPath = join(API_REFERENCE_PATH, `${slug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf-8')
   const { data, content } = matter(fileContents)
@@ -20,7 +20,7 @@ export const getApiDoc = (slug: string): DocType => {
   return { frontMatter: data, slug, content }
 }
 
-export const getAllApiDocs = () => {
+export const getAllDeveloperToolsPages = () => {
   let filePaths: string[] = []
 
   filePaths = glob

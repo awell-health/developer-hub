@@ -14,9 +14,9 @@ import { mdxComponents, mdxOptions } from '../../../src/config/mdx'
 import { AppContext } from '../../../src/contexts/app/AppContext'
 import { useHeading, useQuickNavigation } from '../../../src/hooks/'
 import {
-  getAllPluginsDocs,
-  getPluginsDoc,
-} from '../../../src/utils/content/awell-plugins'
+  getAllExtensionsDocs,
+  getExtensionsDoc,
+} from '../../../src/utils/content/awell-extensions'
 
 type DocsPageProps = {
   frontMatter: {
@@ -49,15 +49,15 @@ export default function DocsPage({
       <SEO
         title={frontMatter.title}
         description={frontMatter.description}
-        url={`/${Space.AWELL_PLUGINS}/docs/${slug}`}
-        canonicalUrl={`/${Space.AWELL_PLUGINS}/docs/${slug}`}
+        url={`/${Space.AWELL_EXTENSIONS}/docs/${slug}`}
+        canonicalUrl={`/${Space.AWELL_EXTENSIONS}/docs/${slug}`}
       />
       {heading && (
         <DocsHeader
           heading={heading}
           title={frontMatter.title}
           description={frontMatter.description}
-          githubUrl={`/content/${Space.AWELL_PLUGINS}/docs/${slug}.mdx`}
+          githubUrl={`/content/${Space.AWELL_EXTENSIONS}/docs/${slug}.mdx`}
           postman={{
             showPostmanButton: frontMatter.showPostmanButton,
             postmanButtonUrl: frontMatter.postmanUrl,
@@ -85,7 +85,7 @@ interface Iparams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params as Iparams
   const slugString = slug.join('/')
-  const { frontMatter, content } = await getPluginsDoc(slugString)
+  const { frontMatter, content } = await getExtensionsDoc(slugString)
 
   // https://github.com/hashicorp/next-mdx-remote/issues/86
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -103,7 +103,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const docs = getAllPluginsDocs()
+  const docs = getAllExtensionsDocs()
 
   const paths = docs.map((doc) => ({
     params: {
