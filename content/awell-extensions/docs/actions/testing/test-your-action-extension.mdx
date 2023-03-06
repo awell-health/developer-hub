@@ -1,0 +1,11 @@
+---
+title: Test your Action Extension
+description: Learn how to test your Action Extension
+---
+
+The recommended approach is to use jest to run unit tests against the Action Extension code. If needed you can also run the full Extension server application using the pub sub emulator:
+
+- Follow instructions [here](https://cloud.google.com/pubsub/docs/emulator) to install the PubSub emulator.
+- Start the emulator and set environment variables
+- Run the app using `yarn dev`
+- Send sample messages to pubsub using `yarn test:publish-new-action-extension`
