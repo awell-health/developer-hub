@@ -13,57 +13,61 @@ export const docsMenu: MenuItemType[] = [
     ],
   },
   {
-    title: 'Action Extensions',
+    title: 'Custom Actions',
     submenu: [
       {
         title: 'Introduction',
-        path: `/${Space.AWELL_EXTENSIONS}/docs/actions/introduction`,
+        path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/introduction`,
         submenu: [
           {
-            title: 'What are Action Extensions?',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/actions/introduction/what-are-action-extensions`,
+            title: 'What are Custom Actions',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/introduction/what-are-custom-actions`,
           },
           {
             title: 'Get started',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/actions/introduction/get-started`,
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/introduction/get-started`,
           },
         ],
       },
       {
         title: 'Development',
-        path: `/${Space.AWELL_EXTENSIONS}/docs/actions/development`,
+        path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development`,
         submenu: [
           {
-            title: 'Create an action extension',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/actions/development/create-an-action-extension`,
+            title: 'Create an extension',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/create-an-extension`,
           },
           {
             title: 'Store secrets',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/actions/development/store-secrets`,
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/store-secrets`,
           },
           {
             title: 'Extension settings',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/actions/development/extension-settings`,
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/extension-settings`,
           },
         ],
       },
       {
         title: 'Testing',
-        path: `/${Space.AWELL_EXTENSIONS}/docs/actions/testing`,
+        path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/testing`,
         submenu: [
           {
-            title: 'Test your action extension',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/actions/testing/test-your-action-extension`,
+            title: 'Test your extension',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/testing/test-your-extension`,
           },
         ],
       },
       {
         title: 'Deployment',
-        path: `/${Space.AWELL_EXTENSIONS}/docs/actions/deployment`,
+        path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/deployment`,
         submenu: [
           {
-            title: 'Deploy your action extension',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/actions/deploy/deploy-your-action-extension`,
+            title: 'Deploy your extension',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/deploy/deploy-your-extension`,
+          },
+          {
+            title: 'Versioning',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/deploy/versioning`,
           },
         ],
       },
