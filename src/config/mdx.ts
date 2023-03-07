@@ -19,7 +19,7 @@ import { WebhooksList, WebhooksTable } from '@/components/Webhooks'
 
 export const mdxOptions = {
   mdxOptions: {
-    rehypeExtensions: [
+    rehypePlugins: [
       rehypeSlug, // add IDs to any h1-h6 tag that doesn't have one, using a slug made from its text
     ],
   },

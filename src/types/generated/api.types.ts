@@ -616,12 +616,12 @@ export type GeneratedClinicalNoteNarrative = {
 
 export type HostedSession = {
   __typename?: 'HostedSession';
-  cancel_url: Scalars['String'];
+  cancel_url?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   pathway_id: Scalars['String'];
   stakeholder: HostedSessionStakeholder;
   status: HostedSessionStatus;
-  success_url: Scalars['String'];
+  success_url?: Maybe<Scalars['String']>;
 };
 
 export type HostedSessionActivitiesPayload = Payload & {
@@ -732,6 +732,7 @@ export type Mutation = {
   retryWebhookCall: RetryWebhookCallPayload;
   saveBaselineInfo: EmptyPayload;
   startHostedActivitySession: StartHostedActivitySessionPayload;
+  startHostedActivitySessionViaHostedPagesLink: StartHostedActivitySessionPayload;
   startHostedPathwaySession: StartHostedPathwaySessionPayload;
   startPathway: StartPathwayPayload;
   stopPathway: EmptyPayload;
@@ -821,6 +822,11 @@ export type MutationSaveBaselineInfoArgs = {
 
 export type MutationStartHostedActivitySessionArgs = {
   input: StartHostedActivitySessionInput;
+};
+
+
+export type MutationStartHostedActivitySessionViaHostedPagesLinkArgs = {
+  input: StartHostedActivitySessionViaHostedPagesLinkInput;
 };
 
 
@@ -1312,7 +1318,6 @@ export type Question = {
   options?: Maybe<Array<Option>>;
   questionConfig?: Maybe<QuestionConfig>;
   questionType?: Maybe<QuestionType>;
-  release_id: Scalars['String'];
   rule?: Maybe<Rule>;
   title: Scalars['String'];
   userQuestionType?: Maybe<UserQuestionType>;
@@ -1465,28 +1470,33 @@ export type SortingParams = {
 };
 
 export type StartHostedActivitySessionInput = {
-  cancel_url: Scalars['String'];
+  cancel_url?: InputMaybe<Scalars['String']>;
   language?: InputMaybe<Language>;
   pathway_id: Scalars['String'];
   stakeholder_id: Scalars['String'];
-  success_url: Scalars['String'];
+  success_url?: InputMaybe<Scalars['String']>;
 };
 
 export type StartHostedActivitySessionPayload = Payload & {
   __typename?: 'StartHostedActivitySessionPayload';
   code: Scalars['String'];
+  language?: Maybe<Language>;
   session_id: Scalars['String'];
   session_url: Scalars['String'];
   success: Scalars['Boolean'];
 };
 
+export type StartHostedActivitySessionViaHostedPagesLinkInput = {
+  hosted_pages_link_id: Scalars['String'];
+};
+
 export type StartHostedPathwaySessionInput = {
-  cancel_url: Scalars['String'];
+  cancel_url?: InputMaybe<Scalars['String']>;
   data_points?: InputMaybe<Array<DataPointInput>>;
   language?: InputMaybe<Language>;
   pathway_definition_id: Scalars['String'];
   patient_id?: InputMaybe<Scalars['String']>;
-  success_url: Scalars['String'];
+  success_url?: InputMaybe<Scalars['String']>;
 };
 
 export type StartHostedPathwaySessionPayload = Payload & {
