@@ -8,6 +8,7 @@ import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { DocsHeader } from '@/components/Docs/atoms'
+import { FAQ } from '@/components/FAQ'
 import { DocsLayout } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
@@ -59,7 +60,7 @@ export default function E164Validation() {
       <DocsHeader
         heading={heading}
         title="E.164 Phone Validation"
-        description="Check whether your phone number is valid according to the E.164 format."
+        description="When inserting phone numbers into Awell, our API requires them to be in the E.164 format."
       />
       <div id="content-wrapper">
         <h2>Validation widget</h2>
@@ -111,7 +112,7 @@ export default function E164Validation() {
                   {isValid ? (
                     <div className="text-green-600">E.164 valid number</div>
                   ) : (
-                    <div>Not a E.164 valid number</div>
+                    <div>Not an E.164 valid number</div>
                   )}
                 </div>
               )}
@@ -133,10 +134,28 @@ export default function E164Validation() {
             </button>
           </div>
         </form>
-        <h2>E.164 validation</h2>
+        <h2>E.164</h2>
+        <p>
+          <a href="https://en.wikipedia.org/wiki/E.164" title="E.164">
+            E.164
+          </a>{' '}
+          is an international telephone numbering plan for the worldwide public
+          switched telephone network (PSTN) and some other data networks. E.164
+          defines a general format for international telephone numbers that
+          ensures each device on the PSTN has a globally unique number. It makes
+          sure that phone calls and text messages can be correctly routed to
+          individual phones in different countries.
+        </p>
+        <p>
+          As we have ISO 8601 formatting for date and time-related data, E.164
+          is a standard format we can use to achieve data interoperability and
+          consistency related to telephone numbers.
+        </p>
+        <h2>Validation</h2>
         <p>
           <strong>
-            A phone number is subjected to the following validation rules:
+            A phone number passed to our API is subjected to the following
+            validation rules:
           </strong>
         </p>
         <ol>
@@ -157,7 +176,6 @@ export default function E164Validation() {
               width="1633"
               height="505"
               alt="E.164 format"
-              // className="w-full sm:w-4/12 mx-auto p-4 bg-white rounded-lg"
             />
           </div>
           <figcaption className="dark:text-slate-400 pt-1">
@@ -188,6 +206,19 @@ export default function E164Validation() {
             , an international phone input component for React
           </li>
         </ul>
+        <h2>Questions</h2>
+        <FAQ
+          withHeader={false}
+          condensed={true}
+          faqs={[
+            {
+              question:
+                'What if, in my source system, phone numbers are not stored according to the E.164 format?',
+              answer:
+                '<p>Then you should try parsing the phone number to the E.164 format before calling our API. If parsing is unsuccessful for some reason, you can always omit the phone number from the request. Parsing on your end is recommended as you would have the most information about the user to create an E.164 valid phone number (eg: the country they live in which determines the country code).</p><p><strong>Tip:</strong> Libraries like <a href="https://www.npmjs.com/package/libphonenumber-js#using-phone-number-validation-feature">libphonenumber-js</a> can be used to parse numbers in national or other formats to E.164.</p>',
+            },
+          ]}
+        />
       </div>
       <div className="mt-12">
         <QuickNav prev={prev} next={next} />
