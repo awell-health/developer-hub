@@ -3,11 +3,11 @@ title: Create patient
 description: Create a new patient, anonymous patients are also supported.
 ---
 
-## Patient deduplication
+## Deduplication
 
 In order to make sure you there's only one single reference to each unique patient, we advise you to first search whether the patient already exists ([see "searchPatient" queries](/awell-orchestration/api-reference/queries/search-patient)).
 
-## Establish a link between your patient resource and the Awell patient resource
+## Reconcilce patient records
 
 In order to establish a link between the patient resource on your end and the patient resource in Awell, we advise you to store the identifier of the patient resource in your system in the `patient_code` field. This way its easy to establish a link between the patient record in your system and in Awell's system.
 
@@ -25,7 +25,9 @@ mutation CreatePatient($input: CreatePatientInput!) {
 }
 ```
 
-### Variables - Anonymous patient
+### Variables for anonymous patient
+
+In case you want to create anonymous patients without any PHI, we still advise you to specify a `patient_code` where you can insert the internal identifier of the patient. This can later be used to reconcile the Awell patient resource with a patient resource in your system.
 
 ```json
 {
@@ -35,16 +37,43 @@ mutation CreatePatient($input: CreatePatientInput!) {
 }
 ```
 
-### Variables - Patient with profile
+### Variables for patient with profile data
 
 Use our <a target="_blank" rel="noopener noreferrer" href="/playground">GraphQL explorer</a> to discover all the variables you can pass with this mutation.
 
 ```json
 {
   "input": {
+    "patient_code": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}",
     "first_name": "{{PATIENT_FIRST_NAME}}",
-    "last_name": "{{PATIENT_LAST_NAME}}",
-    "patient_code": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}"
+    "last_name": "{{PATIENT_LAST_NAME}}"
+  }
+}
+```
+
+## Validation
+
+### Preferred language
+
+Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+
+```json
+{
+  "input": {
+    "preferred_language": "nl" | "en" | "de" | "et",
+  }
+}
+```
+
+### Phone numbers
+
+Phone numbers should be passed in the E.164 format. Read more [here](/awell-orchestration/developer-tools/e164-phone-validation).
+
+```json
+{
+  "input": {
+    "mobile_phone": "+16175551212",
+    "phone": "+16175551212" // Landline
   }
 }
 ```
