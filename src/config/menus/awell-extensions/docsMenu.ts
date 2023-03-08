@@ -27,6 +27,10 @@ export const docsMenu: MenuItemType[] = [
             title: 'Get started',
             path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/introduction/get-started`,
           },
+          {
+            title: 'Contributing guidelines',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/introduction/contributing-guidelines`,
+          },
         ],
       },
       {
@@ -68,6 +72,20 @@ export const docsMenu: MenuItemType[] = [
           {
             title: 'Versioning',
             path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/deploy/versioning`,
+          },
+        ],
+      },
+      {
+        title: 'Use your extension',
+        path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/use-your-extension`,
+        submenu: [
+          {
+            title: 'Install your extension',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-action/suse-your-extension/install-your-extension`,
+          },
+          {
+            title: 'Start using your Custom Actions',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/use-your-extension/start-using-your-custom-actions`,
           },
         ],
       },
