@@ -18,6 +18,10 @@ export const developerToolsMenu: MenuItemType[] = [
         title: 'Postman collection',
         path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/api/postman-collection`,
       },
+      {
+        title: 'E.164 phone validation',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/e164-phone-validation`,
+      },
     ],
   },
   {

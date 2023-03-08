@@ -1,5 +1,6 @@
 export { beautifySnakeCase } from './beautifySnakeCase'
 export { capitalizeFirstLetter } from './capitalizeFirstLetter'
+export { isValidE164String } from './isValidE164String'
 export { removeLeadingAndTrailingSlashes } from './removeLeadingAndTrailingSlashes'
 export { stripHtml } from './stripHtml'
 export { truncate } from './truncate'
