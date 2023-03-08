@@ -3,6 +3,7 @@ import {
   ExclamationCircleIcon,
 } from '@heroicons/react/outline'
 import { isNil } from 'lodash'
+import Image from 'next/image'
 import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -132,7 +133,7 @@ export default function E164Validation() {
             </button>
           </div>
         </form>
-        <h2>Validation rules</h2>
+        <h2>E.164 validation</h2>
         <p>
           <strong>
             A phone number is subjected to the following validation rules:
@@ -149,6 +150,20 @@ export default function E164Validation() {
             country code)
           </li>
         </ol>
+        <figure className="w-full flex flex-col justify-center text-center">
+          <div className="w-full sm:w-5/12 mx-auto p-4 bg-white rounded-lg">
+            <Image
+              src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678272288/Developer%20portal/e164.jpg"
+              width="1633"
+              height="505"
+              alt="E.164 format"
+              // className="w-full sm:w-4/12 mx-auto p-4 bg-white rounded-lg"
+            />
+          </div>
+          <figcaption className="dark:text-slate-400 pt-1">
+            E.164 format
+          </figcaption>
+        </figure>
         <p>
           Please note we are only checking if a number is technically possible
           (according to the E.164 format), not whether it is an actual valid
