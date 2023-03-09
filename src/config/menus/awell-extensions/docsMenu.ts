@@ -101,7 +101,7 @@ export const docsMenu: MenuType = [
         submenu: [
           {
             title: 'Install your extension',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-action/suse-your-extension/install-your-extension`,
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/use-your-extension/install-your-extension`,
           },
           {
             title: 'Start using your Custom Actions',

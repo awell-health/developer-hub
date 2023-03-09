@@ -34,6 +34,10 @@ export const useMenus = (): useMenusHook => {
     ...scoreDocsMenu,
   ]
 
+  /**
+   * This is really ugly code, I am sorry.
+   * Needs a clean up.
+   */
   const flattenedMenu: FlattenedMenuType[] = menus
     .flatMap((menuItem) => {
       if (menuItem.submenu) {
@@ -45,6 +49,17 @@ export const useMenus = (): useMenusHook => {
         })
       }
 
+      return [menuItem]
+    })
+    .flatMap((menuItem) => {
+      if (menuItem?.submenu) {
+        return menuItem.submenu.map((subMenuItem) => {
+          return {
+            parentTitle: menuItem.title,
+            ...subMenuItem,
+          }
+        })
+      }
       return [menuItem]
     })
     .flatMap((menuItem) => {
