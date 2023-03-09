@@ -1,20 +1,20 @@
 const manualIndexes = [
   {
-    objectID: 'awell-orchestration/developer-tools/playground',
+    objectID: 'awell-orchestration/developer-tools/api/playground',
     space: 'Awell Orchestration',
     title: 'Playground',
     description:
       'Our playground is an in-browser tool for writing, validating, and testing GraphQL queries',
     content: '',
-    slug: 'awell-orchestration/developer-tools/playground',
+    slug: 'awell-orchestration/developer-tools/api/playground',
   },
   {
-    objectID: 'awell-orchestration/developer-tools/schema',
+    objectID: 'awell-orchestration/developer-tools/api/schema',
     space: 'Awell Orchestration',
     title: 'Schema',
     description: 'Explore our GraphQL schema',
     content: '',
-    slug: 'awell-orchestration/developer-tools/schema',
+    slug: 'awell-orchestration/developer-tools/api/schema',
   },
   {
     objectID: 'awell-score/docs/getting-started/playground',
@@ -26,13 +26,13 @@ const manualIndexes = [
     slug: 'awell-score/docs/getting-started/playground',
   },
   {
-    objectID: 'awell-orchestration/developer-tools/webhook-builder',
+    objectID: 'awell-orchestration/developer-tools/webhooks/webhook-builder',
     space: 'Awell Orchestration',
     title: 'Webhook builder',
     description: 'Interactive webhook endpoint builder',
     content:
       'Learn how to set up and deploy a webhook to listen to events from Awell! Select the webhooks you would like to listen to and copy/paste the corresponding code',
-    slug: 'awell-orchestration/developer-tools/webhook-builder',
+    slug: 'awell-orchestration/developer-tools/webhooks/webhook-builder',
   },
   {
     objectID:

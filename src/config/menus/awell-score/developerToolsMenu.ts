@@ -1,10 +1,11 @@
 import { Space } from '@/types/space.types'
 
-import { type MenuItemType } from '../../../types/menu.types'
+import { type MenuType } from '../../../types/menu.types'
 
-export const developerToolsMenu: MenuItemType[] = [
+export const developerToolsMenu: MenuType = [
   {
     title: 'API',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/api`,
     submenu: [
       {
         title: 'API Playground',

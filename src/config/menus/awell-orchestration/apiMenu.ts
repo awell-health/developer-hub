@@ -1,6 +1,6 @@
 import { Space } from '@/types/space.types'
 
-import { type MenuItemType, BadgeType } from '../../../types/menu.types'
+import { type BadgeType, type MenuType } from '../../../types/menu.types'
 
 const badges: { [key in string]: BadgeType } = {
   patient: { label: 'Patient', color: 'green' },
@@ -11,9 +11,10 @@ const badges: { [key in string]: BadgeType } = {
   elements: { label: 'Elements', color: 'sky' },
 }
 
-export const apiMenu: MenuItemType[] = [
+export const apiMenu: MenuType = [
   {
     title: 'Getting started',
+    path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview`,
     submenu: [
       {
         title: 'Endpoints',
@@ -27,6 +28,7 @@ export const apiMenu: MenuItemType[] = [
   },
   {
     title: 'Queries',
+    path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries`,
     submenu: [
       {
         title: 'Get patient',
@@ -147,6 +149,7 @@ export const apiMenu: MenuItemType[] = [
   },
   {
     title: 'Mutations',
+    path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations`,
     submenu: [
       {
         title: 'Create patient',
@@ -222,6 +225,7 @@ export const apiMenu: MenuItemType[] = [
   },
   {
     title: 'Webhooks',
+    path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks`,
     submenu: [
       {
         title: 'Pathway started',

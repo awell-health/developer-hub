@@ -1,18 +1,19 @@
 import { Space } from '@/types/space.types'
 
-import { type MenuItemType } from '../../../types/menu.types'
+import { type MenuType } from '../../../types/menu.types'
 
-export const developerToolsMenu: MenuItemType[] = [
+export const developerToolsMenu: MenuType = [
   {
     title: 'API',
+    path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/api`,
     submenu: [
       {
         title: 'Browse API schema',
-        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/schema`,
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/api/schema`,
       },
       {
         title: 'Playground',
-        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/playground`,
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/api/playground`,
       },
       {
         title: 'Postman collection',
@@ -20,12 +21,13 @@ export const developerToolsMenu: MenuItemType[] = [
       },
       {
         title: 'E.164 phone validation',
-        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/e164-phone-validation`,
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/api/e164-phone-validation`,
       },
     ],
   },
   {
     title: 'Webhooks',
+    path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks`,
     submenu: [
       {
         title: 'Introduction',
@@ -41,7 +43,7 @@ export const developerToolsMenu: MenuItemType[] = [
       },
       {
         title: 'Webhook builder',
-        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhook-builder`,
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/webhook-builder`,
       },
       {
         title: 'Test webhooks',
@@ -63,6 +65,7 @@ export const developerToolsMenu: MenuItemType[] = [
   },
   {
     title: 'Example projects',
+    path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/example-projects`,
     submenu: [
       {
         title: 'Orchestration stories',
@@ -72,6 +75,7 @@ export const developerToolsMenu: MenuItemType[] = [
   },
   {
     title: 'SDKs',
+    path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/sdks`,
     submenu: [
       {
         title: 'UI library',

@@ -1,10 +1,11 @@
 import { Space } from '@/types/space.types'
 
-import { type MenuItemType } from '../../../types/menu.types'
+import { type MenuType } from '../../../types/menu.types'
 
-export const docsMenu: MenuItemType[] = [
+export const docsMenu: MenuType = [
   {
     title: 'Getting started',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started`,
     submenu: [
       {
         title: 'What is Awell Orchestration?',
@@ -30,6 +31,7 @@ export const docsMenu: MenuItemType[] = [
   },
   {
     title: 'Operate and manage care',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows`,
     submenu: [
       {
         title: 'Overview',
@@ -47,6 +49,7 @@ export const docsMenu: MenuItemType[] = [
   },
   {
     title: 'Interact with activities',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/activities`,
     submenu: [
       {
         title: 'Overview',
@@ -86,6 +89,7 @@ export const docsMenu: MenuItemType[] = [
   },
   {
     title: 'Get data and events out',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/data`,
     submenu: [
       {
         title: 'Overview',
@@ -121,6 +125,7 @@ export const docsMenu: MenuItemType[] = [
   },
   {
     title: 'Going live',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/going-live`,
     submenu: [
       {
         title: 'Preflight checklist',

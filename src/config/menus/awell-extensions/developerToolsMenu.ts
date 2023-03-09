@@ -1,3 +1,3 @@
-import { type MenuItemType } from '../../../types/menu.types'
+import { type MenuType } from '../../../types/menu.types'
 
-export const developerToolsMenu: MenuItemType[] = []
+export const developerToolsMenu: MenuType = []

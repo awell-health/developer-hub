@@ -14,7 +14,7 @@ import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
 import { Space } from '@/types/space.types'
 
-import { useHeading, useQuickNavigation } from '../../../src/hooks'
+import { useHeading, useQuickNavigation } from '../../../../src/hooks'
 
 export default function E164Validation() {
   const { heading } = useHeading()
@@ -54,8 +54,8 @@ export default function E164Validation() {
     <div>
       <SEO
         title="E.164 Phone Validation"
-        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/e164-phone-validation`}
-        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/e164-phone-validation`}
+        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/api/e164-phone-validation`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/api/e164-phone-validation`}
       />
       <DocsHeader
         heading={heading}

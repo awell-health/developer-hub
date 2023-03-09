@@ -16,12 +16,16 @@ import {
   scoreDocsMenu,
 } from '@/config/menus/awell-score'
 import { AppContext } from '@/contexts/app/AppContext'
-import { MenuItemType, MenuType } from '@/types/menu.types'
+import {
+  type LevelOneMenuType,
+  type LevelTwoMenuType,
+  type MenuType,
+} from '@/types/menu.types'
 import { Space } from '@/types/space.types'
 
 interface useSidebarMenuHook {
   menu: MenuType
-  isChildActive: (menu: MenuItemType) => boolean
+  isChildActive: (menu: LevelOneMenuType | LevelTwoMenuType) => boolean
 }
 
 export const useSidebarMenu = (): useSidebarMenuHook => {
@@ -62,10 +66,10 @@ export const useSidebarMenu = (): useSidebarMenuHook => {
     }
   })
 
-  const isChildActive = (menuItem: MenuItemType) => {
+  const isChildActive = (menuItem: LevelOneMenuType | LevelTwoMenuType) => {
     if (menuItem?.submenu) {
       const levelOneSubMenuItemsActive = menuItem.submenu.some((subMenuItem) =>
-        router.asPath.includes(subMenuItem.path)
+        router.asPath.includes(subMenuItem?.path ?? '')
       )
 
       const levelTwoSubMenuItemsActive = menuItem.submenu.some(

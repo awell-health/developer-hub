@@ -13,7 +13,7 @@ export const Node = () => {
       <div className="mb-8">
         <Alert title="Interactive webhook builder" type="info">
           Use our{' '}
-          <Link href="/awell-orchestration/developer-tools/webhook-builder">
+          <Link href="/awell-orchestration/developer-tools/webhooks/webhook-builder">
             <a
               title="interactive webhook builder"
               target="_blank"

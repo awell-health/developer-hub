@@ -6,7 +6,7 @@ import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
 import { Space } from '@/types/space.types'
 
-import { useHeading, useQuickNavigation } from '../../../src/hooks'
+import { useHeading, useQuickNavigation } from '../../../../src/hooks'
 
 export default function Schema() {
   const { heading } = useHeading()
@@ -16,8 +16,8 @@ export default function Schema() {
     <div>
       <SEO
         title="Schema"
-        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/schema`}
-        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/schema`}
+        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/api/schema`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/api/schema`}
       />
       <DocsHeader
         heading={heading}
@@ -32,7 +32,7 @@ export default function Schema() {
         </p>
         <figure className="w-full flex flex-col justify-center text-center pt-4">
           <a
-            href={`/${Space.AWELL_ORCHESTRATION}/playground`}
+            href={`/${Space.AWELL_ORCHESTRATION}/api/playground`}
             target="_blank"
             className="custom-link"
             rel="noreferrer"

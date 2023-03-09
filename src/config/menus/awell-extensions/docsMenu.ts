@@ -1,10 +1,11 @@
 import { Space } from '@/types/space.types'
 
-import { type MenuItemType } from '../../../types/menu.types'
+import { type MenuType } from '../../../types/menu.types'
 
-export const docsMenu: MenuItemType[] = [
+export const docsMenu: MenuType = [
   {
     title: 'Getting started',
+    path: `/${Space.AWELL_EXTENSIONS}/docs/getting-started`,
     submenu: [
       {
         path: `/${Space.AWELL_EXTENSIONS}/docs/getting-started/what-are-awell-extensions`,
@@ -14,6 +15,7 @@ export const docsMenu: MenuItemType[] = [
   },
   {
     title: 'Custom Actions',
+    path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions`,
     submenu: [
       {
         title: 'Introduction',
@@ -49,6 +51,20 @@ export const docsMenu: MenuItemType[] = [
             title: 'Extension settings',
             path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/extension-settings`,
           },
+          // {
+          //   title: 'Actions',
+          //   path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions`,
+          //   submenu: [
+          //     {
+          //       title: 'Test',
+          //       path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions/test`,
+          //     },
+          //     {
+          //       title: 'Test 2',
+          //       path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions/test-2`,
+          //     },
+          //   ],
+          // },
         ],
       },
       {
@@ -67,11 +83,11 @@ export const docsMenu: MenuItemType[] = [
         submenu: [
           {
             title: 'Deploy your extension',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/deploy/deploy-your-extension`,
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/deployment/deploy-your-extension`,
           },
           {
             title: 'Versioning',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/deploy/versioning`,
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/deployment/versioning`,
           },
         ],
       },

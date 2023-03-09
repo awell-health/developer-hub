@@ -1,15 +1,16 @@
 import { Space } from '@/types/space.types'
 
-import { type MenuItemType, BadgeType } from '../../../types/menu.types'
+import { type BadgeType, type MenuType } from '../../../types/menu.types'
 
 const badges: { [key in string]: BadgeType } = {
   get: { label: 'GET', color: 'sky' },
   post: { label: 'POST', color: 'green' },
 }
 
-export const docsMenu: MenuItemType[] = [
+export const docsMenu: MenuType = [
   {
     title: 'Getting started',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started`,
     submenu: [
       {
         title: 'What is Awell Score?',
@@ -35,6 +36,7 @@ export const docsMenu: MenuItemType[] = [
   },
   {
     title: 'API reference',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/api-reference`,
     submenu: [
       {
         title: 'List calculations',

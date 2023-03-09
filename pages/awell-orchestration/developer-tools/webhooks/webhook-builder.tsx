@@ -36,8 +36,8 @@ export default function WebhookBuilderPage() {
       <SEO
         title="Webhook builder"
         description="Interactive webhook endpoint builder"
-        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/webhook-builder`}
-        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/webhook-builder`}
+        url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/webhooks/webhook-builder`}
+        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/webhooks/webhook-builder`}
       />
       <div className="flex mb-8">
         <StackSelector

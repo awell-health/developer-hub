@@ -3,12 +3,16 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 
 import { useSidebarMenu } from '@/hooks/useSidebarMenu'
-import { MenuItemType } from '@/types/menu.types'
+import {
+  type LevelOneMenuType,
+  type LevelThreeMenuType,
+  type LevelTwoMenuType,
+} from '@/types/menu.types'
 
 import { isMenuItemActive } from '../../../utils/isMenuItemActive'
 import { Badge } from '../../Badge'
 
-const SubMenuLevelTwo = ({ menuItem }: { menuItem: MenuItemType }) => {
+const SubMenuLevelThree = ({ menuItem }: { menuItem: LevelThreeMenuType }) => {
   const { isChildActive } = useSidebarMenu()
   const router = useRouter()
 
@@ -77,7 +81,83 @@ const SubMenuLevelTwo = ({ menuItem }: { menuItem: MenuItemType }) => {
   )
 }
 
-const SubMenuLevelOne = ({ menuItem }: { menuItem: MenuItemType }) => {
+const SubMenuLevelTwo = ({ menuItem }: { menuItem: LevelTwoMenuType }) => {
+  const { isChildActive } = useSidebarMenu()
+  const router = useRouter()
+
+  const subLevelActiveClass =
+    'text-blue-600 border-current font-semibold dark:text-sky-400'
+  const subLevelInactiveClass =
+    'border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
+
+  return (
+    <Disclosure
+      as="div"
+      defaultOpen={isChildActive(menuItem)}
+      key={menuItem.title}
+      className="space-y-1"
+    >
+      {({ open }) => (
+        <>
+          <Disclosure.Button
+            className={clsx(
+              open
+                ? 'text-blue-600 border-current font-semibold dark:text-sky-400'
+                : 'text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300',
+              'text-base flex justify-between block border-l pl-4 -ml-px'
+            )}
+          >
+            {menuItem.title}
+          </Disclosure.Button>
+          {open && (
+            <Disclosure.Panel static className="pl-2.5 ml-2">
+              <ul className="space-y-2 lg:space-y-4 mt-2 lg:mt-4 border-l border-slate-200 dark:border-slate-700 lg:dark:border-slate-800">
+                {menuItem?.submenu &&
+                  menuItem.submenu.map((subMenuItem) => {
+                    return subMenuItem?.submenu ? (
+                      <SubMenuLevelThree
+                        menuItem={subMenuItem}
+                        key={subMenuItem.title}
+                      />
+                    ) : (
+                      <li key={subMenuItem.title}>
+                        <a
+                          href={subMenuItem.path}
+                          className={clsx(
+                            isMenuItemActive(
+                              subMenuItem.path,
+                              router.pathname,
+                              router.query.slug
+                                ? router.query.slug
+                                : router.pathname
+                            )
+                              ? subLevelActiveClass
+                              : subLevelInactiveClass,
+                            'text-base flex justify-between block border-l pl-4 -ml-px'
+                          )}
+                        >
+                          {subMenuItem.title}
+                          <div className="flex items-center">
+                            {subMenuItem.badge && (
+                              <Badge size="sm" color={subMenuItem.badge.color}>
+                                {subMenuItem.badge.label}
+                              </Badge>
+                            )}
+                          </div>
+                        </a>
+                      </li>
+                    )
+                  })}
+              </ul>
+            </Disclosure.Panel>
+          )}
+        </>
+      )}
+    </Disclosure>
+  )
+}
+
+const SubMenuLevelOne = ({ menuItem }: { menuItem: LevelOneMenuType }) => {
   const { isChildActive } = useSidebarMenu()
   const router = useRouter()
 

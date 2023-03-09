@@ -73,7 +73,9 @@ export const DocsHeader = ({
       )}
       {playgroundButton && (
         <div className="mt-2 mr-3">
-          <GraphQLButton url={`/${Space.AWELL_ORCHESTRATION}/playground`} />
+          <GraphQLButton
+            url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/api/playground`}
+          />
         </div>
       )}
       {customLink && (

@@ -21,6 +21,28 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/awell-orchestration/developer-tools/playground',
+        destination: '/awell-orchestration/developer-tools/api/playground',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/developer-tools/schema',
+        destination: '/awell-orchestration/developer-tools/api/schema',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/developer-tools/webhook-builder',
+        destination:
+          '/awell-orchestration/developer-tools/webhooks/webhook-builder',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/developer-tools/e164-phone-validation',
+        destination:
+          '/awell-orchestration/developer-tools/api/e164-phone-validation',
+        permanent: true,
+      },
+      {
         source:
           '/awell-orchestration/docs/going-live/sandbox-to-production-migration-guide',
         destination:

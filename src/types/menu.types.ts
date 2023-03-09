@@ -8,49 +8,26 @@ export type NavType = {
 
 export type BadgeType = { label: string; color?: BadgeColorType }
 
-export type SubMenuType = {
+interface BaseType {
   title: string
   path: string
   badge?: BadgeType
   openInNewTab?: boolean
 }
 
-export type SubmenuItemType = {
-  title: string
-  path: string
-  badge?: BadgeType
-  openInNewTab?: boolean
-  submenu?: SubMenuType[]
+export interface LevelThreeMenuType extends BaseType {
+  submenu?: Array<BaseType>
 }
 
-export type MenuItemType = {
-  title: string
-  path?: string
-  submenu?: SubmenuItemType[]
-  openInNewTab?: boolean
-  badge?: BadgeType
+export interface LevelTwoMenuType extends BaseType {
+  submenu?: Array<LevelThreeMenuType>
 }
 
-// ;[
-//   {
-//     title: 'hello',
-//     path: '/hello',
-//     submenu: [
-//       {
-//         title: 'hello',
-//         path: '/hello',
-//         submenu: [
-//           {
-//             title: 'hello',
-//             path: '/hello',
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// ]
+export interface LevelOneMenuType extends BaseType {
+  submenu?: Array<LevelTwoMenuType>
+}
 
-export type MenuType = MenuItemType[]
+export type MenuType = LevelOneMenuType[]
 
 export type QuickNavType = {
   prev?: {
