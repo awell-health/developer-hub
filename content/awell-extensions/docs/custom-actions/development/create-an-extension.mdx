@@ -23,15 +23,31 @@ Creating an extension is dead easy, just create a new folder in the `/extensions
   </figcaption>
 </figure>
 
-## Extension
+## Extension fields
 
-### Extension settings
+### Key
+
+A unique identifier for extension. We recommend using a camelCase string.
+
+### Title
+
+The title or name of your extension.
+
+### Icon URL (optional)
+
+The icon for your extension. We recommend icons with a size of minimally `60x60` so it can be down- or upscaled depending on the context it is shown in.
+
+### Category (optional)
+
+The category of your extension.
+
+### Settings
 
 An extension can have no, one, or many settings. Learn more about extension settings and how to configure them [here](/awell-extensions/docs/custom-actions/development/extension-settings).
 
-### Custom Actions
+### Actions
 
-An extension can have one or many Custom Actions. Your actions can also access the extension settings.
+An extension can have one or many Custom Actions. Your actions can also access the extension settings. Read more about defining your Custom Actions [here](/awell-extensions/docs/custom-actions/development/actions/add-a-custom-action).
 
 ## Hello world extension
 

@@ -51,20 +51,24 @@ export const docsMenu: MenuType = [
             title: 'Extension settings',
             path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/extension-settings`,
           },
-          // {
-          //   title: 'Actions',
-          //   path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions`,
-          //   submenu: [
-          //     {
-          //       title: 'Test',
-          //       path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions/test`,
-          //     },
-          //     {
-          //       title: 'Test 2',
-          //       path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions/test-2`,
-          //     },
-          //   ],
-          // },
+          {
+            title: 'Actions',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions`,
+            submenu: [
+              {
+                title: 'Create an action',
+                path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions/create-an-action`,
+              },
+              {
+                title: 'Action fields',
+                path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions/action-fields`,
+              },
+              {
+                title: 'onActivityCreated',
+                path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/actions/on-activity-created`,
+              },
+            ],
+          },
         ],
       },
       {

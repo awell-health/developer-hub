@@ -1,0 +1,72 @@
+---
+title: Create an action
+description: Add a Custom Action to your extension
+---
+
+**Within your action code, you will:**
+
+1. Define some basic settings about your action like the title, icon, and category
+2. Define how your action can be configured by the user
+3. Define the logic of what needs to happen when the action is activated in a pathway.
+
+## Action fields
+
+### Key
+
+A unique identifier for your action. We recommend using a camelCase string.
+
+### Title
+
+The title or name of your action.
+
+### Category
+
+The category of your action. In Awell Studio, actions are logically grouped and shown to the user based on the category.
+
+### Icon (optional)
+
+The icon for your action. We recommend icons with a size of minimally `60x60` so it can be down- or upscaled depending on the context it is shown in.
+
+### Description (optional)
+
+A human-readable description of your action.
+
+### Previewable (optional)
+
+When set to true, your action will be executed in preview as it would be in orchestration. Defaults to `false`.
+
+### Fields
+
+The configuration fields for your action. These configuration fields are displayed in Awell Studio when a user adds the action to a pathway. Learn more about action fields [here](/awell-extensions/docs/custom-actions/development/actions/action-fields)
+
+### onActivityCreated
+
+When your action is activated (and thus becomes an activity), the Awell system publishes a message that is received by the extension server, which will call the `onActivityCreated` function defined in your action. **In this function you will write the logic to handle what needs to happen when your action is activated.**
+
+Learn more about the `onActivityCreated` function [here](/awell-extensions/docs/custom-actions/development/actions/on-acitivty-created)
+
+## Example
+
+```typescript
+const actionFields = {
+  name: {
+    id: 'name',
+    label: 'What is your name?',
+    type: FieldType.TEXT,
+    required: true,
+  },
+} satisfies Record<string, Field>
+
+export const myFirstAction: Action<typeof fields, typeof settings> = {
+  key: 'logYourName',
+  category: 'Demo',
+  title: 'Log Your Name',
+  fields: actionFields,
+  previewable: true,
+  onActivityCreated: async (payload, onComplete): Promise<void> => {
+    const { activity, fields, settings } = payload
+    console.log('My name is:' + fields.name)
+    await onComplete()
+  },
+}
+```
