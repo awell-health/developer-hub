@@ -30,13 +30,17 @@ description: Learn how to let users configure the settings for your extension
 
 A human-readable label for your setting. This is what will be showed to end-user in Awell Studio above the input.
 
+### Description (optional)
+
+A human-readable description of the setting. This is displayed as a sub-label underneath the label of the setting.
+
 ### Key
 
 A unique key that identifies your setting. You will use this key to access the setting in your extension code.
 
 ### Obfuscated
 
-Whehter the value entered by the user needs to be obfuscated or concealed. When set to `true`, the value entered by the user will be permanently hidden but the value can be overwritten if needed. Obfuscated settings are also encrypted before we store them to the database.
+Whether the value entered by the user needs to be obfuscated or concealed. When set to `true`, the value entered by the user will be permanently hidden but the value can be overwritten if needed. Obfuscated settings are also encrypted before we store them to the database.
 
 <figure className="w-full flex flex-col justify-center text-center relative">
   <div className="">
@@ -57,13 +61,9 @@ Whehter the value entered by the user needs to be obfuscated or concealed. When 
   </figcaption>
 </figure>
 
-### Required
+### Required (optional)
 
-Whether the setting is required in order to enable the extension.
-
-### Description
-
-A human-readable description of the setting. This is displayed as a sub-label underneath the label of the setting.
+Whether the setting is required in order to enable the extension. The default value is `false`.
 
 ## Example
 
@@ -72,17 +72,17 @@ A human-readable description of the setting. This is displayed as a sub-label un
 const twilioSettings = {
   apiKey: {
     label: 'API Key',
+    description: 'Enter your API key',
     key: 'apiKey',
     obfuscated: true, // set this to true when settings store sensitive data
     required: true,
-    description: 'Enter your API key',
   },
-    apiKey: {
+  fromNumber: {
     label: 'From number',
-    key: 'fromNuber',
+    description: 'The number we will send the text message from',
+    key: 'fromNumber',
     obfuscated: false,
     required: true,
-    description: 'The number we will send the text message from',
   },
 } satisfies Record<string, Setting>
 
