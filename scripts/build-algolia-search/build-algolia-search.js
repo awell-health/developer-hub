@@ -28,6 +28,9 @@ async function getAllPages() {
       case filePath.includes('awell-score'):
         space = 'Awell Score'
         break
+      case filePath.includes('awell-extensions'):
+        space = 'Awell Extensions'
+        break
       default:
         break
     }
