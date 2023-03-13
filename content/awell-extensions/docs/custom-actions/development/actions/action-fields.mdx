@@ -1,6 +1,143 @@
 ---
 title: Action fields
-description: Learn more about the action fields that determine how a user can configure your action in Awell Studio
+description: Learn more about action fields that determine how a user can configure your action in Awell Studio
 ---
 
-We are currently working on this page.
+**When an action is added by a user in Awell Studio, they can configure the action through the UI.** As an extension developer, you can decide what fields a user needs to configure in order to use your action. **Every action can have none, one, or many action fields.**
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="bg-[#F0F6FF] p-12 w-full sm:w-8/12 sm:p-4 mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678703642/Developer%20portal/Action_Fields.png"
+      target="_blank"
+      title="Action vs. Activity"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678703642/Developer%20portal/Action_Fields.png"
+        alt="Action fields"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    "To number" and "Content" are action fields the user has to configure in
+    Awell Studio.
+  </figcaption>
+</figure>
+
+## Field properties
+
+### ID
+
+The unique identifier for your field.
+
+### Label
+
+The title or name for your field. This will be displayed as the label on top of the input field.
+
+### Description
+
+A description for your field. This will be displayed as the sublabel on top of the input field.
+
+### Required
+
+Whether the field is required for a user to configure.
+
+### Type
+
+The type of the field. Read more below.
+
+## Field types
+
+Action fields are strongly typed so for every field you need to specify what type of value a user can enter. In Awell Studio, the appropriate fields are rendered in the UI based on the type.
+
+### String
+
+A string field is a single-line input without the ability to insert [variables](https://help.awellhealth.com/en/articles/5844865-dynamize-your-actions-with-variables).
+
+**We have support for multiple string types:**
+
+1. Text
+2. Email
+3. Phone number
+4. URL
+
+For all string types, we make sure to render the appropriate inputs in Awell Studio. When no string type is defined, we assume the string will be regular text.
+
+```javascript
+const stringField = {
+    ...,
+    type: 'numeric',
+    stringType: 'text' | 'email' | 'phone_number' | 'url'
+}
+```
+
+### Text
+
+A text field is a multi-line input with support for inserting [variables](https://help.awellhealth.com/en/articles/5844865-dynamize-your-actions-with-variables).
+
+```javascript
+const textField = {
+    ...,
+    type: 'text'
+}
+```
+
+### Number
+
+Allows a user to insert a number.
+
+```javascript
+const numberField = {
+    ...,
+    type: 'numeric'
+}
+```
+
+### HTML
+
+Will render a WYSIWYG in Awell Studio so users can enter rich formatted text with support for inserting [variables](https://help.awellhealth.com/en/articles/5844865-dynamize-your-actions-with-variables).
+
+```javascript
+const htmlField = {
+    ...,
+    type: 'html'
+}
+```
+
+### JSON
+
+Will render an input field where the user can enter a JSON object with support for inserting [variables](https://help.awellhealth.com/en/articles/5844865-dynamize-your-actions-with-variables).
+
+```javascript
+const jsonField = {
+    ...,
+    type: 'json'
+}
+```
+
+## Example
+
+```typescript
+const fields = {
+  toNumber: {
+    id: 'toNumber',
+    label: '"To" number',
+    type: 'string',
+    stringType: 'phone_number',
+    required: true,
+  },
+  content: {
+    id: 'content',
+    label: 'Content',
+    type: 'text',
+    required: true,
+  },
+} satisfies Record<string, Field>
+
+export const sendSmsAction = {
+  key: 'sendSmsAction',
+  title: 'Send SMS with Twilio',
+  fields,
+  ...
+}
+```

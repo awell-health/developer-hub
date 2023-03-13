@@ -89,7 +89,9 @@ export const Code = ({
                           : ''
                       }`}
                     >
-                      <span className="CodeLineNumber">{i + 1}</span>
+                      <span className="CodeLineNumber">
+                        {i + 1 < 10 ? `0${i + 1}` : i + 1}
+                      </span>
                       <span className="CodeLineContent">
                         {line.map((token, key) => (
                           <span key={key} {...getTokenProps({ token, key })} />
@@ -107,7 +109,9 @@ export const Code = ({
                           : ''
                       }`}
                     >
-                      <span className="CodeLineNumber">{i + 1}</span>
+                      <span className="CodeLineNumber">
+                        {i + 1 < 10 ? `0${i + 1}` : i + 1}
+                      </span>
                       <span className="CodeLineContent">
                         {line.map((token, key) => (
                           <span key={key} {...getTokenProps({ token, key })} />
