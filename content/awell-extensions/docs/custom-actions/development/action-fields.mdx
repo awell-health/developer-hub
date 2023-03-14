@@ -58,7 +58,7 @@ A string field is a single-line input without the ability to insert [variables](
 
 1. Text
 2. Email
-3. Phone number
+3. Phone
 4. URL
 
 For all string types, we make sure to render the appropriate inputs in Awell Studio. When no string type is defined, we assume the string will be regular text.
@@ -67,7 +67,7 @@ For all string types, we make sure to render the appropriate inputs in Awell Stu
 const stringField = {
     ...,
     type: 'string',
-    stringType: 'text' | 'email' | 'phone_number' | 'url'
+    stringType: 'text' | 'email' | 'phone' | 'url'
 }
 ```
 
@@ -123,7 +123,7 @@ const fields = {
     id: 'toNumber',
     label: '"To" number',
     type: 'string',
-    stringType: 'phone_number',
+    stringType: 'phone',
     required: true,
   },
   content: {
