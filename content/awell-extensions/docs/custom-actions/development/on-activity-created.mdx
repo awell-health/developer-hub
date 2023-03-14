@@ -1,0 +1,115 @@
+---
+title: onActivityCreated function
+description: Define the logic of what needs to happen when your action is activated
+---
+
+The `onActivityCreated` function is called whenever orchestration or design (preview) activates a Custom Action. It will publish a message that is received by the extension server, which automatically finds the right Custom Action and calls the `onActivityCreated` function defined in that action.
+
+<figure className="w-full flex flex-col justify-center text-center relative my-16">
+  <div className="bg-white w-full mx-auto rounded-md dark:p-4 mx-auto">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678711700/Developer%20portal/onActivityCreatedWithCallbacks.png"
+      target="_blank"
+      title="onActivityCreated with callbacks"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678711700/Developer%20portal/onActivityCreatedWithCallbacks.png"
+        alt="onActivityCreated with callbacks"
+      />
+    </a>
+  </div>
+</figure>
+
+**The `onActivityCreated` function has a couple of parameters that will be useful when developing an extension:**
+
+1. **Payload:** not only allows you to access the values of your extension settings and action fields but also access patient related data.
+2. **Callbacks:** they allow you to communicate with the Design (preview) or Orchestration engine and delegate back control to them. An extension either needs to call `onComplete` or `onError` to complete the corresponding activity.
+
+```javascript
+export const myAction = {
+    ...,
+  onActivityCreated: async (payload, onComplete, onError) => {
+    // Do something here
+  },
+}
+```
+
+## Payload
+
+The payload allows you to access the values of your extension settings, action fields, and patient data.
+
+```javascript
+export const myAction = {
+  onActivityCreated: async (payload) => {
+    const {
+      patient, // access patient profile data for patient enrolled in pathway the activity is related to
+      fields, // access the values of your action fields
+      settings, // access the values of your extension settings
+    } = payload
+
+    // Do something
+  },
+}
+```
+
+## onComplete callback
+
+The `onComplete` callback can be called to confirm your activity has been completed and can be called with the following (optional) parameters:
+
+- **Data points:** allows you to ingest values in the pathway through data points which can then be used by the pathway builder for conditional logic, variables, and more.
+- **Events:** activity events can be used to provide more granular info on what the extension does. These events will be displayed under the "updates" tab in Awell Studio & Awell Care.
+
+```javascript
+export const myAction = {
+  onActivityCreated: async (payload, onComplete) => {
+    const randomNumber = Math.random()
+
+    await onComplete({
+      data_points: {
+        // Will create a "randomNumber" data point in the pathway and assign
+        // the randomly generated number as the value
+        randomNumber,
+      },
+      events: [
+        {
+          date: new Date().toISOString(),
+          text: { en: 'Successfully generated a random number' },
+        },
+      ],
+    })
+  },
+}
+```
+
+## onError callback
+
+The `onError` callback can be called to let Awell know something went wrong with running your extension code. However, the activity will still be completed.
+
+The function can be called with the following (optional) parameter:
+
+- **Events:** activity events can be used to provide more granular info on what the extension does. These events will be displayed under the "updates" tab in Awell Studio & Awell Care.
+
+```javascript
+export const myAction = {
+  onActivityCreated: async (payload, onComplete, onError) => {
+    try {
+      // Connect to external API
+    } catch {
+      await onError({
+        events: [
+          {
+            date: new Date().toISOString(),
+            text: { en: "Couldn't connect to the external API" },
+            error: {
+              category: 'CONNECTION_ERROR',
+              message: "Couldn't connect to the external API",
+            },
+          },
+        ],
+      })
+    }
+
+    await onComplete()
+  },
+}
+```

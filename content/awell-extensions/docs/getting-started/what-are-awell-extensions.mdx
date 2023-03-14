@@ -5,8 +5,30 @@ description: Awell Extensions allow you to extend the functionality of the Awell
 
 Extensions allow you to extend the functionality of the Awell Platform. By providing a toolkit of SDKs and components, Awell allows developers to assemble their own piece of software to extend the capabilities of the Awell Platform.
 
-## Extension categories
+## Types of extensions
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="bg-white w-full sm:w-6/12 dark:sm:w-7/12 mx-auto rounded-md dark:p-12 mx-auto">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678792781/Developer%20portal/Extensions_overview.png"
+      target="_blank"
+      title="Types of extensions"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678792781/Developer%20portal/Extensions_overview.png"
+        alt="Types of extensions"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-4">
+    Types of extensions
+  </figcaption>
+</figure>
 
 ### Custom Actions
 
 Build, test, and deploy an extension to add Custom Actions to your care flows or reuse the off-the-shelf Custom Actions created by Awell and other customers.
+
+### Webhooks
+
+As an extension developer, you can write logic that gets activated by a webhook POST request. The extension generates a unique webhook endpoint which you can call from any system of your liking. You have full control about how to handle the incoming webhook and the actions that need to be performed in the Awell system.

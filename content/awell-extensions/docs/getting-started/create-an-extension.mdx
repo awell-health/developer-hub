@@ -1,27 +1,9 @@
 ---
 title: Create an extension
-description: Learn how to create an extension and start building Custom Actions
+description: Learn how to create an extension
 ---
 
 Creating an extension is dead easy, just create a new folder in the `/extensions` directory and start writing code. Below we will highlight the main concepts you will get in touch with when building an extension.
-
-<figure className="w-full flex flex-col justify-center text-center relative">
-  <div className="bg-white w-full sm:w-6/12 dark:sm:w-7/12 mx-auto rounded-md dark:p-12 mx-auto">
-    <a
-      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678354167/Developer%20portal/extension_settings_custom_actions.png"
-      target="_blank"
-      title="High level overview of extensions, settings, and Custom Actions"
-    >
-      <img
-        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678354167/Developer%20portal/extension_settings_custom_actions.png"
-        alt="High level overview of extensions, settings, and Custom Actions"
-      />
-    </a>
-  </div>
-  <figcaption className="dark:text-slate-400 pt-4">
-    High level overview of extensions, settings, and Custom Actions
-  </figcaption>
-</figure>
 
 ## Extension fields
 
@@ -33,6 +15,10 @@ A unique identifier for extension. We recommend using a camelCase string.
 
 The title or name of your extension.
 
+### Description (optional)
+
+A human-readable description of your extension. This is displayed as a sub-label underneath the title of the extension in Awell Studio.
+
 ### Icon URL (optional)
 
 The icon for your extension. We recommend icons with a size of minimally `60x60` so it can be down- or upscaled depending on the context it is shown in.
@@ -43,11 +29,15 @@ The category of your extension.
 
 ### Settings
 
-An extension can have no, one, or many settings. Learn more about extension settings and how to configure them [here](/awell-extensions/docs/custom-actions/development/extension-settings).
+An extension can have no, one, or many settings. Learn more about extension settings and how to configure them [here](/awell-extensions/docs/getting-started/extension-settings).
 
 ### Actions
 
-An extension can have one or many Custom Actions. Your actions can also access the extension settings. Read more about defining your Custom Actions [here](/awell-extensions/docs/custom-actions/development/actions/add-a-custom-action).
+An extension can have one or many Custom Actions. Your actions can also access the extension settings. Read more about creating Custom Actions [here](/awell-extensions/docs/custom-actions/what-are-custom-actions).
+
+### Webhooks
+
+Extensions can execute code based on an incoming webhook. Extension generate a unique webhook endpoint URL which can be called to trigger any logic you want. Read more about webhooks [here](/awell-extensions/docs/webhooks/what-are-webhooks).
 
 ## Hello world extension
 
@@ -55,7 +45,7 @@ Have a look at the sample action in `extensions/hello-world`. It illustrates how
 
 <a
   title="Open Hello World extension"
-  href="https://github.com/awell-health/action-extensions/tree/main/extensions/hello-world"
+  href="https://github.com/awell-health/awell-extensions/tree/main/extensions/hello-world"
   target="_blank"
   className="custom-link inline-flex items-center px-5 py-2.5 text-sm font-semibold text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
 >
