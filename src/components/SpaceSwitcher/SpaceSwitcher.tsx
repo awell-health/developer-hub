@@ -9,8 +9,9 @@ import { AppContext } from '@/contexts/app/AppContext'
 export const SpaceSwitcher = () => {
   const { space } = useContext(AppContext)
 
-  const currentSpaceLabel =
-    spaces.find((s) => s.path.includes(space))?.label || ''
+  const currentSpaceLabel = space
+    ? spaces.find((s) => s.path.includes(space))?.label || ''
+    : 'Choose doc space'
 
   return (
     <Menu as="div" className="relative">
@@ -35,18 +36,18 @@ export const SpaceSwitcher = () => {
         {spaces
           .filter((space) => space.active !== false)
           .map((s) => (
-            <Menu.Item key={s.path} disabled={s.path.includes(space)}>
+            <Menu.Item key={s.path} disabled={s.path.includes(space ?? '')}>
               {() => (
                 <Link href={s.path}>
                   <a
                     className={clsx(
                       'w-full flex items-center justify-between px-3 py-1',
-                      s.path.includes(space) &&
+                      s.path.includes(space ?? 'no-check') &&
                         'text-blue-600 dark:text-sky-400'
                     )}
                   >
                     {s.label}
-                    {s.path.includes(space) && (
+                    {s.path.includes(space ?? 'no-check') && (
                       <svg
                         width="24"
                         height="24"

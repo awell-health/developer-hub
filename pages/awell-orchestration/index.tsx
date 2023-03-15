@@ -102,17 +102,7 @@ export default function Home() {
         <div>
           <div className="overflow-hidden py-4 lg:py-8">
             <div>
-              <div className="relative">
-                <h2 className="mb-0 text-center text-3xl font-bold leading-8 tracking-tight text-slate-900 sm:text-4xl">
-                  Welcome
-                </h2>
-                <p className="mx-auto mt-2 max-w-3xl text-center text-xl text-slate-500 dark:text-slate-400">
-                  It&apos;s Awell&apos;s mission to make care flows work harder
-                  than care teams.
-                </p>
-              </div>
-
-              <div className="relative mt-12 lg:mt-16 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
+              <div className="relative lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
                 <div className="relative">
                   <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                     Get Started

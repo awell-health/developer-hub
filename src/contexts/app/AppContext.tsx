@@ -9,7 +9,7 @@ import { TableOfContentsType } from '../../types/toc.types'
 
 interface AppContextStateType {
   menu: MenuType
-  space: Space
+  space: null | Space
   isMobileSideMenuOpen: boolean
   isMobileMainMenuOpen: boolean
   setMenu: (menu: MenuType) => void
@@ -24,7 +24,7 @@ interface AppContextStateType {
 
 const initialState: AppContextStateType = {
   menu: [],
-  space: Space.AWELL_ORCHESTRATION,
+  space: null,
   isMobileSideMenuOpen: false,
   isMobileMainMenuOpen: false,
   setMenu: () => null,
@@ -122,8 +122,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     } else if (router.asPath.includes(Space.AWELL_EXTENSIONS)) {
       setSpace(Space.AWELL_EXTENSIONS)
     } else {
-      const DEFAULT_SPACE = Space.AWELL_ORCHESTRATION
-      setSpace(DEFAULT_SPACE)
+      setSpace(null)
     }
   }, [router.asPath])
 

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
 
 import {
+  defaultNavigation,
   extensionsNavigation,
   orchestrationNavigation,
   scoreNavigation,
@@ -25,6 +26,8 @@ export const MobileNav = () => {
       setNavigation(scoreNavigation)
     } else if (space === Space.AWELL_EXTENSIONS) {
       setNavigation(extensionsNavigation)
+    } else {
+      setNavigation(defaultNavigation)
     }
   }, [space])
 

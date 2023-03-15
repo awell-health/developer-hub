@@ -1,16 +1,18 @@
 import { Space } from '@/types/space.types'
 
+import { rootRoutes } from '../config/routes'
+
 export const spaces: { label: string; path: string; active?: boolean }[] = [
   {
     label: 'Awell Orchestration',
-    path: `/${Space.AWELL_ORCHESTRATION}`,
+    path: rootRoutes[Space.AWELL_ORCHESTRATION].home,
   },
   {
     label: 'Awell Extensions',
-    path: `/${Space.AWELL_EXTENSIONS}/docs/getting-started/what-are-awell-extensions`,
+    path: rootRoutes[Space.AWELL_EXTENSIONS].docs,
   },
   {
     label: 'Awell Score',
-    path: `/${Space.AWELL_SCORE}`,
+    path: rootRoutes[Space.AWELL_SCORE].home,
   },
 ]

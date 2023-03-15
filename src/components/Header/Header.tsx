@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 
 import {
+  defaultNavigation,
   extensionsNavigation,
   orchestrationNavigation,
   scoreNavigation,
@@ -53,6 +54,8 @@ export const Header = () => {
       setNavigation(scoreNavigation)
     } else if (space === Space.AWELL_EXTENSIONS) {
       setNavigation(extensionsNavigation)
+    } else {
+      setNavigation(defaultNavigation)
     }
   }, [space])
 
