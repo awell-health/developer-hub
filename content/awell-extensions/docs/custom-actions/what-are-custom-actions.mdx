@@ -7,6 +7,24 @@ description: Use extensions to add Custom Actions to your pathways
 
 An action is the most low level and granular **building block at design-time** in a pathway or care flow. Compared to tracks and steps which purely help you organizing a pathway , **an action defines what needs to happen by who**. There are default or native actions in Awell like a form, message, checklist, and calculation.
 
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="dark:bg-[#F0F6FF] p-4 w-2/4 sm:w-[200px] mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678902681/Developer%20portal/Design_time.png"
+      target="_blank"
+      title="The anatomy or building blocks of a Pathway/Care flow"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678902681/Developer%20portal/Design_time.png"
+        alt="The anatomy or building blocks of a Pathway/Care flow"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    The anatomy or building blocks of a pathway/care flow
+  </figcaption>
+</figure>
+
 Actions can also be classified by whether they should be completed by an actual user (stakeholder) or will (automatically) be completed by a system. We refer to these as **stakeholder-actionable actions** (eg: form) and **system actions** (eg: calculation, API call), respectively.
 
 ## What is an Activity?
@@ -31,7 +49,7 @@ Actions can also be classified by whether they should be completed by an actual 
   </figcaption>
 </figure>
 
-At run-time, we create activities because, depending on how your pathway is structured, a track or step (and thus the actions in it) might be activated more than once. That is why at run-time we talk about activities instead of actions. The details about the action are embedded in the activity.
+**At run-time, we create activities because, depending on how your pathway is structured, a track or step (and thus the actions in it) might be activated more than once (one-to-many relationship).** That is why at run-time we talk about activities instead of actions. The details about the action are embedded in the activity.
 
 Please note that an orchestrated pathway doesn't only consist of activities related to actions but that there are many other (system) activities as well (eg: track activation/completion, step activation/completion, reminders, ...). You can thus look at activities as a full history log of what has happened in a pathway.
 

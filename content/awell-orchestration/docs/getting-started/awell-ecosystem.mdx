@@ -5,7 +5,7 @@ description: Get an understanding of the Awell platform
 
 ## Awell Studio
 
-The web application used by clinical and product experts to build clinical pathway definitions.
+The web application used by clinical and product experts to build clinical pathway definitions ("design-time").
 
 <figure className="w-full flex flex-col justify-center text-center">
   <a
@@ -24,7 +24,7 @@ The web application used by clinical and product experts to build clinical pathw
 
 ### Pathway definition
 
-A pathway definition is a structured representation of the workflow behind clinical pathways. It describes everything that can or should happen in a pathway, from the moment it starts to when it is considered completed.
+A pathway definition describes everything that can or should happen in a pathway/care flow, from the moment it starts to when it is considered completed.
 
 Pathway definitions use the following resources as building blocks:
 
@@ -32,42 +32,21 @@ Pathway definitions use the following resources as building blocks:
   <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
     <div className="flex justify-center">
       <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
-        Track + Triggers
+        Tracks with triggers
       </div>
     </div>
   </div>
   <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
     <div className="flex justify-center">
       <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
-        Transitions + Conditional logic
+        Steps with transitions and conditional logic
       </div>
     </div>
   </div>
   <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
     <div className="flex justify-center">
       <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
-        Steps + Labels
-      </div>
-    </div>
-  </div>
-  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
-    <div className="flex justify-center">
-      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
-        Forms + Conditional logic
-      </div>
-    </div>
-  </div>
-  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
-    <div className="flex justify-center">
-      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
-        Actions + Stakeholder(s)
-      </div>
-    </div>
-  </div>
-  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
-    <div className="flex justify-center">
-      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
-        Messages + Dynamic content
+        Actions assigned to stakeholders
       </div>
     </div>
   </div>
@@ -75,7 +54,7 @@ Pathway definitions use the following resources as building blocks:
 
 ## Awell Orchestration
 
-Awell Orchestration is the software that runs or operates care flows/pathways based on pathway definitions created in Awell Studio. It automatically handles the variability encoded in pathway definitions for you by evaluating all conditional logic, activating and discarding branches, scheduling activities and assigning them to the right stakeholder and more.
+**Awell Orchestration is the software that runs or operates care flows/pathways based on pathway definitions created in Awell Studio ("run-time").** It automatically handles the variability encoded in pathway definitions for you by evaluating all conditional logic, activating and discarding branches, scheduling activities and assigning them to the right stakeholder and more.
 
 <figure className="w-full flex flex-col justify-center text-center">
   <div>

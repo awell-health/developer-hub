@@ -20,9 +20,31 @@ Awell is a low-code platform used by clinical and product teams to **design clin
 
 ## Anatomy of a care flow
 
-Each **care flow** can have one or more **tracks**. These tracks are triggered by events happening in the care flow or in external systems. Inside tracks, the main building blocks are **steps** that you tie together using "if-this-then-that" logic. Inside steps, you define **actions** such as forms for data collection, messages to provide information, checklists to manage tasks and more.
+### Design-time
 
-These 4 levels (Care flow > Tracks > Steps > Actions) are the result of many iterations of the Awell Platform to come to a visual workflow modeling language that is fit for healthcare processes.
+When designing or building a care flow, you will use the following type of building blocks: tracks, steps, and actions. These 4 levels (Care flow > Tracks > Steps > Actions) are the result of many iterations of the Awell Platform to come to a visual workflow modeling language that is fit for healthcare processes.
+
+**An action is the most low level and granular building block at design-time** in a pathway or care flow. Compared to tracks and steps which purely help you organizing a care flow , **an action defines what needs to happen by who**. So at run-time you interact with activities, not with actions.
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="dark:bg-[#F0F6FF] p-4 w-2/4 sm:w-[200px] mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678902681/Developer%20portal/Design_time.png"
+      target="_blank"
+      title="The anatomy or building blocks of a Pathway/Care flow"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678902681/Developer%20portal/Design_time.png"
+        alt="The anatomy or building blocks of a Pathway/Care flow"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    The anatomy or building blocks of a pathway/care flow
+  </figcaption>
+</figure>
+
+Actions can also be classified by whether they should be completed by an actual user (stakeholder) or will (automatically) be completed by a system. We refer to these as **stakeholder-actionable actions** (eg: form) and **system actions** (eg: calculation, API call), respectively.
 
 <Alert type="info">
   <p>
@@ -34,12 +56,38 @@ These 4 levels (Care flow > Tracks > Steps > Actions) are the result of many ite
   </p>
 </Alert>
 
+### Run-time (Orchestration)
+
+**At run-time, a care flow is translated to a set of activities.** So when an action is activated at run-time, an activity is created in the Awell System to keep track of its start date, status, completion date, etc. The activity stores a reference to the action (and step + track) so we know at all times what action needs to be completed as part of what activity and in what context the activity is created.
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="bg-[#F0F6FF] p-12 w-full mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678295646/Developer%20portal/action-activity.png"
+      target="_blank"
+      title="Action vs. Activity"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678295646/Developer%20portal/action-activity.png"
+        alt="Action vs. Activity"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    Action vs. Activity
+  </figcaption>
+</figure>
+
+**At run-time, we create activities because, depending on how your pathway is structured, a track or step (and thus the actions in it) might be activated more than once (one-to-many relationship).** That is why at run-time we talk about activities instead of actions. The details about the action are embedded in the activity.
+
+Please note that an orchestrated pathway doesn't only consist of activities related to actions but that there are many other (system) activities as well (eg: track activation/completion, step activation/completion, reminders, ...). You can thus look at activities as a full history log of what has happened in a pathway.
+
 ## The Awell Platform
 
 Awell is a single application to design, validate, publish, orchestrate and continuously improve care flows. Awell has 3 fundamental pieces to it:
 
-- **Design, Validate and Publish**: clinical operations, clinical experts, product managers, data engineers and others use our no code editor to design care flows using forms & questionnaires, messages, checklists, clinical notes, scoring algorithms and conditional logic to tie it all together.
-- **Orchestrate**: after publishing a care flow, you start enrolling patients in that flow. From that point onwards, Awell orchestrates all activities for all stakeholders and systems.
+- **Design, Validate and Publish ("design-time")**: clinical operations, clinical experts, product managers, data engineers and others use our no code editor to design care flows using forms & questionnaires, messages, checklists, clinical notes, scoring algorithms and conditional logic to tie it all together.
+- **Orchestrate ("run-time")**: after publishing a care flow, you start enrolling patients in that flow. From that point onwards, Awell orchestrates all activities for all stakeholders and systems.
 - **Improve**: you have realtime access to all of the data generated by and collected in a care flow to generate insights on how your care flows can be improved from a clinical and operational perspective.
 
 ## Orchestrating care flows
