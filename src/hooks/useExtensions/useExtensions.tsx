@@ -5,6 +5,7 @@ import { Extension } from '@/types/extenion.types'
 interface UseExtensions {
   loading: boolean
   extensions: Array<Extension>
+  categories: Array<string>
 }
 
 const ENDPOINT = process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT ?? ''
@@ -41,5 +42,10 @@ export const useExtensions = (): UseExtensions => {
   return {
     loading,
     extensions: extensions.filter((ext) => ext.category !== 'Demo'),
+    categories: extensions
+      .map((ext) => ext.category)
+      .filter((ext) => ext !== 'Demo')
+      .filter((value, index, array) => array.indexOf(value) === index)
+      .sort(),
   }
 }
