@@ -9,43 +9,66 @@ description: Add a Custom Action to your extension
 2. Define how your action can be configured by the user
 3. Define the logic of what needs to happen when the action is activated in a pathway.
 
-## Fields
+## Action properties
 
-### Key
-
-A unique identifier for your action. We recommend using a camelCase string.
-
-### Title
-
-The title or name of your action. **By convention, action titles should start with a verb.** Some examples:
-
-- Send SMS
-- Schedule appointment
-- Generate random number
-- Create appointment
-- ...
-
-### Category
-
-The category of your action. In Awell Studio, actions are logically grouped and shown to the user based on the category. Needs to be one of the predefined categories.
-
-### Description
-
-A human-readable description of your action.
-
-### Previewable (optional)
-
-When set to true, your action will be executed in preview as it would be in orchestration. Defaults to `false`.
-
-### Fields
-
-The configuration fields for your action. These configuration fields are displayed in Awell Studio when a user adds the action to a pathway. Learn more about action fields [here](/awell-extensions/docs/custom-actions/development/action-fields)
-
-### onActivityCreated
-
-When your action is activated (and thus becomes an activity), the Awell system publishes a message that is received by the extension server, which will call the `onActivityCreated` function defined in your action. **In this function you will write the logic to handle what needs to happen when your action is activated.**
-
-Learn more about the `onActivityCreated` function [here](/awell-extensions/docs/custom-actions/development/on-activity-created)
+<Properties
+  properties={[
+    {
+      key: 'key',
+      description:
+        'A unique identifier for your action. We recommend using a camelCase string.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'title',
+      description:
+        'The title or name of your action. <strong>By convention, action titles should always start with a verb</strong> (eg: send sms, schedule appointment, generate random number, ...).',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'category',
+      description:
+        'The category of your action. In Awell Studio, actions are logically grouped and shown to the user based on the category. Needs to be one of the predefined categories.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'description',
+      description: 'A human-readable description of your action.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'previewable',
+      description:
+        'When set to `true`, your action will be executed in preview as it would be in orchestration. Defaults to `false`.',
+      type: 'boolean',
+      required: false,
+    },
+    {
+      key: 'fields',
+      description:
+        'The configuration fields for your action. These configuration fields are displayed in Awell Studio when a user adds the action to a pathway. Learn more about action fields <a href="/awell-extensions/docs/custom-actions/development/action-fields">here</a>.',
+      type: 'object',
+      required: true,
+    },
+    {
+      key: 'onActivityCreated',
+      description:
+        'When your action is activated, the Awell system publishes a message that is received by the extension server, which will call the `onActivityCreated` function defined in your action. In this function you will write the logic to handle what needs to happen when your action is activated. Learn more about the `onActivityCreated` function <a href="/awell-extensions/docs/custom-actions/development/on-activity-created">here</a>.',
+      type: 'function',
+      required: true,
+    },
+    {
+      key: 'dataPoints',
+      description: '/',
+      type: 'object',
+      required: false,
+    },
+  ]}
+/>
 
 ## Example
 

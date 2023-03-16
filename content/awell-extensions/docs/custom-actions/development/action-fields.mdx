@@ -26,25 +26,50 @@ description: Learn more about action fields that determine how a user can config
 
 ## Field properties
 
-### ID
-
-The unique identifier for your field.
-
-### Label
-
-The title or name for your field. This will be displayed as the label on top of the input field.
-
-### Description
-
-A description for your field. This will be displayed as the sublabel on top of the input field.
-
-### Required
-
-Whether the field is required for a user to configure.
-
-### Type
-
-The type of the field. Read more below.
+<Properties
+  properties={[
+    {
+      key: 'id',
+      description:
+        'The unique identifier for your field.  <strong>Please note that the field key (of the object) should be equal to its id.</strong>',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'label',
+      description:
+        'The title or name for your field. This will be displayed as the label on top of the input field.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'description',
+      description:
+        'A description for your field. This will be displayed as the sublabel on top of the input field.',
+      type: 'string',
+      required: false,
+    },
+    {
+      key: 'required',
+      description: 'Whether the field is required for a user to configure.',
+      type: 'boolean',
+      required: false,
+    },
+    {
+      key: 'type',
+      description: 'The type of the field. Read more below ("Field types").',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'stringType',
+      description:
+        'Only applicable if `type` equals `string`. Read more below ("Field types").',
+      type: 'string',
+      required: false,
+    },
+  ]}
+/>
 
 ## Field types
 

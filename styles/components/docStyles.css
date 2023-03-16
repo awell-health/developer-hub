@@ -75,7 +75,7 @@
   @apply text-sm inline-block bg-slate-200 text-slate-600 rounded-full font-medium mr-4 px-2 py-0.5 absolute left-0 top-0.5;
 }
 
-#content-wrapper p:not(.alert p) {
+#content-wrapper p:not(.alert p, .properties-list p) {
   @apply sm:text-lg my-6 leading-7 dark:text-slate-400;
 }
 
@@ -94,21 +94,21 @@ code.code {
   line-height: 1.5rem !important;
 }
 
-#content-wrapper code,
-code.code {
+#content-wrapper code:not(.properties-list code),
+code.code:not(.properties-list code) {
   @apply font-semibold text-sm;
   color: #0f172a;
   font-variant-ligatures: none;
 }
 
-.dark #content-wrapper code,
-.dark code.code {
+.dark #content-wrapper code:not(.properties-list code),
+.dark code.code:not(.properties-list code) {
   color: #fff;
 }
 
-#content-wrapper code:before,
-#content-wrapper code:after,
-code.code:before,
-code.code:after {
+#content-wrapper code:before:not(.properties-list code),
+#content-wrapper code:after:not(.properties-list code),
+code.code:before:not(.properties-list code),
+code.code:after:not(.properties-list code) {
   content: '`';
 }

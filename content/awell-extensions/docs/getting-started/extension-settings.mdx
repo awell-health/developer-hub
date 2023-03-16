@@ -23,48 +23,51 @@ description: Learn how to let users configure the settings for your extension
   </figcaption>
 </figure>
 
-## Setting fields
+## Setting properties
 
-### Key
-
-A unique key that identifies your setting. You will use this key to access the setting in your extension code. We recommend using a camelCase string.
-
-### Label
-
-A human-readable label for your setting. This is what will be showed to end-user in Awell Studio above the input.
-
-### Description (optional)
-
-A human-readable description of the setting. This is displayed as a sub-label underneath the label of the setting.
-
-### Obfuscated
-
-Whether the value entered by the user needs to be obfuscated or concealed. When set to `true`, the value entered by the user will be permanently hidden but the value can be overwritten if needed. Obfuscated settings are also encrypted before we store them to the database.
-
-<figure className="w-full flex flex-col justify-center text-center relative">
-  <div className="">
-    <a
-      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678352315/Developer%20portal/obfuscated_setting.png"
-      target="_blank"
-      title="An obfuscated setting"
-    >
-      <img
-        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678352315/Developer%20portal/obfuscated_setting.png"
-        alt="An obfuscated setting"
-        className="w-full sm:w-9/12 mx-auto rounded-md"
-      />
-    </a>
-  </div>
-  <figcaption className="dark:text-slate-400 pt-2">
-    API keys are typically settings you would like to be obfuscated.
-  </figcaption>
-</figure>
-
-### Required (optional)
-
-Whether the setting is required in order to enable the extension. The default value is `false`.
+<Properties
+  properties={[
+    {
+      key: 'key',
+      description:
+        'A unique key that identifies your setting. You will use this key to access the setting in your extension code. We recommend using a camelCase string.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'label',
+      description:
+        'A human-readable label for your setting. This is what will be showed to end-user in Awell Studio above the input.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'description',
+      description:
+        'A human-readable description of the setting. This is displayed as a sub-label underneath the label of the setting.',
+      type: 'string',
+      required: false,
+    },
+    {
+      key: 'obfuscated',
+      description:
+        'Whether the value entered by the user needs to be obfuscated or concealed. When set to `true`, the value entered by the user will be permanently hidden but the value can be overwritten if needed. Obfuscated settings are also encrypted before we store them to the database.',
+      type: 'boolean',
+      required: true,
+    },
+    {
+      key: 'required',
+      description:
+        'Whether the setting is required in order to enable the extension. The default value is `false`.',
+      type: 'boolean',
+      required: false,
+    },
+  ]}
+/>
 
 ## Example
+
+### Code
 
 ```typescript
 // Define extension settings
@@ -91,3 +94,24 @@ const twilio: Extension = {
   settings: twilioSettings,
 }
 ```
+
+### Obfuscated setting
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678352315/Developer%20portal/obfuscated_setting.png"
+      target="_blank"
+      title="An obfuscated setting"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678352315/Developer%20portal/obfuscated_setting.png"
+        alt="An obfuscated setting"
+        className="w-full sm:w-9/12 mx-auto rounded-md"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    API keys are typically settings you would like to be obfuscated.
+  </figcaption>
+</figure>

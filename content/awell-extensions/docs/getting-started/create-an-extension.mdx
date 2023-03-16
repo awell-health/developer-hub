@@ -5,43 +5,72 @@ description: Learn how to create an extension
 
 Creating an extension is dead easy, just create a new folder in the `/extensions` directory and start writing code. Below we will highlight the main concepts you will get in touch with when building an extension.
 
-## Extension fields
+## Extension properties
 
-### Key
-
-A unique identifier for extension. We recommend using a camelCase string.
-
-### Title
-
-The title or name of your extension.
-
-### Description
-
-A human-readable description of your extension. This is displayed as a sub-label underneath the title of the extension in Awell Studio.
-
-### Icon URL
-
-The icon for your extension. We recommend icons with a size of minimally `60x60` so it can be down- or upscaled depending on the context it is shown in.
-
-### Category
-
-The category of your extension. Needs to be one of the predefined categories.
-
-### Author
-
-The author of the extension.
-
-### Settings
-
-An extension can have no, one, or many settings. Learn more about extension settings and how to configure them [here](/awell-extensions/docs/getting-started/extension-settings).
-
-### Actions
-
-An extension can have no, one, or many Custom Actions. Your actions can also access the extension settings. Read more about creating Custom Actions [here](/awell-extensions/docs/custom-actions/what-are-custom-actions).
-
-### Webhooks
-
-An extensions can have no, one, or many Webhooks. Webhooks allow you to execute a piece of code/logic based on an incoming webhook. Extension generate a unique webhook endpoint URL which can be called to trigger any logic you want. Read more about webhooks [here](/awell-extensions/docs/webhooks/what-are-webhooks).
+<Properties
+  properties={[
+    {
+      key: 'key',
+      description:
+        'A unique identifier for your extension. We recommend using a camelCase string.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'title',
+      description: 'The title or name of your extension.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'description',
+      description:
+        'A human-readable description of your extension. This is displayed as a sub-label underneath the title of the extension in Awell Studio.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'icon URL',
+      description:
+        'The icon for your extension. We recommend icons with a size of minimally `60x60` so it can be down- or upscaled depending on the context it is shown in.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'category',
+      description:
+        'The category of your extension. Needs to be one of the predefined categories.',
+      type: 'string',
+      required: true,
+    },
+    {
+      key: 'author',
+      description: 'Information about the author of the extension.',
+      type: 'object',
+      required: true,
+    },
+    {
+      key: 'settings',
+      description:
+        'An extension can have no, one, or many settings. Learn more about extension settings and how to configure them <a href="/awell-extensions/docs/getting-started/extension-settings">here</a>.',
+      type: 'object',
+      required: true,
+    },
+    {
+      key: 'actions',
+      description:
+        'An extension can have no, one, or many Custom Actions. Your actions can also access the extension settings. Read more about creating Custom Actions <a href="/awell-extensions/docs/custom-actions/what-are-custom-actions">here</a>.',
+      type: 'object',
+      required: true,
+    },
+    {
+      key: 'webhooks',
+      description:
+        'An extensions can have no, one, or many Webhooks. Webhooks allow you to execute a piece of code/logic based on an incoming webhook. Extension generate a unique webhook endpoint URL which can be called to trigger any logic you want. Read more about webhooks <a href="/awell-extensions/docs/webhooks/what-are-webhooks">here</a>.',
+      type: 'array',
+    },
+  ]}
+/>
 
 ## Hello world extension
 

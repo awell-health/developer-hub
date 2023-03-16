@@ -12,10 +12,11 @@ import { EmailTemplate } from '@/components/EmailTemplate'
 import { FAQ } from '@/components/FAQ'
 import { HowToUse } from '@/components/HowToUse'
 import { PostmanLinks } from '@/components/Links/PostmanLinks'
+import { Properties } from '@/components/Properties'
 import { StoryBrowser } from '@/components/StoryBrowser'
 import { UseCasesComparisonTable } from '@/components/UseCasesComparisonTable'
 import { Effort } from '@/components/UseCasesComparisonTable/atoms'
-import { WebhooksList, WebhooksTable } from '@/components/Webhooks'
+import { WebhooksList } from '@/components/Webhooks'
 
 export const mdxOptions = {
   mdxOptions: {
@@ -35,7 +36,7 @@ export const mdxComponents = {
   Alert,
   FAQ,
   WebhooksList,
-  WebhooksTable,
+  WebhooksTable: WebhooksList,
   PostmanLinks,
   EmailTemplate,
   StoryBrowser,
@@ -43,4 +44,5 @@ export const mdxComponents = {
   PathwayIndexSpecs,
   StepIndexSpecs,
   ActivityIndexSpecs,
+  Properties,
 }
