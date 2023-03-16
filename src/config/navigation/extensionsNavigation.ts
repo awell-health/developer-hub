@@ -5,13 +5,13 @@ import { rootRoutes } from '../routes'
 
 export const extensionsNavigation: MainNavType = [
   {
-    title: 'Docs',
-    slug: rootRoutes[Space.AWELL_EXTENSIONS].docs,
-    activeSlugCheck: 'docs',
-  },
-  {
     title: 'Marketplace',
     slug: `/${Space.AWELL_EXTENSIONS}/marketplace`,
     activeSlugCheck: 'marketplace',
+  },
+  {
+    title: 'Docs',
+    slug: rootRoutes[Space.AWELL_EXTENSIONS].docs,
+    activeSlugCheck: 'docs',
   },
 ]

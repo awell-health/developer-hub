@@ -31,7 +31,7 @@ const domains = [
       'Build care flows in our no-code editor and embed them into your tech stack. Explore our guides, API references, and examples to start integrating with Awell.',
   },
   {
-    url: rootRoutes[Space.AWELL_EXTENSIONS].docs,
+    url: rootRoutes[Space.AWELL_EXTENSIONS].home,
     title: 'Awell Extensions',
     icon: (
       <svg
