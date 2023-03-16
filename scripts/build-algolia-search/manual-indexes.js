@@ -56,6 +56,15 @@ const manualIndexes = [
       'This integration enables you to orchestrate activities over time for multiple stakeholders on an Awell Hosted Activity page.',
     slug: 'awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide',
   },
+  {
+    objectID: '/awell-extensions/marketplace',
+    space: 'Awell Extensions',
+    title: 'Marketplace',
+    description:
+      'Bring your care flows to the next level with Awell Extensions.',
+    content: 'Bring your care flows to the next level with Awell Extensions.',
+    slug: 'awell-extensions/marketplace',
+  },
 ]
 
 module.exports = manualIndexes
