@@ -74,7 +74,7 @@ export const DocsHeader = ({
       {playgroundButton && (
         <div className="mt-2 mr-3">
           <GraphQLButton
-            url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/api/playground`}
+            url={`/${Space.AWELL_ORCHESTRATION}/awell-orchestration/playground`}
           />
         </div>
       )}
