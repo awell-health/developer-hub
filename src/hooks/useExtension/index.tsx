@@ -1,0 +1,1 @@
+export { useExtension } from './useExtension'
