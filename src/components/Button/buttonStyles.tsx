@@ -16,4 +16,6 @@ export const buttonColors: { [key in ButtonColorType]: string } = {
     'text-white bg-slate-900 hover:bg-slate-700 focus:ring-offset-slate-50 focus:ring-slate-400 dark:bg-sky-500 dark:highlight-white/20 dark:hover:bg-sky-400',
   sky: 'text-white bg-blue-600 highlight-white/20 hover:bg-blue-500 dark:bg-sky-500 dark:hover:bg-sky-400',
   indigo: 'text-white bg-indigo-600 highlight-white/20 hover:bg-indigo-500',
+  white:
+    'bg-white text-slate-900 shadow-sm border border-slate-300 focus:ring-slate-300 hover:bg-slate-50 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600 dark:ring-slate-600 dark:hover:bg-slate-700 dark:focus:ring-offset-slate-900',
 }

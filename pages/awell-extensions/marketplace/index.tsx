@@ -53,8 +53,8 @@ export default function Marketplace() {
               <Spinner />
             </div>
           ) : (
-            <div className="border-t border-slate-200 dark:border-slate-800 mt-4 pt-8 flex gap-12">
-              <div className="w-1/4">
+            <div className="border-t border-slate-200 dark:border-slate-800 mt-4 pt-8 flex gap-24">
+              <div className="w-1/6">
                 <h3>Category</h3>
                 <ul className="space-y-4 pb-6 text-base font-medium text-slate-800 dark:text-slate-400">
                   {categories.map((category) => (
@@ -87,6 +87,16 @@ export default function Marketplace() {
                     </Link>
                   </li>
                 </ul>
+                <h4>Request an extension</h4>
+                <p>{`Can't find what you're looking for? Let us know.`}</p>
+                <div className="mt-4">
+                  <LinkButton
+                    href={`/${Space.AWELL_EXTENSIONS}/marketplace/request-extension`}
+                    label="Submit a request"
+                    size="sm"
+                    color="white"
+                  />
+                </div>
               </div>
               <div className="grid md:grid-cols-3 gap-4">
                 {extensions
