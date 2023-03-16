@@ -2,9 +2,11 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
+import { LinkButton } from '@/components/Button'
 import { HomeLayout } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
 import { rootRoutes } from '@/config/routes'
+import { useExtensions } from '@/hooks/useExtensions'
 import { Space } from '@/types/space.types'
 
 const domains = [
@@ -77,6 +79,7 @@ const domains = [
 ]
 
 export default function Home() {
+  const { getRandomExtensions } = useExtensions()
   return (
     <>
       <SEO
@@ -134,6 +137,55 @@ export default function Home() {
                 </a>
               </Link>
             ))}
+          </div>
+        </div>
+        <div className="mt-12">
+          <h3
+            id="integrate-with-awell"
+            className="text-xl font-bold tracking-tight text-slate-900 sm:text-3xl mb-0"
+          >
+            Marketplace
+          </h3>
+          <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
+            Browse our marketplace and find extensions that bring your care
+            flows to the next level.
+          </p>
+          <div className="grid md:grid-cols-4 gap-4 mt-6">
+            {getRandomExtensions(4).map((extension) => (
+              <Link
+                href={`/${Space.AWELL_EXTENSIONS}/marketplace/${extension.key}`}
+                key={extension.key}
+              >
+                <a className="custom-link block group relative rounded-xl border border-slate-200 dark:border-slate-800">
+                  <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+                  <div className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+                    <div className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+                      <div>
+                        <div className="p-2 bg-slate-100 inline-block rounded-lg">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={extension.icon_url}
+                            alt={extension.title}
+                            className="w-8 h-8"
+                          />
+                        </div>
+                        <h3 className="font-semibold dark:text-sky-400 mb-2 mt-1">
+                          {extension.title}
+                        </h3>
+                        <span className="pt-3">{extension.description}</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-4 flex justify-center">
+            <LinkButton
+              label="Browse all extensions"
+              color="sky"
+              href={`/${Space.AWELL_EXTENSIONS}/marketplace`}
+            />
           </div>
         </div>
       </div>
