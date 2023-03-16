@@ -7,7 +7,7 @@ interface UseExtension {
   extension: Extension | null
 }
 
-export const useExtension = ({ key }: { key: string }): UseExtension => {
+export const useExtension = (key: string): UseExtension => {
   const { loading, extensions } = useExtensions()
 
   return {

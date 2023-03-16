@@ -1,3 +1,4 @@
+import { isEmpty, isNil, sampleSize } from 'lodash'
 import { useEffect, useState } from 'react'
 
 import { Extension } from '@/types/extenion.types'
@@ -6,6 +7,7 @@ interface UseExtensions {
   loading: boolean
   extensions: Array<Extension>
   categories: Array<string>
+  getRandomExtensions: (n: number, exclude?: string) => Array<Extension>
 }
 
 const ENDPOINT = process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT ?? ''
@@ -39,6 +41,21 @@ export const useExtensions = (): UseExtensions => {
     fetchData()
   }, [])
 
+  const getRandomExtensions = (n: number, exclude?: string) => {
+    return sampleSize(
+      extensions
+        .filter((ext) => ext.category !== 'Demo')
+        .filter((ext) => {
+          if (isEmpty(exclude) || isNil(exclude)) {
+            return true
+          }
+
+          return ext.key !== exclude
+        }),
+      n
+    )
+  }
+
   return {
     loading,
     extensions: extensions.filter((ext) => ext.category !== 'Demo'),
@@ -47,5 +64,6 @@ export const useExtensions = (): UseExtensions => {
       .filter((ext) => ext !== 'Demo')
       .filter((value, index, array) => array.indexOf(value) === index)
       .sort(),
+    getRandomExtensions,
   }
 }

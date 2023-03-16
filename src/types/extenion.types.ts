@@ -8,6 +8,6 @@ export type Extension = {
     authorType: string
   }
   settings: Record<string, unknown>
-  actions: Record<string, unknown>
+  actions: Record<string, { title: string; description: string }>
   webhooks: Array<unknown>
 }
