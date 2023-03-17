@@ -32,7 +32,7 @@ export default function Schema() {
         </p>
         <figure className="w-full flex flex-col justify-center text-center pt-4">
           <a
-            href={`/${Space.AWELL_ORCHESTRATION}/api/playground`}
+            href={`/${Space.AWELL_ORCHESTRATION}/playground`}
             target="_blank"
             className="custom-link"
             rel="noreferrer"

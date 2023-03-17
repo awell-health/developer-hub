@@ -17,7 +17,7 @@ const nextConfig = {
     return [
       {
         source: '/playground',
-        destination: '/awell-orchestration/developer-tools/playground',
+        destination: '/awell-orchestration/developer-tools/api/playground',
         permanent: true,
       },
       {
