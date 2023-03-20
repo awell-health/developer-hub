@@ -88,12 +88,11 @@ export default function ExtensionPage() {
         </div>
       </div>
       <section className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8 flex">
-        <div className="w-3/4">
-          <h2>Documentation</h2>
-          <div id="content-wrapper">
-            <p>More documentation is coming soon!</p>
-          </div>
-        </div>
+        <div
+          id="content-wrapper"
+          className="w-3/4"
+          dangerouslySetInnerHTML={{ __html: extension.htmlDocs }}
+        />
         <div className="flex flex-col gap-6">
           <ExtensionDetail label="Pricing">Free</ExtensionDetail>
           <ExtensionDetail label="Custom Actions">
