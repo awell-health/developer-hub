@@ -6,3 +6,4 @@ export type BadgeColorType =
   | 'indigo'
   | 'purple'
   | 'red'
+  | 'orange'

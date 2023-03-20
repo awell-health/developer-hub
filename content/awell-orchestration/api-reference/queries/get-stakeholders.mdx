@@ -1,0 +1,108 @@
+---
+title: Get stakeholders
+description: Retrieve a list of stakeholders in your care flow
+---
+
+When designing a care flow, you can assign stakeholders to actions. This tells the system who needs to complete what. When orchestrating care flows, you might want to retrieve these stakeholders to answer questions like:
+
+- Which stakeholders are present in a specific version of a care flow?
+- Which stakeholders are present over all versions of a care flow?
+- Which stakeholder id does map to which stakeholder (label)?
+
+**We provide a couple of queries to get the data you need related to stakeholders.** Feel free to select the one that works best for your use case.
+
+## Queries
+
+### stakeholdersByDefinitionIds
+
+Get published stakeholders details by one or more stakeholder definition IDs, useful for swapping definition ids for stakeholder labels.
+
+```graphql
+query GetStakeholdersByDefinitionIds($stakeholder_definition_ids: [String!]!) {
+  stakeholdersByPathwayDefinitionIds(
+    stakeholder_definition_ids: { in: $stakeholder_definition_ids }
+  ) {
+    stakeholders {
+      definition_id
+      id
+      label {
+        en
+      }
+      release_id
+      version
+    }
+  }
+}
+```
+
+### stakeholdersByPathwayDefinitionIds
+
+Get published stakeholders details by one or more release IDs, useful for when you want an overview of all stakeholders for specific version(s) of a care flow.
+
+```graphql
+query GetStakeholdersByPathwayDefinitionIds(
+  $pathway_definition_ids: [String!]!
+) {
+  stakeholdersByPathwayDefinitionIds(
+    pathway_definition_ids: { in: $pathway_definition_ids }
+  ) {
+    stakeholders {
+      definition_id
+      id
+      label {
+        en
+      }
+      release_id
+      version
+    }
+  }
+}
+```
+
+### stakeholdersByReleaseIds
+
+Get published stakeholders details by one or more care flow definition IDs, useful for ensuring you have all stakeholders across all versions of a care flow (e.g. if a stakeholder was removed in a newer version of a care flow).
+
+```graphql
+query GetStakeholdersByReleaseIds($release_ids: [String!]!) {
+  stakeholdersByReleaseIds(release_ids: { in: $release_ids }) {
+    stakeholders {
+      definition_id
+      id
+      label {
+        en
+      }
+      release_id
+      version
+    }
+  }
+}
+```
+
+### filterStakeholders
+
+A query that combines all input fields of the queries above and is useful for filtering. All input fields are optional, if no values are passed it will return all stakeholders in all your published care flows.
+
+```graphql
+query FilterStakeholders(
+  $pathway_definition_ids: [String!]
+  $release_ids: [String!]
+  $stakeholder_definition_ids: [String!]
+) {
+  filterStakeholders(
+    pathway_definition_ids: { in: $pathway_definition_ids }
+    release_ids: { in: $release_ids }
+    stakeholder_definition_ids: { in: $stakeholder_definition_ids }
+  ) {
+    stakeholders {
+      definition_id
+      id
+      label {
+        en
+      }
+      release_id
+      version
+    }
+  }
+}
+```
