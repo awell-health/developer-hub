@@ -18,7 +18,7 @@ When designing a care flow, you can assign stakeholders to actions. This tells t
 Get published stakeholders details by one or more stakeholder definition IDs, useful for swapping definition ids for stakeholder labels.
 
 ```graphql
-query FindStakeholders($stakeholder_definition_ids: [String!]!) {
+query GetStakeholdersByDefinitionIds($stakeholder_definition_ids: [String!]!) {
   stakeholdersByDefinitionIds(
     stakeholder_definition_ids: $stakeholder_definition_ids
   ) {
