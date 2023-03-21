@@ -87,7 +87,7 @@ export default function ExtensionPage() {
           </div>
         </div>
       </div>
-      <section className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8 flex">
+      <section className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8 flex gap-24">
         <div
           id="content-wrapper"
           className="w-3/4"

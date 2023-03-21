@@ -23,6 +23,7 @@
   @apply border-b-2;
 }
 
+#content-wrapper h1:not(:first-child),
 #content-wrapper h2,
 #content-wrapper h3 {
   @apply mt-8;
