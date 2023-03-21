@@ -5,6 +5,20 @@ description: Learn how to create an extension
 
 Creating an extension is dead easy, just create a new folder in the `/extensions` directory and start writing code. Below we will highlight the main concepts you will get in touch with when building an extension.
 
+## Folder requirements
+
+### Folder name
+
+Please note that the name of the folder should be equal to the `key` of the extension (see below).
+
+### README
+
+Every extension directory should have a `README.md` file at the root. This allows extension developers to add documentation for their extension such as installation instructions, limitations, how it works, etc. The content of the README will be displayed on the [Marketplace](/awell-extensions/marketplace).
+
+### Changelog
+
+Every extension directory should have a `CHANGELOG.md` file at the root. This file allows extension developers to document changes between different versions of their extensions as well as instructions on how users can upgrade from one version to another. The content of the CHANGELOG will be displayed on the [Marketplace](/awell-extensions/marketplace).
+
 ## Extension properties
 
 <Properties
@@ -12,7 +26,7 @@ Creating an extension is dead easy, just create a new folder in the `/extensions
     {
       key: 'key',
       description:
-        'A unique identifier for your extension. We recommend using a camelCase string.',
+        'A unique identifier for your extension. We recommend using a camelCase string. <strong>Important:</strong> The extension key should be identical to the name of the folder your extension code is in (`/extensions/{extensionKey}`).',
       type: 'string',
       required: true,
     },
