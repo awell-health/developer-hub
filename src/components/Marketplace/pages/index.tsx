@@ -1,0 +1,1 @@
+export { ExtensionDetail } from './ExtensionDetail'

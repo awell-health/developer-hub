@@ -1,33 +1,16 @@
-import { CodeIcon, LightningBoltIcon } from '@heroicons/react/outline'
 import { isNil } from 'lodash'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FC, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
-import { Badge } from '@/components/Badge'
-import { Button } from '@/components/Button'
 import { HomeLayout } from '@/components/Layouts'
+import { ExtensionDetail } from '@/components/Marketplace/pages'
 import { SEO } from '@/components/SEO'
-import { Spinner } from '@/components/Spinner'
 import { useExtension } from '@/hooks/useExtension'
-import { useExtensions } from '@/hooks/useExtensions'
 import { Space } from '@/types/space.types'
-
-const ExtensionDetail: FC<{ label: string }> = ({ label, children }) => {
-  return (
-    <dl>
-      <dt className="font-semibold text-slate-900 dark:text-slate-200">
-        {label}
-      </dt>
-      <dd className="text-slate-500 dark:text-slate-400">{children}</dd>
-    </dl>
-  )
-}
 
 export default function ExtensionPage() {
   const router = useRouter()
   const extensionKey = String(router.query?.extensionKey) ?? ''
-  const { getRandomExtensions, loading: loadingAllExtensions } = useExtensions()
   const { extension, loading: loadingExtension } = useExtension(extensionKey)
 
   if (loadingExtension) {
@@ -46,133 +29,7 @@ export default function ExtensionPage() {
         url={`/${Space.AWELL_EXTENSIONS}/marketplace/${extensionKey}`}
         canonicalUrl={`/${Space.AWELL_EXTENSIONS}/marketplace/${extensionKey}`}
       />
-      <div className="bg-slate-50 border-b border-slate-100 dark:bg-slate-800 dark:border-slate-700">
-        <div className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8">
-          <Link href={`/${Space.AWELL_EXTENSIONS}/marketplace`}>
-            <a
-              title="Back to the Marketplace"
-              className="inline-block text-blue-600 text-base pb-4 dark:text-sky-400"
-            >
-              &#8592; Back to the Marketplace
-            </a>
-          </Link>
-          <div className="flex justify-between items-center">
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-white border border-slate-200 rounded-lg dark:bg-slate-700 dark:border-slate-600">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={extension.icon_url}
-                  alt={extension.title}
-                  className="w-12 h-12"
-                />
-              </div>
-              <div>
-                <h1 className="font-semibold dark:text-sky-400 my-0">
-                  {extension.title}
-                </h1>
-                <span className="mt-3 text-lg">{extension.description}</span>
-                <div className="mt-2">
-                  <Badge color="sky">{extension.category}</Badge>
-                </div>
-              </div>
-            </div>
-            <div>
-              <Button
-                label="Install extension"
-                color="sky"
-                disabled={true}
-                onClick={() => null}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <section className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8 flex gap-24">
-        <div
-          id="content-wrapper"
-          className="w-3/4"
-          dangerouslySetInnerHTML={{ __html: extension.htmlDocs }}
-        />
-        <div className="flex flex-col gap-6">
-          <ExtensionDetail label="Pricing">Free</ExtensionDetail>
-          <ExtensionDetail label="Custom Actions">
-            {Object.values(extension.actions).map((action) => (
-              <div key={action.title}>{action.title}</div>
-            ))}
-          </ExtensionDetail>
-          <ExtensionDetail label="Author">
-            {extension.author.authorType}
-          </ExtensionDetail>
-          <ExtensionDetail label="Version">1</ExtensionDetail>
-          {extension.author.authorType === 'Awell' && (
-            <ExtensionDetail label="Support">
-              info@awellhealth.com
-            </ExtensionDetail>
-          )}
-        </div>
-      </section>
-      <section className="max-w-6xl mt-6 mx-auto px-4 sm:px-6 md:px-8">
-        <div className="border-t border-slate-200 pt-8 dark:border-slate-800">
-          <h2>Other extensions</h2>
-          {loadingAllExtensions ? (
-            <Spinner />
-          ) : (
-            <div className="grid md:grid-cols-3 gap-4">
-              {getRandomExtensions(3, extension.key).map((extension) => (
-                <Link
-                  href={`/${Space.AWELL_EXTENSIONS}/marketplace/${extension.key}`}
-                  key={extension.key}
-                >
-                  <a className="custom-link block group relative rounded-xl border border-slate-200 dark:border-slate-800">
-                    <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
-                    <div className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
-                      <div className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
-                        <div>
-                          <div className="p-2 bg-slate-100 inline-block rounded-lg">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={extension.icon_url}
-                              alt={extension.title}
-                              className="w-8 h-8"
-                            />
-                          </div>
-                          <h3 className="font-semibold dark:text-sky-400 mb-2 mt-1">
-                            {extension.title}
-                          </h3>
-                          <div className="mb-4 flex gap-2">
-                            <Badge color="sky">{extension.category}</Badge>
-                          </div>
-                          <span className="pt-3">{extension.description}</span>
-                          <div className="mt-4 flex gap-4 text-sm">
-                            {Object.keys(extension.actions).length > 0 && (
-                              <div className="flex gap-1 items-center">
-                                <LightningBoltIcon className="w-4 h-4" />
-                                {Object.keys(extension.actions).length}{' '}
-                                {Object.keys(extension.actions).length === 1
-                                  ? 'Custom Action'
-                                  : 'Custom Actions'}
-                              </div>
-                            )}
-                            {extension.webhooks.length > 0 && (
-                              <div className="flex gap-1 items-center">
-                                <CodeIcon className="w-4 h-4" />
-                                {extension.webhooks.length}{' '}
-                                {extension.webhooks.length === 1
-                                  ? 'Webhook'
-                                  : 'Webhooks'}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+      <ExtensionDetail extension={extension} />
       <footer className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8 pb-16 text-sm leading-6">
         <div className="mx-auto divide-y divide-slate-200 dark:divide-slate-700">
           <div className="mt-4 pt-10 border-t border-slate-200 dark:border-slate-600">

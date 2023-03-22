@@ -1,0 +1,1 @@
+export { ExtensionProperty } from './ExtensionProperty'
