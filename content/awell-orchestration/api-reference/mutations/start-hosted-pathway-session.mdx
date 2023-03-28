@@ -64,36 +64,15 @@ The `success_url` and `cancel_url` specify where the stakeholder should be redir
 
 You can specify the language you'd like the hosted pages app to be loaded in. If no language is passed, it defaults to English.
 
-**Supported languages:**
+Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
-<div className="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th>Language</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>English</td>
-        <td>ENGLISH</td>
-      </tr>
-      <tr>
-        <td>Dutch</td>
-        <td>DUTCH</td>
-      </tr>
-      <tr>
-        <td>French</td>
-        <td>FRENCH</td>
-      </tr>
-      <tr>
-        <td>Estonian</td>
-        <td>ESTONIAN</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+```json
+{
+  "input": {
+    "language": "nl" | "en" | "de" | "et",
+  }
+}
+```
 
 <br />
 
