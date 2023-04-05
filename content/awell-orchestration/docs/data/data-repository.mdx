@@ -1,6 +1,6 @@
 ---
 title: Data repository
-description: Understand what is available in the data repository and how to connect to it
+description: Understand what is available in the data repository
 ---
 
 We use Elastic as our data repository to store, index, and search pathway data sets. You can either connect your own BI tool to our data repository in Elastic or use our analytics & dashboarding tool: Kibana.
@@ -14,6 +14,8 @@ The data repository contains two different types of data: collected data and gen
 ## Collected data
 
 All the collected data is stored in a single index: `orchestration-datapoint`.
+
+This index uses a normalized structure to handle the fact that the collected data can have different value types (string, boolean, numeric, date etc), and can come from many different sources (form response, calculation result, orchestration metadata etc).
 
 <DataPointIndexSpecs />
 
@@ -29,6 +31,93 @@ All the collected data is stored in a single index: `orchestration-datapoint`.
     for more information.
   </p>
 </Alert>
+
+### Sample queries
+
+Given that the data point index is normalised, you can use any combination of the following properties to narrow down the query results:
+- Use `data_set_id` or `pathway.id` to narrow down results to the data collected in a specific pathway
+- Use `patient.id` to narrow down results to data collected for any pathway started for a specific patient
+- Use `data_point_definition.category` to narrow down results to data collected from a specific source category
+- Use `data_point_definition.qualified_key` to narrow down results to a specific data point
+- Use `data_point_definition.qualified_key` with wildcards to narrow down results to data points that logically belong together
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="dark:bg-[#F0F6FF] p-4 w-3/4 mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680707183/Developer%20portal/Data_repository_-_Query_data_points_by_pathway_wln7wj.png"
+      target="_blank"
+      title="Querying data point by pathway"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680707183/Developer%20portal/Data_repository_-_Query_data_points_by_pathway_wln7wj.png"
+        alt="Querying data point by pathway"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    Querying data point by pathway
+  </figcaption>
+</figure>
+
+<br />
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="dark:bg-[#F0F6FF] p-4 w-3/4 mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680707183/Developer%20portal/Data_repository_-_Query_data_points_by_category_esmmhg.png"
+      target="_blank"
+      title="Querying data point by source category"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680707183/Developer%20portal/Data_repository_-_Query_data_points_by_category_esmmhg.png"
+        alt="Querying data point by source category"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    Querying data point by source category
+  </figcaption>
+</figure>
+
+<br />
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="dark:bg-[#F0F6FF] p-4 w-3/4 mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680707183/Developer%20portal/Data_repository_-_Query_data_points_by_key_bugi7y.png"
+      target="_blank"
+      title="Querying data point by key"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680707183/Developer%20portal/Data_repository_-_Query_data_points_by_key_bugi7y.png"
+        alt="Querying data point by key"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    Querying data point by key
+  </figcaption>
+</figure>
+
+<br />
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="dark:bg-[#F0F6FF] p-4 w-3/4 mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680707183/Developer%20portal/Data_repository_-_Query_data_points_by_form_key_rgdxqu.png"
+      target="_blank"
+      title="Querying data point by form key"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680707183/Developer%20portal/Data_repository_-_Query_data_points_by_form_key_rgdxqu.png"
+        alt="Querying data point by form key"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    Querying data point by form key
+  </figcaption>
+</figure>
 
 ## Generated data
 
@@ -49,7 +138,3 @@ All the collected data is stored in a single index: `orchestration-datapoint`.
 ### Activity (orchestration-activity)
 
 <ActivityIndexSpecs />
-
-## How to connect to the data repository
-
-> More information on connecting to the data repository is coming soon.
