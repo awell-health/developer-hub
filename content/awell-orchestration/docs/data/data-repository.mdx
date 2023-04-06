@@ -17,20 +17,30 @@ All the collected data is stored in a single index: `orchestration-datapoint`.
 
 This index uses a normalized structure to handle the fact that the collected data can have different value types (string, boolean, numeric, date etc), and can come from many different sources (form response, calculation result, orchestration metadata etc).
 
+When building a care flow in Awell Studio you have the ability to configure human readable identifiers for all data points as well as the source behind these data points. Our system uses that information to generate a `qualified_key` for each data point which combines the source key and the data point key.
+
+<Alert type="info">
+  <p class="mb-1">
+    Let's imagine that you are building a patient form to collect the patient's weight and height, with the intent of calculating a BMI score. You set the form key to <em>bmi</em>, and set the question keys to <em>height</em> and <em>weight</em> respectively.
+  </p>
+  <p>
+    This will result in data points with the following qualified keys:
+    <ul>
+      <li><em>bmi.height</em> contains the answer to the <em>height</em> question in the <em>bmi</em> form</li>
+      <li><em>bmi.weight</em> contains the answer to the <em>weight</em> question in the <em>bmi</em> form</li>
+    </ul>
+  </p>
+  <p>
+    Use the <a href="https://help.awellhealth.com/en/articles/4791428-data-catalog">
+      Data Catalog
+    </a> to get an overview of all the collected data points, including the qualified keys and where in your care flow they are collected.
+  </p>
+</Alert>
+
 <DataPointIndexSpecs />
 
 <br />
 
-<Alert type="info">
-  <p>
-    Use the Data Catalog to get an overview of all the collected data points in
-    your care flow. See{' '}
-    <a href="https://help.awellhealth.com/en/articles/4791428-data-catalog">
-      here
-    </a>{' '}
-    for more information.
-  </p>
-</Alert>
 
 ### Sample queries
 
