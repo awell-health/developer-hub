@@ -61,7 +61,7 @@ export const ActivityIndexSpecs = () => {
                   className="text-slate-900 dark:text-slate-100"
                 >
                   <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
-                    pathway.{property}
+                    patient.{property}
                   </td>
                   <td className="whitespace-nowrap py-4 px-3 text-base">
                     {type}
