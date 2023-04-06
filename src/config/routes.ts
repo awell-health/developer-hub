@@ -15,7 +15,7 @@ export const rootRoutes: Record<Space, Routes> = {
     developerTools: `/${Space.AWELL_ORCHESTRATION}/developer-tools/changelog`,
   },
   [Space.AWELL_EXTENSIONS]: {
-    home: `/${Space.AWELL_EXTENSIONS}/marketplace`,
+    home: `/${Space.AWELL_EXTENSIONS}`,
     docs: `/${Space.AWELL_EXTENSIONS}/docs/getting-started/what-are-awell-extensions`,
     api: `#api-route`,
     developerTools: `#developer-tools-route`,

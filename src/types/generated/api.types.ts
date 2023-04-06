@@ -342,6 +342,7 @@ export type Condition = {
 
 export enum ConditionOperandType {
   Boolean = 'BOOLEAN',
+  DataPoint = 'DATA_POINT',
   DataSource = 'DATA_SOURCE',
   Number = 'NUMBER',
   NumbersArray = 'NUMBERS_ARRAY',
@@ -372,10 +373,13 @@ export type CreatePatientInput = {
   email?: InputMaybe<Scalars['String']>;
   first_name?: InputMaybe<Scalars['String']>;
   last_name?: InputMaybe<Scalars['String']>;
+  /** Must be in valid E164 telephone number format */
   mobile_phone?: InputMaybe<Scalars['String']>;
   national_registry_number?: InputMaybe<Scalars['String']>;
   patient_code?: InputMaybe<Scalars['String']>;
+  /** Must be in valid E164 telephone number format */
   phone?: InputMaybe<Scalars['String']>;
+  /** ISO 639-1 shortcode */
   preferred_language?: InputMaybe<Scalars['String']>;
   /** Sex code as defined by ISO standard IEC_5218, 0 - NOT_KNOWN, 1 - MALE, 2 - FEMALE */
   sex?: InputMaybe<Sex>;
@@ -542,6 +546,42 @@ export type EvaluateFormRulesPayload = Payload & {
   success: Scalars['Boolean'];
 };
 
+export type ExtensionActionField = {
+  __typename?: 'ExtensionActionField';
+  id: Scalars['ID'];
+  label: Scalars['String'];
+  type: ExtensionActionFieldType;
+  value: Scalars['String'];
+};
+
+export enum ExtensionActionFieldType {
+  Html = 'HTML',
+  Json = 'JSON',
+  Numeric = 'NUMERIC',
+  String = 'STRING',
+  Text = 'TEXT'
+}
+
+export type ExtensionActivityRecord = {
+  __typename?: 'ExtensionActivityRecord';
+  activity_id: Scalars['String'];
+  data_points: Array<ExtensionDataPoint>;
+  date: Scalars['String'];
+  fields: Array<ExtensionActionField>;
+  id: Scalars['ID'];
+  pathway_id: Scalars['String'];
+  plugin_action_key: Scalars['String'];
+  plugin_key: Scalars['String'];
+  settings?: Maybe<Array<PluginActionSettingsProperty>>;
+};
+
+export type ExtensionActivityRecordPayload = Payload & {
+  __typename?: 'ExtensionActivityRecordPayload';
+  code: Scalars['String'];
+  record: ExtensionActivityRecord;
+  success: Scalars['Boolean'];
+};
+
 export type ExtensionDataPoint = {
   __typename?: 'ExtensionDataPoint';
   label: Scalars['String'];
@@ -697,13 +737,6 @@ export enum HostedSessionStatus {
 export type IdFilter = {
   eq?: InputMaybe<Scalars['String']>;
 };
-
-export enum Language {
-  Dutch = 'DUTCH',
-  English = 'ENGLISH',
-  Estonian = 'ESTONIAN',
-  French = 'FRENCH'
-}
 
 export type MarkMessageAsReadInput = {
   activity_id: Scalars['String'];
@@ -1072,10 +1105,13 @@ export type PatientProfileInput = {
   email?: InputMaybe<Scalars['String']>;
   first_name?: InputMaybe<Scalars['String']>;
   last_name?: InputMaybe<Scalars['String']>;
+  /** Must be in valid E164 telephone number format */
   mobile_phone?: InputMaybe<Scalars['String']>;
   national_registry_number?: InputMaybe<Scalars['String']>;
   patient_code?: InputMaybe<Scalars['String']>;
+  /** Must be in valid E164 telephone number format */
   phone?: InputMaybe<Scalars['String']>;
+  /** ISO 639-1 shortcode */
   preferred_language?: InputMaybe<Scalars['String']>;
   /** Sex code as defined by ISO standard IEC_5218, 0 - NOT_KNOWN, 1 - MALE, 2 - FEMALE */
   sex?: InputMaybe<Sex>;
@@ -1095,47 +1131,11 @@ export type Payload = {
   success: Scalars['Boolean'];
 };
 
-export type PluginActionField = {
-  __typename?: 'PluginActionField';
-  id: Scalars['ID'];
-  label: Scalars['String'];
-  type: PluginActionFieldType;
-  value: Scalars['String'];
-};
-
-export enum PluginActionFieldType {
-  Html = 'HTML',
-  Json = 'JSON',
-  Numeric = 'NUMERIC',
-  String = 'STRING',
-  Text = 'TEXT'
-}
-
 export type PluginActionSettingsProperty = {
   __typename?: 'PluginActionSettingsProperty';
   key: Scalars['String'];
   label: Scalars['String'];
   value: Scalars['String'];
-};
-
-export type PluginActivityRecord = {
-  __typename?: 'PluginActivityRecord';
-  activity_id: Scalars['String'];
-  data_points: Array<ExtensionDataPoint>;
-  date: Scalars['String'];
-  fields: Array<PluginActionField>;
-  id: Scalars['ID'];
-  pathway_id: Scalars['String'];
-  plugin_action_key: Scalars['String'];
-  plugin_key: Scalars['String'];
-  settings?: Maybe<Array<PluginActionSettingsProperty>>;
-};
-
-export type PluginActivityRecordPayload = Payload & {
-  __typename?: 'PluginActivityRecordPayload';
-  code: Scalars['String'];
-  record: PluginActivityRecord;
-  success: Scalars['Boolean'];
 };
 
 export type PublishedPathwayDefinition = {
@@ -1174,6 +1174,7 @@ export type Query = {
   checklist: ChecklistPayload;
   clinicalNote: ClinicalNotePayload;
   emrReport: EmrReportPayload;
+  extensionActivityRecord: ExtensionActivityRecordPayload;
   filterStakeholders: StakeholdersPayload;
   form: FormPayload;
   formResponse: FormResponsePayload;
@@ -1194,7 +1195,6 @@ export type Query = {
   patient: PatientPayload;
   patientPathways: PatientPathwaysPayload;
   patients: PatientsPayload;
-  pluginActivityRecord: PluginActivityRecordPayload;
   publishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
   scheduledSteps: ScheduledStepsPayload;
   searchPatientsByNationalRegistryNumber: SearchPatientsPayload;
@@ -1254,6 +1254,11 @@ export type QueryClinicalNoteArgs = {
 
 
 export type QueryEmrReportArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryExtensionActivityRecordArgs = {
   id: Scalars['String'];
 };
 
@@ -1347,11 +1352,6 @@ export type QueryPatientsArgs = {
   filters?: InputMaybe<FilterPatients>;
   pagination?: InputMaybe<PaginationParams>;
   sorting?: InputMaybe<SortingParams>;
-};
-
-
-export type QueryPluginActivityRecordArgs = {
-  id: Scalars['String'];
 };
 
 
@@ -1590,7 +1590,8 @@ export type StakeholdersPayload = Payload & {
 
 export type StartHostedActivitySessionInput = {
   cancel_url?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<Language>;
+  /** ISO 639-1 shortcode */
+  language?: InputMaybe<Scalars['String']>;
   pathway_id: Scalars['String'];
   stakeholder_id: Scalars['String'];
   success_url?: InputMaybe<Scalars['String']>;
@@ -1599,7 +1600,7 @@ export type StartHostedActivitySessionInput = {
 export type StartHostedActivitySessionPayload = Payload & {
   __typename?: 'StartHostedActivitySessionPayload';
   code: Scalars['String'];
-  language?: Maybe<Language>;
+  language?: Maybe<Scalars['String']>;
   session_id: Scalars['String'];
   session_url: Scalars['String'];
   success: Scalars['Boolean'];
@@ -1612,7 +1613,8 @@ export type StartHostedActivitySessionViaHostedPagesLinkInput = {
 export type StartHostedPathwaySessionInput = {
   cancel_url?: InputMaybe<Scalars['String']>;
   data_points?: InputMaybe<Array<DataPointInput>>;
-  language?: InputMaybe<Language>;
+  /** ISO 639-1 shortcode */
+  language?: InputMaybe<Scalars['String']>;
   pathway_definition_id: Scalars['String'];
   patient_id?: InputMaybe<Scalars['String']>;
   success_url?: InputMaybe<Scalars['String']>;
@@ -1885,6 +1887,7 @@ export type UpdatePatientInput = {
 };
 
 export type UpdatePatientLanguageInput = {
+  /** ISO 639-1 shortcode */
   preferred_language: Scalars['String'];
 };
 
