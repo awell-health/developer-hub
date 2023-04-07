@@ -14,7 +14,7 @@ export default function BetaExtensions() {
   return (
     <>
       <SEO
-        title="Beta | Awell Extensions"
+        title="Awell Extensions"
         url={`/${Space.AWELL_EXTENSIONS}`}
         canonicalUrl={`/${Space.AWELL_EXTENSIONS}`}
       />
