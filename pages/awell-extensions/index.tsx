@@ -75,9 +75,9 @@ export default function BetaExtensions() {
               <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
                 <strong>Extensions come in many forms and sizes.</strong> On one
                 hand, an extension can expose new Custom Actions in your care
-                flow. And on the other hand, extensions also allow you to listen
-                and process any incoming webhook event and trigger actions in
-                your care flows.
+                flow. And on the other hand, extensions allow you to listen and
+                process incoming webhook events and trigger actions in your care
+                flows.
               </p>
             </div>
             <div className="overflow-hidden py-16 sm:py-24">
@@ -113,8 +113,8 @@ export default function BetaExtensions() {
                           <strong className="font-semibold text-slate-900 dark:text-slate-300">
                             Simple to build.
                           </strong>{' '}
-                          Awell provides developers with an easy-to-use SDK so
-                          that building Custom Actions is a breeze.
+                          Awell provides developers with an easy-to-use SDK
+                          which makes building Custom Actions a breeze.
                         </span>
                       </li>
                       <li className="flex gap-x-3">
