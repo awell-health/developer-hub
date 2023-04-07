@@ -371,13 +371,13 @@ export default function BetaExtensions() {
               faqs={[
                 {
                   question:
-                    'Can I already use Custom Actions in my live (production) care flows?',
+                    'Can I already use Custom Actions in live (production) care flows?',
                   answer:
                     "<p><strong>Yes, you can!</strong> We have done plenty of internal testing before putting the beta version out there so we are confident for them already being used in production care flows.</p><br/><p>Do keep in mind that beta doesn't mean we can guarantee there might not be any bumps in the road still. But we are actively and closely monitoring all our beta extensions so if any issues pop up, we will be able to help you quickly.</p>",
                 },
                 {
                   question:
-                    'Can I use Extension Webhooks in my live (production) care flows?',
+                    'Can I use Extension Webhooks in live (production) care flows?',
                   answer:
                     "<p>No, webhooks are currently still in alpha so we don't advise using them in a production setting just yet. They can already be used for testing or to validate a certain use case you might have.</p><br/><p>There is a lot of cool things coming for webhooks and a beta release can be expected in Q2 of 2023.</p>",
                 },
