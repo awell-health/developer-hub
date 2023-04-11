@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 import { Badge } from '@/components/Badge'
-import { Button } from '@/components/Button'
 import { Extension } from '@/types/extenion.types'
 import { Space } from '@/types/space.types'
 
