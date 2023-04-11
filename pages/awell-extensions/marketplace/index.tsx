@@ -42,7 +42,7 @@ export default function Marketplace() {
                   </div>
                   <p className="mt-1 text-lg text-slate-500 dark:text-slate-400">
                     Bring your care flows to the next level with Awell
-                    Extensions.
+                    Extensions
                   </p>
                 </div>
               </div>
