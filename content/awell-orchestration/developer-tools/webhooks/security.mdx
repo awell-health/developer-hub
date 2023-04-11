@@ -5,7 +5,29 @@ description: How webhooks are secured
 
 We value security & privacy, especially because we're handling sensistive healthcare data. As a company, we're doing our best to stay ahead of attackers by fixing and guarding the loopholes in our systems.
 
-Outlined below are the strategies we use to faciliate security when working with webhooks
+Outlined below are the strategies we use to facilitate security when working with webhooks
+
+### Digital signature
+
+To verify that messages are legitimate, both the webhook provider (Awell) and client (you) can perform signature verification on the messages. If the signatures match, the message is valid. If not, the message has been tampered with and should be rejected.
+
+Webhooks are digitally signed using a 2048 bits RSA key specific to your tenant. The signature is generated from the webhook body and is included in a custom `x-awell-signature` header. When you receive the webhook message, you can use the public key to verify the signature.
+
+Here is how the signature can be verified in Node.js:
+```typescript
+import { createVerify } from 'crypto';
+/**
+ * Verify that the incoming webhook has been sent by Awell and has not been tampered with.
+ * @param {any} body the JSON body of the webhook.
+ * @param {string} signature the base64 encoded signature taken from the `x-awell-signature` header.
+ * @param {string} publicKey your public signing key available in Awell Studio.
+ * @returns true if the signature is valid
+ */
+const verifyWebhook = (body, signature, publicKey) => {
+  const verify = createVerify('sha256').update(JSON.stringify(body)).end();
+  return verify.verify(publicKey, Buffer.from(signature, 'base64'));
+}
+```
 
 ### Encryption (HTTPS)
 
