@@ -26,7 +26,6 @@ export default function BetaExtensions() {
               <span className="text-blue-600 dark:text-sky-500">
                 in minutes
               </span>
-              .
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:max-w-lg mx-auto">
               With Awell Extensions you can tie together the apps you already
@@ -63,21 +62,21 @@ export default function BetaExtensions() {
               <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
                 <div className="lg:pr-8 lg:pt-4">
                   <div className="lg:max-w-lg">
-                    <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500 mb-2">
-                      Orchestrate actions in homegrown and third-party apps in
-                      minutes
-                    </h2>
-                    <div className="flex items-center">
-                      <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
+                    <div className="flex items-center mb-2">
+                      <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500 mb-0">
                         Custom Actions
-                      </h3>
+                      </h2>
                       <div className="pl-2">
                         <Badge color="sky">Beta</Badge>
                       </div>
                     </div>
+                    <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
+                      Orchestrate actions in homegrown and third-party apps in
+                      minutes
+                    </h3>
                     <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
                       Integrate with EHRs, communication providers, form
-                      providers, eSignature... all with the click of a button
+                      providers, eSignature... all with the click of a button.
                     </p>
                     <ul
                       role="list"
@@ -206,17 +205,17 @@ export default function BetaExtensions() {
                 </div>
                 <div className="lg:pr-8 lg:pt-4">
                   <div className="lg:max-w-lg">
-                    <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500 mb-2">
-                      Listen to events from 3rd parties
-                    </h2>
-                    <div className="flex items-center">
-                      <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
+                    <div className="flex items-center mb-2">
+                      <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500 mb-0">
                         Webhooks
-                      </h3>
+                      </h2>
                       <div className="pl-2">
                         <Badge color="purple">Alpha</Badge>
                       </div>
                     </div>
+                    <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
+                      Listen to events from 3rd parties
+                    </h3>
                     <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
                       Create custom webhook endpoints any system can send
                       requests to. You have full control about how to handle the
@@ -312,6 +311,11 @@ export default function BetaExtensions() {
                   question:
                     'Are all extensions in the Marketplace available for free?',
                   answer: `<p>Many extensions are included in the standard Awell licensing fee. However, there are some some premium extensions (think EHRs) that come with a small additional premium. The cost is determined by the third-party extension you would like to use. Contact <a href='mailto:rik@awellhealth.com' class='text-blue-600 dark:text-sky-500 underline font-semibold'>rik@awellhealth.com</a> if you'd like to learn more.</p>`,
+                },
+                {
+                  question:
+                    'Can Awell be considered a HIPAA and GDPR compliant version of Zapier?',
+                  answer: `<p>The Extensions Marketplace can definitely be seen as a HIPAA & GDPR compliant version of Zapier (yes, we sign BAAs), but this is only one part of our platform. Awell goes above and beyond to tackle complex care processes and integrate seamlessly with EHRs and other healthcare- specific tools without breaking a sweat. So, if you're looking for a tool that can make your healthcare processes run like a well-oiled machine, look no further than Awell!</p>`,
                 },
                 {
                   question: 'I have security and data-related questions',
