@@ -27,7 +27,10 @@ export const FAQ = ({
       >
         {withHeader && (
           <div className="max-w-3xl mx-auto mb-6">
-            <h2 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl dark:text-white">
+            <h2
+              id="faq"
+              className="scroll-mt-40 sm:scroll-mt-56 text-center text-3xl font-extrabold text-gray-900 sm:text-4xl dark:text-white"
+            >
               {headerTitle}
             </h2>
             <p className="mt-4 text-base text-slate-500 dark:text-slate-400">

@@ -21,30 +21,24 @@ export default function BetaExtensions() {
       <div className="pt-16 sm:pt-24 lg:pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <div className="mb-4">
-              <Badge color="sky" size="lg">
-                Beta
-              </Badge>
-            </div>
             <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
-              Bring your care flows to the next level with{' '}
+              Orchestrate actions in homegrown and third-party apps{' '}
               <span className="text-blue-600 dark:text-sky-500">
-                Awell Extensions
+                in minutes
               </span>
               .
             </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
-              Awell provides developers with an SDK allowing them to assemble
-              their own Custom Actions and listen to Webhook events from 3rd
-              parties to trigger actions in care flows.
+            <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:max-w-lg mx-auto">
+              With Awell Extensions you can tie together the apps you already
+              use for CareOps into your care flows.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <LinkButton
                 href={rootRoutes[Space.AWELL_EXTENSIONS].docs}
-                label="Get started"
+                label="Read the docs"
                 color="sky"
               />
-              <Link href="#beta">
+              <Link href="#faq">
                 <a className="text-sm font-semibold leading-6 text-slate-900 dark:text-slate-300">
                   Learn more about beta release{' '}
                   <span aria-hidden="true">↓</span>
@@ -65,27 +59,13 @@ export default function BetaExtensions() {
             </div>
           </div>
           <div className="py-16 sm:py-24">
-            <div className="mx-auto max-w-2xl lg:text-center">
-              <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500">
-                Awell Extensions
-              </h2>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                Custom Actions and Webhooks
-              </h2>
-              <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
-                <strong>Extensions come in many forms and sizes.</strong> On one
-                hand, an extension can expose new Custom Actions in your care
-                flow. And on the other hand, extensions allow you to listen and
-                process incoming webhook events and trigger actions in your care
-                flows.
-              </p>
-            </div>
             <div className="overflow-hidden py-16 sm:py-24">
               <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
                 <div className="lg:pr-8 lg:pt-4">
                   <div className="lg:max-w-lg">
                     <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500 mb-2">
-                      Orchestrate actions with 3rd parties in minutes
+                      Orchestrate actions in homegrown and third-party apps in
+                      minutes
                     </h2>
                     <div className="flex items-center">
                       <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
@@ -96,9 +76,8 @@ export default function BetaExtensions() {
                       </div>
                     </div>
                     <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
-                      Build, test, and deploy Custom Actions to your care flows
-                      or reuse the off-the-shelf Custom Actions created by Awell
-                      and other customers.
+                      Integrate with EHRs, communication providers, form
+                      providers, eSignature... all with the click of a button
                     </p>
                     <ul
                       role="list"
@@ -126,9 +105,9 @@ export default function BetaExtensions() {
                           <strong className="font-semibold text-slate-900 dark:text-slate-300">
                             Simple to use.
                           </strong>{' '}
-                          Take away complexity for your clinical experts so they
-                          only have to worry about building the perfect care
-                          flow.
+                          Take away complexity for your clinical and product
+                          experts so they can build care flows that improve
+                          lives whithout bothering the engineering team.
                         </span>
                       </li>
                       <li className="flex gap-x-3">
@@ -204,6 +183,13 @@ export default function BetaExtensions() {
                     alt="DropboxSign"
                   />
                 </div>
+                <div className="flex justify-center mt-12">
+                  <LinkButton
+                    color="sky"
+                    label="Explore the Marketlace"
+                    href={`/${Space.AWELL_EXTENSIONS}/marketplace`}
+                  />
+                </div>
               </div>
             </div>
             <div className="overflow-hidden py-16 sm:py-24">
@@ -251,7 +237,7 @@ export default function BetaExtensions() {
                             Automation.
                           </strong>{' '}
                           Webhook events can be used to automatically trigger
-                          actions in Awell based on events in other systems.
+                          actions based on events happening in other systems.
                         </span>
                       </li>
                       <li className="flex gap-x-3">
@@ -263,8 +249,9 @@ export default function BetaExtensions() {
                           <strong className="font-semibold text-slate-900 dark:text-slate-300">
                             Integration.
                           </strong>{' '}
-                          By listening to webhook events, you can more easily
-                          integrate third-party services with Awell.
+                          By listening to webhook events you can easily
+                          integrate homegrown and third-party apps into your
+                          care flows.
                         </span>
                       </li>
                       <li className="flex gap-x-3">
@@ -277,8 +264,9 @@ export default function BetaExtensions() {
                             Flexibility.
                           </strong>{' '}
                           Webhook events can be used to receive a wide range of
-                          data and information from third-party services, making
-                          them a flexible option for a variety of use cases.
+                          data and information from homegrown and third-party
+                          apps, making them a flexible option for a variety of
+                          use cases.
                         </span>
                       </li>
                     </ul>
@@ -293,98 +281,41 @@ export default function BetaExtensions() {
                 </div>
               </div>
             </div>
-            <div className="py-16 sm:py-24">
-              <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-                <p className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500">
-                  Ready, set, beta!
-                </p>
-                <h3
-                  id="beta"
-                  className="scroll-mt-40 mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
-                >
-                  Step into the future with our beta release
-                </h3>
-                <div className="mt-10 grid max-w-xl grid-cols-1 gap-8 text-base leading-7 text-slate-700 lg:max-w-none lg:grid-cols-2 dark:text-slate-400">
-                  <div>
-                    <p>
-                      <strong>
-                        Custom Actions are currently available in beta but
-                        Webhooks are still in alpha.
-                      </strong>{' '}
-                      Both are already available for our users and we will
-                      continue to refine and perfect them. By using both Custom
-                      Actions and Webhooks, you have the unique opportunity to
-                      be among the first to experience the technology and help
-                      shape the future of our product.
-                    </p>
-                    <p className="mt-8">
-                      <strong>
-                        Custom Actions (beta) can already be used in live
-                        (production) care flows.
-                      </strong>{' '}
-                      By means of internal testing, we have a reached a
-                      confidence level where we are comfortable for them already
-                      being used in a production setting. But please be aware
-                      that it is a beta release, and as such, you may encounter
-                      bugs or glitches. However, we are constantly monitoring
-                      and improving the actions to ensure the best possible
-                      experience for our users.
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      <strong>
-                        Webhooks (alpha) should not be used in live (production)
-                        care flows yet
-                      </strong>{' '}
-                      but they can already be used for testing purposes or to
-                      help you validate a specific use case. The Awell team is
-                      working towards a beta release of Webhooks in Q2 of 2023
-                      still.
-                    </p>
-                    <p className="mt-8">
-                      Your feedback and suggestions are invaluable to us, and we
-                      are committed to incorporating them as we work towards a
-                      full release. Thank you for being a part of our journey,
-                      and we can not wait to hear your thoughts!
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="relative overflow-hidden pt-16 lg:pt-20">
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="mb-[-25%] rounded-xl shadow-2xl ring-1 ring-slate-900/10"
-                    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680870211/Awell%20Extensions/beta_alpha_release.png"
-                    alt="Beta release for Custom Actions and Alpha release for webhooks"
-                  />
-                  <div className="relative" aria-hidden="true">
-                    <div className="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white dark:from-slate-900 pt-[7%]" />
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div>
             <FAQ
               faqs={[
                 {
-                  question:
-                    'Can I already use Custom Actions in live (production) care flows?',
+                  question: 'What is the state of Awell Extensions today?',
                   answer:
-                    "<p><strong>Yes, you can!</strong> We have done plenty of internal testing before putting the beta version out there so we are confident for them already being used in production care flows.</p><br/><p>Do keep in mind that beta doesn't mean we can guarantee there might not be any bumps in the road still. But we are actively and closely monitoring all our beta extensions so if any issues pop up, we will be able to help you quickly.</p>",
+                    '<p><strong>Custom Actions are currently available in beta but Webhooks are still in alpha.</strong> Both are already available for our users and we will continue to refine and perfect them.</p><br/><p>By using both Custom Actions and Webhooks, you have the unique opportunity to be among the first to experience the technology and help shape the future of our product. Your feedback and suggestions are invaluable to us, and we are committed to incorporating them as we work towards a full release.</p>',
                 },
                 {
                   question:
-                    'Can I use Extension Webhooks in live (production) care flows?',
+                    'Can I use Custom Actions in live (production) care flows?',
                   answer:
-                    "<p>No, webhooks are currently still in alpha so we don't advise using them in a production setting just yet. They can already be used for testing or to validate a certain use case you might have.</p><br/><p>There is a lot of cool things coming for webhooks and a beta release can be expected in Q2 of 2023.</p>",
+                    "<p><strong>Yes, you can!</strong> We have done plenty of internal testing before putting the beta version out there so we are confident for them already being used in production care flows.</p><br/><p>Do keep in mind that beta doesn't mean we can guarantee there might not be any bumps in the road still. But we are actively and closely monitoring all our beta extensions so if any issues arise, we will be able to help you quickly.</p>",
+                },
+                {
+                  question:
+                    'Can I use Webhooks in live (production) care flows?',
+                  answer:
+                    "<p><strong>No, webhooks are currently still in alpha</strong> so we don't advise using them in a production setting just yet. They can already be used for testing or to validate a certain use case you might have.</p><br/><p>A beta release for webhooks can be expected in Q2 of 2023.</p>",
                 },
                 {
                   question: 'Can I build my own extensions?',
-                  answer:
-                    "<p><strong>Absolutely, yes!</strong> We even encourage you to do so. You can build an extension to integrate with a 3rd party we haven't built one for or build an extension specifically to integrate with one of your proprietary systems.</p>",
+                  answer: `<p><strong>Absolutely, yes!</strong> We even encourage you to do so. You can build an extension to integrate with a 3rd party we haven't built one for or build an extension specifically to integrate with one of your homegrown systems.</p><br/><p><a href='${
+                    rootRoutes[Space.AWELL_EXTENSIONS].docs
+                  }' class='text-blue-600 dark:text-sky-500 underline font-semibold'>Read our docs and get started with building your first extension.</a></p>`,
+                },
+                {
+                  question:
+                    'Are all extensions in the Marketplace available for free?',
+                  answer: `<p>Many extensions are included in the standard Awell licensing fee. However, there are some some premium extensions (think EHRs) that come with a small additional premium. The cost is determined by the third-party extension you would like to use. Contact <a href='mailto:rik@awellhealth.com' class='text-blue-600 dark:text-sky-500 underline font-semibold'>rik@awellhealth.com</a> if you'd like to learn more.</p>`,
+                },
+                {
+                  question: 'I have security and data-related questions',
+                  answer: `<p>Have a look <a href='/faq' class='text-blue-600 dark:text-sky-500 underline font-semibold'>here</a>.</p>`,
                 },
               ]}
             />

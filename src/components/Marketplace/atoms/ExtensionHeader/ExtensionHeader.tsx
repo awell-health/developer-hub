@@ -42,14 +42,14 @@ export const ExtensionHeader: FC<ExtensionHeaderProps> = ({ extension }) => {
               </div>
             </div>
           </div>
-          <div>
+          {/* <div>
             <Button
               label="Install extension"
               color="sky"
               disabled={true}
               onClick={() => null}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

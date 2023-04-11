@@ -38,8 +38,8 @@ export default function Marketplace() {
                     </h3>
                   </div>
                   <p className="mt-1 text-lg text-slate-500 dark:text-slate-400">
-                    Bring your care flows to the next level with Awell
-                    Extensions.
+                    Awell Extensions integrate all apps you already use for
+                    CareOps in your care flows.
                   </p>
                 </div>
               </div>
@@ -74,7 +74,7 @@ export default function Marketplace() {
             </div>
           ) : (
             <div className="border-t border-slate-200 dark:border-slate-800 mt-4 pt-8 flex items-start gap-24">
-              <div className="w-2/6">
+              <div className="w-1/6 grow-0 shrink-0">
                 <h3>Category</h3>
                 <ul className="space-y-4 pb-6 text-base font-medium text-slate-800 dark:text-slate-400">
                   {categories.map((category) => (
