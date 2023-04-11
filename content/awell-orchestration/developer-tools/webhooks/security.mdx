@@ -9,7 +9,9 @@ Outlined below are the strategies we use to facilitate security when working wit
 
 ### Digital signature
 
-Webhooks are digitally signed using a 2048 bits RSA key specific to your account. The signature is generated from the webhook body and is included in a custom `x-awell-signature` header.
+To verify that messages are legitimate, both the webhook provider (Awell) and client (you) can perform signature verification on the messages. If the signatures match, the message is valid. If not, the message has been tampered with and should be rejected.
+
+Webhooks are digitally signed using a 2048 bits RSA key specific to your tenant. The signature is generated from the webhook body and is included in a custom `x-awell-signature` header. When you receive the webhook message, you can use the public key to verify the signature.
 
 Here is how the signature can be verified in Node.js:
 ```typescript
