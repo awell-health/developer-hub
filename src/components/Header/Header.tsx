@@ -112,7 +112,7 @@ export const Header = () => {
                     </label>
                     <ThemeToggle />
                     <a
-                      href="https://github.com/nckhell/awell-developers"
+                      href="https://github.com/awell-health/developer-hub"
                       target="_blank"
                       className="ml-6 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
                       rel="noreferrer"
