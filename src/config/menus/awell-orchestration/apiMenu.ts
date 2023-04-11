@@ -9,6 +9,7 @@ const badges: { [key in string]: BadgeType } = {
   datapoint: { label: 'Data Point', color: 'slate' },
   session: { label: 'Session', color: 'red' },
   elements: { label: 'Elements', color: 'sky' },
+  stakeholders: { label: 'Stakeholders', color: 'orange' },
 }
 
 export const apiMenu: MenuType = [
@@ -84,6 +85,11 @@ export const apiMenu: MenuType = [
         title: 'Get pathway activities',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-pathway-activities`,
         badge: badges.activity,
+      },
+      {
+        title: 'Get stakeholders',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-stakeholders`,
+        badge: badges.stakeholders,
       },
       {
         title: 'Search activities',
