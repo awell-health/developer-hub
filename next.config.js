@@ -60,6 +60,11 @@ const nextConfig = {
           '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide',
         permanent: true,
       },
+      {
+        source: '/awell-extensions/beta',
+        destination: '/awell-extensions',
+        permanent: false,
+      },
     ]
   },
 }

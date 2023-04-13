@@ -4,6 +4,7 @@ import clsx from 'clsx'
 
 interface FaqProps {
   withHeader?: boolean
+  headerTitle?: string
   condensed?: boolean
   faqs: {
     question: string
@@ -14,6 +15,7 @@ interface FaqProps {
 export const FAQ = ({
   withHeader = true,
   condensed = false,
+  headerTitle = 'Frequently asked questions',
   faqs,
 }: FaqProps) => {
   return (
@@ -25,8 +27,11 @@ export const FAQ = ({
       >
         {withHeader && (
           <div className="max-w-3xl mx-auto mb-6">
-            <h2 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl dark:text-white">
-              Frequently asked questions
+            <h2
+              id="faq"
+              className="scroll-mt-40 sm:scroll-mt-56 text-center text-3xl font-extrabold text-gray-900 sm:text-4xl dark:text-white"
+            >
+              {headerTitle}
             </h2>
             <p className="mt-4 text-base text-slate-500 dark:text-slate-400">
               If you {`can't`} find what {`you're`} looking for, you can always

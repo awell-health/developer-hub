@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 import { Badge } from '@/components/Badge'
-import { Button } from '@/components/Button'
 import { Extension } from '@/types/extenion.types'
 import { Space } from '@/types/space.types'
 
@@ -42,14 +41,14 @@ export const ExtensionHeader: FC<ExtensionHeaderProps> = ({ extension }) => {
               </div>
             </div>
           </div>
-          <div>
+          {/* <div>
             <Button
               label="Install extension"
               color="sky"
               disabled={true}
               onClick={() => null}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

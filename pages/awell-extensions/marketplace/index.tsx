@@ -1,9 +1,9 @@
+import { ChevronRightIcon } from '@heroicons/react/outline'
 import { isEmpty, isNil } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 
-import { Badge } from '@/components/Badge'
 import { LinkButton } from '@/components/Button'
 import { HomeLayout } from '@/components/Layouts'
 import {
@@ -26,9 +26,9 @@ export default function Marketplace() {
         url={`/${Space.AWELL_EXTENSIONS}/marketplace`}
         canonicalUrl={`/${Space.AWELL_EXTENSIONS}/marketplace`}
       />
-      <div className="relative max-w-8xl mx-auto pt-4 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-8">
+      <div className="relative max-w-8xl mx-auto py-4 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-8">
         <div>
-          <div className="overflow-hidden py-4">
+          <div className="overflow-hidden">
             <div>
               <div className="relative lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
                 <div className="relative">
@@ -36,16 +36,34 @@ export default function Marketplace() {
                     <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl mb-0">
                       Marketplace
                     </h3>
-                    <div className="ml-2">
-                      <Badge color="sky">Alpha</Badge>
-                    </div>
                   </div>
                   <p className="mt-1 text-lg text-slate-500 dark:text-slate-400">
-                    Bring your care flows to the next level with Awell
-                    Extensions
+                    Awell Extensions integrate all apps you already use for
+                    CareOps in your care flows
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="flex mt-2">
+            <div className="relative flex items-center gap-x-4 rounded-full px-4 py-1 text-sm leading-6 text-slate-600 ring-1 ring-slate-900/10 hover:ring-slate-900/20 dark:text-slate-400 dark:ring-slate-700 dark:hover:ring-slate-800">
+              <span className="font-semibold text-blue-600 dark:text-sky-500 flex">
+                🎉 Extensions are in beta
+              </span>
+              <span
+                className="h-4 w-px bg-slate-900/10 dark:bg-slate-700"
+                aria-hidden="true"
+              />
+              <Link href={`/${Space.AWELL_EXTENSIONS}/beta`}>
+                <a className="flex items-center gap-x-1">
+                  <span className="absolute inset-0" aria-hidden="true" />
+                  Learn more
+                  <ChevronRightIcon
+                    className="-mr-2 h-5 w-5 text-slate-400"
+                    aria-hidden="true"
+                  />
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -56,7 +74,7 @@ export default function Marketplace() {
             </div>
           ) : (
             <div className="border-t border-slate-200 dark:border-slate-800 mt-4 pt-8 flex items-start gap-24">
-              <div className="w-1/6">
+              <div className="w-1/6 grow-0 shrink-0">
                 <h3>Category</h3>
                 <ul className="space-y-4 pb-6 text-base font-medium text-slate-800 dark:text-slate-400">
                   {categories.map((category) => (

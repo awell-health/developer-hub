@@ -8,7 +8,7 @@ export const baseStyles = 'px-2.5 py-0.5 rounded-full font-medium'
 export const badgeSizes: { [key in BadgeSizeType]: string } = {
   sm: 'text-xxs mr-2 px-2.5 py-1 rounded-full font-medium',
   base: `${baseStyles} text-xs`,
-  lg: `${baseStyles} text-xs`,
+  lg: `${baseStyles} text-base`,
 }
 
 export const badgeColors: { [key in BadgeColorType]: string } = {
