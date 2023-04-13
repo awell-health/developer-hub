@@ -80,7 +80,7 @@ export default function BetaExtensions() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 p-1 dark:bg-white dark:p-2 dark:rounded"
-                  src="https://paimagesmedia.imagencloud.com/storage/v1/file/0x060a2b340101010201010f121387729fa6bbaf0269930580e52f000D3A654E29"
+                  src="https://s3-eu-west-1.amazonaws.com/zkn/files/9f7a3a64e373fd9368ceecf21f898f24.png"
                   alt="Mindler"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
