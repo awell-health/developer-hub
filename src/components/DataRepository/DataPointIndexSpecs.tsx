@@ -1,4 +1,4 @@
-import { datapoint } from '@/config/es-indices'
+import { datapoint, pathway, patient } from '@/config/es-indices'
 
 export const DataPointIndexSpecs = () => {
   return (
@@ -30,6 +30,38 @@ export const DataPointIndexSpecs = () => {
                 >
                   <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
                     {property}
+                  </td>
+                  <td className="whitespace-nowrap py-4 px-3 text-base">
+                    {type}
+                  </td>
+                  <td className="whitespace-nowrap py-4 px-3 text-base">
+                    {description}
+                  </td>
+                </tr>
+              ))}
+              {pathway.map(({ property, type, description }) => (
+                <tr
+                  key={property}
+                  className="text-slate-900 dark:text-slate-100"
+                >
+                  <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+                    pathway.{property}
+                  </td>
+                  <td className="whitespace-nowrap py-4 px-3 text-base">
+                    {type}
+                  </td>
+                  <td className="whitespace-nowrap py-4 px-3 text-base">
+                    {description}
+                  </td>
+                </tr>
+              ))}
+              {patient.map(({ property, type, description }) => (
+                <tr
+                  key={property}
+                  className="text-slate-900 dark:text-slate-100"
+                >
+                  <td className="whitespace-nowrap font-semibold py-4 pl-4 pr-3 sm:pl-6 md:pl-0">
+                    patient.{property}
                   </td>
                   <td className="whitespace-nowrap py-4 px-3 text-base">
                     {type}
