@@ -23,9 +23,9 @@ export default function BetaExtensions() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
-              Bring your care flows to the next level with{' '}
+              Orchestrate actions in homegrown and third-party apps{' '}
               <span className="text-blue-600 dark:text-sky-500">
-                Awell Extensions
+                in minutes
               </span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:max-w-lg mx-auto">
@@ -112,8 +112,7 @@ export default function BetaExtensions() {
                       </div>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
-                      Orchestrate actions in homegrown and third-party apps in
-                      minutes
+                      Orchestrate actions in third-party apps in minutes
                     </h3>
                     <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
                       Integrate with EHRs, communication providers, form
@@ -185,6 +184,53 @@ export default function BetaExtensions() {
                 </div>
               </div>
             </div>
+            <div className="py-16 py-16 sm:py-24">
+              <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-center text-lg font-semibold leading-8 text-slate-900">
+                  We have off-the-shelf extensions with the most innovative
+                  platforms
+                </h2>
+                <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
+                    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1681378944/Awell%20Extensions/healthie-logo.jpg"
+                    alt="Healthie"
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
+                    src="https://cal.com/android-chrome-512x512.png"
+                    alt="Cal.com"
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
+                    src="https://www.elationhealth.com/wp-content/themes/elation2021/assets/images/elation-health-logo-blue.svg"
+                    alt="Elation"
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Twilio-logo-red.svg/2560px-Twilio-logo-red.svg.png"
+                    alt="Twilio"
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
+                    src="https://assets-global.website-files.com/61c0a8113e6c0db0dcedae5a/6359eb47befa0c414c6a21e9_sign-logo.svg"
+                    alt="DropboxSign"
+                  />
+                </div>
+                <div className="flex justify-center mt-12">
+                  <LinkButton
+                    color="sky"
+                    label="Explore the Marketplace"
+                    href={`/${Space.AWELL_EXTENSIONS}/marketplace`}
+                  />
+                </div>
+              </div>
+            </div>
             <div>
               <div className="mt-8 sm:mt-16 mx-auto max-w-2xl text-center">
                 <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500 mb-2">
@@ -196,7 +242,7 @@ export default function BetaExtensions() {
                 </h3>
                 <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:max-w-lg mx-auto">
                   We provide developers with an easy to use SDK (in Typescript
-                  🎉) so everyone can start building extensions.
+                  🎉) so anyone can build extensions.
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
                   <LinkButton
@@ -474,54 +520,7 @@ export default function BetaExtensions() {
                 </div>
               </div>
             </div>
-            <div className="py-16 py-16 sm:py-24">
-              <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <h2 className="text-center text-lg font-semibold leading-8 text-slate-900">
-                  We have off-the-shelf extensions with the most innovative
-                  platforms
-                </h2>
-                <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
-                    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1681378944/Awell%20Extensions/healthie-logo.jpg"
-                    alt="Healthie"
-                  />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
-                    src="https://cal.com/android-chrome-512x512.png"
-                    alt="Cal.com"
-                  />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
-                    src="https://www.elationhealth.com/wp-content/themes/elation2021/assets/images/elation-health-logo-blue.svg"
-                    alt="Elation"
-                  />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Twilio-logo-red.svg/2560px-Twilio-logo-red.svg.png"
-                    alt="Twilio"
-                  />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
-                    src="https://assets-global.website-files.com/61c0a8113e6c0db0dcedae5a/6359eb47befa0c414c6a21e9_sign-logo.svg"
-                    alt="DropboxSign"
-                  />
-                </div>
-                <div className="flex justify-center mt-12">
-                  <LinkButton
-                    color="sky"
-                    label="Explore the Marketplace"
-                    href={`/${Space.AWELL_EXTENSIONS}/marketplace`}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="overflow-hidden py-16 sm:py-24">
+            <div className="overflow-hidden py-16 mt-8 sm:py-24 sm:mt-16">
               <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
                 <div className="flex justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
