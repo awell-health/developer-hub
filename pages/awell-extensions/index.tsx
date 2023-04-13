@@ -225,7 +225,7 @@ export default function BetaExtensions() {
                               <div className="flex bg-slate-800/40 ring-1 ring-white/5">
                                 <div className="-mb-px flex text-sm font-medium leading-6 text-gray-400">
                                   <div className="border-b border-r border-b-white/20 border-r-white/10 bg-white/5 px-4 py-2 text-white">
-                                    extensions/twilio/action/sendSms.ts
+                                    extensions/twilio/actions/sendSms.ts
                                   </div>
                                 </div>
                               </div>
@@ -244,12 +244,12 @@ export default function BetaExtensions() {
                                     <span className="text-[#E4786C]">
                                       import
                                     </span>{' '}
-                                    {'{ actionFields } '}
+                                    {'{ actionFields, extensionSettings } '}
                                     <span className="text-[#E4786C]">
                                       from
                                     </span>{' '}
                                     <span className="text-[#9CCAF4]">
-                                      './config/actionFields'
+                                      './config'
                                     </span>
                                     {'\n'}
                                     <span className="text-[#E4786C]">
@@ -259,9 +259,7 @@ export default function BetaExtensions() {
                                     <span className="text-[#E4786C]">
                                       type
                                     </span>{' '}
-                                    Action,{' '}
-                                    <span className="text-[#E4786C]">type</span>{' '}
-                                    settings, Category
+                                    Action
                                     {' }'} from{' '}
                                     <span className="text-[#9CCAF4]">
                                       '@/types'
@@ -288,7 +286,7 @@ export default function BetaExtensions() {
                                     <span className="text-[#E4786C]">
                                       typeof
                                     </span>{' '}
-                                    settings{'> '}
+                                    extensionSettings{'> '}
                                     <span className="text-[#E4786C]">
                                       =
                                     </span>{' '}
@@ -304,9 +302,9 @@ export default function BetaExtensions() {
                                       'Send SMS'
                                     </span>
                                     ,{'\n'}
-                                    {'  '}category: Category.
+                                    {'  '}category:{' '}
                                     <span className="text-[#9CCAF4]">
-                                      COMMUNICATION
+                                      'Communication'
                                     </span>
                                     ,{'\n'}
                                     {'  '}fields:{' '}
