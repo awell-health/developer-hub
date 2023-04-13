@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { ReactNode } from 'react'
@@ -22,9 +23,9 @@ export default function BetaExtensions() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
-              Orchestrate actions in homegrown and third-party apps{' '}
+              Bring your care flows to the next level with{' '}
               <span className="text-blue-600 dark:text-sky-500">
-                in minutes
+                Awell Extensions
               </span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:max-w-lg mx-auto">
@@ -45,7 +46,7 @@ export default function BetaExtensions() {
               </Link>
             </div>
           </div>
-          <div className="mt-16 flow-root sm:mt-24 max-w-5xl mx-auto">
+          <div className="my-16 flow-root sm:my-24 max-w-5xl mx-auto">
             <div className="-m-2 rounded-xl bg-slate-900/5 p-2 ring-1 ring-inset ring-slate-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -57,7 +58,47 @@ export default function BetaExtensions() {
               />
             </div>
           </div>
-          <div className="py-16 sm:py-24">
+          <div className="my-16 pt-16 sm:my-24 sm:pt-24">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+              <h2 className="text-center text-lg font-semibold leading-8 text-slate-900">
+                Some of the best clinical and product leaders use Awell to
+                automate their care flows
+              </h2>
+              <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:bg-white p-2 dark:rounded"
+                  src="https://patinahealth.com/wp-content/uploads/2021/11/logo.png"
+                  alt="Patina Health"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 bg-slate-800 rounded p-2 dark:bg-transparent dark:p-2 dark:rounded-none"
+                  src="https://uploads-ssl.webflow.com/614a1ca9934d3f7e2d47575f/6155a4b1b3fa24a798682ce7_Logo.png"
+                  alt="Wellinks"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 p-1 dark:bg-white dark:p-2 dark:rounded"
+                  src="https://paimagesmedia.imagencloud.com/storage/v1/file/0x060a2b340101010201010f121387729fa6bbaf0269930580e52f000D3A654E29"
+                  alt="Mindler"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1 bg-slate-800 rounded p-2 dark:bg-transparent dark:p-2 dark:rounded-none"
+                  src="https://commonsclinic.com/images/logos/commons-logo-light.svg"
+                  alt="Commons Clinic"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
+                  src="https://cdn.shopify.com/s/files/1/0342/7850/6631/t/17/assets/logo.svg?v=3128126792532175881646291453"
+                  alt="Better Health"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="my-16 sm:my-24">
             <div className="overflow-hidden py-16 sm:py-24">
               <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
                 <div className="lg:pr-8 lg:pt-4">
@@ -144,6 +185,297 @@ export default function BetaExtensions() {
                 </div>
               </div>
             </div>
+            <div>
+              <div className="mt-8 sm:mt-16 mx-auto max-w-2xl text-center">
+                <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500 mb-2">
+                  Built by developers, for developers
+                </h2>
+                <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
+                  Build, test, and deploy your own extensions to connect your
+                  homegrown apps into care flows
+                </h3>
+                <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:max-w-lg mx-auto">
+                  We provide developers with an easy to use SDK (in Typescript
+                  🎉) so everyone can start building extensions.
+                </p>
+                <div className="mt-10 flex items-center justify-center gap-x-6">
+                  <LinkButton
+                    href={`${Space.AWELL_EXTENSIONS}/docs/getting-started/get-started`}
+                    label="Get started building extensions"
+                    color="sky"
+                  />
+                </div>
+              </div>
+              <div className="mt-8 flow-root sm:mt-12 max-w-5xl mx-auto">
+                <div className="relative isolate overflow-hidden">
+                  <div className="relative">
+                    <div
+                      className="absolute inset-y-0 right-1/2 -z-10 -mr-10 w-[200%] skew-x-[-30deg] shadow-xl shadow-blue-600/10 ring-1 ring-blue-50 md:-mr-20 lg:-mr-36"
+                      aria-hidden="true"
+                    />
+                    <div className="shadow-lg md:rounded-3xl">
+                      <div className="bg-sky-500 dark:bg-sky-300 [clip-path:inset(0)] [clip-path:inset(0_round_theme(borderRadius.3xl))]">
+                        <div
+                          className="absolute -inset-y-px left-1/2 -z-10 ml-10 w-[200%] skew-x-[-30deg] bg-blue-100 opacity-20 ring-1 ring-inset ring-white md:ml-20 lg:ml-12"
+                          aria-hidden="true"
+                        />
+                        <div className="relative px-6 pt-8 pr-0 sm:pt-16 md:pl-16">
+                          <div className="mx-auto max-w-2xl md:mx-0 md:max-w-none">
+                            <div className="w-full overflow-hidden rounded-tl-xl bg-slate-800">
+                              <div className="flex bg-slate-800/40 ring-1 ring-white/5">
+                                <div className="-mb-px flex text-sm font-medium leading-6 text-gray-400">
+                                  <div className="border-b border-r border-b-white/20 border-r-white/10 bg-white/5 px-4 py-2 text-white">
+                                    extensions/twilio/action/sendSms.ts
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="px-6 py-6 overflow-y-scroll max-h-[450px]">
+                                <pre className="text-[0.8125rem] leading-6 text-gray-300">
+                                  <code>
+                                    <span className="text-[#E4786C]">
+                                      import
+                                    </span>{' '}
+                                    twilioSdk{' '}
+                                    <span className="text-[#E4786C]">from</span>{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      'twilio'
+                                    </span>
+                                    {'\n'}
+                                    <span className="text-[#E4786C]">
+                                      import
+                                    </span>{' '}
+                                    {'{ actionFields } '}
+                                    <span className="text-[#E4786C]">
+                                      from
+                                    </span>{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      './config/actionFields'
+                                    </span>
+                                    {'\n'}
+                                    <span className="text-[#E4786C]">
+                                      import
+                                    </span>{' '}
+                                    {'{ '}
+                                    <span className="text-[#E4786C]">
+                                      type
+                                    </span>{' '}
+                                    Action,{' '}
+                                    <span className="text-[#E4786C]">type</span>{' '}
+                                    settings, Category
+                                    {' }'} from{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      '@/types'
+                                    </span>
+                                    {/*  */}
+                                    {/*  */}
+                                    {'\n'}
+                                    {'\n'}
+                                    <span className="text-[#E4786C]">
+                                      export const
+                                    </span>{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      sendSms
+                                    </span>
+                                    :{' '}
+                                    <span className="text-[#E9A05F]">
+                                      Action
+                                    </span>
+                                    {`<`}
+                                    <span className="text-[#E4786C]">
+                                      typeof
+                                    </span>{' '}
+                                    actionFields,{' '}
+                                    <span className="text-[#E4786C]">
+                                      typeof
+                                    </span>{' '}
+                                    settings{'> '}
+                                    <span className="text-[#E4786C]">
+                                      =
+                                    </span>{' '}
+                                    {`{`}
+                                    {'\n'}
+                                    {'  '}key:{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      'sendSms'
+                                    </span>
+                                    ,{'\n'}
+                                    {'  '}title:{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      'Send SMS'
+                                    </span>
+                                    ,{'\n'}
+                                    {'  '}category: Category.
+                                    <span className="text-[#9CCAF4]">
+                                      COMMUNICATION
+                                    </span>
+                                    ,{'\n'}
+                                    {'  '}fields:{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      actionFields
+                                    </span>
+                                    ,{'\n'}
+                                    {'  '}
+                                    <span className="text-[#D7BFF7]">
+                                      onActivityCreated
+                                    </span>
+                                    :{' '}
+                                    <span className="text-[#E4786C]">
+                                      async
+                                    </span>{' '}
+                                    (
+                                    <span className="text-[#E9A05F]">
+                                      payload
+                                    </span>
+                                    ,{' '}
+                                    <span className="text-[#E9A05F]">
+                                      onComplete
+                                    </span>
+                                    ,{' '}
+                                    <span className="text-[#E9A05F]">
+                                      onError
+                                    </span>
+                                    ){' '}
+                                    <span className="text-[#E4786C]">{`=>`}</span>{' '}
+                                    {`{`}
+                                    {'\n'}
+                                    {'    '}
+                                    <span className="text-[#E4786C]">
+                                      try
+                                    </span>{' '}
+                                    {`{`}
+                                    {'\n'}
+                                    {'      '}
+                                    <span className="text-[#E4786C]">
+                                      const
+                                    </span>{' '}
+                                    {`{`}
+                                    {'\n'}
+                                    {'        '}
+                                    <span className="text-[#E9A05F]">
+                                      settings
+                                    </span>
+                                    : {`{ `}
+                                    <span className="text-[#9CCAF4]">
+                                      accountSid
+                                    </span>
+                                    ,{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      authToken
+                                    </span>
+                                    ,{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      fromNumber
+                                    </span>
+                                    {` }`},{'\n'}
+                                    {'        '}
+                                    <span className="text-[#E9A05F]">
+                                      fields
+                                    </span>
+                                    : {`{ `}
+                                    <span className="text-[#9CCAF4]">
+                                      recipient
+                                    </span>
+                                    ,{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      message
+                                    </span>
+                                    {` }`},{'\n'}
+                                    {'      '}
+                                    {`}`}{' '}
+                                    <span className="text-[#E4786C]">=</span>{' '}
+                                    payload
+                                    {'\n'}
+                                    {'\n'}
+                                    {'      '}
+                                    <span className="text-[#E4786C]">
+                                      const
+                                    </span>{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      client
+                                    </span>{' '}
+                                    <span className="text-[#E4786C]">=</span>{' '}
+                                    <span className="text-[#D7BFF7]">
+                                      twilioSdk
+                                    </span>
+                                    (accountSid, authToken, {`{`}
+                                    {'\n'}
+                                    {'        '}region:{' '}
+                                    <span className="text-[#9CCAF4]">
+                                      'IE1'
+                                    </span>
+                                    ,{'\n'}
+                                    {'        '}accountSid,
+                                    {'\n'}
+                                    {'      '}
+                                    {`}`}){'\n'}
+                                    {'\n'}
+                                    {'      '}
+                                    <span className="text-[#E4786C]">
+                                      await
+                                    </span>{' '}
+                                    client.messages.
+                                    <span className="text-[#D7BFF7]">
+                                      create
+                                    </span>
+                                    ({`{`}
+                                    {'\n'}
+                                    {'        '}body: message,
+                                    {'\n'}
+                                    {'        '}from: fromNumber,
+                                    {'\n'}
+                                    {'        '}to: recipient,
+                                    {'\n'}
+                                    {'      '}
+                                    {`}`}){'\n'}
+                                    {'\n'}
+                                    {'      '}
+                                    <span className="text-[#E4786C]">
+                                      await
+                                    </span>{' '}
+                                    <span className="text-[#D7BFF7]">
+                                      onComplete
+                                    </span>
+                                    ()
+                                    {'\n'}
+                                    {'    '}
+                                    {`}`}{' '}
+                                    <span className="text-[#E4786C]">
+                                      catch
+                                    </span>{' '}
+                                    (err) {`{`}
+                                    {'\n'}
+                                    {'      '}
+                                    <span className="text-[#E4786C]">
+                                      await
+                                    </span>{' '}
+                                    <span className="text-[#D7BFF7]">
+                                      onError
+                                    </span>
+                                    ()
+                                    {'\n'}
+                                    {'    '}
+                                    {`}`}
+                                    {'\n'}
+                                    {'  '}
+                                    {`}`}
+                                    {'\n'}
+                                    {`}`}
+                                  </code>
+                                </pre>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 md:rounded-3xl"
+                            aria-hidden="true"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="py-16 py-16 sm:py-24">
               <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <h2 className="text-center text-lg font-semibold leading-8 text-slate-900">
@@ -154,7 +486,7 @@ export default function BetaExtensions() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
-                    src="https://cdn.cookielaw.org/logos/bdc13dc2-1779-4d1b-b2b6-40bee9e76dcd/9ef530fc-99ee-494e-9f29-a784d6aebc78/69b26fe2-5069-4114-bc34-29de7e9a9c49/healthie-logo.jpg"
+                    src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1681378944/Awell%20Extensions/healthie-logo.jpg"
                     alt="Healthie"
                   />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -185,7 +517,7 @@ export default function BetaExtensions() {
                 <div className="flex justify-center mt-12">
                   <LinkButton
                     color="sky"
-                    label="Explore the Marketlace"
+                    label="Explore the Marketplace"
                     href={`/${Space.AWELL_EXTENSIONS}/marketplace`}
                   />
                 </div>
@@ -197,7 +529,7 @@ export default function BetaExtensions() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1680869046/Awell%20Extensions/extension_webhooks.png"
-                    alt="Custom Actions"
+                    alt="Webhooks"
                     className="w-4/5 h-auto max-w-none rounded-xl shadow-md ring-1 ring-slate-400/10 sm:w-[24rem] md:-ml-4 lg:ml-0"
                     width={1268}
                     height={2228}

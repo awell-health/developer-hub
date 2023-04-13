@@ -555,6 +555,8 @@ export type ExtensionActionField = {
 };
 
 export enum ExtensionActionFieldType {
+  Boolean = 'BOOLEAN',
+  Date = 'DATE',
   Html = 'HTML',
   Json = 'JSON',
   Numeric = 'NUMERIC',

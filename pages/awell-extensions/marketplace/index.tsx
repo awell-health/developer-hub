@@ -39,7 +39,7 @@ export default function Marketplace() {
                   </div>
                   <p className="mt-1 text-lg text-slate-500 dark:text-slate-400">
                     Awell Extensions integrate all apps you already use for
-                    CareOps in your care flows.
+                    CareOps in your care flows
                   </p>
                 </div>
               </div>
