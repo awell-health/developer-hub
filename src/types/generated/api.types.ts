@@ -808,6 +808,7 @@ export type Mutation = {
   startHostedActivitySessionViaHostedPagesLink: StartHostedActivitySessionPayload;
   startHostedPathwaySession: StartHostedPathwaySessionPayload;
   startPathway: StartPathwayPayload;
+  startTrack: StartTrackPayload;
   stopPathway: EmptyPayload;
   stopTrack: StopTrackPayload;
   submitChecklist: SubmitChecklistPayload;
@@ -916,6 +917,11 @@ export type MutationStartHostedPathwaySessionArgs = {
 
 export type MutationStartPathwayArgs = {
   input: StartPathwayInput;
+};
+
+
+export type MutationStartTrackArgs = {
+  input: StartTrackInput;
 };
 
 
@@ -1641,6 +1647,18 @@ export type StartPathwayInput = {
 export type StartPathwayPayload = {
   __typename?: 'StartPathwayPayload';
   pathway_id: Scalars['String'];
+};
+
+export type StartTrackInput = {
+  pathway_id: Scalars['String'];
+  reason?: InputMaybe<Scalars['String']>;
+  track_definition_id: Scalars['String'];
+};
+
+export type StartTrackPayload = Payload & {
+  __typename?: 'StartTrackPayload';
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
 };
 
 export type StopPathwayInput = {

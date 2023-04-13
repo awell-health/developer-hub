@@ -79,8 +79,8 @@ export default function BetaExtensions() {
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 p-1 dark:bg-white dark:p-2 dark:rounded"
-                  src="https://s3-eu-west-1.amazonaws.com/zkn/files/9f7a3a64e373fd9368ceecf21f898f24.png"
+                  className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 p-3.5 dark:bg-white dark:p-3.5 dark:rounded"
+                  src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1681405162/Awell%20Extensions/9f7a3a64e373fd9368ceecf21f898f24.png"
                   alt="Mindler"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
