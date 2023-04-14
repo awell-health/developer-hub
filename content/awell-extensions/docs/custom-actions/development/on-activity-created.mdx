@@ -22,8 +22,8 @@ The `onActivityCreated` function is called whenever orchestration or design (pre
 
 **The `onActivityCreated` function has a couple of parameters that will be useful when developing an extension:**
 
-1. **Payload:** not only allows you to access the values of your extension settings and action fields but also access patient related data.
-2. **Callbacks:** they allow you to communicate with the Design (preview) or Orchestration engine and delegate back control to them. An extension either needs to call `onComplete` or `onError` to complete the corresponding activity.
+1. **Payload:** not only gives you access to the values of your extension settings and action fields but also to patient and pathway-related data.
+2. **Callbacks:** they allow you to communicate with the Design (preview) or Orchestration engine and delegate back control to them. An extension should either call the `onComplete` or `onError` function.
 
 ```javascript
 export const myAction = {

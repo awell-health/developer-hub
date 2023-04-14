@@ -51,7 +51,8 @@ description: Learn more about action fields that determine how a user can config
     },
     {
       key: 'required',
-      description: 'Whether the field is required for a user to configure. Defaults to "false"',
+      description:
+        'Whether the field is required for a user to configure. Defaults to "false"',
       type: 'boolean',
       required: false,
     },
@@ -115,6 +116,28 @@ Allows a user to insert a number.
 const numberField = {
     ...,
     type: 'numeric'
+}
+```
+
+### Boolean
+
+Allows a user to toggle a boolean input field on or off.
+
+```javascript
+const booleanField = {
+    ...,
+    type: 'boolean'
+}
+```
+
+### Date
+
+Allows a user to insert a date.
+
+```javascript
+const dateField = {
+    ...,
+    type: 'date'
 }
 ```
 
