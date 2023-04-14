@@ -30,7 +30,7 @@ query GetAdHocTracksByPathway($pathway_id: String!) {
 
 ### adHocTracksByRelease
 
-Get published ad hoc track details by patient care flow (pathway) id, useful for identifying which ad hocs tracks you can start for a published version of a care flow. Each published version of a care flow has a unique release_id, which can be found in any query that returns a care flow, its activities, or any of its components (forms, messaegs, etc.).
+Get published ad hoc track details by release id, useful for identifying which ad hocs tracks you can start for a published version of a care flow. Each published version of a care flow (pathway) definition has a unique release_id, which can be found in any query that returns a patient care flow, its activities, or any of the care flow definition's published components (forms, messaegs, etc.).
 
 ```graphql
 query GetAdHocTracksByRelease($release_id: String!) {
