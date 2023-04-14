@@ -1,0 +1,70 @@
+---
+title: Get Ad Hoc Tracks
+description: Retrieve a list of ad hoc tracks that can be added to an active patient care flow
+---
+
+When designing a care flow, specific tracks can be set to be manually added to a care flow during Orchestration on as as-needed basis. These tracks can be activated at any time via an API call using the [StartAdHocTrack mutation](/awell-orchestration/api-reference/mutations/start-ad-hoc-track). That said, you might want to retrieve these tracks to answer questions like:
+
+- Which ad hoc tracks are available to activate for this specific patient care flow?
+- Which ad hoc tracks are available to activate for published versions of this care flow?
+
+**We provide a couple of queries to get the data you need related to ad hoc tracks.** Feel free to select the one that works best for your use case.
+
+## Queries
+
+### adHocTracksByPathway
+
+Get published ad hoc track details by patient care flow (pathway) id, useful for identifying which ad hocs tracks you can start for a specific patient care flow. The `pathway_id` is the id of the patient care flow (pathway) that you want to add the ad hoc track to.
+
+```graphql
+query GetAdHocTracksByPathway($pathway_id: String!) {
+  adHocTracksByPathway(pathway_id: $pathway_id) {
+    tracks {
+      id # track_id, used in StartTrack mutation
+      title
+      release_id
+    }
+  }
+}
+```
+
+### adHocTracksByRelease
+
+Get published ad hoc track details by patient care flow (pathway) id, useful for identifying which ad hocs tracks you can start for a published version of a care flow. Each published version of a care flow has a unique release_id, which can be found in any query that returns a care flow, its activities, or any of its components (forms, messaegs, etc.).
+
+```graphql
+query GetAdHocTracksByRelease($release_id: String!) {
+  adHocTracksByRelease(release_id: $release_id) {
+    tracks {
+      id # track_id, used in StartTrack mutation
+      title
+      release_id
+    }
+  }
+}
+```
+
+## Response
+
+The response object shape is the same for both queries.
+
+```json
+{
+  "data": {
+    "adHocTracksByPathway": {
+      "tracks": [
+        {
+          "id": "123456789012345678901234",
+          "title": "Ad Hoc Track 1",
+          "release_id": "123456789012345678901234"
+        },
+        {
+          "id": "345678901234567890123456",
+          "title": "Ad Hoc Track 2",
+          "release_id": "123456789012345678901234"
+        }
+      ]
+    }
+  }
+}
+```

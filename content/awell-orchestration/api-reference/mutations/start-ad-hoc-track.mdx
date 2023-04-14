@@ -1,0 +1,50 @@
+---
+title: Start ad hoc track
+description: Add a pre-configured ad hoc track to a patient care flow (pathway)
+---
+
+When a care flow (pathway) is active, an ad hoc track (i.e. one that has 'manually triggered' as at least one of its configured activation triggers) can be added to that care flow. This is done via the StartTrack mutation. Care flows that are not yet active, have been stopped, or have been completed cannot have ad hoc tracks added to them.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation StartAdHocTrack($input: StartTrackInput!) {
+  startTrack(input: $input) {
+    success
+  }
+}
+```
+
+### Variables
+
+The `pathway_id` is the id of the patient care flow (pathway) that you want to add the ad hoc track to. The `track_id` is the id of the ad hoc track that you want to add to the patient care flow. You can find the `track_id` by using either of the [Get Ad Hoc Tracks](/awell-orchestration/api-reference/queries/get-ad-hoc-tracks) queries, using the `id` value of the desired track you wish to add as the `track_id` below.
+
+```json
+{
+  "input": {
+    "pathway_id": "{{PATHWAY_ID}}",
+    "track_id": "{{TRACK_ID}}"
+  }
+}
+```
+
+## Response
+
+```json
+{
+  "data": {
+    "startTrack": {
+      "success": true
+    }
+  }
+}
+```
+
+## Errors
+
+The following errors can be returned:
+
+- `BAD_REQUEST_ERROR`: "Care flow with id ${pathway_id} is not active. Ad hoc tracks can only be added to active care flows." -> This occurs if the patient care flow is not yet active or has been completed
+- `BAD_REQUEST_ERROR`: "Track with definition id XXXX cannot be triggered manually. Please check its configuration in Studio." -> This occurs if the ad hoc track you are trying to add to the patient care flow has not been configured to be manually triggered.
