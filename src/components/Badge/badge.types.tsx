@@ -7,3 +7,4 @@ export type BadgeColorType =
   | 'purple'
   | 'red'
   | 'orange'
+  | 'yellow'

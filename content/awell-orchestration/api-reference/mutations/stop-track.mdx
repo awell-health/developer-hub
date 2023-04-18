@@ -1,0 +1,51 @@
+---
+title: Stop track
+description: Stop a track in a patient care flow (pathway)
+---
+
+Any track in a patient care flow (pathway) can be stopped. This will stop the orchestration of the track and no notifications (eg reminders) will be sent anymore. The track will come to a halt at the state it's currently in and an activity will be generated indicating that the track was stopped.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation StopTrack($input: StopTrackInput!) {
+  stopTrack(input: $input) {
+    success
+  }
+}
+```
+
+### Variables
+
+The `pathway_id` is the id of the patient care flow (pathway) for which you want to stop a track. The `track_id` is the id of the track that you want to stop.
+
+```json
+{
+  "input": {
+    "pathway_id": "{{PATHWAY_ID}}",
+    "track_id": "{{TRACK_ID}}" // obtainable from the track activated activity (activity.object.id)
+  }
+}
+```
+
+## Response
+
+```json
+{
+  "data": {
+    "stopTrack": {
+      "success": true
+    }
+  }
+}
+```
+
+## Errors
+
+The following errors can be returned:
+
+- `ORCHESTRATION_ACTIVITY_ERROR`: "An error occurred when creating a `track stopped` activity" -> This occurs when there is an error generating the track stopped activity. This activity is generated after a track has been stopped so it is not critical to the functionality of the track being stopped.
+- `NOT_FOUND`: "Element XXXX not found" -> This occurs if the track to be stopped cannot be found
+- `BAD_REQUEST_ERROR`: "Element XXXXX has invalid status (XXXXX). Only active elements can be stopped." -> This occurs if the track you are trying to stop is not active (i.e. has already been stopped, discarded or completed)

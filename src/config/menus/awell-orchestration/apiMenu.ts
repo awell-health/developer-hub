@@ -5,6 +5,7 @@ import { type BadgeType, type MenuType } from '../../../types/menu.types'
 const badges: { [key in string]: BadgeType } = {
   patient: { label: 'Patient', color: 'green' },
   pathway: { label: 'Pathway', color: 'purple' },
+  tracks: { label: 'Tracks', color: 'yellow' },
   activity: { label: 'Activity', color: 'indigo' },
   datapoint: { label: 'Data Point', color: 'slate' },
   session: { label: 'Session', color: 'red' },
@@ -80,6 +81,11 @@ export const apiMenu: MenuType = [
         title: 'Get scheduled steps',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-scheduled-steps`,
         badge: badges.pathway,
+      },
+      {
+        title: 'Get ad hoc tracks',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-ad-hoc-tracks`,
+        badge: badges.tracks,
       },
       {
         title: 'Get pathway activities',
@@ -196,6 +202,16 @@ export const apiMenu: MenuType = [
         title: 'Update baseline info',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/update-baseline-info`,
         badge: badges.pathway,
+      },
+      {
+        title: 'Start ad hoc track',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/start-ad-hoc-track`,
+        badge: badges.tracks,
+      },
+      {
+        title: 'Stop track',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/stop-track`,
+        badge: badges.tracks,
       },
       {
         title: 'Start hosted activity session',
