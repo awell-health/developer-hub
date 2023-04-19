@@ -55,29 +55,30 @@ query GetPatientPathways($patient_id: String!, $status: [String!]) {
 
 ### Filters
 
-All filter values are optional, if you don't provide any filter all pathways for the patient will be returned.
-Sending an empty filter will result in a search for the matching field to be empty.
+The filter is optional: if you don't provide one, all pathways for the patient will be returned.
 
-All `in` filters accept a list of values and result in an `is any of` search criteria.
-
-When specifying multiple filters, the resulting criteria is the conjuction of all filters.
-
-```json
-{
-  "patient_id": "{{ PATIENT_ID }}",
-  "filters": {
-    "status": {
-      "in": [""]
+```graphql
+query GetPatientPathways($patient_id: String!) {
+  patientPathways(patient_id: $patient_id) {
+    patientPathways {
+      ...Pathway
     }
   }
 }
 ```
 
-<p></p>
+The `in` filter type for status accepts a list of values and results in an `is any of` search criteria.
+
+```json
+{
+  "patient_id": "{{ PATIENT_ID }}",
+  "status": ["active", "completed"]
+}
+```
 
 #### Status
 
-You can use the following statusses in the `status` filter.
+You can use the following status values in the `status` filter array.
 
 ```graphql
 enum PathwayStatus {
@@ -88,3 +89,7 @@ enum PathwayStatus {
   stopped
 }
 ```
+
+### Pagination and sorting
+
+There is no pagination or sorting available for this query. All matching patient pathways will be returned.

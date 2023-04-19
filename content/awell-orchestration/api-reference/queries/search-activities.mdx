@@ -68,10 +68,40 @@ query GetActivities(
 
 ## Variables
 
+### Required parameters
+
+There are no required parameters for this query. However, you should provide pagination and sorting parameters. See `Pagination and Sorting` below.
+
 ### Filters
 
-All filter values are optional, if you don't provide any filter all activities in your tenant will be returned.
-Sending an empty filter will result in a search for the matching field to be empty.
+The filter is optional: if you don't provide one, an unfiltered list of pathways will be returned.
+
+```graphql
+query GetActivities(
+  $count: Float!
+  $offset: Float!
+  $sort_field: String!
+  $sort_direction: String!
+) {
+  activities(
+    pagination: { count: $count, offset: $offset }
+    sorting: { field: $sort_field, direction: $sort_direction }
+  ) {
+    pagination {
+      count
+      offset
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
+    activities {
+      ...Activity
+    }
+  }
+}
+```
 
 All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria.
 
@@ -95,22 +125,15 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 ### Pagination and sorting
 
-Pagination and sorting are required for this query. If no pagination values are supplied, the API will return only the first 10 activities, or 10 activities from the specified offset. There is also an upper limit of 100 records per query. Please be aware that setting `count` greater than 100 will successfully execute but return only 100 records.
+Pagination and sorting are required for this query. If no pagination values are supplied, the API will return only the first 100 activities, or 100 activities from the specified offset. There is an upper limit of 100 records per query. Please be aware that setting `count` greater than 100 will successfully execute but return only 100 records.
 
 Default sorting is based on the `date` field, in descending order (i.e. newest to oldest).
 
-<code className="language-json" highlightedRows={[[7, 10]]}>
-  {`
-  {
-    "action": ["ASSIGNED", "ACTIVATE"], // See ActivityAction enum
-    "activity_type": ["FORM", "MESSAGE"], // See ActivityObjectType enum
-    "activity_status": ["DONE", "ACTIVE"], // See ActivityStatus enum
-    "pathway_definition_id": ["{{ PATHWAY_DEFINITION_ID }}"],
-    "patient_id": "{{ PATIENT_ID }}",
-    "offset": 0,
-    "count": 20,
-    "sort_field": "date",
-    "sort_direction": "desc"
-  }
-  `}
-</code>
+```json
+{
+  "count": 100, // max 100
+  "offset": 0,
+  "sort_field": "start_date",
+  "sort_direction": "DESC"
+}
+```
