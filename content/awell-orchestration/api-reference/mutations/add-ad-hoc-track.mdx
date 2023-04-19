@@ -1,17 +1,17 @@
 ---
-title: Start ad hoc track
+title: Add ad hoc track
 description: Add a pre-configured ad hoc track to a patient care flow (pathway)
 ---
 
-When a care flow (pathway) is active, an ad hoc track (i.e. one that has 'manually triggered' as at least one of its configured activation triggers) can be added to that care flow. This is done via the StartTrack mutation. Care flows that are not yet active, have been stopped, or have been completed cannot have ad hoc tracks added to them.
+When a care flow (pathway) is active, an ad hoc track (i.e. one that has 'manually triggered' as at least one of its configured activation triggers) can be added to that care flow. This is done via the `addTrack` mutation. Care flows that are not yet active, have been stopped, or have been completed cannot have ad hoc tracks added to them.
 
 ## Request
 
 ### Mutation
 
 ```graphql
-mutation StartAdHocTrack($input: StartTrackInput!) {
-  startTrack(input: $input) {
+mutation AddAdHocTrack($input: AddTrackInput!) {
+  addTrack(input: $input) {
     success
   }
 }
@@ -35,7 +35,7 @@ The `pathway_id` is the id of the patient care flow (pathway) that you want to a
 ```json
 {
   "data": {
-    "startTrack": {
+    "addTrack": {
       "success": true
     }
   }

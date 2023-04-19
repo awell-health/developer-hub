@@ -1174,6 +1174,8 @@ export type PublishedPathwayDefinitionsPayload = Payload & {
 export type Query = {
   __typename?: 'Query';
   activities: ActivitiesPayload;
+  adHocTracksByPathway: TracksPayload;
+  adHocTracksByRelease: TracksPayload;
   apiCall: ApiCallPayload;
   apiCalls: ApiCallsPayload;
   baselineInfo: BaselineInfoPayload;
@@ -1222,6 +1224,16 @@ export type QueryActivitiesArgs = {
   filters?: InputMaybe<FilterActivitiesParams>;
   pagination?: InputMaybe<PaginationParams>;
   sorting?: InputMaybe<SortingParams>;
+};
+
+
+export type QueryAdHocTracksByPathwayArgs = {
+  pathway_id: Scalars['String'];
+};
+
+
+export type QueryAdHocTracksByReleaseArgs = {
+  release_id: Scalars['String'];
 };
 
 
@@ -1651,8 +1663,7 @@ export type StartPathwayPayload = {
 
 export type StartTrackInput = {
   pathway_id: Scalars['String'];
-  reason?: InputMaybe<Scalars['String']>;
-  track_definition_id: Scalars['String'];
+  track_id: Scalars['String'];
 };
 
 export type StartTrackPayload = Payload & {
@@ -1888,7 +1899,15 @@ export type TextFilterEquals = {
 export type Track = {
   __typename?: 'Track';
   id: Scalars['ID'];
+  release_id?: Maybe<Scalars['String']>;
   title: Scalars['String'];
+};
+
+export type TracksPayload = Payload & {
+  __typename?: 'TracksPayload';
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
+  tracks: Array<Track>;
 };
 
 export type TranslatedText = {

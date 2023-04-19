@@ -3,7 +3,7 @@ title: Get Ad Hoc Tracks
 description: Retrieve a list of ad hoc tracks that can be added to an active patient care flow
 ---
 
-When designing a care flow, specific tracks can be set to be manually added to a care flow during Orchestration on as as-needed basis. These tracks can be activated at any time via an API call using the [StartAdHocTrack mutation](/awell-orchestration/api-reference/mutations/start-ad-hoc-track). That said, you might want to retrieve these tracks to answer questions like:
+When designing a care flow, specific tracks can be set to be manually added to a care flow during Orchestration on as as-needed basis. These tracks can be activated at any time via an API call using the [AddAdHocTrack mutation](/awell-orchestration/api-reference/mutations/add-ad-hoc-track). That said, you might want to retrieve these tracks to answer questions like:
 
 - Which ad hoc tracks are available to activate for this specific patient care flow?
 - Which ad hoc tracks are available to activate for published versions of this care flow?
@@ -20,7 +20,7 @@ Get published ad hoc track details by patient care flow (pathway) id, useful for
 query GetAdHocTracksByPathway($pathway_id: String!) {
   adHocTracksByPathway(pathway_id: $pathway_id) {
     tracks {
-      id # track_id, used in StartTrack mutation
+      id # track_id, used in addTrack mutation
       title
       release_id
     }
@@ -36,7 +36,7 @@ Get published ad hoc track details by release id, useful for identifying which a
 query GetAdHocTracksByRelease($release_id: String!) {
   adHocTracksByRelease(release_id: $release_id) {
     tracks {
-      id # track_id, used in StartTrack mutation
+      id # track_id, used in addTrack mutation
       title
       release_id
     }
