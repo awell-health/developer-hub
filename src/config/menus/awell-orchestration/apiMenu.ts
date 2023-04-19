@@ -204,8 +204,8 @@ export const apiMenu: MenuType = [
         badge: badges.pathway,
       },
       {
-        title: 'Start ad hoc track',
-        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/start-ad-hoc-track`,
+        title: 'Add ad hoc track',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/add-ad-hoc-track`,
         badge: badges.tracks,
       },
       {
