@@ -54,7 +54,6 @@ query GetPathwayDataPointDefinitions(
     }
   }
 }
-
 ```
 
 ## Variables
@@ -63,29 +62,27 @@ query GetPathwayDataPointDefinitions(
 
 A `release_id` needs to be specified in order to retrieve the data dictionary for a pathway.
 
-<code className="language-json" highlightedRows={[[2]]}>
-  {`
+```json
 {
-  "release_id": "{{ RELEASE_ID }}",
-  "category": [
-    "CALCULATION",
-    "FORM",
-    "PATIENT_PROFILE",
-    "PATHWAY",
-    "TRACK",
-    "STEP"
-  ],
-  "value_type": ["BOOLEAN", "DATE", "NUMBER", "NUMBERS_ARRAY", "STRING"]
+  "release_id": "{{ RELEASE_ID }}"
 }
-  `}
-</code>
+```
 
 ### Filters
 
-All filter values are optional, if you don't provide any filter all data points for the pathway will be returned.
-Sending an empty filter will result in a search for the matching field to be empty.
+The filter is optional: if you don't provide one, all data points with the specified `release_id` will be returned.
 
-All `in` filters accept a list of values and result in an `is any of` search criteria.
+```graphql
+query GetPathwayDataPointDefinitions($release_id: String!) {
+  pathwayDataPointDefinitions(release_id: $release_id) {
+    data_point_definitions {
+      ...DataPointDefinition
+    }
+  }
+}
+```
+
+All `in` filter type accepts a list of values and results in an `is any of` search criteria.
 
 When specifying multiple filters, the resulting criteria is the conjuction of all filters.
 
@@ -105,6 +102,10 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 }
   `}
 </code>
+
+### Pagination and sorting
+
+There is no pagination or sorting available for this query. All matching patient pathways will be returned.
 
 ## How to use
 
