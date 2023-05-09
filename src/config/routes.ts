@@ -11,7 +11,7 @@ export const rootRoutes: Record<Space, Routes> = {
   [Space.AWELL_ORCHESTRATION]: {
     home: `/${Space.AWELL_ORCHESTRATION}`,
     docs: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/what-is-awell-orchestration`,
-    api: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/endpoints`,
+    api: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/graphql-api`,
     developerTools: `/${Space.AWELL_ORCHESTRATION}/developer-tools/changelog`,
   },
   [Space.AWELL_EXTENSIONS]: {

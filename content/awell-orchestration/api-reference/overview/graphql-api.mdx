@@ -1,0 +1,42 @@
+---
+title: GraphQL API
+description: Awell leverages GraphQL, a query language for APIs and an alternative for traditional REST APIs.
+---
+
+Awell wants the GraphQL API to be the primary means of interacting programmatically with Awell. **GraphQL is a query language for APIs.**
+
+## Why we chose GraphQL
+
+- **Query language:** Query the data you need and only the data you need. This reduces the amount of data transferred over the network and makes the API more efficient.
+- **Types and schemas:** GraphQL data is arranged in types, so your client can use client-side GraphQL libraries to consume the API and avoid manual parsing.
+- **Developer experience:** Because GraphQL APIs allow clients to specify the data they need, developers can work more independently and quickly. They don't need to rely on server developers to create new endpoints or modify existing ones.
+- **Improved documentation:** GraphQL APIs have a built-in schema that describes the available data and operations. This makes it easier for developers to understand and use the API.
+- **API versioning:** Overall, GraphQL's flexibility and focus on client-driven requests make it easier to evolve the API over time without breaking existing clients or requiring multiple API versions.
+
+## Queries and mutations
+
+In GraphQL, queries and mutations are the two types of operations that can be performed on a GraphQL API.
+
+- Queries for data retrieval (read-only).
+- Mutations for creating, updating, and deleting data.
+
+[Awell's GraphQL Schema](https://developers.awellhealth.com/awell-orchestration/playground) outlines which objects and fields are available for clients to query and their corresponding data types.
+
+## Work with GraphQL
+
+If you are new to GraphQL, we advise you to have a look at some of the resources below to get acquainted with the concepts around it:
+
+1. [Official GraphQL documentation](https://graphql.org/learn/)
+2. [A Beginner’s Guide to GraphQL](https://medium.com/techtalkers/a-beginners-guide-to-graphql-12d60d3fba03)
+
+### GraphiQL
+
+Explore our GraphQL API using the [interactive GraphiQL explorer](https://developers.awellhealth.com/awell-orchestration/playground).
+
+## Breaking changes
+
+The Awell GraphQL API is versionless and changes to the API are primarily backward-compatible.
+
+However, Awell might sometimes change the GraphQL API in a way that is not backward-compatible. These changes are considered breaking changes, and can include removing or renaming fields, arguments, or other parts of the schema. When creating a breaking change, Awell follows a deprecation and removal process (coming soon).
+
+To avoid having a breaking change affect your integrations, you should familiarize yourself with the deprecation and removal process and frequently verify your API calls against the future breaking-change schema.

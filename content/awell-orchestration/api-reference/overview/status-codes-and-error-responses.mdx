@@ -1,0 +1,25 @@
+---
+title: Status codes and error responses
+description: GraphQL API queries return HTTP status codes or error responses that describe the query status.
+---
+
+GraphQL APIs use HTTP status codes and error responses to indicate the success or failure of a request. In addition to these standard HTTP status codes, GraphQL APIs may also return specific error messages in the response body.
+
+## 200 OK
+
+This status code indicates that the request was successful and that the server is returning data. **However, a GraphQL API can also return a 200 OK in cases where the request contains an error**, such as an invalid object name **or field or when a record is not found**.
+
+If you want to check whether a mutation was performed successfully you should use the `success` property that is included in all Payload objects.
+
+## 4XX Status codes
+
+The 4XX status codes are less common for GraphQL. They can signify issues with your network or with your connection to the Awell API. This is because in GraphQL errors are reported not via the HTTP status code but via an error property in a successful (200) HTTP response.
+
+<Alert type="info">
+  Our GraphQL API usually returns a 200 OK status code even if a record isn't
+  found or is deleted. See the 200 OK section above for details.
+</Alert>
+
+## 5XX Status codes
+
+5XX status codes usually mean there's an internal Awell error. To resolve this issue, try your request again or contact Awell Customer Support (via the Intercom bubble here on the Developer Hub) if the issue persists.

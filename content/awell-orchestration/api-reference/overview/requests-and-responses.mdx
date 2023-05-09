@@ -1,0 +1,75 @@
+---
+title: Requests and Reponses
+description: Learn more about forming requests and the responses you will receive from the API.
+---
+
+GraphQL API is an alternative to a traditional REST API, but operates in a similar way. To execute a query, make a POST request to the GraphQL endpoint (see [endpoints](/awell-orchestration/api-reference/overview/endpoints)).
+
+## Requests
+
+The GraphQL request body is composed of three parts. The GraphQL query document is embedded in the request as a string, under the field named `query`. Which query to execute is indicated by the optional `operationName` field. This field must be provided if the query document has multiple queries or mutations, to specify which query or mutation to execute. Finally, if the query defines any variables then include them as a map under the `variables` field.
+
+Here's a simple request to execute a query which includes argument values for variables defined in the query. `GetPatient` is the optional (because there is only one query) `operationName` we have specified.
+
+```json
+{
+    "query": "query GetPatient($patient_id: String!) {
+        patient(id: $patient_id) {
+            patient {
+                id
+                profile {
+                    first_name
+                    last_name
+                }
+            }
+        }
+    }",
+    "variables": {
+        "patient_id": "ExamplePatientId"
+    }
+}
+```
+
+### CURL
+
+If you're sending a request via curl or HTTP, send the query with your API key in a JSON string.
+
+```bash
+curl  --location --request POST 'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql' \
+-H 'apiKey: YourApiKey' \
+-H 'Content-Type: application/json' \
+-d '{ "query": "query GetPatient($patient_id: String!) { patient(id: $patient_id) { patient { id profile { first_name last_name } } } }", "variables": { "patient_id": "ExamplePatientId" } }'
+```
+
+### Postman collection
+
+Interact with the Awell API quickly with our [Postman collection](/awell-orchestration/developer-tools/api/postman-collection).
+
+### GraphQL playground
+
+Explore our GraphQL API using the [interactive GraphiQL explorer](/awell-orchestration/playground).
+
+## Responses
+
+The response is composed of a `data` section and an `error` section. The `data` section contains the response to the requests query. Any errors that occur during the execution of the request are included in the `error` section.
+
+```graphql
+query GetPatient($patient_id: String!) {
+  patient(id: $patient_id) {
+    code
+    success
+    error {
+      code
+      message
+    }
+    patient {
+      id
+      profile {
+        name
+      }
+    }
+  }
+}
+```
+
+See also [Status Codes and Error Responses](/awell-orchestration/api-reference/overview/status-codes-and-error-response).

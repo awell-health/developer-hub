@@ -19,12 +19,24 @@ export const apiMenu: MenuType = [
     path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview`,
     submenu: [
       {
+        title: 'GraphQL API',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/graphql-api`,
+      },
+      {
         title: 'Endpoints',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/endpoints`,
       },
       {
         title: 'Authorization',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/authorization`,
+      },
+      {
+        title: 'Requests and responses',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/requests-and-responses`,
+      },
+      {
+        title: 'Status codes and error responses',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/status-codes-and-error-responses`,
       },
     ],
   },
