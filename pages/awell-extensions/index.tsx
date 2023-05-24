@@ -539,7 +539,7 @@ export default function BetaExtensions() {
                         Webhooks
                       </h2>
                       <div className="pl-2">
-                        <Badge color="purple">Alpha</Badge>
+                        <Badge color="sky">Beta</Badge>
                       </div>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
@@ -616,19 +616,7 @@ export default function BetaExtensions() {
                 {
                   question: 'What is the state of Awell Extensions today?',
                   answer:
-                    '<p><strong>Custom Actions are currently available in beta but Webhooks are still in alpha.</strong> Both are already available for our users and we will continue to refine and perfect them.</p><br/><p>By using both Custom Actions and Webhooks, you have the unique opportunity to be among the first to experience the technology and help shape the future of our product. Your feedback and suggestions are invaluable to us, and we are committed to incorporating them as we work towards a full release.</p>',
-                },
-                {
-                  question:
-                    'Can I use Custom Actions in live (production) care flows?',
-                  answer:
-                    "<p><strong>Yes, you can!</strong> We have done plenty of internal testing before putting the beta version out there so we are confident for them already being used in production care flows.</p><br/><p>Do keep in mind that beta doesn't mean we can guarantee there might not be any bumps in the road still. But we are actively and closely monitoring all our beta extensions so if any issues arise, we will be able to help you quickly.</p>",
-                },
-                {
-                  question:
-                    'Can I use Webhooks in live (production) care flows?',
-                  answer:
-                    "<p><strong>No, webhooks are currently still in alpha</strong> so we don't advise using them in a production setting just yet. They can already be used for testing or to validate a certain use case you might have.</p><br/><p>A beta release for webhooks can be expected in Q2 of 2023.</p>",
+                    '<p><strong>Awell Extensions are currently in beta.</strong> By using Awell Extensions, you have the unique opportunity to be among the first to experience the technology and help shape the future of our product. Your feedback and suggestions are invaluable to us, and we are committed to incorporating them as we work towards a stable release.</p>',
                 },
                 {
                   question: 'Can I build my own extensions?',
