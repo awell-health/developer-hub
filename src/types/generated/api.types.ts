@@ -277,6 +277,13 @@ export type ApiPathwayContext = {
   start_date?: Maybe<Scalars['String']>;
 };
 
+export type AuditTrail = {
+  __typename?: 'AuditTrail';
+  date: Scalars['SafeDate'];
+  user_email?: Maybe<Scalars['String']>;
+  user_id: Scalars['String'];
+};
+
 export type BaselineDataPoint = {
   __typename?: 'BaselineDataPoint';
   definition: DataPointDefinition;
@@ -307,9 +314,11 @@ export type BrandingSettings = {
   logo_url?: Maybe<Scalars['String']>;
 };
 
-export type CalculationResultsPayload = {
+export type CalculationResultsPayload = Payload & {
   __typename?: 'CalculationResultsPayload';
+  code: Scalars['String'];
   result: Array<SingleCalculationResult>;
+  success: Scalars['Boolean'];
 };
 
 export type Checklist = {
@@ -620,6 +629,10 @@ export type FilterActivitiesParams = {
 export type FilterPathwayDataPointDefinitionsParams = {
   category?: InputMaybe<StringArrayFilter>;
   value_type?: InputMaybe<StringArrayFilter>;
+};
+
+export type FilterPathwayDefinitionsParams = {
+  search?: InputMaybe<TextFilterContains>;
 };
 
 export type FilterPathways = {
@@ -1048,6 +1061,15 @@ export type PathwayDataPointDefinitionsPayload = Payload & {
   success: Scalars['Boolean'];
 };
 
+export type PathwayDefinitionDetails = {
+  __typename?: 'PathwayDefinitionDetails';
+  active_careflows?: Maybe<Scalars['Float']>;
+  completed_careflows?: Maybe<Scalars['Float']>;
+  stopped_careflows?: Maybe<Scalars['Float']>;
+  total_careflows?: Maybe<Scalars['Float']>;
+  total_patients?: Maybe<Scalars['Float']>;
+};
+
 export type PathwayPayload = Payload & {
   __typename?: 'PathwayPayload';
   code: Scalars['String'];
@@ -1162,12 +1184,19 @@ export type PluginActionSettingsProperty = {
 export type PublishedPathwayDefinition = {
   __typename?: 'PublishedPathwayDefinition';
   active_activities?: Maybe<Scalars['Float']>;
+  /** Details about the latest pathway definition */
+  all?: Maybe<PathwayDefinitionDetails>;
   cancelled_activities?: Maybe<Scalars['Float']>;
+  created?: Maybe<AuditTrail>;
   /** Starting/baseline data point definitions for the pathway */
   dataPointDefinitions: Array<DataPointDefinition>;
   failed_activities?: Maybe<Scalars['Float']>;
   id: Scalars['ID'];
+  last_updated?: Maybe<AuditTrail>;
+  /** Details about all pathway definitions */
+  latest?: Maybe<PathwayDefinitionDetails>;
   patients_with_pending_activities?: Maybe<Scalars['Float']>;
+  release_date?: Maybe<Scalars['String']>;
   release_id?: Maybe<Scalars['String']>;
   stakeholders_with_pending_activities_list?: Maybe<Array<Scalars['String']>>;
   title: Scalars['String'];
@@ -1180,7 +1209,9 @@ export type PublishedPathwayDefinition = {
 export type PublishedPathwayDefinitionsPayload = Payload & {
   __typename?: 'PublishedPathwayDefinitionsPayload';
   code: Scalars['String'];
+  pagination?: Maybe<PaginationOutput>;
   publishedPathwayDefinitions: Array<PublishedPathwayDefinition>;
+  sorting?: Maybe<SortingOutput>;
   success: Scalars['Boolean'];
 };
 
@@ -1219,6 +1250,7 @@ export type Query = {
   patientPathways: PatientPathwaysPayload;
   patients: PatientsPayload;
   publishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
+  publishedPathwayDefinitionsDashboard: PublishedPathwayDefinitionsPayload;
   scheduledSteps: ScheduledStepsPayload;
   searchPatientsByNationalRegistryNumber: SearchPatientsPayload;
   searchPatientsByPatientCode: SearchPatientsPayload;
@@ -1383,6 +1415,13 @@ export type QueryPatientPathwaysArgs = {
 
 export type QueryPatientsArgs = {
   filters?: InputMaybe<FilterPatients>;
+  pagination?: InputMaybe<PaginationParams>;
+  sorting?: InputMaybe<SortingParams>;
+};
+
+
+export type QueryPublishedPathwayDefinitionsDashboardArgs = {
+  filters?: InputMaybe<FilterPathwayDefinitionsParams>;
   pagination?: InputMaybe<PaginationParams>;
   sorting?: InputMaybe<SortingParams>;
 };
@@ -1669,9 +1708,11 @@ export type StartPathwayInput = {
   patient_id: Scalars['String'];
 };
 
-export type StartPathwayPayload = {
+export type StartPathwayPayload = Payload & {
   __typename?: 'StartPathwayPayload';
+  code: Scalars['String'];
   pathway_id: Scalars['String'];
+  success: Scalars['Boolean'];
 };
 
 export type StopPathwayInput = {
@@ -1711,9 +1752,11 @@ export type SubmitChecklistInput = {
   activity_id: Scalars['String'];
 };
 
-export type SubmitChecklistPayload = {
+export type SubmitChecklistPayload = Payload & {
   __typename?: 'SubmitChecklistPayload';
   activity: Activity;
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
 };
 
 export type SubmitFormResponseInput = {
