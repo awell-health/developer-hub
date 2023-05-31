@@ -32,7 +32,7 @@ export const useExtensions = (): UseExtensions => {
           .then((data) => {
             const typedData = data as Extension[]
             setExtensions(
-              typedData.filter((ext) => EXCLUDE_EXTENSIONS.includes(ext.key))
+              typedData.filter((ext) => !EXCLUDE_EXTENSIONS.includes(ext.key))
             )
             setLoading(false)
           })
