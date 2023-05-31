@@ -12,6 +12,8 @@ interface UseExtensions {
 
 const ENDPOINT = process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT ?? ''
 
+const EXCLUDE_EXTENSIONS = ['wellinks']
+
 export const useExtensions = (): UseExtensions => {
   const [loading, setLoading] = useState(false)
   const [extensions, setExtensions] = useState<Array<Extension>>([])
@@ -29,7 +31,9 @@ export const useExtensions = (): UseExtensions => {
           .then((response) => response.json())
           .then((data) => {
             const typedData = data as Extension[]
-            setExtensions(typedData)
+            setExtensions(
+              typedData.filter((ext) => EXCLUDE_EXTENSIONS.includes(ext.key))
+            )
             setLoading(false)
           })
       } catch (error) {
