@@ -68,7 +68,7 @@ export default function BetaExtensions() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:bg-white p-2 dark:rounded"
-                  src="https://patinahealth.com/wp-content/uploads/2021/11/logo.png"
+                  src="https://patinahealth.com/hs-fs/hubfs/raw_assets/public/Patina_Health_January2023/images/logo.png"
                   alt="Patina Health"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
