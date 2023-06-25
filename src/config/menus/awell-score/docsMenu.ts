@@ -21,10 +21,6 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_SCORE}/docs/getting-started/endpoints`,
       },
       {
-        title: 'Authorization',
-        path: `/${Space.AWELL_SCORE}/docs/getting-started/authorization`,
-      },
-      {
         title: 'API Playground',
         path: `/${Space.AWELL_SCORE}/docs/getting-started/playground`,
       },

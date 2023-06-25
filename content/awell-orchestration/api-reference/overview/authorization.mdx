@@ -1,34 +1,36 @@
 ---
 title: Authorization
-description: Get access to our API
+description: Use API keys to authenticate API requests.
 showPostmanButton: false
 showPlaygroundButton: false
 ---
 
-To interact with the Awell Orchestration API, you'll need an API key.
+Awell authenticates your API requests using your tenant's API keys. If a request doesn’t include a valid key, Awell will reject the request
 
 ## How to get your API key
 
-[Click here to request your API key.](/request-api-keys)
+You can create and delete API keys via the Awell Platform. [Click here for more information about how to create an API key.](https://help.awellhealth.com/en/articles/8050459-create-and-manage-api-keys)
+
+## Keep your keys safe
+
+Anyone with an API key can make an API call on behalf of your tenant, such as creating a patient, listing all care flows, or start care flows. Keep your keys safe by following these best practices:
+
+1. Grant access only to those who need it.
+2. Don’t store keys in a version control system.
+3. Control access to keys with a password manager or secrets management service.
+4. Don’t embed a key where it could be exposed to an attacker, such as in a front-end application (see [Machine to Machine (M2M) API](#machine-to-machine-m2m-api)).
 
 ## How to use the API key
 
-Once you have an API key, simply provide add it to the header (`apiKey`) of your requests, as shown below.
+Once you have an API key, simply add it to the header (`apiKey`) of your requests, as shown below.
 
-<table>
-  <thead>
-    <tr>
-      <th>Key</th>
-      <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>apiKey</td>
-      <td>{`{{ YOUR_API_KEY }}`}</td>
-    </tr>
-  </tbody>
-</table>
+```bash
+curl -X POST \
+  'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql' \
+  -H "Content-Type: application/json" \
+  -H 'apiKey: YOUR_API_KEY' \
+  -d '{"query":"query GetPublishedPathwayDefinitions{publishedPathwayDefinitions{publishedPathwayDefinitions{id title}}}"}'
+```
 
 ## Machine to Machine (M2M) API
 

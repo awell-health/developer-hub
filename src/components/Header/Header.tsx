@@ -13,7 +13,6 @@ import { Space } from '@/types/space.types'
 
 import { AppContext } from '../../contexts/app/AppContext'
 import { Badge } from '../Badge'
-import { LinkButton } from '../Button'
 import { Search } from '../Search'
 import { SpaceSwitcher } from '../SpaceSwitcher'
 import { ThemeToggle } from '../ThemeToggle'
@@ -96,14 +95,6 @@ export const Header = () => {
               <div className="flex ml-auto">
                 <div className="flex items-center lg:w-56 lg:block">
                   <Search />
-                </div>
-                <div className="ml-4 hidden sm:block">
-                  <LinkButton
-                    label="Get API keys"
-                    href="/request-api-keys"
-                    size="sm"
-                    color="sky"
-                  />
                 </div>
                 <div className="relative hidden lg:flex items-center lg:ml-auto">
                   <div className="flex items-center border-l border-slate-200 ml-6 pl-6 dark:border-slate-800">

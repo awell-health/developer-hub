@@ -783,7 +783,7 @@ export type Message = {
   body: Scalars['String'];
   format: MessageFormat;
   id: Scalars['ID'];
-  subject: Scalars['String'];
+  subject?: Maybe<Scalars['String']>;
 };
 
 export type MessageAttachment = {
@@ -1712,6 +1712,7 @@ export type StartPathwayPayload = Payload & {
   __typename?: 'StartPathwayPayload';
   code: Scalars['String'];
   pathway_id: Scalars['String'];
+  stakeholders: Array<Stakeholder>;
   success: Scalars['Boolean'];
 };
 
