@@ -35,10 +35,11 @@ Here's a simple request to execute a query which includes argument values for va
 If you're sending a request via curl or HTTP, send the query with your API key in a JSON string.
 
 ```bash
-curl  --location --request POST 'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql' \
--H 'apiKey: YourApiKey' \
--H 'Content-Type: application/json' \
--d '{ "query": "query GetPatient($patient_id: String!) { patient(id: $patient_id) { patient { id profile { first_name last_name } } } }", "variables": { "patient_id": "ExamplePatientId" } }'
+curl -X POST \
+  'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql' \
+  -H "Content-Type: application/json" \
+  -H 'apiKey: YOUR_API_KEY' \
+  -d '{"query":"query GetPublishedPathwayDefinitions{publishedPathwayDefinitions{publishedPathwayDefinitions{id title}}}"}'
 ```
 
 ### Postman collection
