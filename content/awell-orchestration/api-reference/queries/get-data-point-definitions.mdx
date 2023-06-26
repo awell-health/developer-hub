@@ -31,30 +31,32 @@ query GetPathwayDataPointDefinitions(
     release_id: $release_id
   ) {
     data_point_definitions {
-      id
-      title
-      key
-      category
-      valueType
-      possibleValues {
-        value
-        label
+      id # unique identifier
+      title # string
+      key # string
+      category # CALCULATION, FORM, PATIENT_PROFILE, PATHWAY, TRACK, STEP
+      valueType # STRING, NUMBER, DATE, BOOLEAN, NUMBERS_ARRAY
+      possibleValues { # only for STRING value type
+        value # string
+        label # string
       }
       range {
-        min
-        max
+        min # number
+        max # number
       }
-      unit
-      optional
-      pii
-      metadata {
-        value
-        key
+      unit # string
+      optional # boolean
+      pii # boolean
+      data_point_metadata { # list of key-value objects
+        key # string
+        value # string
       }
     }
   }
 }
 ```
+
+`data_point_metadata` is a list of key-value pairs (`{ "key": "my_key", "value": "my_value"}`) that can be used to store additional information about a data point definition. This is configured in the Data Catalog section of Studio, and a guide can be found in [the Awell knowledge base](https://help.awellhealth.com/en/articles/6619338-configure-use-your-data-catalog).
 
 ## Variables
 
