@@ -81,7 +81,7 @@ export const MobileNav = () => {
             </li>
           ))}
           <li>
-            <Link href="https://awellhealth.atlassian.net/wiki/spaces/AR/pages/3454500981/What+s+New">
+            <Link href="https://awellhealth.atlassian.net/wiki/spaces/AH/pages/3560275979/What+s+New">
               <a
                 title="Changelog"
                 className="hover:text-sky-500 dark:hover:text-sky-400"
