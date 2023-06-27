@@ -47,14 +47,16 @@ query GetPathwayDataPointDefinitions(
       unit
       optional
       pii
-      metadata {
-        value
+      data_point_metadata {
         key
+        value
       }
     }
   }
 }
 ```
+
+The `data_point_metadata` field can be used to retrieve additional information about a data point definition. This additional information can be configured in the Data Catalog section of Awell Studio, and a guide can be found in [the Awell knowledge base](https://help.awellhealth.com/en/articles/6619338-configure-use-your-data-catalog).
 
 ## Variables
 
