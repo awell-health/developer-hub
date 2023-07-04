@@ -254,7 +254,7 @@ export default function RequestPromotion() {
                   <p className="text-sm text-slate-500">
                     Please include any additional context here for this request,
                     such as if you are interested in promoting to a
-                    region-specific production environment (e.g. US or EU).
+                    region-specific production environment (e.g. US, UK or EU).
                   </p>
                   <div className="mt-1">
                     <textarea
