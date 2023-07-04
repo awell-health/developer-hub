@@ -9,13 +9,18 @@ We use [Kibana](https://www.elastic.co/kibana/), part of the [ELK stack](https:/
 
 You'll need an account to log into Kibana. Please contact your Awell Customer Success Manager to receive your account details.
 
-The Awell Kibana environment can be accessed in the browser via [this link](https://kibana.awellhealth.com/login?next=%2F) for EU-based users and via [this link](https://kibana.us.awellhealth.com/login?next=%2F) for US-based users.
+The Awell Kibana environment can be accessed in the browser via the following (depending on your region):
+
+- [EU](https://kibana.awellhealth.com/login?next=%2F)
+- [US](https://kibana.us.awellhealth.com/login?next=%2F)
+- [UK](https://kibana.uk.awellhealth.com/login?next=%2F)
 
 ## Your Kibana spaces
 
 Kibana uses [spaces](https://www.elastic.co/guide/en/kibana/master/xpack-spaces.html) to organize dashboards and other saved objects into meaningful categories. Once inside a space, you'll only see the dashboards and saved objects that belong to that space.
 
 When you log into Kibana, you'll have access to 2 Kibana spaces:
+
 1. **Care Flow Metrics**: Here you can find Awell's default care flow dashboards. You'll only have _view_ rights in this space.
 2. **Your dedicated space**: This space will be empty at first but you can create your own dashboards here as you'll have _edit_ rights in this space.
 
@@ -24,6 +29,7 @@ Note: both spaces have access to the same data views (i.e. data).
 ### Care Flow Metrics space
 
 The Care Flow Metrics space contains 2 default dashboards created by the Awell team:
+
 1. **Business metrics**: This dashboard shows data about the number of care flows started, the monthly active patients (see definition [here](https://developers.awellhealth.com/awell-orchestration/docs/data/monthly-active-patients)), activities created and daily active patients in your Awell tenant.
 2. **Pathway monitoring**: This dashboard gives a first impression of the completion rate of care flows by showing the number of steps and activities created vs. completed.
 
@@ -36,6 +42,7 @@ You can use this space to create your own dashboards with the care flow data fro
 The 'Discover' section in Kibana allows you to explore your care flow data. You can access it by opening the main menu on the top left when in a space and clicking on Discover.
 
 **The Discover page consists of the following elements:**
+
 - Top-left: A drop-down menu to select the right data view.
 - Left: A table that lists the fields/properties available in the selected data view.
 - Top: A search bar to filter the data by using the [Kibana Query Language (KQL)](https://www.elastic.co/guide/en/kibana/master/kuery-query.html) and an interactive histogram that shows the distribution of data.
@@ -43,6 +50,7 @@ The 'Discover' section in Kibana allows you to explore your care flow data. You 
 - Middle: A preview of the (filtered) data.
 
 By default, you'll have access to 4 Awell dataviews in Discover:
+
 1. **orchestration-datapoint**
 2. **orchestration-pathway**
 3. **orchestration-step**
