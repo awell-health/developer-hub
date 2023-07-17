@@ -1,4 +1,3 @@
-import { ChevronRightIcon } from '@heroicons/react/outline'
 import { isEmpty, isNil } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -43,27 +42,6 @@ export default function Marketplace() {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="flex mt-2">
-            <div className="relative flex items-center gap-x-4 rounded-full px-4 py-1 text-sm leading-6 text-slate-600 ring-1 ring-slate-900/10 hover:ring-slate-900/20 dark:text-slate-400 dark:ring-slate-700 dark:hover:ring-slate-800">
-              <span className="font-semibold text-blue-600 dark:text-sky-500 flex">
-                🎉 Extensions are in beta
-              </span>
-              <span
-                className="h-4 w-px bg-slate-900/10 dark:bg-slate-700"
-                aria-hidden="true"
-              />
-              <Link href={`/${Space.AWELL_EXTENSIONS}/beta`}>
-                <a className="flex items-center gap-x-1">
-                  <span className="absolute inset-0" aria-hidden="true" />
-                  Learn more
-                  <ChevronRightIcon
-                    className="-mr-2 h-5 w-5 text-slate-400"
-                    aria-hidden="true"
-                  />
-                </a>
-              </Link>
             </div>
           </div>
         </div>
