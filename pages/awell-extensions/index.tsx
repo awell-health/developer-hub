@@ -1,9 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { CheckCircleIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
 import { ReactNode } from 'react'
 
-import { Badge } from '@/components/Badge'
 import { LinkButton } from '@/components/Button'
 import { FAQ } from '@/components/FAQ'
 import { HomeLayout } from '@/components/Layouts'
@@ -11,7 +9,7 @@ import { SEO } from '@/components/SEO'
 import { rootRoutes } from '@/config/routes'
 import { Space } from '@/types/space.types'
 
-export default function BetaExtensions() {
+export default function Extensions() {
   return (
     <>
       <SEO
@@ -38,12 +36,6 @@ export default function BetaExtensions() {
                 label="Read the docs"
                 color="sky"
               />
-              <Link href="#faq">
-                <a className="text-sm font-semibold leading-6 text-slate-900 dark:text-slate-300">
-                  Learn more about beta release{' '}
-                  <span aria-hidden="true">↓</span>
-                </a>
-              </Link>
             </div>
           </div>
           <div className="my-16 flow-root sm:my-24 max-w-5xl mx-auto">
@@ -107,9 +99,6 @@ export default function BetaExtensions() {
                       <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500 mb-0">
                         Custom Actions
                       </h2>
-                      <div className="pl-2">
-                        <Badge color="sky">Beta</Badge>
-                      </div>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
                       Orchestrate actions in third-party apps in minutes
@@ -538,9 +527,6 @@ export default function BetaExtensions() {
                       <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-sky-500 mb-0">
                         Webhooks
                       </h2>
-                      <div className="pl-2">
-                        <Badge color="sky">Beta</Badge>
-                      </div>
                     </div>
                     <h3 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl my-0">
                       Listen to events from 3rd parties
@@ -614,11 +600,6 @@ export default function BetaExtensions() {
             <FAQ
               faqs={[
                 {
-                  question: 'What is the state of Awell Extensions today?',
-                  answer:
-                    '<p><strong>Awell Extensions are currently in beta.</strong> By using Awell Extensions, you have the unique opportunity to be among the first to experience the technology and help shape the future of our product. Your feedback and suggestions are invaluable to us, and we are committed to incorporating them as we work towards a stable release.</p>',
-                },
-                {
                   question: 'Can I build my own extensions?',
                   answer: `<p><strong>Absolutely, yes!</strong> We even encourage you to do so. You can build an extension to integrate with a 3rd party we haven't built one for or build an extension specifically to integrate with one of your homegrown systems.</p><br/><p><a href='${
                     rootRoutes[Space.AWELL_EXTENSIONS].docs
@@ -669,6 +650,6 @@ export default function BetaExtensions() {
   )
 }
 
-BetaExtensions.getLayout = function getLayout(page: ReactNode) {
+Extensions.getLayout = function getLayout(page: ReactNode) {
   return <HomeLayout>{page}</HomeLayout>
 }

@@ -386,6 +386,7 @@ export enum ConditionOperator {
   IsNotEmpty = 'IS_NOT_EMPTY',
   IsNotEqualTo = 'IS_NOT_EQUAL_TO',
   IsNotTrue = 'IS_NOT_TRUE',
+  IsToday = 'IS_TODAY',
   IsTrue = 'IS_TRUE'
 }
 

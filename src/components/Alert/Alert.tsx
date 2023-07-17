@@ -15,7 +15,7 @@ export const Alert = ({ type, title, children }: AlertProps) => {
       <div className="alert flex rounded-3xl p-6 bg-sky-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10">
         <Info />
         <div className="ml-4 flex-auto">
-          {title && title !== "" && (
+          {title && title !== '' && (
             <p className="m-0 mb-2.5 font-display text-xl text-sky-900 dark:text-sky-400">
               {title}
             </p>
@@ -32,7 +32,7 @@ export const Alert = ({ type, title, children }: AlertProps) => {
     <div className="alert my-8 flex rounded-3xl p-6 bg-amber-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10">
       <Warning />
       <div className="ml-4 flex-auto">
-        {title && title !== "" && (
+        {title && title !== '' && (
           <p className="m-0 mb-2.5 font-display text-xl text-amber-900 dark:text-amber-500">
             {title}
           </p>
