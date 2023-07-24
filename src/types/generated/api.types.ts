@@ -50,6 +50,8 @@ export type Activity = {
   context?: Maybe<PathwayContext>;
   date: Scalars['String'];
   form?: Maybe<Form>;
+  /** Form display mode can either be conversational (1 question at a time) or regular (all questions at once). Only used in hosted pages for now. */
+  form_display_mode?: Maybe<FormDisplayMode>;
   /** Url for icon, only used by extensions custom actions */
   icon_url?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -666,6 +668,11 @@ export type Form = {
   release_id: Scalars['String'];
   title: Scalars['String'];
 };
+
+export enum FormDisplayMode {
+  Conversational = 'CONVERSATIONAL',
+  Regular = 'REGULAR'
+}
 
 export type FormPayload = Payload & {
   __typename?: 'FormPayload';
