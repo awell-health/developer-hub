@@ -1,0 +1,30 @@
+name: Push docs to MarkPrompt
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'content/**/*.mdx'
+
+env:
+  MARKPROMPT_TOKEN: ${{ secrets.MARKPROMPT_TOKEN }}
+
+jobs:
+  upload-docs:
+    name: Upload Docs to MarkPrompt to train
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Zip Docs
+        run: zip data.zip content/**/*.mdx
+
+      - name: Upload docs to MarkPrompt
+        run: |
+          curl https://api.markprompt.com/v1/train \
+          -X POST \
+          -H "Authorization: Bearer ${{ env.MARKPROMPT_TOKEN }}" \
+          -H "Content-Type: application/zip" \
+          --data-binary @data.zip
