@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Zip Docs
-        run: zip data.zip content
+        run: zip data.zip content/*.mdx
 
       - name: Upload docs to MarkPrompt
         run: |
