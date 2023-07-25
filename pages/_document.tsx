@@ -23,7 +23,10 @@ export default function Document() {
             window.intercomSettings = {
               api_base: "https://api-iam.intercom.io",
               app_id: "${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}",
-              source: 'awell_developers'
+              source: 'awell_developers',
+              alignment: 'left',
+              horizontal_padding: 20,
+              vertical_padding: 20
             }
             `,
           }}
