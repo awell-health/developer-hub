@@ -8,6 +8,7 @@ import Script from 'next/script'
 import type { NextPage } from 'next/types'
 import type { ReactElement, ReactNode } from 'react'
 
+import { AvaGPT } from '@/components/AvaGPT'
 import { MobileNav } from '@/components/Header/MobileNav'
 import { MobileMenu } from '@/components/Sidebar/Menu/'
 import { AppProvider } from '@/contexts/app/AppContext'
@@ -27,6 +28,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page: ReactNode) => page)
   const router = useRouter()
+  const { useGPT } = router.query
   const isExamplePage = router.asPath.includes('examples')
   return (
     <>
@@ -43,6 +45,8 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
+
+      {String(useGPT) === 'true' && <AvaGPT />}
 
       <Script id="google-analytics" strategy="lazyOnload">
         {`
