@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 import { ButtonColorType, ButtonSizeType, ButtonType } from './button.types'
 import {
   buttonColors,
@@ -7,23 +9,23 @@ import {
 } from './buttonStyles'
 
 interface ButtonProps {
-  label: string
   color?: ButtonColorType
   size?: ButtonSizeType
   disabled?: boolean
   type?: ButtonType
   fullWidth?: boolean
   onClick: () => void
+  children: ReactNode
 }
 
 export const Button = ({
-  label,
   color = DEFAULT_BUTTON_COLOR,
   size = DEFAULT_BUTTON_SIZE,
   fullWidth,
   onClick,
   type = 'button',
   disabled = false,
+  children,
 }: ButtonProps) => {
   return (
     <button
@@ -34,7 +36,7 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled}
     >
-      <span>{label}</span>
+      {children}
     </button>
   )
 }
