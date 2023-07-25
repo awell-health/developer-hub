@@ -1,4 +1,3 @@
-import '@markprompt/css'
 import '../styles/globals.css'
 
 import { ApolloProvider } from '@apollo/client'
