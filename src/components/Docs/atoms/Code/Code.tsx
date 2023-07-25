@@ -1,3 +1,4 @@
+import { isNil } from 'lodash'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import { useEffect, useState } from 'react'
 import { arrayOfNumbersBasedOnRanges } from 'src/utils/array/arrayOfNumbersBasedOnRanges'
@@ -26,7 +27,7 @@ export const Code = ({
   const [showExpandCollapseButton, setShowExpandeCollapseButton] =
     useState<boolean>(false)
   const [showAll, setIsShowAll] = useState<boolean>(true)
-  const language = className.replace(/language-/, '')
+  const language = !isNil(className) ? className.replace(/language-/, '') : ''
 
   const [code] = Array.isArray(children) ? children : [children]
 

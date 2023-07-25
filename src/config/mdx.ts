@@ -26,6 +26,10 @@ export const mdxOptions = {
   },
 }
 
+export const AvaGPTComponents = {
+  code: Code,
+}
+
 export const mdxComponents = {
   h2: CustomH2,
   h3: CustomH3,

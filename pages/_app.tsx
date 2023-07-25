@@ -1,3 +1,4 @@
+import '@markprompt/css'
 import '../styles/globals.css'
 
 import { ApolloProvider } from '@apollo/client'
@@ -8,6 +9,7 @@ import Script from 'next/script'
 import type { NextPage } from 'next/types'
 import type { ReactElement, ReactNode } from 'react'
 
+import { AvaGPT } from '@/components/AvaGPT'
 import { MobileNav } from '@/components/Header/MobileNav'
 import { MobileMenu } from '@/components/Sidebar/Menu/'
 import { AppProvider } from '@/contexts/app/AppContext'
@@ -44,6 +46,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
 
+      <AvaGPT />
       <Script id="google-analytics" strategy="lazyOnload">
         {`
             window.dataLayer = window.dataLayer || [];
