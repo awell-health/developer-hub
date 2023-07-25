@@ -26,16 +26,20 @@ export const AvaGPT = () => {
     setIsOpen(!isOpen)
   }
 
-  const logRequest = async () => {
+  const logRequest = async (
+    question: string,
+    answer: string,
+    references: string
+  ) => {
     fetch('/api/log-gpt-requests', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        question: String(question),
-        answer: String(answer?.answer),
-        references: String(answer?.references),
+        question,
+        answer,
+        references,
       }),
     })
   }
@@ -47,11 +51,11 @@ export const AvaGPT = () => {
 
     if (!isNil(res)) {
       setAnswer(res)
-      logRequest()
+      logRequest(prompt, String(res.answer), res.references.toString())
       return
     }
 
-    logRequest()
+    logRequest(prompt, 'Could not find an answer', 'N/A')
     setAnswer(undefined)
   }
 
