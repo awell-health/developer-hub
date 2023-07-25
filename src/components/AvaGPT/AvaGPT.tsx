@@ -51,7 +51,19 @@ export const AvaGPT = () => {
 
     if (!isNil(res)) {
       setAnswer(res)
-      logRequest(prompt, String(res.answer), res.references.toString())
+      logRequest(
+        prompt,
+        String(res.answer),
+        res.references
+          .map(
+            (ref) =>
+              `${ref.title}: www.developers.awellhealth.com${ref.path.replace(
+                '/content',
+                ''
+              )}`
+          )
+          .join('\n')
+      )
       return
     }
 
