@@ -43,15 +43,15 @@ export const AvaGPT = () => {
   const generateAnswer = async (prompt: string) => {
     setIsLoading(true)
     const res = await getAnswer(prompt)
-    logRequest()
     setIsLoading(false)
-    console.log(res)
 
     if (!isNil(res)) {
       setAnswer(res)
+      logRequest()
       return
     }
 
+    logRequest()
     setAnswer(undefined)
   }
 
