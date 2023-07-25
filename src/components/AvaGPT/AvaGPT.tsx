@@ -57,10 +57,9 @@ export const AvaGPT = () => {
         res.references
           .map(
             (ref) =>
-              `${ref.title}: www.developers.awellhealth.com${ref.path.replace(
-                '/content',
-                ''
-              )}`
+              `${ref.title}: https://developers.awellhealth.com${ref.path
+                .replace('/content', '')
+                .replace('.mdx', '')}`
           )
           .join('\n')
       )
