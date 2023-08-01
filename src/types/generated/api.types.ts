@@ -312,6 +312,8 @@ export enum BooleanOperator {
 export type BrandingSettings = {
   __typename?: 'BrandingSettings';
   accent_color?: Maybe<Scalars['String']>;
+  /** Auto progress to the next question when using the conversational display mode in Awell Hosted Pages. */
+  hosted_page_auto_progress?: Maybe<Scalars['Boolean']>;
   hosted_page_title?: Maybe<Scalars['String']>;
   logo_url?: Maybe<Scalars['String']>;
 };
@@ -625,6 +627,7 @@ export type FilterActivitiesParams = {
   activity_status?: InputMaybe<StringArrayFilter>;
   activity_type?: InputMaybe<StringArrayFilter>;
   pathway_definition_id?: InputMaybe<StringArrayFilter>;
+  pathway_status?: InputMaybe<StringArrayFilter>;
   patient_id?: InputMaybe<TextFilterEquals>;
   stakeholders?: InputMaybe<StringArrayFilter>;
 };
