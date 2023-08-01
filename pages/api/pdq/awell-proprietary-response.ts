@@ -5,6 +5,17 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'GET') {
+    const query = req.query
+    const id = query?.['identifier:of-type']?.toString() || ''
+    const params = id.split('|')
+
+    if (
+      params[0] !== 'http://terminology.hl7.org/CodeSystem/v2-0203' ||
+      params[1] !== 'SB' ||
+      params[2] !== '123456'
+    )
+      return res.status(404).send({ message: 'Not found' })
+
     const patient = {
       first_name: 'John',
       last_name: 'Doe',
