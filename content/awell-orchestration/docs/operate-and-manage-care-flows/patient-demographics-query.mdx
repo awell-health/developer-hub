@@ -1,0 +1,291 @@
+---
+title: Patient Demograhpics Query (PDQ)
+description: Retrieve patient demographics from an external system
+---
+
+**When using Awell Care to operate your care flows, you might want to make it as easy as possible for your clinical personel to create patients in Awell.** The Patient Demographic Query (PDQ) integration allows your clinical stakeholders to retrieve patient demographic data from your system right within Awell. It only takes a press of a button to import the data from a patient in your system into Awell.
+
+## Overview
+
+The implementation is based on the [IHE ITI PDQm Profile](https://profiles.ihe.net/ITI/PDQm/index.html) although the full specification has not been implemented yet (see below).
+
+<div className="bg-white w-full p-8 flex justify-center">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    contentscripttype="application/ecmascript"
+    contentstyletype="text/css"
+    height="179px"
+    preserveAspectRatio="none"
+    style={{ width: '489px', height: '179px', background: '#FFFFFF' }}
+    version="1.1"
+    viewBox="0 0 489 179"
+    width="489px"
+    zoomAndPan="magnify"
+  >
+    <defs>
+      <filter height="300%" id="f1io4xgug9vfsi" width="300%" x={-1} y={-1}>
+        <feGaussianBlur result="blurOut" stdDeviation={2.0} />
+        <feColorMatrix
+          in="blurOut"
+          result="blurOut2"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"
+        />
+        <feOffset dx={4.0} dy={4.0} in="blurOut2" result="blurOut3" />
+        <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+      </filter>
+    </defs>
+    <g>
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f1io4xgug9vfsi)"
+        height="46.7031"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="128.5"
+        y="107.9219"
+      />
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f1io4xgug9vfsi)"
+        height="46.7031"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="395.5"
+        y="107.9219"
+      />
+      <line
+        style={{
+          stroke: '#A80036',
+          strokeWidth: 1.0,
+          strokeDasharray: '5.0,5.0',
+        }}
+        x1={133}
+        x2={133}
+        y1="59.2188"
+        y2="172.625"
+      />
+      <line
+        style={{
+          stroke: '#A80036',
+          strokeWidth: 1.0,
+          strokeDasharray: '5.0,5.0',
+        }}
+        x1={400}
+        x2={400}
+        y1="59.2188"
+        y2="172.625"
+      />
+      <rect
+        fill="#FEFECE"
+        filter="url(#f1io4xgug9vfsi)"
+        height="49.2188"
+        style={{ stroke: '#A80036', strokeWidth: '1.5' }}
+        width={153}
+        x={55}
+        y={5}
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={139}
+        x={62}
+        y="26.5332"
+      >
+        Patient Demographics
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={65}
+        x={99}
+        y="44.1426"
+      >
+        Consumer
+      </text>
+      <rect
+        fill="#FEFECE"
+        filter="url(#f1io4xgug9vfsi)"
+        height="49.2188"
+        style={{ stroke: '#A80036', strokeWidth: '1.5' }}
+        width={153}
+        x={322}
+        y={5}
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={139}
+        x={329}
+        y="26.5332"
+      >
+        Patient Demographics
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={52}
+        x="372.5"
+        y="44.1426"
+      >
+        Supplier
+      </text>
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f1io4xgug9vfsi)"
+        height="46.7031"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="128.5"
+        y="107.9219"
+      />
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f1io4xgug9vfsi)"
+        height="46.7031"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="395.5"
+        y="107.9219"
+      />
+      <polygon
+        fill="#A80036"
+        points="383.5,103.9219,393.5,107.9219,383.5,111.9219,387.5,107.9219"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+      />
+      <line
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        x1="138.5"
+        x2="389.5"
+        y1="107.9219"
+        y2="107.9219"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={130}
+        x="145.5"
+        y="86.7139"
+      >
+        Patient Demographics
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={78}
+        x="145.5"
+        y="103.0654"
+      >
+        Query [ITI-78]
+      </text>
+      <polygon
+        fill="#A80036"
+        points="144.5,150.625,134.5,154.625,144.5,158.625,140.5,154.625"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+      />
+      <line
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        x1="138.5"
+        x2="399.5"
+        y1="154.625"
+        y2="154.625"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={100}
+        x="150.5"
+        y="133.417"
+      ></text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={97}
+        x="150.5"
+        y="149.7686"
+      >
+        Query Response
+      </text>
+    </g>
+  </svg>
+</div>
+
+## Actors
+
+There are two actors in the PDQm profile:
+
+1. **Patient Demographics Consumer** queries the patient based on available demographics (search parameters) and gets the complete set of patient demographics in return (if there are any).
+2. **Patient Demographics Supplier** returns the complete set of available patient demographics based on the provided set of search parameters. The Founda Health Platform acts as the Patient Demographics Supplier in this profile.
+
+## Request
+
+A request will be made by the Patient Demographics Consumer (Awell) to solicit information about patients whose demographics data match data provided in the query parameters on the request message. The request can be made either using a `GET` or a `POST` request. Which method is used is defined in the developer settings in Awell.
+
+### Search parameters
+
+The request represents a [parameterized search](https://profiles.ihe.net/ITI/PDQm/ITI-78.html#23784121-search-parameters) from the Patient Demographics Consumer to the Patient Demographics Supplier. We currently only support searching on the `identifier` parameter. Which **coding system** and **code** that will be used for the search is configured in the developer settings in Awell.
+
+**GET:**
+
+```bash
+curl {endpoint}/Patient?identifier:of-type={system}|{code}|{value}
+```
+
+**POST:**
+
+```bash
+curl {endpoint}/Patient/_search
+  -X POST
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -d "identifier:of-type={system}|{code}|{value}"
+```
+
+## Response
+
+When request is received by the Patient Demographics Supplier, it processes the request and returns a response in the form of demographics information for the matching patients.
+
+## Examples
+
+### Request patient demographics based on national registry number
+
+- Code system: http://terminology.hl7.org/CodeSystem/v2-0203
+- Code: SB
+
+```bash
+curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|SB|123456
+```
+
+### Request patient demograhphics based on visit number
+
+- Code system: http://terminology.hl7.org/CodeSystem/v2-0203
+- Code: VN
+
+```bash
+curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|VN|123456
+```
+
+### Request patient demographics based on medical record number
+
+- Code system: http://terminology.hl7.org/CodeSystem/v2-0203
+- Code: MR
+
+```bash
+curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|MR|123456
+```
