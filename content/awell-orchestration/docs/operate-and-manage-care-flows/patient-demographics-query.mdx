@@ -3,11 +3,11 @@ title: Patient Demograhpics Query (PDQ)
 description: Retrieve patient demographics from an external system
 ---
 
-**When using Awell Care to operate your care flows, you might want to make it as easy as possible for your clinical personel to create patients in Awell.** The Patient Demographic Query (PDQ) integration allows your clinical stakeholders to retrieve patient demographic data from your system right within Awell. It only takes a press of a button to import the data from a patient in your system into Awell.
+**When using Awell Care to operate your care flows, you want to make it a breeze for your clinical personel to create patients in Awell.** The Patient Demographic Query (PDQ) integration allows your clinical stakeholders to retrieve patient demographic data from your system right within Awell.
 
 ## Overview
 
-The implementation is based on the [IHE ITI PDQm Profile](https://profiles.ihe.net/ITI/PDQm/index.html) although the full specification has not been implemented yet (see below).
+The integration is based on the [IHE ITI PDQm Profile](https://profiles.ihe.net/ITI/PDQm/index.html) although the full specification has not been implemented yet (see below).
 
 <div className="bg-white w-full p-8 flex justify-center">
   <svg
@@ -102,11 +102,11 @@ The implementation is based on the [IHE ITI PDQm Profile](https://profiles.ihe.n
         fontFamily="sans-serif"
         fontSize={14}
         lengthAdjust="spacing"
-        textLength={65}
-        x={99}
+        textLength={110}
+        x={75}
         y="44.1426"
       >
-        Consumer
+        Consumer (Awell)
       </text>
       <rect
         fill="#FEFECE"
@@ -229,26 +229,576 @@ The implementation is based on the [IHE ITI PDQm Profile](https://profiles.ihe.n
 
 ## Actors
 
-There are two actors in the PDQm profile:
+There are two actors in this integration:
 
-1. **Patient Demographics Consumer** queries the patient based on available demographics (search parameters) and gets the complete set of patient demographics in return (if there are any).
-2. **Patient Demographics Supplier** returns the complete set of available patient demographics based on the provided set of search parameters. The Founda Health Platform acts as the Patient Demographics Supplier in this profile.
+1. **Patient Demographics Consumer** (hereinafter referred to as "Awell") queries the patient based on available demographics (search parameters) and gets the complete set of patient demographics in return (if there are any).
+2. **Patient Demographics Supplier** returns the complete set of available patient demographics based on the provided set of search parameters. The Patient Demographics Supplier can either be a system you own but in some integrations this can also be Awell's Mirth server. In the latter case, Awell's Mirth server acts as a proxy to an information system on your end.
+
+### Supplier as a proxy
+
+The Patient Demographics Supplier may act as a proxy to an existing information system. This way, the Patient Demographics Consumer can choose a technology stack and a query/response profile that best fits.
+
+At Awell, we use [MirthConnect](https://www.nextgen.com/products-and-services/integration-engine) as an integration engine that can connect Awell to any other health information system. This allows us to exchange clinical and administrative data in a format of your choice (HL7, FHIR, XML, JSON...).
+
+<div className="bg-white w-full p-8 flex justify-center">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    contentscripttype="application/ecmascript"
+    contentstyletype="text/css"
+    height="405px"
+    preserveAspectRatio="none"
+    style={{ width: '597px', height: '405px', background: '#FFFFFF' }}
+    version="1.1"
+    viewBox="0 0 597 405"
+    width="597px"
+    zoomAndPan="magnify"
+  >
+    <defs>
+      <filter height="300%" id="f3d9m5wz5zw4a" width="300%" x={-1} y={-1}>
+        <feGaussianBlur result="blurOut" stdDeviation={2.0} />
+        <feColorMatrix
+          in="blurOut"
+          result="blurOut2"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"
+        />
+        <feOffset dx={4.0} dy={4.0} in="blurOut2" result="blurOut3" />
+        <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+      </filter>
+    </defs>
+    <g>
+      <rect
+        fill="#DDDDDD"
+        height="386.3984"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={264}
+        x={134}
+        y={6}
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        fontWeight="bold"
+        lengthAdjust="spacing"
+        textLength={36}
+        x={244}
+        y="19.4951"
+      >
+        Proxy
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        fontWeight="bold"
+        lengthAdjust="spacing"
+        textLength={100}
+        x={215}
+        y="35.8467"
+      >
+        (eg: Awell Mirth)
+      </text>
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="209.8125"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="54.5"
+        y="179.5859"
+      />
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="200.8125"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="189.5"
+        y="179.5859"
+      />
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="140.1094"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="332.5"
+        y="209.9375"
+      />
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="140.1094"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="525.5"
+        y="209.9375"
+      />
+      <line
+        style={{
+          stroke: '#A80036',
+          strokeWidth: 1.0,
+          strokeDasharray: '5.0,5.0',
+        }}
+        x1={59}
+        x2={59}
+        y1="114.5313"
+        y2="398.3984"
+      />
+      <line
+        style={{
+          stroke: '#A80036',
+          strokeWidth: 1.0,
+          strokeDasharray: '5.0,5.0',
+        }}
+        x1={194}
+        x2={194}
+        y1="114.5313"
+        y2="398.3984"
+      />
+      <line
+        style={{
+          stroke: '#A80036',
+          strokeWidth: 1.0,
+          strokeDasharray: '5.0,5.0',
+        }}
+        x1={337}
+        x2={337}
+        y1="114.5313"
+        y2="398.3984"
+      />
+      <line
+        style={{
+          stroke: '#A80036',
+          strokeWidth: 1.0,
+          strokeDasharray: '5.0,5.0',
+        }}
+        x1={530}
+        x2={530}
+        y1="114.5313"
+        y2="398.3984"
+      />
+      <rect
+        fill="#FEFECE"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="66.8281"
+        style={{ stroke: '#A80036', strokeWidth: '1.5' }}
+        width={105}
+        x={5}
+        y="42.7031"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={44}
+        x="35.5"
+        y="64.2363"
+      >
+        Patient
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={91}
+        x={12}
+        y="81.8457"
+      >
+        Demographics
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={102}
+        x={7}
+        y="99.4551"
+      >
+        Consumer (Awell)
+      </text>
+      <rect
+        fill="#FEFECE"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="66.8281"
+        style={{ stroke: '#A80036', strokeWidth: '1.5' }}
+        width={109}
+        x={138}
+        y="42.7031"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={44}
+        x="170.5"
+        y="64.2363"
+      >
+        Patient
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={91}
+        x={149}
+        y="81.8457"
+      >
+        Demographics
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={52}
+        x="166.5"
+        y="99.4551"
+      >
+        Supplier
+      </text>
+      <rect
+        fill="#FEFECE"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="66.8281"
+        style={{ stroke: '#A80036', strokeWidth: '1.5' }}
+        width={109}
+        x={281}
+        y="42.7031"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={44}
+        x="313.5"
+        y="64.2363"
+      >
+        Patient
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={91}
+        x={292}
+        y="81.8457"
+      >
+        Demographics
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={65}
+        x={303}
+        y="99.4551"
+      >
+        Consumer
+      </text>
+      <rect
+        fill="#FEFECE"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="66.8281"
+        style={{ stroke: '#A80036', strokeWidth: '1.5' }}
+        width={109}
+        x={474}
+        y="42.7031"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={44}
+        x="506.5"
+        y="64.2363"
+      >
+        Patient
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={91}
+        x={485}
+        y="81.8457"
+      >
+        Demographics
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        lengthAdjust="spacing"
+        textLength={52}
+        x="502.5"
+        y="99.4551"
+      >
+        Supplier
+      </text>
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="209.8125"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="54.5"
+        y="179.5859"
+      />
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="200.8125"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="189.5"
+        y="179.5859"
+      />
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="140.1094"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="332.5"
+        y="209.9375"
+      />
+      <rect
+        fill="#FFFFFF"
+        filter="url(#f3d9m5wz5zw4a)"
+        height="140.1094"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        width={10}
+        x="525.5"
+        y="209.9375"
+      />
+      <polygon
+        fill="#A80036"
+        points="177.5,175.5859,187.5,179.5859,177.5,183.5859,181.5,179.5859"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+      />
+      <line
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        x1="64.5"
+        x2="183.5"
+        y1="179.5859"
+        y2="179.5859"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={40}
+        x="71.5"
+        y="142.0264"
+      >
+        Patient
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={83}
+        x="71.5"
+        y="158.3779"
+      >
+        Demographics
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={78}
+        x="71.5"
+        y="174.7295"
+      >
+        Query [ITI-78]
+      </text>
+      <polygon
+        fill="#A80036"
+        points="320.5,205.9375,330.5,209.9375,320.5,213.9375,324.5,209.9375"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+      />
+      <line
+        style={{
+          stroke: '#A80036',
+          strokeWidth: 1.0,
+          strokeDasharray: '2.0,2.0',
+        }}
+        x1="199.5"
+        x2="326.5"
+        y1="209.9375"
+        y2="209.9375"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={109}
+        x="206.5"
+        y="205.0811"
+      >
+        Internal processing
+      </text>
+      <polygon
+        fill="#A80036"
+        points="513.5,285.3438,523.5,289.3438,513.5,293.3438,517.5,289.3438"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+      />
+      <line
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        x1="342.5"
+        x2="519.5"
+        y1="289.3438"
+        y2="289.3438"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={128}
+        x="349.5"
+        y="251.4326"
+      >
+        Patient Demographics
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={49}
+        x="349.5"
+        y="265.7842"
+      >
+        Query in
+      </text>
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={94}
+        x="349.5"
+        y="282.1357"
+      >
+        profile of choice
+      </text>
+      <polygon
+        fill="#A80036"
+        points="353.5,315.6953,343.5,319.6953,353.5,323.6953,349.5,319.6953"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+      />
+      <line
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        x1="347.5"
+        x2="524.5"
+        y1="319.6953"
+        y2="319.6953"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={167}
+        x="353.5"
+        y="314.8389"
+      >
+        Response in profile of choice
+      </text>
+      <polygon
+        fill="#A80036"
+        points="210.5,346.0469,200.5,350.0469,210.5,354.0469,206.5,350.0469"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+      />
+      <line
+        style={{
+          stroke: '#A80036',
+          strokeWidth: 1.0,
+          strokeDasharray: '2.0,2.0',
+        }}
+        x1="204.5"
+        x2="336.5"
+        y1="350.0469"
+        y2="350.0469"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={109}
+        x="216.5"
+        y="345.1904"
+      >
+        Internal processing
+      </text>
+      <polygon
+        fill="#A80036"
+        points="75.5,376.3984,65.5,380.3984,75.5,384.3984,71.5,380.3984"
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+      />
+      <line
+        style={{ stroke: '#A80036', strokeWidth: 1.0 }}
+        x1="69.5"
+        x2="193.5"
+        y1="380.3984"
+        y2="380.3984"
+      />
+      <text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={13}
+        lengthAdjust="spacing"
+        textLength={95}
+        x="81.5"
+        y="375.542"
+      >
+        Query Response
+      </text>
+    </g>
+  </svg>
+</div>
+
+## Trigger event
+
+**This integration is triggered when a clinical user in Awell Care presses the "Import patient" button** when creating a patient in Awell. Instead of filling out patient demograhpics like name, email address and date of birth manually, a user can import patient demograhpics based on an identifier they entered according to the code system and code configured in the integration settings.
 
 ## Request
 
-A request will be made by the Patient Demographics Consumer (Awell) to solicit information about patients whose demographics data match data provided in the query parameters on the request message. The request can be made either using a `GET` or a `POST` request. Which method is used is defined in the developer settings in Awell.
+A request will be made by Awell to solicit information about patients whose demographics data match data provided in the query parameters on the request message. The request can be made either using a `GET` or a `POST` request. Which HTTP verb or method that will be used is defined in the integration settings in the Awell app.
 
 ### Search parameters
 
-The request represents a [parameterized search](https://profiles.ihe.net/ITI/PDQm/ITI-78.html#23784121-search-parameters) from the Patient Demographics Consumer to the Patient Demographics Supplier. We currently only support searching on the `identifier` parameter. Which **coding system** and **code** that will be used for the search is configured in the developer settings in Awell.
+The request represents a [parameterized search](https://profiles.ihe.net/ITI/PDQm/ITI-78.html#23784121-search-parameters) from Awell to the Patient Demographics Supplier. We currently only support searching on the `identifier` parameter. The **coding system** and **code** that will be used for the search is configured in the integrations settings in the Awell app.
 
-**GET:**
+#### GET
 
 ```bash
 curl {endpoint}/Patient?identifier:of-type={system}|{code}|{value}
 ```
 
-**POST:**
+<br />
+
+#### POST
 
 ```bash
 curl {endpoint}/Patient/_search
@@ -257,125 +807,9 @@ curl {endpoint}/Patient/_search
   -d "identifier:of-type={system}|{code}|{value}"
 ```
 
-## Response
+### Examples
 
-When the request is received by the Patient Demographics Supplier, it processes the request and returns a response in the form of demographics information for the matching patients. We currently expect that the response has the following fields (all optional):
-
-<table>
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Value type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>patient_code</td>
-      <td>string</td>
-      <td>
-        A value that can uniquely identify the patient in your system. It can be
-        the identifier used for the search.
-      </td>
-    </tr>
-    <tr>
-      <td>first_name</td>
-      <td>string</td>
-      <td>First name of the patient</td>
-    </tr>
-    <tr>
-      <td>last_name</td>
-      <td>string</td>
-      <td>Last name of the patient</td>
-    </tr>
-    <tr>
-      <td>birth_date</td>
-      <td>string</td>
-      <td>Birth date as a ISO8601 string</td>
-    </tr>
-    <tr>
-      <td>email</td>
-      <td>string</td>
-      <td>The email address of the patient</td>
-    </tr>
-    <tr>
-      <td>phone</td>
-      <td>string</td>
-      <td>Landline number of the patient as an E.164 string</td>
-    </tr>
-    <tr>
-      <td>mobile_phone</td>
-      <td>string (E.164)</td>
-      <td>Mobile number of the patient as an E.164 string</td>
-    </tr>
-    <tr>
-      <td>national_registry_number</td>
-      <td>string</td>
-      <td>
-        National registry number of the patient (social security number in
-        Belgium)
-      </td>
-    </tr>
-    <tr>
-      <td>sex</td>
-      <td>string</td>
-      <td>Must be one of `MALE` | `FEMALE` | `NOT_KNOWN`</td>
-    </tr>
-    <tr>
-      <td>address.street</td>
-      <td>string</td>
-      <td>Street address of the patient</td>
-    </tr>
-    <tr>
-      <td>address.city</td>
-      <td>string</td>
-      <td>City where the patient lives</td>
-    </tr>
-    <tr>
-      <td>address.zip</td>
-      <td>string</td>
-      <td>ZIP code of the patient</td>
-    </tr>
-    <tr>
-      <td>address.state</td>
-      <td>string</td>
-      <td>State where the patient lives</td>
-    </tr>
-    <tr>
-      <td>address.country</td>
-      <td>string</td>
-      <td>Country wher the patient lives</td>
-    </tr>
-  </tbody>
-</table>
-
-### Example response
-
-```json
-{
-  "first_name": "John",
-  "last_name": "Doe",
-  "preferred_language": "en",
-  "birth_date": "1993-11-30",
-  "sex": "MALE",
-  "patient_code": "123456",
-  "address": {
-    "city": "Doe City",
-    "country": "Doe Country",
-    "state": "Doe State",
-    "street": "Doe Street 1",
-    "zip": "6789"
-  },
-  "email": "john.doe@acme.org",
-  "national_registry_number": "987654321",
-  "mobile_phone": "+32476111111",
-  "phone": "+3222222222"
-}
-```
-
-## Examples
-
-### PDQ with national registry number
+#### National registry number (Belgium)
 
 - Code system: http://terminology.hl7.org/CodeSystem/v2-0203
 - Code: SB
@@ -384,7 +818,9 @@ When the request is received by the Patient Demographics Supplier, it processes 
 curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|SB|123456
 ```
 
-### PDQ with visit number
+<br />
+
+#### Visit number
 
 - Code system: http://terminology.hl7.org/CodeSystem/v2-0203
 - Code: VN
@@ -393,7 +829,9 @@ curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem
 curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|VN|123456
 ```
 
-### PDQ with medical record number
+<br />
+
+#### Medical record number
 
 - Code system: http://terminology.hl7.org/CodeSystem/v2-0203
 - Code: MR
@@ -401,3 +839,194 @@ curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem
 ```bash
 curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|MR|123456
 ```
+
+## Response
+
+When the request is received by the Patient Demographics Supplier, it processes the request and returns a response in the form of demographics information for the matching patient(s). The request can yield 0, 1, or N matching patient records, therefore we expect that the response is an array of patient records. Additionally, the response format needs to be JSON (`'Content-Type': 'application/json'`).
+
+```json
+{
+  "total": 3,
+  "entry": [
+    {
+      "first_name": "John",
+      "last_name": "Doe",
+      "preferred_language": "en",
+      "birth_date": "1993-11-30",
+      "sex": "MALE",
+      "patient_code": "123456",
+      "address": {
+        "city": "Doe City",
+        "country": "Doe Country",
+        "state": "Doe State",
+        "street": "Doe Street 1",
+        "zip": "6789"
+      },
+      "email": "john.doe@acme.org",
+      "national_registry_number": "987654321",
+      "mobile_phone": "+32476111111",
+      "phone": "+3222222222"
+    },
+    {
+      // another matching record
+    },
+    {
+      // another matching record
+    }
+  ]
+}
+```
+
+<br />
+
+<Alert type="info">
+  We currently expect the response format and the patient record to be in a
+  format defined by Awell. Please reach out to us if you'd like to return a
+  native FHIR response instead.
+</Alert>
+
+### Patient record
+
+Each patient record has the following fields (all optional):
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>patient_code</strong>
+      </td>
+      <td>string</td>
+      <td>
+        A value that can uniquely identify the patient in your system. It can be
+        the identifier used for the search.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>first_name</strong>
+      </td>
+      <td>string</td>
+      <td>First name of the patient</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>last_name</strong>
+      </td>
+      <td>string</td>
+      <td>Last name of the patient</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>birth_date</strong>
+      </td>
+      <td>string</td>
+      <td>Birth date as a ISO8601 string</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>email</strong>
+      </td>
+      <td>string</td>
+      <td>The email address of the patient</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>phone</strong>
+      </td>
+      <td>string</td>
+      <td>Landline number of the patient as an E.164 string</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>mobile_phone</strong>
+      </td>
+      <td>string</td>
+      <td>Mobile number of the patient as an E.164 string</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>national_registry_number</strong>
+      </td>
+      <td>string</td>
+      <td>
+        National registry number of the patient (social security number in
+        Belgium)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>sex</strong>
+      </td>
+      <td>string</td>
+      <td>Must be one of `MALE` | `FEMALE` | `NOT_KNOWN`</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>address.street</strong>
+      </td>
+      <td>string</td>
+      <td>Street address of the patient</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>address.city</strong>
+      </td>
+      <td>string</td>
+      <td>City where the patient lives</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>address.zip</strong>
+      </td>
+      <td>string</td>
+      <td>ZIP code of the patient</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>address.state</strong>
+      </td>
+      <td>string</td>
+      <td>State where the patient lives</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>address.country</strong>
+      </td>
+      <td>string</td>
+      <td>Country wher the patient lives</td>
+    </tr>
+  </tbody>
+</table>
+
+### HTTP status codes
+
+#### 200 OK
+
+The request succeeded. This is applicable in the following cases:
+
+- The Patient Demographics Supplier **finds at least one patient record** matching the criteria sent as HTTP search parameters.
+- The Patient Demographics Supplier **fails to find in its information source, any patient record matching the criteria sent as HTTP search parameters**. In this case, the Patient Demographics Supplier populates the `total` with a value of 0 indicating no results were found. No entry attributes are provided in the result.
+
+#### 4XX
+
+Used when the request contains bad syntax or cannot be fulfilled.
+
+#### 5XX
+
+The server failed to fulfil an apparently valid request.
+
+## Expected actions
+
+Awell processes the response and will show feedback to the user in Awell Care:
+
+- **When the request was not successful (4XX - 5XX)**: a message will be shown to the user that the request failed and they can view the request details.
+- **When the request yields no results**: a message will be shown to the user that no patient record matching the search criteria was found.
+- **When the request yields 1**: the create patient form will be pre-populated with the retrieved patient data and the user can review and edit the information before creating the patient.
+- **When the request yields more than 1 matching patient records**: the user can inspect the data of every patient record and decide which record to use before creating the patient.
