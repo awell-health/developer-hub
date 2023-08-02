@@ -259,11 +259,123 @@ curl {endpoint}/Patient/_search
 
 ## Response
 
-When request is received by the Patient Demographics Supplier, it processes the request and returns a response in the form of demographics information for the matching patients.
+When the request is received by the Patient Demographics Supplier, it processes the request and returns a response in the form of demographics information for the matching patients. We currently expect that the response has the following fields (all optional):
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>patient_code</td>
+      <td>string</td>
+      <td>
+        A value that can uniquely identify the patient in your system. It can be
+        the identifier used for the search.
+      </td>
+    </tr>
+    <tr>
+      <td>first_name</td>
+      <td>string</td>
+      <td>First name of the patient</td>
+    </tr>
+    <tr>
+      <td>last_name</td>
+      <td>string</td>
+      <td>Last name of the patient</td>
+    </tr>
+    <tr>
+      <td>birth_date</td>
+      <td>string</td>
+      <td>Birth date as a ISO8601 string</td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>string</td>
+      <td>The email address of the patient</td>
+    </tr>
+    <tr>
+      <td>phone</td>
+      <td>string</td>
+      <td>Landline number of the patient as an E.164 string</td>
+    </tr>
+    <tr>
+      <td>mobile_phone</td>
+      <td>string (E.164)</td>
+      <td>Mobile number of the patient as an E.164 string</td>
+    </tr>
+    <tr>
+      <td>national_registry_number</td>
+      <td>string</td>
+      <td>
+        National registry number of the patient (social security number in
+        Belgium)
+      </td>
+    </tr>
+    <tr>
+      <td>sex</td>
+      <td>string</td>
+      <td>Must be one of `MALE` | `FEMALE` | `NOT_KNOWN`</td>
+    </tr>
+    <tr>
+      <td>address.street</td>
+      <td>string</td>
+      <td>Street address of the patient</td>
+    </tr>
+    <tr>
+      <td>address.city</td>
+      <td>string</td>
+      <td>City where the patient lives</td>
+    </tr>
+    <tr>
+      <td>address.zip</td>
+      <td>string</td>
+      <td>ZIP code of the patient</td>
+    </tr>
+    <tr>
+      <td>address.state</td>
+      <td>string</td>
+      <td>State where the patient lives</td>
+    </tr>
+    <tr>
+      <td>address.country</td>
+      <td>string</td>
+      <td>Country wher the patient lives</td>
+    </tr>
+  </tbody>
+</table>
+
+### Example response
+
+```json
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "preferred_language": "en",
+  "birth_date": "1993-11-30",
+  "sex": "MALE",
+  "patient_code": "123456",
+  "address": {
+    "city": "Doe City",
+    "country": "Doe Country",
+    "state": "Doe State",
+    "street": "Doe Street 1",
+    "zip": "6789"
+  },
+  "email": "john.doe@acme.org",
+  "national_registry_number": "987654321",
+  "mobile_phone": "+32476111111",
+  "phone": "+3222222222"
+}
+```
 
 ## Examples
 
-### Request patient demographics based on national registry number
+### PDQ with national registry number
 
 - Code system: http://terminology.hl7.org/CodeSystem/v2-0203
 - Code: SB
@@ -272,7 +384,7 @@ When request is received by the Patient Demographics Supplier, it processes the 
 curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|SB|123456
 ```
 
-### Request patient demograhphics based on visit number
+### PDQ with visit number
 
 - Code system: http://terminology.hl7.org/CodeSystem/v2-0203
 - Code: VN
@@ -281,7 +393,7 @@ curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem
 curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|VN|123456
 ```
 
-### Request patient demographics based on medical record number
+### PDQ with medical record number
 
 - Code system: http://terminology.hl7.org/CodeSystem/v2-0203
 - Code: MR
