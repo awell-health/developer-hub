@@ -887,7 +887,7 @@ When the request is received by the Patient Demographics Supplier, it processes 
 
 ### Patient record
 
-Each patient record has the following fields (all optional):
+Each patient record can have the following fields (all optional):
 
 <table>
   <thead>
@@ -1029,5 +1029,5 @@ Awell processes the response and will show feedback to the user in Awell Care:
 
 - **When the request was not successful (4XX - 5XX)**: a message will be shown to the user that the request failed and they can view the request details.
 - **When the request yields no results**: a message will be shown to the user that no patient record matching the search criteria was found.
-- **When the request yields 1**: the create patient form will be pre-populated with the retrieved patient data and the user can review and edit the information before creating the patient.
-- **When the request yields more than 1 matching patient records**: the user can inspect the data of every patient record and decide which record to use before creating the patient.
+- **When the request yields 1 result**: the create patient form will be pre-populated with the retrieved patient data and the user can review and edit the information before creating the patient.
+- **When the request yields more than 1 matching result**: the user can inspect the data of every patient record and decide which record to use before creating the patient.
