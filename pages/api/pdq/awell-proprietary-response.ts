@@ -21,7 +21,7 @@ export default async function handler(
       last_name: 'Doe',
       preferred_language: 'en',
       birth_date: '1993-11-30',
-      sex: 'MALE',
+      sex: '1',
       patient_code: '123456',
       address: {
         city: 'Doe City',
