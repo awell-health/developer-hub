@@ -816,31 +816,15 @@ curl {endpoint}/Patient/_search \
 
 In Belgium the Social Beneficiary Identifier is also known as the INSZ number (Identificatienummer voor de Sociale Zekerheid in Dutch, or Numéro d'identification de sécurité sociale in French). It is also referred to as the "rijksregisternummer". It is a unique identifier assigned to every citizen and resident in Belgium.
 
-```bash
-curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|SB|123456
-```
-
-<br />
-
 #### Visit number
 
 - Code system: http://terminology.hl7.org/CodeSystem/v2-0203
 - Code: VN
 
-```bash
-curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|VN|123456
-```
-
-<br />
-
 #### Medical record number
 
 - Code system: http://terminology.hl7.org/CodeSystem/v2-0203
 - Code: MR
-
-```bash
-curl {endpoint}/Patient?identifier:of-type=http://terminology.hl7.org/CodeSystem/v2-0203|MR|123456
-```
 
 ## Response
 
