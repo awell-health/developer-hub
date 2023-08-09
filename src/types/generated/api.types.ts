@@ -314,6 +314,8 @@ export type BrandingSettings = {
   accent_color?: Maybe<Scalars['String']>;
   /** Auto progress to the next question when using the conversational display mode in Awell Hosted Pages. */
   hosted_page_auto_progress?: Maybe<Scalars['Boolean']>;
+  /** Automatically save question answers locally in Awell Hosted Pages */
+  hosted_page_autosave?: Maybe<Scalars['Boolean']>;
   hosted_page_title?: Maybe<Scalars['String']>;
   logo_url?: Maybe<Scalars['String']>;
 };
@@ -670,6 +672,7 @@ export type Form = {
   questions: Array<Question>;
   release_id: Scalars['String'];
   title: Scalars['String'];
+  trademark?: Maybe<Scalars['String']>;
 };
 
 export enum FormDisplayMode {
