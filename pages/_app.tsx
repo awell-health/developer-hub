@@ -28,7 +28,6 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page: ReactNode) => page)
   const router = useRouter()
-  const { useGPT } = router.query
   const isExamplePage = router.asPath.includes('examples')
   return (
     <>
@@ -46,7 +45,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
 
-      {String(useGPT) === 'true' && <AvaGPT />}
+      <AvaGPT />
 
       <Script id="google-analytics" strategy="lazyOnload">
         {`

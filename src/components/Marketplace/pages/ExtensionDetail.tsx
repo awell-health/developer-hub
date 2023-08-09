@@ -16,7 +16,7 @@ export const ExtensionDetail: FC<ExtensionDetailProps> = ({ extension }) => {
       <section className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8 flex gap-24">
         <div
           id="content-wrapper"
-          className="w-3/4"
+          className="extension-detail w-3/4"
           dangerouslySetInnerHTML={{ __html: extension.htmlDocs }}
         />
         <div className="flex flex-col gap-6">

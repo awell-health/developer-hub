@@ -2,6 +2,21 @@
   @apply text-slate-600;
 }
 
+/* Temporary solution to hide frontMatter from the markdown file */
+#content-wrapper.extension-detail hr:first-of-type {
+  display: none;
+}
+
+/* Temporary solution to hide frontMatter from the markdown file */
+#content-wrapper.extension-detail p:first-of-type {
+  display: none;
+}
+
+/* Temporary solution to hide frontMatter from the markdown file */
+#content-wrapper.extension-detail h2:first-of-type {
+  display: none;
+}
+
 #content-wrapper strong,
 #content-wrapper bold {
   @apply text-sky-500;
@@ -23,7 +38,7 @@
   @apply border-b-2;
 }
 
-#content-wrapper h1:not(:first-child),
+#content-wrapper h1:not(:first-of-type),
 #content-wrapper h2,
 #content-wrapper h3 {
   @apply mt-8;
