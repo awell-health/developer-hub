@@ -75,7 +75,7 @@ export const AvaGPT = () => {
         leave="transition-opacity duration-250"
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-4"
-        className="fixed bottom-4 right-6 z-10 mb-12 ml-[25%] h-1/2 w-1/4 min-w-[75%] rounded-md border-[0.5px] border-[#CCCCCC] dark:border-slate-700 bg-white dark:bg-slate-800 font-sans shadow-md sm:ml-[25%] sm:min-w-[75%] md:ml-[50%] md:min-w-[50%] xl:ml-[75%] xl:min-w-[30%]"
+        className="fixed bottom-4 right-6 z-50 mb-12 ml-[25%] h-1/2 w-1/4 min-w-[75%] rounded-md border-[0.5px] border-[#CCCCCC] dark:border-slate-700 bg-white dark:bg-slate-800 font-sans shadow-md sm:ml-[25%] sm:min-w-[75%] md:ml-[50%] md:min-w-[50%] xl:ml-[75%] xl:min-w-[30%]"
       >
         <div className="x relative m-4 flex h-[96%] flex-col pt-0 text-black">
           <div className="hidden-scrollbar absolute inset-x-0 bottom-0 top-[-10px] z-0 h-[85%] max-w-full overflow-y-auto scroll-smooth px-2 py-4 pb-8 text-base">
