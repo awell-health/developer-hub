@@ -55,6 +55,7 @@ function transformPagesToAlgoliaSearchObjects(pages) {
       description: page.data.description,
       content: page.content,
       slug: page.slug,
+      source: 'developer-hub',
     }
   })
 
@@ -85,7 +86,11 @@ function transformPagesToAlgoliaSearchObjects(pages) {
 
     // initialize the index with your index name
     const index = client.initIndex('awell_developers')
-    await index.clearObjects()
+    const { objectIDs } = await index.deleteBy({
+      filters: 'source:developer-hub',
+    })
+
+    console.log('Objects deleted:', objectIDs)
 
     // save the objects!
     const algoliaResponse = await index.saveObjects([
