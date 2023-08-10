@@ -45,6 +45,10 @@ export const docsMenu: MenuType = [
         title: 'Build Your Own UI',
         path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows/build-your-own-ui-care`,
       },
+      {
+        title: 'Patient Demographics Query',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows/patient-demographics-query`,
+      },
     ],
   },
   {

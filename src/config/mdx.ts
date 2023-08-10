@@ -1,6 +1,7 @@
 import rehypeSlug from 'rehype-slug'
 
 import { Alert } from '@/components/Alert'
+import { CodeTabs } from '@/components/CodeTabs'
 import {
   ActivityIndexSpecs,
   DataPointIndexSpecs,
@@ -48,5 +49,6 @@ export const mdxComponents = {
   PathwayIndexSpecs,
   StepIndexSpecs,
   ActivityIndexSpecs,
+  CodeTabs,
   Properties,
 }
