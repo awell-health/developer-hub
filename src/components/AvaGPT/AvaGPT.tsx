@@ -1,5 +1,5 @@
 import { Transition } from '@headlessui/react'
-import { isEmpty, isNil } from 'lodash'
+import { isEmpty } from 'lodash'
 import { FC, ReactNode, useEffect, useRef, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'

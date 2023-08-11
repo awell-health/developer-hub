@@ -1,4 +1,4 @@
-import { ReferenceType } from '../useAvaGPT'
+import { ReferenceType } from '../types'
 
 export const getUniqueReferences = (refs: ReferenceType[]) => {
   return [
