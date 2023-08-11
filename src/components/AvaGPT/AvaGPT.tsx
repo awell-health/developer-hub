@@ -1,68 +1,84 @@
 import { Transition } from '@headlessui/react'
-import { isNil } from 'lodash'
-import { useRef, useState } from 'react'
+import { isEmpty, isNil } from 'lodash'
+import { FC, ReactNode, useEffect, useRef, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
-import { ReferenceType, useAvaGPT } from '@/hooks/useAvaGPT'
+import { useAvaGPT } from '@/hooks/useAvaGPT/useAvaGPT'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 import { Button } from '../Button'
 import { Code } from '../Docs/atoms'
 
-type GPTAnswer = { answer: string; references: ReferenceType[] } | undefined
+const Caret = () => {
+  return (
+    <span className="caret animate-caret inline-block h-[15px] w-[8px] translate-y-[2px] translate-x-[2px] transform rounded-[1px] bg-blue-600 dark:bg-sky-500" />
+  )
+}
+
+type WithCaretProps = {
+  Component: string
+  children?: ReactNode
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+} & any
+
+const WithCaret: FC<WithCaretProps> = ({ Component, children, ...rest }) => {
+  if (Component === 'code' && rest?.inline) {
+    // The code component mistakenly receives a prop `inline: true` which
+    // the DOM will complain about unless it's converted to a string.
+    rest = {
+      ...rest,
+      inline: 'true',
+    }
+  }
+
+  return (
+    <Component {...rest} className="markdown-node">
+      {children}
+      <Caret />
+    </Component>
+  )
+}
 
 export const AvaGPT = () => {
-  const { getAnswer, getHref } = useAvaGPT()
+  const { answer, references, isLoading, submitPrompt, getHref } = useAvaGPT()
 
   const [isOpen, setIsOpen] = useState(false)
-
-  const [question, setQuestion] = useState('')
-  const [answer, setAnswer] = useState<GPTAnswer>(undefined)
-  const [isLoading, setIsLoading] = useState(false)
+  const [prompt, setPrompt] = useState<string>('')
 
   const ref = useRef<HTMLDivElement>(null)
   useOnClickOutside(ref, () => setIsOpen(false))
+
+  const containerRef = useRef<HTMLDivElement>(null)
+  const answerContainerRef = useRef<HTMLDivElement>(null)
+  const _didCompleteFirstQuery = useRef<boolean>(false)
+
+  useEffect(() => {
+    if (!containerRef.current || !answerContainerRef.current) {
+      return
+    }
+
+    const childRect = answerContainerRef.current.getBoundingClientRect()
+    containerRef.current.scrollTop = childRect.bottom
+  }, [answer, isLoading, references])
+
+  useEffect(() => {
+    if (!isLoading && answer.length > 0) {
+      // This gets called after an answer has completed.
+      if (!_didCompleteFirstQuery.current) {
+        _didCompleteFirstQuery.current = true
+      }
+    }
+  }, [isLoading, answer])
 
   const toggleAvaGPT = () => {
     setIsOpen(!isOpen)
   }
 
-  const logRequest = async (
-    question: string,
-    answer: string,
-    references: string
-  ) => {
-    fetch('/api/log-gpt-requests', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        question,
-        answer,
-        references,
-      }),
-    })
-  }
+  const generateAnswer = async () => {
+    if (isEmpty(prompt)) return
 
-  const generateAnswer = async (prompt: string) => {
-    setIsLoading(true)
-    setAnswer(undefined)
-    const res = await getAnswer(prompt)
-    setIsLoading(false)
-
-    if (!isNil(res)) {
-      setAnswer(res)
-      logRequest(
-        prompt,
-        String(res.answer),
-        res.references.map((ref) => `${ref.title}: ${ref.path}`).join('\n')
-      )
-      return
-    }
-
-    logRequest(prompt, 'Could not find an answer', 'N/A')
-    setAnswer(undefined)
+    await submitPrompt(prompt)
   }
 
   return (
@@ -78,8 +94,12 @@ export const AvaGPT = () => {
         className="fixed bottom-4 right-6 z-50 mb-12 ml-[25%] h-1/2 w-1/4 min-w-[75%] rounded-md border-[0.5px] border-[#CCCCCC] dark:border-slate-700 bg-white dark:bg-slate-800 font-sans shadow-md sm:ml-[25%] sm:min-w-[75%] md:ml-[50%] md:min-w-[50%] xl:ml-[75%] xl:min-w-[30%]"
       >
         <div className="x relative m-4 flex h-[96%] flex-col pt-0 text-black">
-          <div className="hidden-scrollbar absolute inset-x-0 bottom-0 top-[-10px] z-0 h-[85%] max-w-full overflow-y-auto scroll-smooth px-2 py-4 pb-8 text-base">
-            <Transition appear={true} show={!isNil(answer)}>
+          <div
+            ref={containerRef}
+            className="hidden-scrollbar absolute inset-x-0 bottom-0 top-[-10px] z-0 h-[85%] max-w-full overflow-y-auto scroll-smooth px-2 py-4 pb-8 text-base"
+          >
+            {isLoading && !(answer.length > 0) && <Caret />}
+            <Transition appear={true} show={!isEmpty(answer)}>
               <div id="avaGPT">
                 <Transition
                   appear={true}
@@ -90,24 +110,46 @@ export const AvaGPT = () => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <ReactMarkdown
-                    components={{
-                      code({ inline, className, children }) {
-                        if (inline) {
-                          return <code className={className}>{children}</code>
-                        }
-                        return (
-                          <div className="mt-2 mb-6">
-                            <Code className={className || ''}>
-                              {String(children).replace(/\n$/, '')}
-                            </Code>
-                          </div>
-                        )
-                      },
-                    }}
+                  <div
+                    className={
+                      isLoading ? 'prompt-answer-loading' : 'prompt-answer-done'
+                    }
                   >
-                    {answer?.answer || ''}
-                  </ReactMarkdown>
+                    <ReactMarkdown
+                      components={{
+                        p: (props) => <WithCaret Component="p" {...props} />,
+                        span: (props) => (
+                          <WithCaret Component="span" {...props} />
+                        ),
+                        h1: (props) => <WithCaret Component="h1" {...props} />,
+                        h2: (props) => <WithCaret Component="h2" {...props} />,
+                        h3: (props) => <WithCaret Component="h3" {...props} />,
+                        h4: (props) => <WithCaret Component="h4" {...props} />,
+                        h5: (props) => <WithCaret Component="h5" {...props} />,
+                        h6: (props) => <WithCaret Component="h6" {...props} />,
+                        li: (props) => <WithCaret Component="li" {...props} />,
+                        pre: (props) => (
+                          <WithCaret Component="pre" {...props} />
+                        ),
+                        td: (props) => <WithCaret Component="td" {...props} />,
+                        code({ inline, className, children }) {
+                          if (inline) {
+                            return <code className={className}>{children}</code>
+                          }
+                          return (
+                            <div className="mt-2 mb-6">
+                              <Code className={className || ''}>
+                                {String(children).replace(/\n$/, '')}
+                              </Code>
+                            </div>
+                          )
+                        },
+                      }}
+                      remarkPlugins={[remarkGfm]}
+                    >
+                      {answer}
+                    </ReactMarkdown>
+                  </div>
                 </Transition>
               </div>
               <Transition
@@ -123,9 +165,9 @@ export const AvaGPT = () => {
                   <div className="animate-slide-up ">
                     Answer generated from the following sources:
                     <div className="mt-4 flex w-full flex-row flex-wrap items-center gap-2 ">
-                      {answer?.references.map((reference) => (
+                      {references.map((reference) => (
                         <a
-                          key={reference.title}
+                          key={reference.path}
                           className="border-blue-600 bg-blue-600 hover:underline cursor-pointer rounded-md border px-2 py-1 text-sm font-medium text-white no-underline transition"
                           href={getHref(reference.path)}
                         >
@@ -138,7 +180,7 @@ export const AvaGPT = () => {
               </Transition>
             </Transition>
             <Transition
-              show={isNil(answer)}
+              show={isEmpty(answer) && !isLoading}
               appear={false}
               enter="transition transform duration-700"
               enterFrom="opacity-0"
@@ -168,8 +210,8 @@ export const AvaGPT = () => {
                 <strong>V</strong>irtual <strong>A</strong>ssistant.
               </p>
             </Transition>
-            <div className="h-8" />
-            <div />
+            <div ref={answerContainerRef} />
+            <div className="h-4" />
           </div>
           <div className="absolute bottom-4 h-10 w-full border-b dark:border-b-slate-800 bg-[#F2F2F2] dark:bg-slate-700 rounded-md">
             <form className="flex">
@@ -182,14 +224,14 @@ export const AvaGPT = () => {
                 autoCapitalize="on"
                 spellCheck="false"
                 disabled={isLoading}
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value || '')}
               />
               <button
                 className="absolute right-2 h-full w-fit"
                 onClick={(e) => {
                   e.preventDefault()
-                  generateAnswer(question)
+                  generateAnswer()
                 }}
               >
                 {isLoading ? (

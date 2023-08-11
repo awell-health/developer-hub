@@ -1,3 +1,33 @@
+.animate-caret {
+  animation-name: caret;
+  animation-duration: 1000ms;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  transition-timing-function: cubic-bezier(0.14, 0, 0.16, 1);
+}
+
+@keyframes caret {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.prompt-answer-done .caret {
+  @apply hidden;
+}
+
+.prompt-answer-loading :not(:last-child) .caret {
+  @apply hidden;
+}
+
+.prompt-answer-loading :last-child .caret {
+  @apply visible;
+}
+
 #avaGPT {
   @apply text-slate-600;
 }
