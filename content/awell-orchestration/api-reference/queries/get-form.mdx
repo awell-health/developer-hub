@@ -3,11 +3,11 @@ title: Get form
 description: Get the form definition of a given form
 ---
 
-This query allows us to fetch the details and questions for a specific form and can be used to render the form and its questions in your UI.
+This query allows us to fetch the details and questions for a specific form and can be used to render the form and its questions in your UI..
 
 ## Evaluating display logic
 
-Forms in Awell can have questions with display / visibility logic. Meaning that you can conditionally show/hide questions based on previous answers in the form. In order to render the form to the user and show the right questions, you have 2 options:
+A form may have questions that are conditionally shown/hidden based on previous answers in the form, which can be referred to as question visibility logic. In order to ensure you're always showing the right set of questions, you have 2 options:
 
 1. Implement the logic yourself to evaluate the display logic and show/hide questions based on the answers given in a form. You can find the display logic under the `rule` field.
 2. Use the `evaluateFormRules` mutation and just send us the intermediary responses on the questions and we'll let you know what questions need to be shown/hidden. [Click here for more information on this mutation](/awell-orchestration/api-reference/mutations/evaluate-form-rules).
@@ -24,6 +24,7 @@ query GetForm($id: String!) {
       definition_id # static id from Studio
       title
       key # form key set in Studio
+      metadata # JSON metadata string set in Studio
       questions {
         id
         definition_id # static id from Studio
@@ -31,6 +32,7 @@ query GetForm($id: String!) {
         key # question key set in Studio
         dataPointValueType
         questionType
+        metadata # JSON metadata string set in Studio
         options {
           id
           value

@@ -45,6 +45,7 @@ query GetFormsForPublishedPathway(
       definition_id # static id from Studio
       title
       key # form key set in Studio
+      metadata # JSON metadata string set in Studio
       questions {
         id
         definition_id # static id from Studio
@@ -52,6 +53,7 @@ query GetFormsForPublishedPathway(
         key # question key set in Studio
         dataPointValueType
         questionType
+        metadata # JSON metadata string set in Studio
         options {
           id
           value
