@@ -185,6 +185,8 @@ form {
 
 For non-Form activities, this field will return `null`. Currently, the `form` field is only available on this activity query.
 
+Form and question metadata is returned in all form queries as a JSON string rather than a JSON object. This is because the metadata is defined in Studio as a JSON string and we want to avoid any potential parsing errors. You can parse the metadata string into a JSON object in your application (for example, using `JSON.parse` in JavaScript/TypeScript, `json.loads` in Python or `json_decode` in PHP or Ruby).
+
 **Example:**<br/>
 If you'd like to get all pending activities for the patient, you can filter the activities array by `activity.indirect_object.type === PATIENT`.
 

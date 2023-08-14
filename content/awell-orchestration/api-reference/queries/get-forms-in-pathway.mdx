@@ -27,6 +27,10 @@ Please note that this query returns all forms in a published care flow or pathwa
   </figcaption>
 </figure>
 
+## Metadata
+
+Form and question metadata is returned in all form queries as a JSON string rather than a JSON object. This is because the metadata is defined in Studio as a JSON string and we want to avoid any potential parsing errors. You can parse the metadata string into a JSON object in your application (for example, using `JSON.parse` in JavaScript/TypeScript, `json.loads` in Python or `json_decode` in PHP or Ruby).
+
 ## Request
 
 ### Query
