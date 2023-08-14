@@ -6,9 +6,11 @@ export const GET_FORM = gql`
       form {
         id
         title
+        metadata
         questions {
           id
           title
+          metadata
           dataPointValueType
           options {
             id

@@ -7,10 +7,14 @@ This query allows us to fetch the details and questions for a specific form and 
 
 ## Evaluating display logic
 
-Forms in Awell can have questions with display / visibility logic. Meaning that you can conditionally show/hide questions based on previous answers in the form. In order to render the form to the user and show the right questions, you have 2 options:
+A form may have questions that are conditionally shown/hidden based on previous answers in the form, which can be referred to as question visibility logic. In order to ensure you're always showing the right set of questions, you have 2 options:
 
 1. Implement the logic yourself to evaluate the display logic and show/hide questions based on the answers given in a form. You can find the display logic under the `rule` field.
 2. Use the `evaluateFormRules` mutation and just send us the intermediary responses on the questions and we'll let you know what questions need to be shown/hidden. [Click here for more information on this mutation](/awell-orchestration/api-reference/mutations/evaluate-form-rules).
+
+## Metadata
+
+Form and question metadata is returned in all form queries as a JSON string rather than a JSON object. This is because the metadata is defined in Studio as a JSON string and we want to avoid any potential parsing errors. You can parse the metadata string into a JSON object in your application (for example, using `JSON.parse` in JavaScript/TypeScript, `json.loads` in Python or `json_decode` in PHP or Ruby).
 
 ## Request
 
@@ -24,6 +28,7 @@ query GetForm($id: String!) {
       definition_id # static id from Studio
       title
       key # form key set in Studio
+      metadata # JSON metadata string set in Studio
       questions {
         id
         definition_id # static id from Studio
@@ -31,6 +36,7 @@ query GetForm($id: String!) {
         key # question key set in Studio
         dataPointValueType
         questionType
+        metadata # JSON metadata string set in Studio
         options {
           id
           value
