@@ -277,7 +277,7 @@ export const AvaGPT = () => {
           </div>
         </div>
       </Transition>
-      <div className="fixed bottom-4 right-6 z-10">
+      <div className="fixed bottom-4 right-6 z-30">
         <Button onClick={toggleAvaGPT} color="sky">
           <svg
             xmlns="http://www.w3.org/2000/svg"
