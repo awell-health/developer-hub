@@ -669,6 +669,7 @@ export type Form = {
   definition_id: Scalars['String'];
   id: Scalars['ID'];
   key: Scalars['String'];
+  metadata?: Maybe<Scalars['String']>;
   questions: Array<Question>;
   release_id: Scalars['String'];
   title: Scalars['String'];
@@ -835,6 +836,8 @@ export type Mutation = {
   deletePatient: EmptyPayload;
   evaluateFormRules: EvaluateFormRulesPayload;
   markMessageAsRead: MarkMessageAsReadPayload;
+  /** Retrieve patient demographics from an external system */
+  requestPatientDemographics: PatientDemographicsPayload;
   retryActivity: EmptyPayload;
   retryAllApiCalls: EmptyPayload;
   retryAllFailedApiCalls: EmptyPayload;
@@ -855,6 +858,8 @@ export type Mutation = {
   submitFormResponse: SubmitFormResponsePayload;
   updateBaselineInfo: EmptyPayload;
   updatePatient: UpdatePatientPayload;
+  /** Update which patient was created after import request for logging purposes */
+  updatePatientDemographicsQuery: UpdatePatientDemographicsQueryPayload;
   updatePatientLanguage: UpdatePatientLanguagePayload;
 };
 
@@ -892,6 +897,11 @@ export type MutationEvaluateFormRulesArgs = {
 
 export type MutationMarkMessageAsReadArgs = {
   input: MarkMessageAsReadInput;
+};
+
+
+export type MutationRequestPatientDemographicsArgs = {
+  input: PatientDemographicsInput;
 };
 
 
@@ -992,6 +1002,11 @@ export type MutationUpdateBaselineInfoArgs = {
 
 export type MutationUpdatePatientArgs = {
   input: UpdatePatientInput;
+};
+
+
+export type MutationUpdatePatientDemographicsQueryArgs = {
+  input: UpdatePatientDemographicsQueryInput;
 };
 
 
@@ -1120,6 +1135,26 @@ export type PathwaysPayload = Payload & {
   pathways: Array<PathwaySummary>;
   sorting?: Maybe<SortingOutput>;
   success: Scalars['Boolean'];
+};
+
+export type PatientDemographicsInput = {
+  patient_identifier: Scalars['String'];
+};
+
+export type PatientDemographicsPayload = Payload & {
+  __typename?: 'PatientDemographicsPayload';
+  code: Scalars['String'];
+  entry?: Maybe<Array<UserProfile>>;
+  query_id: Scalars['String'];
+  status: Scalars['String'];
+  success: Scalars['Boolean'];
+  total?: Maybe<Scalars['Float']>;
+};
+
+export type PatientDemographicsQueryConfigurationPayload = {
+  __typename?: 'PatientDemographicsQueryConfigurationPayload';
+  input_box_text?: Maybe<Scalars['String']>;
+  is_enabled: Scalars['Boolean'];
 };
 
 export type PatientPathway = {
@@ -1261,6 +1296,7 @@ export type Query = {
   pathwayStepActivities: ActivitiesPayload;
   pathways: PathwaysPayload;
   patient: PatientPayload;
+  patientDemographicsQueryConfiguration: PatientDemographicsQueryConfigurationPayload;
   patientPathways: PatientPathwaysPayload;
   patients: PatientsPayload;
   publishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
@@ -1491,6 +1527,7 @@ export type Question = {
   definition_id: Scalars['String'];
   id: Scalars['ID'];
   key: Scalars['String'];
+  metadata?: Maybe<Scalars['String']>;
   options?: Maybe<Array<Option>>;
   questionConfig?: Maybe<QuestionConfig>;
   questionType?: Maybe<QuestionType>;
@@ -1978,6 +2015,22 @@ export type TranslatedText = {
 export type UpdateBaselineInfoInput = {
   baseline_info: Array<BaselineInfoInput>;
   pathway_id: Scalars['String'];
+};
+
+export type UpdatePatientDemographicsQueryInput = {
+  /** Index from the array returned from the PDQ response, which was used to create the patient */
+  created_patient_entry_index: Scalars['Float'];
+  /** Patient ID of the created patient in Awell */
+  created_patient_id: Scalars['String'];
+  query_id: Scalars['String'];
+};
+
+export type UpdatePatientDemographicsQueryPayload = Payload & {
+  __typename?: 'UpdatePatientDemographicsQueryPayload';
+  code: Scalars['String'];
+  created_patient_entry_index: Scalars['Float'];
+  created_patient_id: Scalars['String'];
+  success: Scalars['Boolean'];
 };
 
 export type UpdatePatientInput = {
