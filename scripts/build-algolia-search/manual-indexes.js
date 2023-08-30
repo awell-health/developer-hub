@@ -1,4 +1,4 @@
-const manualIndexes = [
+export const manualIndexes = [
   {
     objectID: 'awell-orchestration/developer-tools/api/playground',
     space: 'Awell Orchestration',
@@ -66,5 +66,3 @@ const manualIndexes = [
     slug: 'awell-extensions/marketplace',
   },
 ]
-
-module.exports = manualIndexes
