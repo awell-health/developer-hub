@@ -7,6 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
+    const id = req.body?.id || ''
     const question = req.body?.question || ''
     const answer = req.body?.answer || ''
     const references = req.body?.references || ''
@@ -18,6 +19,7 @@ export default async function handler(
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        id,
         question,
         answer,
         references,
