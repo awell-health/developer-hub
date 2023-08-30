@@ -1,0 +1,1 @@
+export { submitFeedback } from './submitFeedback'

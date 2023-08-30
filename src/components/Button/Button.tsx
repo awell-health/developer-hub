@@ -1,6 +1,7 @@
-import { ReactNode } from 'react'
+import clsx from 'clsx'
+import { ButtonHTMLAttributes, FC, ReactNode } from 'react'
 
-import { ButtonColorType, ButtonSizeType, ButtonType } from './button.types'
+import { ButtonColorType, ButtonSizeType } from './button.types'
 import {
   buttonColors,
   buttonSizes,
@@ -8,34 +9,31 @@ import {
   DEFAULT_BUTTON_SIZE,
 } from './buttonStyles'
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColorType
   size?: ButtonSizeType
   disabled?: boolean
-  type?: ButtonType
   fullWidth?: boolean
   onClick: () => void
   children: ReactNode
 }
 
-export const Button = ({
+export const Button: FC<ButtonProps> = ({
   color = DEFAULT_BUTTON_COLOR,
   size = DEFAULT_BUTTON_SIZE,
   fullWidth,
-  onClick,
-  type = 'button',
-  disabled = false,
   children,
-}: ButtonProps) => {
+  className,
+  ...rest
+}) => {
+  const classNames = clsx(
+    `btn-base ${buttonSizes[size]} ${buttonColors[color]}`,
+    fullWidth ? 'w-full flex justify-center' : '',
+    className
+  )
+
   return (
-    <button
-      type={type}
-      className={`btn-base ${buttonSizes[size]} ${buttonColors[color]} ${
-        fullWidth ? 'w-full flex justify-center' : ''
-      }`}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button className={classNames} {...rest}>
       {children}
     </button>
   )

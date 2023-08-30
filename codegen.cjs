@@ -1,17 +1,22 @@
+// @ts-check
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { loadEnvConfig } = require('@next/env')
 
 loadEnvConfig(process.cwd())
 
-module.exports = {
+/** @type {import("@graphql-codegen/cli").CodegenConfig} */
+const config = {
   overwrite: true,
   schema: {
-    [process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL ?? 'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql']: {
+    [process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL ??
+    'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql']: {
       headers: {
-        apiKey: process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_KEY,
+        apiKey: process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_KEY || '',
       },
     },
   },
+  emitLegacyCommonJSImports: false,
   generates: {
     'src/types/generated/api.types.ts': {
       plugins: [
@@ -22,3 +27,5 @@ module.exports = {
     },
   },
 }
+
+module.exports = config

@@ -1,4 +1,3 @@
-export { useAvaGPT } from './useAvaGPT'
 export { useBadge } from './useBadge'
 export { useBreadcrumb } from './useBreadcrumb'
 export { useClipboard } from './useClipboard'

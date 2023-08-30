@@ -1,57 +1,96 @@
 import { Transition } from '@headlessui/react'
-import { isEmpty } from 'lodash'
-import { FC, ReactNode, useEffect, useRef, useState } from 'react'
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-import { useAvaGPT } from '@/hooks/useAvaGPT/useAvaGPT'
+import { usePrompt } from '@/hooks/avaGPT'
+import { getHref } from '@/hooks/avaGPT/utils'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 import { Button } from '../Button'
 import { Code } from '../Docs/atoms'
+import { Caret, Feedback, WithCaret } from './atoms'
 
-const Caret = () => {
-  return (
-    <span className="caret animate-caret inline-block h-[15px] w-[8px] translate-y-[2px] translate-x-[2px] transform rounded-[1px] bg-blue-600 dark:bg-sky-500" />
-  )
-}
+const PROMPT_TEMPLATE = `
+You are a Ava, Awell's Virtual Assistant, a very enthusiastic digital companion at Awell who loves to help people. Given the following sections from the documentation (preceded by a section id), answer the question using only that information, outputted in Markdown format.
 
-type WithCaretProps = {
-  Component: string
-  children?: ReactNode
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-} & any
+Additionally, here are some guidelines to help you answer questions:
+- When people ask about integrations with Awell or extensions, always include a link to the Awell marketplace (https://developers.awellhealth.com/awell-extensions/marketplace). Here they can find all the available integrations and extensions. If someone asks about an integration or extension that is not in the list, tell them it is not available yet. Also, always refer to our marketplace (https://developers.awellhealth.com/awell-extensions/marketplace) for the latest list of available integrations and extensions.
+- When people try to have a conversation with you, be polite and tell them you are a bot. Always include a joke or a fun fact to make the conversation more enjoyable. At Awell we love turtles, so we prefer turtle facts or jokes (https://www.factretriever.com/turtle-facts).
+- Only include links in the answer that were explicitly mentioned in the context or in these guidelines.
+- A "care flow" is a synonym for "pathway" so if someone refers to "How to start a care flow for a patient", you can interpret that as "How to start a pathway for a patient".
 
-const WithCaret: FC<WithCaretProps> = ({ Component, children, ...rest }) => {
-  if (Component === 'code' && rest?.inline) {
-    // The code component mistakenly receives a prop `inline: true` which
-    // the DOM will complain about unless it's converted to a string.
-    rest = {
-      ...rest,
-      inline: 'true',
-    }
-  }
+Finally, you should always offer answers with high conviction, based on the provided context. If you are unsure and the answer is not explicitly written in the context, say "{{I_DONT_KNOW}}".
 
-  return (
-    <Component {...rest} className="markdown-node">
-      {children}
-      <Caret />
-    </Component>
-  )
-}
+Context sections:
+---
+{{CONTEXT}}
+
+Question: "{{PROMPT}}"
+
+Answer (including related code snippets if available):
+`
+
+const MARKPROMPT_TOKEN = process.env.NEXT_PUBLIC_MARKPROMPT_TOKEN || ''
+const IDONTKNOWMESSAGE =
+  'Sorry, I am not sure how to answer that question. Please reach out to one of my colleagues via Intercom, you can have a chat with them by clicking the Intercom bubble in the bottom left corner of the screen.'
 
 export const AvaGPT = () => {
-  const { answer, references, isLoading, submitPrompt, getHref } = useAvaGPT()
+  const {
+    answer,
+    references,
+    state,
+    prompt,
+    setPrompt,
+    submitPrompt,
+    abort,
+    submitFeedback,
+    abortFeedbackRequest,
+  } = usePrompt({
+    projectKey: MARKPROMPT_TOKEN,
+    promptOptions: {
+      promptTemplate: PROMPT_TEMPLATE,
+      iDontKnowMessage: IDONTKNOWMESSAGE,
+    },
+    feedbackOptions: {
+      enabled: true,
+    },
+  })
 
   const [isOpen, setIsOpen] = useState(false)
-  const [prompt, setPrompt] = useState<string>('')
 
   const ref = useRef<HTMLDivElement>(null)
   useOnClickOutside(ref, () => setIsOpen(false))
 
   const containerRef = useRef<HTMLDivElement>(null)
   const answerContainerRef = useRef<HTMLDivElement>(null)
-  const _didCompleteFirstQuery = useRef<boolean>(false)
+
+  useEffect(() => {
+    if (isOpen === false) abort()
+    return () => abort()
+  }, [isOpen, abort])
+
+  const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      setPrompt(event.target.value)
+    },
+    [setPrompt]
+  )
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback(
+    async (event) => {
+      event.preventDefault()
+      submitPrompt()
+    },
+    [submitPrompt]
+  )
 
   useEffect(() => {
     if (!containerRef.current || !answerContainerRef.current) {
@@ -60,26 +99,11 @@ export const AvaGPT = () => {
 
     const childRect = answerContainerRef.current.getBoundingClientRect()
     containerRef.current.scrollTop = childRect.bottom
-  }, [answer, isLoading, references])
+  }, [answer, references])
 
-  useEffect(() => {
-    if (!isLoading && answer.length > 0) {
-      // This gets called after an answer has completed.
-      if (!_didCompleteFirstQuery.current) {
-        _didCompleteFirstQuery.current = true
-      }
-    }
-  }, [isLoading, answer])
-
-  const toggleAvaGPT = () => {
-    setIsOpen(!isOpen)
-  }
-
-  const generateAnswer = async () => {
-    if (isEmpty(prompt)) return
-
-    await submitPrompt(prompt)
-  }
+  const toggleAvaGPT = useCallback(() => {
+    setIsOpen((prevIsOpen) => !prevIsOpen)
+  }, [])
 
   return (
     <div ref={ref}>
@@ -98,89 +122,104 @@ export const AvaGPT = () => {
             ref={containerRef}
             className="hidden-scrollbar absolute inset-x-0 bottom-0 top-[-10px] z-0 h-[85%] max-w-full overflow-y-auto scroll-smooth px-2 py-4 pb-8 text-base"
           >
-            {isLoading && !(answer.length > 0) && <Caret />}
-            <Transition appear={true} show={!isEmpty(answer)}>
-              <div id="avaGPT">
-                <Transition
-                  appear={true}
-                  enter="transition transform duration-1000"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="transition-opacity duration-300"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <div
-                    className={
-                      isLoading ? 'prompt-answer-loading' : 'prompt-answer-done'
-                    }
-                  >
-                    <ReactMarkdown
-                      components={{
-                        p: (props) => <WithCaret Component="p" {...props} />,
-                        span: (props) => (
-                          <WithCaret Component="span" {...props} />
-                        ),
-                        h1: (props) => <WithCaret Component="h1" {...props} />,
-                        h2: (props) => <WithCaret Component="h2" {...props} />,
-                        h3: (props) => <WithCaret Component="h3" {...props} />,
-                        h4: (props) => <WithCaret Component="h4" {...props} />,
-                        h5: (props) => <WithCaret Component="h5" {...props} />,
-                        h6: (props) => <WithCaret Component="h6" {...props} />,
-                        li: (props) => <WithCaret Component="li" {...props} />,
-                        pre: (props) => (
-                          <WithCaret Component="pre" {...props} />
-                        ),
-                        td: (props) => <WithCaret Component="td" {...props} />,
-                        code({ inline, className, children }) {
-                          if (inline) {
-                            return <code className={className}>{children}</code>
-                          }
-                          return (
-                            <div className="mt-2 mb-6">
-                              <Code className={className || ''}>
-                                {String(children).replace(/\n$/, '')}
-                              </Code>
-                            </div>
-                          )
-                        },
-                      }}
-                      remarkPlugins={[remarkGfm]}
-                    >
-                      {answer}
-                    </ReactMarkdown>
-                  </div>
-                </Transition>
-              </div>
+            {state === 'preload' && !(answer.length > 0) && <Caret />}
+            <div id="avaGPT">
               <Transition
                 appear={true}
-                enter="transition transform duration-700"
-                enterFrom="opacity-0 translate-y-20"
-                enterTo="opacity-100 translate-y-0"
+                show={state === 'streaming-answer' || state === 'done'}
+                enter="transition transform duration-1000"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
                 leave="transition-opacity duration-300"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 translate-y-20"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
               >
-                <div className="mt-6 border-t border-slate-200 dark:border-slate-600 pt-4 text-sm text-slate-500 dark:text-slate-400">
-                  <div className="animate-slide-up ">
-                    Answer generated from the following sources:
-                    <div className="mt-4 flex w-full flex-row flex-wrap items-center gap-2 ">
-                      {references.map((reference) => (
-                        <a
-                          key={reference.path}
-                          className="border-blue-600 bg-blue-600 hover:underline cursor-pointer rounded-md border px-2 py-1 text-sm font-medium text-white no-underline transition"
-                          href={getHref(reference.path)}
-                        >
-                          {reference.title}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
+                <div
+                  className={
+                    state === 'preload' || state === 'streaming-answer'
+                      ? 'prompt-answer-loading'
+                      : 'prompt-answer-done'
+                  }
+                >
+                  <ReactMarkdown
+                    components={{
+                      p: (props) => <WithCaret Component="p" {...props} />,
+                      span: (props) => (
+                        <WithCaret Component="span" {...props} />
+                      ),
+                      h1: (props) => <WithCaret Component="h1" {...props} />,
+                      h2: (props) => <WithCaret Component="h2" {...props} />,
+                      h3: (props) => <WithCaret Component="h3" {...props} />,
+                      h4: (props) => <WithCaret Component="h4" {...props} />,
+                      h5: (props) => <WithCaret Component="h5" {...props} />,
+                      h6: (props) => <WithCaret Component="h6" {...props} />,
+                      li: (props) => <WithCaret Component="li" {...props} />,
+                      pre: (props) => <WithCaret Component="pre" {...props} />,
+                      td: (props) => <WithCaret Component="td" {...props} />,
+                      code({ inline, className, children }) {
+                        if (inline) {
+                          return <code className={className}>{children}</code>
+                        }
+                        return (
+                          <div className="mt-2 mb-6">
+                            <Code className={className || ''}>
+                              {String(children).replace(/\n$/, '')}
+                            </Code>
+                          </div>
+                        )
+                      },
+                    }}
+                    remarkPlugins={[remarkGfm]}
+                  >
+                    {answer}
+                  </ReactMarkdown>
                 </div>
               </Transition>
+            </div>
+            <Transition
+              appear={true}
+              show={state === 'done'}
+              enter="transition transform duration-1000"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity duration-300"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Feedback
+                submitFeedback={submitFeedback}
+                abortFeedbackRequest={abortFeedbackRequest}
+              />
             </Transition>
             <Transition
-              show={isEmpty(answer) && !isLoading}
+              appear={true}
+              show={state === 'done'}
+              enter="transition transform duration-700"
+              enterFrom="opacity-0 translate-y-20"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition-opacity duration-300"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-20"
+            >
+              <div className="mt-6 border-t border-slate-200 dark:border-slate-600 pt-4 text-sm text-slate-500 dark:text-slate-400">
+                <div className="animate-slide-up ">
+                  Answer generated from the following sources:
+                  <div className="mt-4 flex w-full flex-row flex-wrap items-center gap-2 ">
+                    {references.map((reference) => (
+                      <a
+                        key={reference.file.path}
+                        className="border-blue-600 bg-blue-600 hover:underline cursor-pointer rounded-md border px-2 py-1 text-sm font-medium text-white no-underline transition"
+                        href={getHref(reference.file.path)}
+                      >
+                        {reference.file.title}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Transition>
+            <Transition
+              show={state === 'indeterminate'}
               appear={false}
               enter="transition transform duration-700"
               enterFrom="opacity-0"
@@ -214,7 +253,7 @@ export const AvaGPT = () => {
             <div className="h-4" />
           </div>
           <div className="absolute bottom-4 h-10 w-full border-b dark:border-b-slate-800 bg-[#F2F2F2] dark:bg-slate-700 rounded-md">
-            <form className="flex">
+            <form className="flex" onSubmit={handleSubmit}>
               <input
                 type="text"
                 placeholder="How to authenticate with the Awell API?"
@@ -223,18 +262,12 @@ export const AvaGPT = () => {
                 autoCorrect="on"
                 autoCapitalize="on"
                 spellCheck="false"
-                disabled={isLoading}
+                disabled={state === 'preload' || state === 'streaming-answer'}
                 value={prompt}
-                onChange={(e) => setPrompt(e.target.value || '')}
+                onChange={handleChange}
               />
-              <button
-                className="absolute right-2 h-full w-fit"
-                onClick={(e) => {
-                  e.preventDefault()
-                  generateAnswer()
-                }}
-              >
-                {isLoading ? (
+              <button className="absolute right-2 h-full w-fit" type="submit">
+                {state === 'preload' || state === 'streaming-answer' ? (
                   <svg
                     className="text-blue-600 dark:text-sky-500 h-6 w-6 animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
