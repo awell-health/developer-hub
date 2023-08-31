@@ -59,9 +59,7 @@ export const AvaGPT = () => {
       promptTemplate: PROMPT_TEMPLATE,
       iDontKnowMessage: IDONTKNOWMESSAGE,
     },
-    feedbackOptions: {
-      enabled: true,
-    },
+    feedbackOptions: {},
   })
 
   const [isOpen, setIsOpen] = useState(false)
