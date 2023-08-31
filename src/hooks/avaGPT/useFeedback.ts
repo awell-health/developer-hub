@@ -1,8 +1,10 @@
+import {
+  type PromptFeedback,
+  type SubmitFeedbackOptions,
+  submitFeedback as submitFeedbackToMarkprompt,
+} from '@markprompt/core'
 import { useCallback } from 'react'
 
-import { submitFeedback as submitFeedbackToMarkprompt } from './markprompt_api'
-import type { MarkpromptOptions } from './types'
-import { type PromptFeedback } from './types'
 import { useAbortController } from './useAbortController'
 import type { PromptLoadingState } from './usePrompt'
 
@@ -12,7 +14,7 @@ export interface UseFeedbackOptions {
   /** ID for the current prompt */
   promptId?: string
   /** Enable and configure feedback functionality */
-  feedbackOptions?: MarkpromptOptions['feedback']
+  feedbackOptions?: SubmitFeedbackOptions
   state: PromptLoadingState
 }
 

@@ -1,16 +1,16 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-
 import {
+  type FileSectionReference,
+  type PromptFeedback,
+  type SubmitFeedbackOptions,
   type SubmitPromptOptions,
   submitPrompt as submitPromptToMarkprompt,
-} from './markprompt_api/submitPrompt'
-import { type FileSectionReference, type PromptFeedback } from './types'
-import type { MarkpromptOptions } from './types.js'
+} from '@markprompt/core'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+
 import { useAbortController } from './useAbortController'
 import { useFeedback } from './useFeedback'
 import { useLogRequest } from './useLogRequest'
-import { getUniqueReferences } from './utils'
-import { isAbortError } from './utils/markprompt'
+import { getUniqueReferences, isAbortError } from './utils'
 
 export type PromptLoadingState =
   | 'indeterminate'
@@ -24,7 +24,7 @@ export interface UsePromptOptions {
   /** Enable and configure prompt functionality */
   promptOptions?: Omit<SubmitPromptOptions, 'signal'>
   /** Enable and configure feedback functionality */
-  feedbackOptions?: MarkpromptOptions['feedback']
+  feedbackOptions?: SubmitFeedbackOptions
   /** Display debug info */
   debug?: boolean
 }

@@ -1,11 +1,11 @@
-import algoliasearch from 'algoliasearch'
-import dotenv from 'dotenv'
-import fs from 'fs'
-import glob from 'glob'
-import matter from 'gray-matter'
-import path from 'path'
+const dotenv = require('dotenv')
+const path = require('path')
+const fs = require('fs')
+const glob = require('glob')
+const matter = require('gray-matter')
+const algoliasearch = require('algoliasearch')
 
-import { manualIndexes } from './manual-indexes.js'
+const manualIndexes = require('./manual-indexes')
 
 const CONTENT_PATH = path.join(process.cwd(), 'content')
 

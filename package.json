@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "generate-types": "graphql-codegen --config codegen.cjs",
+    "generate-types": "graphql-codegen --config codegen.js",
     "prebuild": "npm run generate-types",
     "build": "next build",
     "postbuild": "node ./scripts/build-algolia-search/build-algolia-search.js",
@@ -16,8 +16,6 @@
     "lint": "next lint",
     "clean": "rm -rf ./.next && rm ./tsconfig.tsbuildinfo"
   },
-  "sideEffects": false,
-  "type": "module",
   "dependencies": {
     "@algolia/autocomplete-js": "^1.5.6",
     "@apollo/client": "^3.5.10",
@@ -25,6 +23,7 @@
     "@graphql-codegen/typescript": "^4.0.1",
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
+    "@markprompt/core": "^0.11.0",
     "@radix-ui/react-visually-hidden": "^1.0.3",
     "@rjsf/core": "^4.1.1",
     "algoliasearch": "^4.13.0",
@@ -41,6 +40,7 @@
     "lucide-react": "^0.263.0",
     "next": "^12.0.8",
     "next-mdx-remote": "^3.0.8",
+    "next-transpile-modules": "^9.1.0",
     "prism-react-renderer": "^1.3.1",
     "react": "^17.0.2",
     "react-content-loader": "^6.2.0",

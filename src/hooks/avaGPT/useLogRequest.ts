@@ -1,6 +1,6 @@
+import { type FileSectionReference } from '@markprompt/core'
 import { useCallback } from 'react'
 
-import { type FileSectionReference } from './types'
 import { getUniqueReferences } from './utils'
 
 export interface useLogRequestOptions {

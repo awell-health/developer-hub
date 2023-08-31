@@ -1,4 +1,4 @@
-export const manualIndexes = [
+module.exports = [
   {
     objectID: 'awell-orchestration/developer-tools/api/playground',
     space: 'Awell Orchestration',

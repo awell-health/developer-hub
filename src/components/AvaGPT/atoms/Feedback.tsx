@@ -1,3 +1,4 @@
+import { type PromptFeedback } from '@markprompt/core'
 import React, {
   type ComponentPropsWithoutRef,
   type ReactElement,
@@ -6,7 +7,6 @@ import React, {
 } from 'react'
 
 import { Button } from '@/components/Button'
-import { PromptFeedback } from '@/hooks/avaGPT/types.js'
 
 interface FeedbackProps extends ComponentPropsWithoutRef<'aside'> {
   submitFeedback: (feedback: PromptFeedback) => void

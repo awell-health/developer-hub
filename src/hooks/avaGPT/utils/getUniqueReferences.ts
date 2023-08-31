@@ -1,4 +1,4 @@
-import { FileSectionReference } from '../types'
+import { type FileSectionReference } from '@markprompt/core'
 
 export const getUniqueReferences = (refs: FileSectionReference[]) => {
   return [
