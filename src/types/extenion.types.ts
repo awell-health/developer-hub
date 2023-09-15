@@ -9,6 +9,8 @@ export type Extension = {
   }
   settings: Record<string, unknown>
   actions: Record<string, { title: string; description: string }>
-  webhooks: Array<unknown>
+  webhooks: Array<{
+    key: string
+  }>
   htmlDocs: string
 }

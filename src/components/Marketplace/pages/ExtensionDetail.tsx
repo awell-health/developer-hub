@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash'
 import { FC } from 'react'
 
 import { Extension } from '@/types/extenion.types'
@@ -26,6 +27,13 @@ export const ExtensionDetail: FC<ExtensionDetailProps> = ({ extension }) => {
               <div key={action.title}>{action.title}</div>
             ))}
           </ExtensionProperty>
+          {!isEmpty(extension.webhooks) && (
+            <ExtensionProperty label="Webhooks">
+              {Object.values(extension.webhooks).map((webhook) => (
+                <div key={webhook.key}>{webhook.key}</div>
+              ))}
+            </ExtensionProperty>
+          )}
           <ExtensionProperty label="Author">
             {extension.author.authorType}
           </ExtensionProperty>
