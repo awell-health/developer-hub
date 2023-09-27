@@ -2064,6 +2064,7 @@ export type User = {
   id: Scalars['ID']['output'];
   profile?: Maybe<UserProfile>;
   tenant: Tenant;
+  tenant_id: Scalars['String']['output'];
 };
 
 export type UserPayload = Payload & {
