@@ -37,7 +37,7 @@ query GetStakeholdersByDefinitionIds($stakeholder_definition_ids: [String!]!) {
 
 ### stakeholdersByPathwayDefinitionIds
 
-Get published stakeholders details by one or more release IDs, useful for when you want an overview of all stakeholders for a specific version(s) of a care flow.
+Get published stakeholders details by one or more care flow definition IDs, useful for ensuring you have all stakeholders across all versions of a care flow (e.g. if a stakeholder was removed in a newer version of a care flow).
 
 ```graphql
 query GetStakeholdersByPathwayDefinitionIds(
@@ -61,7 +61,7 @@ query GetStakeholdersByPathwayDefinitionIds(
 
 ### stakeholdersByReleaseIds
 
-Get published stakeholders details by one or more care flow definition IDs, useful for ensuring you have all stakeholders across all versions of a care flow (e.g. if a stakeholder was removed in a newer version of a care flow).
+Get published stakeholders details by one or more release IDs, useful for when you want an overview of all stakeholders for a specific version(s) of a care flow.
 
 ```graphql
 query GetStakeholdersByReleaseIds($release_ids: [String!]!) {
