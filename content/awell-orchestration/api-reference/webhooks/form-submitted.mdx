@@ -22,6 +22,19 @@ showPlaygroundButton: false
     },
     {...}
   ],
+  "form": {
+    "title": "<FORM_TITLE>",
+    "questions": [
+      {
+        "title": "<QUESTION_TITLE>",
+        "key": "<QUESTION_KEY>",
+        "definition_id": "<QUESTION_DEFINITION_ID>",
+        "questionType": "input / no_input / multiple_choice",
+        "userQuestionType": "<See UserQuestionType enum below>",
+        "titleHtml": "<QUESTION_TITLE_IN_HTML>", // Question title as HTML; only populated for Description userQuestionType
+      }
+    ]
+  },
   "pathway": {
     "id": "<PATHWAY_ID>",
     "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
@@ -29,5 +42,22 @@ showPlaygroundButton: false
     "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
   },
   "event_type": "form.submitted"
+}
+```
+
+```typescript
+enum UserQuestionType {
+  MULTIPLE_SELECT = 'multiple_select',
+  MULTIPLE_CHOICE = 'multiple_choice',
+  NUMBER = 'number',
+  YES_NO = 'yes_no',
+  DATE = 'date',
+  SHORT_TEXT = 'short_text',
+  LONG_TEXT = 'long_text',
+  SLIDER = 'slider',
+  DESCRIPTION = 'description',
+  MULTIPLE_CHOICE_GRID = 'multiple_choice_grid',
+  SIGNATURE = 'signature',
+  TELEPHONE = 'telephone',
 }
 ```
