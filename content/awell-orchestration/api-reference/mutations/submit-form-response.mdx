@@ -180,6 +180,45 @@ The following input fields are available:
   </table>
 </div>
 
+---
+
+## Errors
+
+### Missing Value for Required Question
+
+When submitting a form response, if a required question does not have an answer, the backend will return a GraphQL error. The error response will look like this:
+
+```json
+{
+  "errors": [
+        {
+            "message": "A required field for question is missing a value.",
+            ...
+            "name": "GraphQLError",
+            ...
+            "extensions": {
+                "errorId": "TTRr2bXHM4OKMIEP-CrPm",
+                "data": {},
+                "type": "UNKNOWN_SERVER_ERROR",
+                "code": "INTERNAL_SERVER_ERROR"
+            }
+        }
+    ],
+    "data": null
+}
+
+```
+
+**Description**: This error indicates that one or more required questions in the form were not answered.
+The  `message`  field in the error object will provide details about the missing values.
+
+# How to Handle on the Frontend:
+
+Examine the GraphQL response for the `errors` field.
+If present, iterate over the `errors` array and look for the `message` key. This key will contain a list of the `question_definition_id` that are missing values.
+Use the information from the `message` key to display a user-friendly error message or handle it programmatically.
+
 ## How to use
 
 <HowToUse storyIds={['conversational-form', 'form']} />
+```
