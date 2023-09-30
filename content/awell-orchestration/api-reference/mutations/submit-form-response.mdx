@@ -186,20 +186,39 @@ The following input fields are available:
 
 ### Missing Value for Required Question
 
-When submitting a form response, if a required question does not have an answer, the backend will return a GraphQL error. The error response will look like this:
+When submitting a form response, if a required question is left unanswered, the backend will return a GraphQL error. The error response will appear as follows:
 
 ```json
 {
-  "errors": [
+    "errors": [
         {
-            "message": "A required field for question is missing a value.",
+            "stack": "SubmitFormError: Required question is missing an answer\n
             ...
+            "message": "Required question is missing an answer",
             "name": "GraphQLError",
-            ...
+            "originalError": {...},
+             ...
             "extensions": {
-                "errorId": "TTRr2bXHM4OKMIEP-CrPm",
-                "data": {},
-                "type": "UNKNOWN_SERVER_ERROR",
+                "errorId": "V8FiQfu8agvU7hjtakX7o",
+                "data": {
+                    "data": [
+                        {
+                            "_key": "6NGOn6QxLqra",
+                            "_id": "QuestionComponent/6NGOn6QxLqra",
+                            "definition_id": "jYQeP4fgq1_9",
+                            "title": "Q1"
+                        },
+                        {
+                            "_key": "-Nfe4khOpu4T",
+                            "_id": "QuestionComponent/-Nfe4khOpu4T",
+                            "definition_id": "VwQm8oP_u90s",
+                            "title": "Q4"
+                        }
+                    ],
+                    "customMessage": "Required question is missing an answer"
+                },
+                "type": "MISSING_REQUIRED_ANSWER",
+                "statusCode": 400,
                 "code": "INTERNAL_SERVER_ERROR"
             }
         }
@@ -209,13 +228,8 @@ When submitting a form response, if a required question does not have an answer,
 ```
 
 **Description**: This error indicates that one or more required questions in the form were not answered.
-The `message` field in the error object will provide details about the missing values.
-
-### How to Handle on the Frontend:
-
-Examine the GraphQL response for the `errors` field.
-If present, iterate over the `errors` array and look for the `message` key. This key will contain a list of the `question_definition_id` that are missing values.
-Use the information from the `message` key to display a user-friendly error message or handle it programmatically.
+The `extensions` field in the error object will provide details about the missing values.
+The unanswered questions are listed under extensions.data.data, and you can check the `title`, `_key` or `definition_id` for each question to see which ones are missing answers."
 
 ## How to use
 
