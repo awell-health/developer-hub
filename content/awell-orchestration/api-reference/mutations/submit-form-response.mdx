@@ -180,24 +180,19 @@ The following input fields are available:
   </table>
 </div>
 
----
-
 ## Errors
 
 ### Missing Value for Required Question
 
-When submitting a form response, if a required question is left unanswered, the backend will return a GraphQL error. The error response will appear as follows:
+When submitting a form response, if one or more required questions are left unanswered, the backend will return a GraphQL error. The error response will appear as follows:
 
 ```json
 {
     "errors": [
         {
-            "stack": "SubmitFormError: Required question is missing an answer\n
-            ...
-            "message": "Required question is missing an answer",
+            "message": "One or more required questions are unanswered.",
             "name": "GraphQLError",
             "originalError": {...},
-             ...
             "extensions": {
                 "errorId": "V8FiQfu8agvU7hjtakX7o",
                 "data": {
@@ -215,21 +210,20 @@ When submitting a form response, if a required question is left unanswered, the 
                             "title": "Q4"
                         }
                     ],
-                    "customMessage": "Required question is missing an answer"
+                    "customMessage": "One or more required questions are unanswered."
                 },
                 "type": "MISSING_REQUIRED_ANSWER",
                 "statusCode": 400,
                 "code": "INTERNAL_SERVER_ERROR"
-            }
+            },
+            ...
         }
     ],
     "data": null
 }
 ```
 
-**Description**: This error indicates that one or more required questions in the form were not answered.
-The `extensions` field in the error object will provide details about the missing values.
-The unanswered questions are listed under extensions.data.data, and you can check the `title`, `_key` or `definition_id` for each question to see which ones are missing answers."
+The `extensions` field in the error object will provide details about the missing values. The unanswered questions are listed under `extensions.data.data`.
 
 ## How to use
 
