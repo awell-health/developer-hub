@@ -1,0 +1,44 @@
+---
+title: Unschedule tracks
+description: Unschedule tracks in a patient care flow (pathway)
+---
+
+Scheduled tracks in a patient care flow (pathway) that have not already been activated can be unscheduled.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation UnscheduleTrack($input: CancelScheduledTracksInput!) {
+  unscheduleTrack(input: $input) {
+    success
+    unscheduled_ids
+  }
+}
+```
+
+### Variables
+
+The `pathway_id` is the id of the patient care flow (pathway) for which you want to stop a track. The `track_id` is the id of the track that you want to stop.
+
+```json
+{
+  "input": {
+    "ids": ["{{SCHEDULED_TRACK_ID}}"]
+  }
+}
+```
+
+## Response
+
+```json
+{
+  "data": {
+    "unscheduleTracks": {
+      "success": true,
+      "unscheduled_ids": ["{{SCHEDULED_TRACK_ID}}"] // array of ids that were successfully unscheduled
+    }
+  }
+}
+```

@@ -1,0 +1,45 @@
+---
+title: Schedule track
+description: Schedule a track in a patient care flow (pathway)
+---
+
+Any track configured to be manually triggered in a patient care flow (pathway) can be scheduled for a date in the future. Scheduling a track in the past will cause it to be added to the care flow immediately.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation ScheduleTrack($input: ScheduleTrackInput!) {
+  scheduleTrack(input: $input) {
+    success
+  }
+}
+```
+
+### Variables
+
+The `pathway_id` is the id of the patient care flow (pathway) for which you want to stop a track. The `track_id` is the id of the track that you want to stop.
+
+```json
+{
+  "input": {
+    "pathway_id": "{{PATHWAY_ID}}",
+    "track_id": "{{TRACK_ID}}",
+    "scheduled_date": "{{SCHEDULED_DATE}}", // ISO string date e.g. 2020-01-01T00:00:00.000Z
+    "cancel_any_scheduled": true // optional, defaults to false
+  }
+}
+```
+
+## Response
+
+```json
+{
+  "data": {
+    "scheduleTrack": {
+      "success": true
+    }
+  }
+}
+```
