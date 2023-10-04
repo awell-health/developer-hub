@@ -180,6 +180,51 @@ The following input fields are available:
   </table>
 </div>
 
+## Errors
+
+### Missing Value for Required Question
+
+When submitting a form response, if one or more required questions are left unanswered, the backend will return a GraphQL error. The error response will appear as follows:
+
+```json
+{
+    "errors": [
+        {
+            "message": "One or more required questions are unanswered.",
+            "name": "GraphQLError",
+            "originalError": {...},
+            "extensions": {
+                "errorId": "V8FiQfu8agvU7hjtakX7o",
+                "data": {
+                    "data": [
+                        {
+                            "_key": "6NGOn6QxLqra",
+                            "_id": "QuestionComponent/6NGOn6QxLqra",
+                            "definition_id": "jYQeP4fgq1_9",
+                            "title": "Q1"
+                        },
+                        {
+                            "_key": "-Nfe4khOpu4T",
+                            "_id": "QuestionComponent/-Nfe4khOpu4T",
+                            "definition_id": "VwQm8oP_u90s",
+                            "title": "Q4"
+                        }
+                    ],
+                    "customMessage": "One or more required questions are unanswered."
+                },
+                "type": "MISSING_REQUIRED_ANSWER",
+                "statusCode": 400,
+                "code": "INTERNAL_SERVER_ERROR"
+            },
+            ...
+        }
+    ],
+    "data": null
+}
+```
+
+The `extensions` field in the error object will provide details about the missing values. The unanswered questions are listed under `extensions.data.data`.
+
 ## How to use
 
 <HowToUse storyIds={['conversational-form', 'form']} />
