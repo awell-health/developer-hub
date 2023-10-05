@@ -9,7 +9,7 @@ Scheduled tracks are tracks we know for certain will be activated in the future.
 
 ```graphql
 query GetScheduledTracks($pathway_id: String!) {
-  scheduledTracks(pathway_id: $pathway_id) {
+  scheduledTracksForPathway(pathway_id: $pathway_id) {
     scheduled_tracks {
       id # can be used to unschedule the track
       track_definition_id
