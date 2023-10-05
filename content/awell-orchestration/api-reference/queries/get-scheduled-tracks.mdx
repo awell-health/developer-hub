@@ -1,0 +1,33 @@
+---
+title: Get scheduled tracks
+description: Retrieve a list of scheduled tracks
+---
+
+Scheduled tracks are tracks we know for certain will be activated in the future. A useful query to know what's upcoming in a pathway. The query returns a list of scheduled tracks. To see scheduled steps, use the [scheduledSteps](/awell-orchestration/api-reference/queries/get-scheduled-steps) query.
+
+## Query
+
+```graphql
+query GetScheduledTracks($pathway_id: String!) {
+  scheduledTracks(pathway_id: $pathway_id) {
+    scheduled_tracks {
+      id # can be used to unschedule the track
+      track_definition_id
+      scheduled_date
+      title
+      release_id
+      created_date
+      modified_date
+      status
+    }
+  }
+}
+```
+
+## Variables
+
+```json
+{
+  "pathway_id": "{{ PATHWAY_ID }}"
+}
+```
