@@ -329,6 +329,17 @@ export type CalculationResultsPayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type CancelScheduledTracksInput = {
+  ids: Array<Scalars['String']['input']>;
+};
+
+export type CancelScheduledTracksPayload = Payload & {
+  __typename?: 'CancelScheduledTracksPayload';
+  code: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+  unscheduled_ids: Array<Scalars['String']['output']>;
+};
+
 export type Checklist = {
   __typename?: 'Checklist';
   items: Array<Scalars['String']['output']>;
@@ -850,6 +861,7 @@ export type Mutation = {
   retryPushToEmr: EmptyPayload;
   retryWebhookCall: RetryWebhookCallPayload;
   saveBaselineInfo: EmptyPayload;
+  scheduleTrack: ScheduleTrackPayload;
   startHostedActivitySession: StartHostedActivitySessionPayload;
   startHostedActivitySessionViaHostedPagesLink: StartHostedActivitySessionPayload;
   startHostedPathwaySession: StartHostedPathwaySessionPayload;
@@ -858,6 +870,7 @@ export type Mutation = {
   stopTrack: StopTrackPayload;
   submitChecklist: SubmitChecklistPayload;
   submitFormResponse: SubmitFormResponsePayload;
+  unscheduleTracks: CancelScheduledTracksPayload;
   updateBaselineInfo: EmptyPayload;
   updatePatient: UpdatePatientPayload;
   /** Update which patient was created after import request for logging purposes */
@@ -957,6 +970,11 @@ export type MutationSaveBaselineInfoArgs = {
 };
 
 
+export type MutationScheduleTrackArgs = {
+  input: ScheduleTrackInput;
+};
+
+
 export type MutationStartHostedActivitySessionArgs = {
   input: StartHostedActivitySessionInput;
 };
@@ -994,6 +1012,11 @@ export type MutationSubmitChecklistArgs = {
 
 export type MutationSubmitFormResponseArgs = {
   input: SubmitFormResponseInput;
+};
+
+
+export type MutationUnscheduleTracksArgs = {
+  input: CancelScheduledTracksInput;
 };
 
 
@@ -1304,6 +1327,7 @@ export type Query = {
   publishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
   publishedPathwayDefinitionsDashboard: PublishedPathwayDefinitionsPayload;
   scheduledSteps: ScheduledStepsPayload;
+  scheduledTracksForPathway: ScheduledTracksPayload;
   searchPatientsByNationalRegistryNumber: SearchPatientsPayload;
   searchPatientsByPatientCode: SearchPatientsPayload;
   stakeholdersByDefinitionIds: StakeholdersPayload;
@@ -1484,6 +1508,11 @@ export type QueryScheduledStepsArgs = {
 };
 
 
+export type QueryScheduledTracksForPathwayArgs = {
+  pathway_id: Scalars['String']['input'];
+};
+
+
 export type QuerySearchPatientsByNationalRegistryNumberArgs = {
   national_registry_number: Scalars['String']['input'];
 };
@@ -1633,10 +1662,46 @@ export type SaveBaselineInfoInput = {
   pathway_id: Scalars['String']['input'];
 };
 
+export type ScheduleTrackInput = {
+  cancel_any_scheduled?: InputMaybe<Scalars['Boolean']['input']>;
+  pathway_id: Scalars['String']['input'];
+  scheduled_date: Scalars['String']['input'];
+  track_id: Scalars['String']['input'];
+};
+
+export type ScheduleTrackPayload = Payload & {
+  __typename?: 'ScheduleTrackPayload';
+  code: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+};
+
 export type ScheduledStepsPayload = Payload & {
   __typename?: 'ScheduledStepsPayload';
   code: Scalars['String']['output'];
   steps: Array<Element>;
+  success: Scalars['Boolean']['output'];
+};
+
+export type ScheduledTrack = {
+  __typename?: 'ScheduledTrack';
+  created_by_user_id: Scalars['String']['output'];
+  created_date: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  modified_date?: Maybe<Scalars['String']['output']>;
+  pathway_id: Scalars['String']['output'];
+  release_id: Scalars['String']['output'];
+  scheduled_date: Scalars['String']['output'];
+  status: Scalars['String']['output'];
+  tenant_id: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  track_definition_id: Scalars['String']['output'];
+};
+
+export type ScheduledTracksPayload = Payload & {
+  __typename?: 'ScheduledTracksPayload';
+  code: Scalars['String']['output'];
+  scheduled_tracks: Array<ScheduledTrack>;
   success: Scalars['Boolean']['output'];
 };
 

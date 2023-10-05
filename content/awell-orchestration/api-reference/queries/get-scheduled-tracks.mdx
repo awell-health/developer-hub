@@ -11,7 +11,7 @@ Scheduled tracks are tracks we know for certain will be activated in the future.
 query GetScheduledTracks($pathway_id: String!) {
   scheduledTracks(pathway_id: $pathway_id) {
     scheduled_tracks {
-      id # unique id of the scheduled track, can be used to unschedule the track
+      id # can be used to unschedule the track
       track_definition_id
       scheduled_date
       title

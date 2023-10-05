@@ -1,9 +1,9 @@
 ---
 title: Unschedule tracks
-description: Unschedule tracks in a patient care flow (pathway)
+description: Unschedule tracks in a patient pathway
 ---
 
-Scheduled tracks in a patient care flow (pathway) that have not already been activated can be unscheduled.
+Scheduled tracks in a patient pathway that have not already been activated can be unscheduled.
 
 ## Request
 
@@ -20,7 +20,7 @@ mutation UnscheduleTrack($input: CancelScheduledTracksInput!) {
 
 ### Variables
 
-The `pathway_id` is the id of the patient care flow (pathway) for which you want to stop a track. The `track_id` is the id of the track that you want to stop.
+`ids` is a list of ids of the scheduled tracks that you wish to unschedule (cancel). You can fetch a list of ids for all scheduled tracks in a specific pathway using the [scheduledTracks](/awell-orchestration/api-reference/queries/get-scheduled-tracks) query.
 
 ```json
 {
@@ -37,7 +37,7 @@ The `pathway_id` is the id of the patient care flow (pathway) for which you want
   "data": {
     "unscheduleTracks": {
       "success": true,
-      "unscheduled_ids": ["{{SCHEDULED_TRACK_ID}}"] // array of ids that were successfully unscheduled
+      "unscheduled_ids": ["{{SCHEDULED_TRACK_ID}}"]
     }
   }
 }

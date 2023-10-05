@@ -100,6 +100,11 @@ export const apiMenu: MenuType = [
         badge: badges.tracks,
       },
       {
+        title: 'Get scheduled tracks',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-scheduled-tracks`,
+        badge: badges.tracks,
+      },
+      {
         title: 'Get pathway activities',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-pathway-activities`,
         badge: badges.activity,
@@ -218,6 +223,16 @@ export const apiMenu: MenuType = [
       {
         title: 'Add ad hoc track',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/add-ad-hoc-track`,
+        badge: badges.tracks,
+      },
+      {
+        title: 'Schedule a track',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/schedule-track`,
+        badge: badges.tracks,
+      },
+      {
+        title: 'Unschedule tracks',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/unschedule-tracks`,
         badge: badges.tracks,
       },
       {
