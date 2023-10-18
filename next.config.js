@@ -2,6 +2,10 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withTM = require('next-transpile-modules')(['@markprompt/core'])
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 const nextConfig = {
   reactStrictMode: true,
@@ -73,4 +77,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withTM(nextConfig)
+module.exports = withBundleAnalyzer(withTM(nextConfig))

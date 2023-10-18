@@ -14,7 +14,8 @@
     "prepare": "husky install",
     "ts": "tsc --noEmit --incremental",
     "lint": "next lint",
-    "clean": "rm -rf ./.next && rm ./tsconfig.tsbuildinfo"
+    "clean": "rm -rf ./.next && rm ./tsconfig.tsbuildinfo",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.5.6",
@@ -57,6 +58,7 @@
   "devDependencies": {
     "@graphql-codegen/typescript-operations": "2.3.5",
     "@graphql-codegen/typescript-react-apollo": "3.2.11",
+    "@next/bundle-analyzer": "^13.5.5",
     "@tailwindcss/forms": "^0.5.0",
     "@types/glob": "^7.2.0",
     "@types/lodash": "^4.14.182",
@@ -66,6 +68,7 @@
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
     "autoprefixer": "^10.4.2",
+    "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "8.9.0",
     "eslint-config-next": "12.1.0",
