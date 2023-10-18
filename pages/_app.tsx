@@ -3,7 +3,6 @@ import '../styles/globals.css'
 import { ApolloProvider } from '@apollo/client'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import Script from 'next/script'
 import type { NextPage } from 'next/types'
 import type { ReactElement, ReactNode } from 'react'
@@ -27,8 +26,7 @@ type AppPropsWithLayout = AppProps & {
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page: ReactNode) => page)
-  const router = useRouter()
-  const isExamplePage = router.asPath.includes('examples')
+
   return (
     <>
       <Head>
@@ -45,8 +43,6 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
 
-      <AvaGPT />
-
       <Script id="google-analytics" strategy="lazyOnload">
         {`
             window.dataLayer = window.dataLayer || [];
@@ -58,25 +54,18 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                 `}
       </Script>
 
-      {/* Example pages don't need theming, apollo, search, nav, ... */}
-      {isExamplePage && (
-        <ApolloProvider client={client}>
-          <AppProvider>{getLayout(<Component {...pageProps} />)}</AppProvider>
-        </ApolloProvider>
-      )}
+      <ApolloProvider client={client}>
+        <ThemeProvider>
+          <AppProvider>
+            {getLayout(<Component {...pageProps} />)}
+            <MobileMenu />
+            <MobileNav />
+            <div id="search"></div>
+          </AppProvider>
+        </ThemeProvider>
+      </ApolloProvider>
 
-      {!isExamplePage && (
-        <ApolloProvider client={client}>
-          <ThemeProvider>
-            <AppProvider>
-              {getLayout(<Component {...pageProps} />)}
-              <MobileMenu />
-              <MobileNav />
-              <div id="search"></div>
-            </AppProvider>
-          </ThemeProvider>
-        </ApolloProvider>
-      )}
+      <AvaGPT />
 
       <Script
         id="intercom_1"

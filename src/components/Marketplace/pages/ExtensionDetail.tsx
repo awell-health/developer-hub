@@ -1,16 +1,27 @@
-import { isEmpty } from 'lodash'
+import { isEmpty, isNil } from 'lodash'
 import { FC } from 'react'
 
+import { useExtension } from '@/hooks/useExtension'
 import { Extension } from '@/types/extenion.types'
 
 import { ExtensionHeader, ExtensionProperty } from '../atoms'
 import { RandomExtensionsPanel } from '../molecules'
 
 interface ExtensionDetailProps {
-  extension: Extension
+  extensions: Extension[]
+  currentExtensionKey: string
 }
 
-export const ExtensionDetail: FC<ExtensionDetailProps> = ({ extension }) => {
+export const ExtensionDetail: FC<ExtensionDetailProps> = ({
+  extensions,
+  currentExtensionKey,
+}) => {
+  const { extension } = useExtension({ extensions, key: currentExtensionKey })
+
+  if (isNil(extension)) {
+    return <div>Extension not found</div>
+  }
+
   return (
     <>
       <ExtensionHeader extension={extension} />
@@ -49,6 +60,7 @@ export const ExtensionDetail: FC<ExtensionDetailProps> = ({ extension }) => {
         <div className="border-t border-slate-200 pt-8 dark:border-slate-800">
           <h2>Other extensions</h2>
           <RandomExtensionsPanel
+            extensions={extensions}
             n={3}
             cols={3}
             excludeExtensionWithKey={extension.key}

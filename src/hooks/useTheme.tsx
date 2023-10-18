@@ -1,18 +1,13 @@
-import { createContext, ReactNode, useEffect, useRef, useState } from 'react'
-
-import { type ThemeSettingType, type ThemeType } from '../types/theme.types'
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 interface ThemeContextStateType {
-  theme: ThemeType
-  themeSetting: ThemeSettingType
-  setThemeSetting: (theme: ThemeSettingType) => void
+  isDarkMode: boolean
+  toggleDarkMode: () => void
 }
 
 const initialState: ThemeContextStateType = {
-  theme: 'light',
-  themeSetting: 'system',
-  setThemeSetting: () => null,
+  isDarkMode: false,
+  toggleDarkMode: () => null,
 }
 
 export const ThemeContext = createContext<ThemeContextStateType>(initialState)
@@ -22,89 +17,30 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [themeSetting, setThemeSetting] = useState<ThemeSettingType>(
-    initialState.themeSetting
-  )
-  const [theme, setTheme] = useState<ThemeType | null>(null)
-
-  const initial = useRef(true)
-
-  const update = () => {
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark', 'changing-theme')
-      setTheme('dark')
-    } else {
-      document.documentElement.classList.remove('dark', 'changing-theme')
-      setTheme('light')
-    }
-    window.setTimeout(() => {
-      document.documentElement.classList.remove('changing-theme')
-    })
-  }
-
-  useIsomorphicLayoutEffect(() => {
-    const theme = localStorage.theme
-    if (theme === 'light' || theme === 'dark') {
-      setThemeSetting(theme)
-    }
-  }, [])
-
-  useIsomorphicLayoutEffect(() => {
-    if (themeSetting === 'system') {
-      localStorage.removeItem('theme')
-    } else if (themeSetting === 'light' || themeSetting === 'dark') {
-      localStorage.theme = themeSetting
-    }
-    if (initial.current) {
-      initial.current = false
-    } else {
-      update()
-    }
-  }, [themeSetting])
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    // Check local storage or system preference and set initial mode
+    const prefersDarkMode = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches
+    const savedMode = localStorage.getItem('theme')
 
-    if (mediaQuery?.addEventListener) {
-      mediaQuery.addEventListener('change', update)
-    } else {
-      mediaQuery.addListener(update)
-    }
-
-    const onStorage = () => {
-      update()
-      const theme = localStorage.theme
-      if (theme === 'light' || theme === 'dark') {
-        setThemeSetting(theme)
-      } else {
-        setThemeSetting('system')
-      }
-    }
-    window.addEventListener('storage', onStorage)
-
-    return () => {
-      if (mediaQuery?.removeEventListener) {
-        mediaQuery.removeEventListener('change', update)
-      } else {
-        mediaQuery.removeListener(update)
-      }
-
-      window.removeEventListener('storage', onStorage)
-    }
+    setIsDarkMode(
+      savedMode === 'dark' || (savedMode === null && prefersDarkMode)
+    )
   }, [])
 
-  if (!theme) return null
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode)
+    localStorage.setItem('theme', isDarkMode ? 'light' : 'dark')
+  }
 
   return (
     <ThemeContext.Provider
       value={{
-        theme,
-        themeSetting,
-        setThemeSetting,
+        isDarkMode,
+        toggleDarkMode,
       }}
     >
       {children}

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
+import { GetServerSideProps } from 'next/types'
 import { ReactNode } from 'react'
 
 import { LinkButton } from '@/components/Button'
@@ -7,7 +8,12 @@ import { HomeLayout } from '@/components/Layouts'
 import { RandomExtensionsPanel } from '@/components/Marketplace/molecules/RandomExtensionsPanel/RandomExtensionsPanel'
 import { SEO } from '@/components/SEO'
 import { rootRoutes } from '@/config/routes'
+import { Extension } from '@/types/extenion.types'
 import { Space } from '@/types/space.types'
+
+type PageProps = {
+  extensions: Extension[]
+}
 
 const domains = [
   {
@@ -78,7 +84,7 @@ const domains = [
   },
 ]
 
-export default function Home() {
+export default function Home({ extensions }: PageProps) {
   return (
     <>
       <SEO
@@ -150,7 +156,12 @@ export default function Home() {
             flows to the next level.
           </p>
           <div className="mt-6">
-            <RandomExtensionsPanel n={4} cols={4} cardType="condensed" />
+            <RandomExtensionsPanel
+              extensions={extensions}
+              n={4}
+              cols={4}
+              cardType="condensed"
+            />
           </div>
           <div className="mt-4 flex justify-center">
             <LinkButton
@@ -189,4 +200,10 @@ export default function Home() {
 
 Home.getLayout = function getLayout(page: ReactNode) {
   return <HomeLayout>{page}</HomeLayout>
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await fetch(process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT ?? '')
+  const extensions = await res.json()
+  return { props: { extensions } }
 }
