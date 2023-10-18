@@ -1,11 +1,12 @@
 import { FC } from 'react'
 
-import { Spinner } from '@/components/Spinner'
 import { useExtensions } from '@/hooks/useExtensions'
+import { Extension } from '@/types/extenion.types'
 
 import { ExtensionCard } from '../../atoms'
 
 interface RandomExtensionsPanelProps {
+  extensions: Extension[]
   n?: number
   cols?: 3 | 4
   excludeExtensionWithKey?: string
@@ -13,16 +14,13 @@ interface RandomExtensionsPanelProps {
 }
 
 export const RandomExtensionsPanel: FC<RandomExtensionsPanelProps> = ({
+  extensions,
   n = 3,
   cols = 3,
   excludeExtensionWithKey,
   cardType = 'normal',
 }) => {
-  const { getRandomExtensions, loading: loadingAllExtensions } = useExtensions()
-
-  if (loadingAllExtensions) {
-    return <Spinner />
-  }
+  const { getRandomExtensions } = useExtensions()
 
   return (
     <div
@@ -30,13 +28,15 @@ export const RandomExtensionsPanel: FC<RandomExtensionsPanelProps> = ({
         cols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'
       }`}
     >
-      {getRandomExtensions(n, excludeExtensionWithKey).map((extension) => (
-        <ExtensionCard
-          extension={extension}
-          key={extension.key}
-          type={cardType}
-        />
-      ))}
+      {getRandomExtensions(extensions, n, excludeExtensionWithKey).map(
+        (extension) => (
+          <ExtensionCard
+            extension={extension}
+            key={extension.key}
+            type={cardType}
+          />
+        )
+      )}
     </div>
   )
 }

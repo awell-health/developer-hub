@@ -1,6 +1,7 @@
 import { isEmpty, isNil } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { type GetServerSideProps } from 'next/types'
 import { ReactNode } from 'react'
 
 import { LinkButton } from '@/components/Button'
@@ -10,13 +11,19 @@ import {
   ExtensionCard,
 } from '@/components/Marketplace/atoms'
 import { SEO } from '@/components/SEO'
-import { Spinner } from '@/components/Spinner'
 import { useExtensions } from '@/hooks/useExtensions'
+import { Extension } from '@/types/extenion.types'
 import { Space } from '@/types/space.types'
 
-export default function Marketplace() {
-  const { extensions, categories, loading } = useExtensions()
+type PageProps = {
+  extensions: Extension[]
+}
+
+export default function Marketplace({ extensions }: PageProps) {
+  const { getCategories } = useExtensions()
   const router = useRouter()
+
+  console.log(extensions)
 
   return (
     <>
@@ -46,74 +53,68 @@ export default function Marketplace() {
           </div>
         </div>
         <section aria-labelledby="stories">
-          {loading ? (
-            <div className="flex justify-center my-12">
-              <Spinner />
-            </div>
-          ) : (
-            <div className="border-t border-slate-200 dark:border-slate-800 mt-4 pt-8 flex items-start gap-24">
-              <div className="w-1/6 grow-0 shrink-0">
-                <h3>Category</h3>
-                <ul className="space-y-4 pb-6 text-base font-medium text-slate-800 dark:text-slate-400">
-                  {categories.map((category) => (
-                    <li key={category}>
-                      <Link href={{ query: { category } }}>
-                        <a
-                          className={
-                            router.query?.category === category
-                              ? 'font-semibold text-blue-600 dark:text-sky-400'
-                              : ''
-                          }
-                        >
-                          {category}
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-                  <li>
-                    <Link href={{ query: {} }}>
+          <div className="border-t border-slate-200 dark:border-slate-800 mt-4 pt-8 flex items-start gap-24">
+            <div className="w-1/6 grow-0 shrink-0">
+              <h3>Category</h3>
+              <ul className="space-y-4 pb-6 text-base font-medium text-slate-800 dark:text-slate-400">
+                {getCategories(extensions).map((category) => (
+                  <li key={category}>
+                    <Link href={{ query: { category } }}>
                       <a
                         className={
-                          isNil(router.query?.category) ||
-                          isEmpty(router.query?.category)
+                          router.query?.category === category
                             ? 'font-semibold text-blue-600 dark:text-sky-400'
                             : ''
                         }
                       >
-                        All categories
+                        {category}
                       </a>
                     </Link>
                   </li>
-                </ul>
-                <h4>Request an extension</h4>
-                <p>{`Can't find what you're looking for? Let us know.`}</p>
-                <div className="mt-4">
-                  <LinkButton
-                    href={`/${Space.AWELL_EXTENSIONS}/marketplace/request-extension`}
-                    label="Submit a request"
-                    size="sm"
-                    color="white"
-                  />
-                </div>
-              </div>
-              <div className="grid md:grid-cols-3 gap-4">
-                {extensions
-                  .filter((ext) => {
-                    if (
-                      isEmpty(router.query?.category) ||
-                      isNil(router.query?.category)
-                    ) {
-                      return ext
-                    }
-
-                    return ext.category === router.query?.category
-                  })
-                  .map((extension) => (
-                    <ExtensionCard extension={extension} key={extension.key} />
-                  ))}
+                ))}
+                <li>
+                  <Link href={{ query: {} }}>
+                    <a
+                      className={
+                        isNil(router.query?.category) ||
+                        isEmpty(router.query?.category)
+                          ? 'font-semibold text-blue-600 dark:text-sky-400'
+                          : ''
+                      }
+                    >
+                      All categories
+                    </a>
+                  </Link>
+                </li>
+              </ul>
+              <h4>Request an extension</h4>
+              <p>{`Can't find what you're looking for? Let us know.`}</p>
+              <div className="mt-4">
+                <LinkButton
+                  href={`/${Space.AWELL_EXTENSIONS}/marketplace/request-extension`}
+                  label="Submit a request"
+                  size="sm"
+                  color="white"
+                />
               </div>
             </div>
-          )}
+            <div className="grid md:grid-cols-3 gap-4">
+              {extensions
+                .filter((ext) => {
+                  if (
+                    isEmpty(router.query?.category) ||
+                    isNil(router.query?.category)
+                  ) {
+                    return ext
+                  }
+
+                  return ext.category === router.query?.category
+                })
+                .map((extension) => (
+                  <ExtensionCard extension={extension} key={extension.key} />
+                ))}
+            </div>
+          </div>
         </section>
         <div className="my-16">
           <CallToActionPanel />
@@ -147,4 +148,10 @@ export default function Marketplace() {
 
 Marketplace.getLayout = function getLayout(page: ReactNode) {
   return <HomeLayout>{page}</HomeLayout>
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await fetch(process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT ?? '')
+  const extensions = await res.json()
+  return { props: { extensions } }
 }

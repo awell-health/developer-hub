@@ -1,21 +1,23 @@
 import { isNil } from 'lodash'
 import { useRouter } from 'next/router'
+import { GetServerSideProps } from 'next/types'
 import { ReactNode } from 'react'
 
 import { HomeLayout } from '@/components/Layouts'
 import { ExtensionDetail } from '@/components/Marketplace/pages'
 import { SEO } from '@/components/SEO'
 import { useExtension } from '@/hooks/useExtension'
+import { Extension } from '@/types/extenion.types'
 import { Space } from '@/types/space.types'
 
-export default function ExtensionPage() {
+type PageProps = {
+  extensions: Extension[]
+}
+
+export default function ExtensionPage({ extensions }: PageProps) {
   const router = useRouter()
   const extensionKey = String(router.query?.extensionKey) ?? ''
-  const { extension, loading: loadingExtension } = useExtension(extensionKey)
-
-  if (loadingExtension) {
-    return <div />
-  }
+  const { extension } = useExtension({ extensions, key: extensionKey })
 
   if (isNil(extension)) {
     return <div>Extension not found</div>
@@ -29,7 +31,10 @@ export default function ExtensionPage() {
         url={`/${Space.AWELL_EXTENSIONS}/marketplace/${extensionKey}`}
         canonicalUrl={`/${Space.AWELL_EXTENSIONS}/marketplace/${extensionKey}`}
       />
-      <ExtensionDetail extension={extension} />
+      <ExtensionDetail
+        extensions={extensions}
+        currentExtensionKey={extensionKey}
+      />
       <footer className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8 pb-16 text-sm leading-6">
         <div className="mx-auto divide-y divide-slate-200 dark:divide-slate-700">
           <div className="mt-4 pt-10 border-t border-slate-200 dark:border-slate-600">
@@ -58,4 +63,10 @@ export default function ExtensionPage() {
 
 ExtensionPage.getLayout = function getLayout(page: ReactNode) {
   return <HomeLayout>{page}</HomeLayout>
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await fetch(process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT ?? '')
+  const extensions = await res.json()
+  return { props: { extensions } }
 }

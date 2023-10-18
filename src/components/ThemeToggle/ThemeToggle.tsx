@@ -3,45 +3,39 @@ import clsx from 'clsx'
 import { Fragment, ReactNode, useContext } from 'react'
 
 import { ThemeContext } from '../../hooks/useTheme'
-import { type ThemeSettingType } from '../../types/theme.types'
-import { MoonIcon, PcIcon, SunIcon } from './atoms/icons'
+import { MoonIcon, SunIcon } from './atoms/icons'
 
 type ThemeSettingsType = {
-  value: ThemeSettingType
+  isDarkMode: boolean
   label: string
   icon: ReactNode
 }
 
 const settings: ThemeSettingsType[] = [
   {
-    value: 'light',
+    isDarkMode: false,
     label: 'Light',
     icon: SunIcon,
   },
   {
-    value: 'dark',
+    isDarkMode: true,
     label: 'Dark',
     icon: MoonIcon,
-  },
-  {
-    value: 'system',
-    label: 'System',
-    icon: PcIcon,
   },
 ]
 
 export function ThemeToggle({ panelClassName = 'mt-4' }) {
-  const { themeSetting, setThemeSetting } = useContext(ThemeContext)
+  const { isDarkMode, toggleDarkMode } = useContext(ThemeContext)
 
   return (
-    <Listbox value={themeSetting} onChange={setThemeSetting}>
+    <Listbox value={isDarkMode} onChange={toggleDarkMode}>
       <Listbox.Label className="sr-only">Theme</Listbox.Label>
       <Listbox.Button type="button">
         <span className="dark:hidden">
-          <SunIcon className="w-6 h-6" selected={themeSetting !== 'system'} />
+          <SunIcon className="w-6 h-6" selected={!isDarkMode} />
         </span>
         <span className="hidden dark:inline">
-          <MoonIcon className="w-6 h-6" selected={themeSetting !== 'system'} />
+          <MoonIcon className="w-6 h-6" selected={isDarkMode} />
         </span>
       </Listbox.Button>
       <Listbox.Options
@@ -50,8 +44,12 @@ export function ThemeToggle({ panelClassName = 'mt-4' }) {
           panelClassName
         )}
       >
-        {settings.map(({ value, label, icon: Icon }) => (
-          <Listbox.Option key={value} value={value} as={Fragment}>
+        {settings.map(({ isDarkMode, label, icon: Icon }) => (
+          <Listbox.Option
+            key={String(isDarkMode)}
+            value={isDarkMode}
+            as={Fragment}
+          >
             {({ active, selected }) => (
               <li
                 className={clsx(
@@ -59,7 +57,7 @@ export function ThemeToggle({ panelClassName = 'mt-4' }) {
                   selected && 'text-sky-500',
                   active && 'bg-slate-50 dark:bg-slate-600/30'
                 )}
-                data-track-heap={`set-theme-${value}`}
+                data-track-heap={`set-theme-${isDarkMode ? 'dark' : 'light'}`}
               >
                 {/* @ts-expect-error don't know how to fix this typing error */}
                 <Icon selected={selected} className="w-6 h-6 mr-2" />
@@ -74,9 +72,9 @@ export function ThemeToggle({ panelClassName = 'mt-4' }) {
 }
 
 export function ThemeSelect() {
-  const { themeSetting, setThemeSetting } = useContext(ThemeContext)
+  const { isDarkMode, toggleDarkMode } = useContext(ThemeContext)
 
-  const findCurrentTheme = settings.find((x) => x.value === themeSetting)
+  const findCurrentTheme = settings.find((x) => x.isDarkMode === isDarkMode)
 
   if (!findCurrentTheme) {
     return null
@@ -128,16 +126,15 @@ export function ThemeSelect() {
         </svg>
         <select
           id="theme"
-          value={themeSetting || ''}
-          //@ts-expect-error value can only be of ThemeType
-          onChange={(e) => setThemeSetting(e.target.value)}
+          value={String(isDarkMode) || ''}
+          onChange={() => toggleDarkMode()}
           className="absolute appearance-none inset-0 w-full h-full opacity-0"
         >
-          {settings.map(({ value, label }) => (
+          {settings.map(({ isDarkMode, label }) => (
             <option
-              key={value}
-              value={value}
-              data-track-heap={`set-theme-${value}`}
+              key={isDarkMode ? 'dark' : 'light'}
+              value={String(isDarkMode)}
+              data-track-heap={`set-theme-${isDarkMode ? 'dark' : 'light'}`}
             >
               {label}
             </option>

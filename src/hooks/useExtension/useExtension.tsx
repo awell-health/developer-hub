@@ -1,17 +1,17 @@
 import { Extension } from '@/types/extenion.types'
 
-import { useExtensions } from '../useExtensions'
-
 interface UseExtension {
-  loading: boolean
   extension: Extension | null
 }
 
-export const useExtension = (key: string): UseExtension => {
-  const { loading, extensions } = useExtensions()
-
+export const useExtension = ({
+  extensions,
+  key,
+}: {
+  extensions: Extension[]
+  key: string
+}): UseExtension => {
   return {
-    loading,
     extension: extensions.find((ext) => ext.key === key) ?? null,
   }
 }

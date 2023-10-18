@@ -1,7 +1,14 @@
 import { useRouter } from 'next/router'
-import React, { ReactNode, useCallback, useEffect, useState } from 'react'
+import React, {
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import slugify from 'slugify'
 
+import { ThemeContext } from '@/hooks/useTheme'
 import { Space } from '@/types/space.types'
 
 import { type MenuType } from '../../types/menu.types'
@@ -41,6 +48,8 @@ interface AppProviderProps {
 }
 
 export const AppProvider = ({ children }: AppProviderProps) => {
+  const { isDarkMode } = useContext(ThemeContext)
+
   const router = useRouter()
 
   const [isMobileSideMenuOpen, setIsSideMobileMenuOpen] = useState<boolean>(
@@ -125,6 +134,14 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       setSpace(null)
     }
   }, [router.asPath])
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [isDarkMode])
 
   return (
     <AppContext.Provider
