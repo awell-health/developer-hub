@@ -25,20 +25,22 @@ export default function Playground() {
   })
 
   return (
-    <div id="graphql-embed" className="h-screen">
+    <div>
       <SEO
         title="GraphQL Playground"
         url={`/${Space.AWELL_ORCHESTRATION}/playground`}
         canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/playground`}
       />
-      <GraphiQL
-        schema={schema}
-        fetcher={fetcher}
-        editorTheme={'dracula'}
-        defaultQuery={defaultQuery}
-        shouldPersistHeaders={true}
-        tabs={true}
-      />
+      <div id="graphql-embed" className="h-screen">
+        <GraphiQL
+          schema={schema}
+          fetcher={fetcher}
+          editorTheme={'dracula'}
+          defaultQuery={defaultQuery}
+          shouldPersistHeaders={true}
+          tabs={true}
+        />
+      </div>
     </div>
   )
 }
