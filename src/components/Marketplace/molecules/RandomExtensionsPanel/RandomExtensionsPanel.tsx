@@ -1,12 +1,10 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 
-import { useExtensions } from '@/hooks/useExtensions'
-import { Extension } from '@/types/extenion.types'
+import { useRandomExtensions } from '@/hooks/useRandomExtensions'
 
 import { ExtensionCard } from '../../atoms'
 
 interface RandomExtensionsPanelProps {
-  extensions: Extension[]
   n?: number
   cols?: 3 | 4
   excludeExtensionWithKey?: string
@@ -14,29 +12,16 @@ interface RandomExtensionsPanelProps {
 }
 
 export const RandomExtensionsPanel: FC<RandomExtensionsPanelProps> = ({
-  extensions,
   n = 3,
   cols = 3,
   excludeExtensionWithKey,
   cardType = 'normal',
 }) => {
-  const [randomExtensions, setRandomExtensions] = useState<Extension[]>([])
-  const { getRandomExtensions, getMarketplaceExtensions } = useExtensions()
-
-  useEffect(() => {
-    /**
-     * In an ideal world, we can ask the server for n random extensions
-     * instead of doing this on the client side. Now we have to fetch all extensions from the server
-     * and just grab n random items
-     */
-    setRandomExtensions(
-      getRandomExtensions(
-        getMarketplaceExtensions(extensions),
-        n,
-        excludeExtensionWithKey
-      )
-    )
-  }, [])
+  /**
+   * This is loaded on the client side so this will not be indexed by Google.
+   * That's fine as we show random extensions every time the page is reloaded.
+   */
+  const { randomExtensions } = useRandomExtensions(n, excludeExtensionWithKey)
 
   return (
     <div
