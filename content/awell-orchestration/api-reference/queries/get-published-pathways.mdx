@@ -16,7 +16,7 @@ query GetPublishedPathwayDefinitions {
       id
       title
       version
-      dataPointDefinitions {
+      data_point_definitions {
         id
         key
         category
@@ -32,10 +32,26 @@ query GetPublishedPathwayDefinitions {
           value
         }
       }
+      track_definitions {
+        id
+        title
+        can_trigger_manually
+      }
+      dataPointDefinitions {
+        # @deprecated use data_point_definitions
+        id
+        # ...
+      }
     }
   }
 }
 ```
+
+## can_trigger_manually
+
+This boolean field indicates that the track can be triggered manually using the [startTrack](/awell-orchestration/api-reference/mutations/start-track) or [scheduleTrack](/awell-orchestration/api-reference/mutations/schedule-track) mutations.
+
+The `id` of the track is the track reference required for these mutations, and does not change between published pathway versions. You will also need the id of the specific patient pathway the track is (scheduled) to be added to.
 
 ## How to use
 
