@@ -20,10 +20,8 @@ type PageProps = {
 }
 
 export default function Marketplace({ extensions }: PageProps) {
-  const { getCategories } = useExtensions()
+  const { getCategories, getMarketplaceExtensions } = useExtensions()
   const router = useRouter()
-
-  console.log(extensions)
 
   return (
     <>
@@ -99,7 +97,7 @@ export default function Marketplace({ extensions }: PageProps) {
               </div>
             </div>
             <div className="grid md:grid-cols-3 gap-4">
-              {extensions
+              {getMarketplaceExtensions(extensions)
                 .filter((ext) => {
                   if (
                     isEmpty(router.query?.category) ||

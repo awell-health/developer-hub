@@ -20,7 +20,7 @@ export const RandomExtensionsPanel: FC<RandomExtensionsPanelProps> = ({
   excludeExtensionWithKey,
   cardType = 'normal',
 }) => {
-  const { getRandomExtensions } = useExtensions()
+  const { getRandomExtensions, getMarketplaceExtensions } = useExtensions()
 
   return (
     <div
@@ -28,15 +28,17 @@ export const RandomExtensionsPanel: FC<RandomExtensionsPanelProps> = ({
         cols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'
       }`}
     >
-      {getRandomExtensions(extensions, n, excludeExtensionWithKey).map(
-        (extension) => (
-          <ExtensionCard
-            extension={extension}
-            key={extension.key}
-            type={cardType}
-          />
-        )
-      )}
+      {getRandomExtensions(
+        getMarketplaceExtensions(extensions),
+        n,
+        excludeExtensionWithKey
+      ).map((extension) => (
+        <ExtensionCard
+          extension={extension}
+          key={extension.key}
+          type={cardType}
+        />
+      ))}
     </div>
   )
 }

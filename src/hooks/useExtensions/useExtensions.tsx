@@ -2,7 +2,9 @@ import { isEmpty, isNil, sampleSize } from 'lodash'
 
 import { Extension } from '@/types/extenion.types'
 
+const EXCLUDE_EXTENSIONS = ['wellinks', 'hello-world']
 interface UseExtensions {
+  getMarketplaceExtensions: (extensions: Extension[]) => Extension[]
   getExtension: (extensions: Extension[], key: string) => Extension | null
   getCategories: (extensions: Extension[]) => Array<string>
   getRandomExtensions: (
@@ -43,7 +45,14 @@ export const useExtensions = (): UseExtensions => {
       .sort()
   }
 
+  const getMarketplaceExtensions = (extensions: Extension[]) => {
+    return extensions
+      .filter((ext) => !EXCLUDE_EXTENSIONS.includes(ext.key))
+      .sort()
+  }
+
   return {
+    getMarketplaceExtensions,
     getCategories,
     getRandomExtensions,
     getExtension,
