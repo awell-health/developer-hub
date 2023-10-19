@@ -48,7 +48,18 @@ export const useExtensions = (): UseExtensions => {
   const getMarketplaceExtensions = (extensions: Extension[]) => {
     return extensions
       .filter((ext) => !EXCLUDE_EXTENSIONS.includes(ext.key))
-      .sort()
+      .sort(function (a, b) {
+        const titleA = a.title.toUpperCase() // ignore upper and lowercase
+        const titleB = b.title.toUpperCase() // ignore upper and lowercase
+
+        if (titleA < titleB) {
+          return -1 //titleA comes first
+        }
+        if (titleA > titleB) {
+          return 1 // titleB comes first
+        }
+        return 0 // titles are equal
+      })
   }
 
   return {

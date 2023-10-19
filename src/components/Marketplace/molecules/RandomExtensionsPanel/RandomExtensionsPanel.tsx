@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { useExtensions } from '@/hooks/useExtensions'
 import { Extension } from '@/types/extenion.types'
@@ -20,7 +20,23 @@ export const RandomExtensionsPanel: FC<RandomExtensionsPanelProps> = ({
   excludeExtensionWithKey,
   cardType = 'normal',
 }) => {
+  const [randomExtensions, setRandomExtensions] = useState<Extension[]>([])
   const { getRandomExtensions, getMarketplaceExtensions } = useExtensions()
+
+  useEffect(() => {
+    /**
+     * In an ideal world, we can ask the server for n random extensions
+     * instead of doing this on the client side. Now we have to fetch all extensions from the server
+     * and just grab n random items
+     */
+    setRandomExtensions(
+      getRandomExtensions(
+        getMarketplaceExtensions(extensions),
+        n,
+        excludeExtensionWithKey
+      )
+    )
+  }, [])
 
   return (
     <div
@@ -28,11 +44,7 @@ export const RandomExtensionsPanel: FC<RandomExtensionsPanelProps> = ({
         cols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'
       }`}
     >
-      {getRandomExtensions(
-        getMarketplaceExtensions(extensions),
-        n,
-        excludeExtensionWithKey
-      ).map((extension) => (
+      {randomExtensions.map((extension) => (
         <ExtensionCard
           extension={extension}
           key={extension.key}
