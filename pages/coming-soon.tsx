@@ -36,8 +36,8 @@ export default function ComingSoon() {
             </div>
           </div>
         </div>
+        <Footer />
       </main>
-      <Footer footerHeight="expanded" dividerWidth="standard" />
     </div>
   )
 }

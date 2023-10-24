@@ -118,7 +118,7 @@ export default function Marketplace({ extensions }: PageProps) {
         <div className="my-16">
           <CallToActionPanel />
         </div>
-        <Footer footerHeight='expanded' dividerWidth='expanded'/>
+        <Footer />
       </div>
     </>
   )

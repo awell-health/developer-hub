@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form'
 
 import { DocsHeader } from '@/components/Docs/atoms'
 import { FAQ } from '@/components/FAQ'
+import { Footer } from '@/components/Footer'
 import { DocsLayout } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
@@ -223,6 +224,7 @@ export default function E164Validation() {
       <div className="mt-12">
         <QuickNav prev={prev} next={next} />
       </div>
+      <Footer />
     </div>
   )
 }

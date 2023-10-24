@@ -1,24 +1,13 @@
 import { FC } from 'react'
 
-interface FooterProps {
-  footerHeight?: 'standard' | 'expanded'
-  dividerWidth?: 'standard' | 'expanded'
-}
-
-export const Footer: FC<FooterProps> = ({
-  footerHeight = 'standard',
-  dividerWidth = 'standard',
-}) => {
-  const heightStyling = footerHeight === 'standard' ? 'text-sm leading-6' : 'pb-16 text-sm leading-6'
-  const base = 'mx-auto divide-y divide-slate-200 dark:divide-slate-700'
-  const dividerStyling = dividerWidth === 'standard' ? `max-w-7xl px-4 sm:px-6 md:px-8 ${base}` : base 
+export const Footer: FC = () => {
   return (
-    <footer className={heightStyling}>
-      <div className={dividerStyling}>
+    <footer className="pb-16 text-sm leading-6">
+      <div className="mx-auto divide-y divide-slate-200 dark:divide-slate-700">
         <div className="mt-16 pt-10 border-t border-slate-200 dark:border-slate-600">
           <div className="leading-none text-slate-700 dark:text-slate-200">
-            <div className="flex items-center justify-between">
-              <svg className="w-32" viewBox="0 0 190 50">
+            <div className="sm:flex items-center justify-between">
+              <svg className="w-32 mx-auto sm:mx-0" viewBox="0 0 190 50">
                 <g>
                   <path
                     id="svg_1"
@@ -32,19 +21,41 @@ export const Footer: FC<FooterProps> = ({
                   />
                 </g>
               </svg>
-              <div className="flex gap-4 justify-end">
-                <a href="https://www.awellhealth.com/privacy-policy">
-                  Privacy Policy
-                </a>
-                <a href="https://www.awellhealth.com/terms-conditions">
-                  Terms and Conditions
-                </a>
-                <a href="https://www.awellhealth.com/cookie-policy">
-                  Cookie Policy
-                </a>
-                <a href="https://www.awellhealth.com/hipaa-at-awell">
-                  HIPAA AT Awell
-                </a>
+              <div className="text-center mt-8 sm:mt-0 sm:flex">
+                <ul className="flex flex-col sm:flex-row gap-4 justify-end">
+                  <li>
+                    <a
+                      href="https://www.awellhealth.com/privacy-policy"
+                      title="Privacy Policy"
+                    >
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.awellhealth.com/terms-conditions"
+                      title="Terms and Conditions"
+                    >
+                      Terms and Conditions
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.awellhealth.com/cookie-policy"
+                      title="Cookie Policy"
+                    >
+                      Cookie Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.awellhealth.com/hipaa-at-awell"
+                      title="HIPAA AT Awell"
+                    >
+                      HIPAA AT Awell
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

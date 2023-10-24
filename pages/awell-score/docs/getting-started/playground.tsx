@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 
 import { DocsHeader } from '@/components/Docs/atoms'
+import { Footer } from '@/components/Footer'
 import { DocsLayoutWithoutToc } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { ScoreExplorer } from '@/components/ScoreExplorer'
@@ -33,6 +34,7 @@ export default function Playground() {
         <div className="mt-12">
           <QuickNav prev={prev} next={next} />
         </div>
+        <Footer />
       </div>
     </>
   )

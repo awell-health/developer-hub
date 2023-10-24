@@ -11,6 +11,7 @@ import {
 } from 'recharts'
 
 import { DocsHeader } from '@/components/Docs/atoms'
+import { Footer } from '@/components/Footer'
 import { DocsLayout } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
 import { TOC } from '@/components/TOC'
@@ -253,6 +254,7 @@ export default function BenchmarkDocument() {
           ]}
         ></TOC>
       </div>
+      <Footer />
     </>
   )
 }

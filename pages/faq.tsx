@@ -5,6 +5,7 @@ import { ReactNode, useContext, useEffect } from 'react'
 import { getPageContent } from 'src/utils/content'
 
 import { DocsHeader } from '@/components/Docs/atoms'
+import { Footer } from '@/components/Footer'
 import { DocsLayout } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
 import { mdxComponents, mdxOptions } from '@/config/mdx'
@@ -50,6 +51,7 @@ export default function FaqPage({
       <div id="content-wrapper">
         <MDXRemote {...mdxSource} components={mdxComponents} />
       </div>
+      <Footer />
     </div>
   )
 }

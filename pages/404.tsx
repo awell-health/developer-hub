@@ -35,8 +35,8 @@ export default function Custom404() {
             </div>
           </div>
         </div>
+        <Footer />
       </main>
-      <Footer footerHeight="expanded" dividerWidth="standard" />
     </div>
   )
 }

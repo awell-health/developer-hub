@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 
 import { DocsHeader } from '@/components/Docs/atoms'
+import { Footer } from '@/components/Footer'
 import { DocsLayoutWithoutToc } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
@@ -52,6 +53,7 @@ export default function Schema() {
       <div className="mt-12">
         <QuickNav prev={prev} next={next} />
       </div>
+      <Footer />
     </div>
   )
 }

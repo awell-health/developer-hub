@@ -623,7 +623,7 @@ export default function Extensions() {
               ]}
             />
           </div>
-          <Footer footerHeight='standard' dividerWidth='expanded'/>
+          <Footer />
         </div>
       </div>
     </>
