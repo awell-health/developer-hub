@@ -5,7 +5,6 @@ import { ParsedUrlQuery } from 'querystring'
 import { ReactNode, useContext, useEffect } from 'react'
 
 import { DocsHeader } from '@/components/Docs/atoms'
-import { Footer } from '@/components/Footer'
 import { DocsLayout } from '@/components/Layouts'
 import { QuickNav } from '@/components/QuickNavigation'
 import { SEO } from '@/components/SEO'
@@ -74,7 +73,6 @@ export default function ApiPage({
       <div className="mt-12">
         <QuickNav prev={prev} next={next} />
       </div>
-      <Footer />
     </div>
   )
 }

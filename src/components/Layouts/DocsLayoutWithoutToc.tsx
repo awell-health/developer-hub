@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 
+import { Footer } from '../Footer'
 import { Header } from '../Header'
 import { Sidebar } from '../Sidebar'
 
@@ -30,6 +31,9 @@ export const DocsLayoutWithoutToc = ({
               <div className="max-w-6xl">{children}</div>
             </div>
           </div>
+        </div>
+        <div className="px-4">
+          <Footer />
         </div>
       </>
     )

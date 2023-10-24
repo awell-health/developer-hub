@@ -6,7 +6,6 @@ import { Alert } from '@/components/Alert'
 import { LinkButton } from '@/components/Button'
 import { DocsHeader } from '@/components/Docs/atoms'
 import { FAQ } from '@/components/FAQ'
-import { Footer } from '@/components/Footer'
 import { DocsLayoutWithoutToc } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
 import { StackSelector } from '@/components/StackSelector'
@@ -343,7 +342,6 @@ export default function HostedPathwayPage() {
         />
       </div>
       <div className="mt-12">{/* <QuickNav prev={prev} next={next} /> */}</div>
-      <Footer />
     </div>
   )
 }

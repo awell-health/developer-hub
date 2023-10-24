@@ -3,7 +3,6 @@ import React, { ReactNode, useState } from 'react'
 import { CodeTabs } from '@/components/CodeTabs'
 import { CodeBlock } from '@/components/CodeTabs/atoms'
 import { DocsHeader } from '@/components/Docs/atoms'
-import { Footer } from '@/components/Footer'
 import { DocsLayoutWithoutToc } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
 import { StackSelector } from '@/components/StackSelector'
@@ -171,7 +170,6 @@ app.listen(8000, () => console.log('Running on port 8000'));
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }
