@@ -53,6 +53,24 @@ Search by national regsitry number:
 }
 ```
 
+### Response
+
+The response is a list of patient objects that exactly match the search criteria. If no patients are found that match the criteria, an empty patient list is returned.
+
+```json
+{
+  "data": {
+    "searchPatientsByPatientCode": {
+      "patients": [
+        {
+          "id": "S8GxueMYsilfryt8Wg30f"
+        }
+      ]
+    }
+  }
+}
+```
+
 ## How to use
 
 <HowToUse storyIds={['search-patients']} />

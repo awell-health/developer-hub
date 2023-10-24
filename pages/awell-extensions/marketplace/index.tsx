@@ -20,10 +20,8 @@ type PageProps = {
 }
 
 export default function Marketplace({ extensions }: PageProps) {
-  const { getCategories } = useExtensions()
+  const { categories, marketplaceExtensions } = useExtensions(extensions)
   const router = useRouter()
-
-  console.log(extensions)
 
   return (
     <>
@@ -57,7 +55,7 @@ export default function Marketplace({ extensions }: PageProps) {
             <div className="w-1/6 grow-0 shrink-0">
               <h3>Category</h3>
               <ul className="space-y-4 pb-6 text-base font-medium text-slate-800 dark:text-slate-400">
-                {getCategories(extensions).map((category) => (
+                {categories.map((category) => (
                   <li key={category}>
                     <Link href={{ query: { category } }}>
                       <a
@@ -99,7 +97,7 @@ export default function Marketplace({ extensions }: PageProps) {
               </div>
             </div>
             <div className="grid md:grid-cols-3 gap-4">
-              {extensions
+              {marketplaceExtensions
                 .filter((ext) => {
                   if (
                     isEmpty(router.query?.category) ||

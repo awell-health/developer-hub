@@ -1,12 +1,10 @@
 import { FC } from 'react'
 
-import { useExtensions } from '@/hooks/useExtensions'
-import { Extension } from '@/types/extenion.types'
+import { useRandomExtensions } from '@/hooks/useRandomExtensions'
 
 import { ExtensionCard } from '../../atoms'
 
 interface RandomExtensionsPanelProps {
-  extensions: Extension[]
   n?: number
   cols?: 3 | 4
   excludeExtensionWithKey?: string
@@ -14,13 +12,16 @@ interface RandomExtensionsPanelProps {
 }
 
 export const RandomExtensionsPanel: FC<RandomExtensionsPanelProps> = ({
-  extensions,
   n = 3,
   cols = 3,
   excludeExtensionWithKey,
   cardType = 'normal',
 }) => {
-  const { getRandomExtensions } = useExtensions()
+  /**
+   * This is loaded on the client side so this will not be indexed by Google.
+   * That's fine as we show random extensions every time the page is reloaded.
+   */
+  const { randomExtensions } = useRandomExtensions(n, excludeExtensionWithKey)
 
   return (
     <div
@@ -28,15 +29,13 @@ export const RandomExtensionsPanel: FC<RandomExtensionsPanelProps> = ({
         cols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'
       }`}
     >
-      {getRandomExtensions(extensions, n, excludeExtensionWithKey).map(
-        (extension) => (
-          <ExtensionCard
-            extension={extension}
-            key={extension.key}
-            type={cardType}
-          />
-        )
-      )}
+      {randomExtensions.map((extension) => (
+        <ExtensionCard
+          extension={extension}
+          key={extension.key}
+          type={cardType}
+        />
+      ))}
     </div>
   )
 }

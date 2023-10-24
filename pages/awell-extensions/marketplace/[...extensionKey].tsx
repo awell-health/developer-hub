@@ -1,23 +1,22 @@
 import { isNil } from 'lodash'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next/types'
+import { ParsedUrlQuery } from 'querystring'
 import { ReactNode } from 'react'
 
 import { HomeLayout } from '@/components/Layouts'
 import { ExtensionDetail } from '@/components/Marketplace/pages'
 import { SEO } from '@/components/SEO'
-import { useExtension } from '@/hooks/useExtension'
 import { Extension } from '@/types/extenion.types'
 import { Space } from '@/types/space.types'
 
 type PageProps = {
-  extensions: Extension[]
+  extension: Extension
 }
 
-export default function ExtensionPage({ extensions }: PageProps) {
+export default function ExtensionPage({ extension }: PageProps) {
   const router = useRouter()
   const extensionKey = String(router.query?.extensionKey) ?? ''
-  const { extension } = useExtension({ extensions, key: extensionKey })
 
   if (isNil(extension)) {
     return <div>Extension not found</div>
@@ -31,10 +30,7 @@ export default function ExtensionPage({ extensions }: PageProps) {
         url={`/${Space.AWELL_EXTENSIONS}/marketplace/${extensionKey}`}
         canonicalUrl={`/${Space.AWELL_EXTENSIONS}/marketplace/${extensionKey}`}
       />
-      <ExtensionDetail
-        extensions={extensions}
-        currentExtensionKey={extensionKey}
-      />
+      <ExtensionDetail extension={extension} />
       <footer className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8 pb-16 text-sm leading-6">
         <div className="mx-auto divide-y divide-slate-200 dark:divide-slate-700">
           <div className="mt-4 pt-10 border-t border-slate-200 dark:border-slate-600">
@@ -65,8 +61,19 @@ ExtensionPage.getLayout = function getLayout(page: ReactNode) {
   return <HomeLayout>{page}</HomeLayout>
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch(process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT ?? '')
-  const extensions = await res.json()
-  return { props: { extensions } }
+interface Iparams extends ParsedUrlQuery {
+  extensionKey: string[]
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { extensionKey } = context.params as Iparams
+
+  const res = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT
+    }${extensionKey.toString()}` ?? ''
+  )
+  const extension = await res.json()
+
+  return { props: { extension } }
 }
