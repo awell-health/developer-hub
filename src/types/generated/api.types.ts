@@ -1262,8 +1262,13 @@ export type PublishedPathwayDefinition = {
   all?: Maybe<PathwayDefinitionDetails>;
   cancelled_activities?: Maybe<Scalars['Float']['output']>;
   created?: Maybe<AuditTrail>;
-  /** Starting/baseline data point definitions for the pathway */
+  /**
+   * Starting/baseline data point definitions for the pathway
+   * @deprecated Use data_point_definitions instead
+   */
   dataPointDefinitions: Array<DataPointDefinition>;
+  /** Starting/baseline data point definitions for the pathway */
+  data_point_definitions?: Maybe<Array<DataPointDefinition>>;
   failed_activities?: Maybe<Scalars['Float']['output']>;
   id: Scalars['ID']['output'];
   last_updated?: Maybe<AuditTrail>;
@@ -1277,6 +1282,8 @@ export type PublishedPathwayDefinition = {
   total_activities?: Maybe<Scalars['Float']['output']>;
   total_patients?: Maybe<Scalars['Float']['output']>;
   total_stakeholders?: Maybe<Scalars['Float']['output']>;
+  /** Tracks for the pathway */
+  track_definitions?: Maybe<Array<Track>>;
   version?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -2062,6 +2069,9 @@ export type TextFilterEquals = {
 
 export type Track = {
   __typename?: 'Track';
+  /** Whether the track can be triggered manually (i.e. via addTrack or scheduleTrack mutations) */
+  can_trigger_manually?: Maybe<Scalars['Boolean']['output']>;
+  /** The definition ID of the Track, can be used for adding or scheduling */
   id: Scalars['ID']['output'];
   release_id?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
