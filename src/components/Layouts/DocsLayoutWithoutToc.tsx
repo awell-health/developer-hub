@@ -32,7 +32,7 @@ export const DocsLayoutWithoutToc = ({
             </div>
           </div>
         </div>
-        <div className="px-4">
+        <div className="px-4 z-30 relative">
           <Footer />
         </div>
       </>

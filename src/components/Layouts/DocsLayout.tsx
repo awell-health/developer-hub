@@ -44,7 +44,7 @@ export const DocsLayout = ({ withSidebar = true, children }: LayoutProps) => {
             </div>
           </div>
         </div>
-        <div className="px-4">
+        <div className="px-4 z-30 relative">
           <Footer />
         </div>
       </>
@@ -71,7 +71,7 @@ export const DocsLayout = ({ withSidebar = true, children }: LayoutProps) => {
           </div>
         </div>
       </div>
-      <div className="px-4">
+      <div className="px-4 z-30 relative">
           <Footer />
       </div>
     </>

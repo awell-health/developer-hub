@@ -27,6 +27,7 @@ export const Footer: FC = () => {
                     <a
                       href="https://www.awellhealth.com/privacy-policy"
                       title="Privacy Policy"
+                      className="hover:underline"
                     >
                       Privacy Policy
                     </a>
@@ -35,6 +36,7 @@ export const Footer: FC = () => {
                     <a
                       href="https://www.awellhealth.com/terms-conditions"
                       title="Terms and Conditions"
+                      className="hover:underline"
                     >
                       Terms and Conditions
                     </a>
@@ -43,6 +45,7 @@ export const Footer: FC = () => {
                     <a
                       href="https://www.awellhealth.com/cookie-policy"
                       title="Cookie Policy"
+                      className="hover:underline"
                     >
                       Cookie Policy
                     </a>
@@ -50,9 +53,10 @@ export const Footer: FC = () => {
                   <li>
                     <a
                       href="https://www.awellhealth.com/hipaa-at-awell"
-                      title="HIPAA AT Awell"
+                      title="HIPAA At Awell"
+                      className="hover:underline"
                     >
-                      HIPAA AT Awell
+                      HIPAA At Awell
                     </a>
                   </li>
                 </ul>
