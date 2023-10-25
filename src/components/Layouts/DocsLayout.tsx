@@ -3,6 +3,7 @@ import { ReactNode, useContext } from 'react'
 import { TOC } from '@/components/TOC'
 
 import { AppContext } from '../../contexts/app/AppContext'
+import { Footer } from '../Footer'
 import { Header } from '../Header'
 import { Sidebar } from '../Sidebar'
 
@@ -43,6 +44,9 @@ export const DocsLayout = ({ withSidebar = true, children }: LayoutProps) => {
             </div>
           </div>
         </div>
+        <div className="px-4 z-30 relative">
+          <Footer />
+        </div>
       </>
     )
   }
@@ -66,6 +70,9 @@ export const DocsLayout = ({ withSidebar = true, children }: LayoutProps) => {
             )}
           </div>
         </div>
+      </div>
+      <div className="px-4 z-30 relative">
+          <Footer />
       </div>
     </>
   )
