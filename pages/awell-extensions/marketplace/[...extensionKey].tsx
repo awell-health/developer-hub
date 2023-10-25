@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next/types'
 import { ParsedUrlQuery } from 'querystring'
 import { ReactNode } from 'react'
 
+import { Footer } from '@/components/Footer'
 import { HomeLayout } from '@/components/Layouts'
 import { ExtensionDetail } from '@/components/Marketplace/pages'
 import { SEO } from '@/components/SEO'
@@ -31,6 +32,9 @@ export default function ExtensionPage({ extension }: PageProps) {
         canonicalUrl={`/${Space.AWELL_EXTENSIONS}/marketplace/${extensionKey}`}
       />
       <ExtensionDetail extension={extension} />
+      <div className="mx-auto max-w-6xl py-12 px-4 sm:px-6 md:px-8 pb-16 ">
+        <Footer />
+      </div>
     </>
   )
 }
