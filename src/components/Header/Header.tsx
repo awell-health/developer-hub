@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import Script from 'next/script';
 import { useContext, useEffect, useState } from 'react'
 
 import {
@@ -61,10 +60,6 @@ export const Header = () => {
 
   return (
     <>
-      <Script 
-        strategy="beforeInteractive" 
-        src="https://cdn-cookieyes.com/client_data/5f6661d434c5243eba8423d0/script.js"
-      />
       <div className="sticky top-0 z-40 w-full backdrop-blur flex-none lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 bg-white supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75">
         <div className="py-4">
           <div className="container">

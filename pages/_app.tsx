@@ -39,6 +39,10 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         />
       </Head>
       <Script
+        strategy="beforeInteractive"
+        src="https://cdn-cookieyes.com/client_data/5f6661d434c5243eba8423d0/script.js"
+      />
+      <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
