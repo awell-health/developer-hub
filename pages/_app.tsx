@@ -81,8 +81,8 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
               app_id: "${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}",
               source: 'awell_developers',
               alignment: 'left',
-              horizontal_padding: 20,
-              vertical_padding: 20
+              horizontal_padding: 66,
+              vertical_padding: 1
             }
             `,
         }}
