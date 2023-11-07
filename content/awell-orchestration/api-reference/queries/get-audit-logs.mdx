@@ -1,0 +1,82 @@
+---
+title: Get audit logs
+description: Retrieve the audit logs for a pathway
+---
+
+Audit logs are detailed and comprehensible breadcrumbs providing a clear trail of all activities within your care flows and give insights into the precise moments and reasons behind the activation of tracks, steps, actions, and more.
+
+## Request
+
+### Query
+
+```graphql
+query GetAuditLogs(
+  $filters: PathwayFactsFilters!
+  $pagination: PaginationParams
+  $sorting: SortingParams
+) {
+  pathwayFacts(filters: $filters, pagination: $pagination, sorting: $sorting) {
+    code
+    success
+    facts {
+      date
+      level
+      pathway_id
+      content
+    }
+    pagination {
+      offset
+      count
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
+  }
+}
+```
+
+### Variables
+
+The `pathway_id` filter is the sole mandatory variable needed for the query to function.
+
+Pagination and sorting parameters are provided for optional use. If not specified, pagination defaults to an offset of 0 and returns 10 records, while the sorting parameter is automatically set to arrange the audit logs in ascending order according to the date field.
+
+#### Simple usage
+
+Retrieve the first 10 audit logs for a given pathway in ascending order by date:
+
+```json
+{
+  "filters": {
+    "pathway_id": "example-pathway-id"
+  }
+}
+```
+
+<br />
+
+#### Advanced usage
+
+Retrieve audit logs for a given pathway with keyword filtering, custom pagination, and sorting. The keyword filter searches within the content of the audit logs, returning entries that contain the specified string in any part of their content.
+
+```json
+{
+  "filters": {
+    "pathway_id": "example-pathway-id",
+    "keyword": "track",
+    "date": {
+      "gte": "2022-01-01T00:00:00Z"
+    }
+  },
+  "pagination": {
+    "count": "20",
+    "offset": "0"
+  },
+  "sorting": {
+    "direction": "desc",
+    "field": "date"
+  }
+}
+```

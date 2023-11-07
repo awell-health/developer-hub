@@ -1060,6 +1060,30 @@ export type Option = {
   value: Scalars['Float']['output'];
 };
 
+export type OrchestrationFact = {
+  __typename?: 'OrchestrationFact';
+  content: Array<Scalars['String']['output']>;
+  date: Scalars['String']['output'];
+  level: Scalars['String']['output'];
+  pathway_id: Scalars['String']['output'];
+};
+
+export type OrchestrationFactsPayload = Payload & {
+  __typename?: 'OrchestrationFactsPayload';
+  code: Scalars['String']['output'];
+  facts: Array<OrchestrationFact>;
+  pagination?: Maybe<PaginationOutput>;
+  sorting?: Maybe<SortingOutput>;
+  success: Scalars['Boolean']['output'];
+};
+
+export type OrchestrationFactsPromptPayload = Payload & {
+  __typename?: 'OrchestrationFactsPromptPayload';
+  code: Scalars['String']['output'];
+  response: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+};
+
 export type PaginationOutput = {
   __typename?: 'PaginationOutput';
   count?: Maybe<Scalars['Float']['output']>;
@@ -1122,6 +1146,12 @@ export type PathwayDefinitionDetails = {
   stopped_careflows?: Maybe<Scalars['Float']['output']>;
   total_careflows?: Maybe<Scalars['Float']['output']>;
   total_patients?: Maybe<Scalars['Float']['output']>;
+};
+
+export type PathwayFactsFilters = {
+  date?: InputMaybe<DateFilter>;
+  keyword?: InputMaybe<Scalars['String']['input']>;
+  pathway_id: Scalars['String']['input'];
 };
 
 export type PathwayPayload = Payload & {
@@ -1314,6 +1344,7 @@ export type Query = {
   form: FormPayload;
   formResponse: FormResponsePayload;
   forms: FormsPayload;
+  getOrchestrationFactsFromPrompt: OrchestrationFactsPromptPayload;
   getStatusForPublishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
   hostedSession: HostedSessionPayload;
   hostedSessionActivities: HostedSessionActivitiesPayload;
@@ -1325,6 +1356,7 @@ export type Query = {
   pathwayActivities: ActivitiesPayload;
   pathwayDataPointDefinitions: PathwayDataPointDefinitionsPayload;
   pathwayElements: ElementsPayload;
+  pathwayFacts: OrchestrationFactsPayload;
   pathwayStepActivities: ActivitiesPayload;
   pathways: PathwaysPayload;
   patient: PatientPayload;
@@ -1435,6 +1467,12 @@ export type QueryFormsArgs = {
 };
 
 
+export type QueryGetOrchestrationFactsFromPromptArgs = {
+  pathway_id: Scalars['String']['input'];
+  prompt: Scalars['String']['input'];
+};
+
+
 export type QueryHostedSessionActivitiesArgs = {
   only_stakeholder_activities?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -1469,6 +1507,13 @@ export type QueryPathwayDataPointDefinitionsArgs = {
 
 export type QueryPathwayElementsArgs = {
   pathway_id: Scalars['String']['input'];
+};
+
+
+export type QueryPathwayFactsArgs = {
+  filters: PathwayFactsFilters;
+  pagination?: InputMaybe<PaginationParams>;
+  sorting?: InputMaybe<SortingParams>;
 };
 
 

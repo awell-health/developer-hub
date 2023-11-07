@@ -95,6 +95,11 @@ export const apiMenu: MenuType = [
         badge: badges.pathway,
       },
       {
+        title: 'Get audit logs',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-audit-logs`,
+        badge: badges.pathway,
+      },
+      {
         title: 'Get ad hoc tracks',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-ad-hoc-tracks`,
         badge: badges.tracks,
