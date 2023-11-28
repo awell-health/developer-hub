@@ -19,22 +19,25 @@ You want to go live with your care flows in production? Use our preflight checkl
       promotion guide
     </a>{' '}
     to get you started with promoting care flows from your Sandbox to Production
-    environment. If you haven't yet decided which region(s) you would like to 
-    have in Production, feel free to mention this to us.
+    environment.
   </p>
 </Alert>
 
 ## Care flow
 
-### Publishing
+### Set Live
 
-Make sure your care flow is published. An unpublished care flow cannot be orchestrated.
+Make sure your care flow is published and set live. A care flow in status 'draft' or 'published' cannot be orchestrated.
 
 ### API call actions
 
 If you're using API call actions in your care flows, make sure they are configured to call the production endpoint.
 
-**Tip:** Use [constants](https://help.awellhealth.com/en/articles/6671868-constants-keep-your-static-data-clean) to store parameters like endpoint URLs and API keys to quickly substitute them in all your actions and keep everything nice and clean.
+**Tip:** Use [constants](https://help.awellhealth.com/en/articles/6671868-constants-keep-your-static-data-clean) to store parameters like endpoint URLs and API keys to quickly substitute them in all your actions and keep everything nice and clean. 
+
+### Extensions
+
+Similarly to the API call action, will you want to swap the extension settings (e.g. URLs, API keys) to point to the right production environments.
 
 ## Integrations
 
@@ -42,7 +45,7 @@ If you're using API call actions in your care flows, make sure they are configur
 
 - Make sure to call the [production environment](https://developers.awellhealth.com/awell-orchestration/api-reference/overview/endpoints) with an API key associated to the production environment.
 
-### Webhooks
+### Outgoing webhooks
 
 - Configure the webhook endpoints to call a production-ready endpoint (see [testing webhooks](/awell-orchestration/developer-tools/webhooks/test-webhooks) and [go live](/awell-orchestration/developer-tools/webhooks/go-live))
 
@@ -53,4 +56,4 @@ If you're using API call actions in your care flows, make sure they are configur
 ## Testing
 
 - Validate your care flow with the preview by creating cases
-- Test your published flow in Orchestration with a test patient
+- Test your live flow in Orchestration with a test patient
