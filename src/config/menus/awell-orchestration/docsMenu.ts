@@ -141,4 +141,14 @@ export const docsMenu: MenuType = [
       },
     ],
   },
+  {
+    title: 'Source Control',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control`,
+    submenu: [
+      {
+        title: 'Github',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/github`,
+      },
+    ],
+  },
 ]
