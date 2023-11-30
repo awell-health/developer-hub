@@ -314,9 +314,9 @@ export enum BooleanOperator {
 export type BrandingSettings = {
   __typename?: 'BrandingSettings';
   accent_color?: Maybe<Scalars['String']['output']>;
-  /** Auto progress to the next question when using the conversational display mode in Awell Hosted Pages. */
+  /** Auto progress to the next question when using the conversational display mode in Hosted Pages. */
   hosted_page_auto_progress?: Maybe<Scalars['Boolean']['output']>;
-  /** Automatically save question answers locally in Awell Hosted Pages */
+  /** Automatically save question answers locally in Hosted Pages */
   hosted_page_autosave?: Maybe<Scalars['Boolean']['output']>;
   hosted_page_title?: Maybe<Scalars['String']['output']>;
   logo_url?: Maybe<Scalars['String']['output']>;
@@ -865,6 +865,7 @@ export type Mutation = {
   startHostedActivitySession: StartHostedActivitySessionPayload;
   startHostedActivitySessionViaHostedPagesLink: StartHostedActivitySessionPayload;
   startHostedPathwaySession: StartHostedPathwaySessionPayload;
+  startHostedPathwaySessionFromLink: StartHostedPathwaySessionFromLinkPayload;
   startPathway: StartPathwayPayload;
   stopPathway: EmptyPayload;
   stopTrack: StopTrackPayload;
@@ -987,6 +988,11 @@ export type MutationStartHostedActivitySessionViaHostedPagesLinkArgs = {
 
 export type MutationStartHostedPathwaySessionArgs = {
   input: StartHostedPathwaySessionInput;
+};
+
+
+export type MutationStartHostedPathwaySessionFromLinkArgs = {
+  input: StartHostedPathwaySessionFromLinkInput;
 };
 
 
@@ -1820,7 +1826,7 @@ export enum StakeholderClinicalAppRole {
 
 export type StakeholderLabel = {
   __typename?: 'StakeholderLabel';
-  en?: Maybe<Scalars['String']['output']>;
+  en: Scalars['String']['output'];
 };
 
 export type StakeholdersPayload = Payload & {
@@ -1850,6 +1856,17 @@ export type StartHostedActivitySessionPayload = Payload & {
 
 export type StartHostedActivitySessionViaHostedPagesLinkInput = {
   hosted_pages_link_id: Scalars['String']['input'];
+};
+
+export type StartHostedPathwaySessionFromLinkInput = {
+  id: Scalars['String']['input'];
+};
+
+export type StartHostedPathwaySessionFromLinkPayload = Payload & {
+  __typename?: 'StartHostedPathwaySessionFromLinkPayload';
+  code: Scalars['String']['output'];
+  session_url: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
 };
 
 export type StartHostedPathwaySessionInput = {

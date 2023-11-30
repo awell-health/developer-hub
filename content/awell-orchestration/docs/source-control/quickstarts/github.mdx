@@ -1,0 +1,46 @@
+---
+title: Source Control with Github
+description: Set up Source Control with Github.
+---
+
+## Create a New Git Repository
+
+Begin by setting up a dedicated Git repository for Awell's Source Control. While you can link to an existing repository, starting fresh with a new one is advised for optimal integration. This approach not only ensures a clean slate but also provides you with a unique URL for your project. Remember to copy this new URL once created, as you'll need it for subsequent steps. Here's what your new repository's URL will look like:
+
+```repository
+https://github.com/<org>/<repo>
+```
+
+## Enter your URL into Awell
+
+To integrate your repository with Awell, follow these steps:
+
+- Go to the Care flow that you want to source control.
+- Click on the **Settings** tab.
+- Under the settings menu, on the left, click on **Source Control**.
+- Paste your new URL from the previous step into the **GitHub repository URL** field.
+
+## Branch Name
+
+Under the **GitHub repository URL**, write the name of the branch you would like your care flow to be pushed to. If you are unsure what to name it, we recommend using `Main`.
+
+## Create a Fine-grained Personal Access Token
+
+Generate a Personal Access Token on GitHub to allow Awell to interact with your repository:
+
+1. Navigate to **Profile > Settings > Developer Settings > Personal Access Tokens > Fine-Grained Tokens** on GitHub.
+2. Follow the instructions provided in the [Managing your personal access tokens - GitHub Docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+3. Under **Repository permissions**, change the contents option to **Read-and-Write** access.
+
+## Copy the Generated Token into Awell
+
+- Go to the Care flow you want to source control.
+- Click on the **Settings** tab.
+- Under the settings menu, on the left, click on **Source Control**.
+- Paste your new token from the previous step into the **GitHub access token** box.
+
+## Hit Save
+
+**Do not forget to hit the Save button** on the bottom right and BAM! Your care flow is now source-controlled.
+
+> **NOTE:** Every time you publish a care flow it will be pushed to the GitHub repository.

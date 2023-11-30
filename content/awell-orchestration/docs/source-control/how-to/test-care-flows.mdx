@@ -1,0 +1,176 @@
+---
+title: Test care flows
+description: Source Control allows you to test your care flows through code.
+---
+
+When Source Control is activated, the code representation of your care flow is automatically committed to your repository every time the care flow is published. This setup allows for the utilization of GitHub Actions to execute an automated test suite upon any commit to the `main` branch.
+
+## Recommended workflow
+
+1. Publish a new version of your care flow but don't make it the active version yet.
+2. This action triggers the automated test suite, which validates the design elements of your care flow.
+3. Upon successful test completion, promote this latest version to be the active version.
+
+## The idea
+
+Since your care flow is maintained in JSON format, as detailed in our [source control documentation on components](/awell-orchestration/docs/source-control/concepts/components), it makes it easy to perform assertions. This includes verifying specific values or conditions in your JSON files.
+
+**The idea is the following:**
+
+- We will be using [Jest](https://jestjs.io/), a popular JavaScript testing framework, to write and execute tests. These tests will be added to the repository.
+- Our tests will be executed automatically using Jest within a GitHub Action, seamlessly integrating into our Continuous Integration (CI) pipeline.
+
+It's important to mention that you have the flexibility to choose any testing framework or language; you are not limited to using only Jest or JavaScript.
+
+## Get started
+
+### Create a package.json file
+
+This can be done by running the below command:
+
+```bash
+npm init
+```
+
+or by creating the file manually and copy and paste the contents below:
+
+```json
+{
+  "name": "your-repo-name",
+  "version": "1.0.0",
+  "description": "A brief description of your project"
+}
+```
+
+### Install Jest
+
+```bash
+npm install --save-dev jest @types/jest
+```
+
+### Add a script to run your tests
+
+Add a new script to your `package.json` file that allows you to run your tests with Jest.
+
+```json
+{
+  "name": "your-repo-name",
+  "version": "1.0.0",
+  "description": "A brief description of your project",
+  "scripts": {
+    "test": "jest"
+  },
+  ...
+}
+```
+
+### Write your first test
+
+You can create new tests simply by creating a file like this: `<filename>.test.js`. How you group your test files is completely up to you, we prefer to have all our test files in a dedicated `tests` directory.
+
+Let's create our first test in this `tests` directory:
+
+```bash
+mkdir tests && touch tests/tracks.test.js
+```
+
+Next, let's create a simple test that asserts that there needs to be at least one track in the care flow. Add the below code to your `tracks.test.js` file.
+
+```javascript
+const tracks = require('../tracks/tracks.json')
+
+describe('Tracks', () => {
+  it('Care flow should have one track', () => {
+    expect(tracks).toHaveLength(1)
+  })
+})
+```
+
+We can now run the test simply by running the below command
+
+```bash
+npm test
+```
+
+**That's it!** We have successfully built and executed our first test.
+
+<figure className="w-full flex flex-col justify-center text-center">
+  <a
+    href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1701344746/Developer%20portal/Screenshot_2023-11-30_at_12.45.00.png"
+    target="_blank"
+    className="custom-link"
+  >
+    <img
+      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1701344746/Developer%20portal/Screenshot_2023-11-30_at_12.45.00.png"
+      alt="Running your tests"
+      className="w-full sm:w-10/12 mx-auto rounded-lg"
+    />
+  </a>
+  <figcaption className="dark:text-slate-400 pt-1">Test results</figcaption>
+</figure>
+
+### Automatically run your tests (CI)
+
+Utilizing GitHub Actions, we can set up an automated workflow that triggers all our tests whenever a new version of our care flow is published, corresponding to any commit made to the main branch.
+
+Create a `.github/workflows` directory in your repository on GitHub if this directory does not already exist
+
+```bash
+mkdir -p .github/workflows
+```
+
+In the `.github/workflows` directory, create a file named `tests.yml`
+
+```bash
+touch .github/workflows/test.yml
+```
+
+Copy the following YAML contents into the `test.yml` file:
+
+```yaml
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+```
+
+**Make sure to push all of these changes to your repository.** The next time you publish your care flow and a commit occurs in your repository, your test suite will automatically execute!
+
+<figure className="w-full flex flex-col justify-center text-center">
+  <a
+    href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1701345643/Developer%20portal/Screenshot_2023-11-29_at_18.47.40.png"
+    target="_blank"
+    className="custom-link"
+  >
+    <img
+      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1701345643/Developer%20portal/Screenshot_2023-11-29_at_18.47.40.png"
+      alt="Running your test via GitHub Actions"
+      className="w-full sm:w-10/12 mx-auto rounded-lg"
+    />
+  </a>
+  <figcaption className="dark:text-slate-400 pt-1">
+    Running your test via GitHub Actions (CI)
+  </figcaption>
+</figure>
