@@ -13,14 +13,14 @@ When Source Control is activated, the code representation of your care flow is a
 
 ## The idea
 
-[Because your care flow is stored as JSON](/awell-orchestration/docs/source-control/concepts/components), we can easily perform assertions, such as checking for specific values or conditions within your JSON files.
+Since your care flow is maintained in JSON format, as detailed in our [source control documentation on components](/awell-orchestration/docs/source-control/concepts/components), it makes it easy to perform assertions. This includes verifying specific values or conditions in your JSON files.
 
 **The idea is the following:**
 
 - We will be using [Jest](https://jestjs.io/), a popular JavaScript testing framework, to write and execute tests. These tests will be added to the repository.
-- We will run our tests with Jest by using a GitHub action
+- Our tests will be executed automatically using Jest within a GitHub Action, seamlessly integrating into our Continuous Integration (CI) pipeline.
 
-Please note that you are free to use any other testing framework or language and are not restricted to Jest/JavaScript.
+It's important to mention that you have the flexibility to choose any testing framework or language; you are not limited to using only Jest or JavaScript.
 
 ## Get started
 
@@ -32,7 +32,7 @@ This can be done by running the below command:
 npm init
 ```
 
-or simply copy and paste the example file below
+or by creating the file manually and copy and paste the contents below:
 
 ```json
 {
@@ -92,7 +92,7 @@ We can now run the test simply by running the below command
 npm test
 ```
 
-**That's it!** We have successfully build and executed our first test.
+**That's it!** We have successfully built and executed our first test.
 
 <figure className="w-full flex flex-col justify-center text-center">
   <a
@@ -111,7 +111,7 @@ npm test
 
 ### Automatically run your tests (CI)
 
-By levarging GitHub Actions, we can create a workflow that automatically runs all of our tests when a new version of our care flow is published (=when there is a commit to the `main` branch).
+Utilizing GitHub Actions, we can set up an automated workflow that triggers all our tests whenever a new version of our care flow is published, corresponding to any commit made to the main branch.
 
 Create a `.github/workflows` directory in your repository on GitHub if this directory does not already exist
 
@@ -156,7 +156,7 @@ jobs:
         run: npm test
 ```
 
-**Make sure to push all of these changes to your repository.** Next time when you publish your care flow and a commit is made to your repository, you will see that your test suite will run automatically!
+**Make sure to push all of these changes to your repository.** The next time you publish your care flow and a commit occurs in your repository, your test suite will automatically execute!
 
 <figure className="w-full flex flex-col justify-center text-center">
   <a
