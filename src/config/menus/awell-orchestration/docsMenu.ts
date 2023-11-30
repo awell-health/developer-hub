@@ -146,8 +146,38 @@ export const docsMenu: MenuType = [
     path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control`,
     submenu: [
       {
-        title: 'Github',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/github`,
+        title: 'Introduction',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/introduction`,
+      },
+      {
+        title: 'Quickstarts',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/quickstarts`,
+        submenu: [
+          {
+            title: 'Github',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/quickstarts/github`,
+          },
+        ],
+      },
+      {
+        title: 'Concepts',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/concepts`,
+        submenu: [
+          {
+            title: 'Components',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/concepts/components`,
+          },
+        ],
+      },
+      {
+        title: 'How-to',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/how-to`,
+        submenu: [
+          {
+            title: 'Test care flows',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/how-to/test-care-flows`,
+          },
+        ],
       },
     ],
   },
