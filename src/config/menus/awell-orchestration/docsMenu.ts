@@ -169,16 +169,16 @@ export const docsMenu: MenuType = [
           },
         ],
       },
-      {
-        title: 'How-to',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/how-to`,
-        submenu: [
-          {
-            title: 'Test care flows',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/how-to/test-care-flows`,
-          },
-        ],
-      },
+      // {
+      //   title: 'How-to',
+      //   path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/how-to`,
+      //   submenu: [
+      //     {
+      //       title: 'Test care flows',
+      //       path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/how-to/test-care-flows`,
+      //     },
+      //   ],
+      // },
     ],
   },
 ]
