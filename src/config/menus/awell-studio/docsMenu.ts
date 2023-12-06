@@ -34,22 +34,16 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_STUDIO}/docs/source-control/introduction`,
       },
       {
+        title: 'Components',
+        path: `/${Space.AWELL_STUDIO}/docs/source-control/components`,
+      },
+      {
         title: 'Quickstarts',
         path: `/${Space.AWELL_STUDIO}/docs/source-control/quickstarts`,
         submenu: [
           {
             title: 'Github',
             path: `/${Space.AWELL_STUDIO}/docs/source-control/quickstarts/github`,
-          },
-        ],
-      },
-      {
-        title: 'Concepts',
-        path: `/${Space.AWELL_STUDIO}/docs/source-control/concepts`,
-        submenu: [
-          {
-            title: 'Components',
-            path: `/${Space.AWELL_STUDIO}/docs/source-control/concepts/components`,
           },
         ],
       },
