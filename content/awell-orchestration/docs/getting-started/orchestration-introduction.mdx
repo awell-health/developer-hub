@@ -1,0 +1,98 @@
+---
+title: Introduction
+description: What is Awell Orchestration?
+---
+
+## What is Awell Orchestration?
+
+**Awell Orchestration is the part of Awell's platform that allows you to run your care flows, designed in [Awell Studio](/awell-studio/docs/getting-started/studio-introduction), for your patient population.** It automatically handles the variability encoded in the care flow you designed by evaluating all conditional logic, activating and discarding branches, scheduling activities and assigning them to the right stakeholder and more.
+
+Awell exposes a powerful Orchestration API and low-code solutions allowing you to embed your care flows into your tech stack.
+
+<figure className="w-full flex flex-col justify-center text-center">
+  <div>
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/6294e9d29b81f84d698d7514_API.png"
+      target="_blank"
+      className="custom-link"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1651756063/Developer%20portal/6294e9d29b81f84d698d7514_API.png"
+        alt="Pathway versioning"
+        className="w-full sm:w-9/12 p-4 dark:p-0 mx-auto bg-[#001A44] dark:bg-transparent rounded-lg"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-1">
+    Orchestrate care flows with Awell's Orchestration API
+  </figcaption>
+</figure>
+
+### From Design to Orchestration
+
+After publishing a care flow in Awell Studio, you will want to start enrolling patients in that flow. From that point onwards, Awell orchestrates all activities for all stakeholders in the care flow in the back-end. To allow users to interact with these activities you can integrate with our Orchestration API for full control over the end-user experience or leverage one of our low-code options to provide user interfaces to your patient and care team members. Orchestration also means automating data flow and integrations with 3d party systems like your EMR.
+
+**Orchestrating care flows is the act of enrolling a patient into the care flow you have designed and published in [Awell Studio](/awell-studio/docs/getting-started/studio-introduction).** The orchestration domain is exposed by an API, the "Orchestration API" and this is the API you'll integrate against.
+
+Whereas in the design domain you've built a theoretical model or blueprint of your care flow, when orchestrating care flows you'll be actually executing a care flow for patient against that model or blueprint.
+
+**The Orchestration domain will therefore help you with answering the following questions:**
+
+- For a given patient in a care flow, what are the current actions to complete?
+- For a given patient in a care flow, what are the upcoming steps that will be activated?
+- For a given patient in a care flow, what are the completed tracks, steps, and actions?
+
+Additionally, you can also let the Orchestration API know that certain pieces of data were collected, actions were completed, etc. Which could be a trigger to go to the next step or activate a new track.
+
+### State machine
+
+In essence, Awell Orchestration and its corresponding API can be seen as a state machine. For every patient enrolled in a care flow you've designed and published, Awell knows exactly what happened, what inputs are needed next and what activities need to happen by whom and when. You can feed data into the machine (eg: a patient submits a form) to let Awell Orchestration recompute what's next.
+
+<Alert type="info">
+  <p>
+    Note that integrating directly with our API is only one of the ways you can
+    orchestrate care flows in Awell. Check out how to{' '}
+    <a
+      href="/awell-orchestration/docs/activities/overview-activities"
+      title="Interact with
+    activities"
+    >
+      interact with activities
+    </a>
+    .
+  </p>
+</Alert>
+
+### Awell Studio vs. Awell Orchestration
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th align="center">
+          <strong>Awell Studio</strong>
+        </th>
+        <th align="center">
+          <strong>Awell Orchestration</strong>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td width="50%" align="center">
+          Design, build, and publish care flows using Awell's low-code editor.
+        </td>
+        <td width="50%" align="center">
+          Orchestrate or run care flows for your patient population with Awell's
+          API and integrate them in your tech stack.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Integrations
+
+We strongly believe in an ecosystem of solutions (vs. a monolithic one-app-to-rule-them-all).
+
+From your EMR or practice management software to your patient app, scheduling and medication delivery, Awell integrates with your existing tech stack. Check our [Webhooks](/awell-orchestration/developer-tools/webhooks/introduction) and [Healthcare interoperability](/awell-orchestration/docs/data/healthcare-interoperability) for more information or contact us to discuss your particular set-up.

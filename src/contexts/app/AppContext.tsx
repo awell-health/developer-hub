@@ -130,6 +130,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       setSpace(Space.AWELL_SCORE)
     } else if (router.asPath.includes(Space.AWELL_EXTENSIONS)) {
       setSpace(Space.AWELL_EXTENSIONS)
+    } else if (router.asPath.includes(Space.AWELL_STUDIO)) {
+      setSpace(Space.AWELL_STUDIO)
     } else {
       setSpace(null)
     }

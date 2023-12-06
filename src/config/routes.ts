@@ -8,9 +8,15 @@ type Routes = {
 }
 
 export const rootRoutes: Record<Space, Routes> = {
+  [Space.AWELL_STUDIO]: {
+    home: `/${Space.AWELL_STUDIO}`,
+    docs: `/${Space.AWELL_STUDIO}/docs/getting-started/studio-introduction`,
+    api: '#',
+    developerTools: '#',
+  },
   [Space.AWELL_ORCHESTRATION]: {
     home: `/${Space.AWELL_ORCHESTRATION}`,
-    docs: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/what-is-awell-orchestration`,
+    docs: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/orchestration-introduction`,
     api: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/graphql-api`,
     developerTools: `/${Space.AWELL_ORCHESTRATION}/developer-tools/changelog`,
   },

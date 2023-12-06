@@ -8,24 +8,16 @@ export const docsMenu: MenuType = [
     path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started`,
     submenu: [
       {
-        title: 'What is Awell Orchestration?',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/what-is-awell-orchestration`,
+        title: 'Introduction',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/orchestration-introduction`,
       },
       {
-        title: 'Design & Orchestrate care flows',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/design-and-orchestrate-care-flows`,
+        title: 'Orchestration ontology',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/orchestration-ontology`,
       },
       {
-        title: 'Awell ecosystem',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/awell-ecosystem`,
-      },
-      {
-        title: 'Domain model',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/domain-model`,
-      },
-      {
-        title: 'Pathway versioning',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/pathway-versioning`,
+        title: 'Versioning',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/orchestration-versioning`,
       },
     ],
   },
@@ -139,46 +131,6 @@ export const docsMenu: MenuType = [
         title: 'Sandbox to production promotion guide',
         path: `/${Space.AWELL_ORCHESTRATION}/docs/going-live/sandbox-to-production-promotion-guide`,
       },
-    ],
-  },
-  {
-    title: 'Source Control',
-    path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control`,
-    submenu: [
-      {
-        title: 'Introduction',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/introduction`,
-      },
-      {
-        title: 'Quickstarts',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/quickstarts`,
-        submenu: [
-          {
-            title: 'Github',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/quickstarts/github`,
-          },
-        ],
-      },
-      {
-        title: 'Concepts',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/concepts`,
-        submenu: [
-          {
-            title: 'Components',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/concepts/components`,
-          },
-        ],
-      },
-      // {
-      //   title: 'How-to',
-      //   path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/how-to`,
-      //   submenu: [
-      //     {
-      //       title: 'Test care flows',
-      //       path: `/${Space.AWELL_ORCHESTRATION}/docs/source-control/how-to/test-care-flows`,
-      //     },
-      //   ],
-      // },
     ],
   },
 ]

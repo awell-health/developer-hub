@@ -95,9 +95,9 @@ export default function Home() {
   return (
     <>
       <SEO
-        description="Explore our guides, API references, and examples to start integrating with Awell."
+        description="Design, build, and publish care flows in our no-code editor."
         url="/"
-        canonicalUrl="/awell-orchestration"
+        canonicalUrl="/awell-studio"
       />
       <div className="relative max-w-6xl mx-auto pt-4 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-8">
         <div>
@@ -109,8 +109,7 @@ export default function Home() {
                     Get Started
                   </h3>
                   <p className="mt-3 text-lg text-slate-500 dark:text-slate-400">
-                    Run your care flows, built with Awell Studio, for your
-                    patient population and embed them into your tech stack.
+                    Design, build, and publish care flows in our no-code editor.
                   </p>
 
                   <dl className="mt-10 space-y-10">

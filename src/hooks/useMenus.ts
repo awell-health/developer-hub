@@ -9,6 +9,7 @@ import {
   orchestrationDocsMenu,
 } from '@/config/menus/awell-orchestration'
 import { scoreDocsMenu } from '@/config/menus/awell-score'
+import { studioDocsMenu } from '@/config/menus/awell-studio'
 import { BadgeType } from '@/types/menu.types'
 
 interface FlattenedMenuType {
@@ -25,6 +26,7 @@ interface useMenusHook {
 
 export const useMenus = (): useMenusHook => {
   const menus = [
+    ...studioDocsMenu,
     ...orchestrationDocsMenu,
     ...orchestrationApiMenu,
     ...orchestrationDeveloperToolsMenu,

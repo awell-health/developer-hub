@@ -1,0 +1,52 @@
+---
+title: Design ontology
+description: Learn more about Awell's ontology to design care flows
+---
+
+## Building blocks
+
+When designing a care flow, you will use the following types of building blocks:
+
+<div className="grid gap-6 mx-auto grid-cols-3">
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Tracks with triggers
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Steps and transitions
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Actions assigned to stakeholders
+      </div>
+    </div>
+  </div>
+</div>
+
+These building blocks are the result of many iterations of the Awell Platform to come to a visual workflow modeling language that is fit for healthcare processes.
+
+### Tracks and triggers
+
+Tracks operate on a declarative model, activating in response to specific events (triggers) within the care flow.
+
+### Steps and transitions
+
+Within a track, you will use steps connected by transitions. This modeling resembles what is commonly found in flowchart and BPMN tools, where processes are created by placing steps onto a canvas and linking them with arrows.
+
+### Actions
+
+**An action is the most low level and granular building block** in a care flow. Compared to tracks and steps which purely help you organizing a care flow , **it defines what needs to happen by who**.
+
+Actions within the system are categorized based on whether they require completion by a real user (stakeholder) or are automatically executed by the system. These are identified as user-actionable actions (such as filling out a form) and system actions (also known as non-user-actionable actions), which include processes like performing calculations and making API calls.
+
+## Deviating from BPMN standards
+
+Note that we have deviated on purpose from Business Process Modeling (BPM) language despite it being considered a standard process modeling language. The main reason is that healthcare processes are significantly different from regular business processes and they have several unique requirements that are not solved in BPMN.

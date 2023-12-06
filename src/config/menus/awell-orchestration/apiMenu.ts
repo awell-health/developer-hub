@@ -23,6 +23,10 @@ export const apiMenu: MenuType = [
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/graphql-api`,
       },
       {
+        title: 'Domain model',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/domain-model`,
+      },
+      {
         title: 'Endpoints',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/overview/endpoints`,
       },
