@@ -6,6 +6,7 @@ import {
   extensionsNavigation,
   orchestrationNavigation,
   scoreNavigation,
+  studioNavigation,
 } from '@/config/navigation'
 import { MainNavType } from '@/types/nav.types'
 import { Space } from '@/types/space.types'
@@ -26,6 +27,8 @@ export const MobileNav = () => {
       setNavigation(scoreNavigation)
     } else if (space === Space.AWELL_EXTENSIONS) {
       setNavigation(extensionsNavigation)
+    } else if (space === Space.AWELL_STUDIO) {
+      setNavigation(studioNavigation)
     } else {
       setNavigation(defaultNavigation)
     }

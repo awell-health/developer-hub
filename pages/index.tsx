@@ -12,6 +12,27 @@ import { Space } from '@/types/space.types'
 
 const domains = [
   {
+    url: rootRoutes[Space.AWELL_STUDIO].docs,
+    title: 'Awell Studio',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+        />
+      </svg>
+    ),
+    description: 'Design, build, and publish care flows in our no-code editor.',
+  },
+  {
     url: rootRoutes[Space.AWELL_ORCHESTRATION].home,
     title: 'Awell Orchestration',
     icon: (
@@ -31,7 +52,7 @@ const domains = [
       </svg>
     ),
     description:
-      'Build care flows in our no-code editor and embed them into your tech stack. Explore our guides, API references, and examples to start integrating with Awell.',
+      'Run your care flows, built with Awell Studio, for your patient population and embed them into your tech stack.',
   },
   {
     url: rootRoutes[Space.AWELL_EXTENSIONS].home,
@@ -53,7 +74,7 @@ const domains = [
       </svg>
     ),
     description:
-      'We provide developers an SDK allowing them to assemble their own piece of software to extend the capabilities of the Awell Platform.',
+      'An SDK that allows your developers to build their own piece of software to extend the capabilities of the Awell Platform.',
   },
   {
     url: rootRoutes[Space.AWELL_SCORE].home,
@@ -75,7 +96,7 @@ const domains = [
       </svg>
     ),
     description:
-      'A standalone API developed by the Awell team that can be used to calculate validated scores for clinical & patient reported outcome measures.',
+      'A standalone API developed by the Awell team to calculate validated scores for clinical & patient reported outcome measures.',
   },
 ]
 
@@ -111,10 +132,9 @@ export default function Home() {
             Documentation
           </h2>
           <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
-            Explore our different solutions and corresponding doc spaces and
-            start integrating with Awell.
+            Explore our different solutions and corresponding doc spaces
           </p>
-          <div className="grid md:grid-cols-3 gap-6 mt-6">
+          <div className="grid md:grid-cols-2 gap-6 mt-6">
             {domains.map((d) => (
               <Link href={d.url} key={d.title}>
                 <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
@@ -147,7 +167,7 @@ export default function Home() {
             Marketplace
           </h3>
           <p className="mt-1 text-lg text-slate-600 dark:text-slate-400">
-            Browse our marketplace and find extensions that bring your care
+            Browse our Marketplace and find extensions that bring your care
             flows to the next level.
           </p>
           <div className="mt-6">

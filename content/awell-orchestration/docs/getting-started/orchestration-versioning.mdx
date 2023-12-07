@@ -1,0 +1,16 @@
+---
+title: Versioning with Awell Orchestration
+description: Learn more about how versioning works when Orchestrating care flows
+---
+
+**Every time a care flow is published in Awell Studio, a new version is created for that care flow.** Every version represents an immutable snapshot of the state of all the components associated with that care flow at the time of publishing. [Before moving on, we recommend reading more about how versioning works in Awell Studio](/awell-studio/docs/getting-started/versioning).
+
+### Starting a care flow
+
+When you enroll a patient in a care flow, the Orchestrator will enroll the patient in the version of the care flow [that is set as the live version](/awell-studio/docs/getting-started/versioning#set-the-live-version).
+
+### Migrate patients from one version to another
+
+It might be that you've included a patient in version 1 of your care flow but you're ready to publish version 2 and you're wondering whether you can "upgrade" the patients enrolled in previous versions to the latest version.
+
+Unfortunately, that's not possible yet but we're working on improved support with the ability to upgrade started care flows/pathways to a newer version.

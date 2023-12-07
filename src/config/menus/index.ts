@@ -9,8 +9,10 @@ import {
   orchestrationDocsMenu,
 } from './awell-orchestration'
 import { scoreDocsMenu } from './awell-score'
+import { studioDocsMenu } from './awell-studio'
 
 export const allMenus = [
+  ...studioDocsMenu,
   ...orchestrationDocsMenu,
   ...orchestrationApiMenu,
   ...orchestrationDeveloperToolsMenu,

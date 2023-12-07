@@ -1,9 +1,9 @@
 ---
-title: Pathway versioning
-description: Iterate and publish new versions of your care pathway
+title: Versioning in Awell Studio
+description: Iterate and publish new versions of your care flow in Awell Studio
 ---
 
-A pathway version is an immutable snapshot of the state of all the components associated with that pathway definition.
+A care flow version is an immutable snapshot of the state of all the components associated with that care flow definition.
 
 <figure className="w-full flex flex-col justify-center text-center">
   <a
@@ -22,9 +22,9 @@ A pathway version is an immutable snapshot of the state of all the components as
   </figcaption>
 </figure>
 
-## A pathway as a set of components
+## A care flow as a set of components
 
-**A pathway definition consists of set of components that are logically linked together.** There are different type of components and they can change over time as you want to do changes to your pathway (eg: add new steps and transitions, add new forms, ...).
+**A care flow consists of [a set of components](/awell-studio/docs/source-control/concepts/components#components) that are logically linked together.** There are different types of components and they can change over time as you want to do changes to your care flows (eg: add new steps and transitions, add new forms, ...).
 
 We make a distinction between `shared` and `non-shared` components.
 
@@ -72,14 +72,6 @@ As mentioned above, **publishing a new version creates an immutable snapshot of 
 
 **Our versioning system works with a simple numerical increment for each new version.** When a pathway is just created, the pathway is "unpublished". As soon as you're ready to publish your pathway, you can publish it from Awell Studio and this will then be marked as version 1 of your pathway. If you decide to do additional changes and publish those changes, that will be become version 2 of your pathway (and so on...).
 
-### Enrolling a new patient in a pathway
+### Set the live version
 
-Via the `startPathway` mutation, you're able to enroll a patient in a pathway. Note that, when starting a pathway, the Orchestrator automatically enrolls the patient in the last published version of that pathway.
-
-> Improved support for versioning is coming soon, with the ability to select a specific version when starting a new pathway.
-
-### Updating a patient in a previous version to the latest version
-
-It might be that you've included a patient in version 1 of your pathway but you're ready to publish version 2 and you're wondering whether you can "upgrade" the patients enrolled in previous versions to the latest version.
-
-Unfortunately, that's not possible yet but we're working on improved support with the ability to upgrade started care flows/pathways to a newer version.
+In Awell Studio, [you have the ability to set any published version of your care flow as the ‘live’ version](https://help.awellhealth.com/en/articles/6804379-publish-set-your-care-flow-live). The version that is marked as the ‘live’ version is the version that will be used to enroll patients in when orchestrating your care flow.

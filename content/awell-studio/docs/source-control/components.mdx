@@ -1,0 +1,115 @@
+---
+title: Care flow components
+description: Learn more about the different components of a care flow
+---
+
+## Disclaimer
+
+The representation of a care flow in code, including its folder structure and components, is currently in an experimental phase. Awell may implement substantial changes to this structure without prior notification.
+
+## Syntax
+
+Your care flow and its components will be stored as JSON files.
+
+## Folder structure
+
+When you care flow is synced to your repository, the directory will contain your care flow components as code (JSON), split into the following files and directories.
+
+```
+repository
+└── actions
+    └── actions.json
+└── data_point_definitions
+    └── data_point_definitions.json
+└── labels
+    └── labels.json
+└── messages
+    └── messages.json
+└── pathways
+    └── pathways.json
+└── rules
+    └── rules.json
+└── settings
+    └── settings.json
+└── stakeholders
+    └── stakeholders.json
+└── steps
+    └── steps.json
+└── timings
+    └── timings.json
+└── tracks
+    └── tracks.json
+└── transitions
+    └── transitions.json
+└── triggers
+    └── triggers.json
+└── README.md
+```
+
+## Components
+
+[A care flow is a sum of components](/awell-studio/docs/getting-started/versioning#a-care-flow-as-a-set-of-components), learn more about all the different components below.
+
+### Actions
+
+The most granular building block in a care flow. Actions define what needs to be done and by whom. They can be stakeholder-actionable actions (like forms) or system actions (like calculations or API calls).
+
+### API calls
+
+Contains definitions of external API calls that are part of the care flow.
+
+### Data point definitions
+
+Holds the definitions of various data points used within the care flow.
+
+### Forms
+
+Includes the forms required in the care flow for data input or interaction.
+
+### Labels
+
+Contains labels used for categorizing or marking different parts of the care flow.
+
+### Messages
+
+Stores predefined messages or communication templates used in the care flow.
+
+### Pathways
+
+The high-level structure of a care flow, outlining the sequence and connection of steps and actions.
+
+### Questions
+
+Contains questions that may be asked during the care flow, often part of forms or decision-making processes.
+
+### Rules
+
+Defines the rules or logic that govern the flow of the care flow, like conditional branching.
+
+### Settings
+
+Holds configuration settings specific to the care flow.
+
+### Stakeholders
+
+Lists the different stakeholders or user roles involved in the care flow.
+
+### Steps
+
+Represents the individual steps within a track of a care flow.
+
+### Timings
+
+Contains information related to the timing aspects of the care flow, like scheduling or time-based triggers.
+
+### Tracks
+
+Broad categorizations or groupings of steps in a care flow.
+
+### Transitions
+
+Details the transitions between different states or stages of the care flow.
+
+### Triggers
+
+Defines the triggers that initiate or advance stages within the care flow.

@@ -15,6 +15,7 @@ import {
   scoreDeveloperToolsMenu,
   scoreDocsMenu,
 } from '@/config/menus/awell-score'
+import { studioDocsMenu } from '@/config/menus/awell-studio'
 import { AppContext } from '@/contexts/app/AppContext'
 import {
   type LevelOneMenuType,
@@ -58,6 +59,12 @@ export const useSidebarMenu = (): useSidebarMenuHook => {
         setMenu(extensionsDocsMenu)
       } else if (router.asPath.includes('developer-tools')) {
         setMenu(extensionsDeveloperToolsMenu)
+      } else {
+        setMenu([])
+      }
+    } else if (router.asPath.includes(Space.AWELL_STUDIO)) {
+      if (router.asPath.includes('docs')) {
+        setMenu(studioDocsMenu)
       } else {
         setMenu([])
       }

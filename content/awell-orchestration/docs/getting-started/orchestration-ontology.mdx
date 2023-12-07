@@ -1,0 +1,55 @@
+---
+title: Orchestration ontology
+description: Learn more about Awell's ontology to orchestrate care flows
+---
+
+## Design ontology
+
+Before diving into the Orchestration ontology, we recommend reading our [Design ontology](/awell-studio/docs/getting-started/design-ontology) to learn more about how care flows are structured when designing them in Awell Studio.
+
+## Orchestration ontology
+
+**When a care flow is orchestrated, it is translated to a set of activities.** So when an [action](/awell-studio/docs/getting-started/design-ontology#actions) is activated, an activity is created in the Awell System to keep track of its start date, status, completion date, etc. The activity stores a reference to the [action](/awell-studio/docs/getting-started/design-ontology#actions), [step](/awell-studio/docs/getting-started/design-ontology#steps-and-transitions), and [track](/awell-studio/docs/getting-started/design-ontology#tracks-and-triggers) so we know at all times what action needs to be completed as part of what activity and in what context the activity is created.
+
+We use the concept of activities because, depending on how your care flow is structured, a track or step (and thus the actions in it) might be activated more than once.
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="bg-[#F0F6FF] p-12 w-full mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678295646/Developer%20portal/action-activity.png"
+      target="_blank"
+      title="Action vs. Activity"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678295646/Developer%20portal/action-activity.png"
+        alt="Action vs. Activity"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    Action vs. Activity
+  </figcaption>
+</figure>
+
+Please note that an orchestrated care flow does not only consist of activities related to actions but that there are many other (system) activities as well (eg: track activation/completion, step activation/completion, reminders, ...). You can thus look at activities as a full history log of what has happened in a pathway.
+
+### Activities and data points
+
+Where tracks and triggers, steps and transitions, and actions were the main building blocks when designing care flows, the main elements you will engage with when Orchestrating care flows are activities and data points.
+
+<div className="grid gap-6 mx-auto grid-cols-2">
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Activities
+      </div>
+    </div>
+  </div>
+  <div className="grid items-center grid-flow-col p-4 bg-slate-100 rounded-2xl dark:bg-slate-400">
+    <div className="flex justify-center">
+      <div className="text-lg font-bold text-slate-800 text-center my-6 dark:text-slate-100">
+        Data points
+      </div>
+    </div>
+  </div>
+</div>
