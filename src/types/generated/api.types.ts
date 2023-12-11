@@ -1284,6 +1284,12 @@ export type Payload = {
   success: Scalars['Boolean']['output'];
 };
 
+export type PhoneConfig = {
+  __typename?: 'PhoneConfig';
+  available_countries?: Maybe<Array<Scalars['String']['output']>>;
+  default_country?: Maybe<Scalars['String']['output']>;
+};
+
 export type PluginActionSettingsProperty = {
   __typename?: 'PluginActionSettingsProperty';
   key: Scalars['String']['output'];
@@ -1628,6 +1634,7 @@ export type Question = {
 export type QuestionConfig = {
   __typename?: 'QuestionConfig';
   mandatory: Scalars['Boolean']['output'];
+  phone?: Maybe<PhoneConfig>;
   recode_enabled?: Maybe<Scalars['Boolean']['output']>;
   slider?: Maybe<SliderConfig>;
   use_select?: Maybe<Scalars['Boolean']['output']>;
