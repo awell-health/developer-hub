@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { Extension } from '@/types/extenion.types'
 
-const EXCLUDE_EXTENSIONS = ['wellinks', 'hello-world']
+const EXCLUDE_EXTENSIONS = ['wellinks', 'hello-world', 'nexuzhealth']
 
 const ENDPOINT = process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT ?? ''
 
