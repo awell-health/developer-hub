@@ -13,7 +13,7 @@ const getStartedItems = [
     name: 'Introduction & Core concepts',
     description:
       'If you are new to Awell and care flows, familiarize yourself with our core concepts in the introduction',
-    href: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/what-is-awell-orchestration`,
+    href: `/${Space.AWELL_ORCHESTRATION}/docs/getting-started/orchestration-introduction`,
   },
   {
     id: 2,
