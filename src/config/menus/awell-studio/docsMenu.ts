@@ -1,6 +1,10 @@
 import { Space } from '@/types/space.types'
 
-import { type MenuType } from '../../../types/menu.types'
+import { type MenuType, BadgeType } from '../../../types/menu.types'
+
+const badges: { [key in string]: BadgeType } = {
+  comingSoon: { label: 'Soon', color: 'sky' },
+}
 
 export const docsMenu: MenuType = [
   {
@@ -34,16 +38,46 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_STUDIO}/docs/source-control/introduction`,
       },
       {
-        title: 'Components',
-        path: `/${Space.AWELL_STUDIO}/docs/source-control/components`,
+        title: 'Concepts',
+        path: `/${Space.AWELL_STUDIO}/docs/source-control/concepts`,
+        submenu: [
+          {
+            title: 'Syncing to SCM',
+            path: `/${Space.AWELL_STUDIO}/docs/source-control/concepts/syncing-to-scm`,
+          },
+          {
+            title: 'Components',
+            path: `/${Space.AWELL_STUDIO}/docs/source-control/concepts/components`,
+          },
+          {
+            title: 'Protect care flows',
+            path: `/${Space.AWELL_STUDIO}/docs/source-control/concepts/protect-care-flows`,
+            badge: badges.comingSoon,
+          },
+          {
+            title: 'Test care flows',
+            path: `/${Space.AWELL_STUDIO}/docs/source-control/concepts/test-care-flows`,
+            badge: badges.comingSoon,
+          },
+          {
+            title: 'Deploy care flows',
+            path: `/${Space.AWELL_STUDIO}/docs/source-control/concepts/deploy-care-flows`,
+            badge: badges.comingSoon,
+          },
+        ],
       },
       {
         title: 'Quickstarts',
         path: `/${Space.AWELL_STUDIO}/docs/source-control/quickstarts`,
         submenu: [
           {
-            title: 'Github',
+            title: 'GitHub',
             path: `/${Space.AWELL_STUDIO}/docs/source-control/quickstarts/github`,
+          },
+          {
+            title: 'Gitlab',
+            path: `/${Space.AWELL_STUDIO}/docs/source-control/quickstarts/gitlab`,
+            badge: badges.comingSoon,
           },
         ],
       },
