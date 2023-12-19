@@ -1,0 +1,12 @@
+---
+title: Syncing to SCM
+description: Learn more about how care flows are synced to SCM providers
+---
+
+## Single repository per care flow per environment
+
+At the moment, Source Control has to be set up for each care flow and each environment individually, resulting in a **separate repository for every care flow in each environment**. Better support for managing multiple care flows and environments is coming later.
+
+## Unidirectional sync
+
+**Source Control is currently unidirectional where changes done in Awell Studio are pushed to your SCM provider.** While manually editing your care flow components through code is possible, these changes won't be reflected in Awell Studio and will be replaced the next time you publish your care flow.
