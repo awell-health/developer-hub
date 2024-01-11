@@ -1,0 +1,55 @@
+---
+title: SSO Integration with Google
+description: Integrating your existing Google setup with Awell for Single Sign-On (SSO)
+---
+
+This guide outlines the process for integrating Google as your Identity Provider (IdP) with Awell for Single Sign-On (SSO). This allows users in your organization to access Awell using their Google credentials.
+
+## Prerequisites
+- Access to Google Workspace Admin Console with administrative privileges.
+- An Awell account with permissions to configure SSO settings.
+
+## Step 1: Inform Awell Support
+
+Initiate the SSO integration process by contacting Awell support. Provide the following information:
+
+- Your organization's name.
+- Confirmation that Google will be used as the Identity Provider.
+
+## Step 2: Set Up SAML App in Google Workspace
+
+- **Log in to Google Workspace Admin Console**:
+   - Sign in with your administrator account.
+
+- **Add Awell as a SAML App**:
+   - Go to **Apps > SAML apps**.
+   - Select **Add a Service/App to your domain**.
+   - Find and select Awell in the app catalog.
+
+## Step 3: Configure SAML Settings in Google Workspace
+
+- **Access the Awell SAML App Settings**:
+   - Navigate to the Awell SAML app in your Google Workspace.
+
+- **Edit SAML Settings**:
+   - Click **Set up single sign-on (SSO)**.
+   - Enter the ACS URL and Entity ID as provided by Awell.
+   - Download the Google IdP metadata.
+
+## Step 4: Assign Users in Google Workspace
+
+- In the Awell SAML app settings, configure which users or groups should have access to Awell.
+
+## Step 5: Provide Google Metadata to Awell
+
+- **Email Google IdP Metadata**:
+   - Send the downloaded Google IdP metadata file to Awell's support team for the final configuration.
+
+## Final Steps
+
+- Once Awell confirms the SSO integration setup, perform a test login using an assigned user account to ensure the integration is functioning correctly.
+- For any setup or post-integration issues, contact Awell support for assistance.
+
+---
+
+**Note**: Keep Awell informed about any changes in your Google configuration that might affect the SSO integration.

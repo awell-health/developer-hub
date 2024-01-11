@@ -1,6 +1,39 @@
 ---
-title: Source Control
-description: Synchronize your flows to SCM providers like GitHub.
+title: Single Sign-On (SSO) Integration
+description: Integrate Single Sign-On (SSO) with Awell using Identity Providers like Okta for seamless authentication.
 ---
 
-SSO services permit a user to use one set of credentials (for example, a name or email address and password) to access multiple applications. The service authenticates the end user only once for all the applications the user has been given rights to and eliminates further prompts when the user switches applications during the same session.
+## What is Single Sign-On (SSO)?
+
+Single Sign-On (SSO) is an authentication process that allows users to access multiple applications and services with a single set of credentials. This method simplifies the sign-in process, reducing the need for multiple passwords and enhancing overall security. SSO is particularly beneficial in corporate environments where users frequently access a suite of interconnected applications.
+
+### Key Benefits of SSO:
+- **Simplified Access**: Users enjoy a seamless login experience across various services without the need to remember multiple passwords.
+- **Enhanced Security**: Reduces the likelihood of password fatigue and the security risks associated with it.
+- **Improved Productivity**: Streamlines the workflow as users can quickly switch between different applications.
+- **Ease of Administration**: Simplifies the management of user access and credentials for system administrators.
+
+### How SSO Works:
+SSO authentication typically involves the following steps:
+1. **User Login**: The user logs in once using their credentials.
+2. **Authentication**: The SSO service authenticates these credentials against the central directory.
+3. **Token Creation**: Upon successful authentication, the service creates an authentication token.
+4. **Token Verification**: When accessing other applications, this token is verified for authenticity, negating the need for re-entering credentials.
+
+### Common SSO Protocols:
+- **SAML (Security Assertion Markup Language)**: An open standard that allows identity providers to pass authorization credentials to service providers.
+- **OpenID Connect**: A simple identity layer on top of the OAuth 2.0 protocol, used for verifying the end user's identity.
+- **OAuth 2.0**: An authorization framework that enables applications to obtain limited access to user accounts.
+
+### Integrating SSO with Awell:
+Awell supports integration with various Identity Providers (IdPs) like Okta, Google, and others. Integrating your IdP with Awell allows your users to access Awell's platform using the same credentials they use within your organization.
+
+#### Steps for Integration:
+1. **Choose Your IdP**: Select an identity provider compatible with Awell.
+2. **Configure Your IdP**: Set up your IdP with the required Awell details, such as the ACS URL and Entity ID.
+3. **Coordinate with Awell Support**: Work with Awell's support team to finalize the integration.
+
+This guide serves as an introduction to SSO and its benefits. For detailed steps on integrating specific IdPs with Awell, refer to our individual integration guides.
+
+---
+**Note**: Always keep your IdP and Awell integration settings updated to ensure seamless access and security.

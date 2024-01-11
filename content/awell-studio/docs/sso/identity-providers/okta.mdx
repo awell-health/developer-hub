@@ -1,0 +1,61 @@
+---
+title: SSO Integration with Okta
+description: Integrating your existing Okta setup with Awell for Single Sign On (SSO)
+---
+
+This guide provides step-by-step instructions on how to integrate Okta with Awell for Single Sign-On (SSO), allowing users within your organization to access Awell using their Okta credentials.
+
+## Prerequisites
+- An active Okta account with administrative access.
+- An Awell account with permissions to configure SSO settings.
+
+## Step 1: Inform Awell Support
+
+Before you start the configuration, contact Awell support to express your intention to set up SSO with Okta. Provide:
+
+- Your organization's name.
+- Confirmation that Okta will be used as the Identity Provider.
+
+## Step 2: Create an Okta Application
+
+- **Log in to Okta Admin Dashboard**:
+   - Access your Okta admin account.
+
+- **Add Awell Application**:
+   - Navigate to **Applications**.
+   - Click **Add Application**.
+   - Search for Awell and add it as an application.
+
+## Step 3: Configure SAML Settings in Okta
+
+- **Access the Awell Application in Okta**:
+   - Select the Awell application from your list of applications.
+
+- **Edit SAML Settings**:
+   - Go to the **Sign On** tab in the Awell application.
+   - Click **Edit** in the SAML settings section.
+
+- **Set up SAML Configuration**:
+   - Enter the Assertion Consumer Service (ACS) URL and Entity ID as provided by Awell.
+   - Adjust other settings as necessary according to Awell's specifications.
+
+## Step 4: Assign Users in Okta
+
+- Assign individual users or groups to the Awell application in Okta to grant them access.
+
+## Step 5: Provide Okta Metadata to Awell
+
+- **Locate Identity Provider Metadata**:
+   - In your Okta Awell application, find the link to the Identity Provider metadata.
+
+- **Send Metadata to Awell**:
+   - Email the metadata link to Awell's support team for them to complete the configuration on their end.
+
+## Final Steps
+
+- After Awell confirms the integration setup, conduct a test login with an assigned user to ensure the SSO is functioning correctly.
+- For any issues during the setup or after integration, reach out to Awell support for assistance.
+
+---
+
+Remember to keep Awell updated about any changes in your Okta configuration that may affect the SSO integration.
