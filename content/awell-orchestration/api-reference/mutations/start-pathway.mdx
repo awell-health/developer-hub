@@ -73,6 +73,26 @@ mutation StartPathway($input: StartPathwayInput!) {
 }
 ```
 
+The `pathway_definition_id` can be located either by using the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-pathways) or by checking the URL bar while working in Awell Studio. It's important to remember that your care flow must be published and have an active version set before you can start it.
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1704991524/Developer%20portal/pathway_definition_id.png"
+      target="_blank"
+      title="How to find the pathway definition ID in Awell Studio"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1704991524/Developer%20portal/pathway_definition_id.png"
+        alt="How to find the pathway definition ID in Awell Studio"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    How to find the pathway definition ID in Awell Studio
+  </figcaption>
+</figure>
+
 ### Variables - With baseline data points
 
 ```json

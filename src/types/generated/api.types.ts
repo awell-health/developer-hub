@@ -683,10 +683,16 @@ export type Form = {
   id: Scalars['ID']['output'];
   key: Scalars['String']['output'];
   metadata?: Maybe<Scalars['String']['output']>;
+  previous_answers?: Maybe<Array<PreviousAnswers>>;
   questions: Array<Question>;
   release_id: Scalars['String']['output'];
   title: Scalars['String']['output'];
   trademark?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type FormPrevious_AnswersArgs = {
+  pathway_id: Scalars['String']['input'];
 };
 
 export enum FormDisplayMode {
@@ -1295,6 +1301,13 @@ export type PluginActionSettingsProperty = {
   key: Scalars['String']['output'];
   label: Scalars['String']['output'];
   value: Scalars['String']['output'];
+};
+
+export type PreviousAnswers = {
+  __typename?: 'PreviousAnswers';
+  activity_id: Scalars['ID']['output'];
+  answers: Array<Answer>;
+  date: Scalars['String']['output'];
 };
 
 export type PublishedPathwayDefinition = {
