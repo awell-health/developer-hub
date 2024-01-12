@@ -6,16 +6,17 @@ description: Integrating your existing Okta setup with Awell for Single Sign On 
 This guide provides step-by-step instructions on how to integrate Okta with Awell for Single Sign-On (SSO), allowing users within your organization to access Awell using their Okta credentials.
 
 ## Prerequisites
+
 - An active Okta account with administrative access.
 - An Awell account with permissions to configure SSO settings. You will receive **ACS URL**, **Audience URI** and **Connection ID** from Awell upon request to set up SSO.
 
-## Step 1: Create and configure a new Okta Application
+## How to
 
-Follow the instructions mentioned in guidelines provided by Okta:
+### Step 1: Create and configure a new Okta Application
 
-- [Add an Okta SAML application](https://help.okta.com/oag/en-us/content/topics/access-gateway/add-app-saml-pass-thru-add-okta.htm)
+Follow the instructions mentioned in guidelines provided by Okta: [Add an Okta SAML application](https://help.okta.com/oag/en-us/content/topics/access-gateway/add-app-saml-pass-thru-add-okta.htm).
 
-## Step 2: Create SAML app integration
+### Step 2: Create SAML app integration
 
 Follow the instructions mentioned in guidelines provided by Okta:
 
@@ -31,7 +32,7 @@ Follow the instructions mentioned in guidelines provided by Okta:
       - Name: `firstName`; Name format: `Basic`; Value: `user.firstName`
       - Name: `lastName`; Name format: `Basic`; Value: `user.lastName`
 
-## Step 3: Gather SAML Configuration details from Okta
+### Step 3: Gather SAML Configuration details from Okta
 
 - Click the **View SAML setup instructions** button on the **Sign On** tab of your newly created Okta application
 - You'll need to extract and save the following Okta values:
@@ -39,15 +40,15 @@ Follow the instructions mentioned in guidelines provided by Okta:
    - **X.509 Certificate** (including the `BEGIN_CERTIFICATE` and `END_CERTIFICATE` lines)
    - **Identity Provider Issuer**
 
-## Step 4: Assign Users in Okta
+### Step 4: Assign Users in Okta
 
-- Assign individual users or groups to the Awell application in Okta to grant them access.
+Assign individual users or groups to the Awell application in Okta to grant them access.
 
-## Step 5: Provide Okta Details to Awell
+### Step 5: Provide Okta Details to Awell
 
-- **Send Details to Awell**: Send the metadata link along with the configuration details gathered in Step 3 to Awell's support team for them to complete the configuration on their end.
+**Send Details to Awell**: Send the metadata link along with the configuration details gathered in Step 3 to Awell's support team for them to complete the configuration on their end.
 
-## Final Steps
+### Final Steps
 
 - After Awell confirms the integration setup, conduct a test login with an assigned user to ensure the SSO is functioning correctly.
 - For any issues during the setup or after integration, reach out to Awell support for assistance.
