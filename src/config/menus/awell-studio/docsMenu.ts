@@ -93,7 +93,7 @@ export const docsMenu: MenuType = [
       },
       {
         title: 'Setting up SSO',
-        path: `/${Space.AWELL_STUDIO}/docs/sso/getting-started`,
+        path: `/${Space.AWELL_STUDIO}/docs/sso/setting-up-sso`,
       },
       {
         title: 'Identity providers',
