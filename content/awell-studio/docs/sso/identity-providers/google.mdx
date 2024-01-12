@@ -1,0 +1,49 @@
+---
+title: SSO Integration with Google
+description: Integrating your existing Google setup with Awell for Single Sign-On (SSO)
+---
+
+This guide outlines the process for integrating Google as your Identity Provider (IdP) with Awell for Single Sign-On (SSO). This allows users in your organization to access Awell using their Google credentials.
+
+## Prerequisites
+
+- Access to Google Workspace Admin Console with administrative privileges.
+- An Awell account with permissions to configure SSO settings. You will receive **ACS URL** and **Entity ID** from Awell upon request to set up SSO.
+
+## How to
+
+### Step 1: Set Up SAML App in Google Workspace
+
+Follow the instructions mentioned in guidelines provided by Google:
+
+- [Set up your own custom SAML app](https://support.google.com/a/answer/6087519)
+- [Configure the SSO profile for your organization](https://support.google.com/a/answer/12032922?hl=en#org_profile)
+
+After this step, you should have **Awell SAML App** setup and **SSO profile** created for your organization.
+
+### Step 2: Gather SAML Configuration details from Google Workspace
+
+- Navigate to the Awell SAML app in your Google Workspace.
+- **Edit SAML Settings**:
+   - Click **Set up single sign-on (SSO)**.
+   - Enter the ACS URL and Entity ID as provided by Awell.
+   - Download the Google IdP metadata.
+
+### Step 3: Assign Users in Google Workspace
+
+In the Awell SAML app settings, configure which users or groups should have access to Awell.
+
+### Step 4: Provide Google Metadata to Awell
+
+- **Email Google IdP Metadata**:
+   - Send the downloaded Google IdP metadata file to Awell's support team for the final configuration.
+   - This metadata should contain **Entity ID**, **SSO URL** and **x509_certificate**.
+
+### Final Steps
+
+- Once Awell confirms the SSO integration setup, perform a test login using an assigned user account to ensure the integration is functioning correctly.
+- For any setup or post-integration issues, contact Awell support for assistance.
+
+---
+
+**Note**: Keep Awell informed about any changes in your Google configuration that might affect the SSO integration.

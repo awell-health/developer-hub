@@ -83,4 +83,32 @@ export const docsMenu: MenuType = [
       },
     ],
   },
+  {
+    title: 'Single Sign On (SSO)',
+    path: `/${Space.AWELL_STUDIO}/docs/sso`,
+    submenu: [
+      {
+        title: 'Introduction',
+        path: `/${Space.AWELL_STUDIO}/docs/sso/introduction`,
+      },
+      {
+        title: 'Getting started',
+        path: `/${Space.AWELL_STUDIO}/docs/sso/getting-started`,
+      },
+      {
+        title: 'Identity providers',
+        path: `/${Space.AWELL_STUDIO}/docs/sso/identity-providers`,
+        submenu: [
+          {
+            title: 'Okta',
+            path: `/${Space.AWELL_STUDIO}/docs/sso/identity-providers/okta`,
+          },
+          {
+            title: 'Google',
+            path: `/${Space.AWELL_STUDIO}/docs/sso/identity-providers/google`,
+          },
+        ],
+      },
+    ],
+  },
 ]
