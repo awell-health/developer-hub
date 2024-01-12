@@ -92,7 +92,7 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_STUDIO}/docs/sso/introduction`,
       },
       {
-        title: 'Getting started',
+        title: 'Setting up SSO',
         path: `/${Space.AWELL_STUDIO}/docs/sso/getting-started`,
       },
       {
