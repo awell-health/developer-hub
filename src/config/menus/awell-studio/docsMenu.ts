@@ -84,7 +84,7 @@ export const docsMenu: MenuType = [
     ],
   },
   {
-    title: 'Single Sign On',
+    title: 'Single Sign On (SSO)',
     path: `/${Space.AWELL_STUDIO}/docs/sso`,
     submenu: [
       {
