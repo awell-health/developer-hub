@@ -7,49 +7,45 @@ This guide provides step-by-step instructions on how to integrate Okta with Awel
 
 ## Prerequisites
 - An active Okta account with administrative access.
-- An Awell account with permissions to configure SSO settings.
+- An Awell account with permissions to configure SSO settings. You will receive **ACS URL**, **Audience URI** and **Connection ID** from Awell upon request to set up SSO.
 
-## Step 1: Inform Awell Support
+## Step 1: Create and configure a new Okta Application
 
-Before you start the configuration, contact Awell support to express your intention to set up SSO with Okta. Provide:
+Follow the instructions mentioned in guidelines provided by Okta:
 
-- Your organization's name.
-- Confirmation that Okta will be used as the Identity Provider.
+- [Add an Okta SAML application](https://help.okta.com/oag/en-us/content/topics/access-gateway/add-app-saml-pass-thru-add-okta.htm)
 
-## Step 2: Create an Okta Application
+## Step 2: Create SAML app integration
 
-- **Log in to Okta Admin Dashboard**:
-   - Access your Okta admin account.
+Follow the instructions mentioned in guidelines provided by Okta:
 
-- **Add Awell Application**:
-   - Navigate to **Applications**.
-   - Click **Add Application**.
-   - Search for Awell and add it as an application.
+- [Create SAML app integration](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_saml.htm)
+- In the Configure SAML form, use these values for the following fields:
+   - **Single sign-on URL**: Enter the `acs_url` value provided by Awell.
+   - **Use this for Recipient URL** and Destination URL should remain checked.
+   - **Audience URI (SP Entity ID)**: Enter the `audience_uri` value provided by Awell.
+   - **Default RelayState**: This value can remain blank.
+   - **Name ID format**: Select `EmailAddress`.
+   - **Application username**: Any value here should suffice.
+   - **Attribute Statements**: Create these data inputs.
+   - Name: `firstName`; Name format: `Basic`; Value: `user.firstName`
+   - Name: `lastName`; Name format: `Basic`; Value: `user.lastName`
 
-## Step 3: Configure SAML Settings in Okta
+## Step 3: Gather SAML Configuration details from Okta
 
-- **Access the Awell Application in Okta**:
-   - Select the Awell application from your list of applications.
-
-- **Edit SAML Settings**:
-   - Go to the **Sign On** tab in the Awell application.
-   - Click **Edit** in the SAML settings section.
-
-- **Set up SAML Configuration**:
-   - Enter the Assertion Consumer Service (ACS) URL and Entity ID as provided by Awell.
-   - Adjust other settings as necessary according to Awell's specifications.
+- Click the **View SAML setup instructions** button on the **Sign On** tab of your newly created Okta application
+- You'll need to extract and save the following Okta values:
+   - **Identity Provider Single Sign-On URL**
+   - **X.509 Certificate** (including the `BEGIN_CERTIFICATE` and `END_CERTIFICATE` lines)
+   - **Identity Provider Issuer**
 
 ## Step 4: Assign Users in Okta
 
 - Assign individual users or groups to the Awell application in Okta to grant them access.
 
-## Step 5: Provide Okta Metadata to Awell
+## Step 5: Provide Okta Details to Awell
 
-- **Locate Identity Provider Metadata**:
-   - In your Okta Awell application, find the link to the Identity Provider metadata.
-
-- **Send Metadata to Awell**:
-   - Email the metadata link to Awell's support team for them to complete the configuration on their end.
+- **Send Details to Awell**: Send the metadata link along with the configuration details gathered in Step 3 to Awell's support team for them to complete the configuration on their end.
 
 ## Final Steps
 

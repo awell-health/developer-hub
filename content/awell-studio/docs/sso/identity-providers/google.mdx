@@ -7,43 +7,34 @@ This guide outlines the process for integrating Google as your Identity Provider
 
 ## Prerequisites
 - Access to Google Workspace Admin Console with administrative privileges.
-- An Awell account with permissions to configure SSO settings.
+- An Awell account with permissions to configure SSO settings. You will receive **ACS URL** and **Entity ID** from Awell upon request to set up SSO.
 
-## Step 1: Inform Awell Support
+## Step 1: Set Up SAML App in Google Workspace
 
-Initiate the SSO integration process by contacting Awell support. Provide the following information:
+Follow the instructions mentioned in guidelines provided by Google:
 
-- Your organization's name.
-- Confirmation that Google will be used as the Identity Provider.
+- [Set up your own custom SAML app](https://support.google.com/a/answer/6087519)
+- [Configure the SSO profile for your organization](https://support.google.com/a/answer/12032922?hl=en#org_profile)
 
-## Step 2: Set Up SAML App in Google Workspace
+After this step, you should have **Awell SAML App** setup and **SSO profile** created for your organization.
 
-- **Log in to Google Workspace Admin Console**:
-   - Sign in with your administrator account.
+## Step 2: Gather SAML Configuration details from Google Workspace
 
-- **Add Awell as a SAML App**:
-   - Go to **Apps > SAML apps**.
-   - Select **Add a Service/App to your domain**.
-   - Find and select Awell in the app catalog.
-
-## Step 3: Configure SAML Settings in Google Workspace
-
-- **Access the Awell SAML App Settings**:
-   - Navigate to the Awell SAML app in your Google Workspace.
-
+- Navigate to the Awell SAML app in your Google Workspace.
 - **Edit SAML Settings**:
    - Click **Set up single sign-on (SSO)**.
    - Enter the ACS URL and Entity ID as provided by Awell.
    - Download the Google IdP metadata.
 
-## Step 4: Assign Users in Google Workspace
+## Step 3: Assign Users in Google Workspace
 
 - In the Awell SAML app settings, configure which users or groups should have access to Awell.
 
-## Step 5: Provide Google Metadata to Awell
+## Step 4: Provide Google Metadata to Awell
 
 - **Email Google IdP Metadata**:
    - Send the downloaded Google IdP metadata file to Awell's support team for the final configuration.
+   - This metadata should contain **Entity ID**, **SSO URL** and **x509_certificate**.
 
 ## Final Steps
 

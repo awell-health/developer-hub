@@ -92,6 +92,10 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_STUDIO}/docs/sso/introduction`,
       },
       {
+        title: 'Getting started',
+        path: `/${Space.AWELL_STUDIO}/docs/sso/getting-started`,
+      },
+      {
         title: 'Identity providers',
         path: `/${Space.AWELL_STUDIO}/docs/sso/identity-providers`,
         submenu: [
