@@ -114,14 +114,14 @@ export const apiMenu: MenuType = [
         badge: badges.tracks,
       },
       {
-        title: 'Get pathway activities',
-        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-pathway-activities`,
-        badge: badges.activity,
-      },
-      {
         title: 'Get stakeholders',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-stakeholders`,
         badge: badges.stakeholders,
+      },
+      {
+        title: 'Get pathway activities',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-pathway-activities`,
+        badge: badges.activity,
       },
       {
         title: 'Search activities',
@@ -141,6 +141,11 @@ export const apiMenu: MenuType = [
       {
         title: 'Get user pending activities',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-user-pending-activities`,
+        badge: badges.activity,
+      },
+      {
+        title: 'Get Hosted Session Link',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-hosted-session-link-by-stakeholder`,
         badge: badges.activity,
       },
       {
