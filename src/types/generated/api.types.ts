@@ -82,6 +82,7 @@ export enum ActivityAction {
   Delegated = 'DELEGATED',
   Deliver = 'DELIVER',
   Discarded = 'DISCARDED',
+  Expired = 'EXPIRED',
   Failed = 'FAILED',
   FailedToSend = 'FAILED_TO_SEND',
   Generated = 'GENERATED',
@@ -142,6 +143,7 @@ export enum ActivityObjectType {
 }
 
 export enum ActivityResolution {
+  Expired = 'EXPIRED',
   Failure = 'FAILURE',
   Success = 'SUCCESS'
 }
@@ -150,6 +152,7 @@ export enum ActivityStatus {
   Active = 'ACTIVE',
   Canceled = 'CANCELED',
   Done = 'DONE',
+  Expired = 'EXPIRED',
   Failed = 'FAILED'
 }
 
@@ -1983,6 +1986,7 @@ export type Subscription = {
   __typename?: 'Subscription';
   activityCompleted: Activity;
   activityCreated: Activity;
+  activityExpired: Activity;
   activityUpdated: Activity;
   apiCallCreated: ApiCall;
   apiCallUpdated: ApiCall;
@@ -1992,6 +1996,7 @@ export type Subscription = {
   pathwayUpdated: Pathway;
   sessionActivityCompleted: Activity;
   sessionActivityCreated: Activity;
+  sessionActivityExpired: Activity;
   sessionActivityUpdated: Activity;
   sessionCompleted: HostedSession;
   sessionExpired: HostedSession;
@@ -2007,6 +2012,12 @@ export type SubscriptionActivityCompletedArgs = {
 
 
 export type SubscriptionActivityCreatedArgs = {
+  only_patient_activities?: InputMaybe<Scalars['Boolean']['input']>;
+  pathway_id?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type SubscriptionActivityExpiredArgs = {
   only_patient_activities?: InputMaybe<Scalars['Boolean']['input']>;
   pathway_id?: InputMaybe<Scalars['String']['input']>;
 };
@@ -2057,6 +2068,11 @@ export type SubscriptionSessionActivityCompletedArgs = {
 
 
 export type SubscriptionSessionActivityCreatedArgs = {
+  only_stakeholder_activities?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type SubscriptionSessionActivityExpiredArgs = {
   only_stakeholder_activities?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
