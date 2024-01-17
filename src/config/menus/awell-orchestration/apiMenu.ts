@@ -144,8 +144,8 @@ export const apiMenu: MenuType = [
         badge: badges.activity,
       },
       {
-        title: 'Get Hosted Session Link',
-        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-hosted-session-link-by-stakeholder`,
+        title: 'Get Hosted Pession link',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-hosted-pages-link`,
         badge: badges.activity,
       },
       {

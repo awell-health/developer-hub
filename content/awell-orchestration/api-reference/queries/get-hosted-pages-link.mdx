@@ -1,0 +1,29 @@
+---
+title: Get Hosted Pages link
+description: Retrieve an Awell Hosted Pages link for a given stakeholder
+---
+
+This request allows us to retrieve a link to Awell Hosted Pages for a given stakeholder.
+
+## Request
+
+### Query
+
+```graphql
+query GetHostedPagesLink($pathway_id: String!, $stakeholder_id: String!) {
+  hostedPagesLink(pathway_id: $pathway_id, stakeholder_id: $stakeholder_id) {
+    hosted_pages_link {
+      url
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "pathway_id": "{{PATHWAY_ID}}",
+  "stakeholder_id": "{{STAKEHOLDER_ID}}"
+}
+```
