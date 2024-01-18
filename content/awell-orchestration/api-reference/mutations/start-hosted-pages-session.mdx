@@ -1,16 +1,20 @@
 ---
-title: Start hosted activity session
-description: Create a session for a given stakeholder to complete activities via the Awell Hosted Activity page
+title: Start Hosted Pages session
+description: Create a session for a specific stakeholder to complete activities in a care flow with Hosted Pages
 ---
 
-This page documents the `startHostedActivitySession` mutation but we recommend reading ["What are Awell Hosted Pages"](/awell-orchestration/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages) page first and the [full guide](/awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide) on how to set-up the Hosted Activity integration.
+We recommend reading more about ["Awell Hosted Pages"](/awell-orchestration/docs/activities/awell-hosted-pages/overview-hosted-pages) first before moving on.
+
+Please note that this mutation can only be used to create a Hosted Pages session for a care flow that is already active. Have a look at our [Start Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-hosted-pages-session) If you would like to start a pathway or care flow and immediately create a session
+
+This mutation starts a pathway or care flow first and immediately creates a session for the patient stakeholder. If you want to create a Hosted Pages session for an ongoing pathway or care flow, have a look at the [Start Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-hosted-pages-session).
 
 ## Request
 
 ### Mutation
 
 ```graphql
-mutation StartHostedActivitySession($input: StartHostedActivitySessionInput!) {
+mutation StartHostedPagesSession($input: StartHostedPagesSessionInput!) {
   startHostedActivitySession(input: $input) {
     session_id
     session_url
@@ -19,10 +23,6 @@ mutation StartHostedActivitySession($input: StartHostedActivitySessionInput!) {
 ```
 
 ### Required variables
-
-`pathway_id` specifies the care flow/pathway instance where there are activities to complete for.
-
-`stakeholder_id` specifies for what stakeholder there are activities to compelete for.
 
 <code className="language-json" highlightedRows={[[3, 4]]}>
   {`
@@ -36,6 +36,8 @@ mutation StartHostedActivitySession($input: StartHostedActivitySessionInput!) {
 }
 `}
 </code>
+
+The `pathway_id` specifies which care flow/pathway instance there are activities to complete for and the `stakeholder_id` specifies the stakeholder.
 
 ### Optional variables
 
@@ -58,7 +60,7 @@ The `success_url` and `cancel_url` specify where the stakeholder should be redir
 
 #### Language
 
-Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).If no language is passed, it defaults to English.
+Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes). If no language is passed, it defaults to English.
 
 **Awell Hosted Pages is currently available in the following languages:**
 
@@ -71,7 +73,3 @@ Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/
 ## Session expiration
 
 A session expires after 60 minutes but the timer is reset after every completion of an activity. A session also expires when there are no pending activities left in a pathway.
-
-## How to use
-
-<HowToUse storyIds={['hosted-activity']} />

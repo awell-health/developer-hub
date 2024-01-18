@@ -1,0 +1,102 @@
+---
+title: Awell Hosted Pages
+description: A low-code integration that allows your stakeholders to interact with pending activities in their care flows.
+---
+
+Awell Hosted Pages is a low-code integration allowing your patients and clinical stakeholders to interact with care flow activities like filling forms and reading messages. You can embed Hosted Pages directly in your website or redirect users to an Awell-hosted page. **It is the quickest way to get started with Awell.**
+
+## Stripe analogy
+
+When you are looking to implement payments into your application, chances are high you will consider using a platform like Stripe to collect payments from your users.
+
+To collect a payment from a user, you will need to have some kind of payment page where the user can see the amount they need to pay and enter their payment details. You can do this by building a completly custom payment page on top of Stripe's API or you can leverage [Stripe's Prebuilt Checkout Page](https://stripe.com/en-gb-be/payments/checkout).
+
+<figure className="w-full flex flex-col justify-center text-center">
+  <a
+    href="https://b.stripecdn.com/docs-statics-srv/assets/bd5ffc39f955d37bb53ef7d854ae4474.png"
+    target="_blank"
+    className="custom-link"
+  >
+    <img
+      src="https://b.stripecdn.com/docs-statics-srv/assets/bd5ffc39f955d37bb53ef7d854ae4474.png"
+      alt="Stripe's Hosted Checkout Page"
+      className="w-full sm:w-10/12 mx-auto p-4 bg-white rounded-lg"
+    />
+  </a>
+  <figcaption className="dark:text-slate-400 pt-1">
+    Stripe's Hosted Checkout Page
+  </figcaption>
+</figure>
+
+## How Hosted Pages work
+
+**Awell Hosted Pages serve a similar purpose as Stripe's Hosted Payment Page:** get you up and running quickly with Awell. It is a prebuilt app created by Awell where you can redirect stakeholders to (or embed into your app) for them to interact with activities like filling forms and reading messages.
+
+<Alert type="info" title="Try it out">
+  <p>
+    Click{' '}
+    <a
+      href="https://orchestration-stories.vercel.app/stories/hosted-pathway"
+      title="Demo Awell Hosted Pages"
+    >
+      here
+    </a>{' '}
+    for a demo of Awell Hosted Pages.
+  </p>
+</Alert>
+
+Awell Hosted Pages can be used for both patient and care team / clinical stakeholders.
+
+<figure className="w-full flex flex-col justify-center text-center">
+  <a
+    href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1673456657/Developer%20portal/awell-hosted-pages.png"
+    target="_blank"
+    className="custom-link"
+  >
+    <img
+      src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1673456657/Developer%20portal/awell-hosted-pages.png"
+      alt="Awell Hosted Pages - Completing a form activity"
+      className="w-full sm:w-11/12 mx-auto bg-white rounded-lg"
+    />
+  </a>
+  <figcaption className="dark:text-slate-400 pt-1">
+    Awell Hosted Pages - Completing a form activity
+  </figcaption>
+</figure>
+
+## Branding
+
+You can customize the look and feel of the Awell Hosted Pages. Via the Awell apps you can:
+
+- Upload a logo
+- Customize the page's accent color and page title
+
+<Alert type="info" title="Setting a new accent color">
+  <p>
+    When you set a custom accent color, all UI components will automatically be
+    rebranded based on that accent color. Awell will also automatically generate
+    a secondary color and a text color with sufficient contrast which will be
+    applied to the UI components.
+  </p>
+</Alert>
+
+**Do you want to have full control over the look and feel of Awell Hosted Pages without any limitations?** We get that! And that is why the app with the business logic and the UI library are publicly available on Github. The app is built with [NextJS](https://nextjs.org/) and all UI components are written in [React](https://reactjs.org/). You can leverage these repositories to get a head start with your custom implementation.
+
+Go to the ["Open Source" section](#open-source) for more information about our repositories on Github.
+
+## Benefits
+
+**Using Awell Hosted Pages offers several benefits:**
+
+1. We built it so you don't have to. It is the fastest way to get started with Awell.
+2. It is optimised for any device to provide an optimal experience across mobile, tablet, and dekstop.
+3. It is designed to be simple and to allow stakeholders to easily complete activities.
+4. The page is available in multiple languages.
+5. Customize branding settings to match the look and feel of your business.
+
+## Open source
+
+The Awell Hosted Pages app and corresponding UI components are publicly available on Github. We welcome PRs or feel free to fork the repos to build a custom implementation and have a head start!
+
+- [Awell Hosted Pages repo on Github](https://github.com/awell-health/hosted-pages)
+- [UI library](https://developers.awellhealth.com/awell-orchestration/developer-tools/sdks/ui-library)

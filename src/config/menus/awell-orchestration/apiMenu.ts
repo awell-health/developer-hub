@@ -8,7 +8,7 @@ const badges: { [key in string]: BadgeType } = {
   tracks: { label: 'Tracks', color: 'yellow' },
   activity: { label: 'Activity', color: 'indigo' },
   datapoint: { label: 'Data Point', color: 'slate' },
-  session: { label: 'Session', color: 'red' },
+  session: { label: 'HostedPages', color: 'red' },
   elements: { label: 'Elements', color: 'sky' },
   stakeholders: { label: 'Stakeholders', color: 'orange' },
 }
@@ -144,9 +144,9 @@ export const apiMenu: MenuType = [
         badge: badges.activity,
       },
       {
-        title: 'Get Hosted Pession link',
+        title: 'Get Hosted Session link',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-hosted-pages-link`,
-        badge: badges.activity,
+        badge: badges.session,
       },
       {
         title: 'Get API call',
@@ -225,11 +225,6 @@ export const apiMenu: MenuType = [
         badge: badges.pathway,
       },
       {
-        title: 'Start hosted pathway session',
-        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/start-hosted-pathway-session`,
-        badge: badges.pathway,
-      },
-      {
         title: 'Update baseline info',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/update-baseline-info`,
         badge: badges.pathway,
@@ -255,11 +250,6 @@ export const apiMenu: MenuType = [
         badge: badges.tracks,
       },
       {
-        title: 'Start hosted activity session',
-        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/start-hosted-activity-session`,
-        badge: badges.activity,
-      },
-      {
         title: 'Evaluate form rules',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/evaluate-form-rules`,
         badge: badges.activity,
@@ -283,6 +273,16 @@ export const apiMenu: MenuType = [
         title: 'Resend EMR report',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/resend-emr-report`,
         badge: badges.activity,
+      },
+      {
+        title: 'Start Hosted Pages session',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/start-hosted-pages-session`,
+        badge: badges.session,
+      },
+      {
+        title: 'Start pathway and Hosted Pages session',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/start-pathway-and-hosted-pages-session`,
+        badge: badges.session,
       },
     ],
   },

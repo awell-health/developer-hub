@@ -1,0 +1,31 @@
+---
+title: Sessions and Links
+description: Learn how to obtain an URL to Hosted Pages for your stakeholders
+---
+
+You will need a URL in order to redirect (or embed) a patient or other stakeholder to Hosted Pages. There are two options to obtain such a URL: Sessions (with session URLs) or Hosted Pages Links.
+
+## Sessions
+
+**A Hosted Pages Session is a programmatic representation of what a single stakeholder sees as they complete pending activities in a care flow.** You, the customer, create these sessions [using Awell's API](/awell-orchestration/api-reference/mutations/start-hosted-pages-session). When setting up a session, you need to specify details like who the session is for, the care flow involved, and a success URL where stakeholders are sent after they complete all activities. This setup shapes what activities a stakeholder can interact with and how things work once they're done. After creating a Hosted Pages Session, redirect your stakeholder to the Session’s URL to complete their activities.
+
+A session expires after 60 minutes but the timer is reset after every completion of an activity. A session also expires when there are no pending activities left in a pathway.
+
+### Lifecycle
+
+1. When Awell notifies you via the `activity.created` webhook or through a specific action in the care flow, such as an API call, indicating that a stakeholder needs to complete an activity in a care flow, [your application creates a new Hosted Pages Session which will give you access to a session URL](/awell-orchestration/api-reference/mutations/start-hosted-pages-session).
+2. You embed (or redirect to) Hosted Pages as an iframe in your app so the stakeholder can interact with their pending activities.
+3. The stakeholder completes all their pending activities.
+4. (optional) When all pending activities are completed, you can subscribe to the `session.completed` webhook to trigger any kind of post-completion logic on your end.
+
+### When to use
+
+## Hosted Pages Links
+
+Hosted Pages links do not expire.
+
+### When to use
+
+## Comparison
+
+<SessionsAndLinksComparisonTable />

@@ -56,8 +56,16 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages`,
         submenu: [
           {
-            title: 'What are Awell Hosted Pages?',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages`,
+            title: 'Overview',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/overview-hosted-pages`,
+          },
+          {
+            title: 'How Hosted Pages works',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/how-hosted-pages-works`,
+          },
+          {
+            title: 'Sessions and Links',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/sessions-and-links`,
           },
           {
             title: 'Accessibility',
