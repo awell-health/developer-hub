@@ -5,9 +5,14 @@ description: Create a session for a specific stakeholder to complete activities 
 
 We recommend reading more about ["Awell Hosted Pages"](/awell-orchestration/docs/activities/awell-hosted-pages/overview-hosted-pages) first before moving on.
 
-Please note that this mutation can only be used to create a Hosted Pages session for a care flow that is already active. Have a look at our [Start Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-hosted-pages-session) If you would like to start a pathway or care flow and immediately create a session
+Please note that this mutation can only be used to create a Hosted Pages session for a care flow that is already active. Have a look at our [Start pathway and Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-pathway-and-hosted-pages-session). If you would like to start a pathway and immediately create a session.
 
-This mutation starts a pathway or care flow first and immediately creates a session for the patient stakeholder. If you want to create a Hosted Pages session for an ongoing pathway or care flow, have a look at the [Start Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-hosted-pages-session).
+## Lifecycle
+
+1. When Awell notifies you via the `activity.created` webhook or through a specific action in the care flow, such as an API call, indicating that a stakeholder needs to complete an activity in a care flow, your application creates a new Hosted Pages Session with this mutation. **This will will give you access to a session URL**.
+2. You embed (or redirect staeholder to) Hosted Pages as an iframe in your app so the stakeholder can interact with their pending activities.
+3. The stakeholder completes all their pending activities.
+4. (optional) When all pending activities are completed, you can subscribe to the `session.completed` webhook to trigger any kind of post-completion logic on your end ([view all session-related webhooks](/awell-orchestration/docs/data/webhooks-and-events)).
 
 ## Request
 

@@ -68,17 +68,21 @@ export const docsMenu: MenuType = [
             path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/sessions-and-links`,
           },
           {
-            title: 'Accessibility',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/accessibility-awell-hosted-pages`,
+            title: 'Built-in and customizable features',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/built-in-and-customizable-features`,
           },
           {
-            title: 'Hosted Pathway guide',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`,
+            title: 'Redirect or embed',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/redirect-or-embed`,
           },
-          {
-            title: 'Hosted Activity guide',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-activity-guide`,
-          },
+          // {
+          //   title: 'Hosted Pathway guide',
+          //   path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`,
+          // },
+          // {
+          //   title: 'Hosted Activity guide',
+          //   path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-activity-guide`,
+          // },
         ],
       },
       {

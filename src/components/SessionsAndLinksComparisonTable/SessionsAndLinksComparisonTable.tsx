@@ -1,12 +1,11 @@
-// import { type TierType, type SectionType } from '../../types/useCases.types'
 import { CheckIcon, MinusIcon } from '@heroicons/react/solid'
-import clsx from 'clsx'
 import { Fragment } from 'react'
 
 import {
   sections,
   sessionsAndLink,
 } from '../../../content/awell-orchestration/sessionsAndLinks'
+import { Effort } from './atoms'
 
 export const SessionsAndLinksComparisonTable = () => {
   return (
@@ -14,7 +13,7 @@ export const SessionsAndLinksComparisonTable = () => {
       <div className="max-w-7xl mx-auto">
         {/* xs to lg */}
         <div className="mx-auto space-y-16 xl:hidden">
-          {sessionsAndLink.map((tier, tierIdx) => (
+          {sessionsAndLink.map((tier) => (
             <section key={tier.name}>
               <div className="px-4 mb-8">
                 <h2 className="text-lg leading-6 font-medium text-slate-900 dark:text-slate-400">
@@ -23,6 +22,27 @@ export const SessionsAndLinksComparisonTable = () => {
                 <p className="mt-4 text-sm text-slate-500 dark:text-slate-300">
                   {tier.description}
                 </p>
+                <div>
+                  <div className="font-semibold pb-2 text-slate-900 dark:text-slate-400">
+                    Use when:
+                  </div>
+                  <div>
+                    <p
+                      className="mt-4 text-sm text-slate-500 dark:text-slate-300"
+                      dangerouslySetInnerHTML={{
+                        __html: String(tier.useWhen),
+                      }}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold pb-2 text-slate-900 dark:text-slate-400">
+                    Effort:
+                  </div>
+                  <div>
+                    <Effort effort={tier.effort} />
+                  </div>
+                </div>
               </div>
 
               {sections.map((section) => (
@@ -57,9 +77,12 @@ export const SessionsAndLinksComparisonTable = () => {
                         </th>
                         <td className="py-5 pr-4">
                           {typeof feature.categories[tier.name] === 'string' ? (
-                            <span className="block text-sm text-slate-700 text-right dark:text-slate-400">
-                              {feature.categories[tier.name]}
-                            </span>
+                            <span
+                              className="block text-sm text-slate-700 text-right dark:text-slate-400"
+                              dangerouslySetInnerHTML={{
+                                __html: String(feature.categories[tier.name]),
+                              }}
+                            ></span>
                           ) : (
                             <>
                               {feature.categories[tier.name] === true ? (
@@ -87,22 +110,6 @@ export const SessionsAndLinksComparisonTable = () => {
                   </tbody>
                 </table>
               ))}
-
-              <div
-                className={clsx(
-                  tierIdx < sessionsAndLink.length - 1
-                    ? 'py-5 border-b'
-                    : 'pt-5',
-                  'border-t border-slate-200 px-4 dark:border-slate-600'
-                )}
-              >
-                <a
-                  href={tier.href}
-                  className="custom-link block w-full bg-slate-800 border border-slate-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-slate-900"
-                >
-                  More infomation
-                </a>
-              </div>
             </section>
           ))}
         </div>
@@ -144,6 +151,38 @@ export const SessionsAndLinksComparisonTable = () => {
                   </td>
                 ))}
               </tr>
+              <tr>
+                <th
+                  className="py-8 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left align-top"
+                  scope="row"
+                >
+                  Use when
+                </th>
+                {sessionsAndLink.map((tier) => (
+                  <td
+                    key={tier.name}
+                    className="h-full py-4 px-6 text-center text-sm text-slate-500"
+                    dangerouslySetInnerHTML={{
+                      __html: String(tier.useWhen),
+                    }}
+                  />
+                ))}
+              </tr>
+              <tr>
+                <th
+                  className="py-8 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left align-top"
+                  scope="row"
+                >
+                  Effort
+                </th>
+                {sessionsAndLink.map((tier) => (
+                  <td key={tier.name} className="h-full py-4 px-6 align-top">
+                    <div className="relative h-full flex items-center justify-center">
+                      <Effort effort={tier.effort} />
+                    </div>
+                  </td>
+                ))}
+              </tr>
               {sections.map((section) => (
                 <Fragment key={section.name}>
                   <tr>
@@ -163,15 +202,18 @@ export const SessionsAndLinksComparisonTable = () => {
                       >
                         {feature.name}
                       </th>
-                      {sessionsAndLink.map((tier) => (
-                        <td key={tier.name} className="py-5 px-6 text-center">
-                          {typeof feature.categories[tier.name] === 'string' ? (
-                            <span className="block text-sm text-slate-700 dark:text-slate-400">
-                              {feature.categories[tier.name]}
-                            </span>
+                      {feature.join === true ? (
+                        <td colSpan={2} className="py-5 px-6 text-center">
+                          {typeof feature.categories['join'] === 'string' ? (
+                            <span
+                              className="block text-sm text-slate-700 dark:text-slate-400"
+                              dangerouslySetInnerHTML={{
+                                __html: String(feature.categories['join']),
+                              }}
+                            />
                           ) : (
                             <>
-                              {feature.categories[tier.name] === true ? (
+                              {feature.categories['join'] === true ? (
                                 <CheckIcon
                                   className="h-5 w-5 text-green-500 mx-auto"
                                   aria-hidden="true"
@@ -184,37 +226,55 @@ export const SessionsAndLinksComparisonTable = () => {
                               )}
 
                               <span className="sr-only">
-                                {feature.categories[tier.name] === true
+                                {feature.categories['join'] === true
                                   ? 'Included'
                                   : 'Not included'}{' '}
-                                in {tier.name}
+                                in {'join'}
                               </span>
                             </>
                           )}
                         </td>
-                      ))}
+                      ) : (
+                        sessionsAndLink.map((tier) => (
+                          <td key={tier.name} className="py-5 px-6 text-center">
+                            {typeof feature.categories[tier.name] ===
+                            'string' ? (
+                              <span
+                                className="block text-sm text-slate-700 dark:text-slate-400"
+                                dangerouslySetInnerHTML={{
+                                  __html: String(feature.categories[tier.name]),
+                                }}
+                              />
+                            ) : (
+                              <>
+                                {feature.categories[tier.name] === true ? (
+                                  <CheckIcon
+                                    className="h-5 w-5 text-green-500 mx-auto"
+                                    aria-hidden="true"
+                                  />
+                                ) : (
+                                  <MinusIcon
+                                    className="h-5 w-5 text-slate-400 mx-auto"
+                                    aria-hidden="true"
+                                  />
+                                )}
+
+                                <span className="sr-only">
+                                  {feature.categories[tier.name] === true
+                                    ? 'Included'
+                                    : 'Not included'}{' '}
+                                  in {tier.name}
+                                </span>
+                              </>
+                            )}
+                          </td>
+                        ))
+                      )}
                     </tr>
                   ))}
                 </Fragment>
               ))}
             </tbody>
-            <tfoot>
-              <tr className="border-t border-slate-200 dark:border-slate-600">
-                <th className="sr-only" scope="row">
-                  Choose your plan
-                </th>
-                {sessionsAndLink.map((tier) => (
-                  <td key={tier.name} className="pt-5 px-6">
-                    <a
-                      href={tier.href}
-                      className="custom-link block w-full bg-slate-800 border border-slate-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-slate-900"
-                    >
-                      More information
-                    </a>
-                  </td>
-                ))}
-              </tr>
-            </tfoot>
           </table>
         </div>
       </div>
