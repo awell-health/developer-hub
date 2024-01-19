@@ -144,7 +144,7 @@ export const apiMenu: MenuType = [
         badge: badges.activity,
       },
       {
-        title: 'Get Hosted Pession link',
+        title: 'Get Hosted Pages link',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-hosted-pages-link`,
         badge: badges.activity,
       },
