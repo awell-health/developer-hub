@@ -756,6 +756,21 @@ export type GeneratedClinicalNoteNarrative = {
   title: Scalars['String']['output'];
 };
 
+export type HostedPagesLink = {
+  __typename?: 'HostedPagesLink';
+  id: Scalars['ID']['output'];
+  pathway_id: Scalars['String']['output'];
+  stakeholder_id?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type HostedPagesLinkPayload = Payload & {
+  __typename?: 'HostedPagesLinkPayload';
+  code: Scalars['String']['output'];
+  hosted_pages_link: HostedPagesLink;
+  success: Scalars['Boolean']['output'];
+};
+
 export type HostedSession = {
   __typename?: 'HostedSession';
   cancel_url?: Maybe<Scalars['String']['output']>;
@@ -1374,6 +1389,7 @@ export type Query = {
   forms: FormsPayload;
   getOrchestrationFactsFromPrompt: OrchestrationFactsPromptPayload;
   getStatusForPublishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
+  hostedPagesLink: HostedPagesLinkPayload;
   hostedSession: HostedSessionPayload;
   hostedSessionActivities: HostedSessionActivitiesPayload;
   message: MessagePayload;
@@ -1498,6 +1514,12 @@ export type QueryFormsArgs = {
 export type QueryGetOrchestrationFactsFromPromptArgs = {
   pathway_id: Scalars['String']['input'];
   prompt: Scalars['String']['input'];
+};
+
+
+export type QueryHostedPagesLinkArgs = {
+  pathway_id: Scalars['String']['input'];
+  stakeholder_id: Scalars['String']['input'];
 };
 
 
