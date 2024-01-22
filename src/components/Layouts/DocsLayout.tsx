@@ -30,7 +30,12 @@ export const DocsLayout = ({ withSidebar = true, children }: LayoutProps) => {
           </div>
           <div className="w-full lg:pl-16">
             <div className="min-w-0 max-w-7xl flex-auto mx-auto py-16">
-              <div className="xl:mr-[25.5rem]">{children}</div>
+              <div className="xl:mr-[25.5rem]">
+                <>{children}</>
+                <div className="z-30 relative">
+                  <Footer location="docs" />
+                </div>
+              </div>
               {tableOfContents && (
                 <div className="fixed z-20 top-[6.5rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto hidden xl:block">
                   <nav aria-labelledby="on-this-page-title" className="w-56">
@@ -43,9 +48,6 @@ export const DocsLayout = ({ withSidebar = true, children }: LayoutProps) => {
               )}
             </div>
           </div>
-        </div>
-        <div className="px-4 z-30 relative">
-          <Footer />
         </div>
       </>
     )
@@ -72,7 +74,7 @@ export const DocsLayout = ({ withSidebar = true, children }: LayoutProps) => {
         </div>
       </div>
       <div className="px-4 z-30 relative">
-          <Footer />
+        <Footer />
       </div>
     </>
   )

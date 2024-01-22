@@ -28,12 +28,14 @@ export const DocsLayoutWithoutToc = ({
           </div>
           <div className="w-full lg:pl-16">
             <div className="min-w-0 max-w-7xl flex-auto mx-auto py-16">
-              <div className="max-w-6xl">{children}</div>
+              <div className="max-w-6xl">
+                <>{children}</>
+                <div className="z-30 relative">
+                  <Footer location="docs" />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="px-4 z-30 relative">
-          <Footer />
         </div>
       </>
     )

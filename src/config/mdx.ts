@@ -16,6 +16,7 @@ import { PostmanLinks } from '@/components/Links/PostmanLinks'
 import { Properties } from '@/components/Properties'
 import { SessionsAndLinksComparisonTable } from '@/components/SessionsAndLinksComparisonTable'
 import { StoryBrowser } from '@/components/StoryBrowser'
+import { TriggerCareFlowsComparison } from '@/components/TriggerCareFlowsComparison'
 import { UseCasesComparisonTable } from '@/components/UseCasesComparisonTable'
 import { Effort } from '@/components/UseCasesComparisonTable/atoms'
 import { WebhooksList } from '@/components/Webhooks'
@@ -38,6 +39,7 @@ export const mdxComponents = {
   code: Code,
   UseCasesComparisonTable,
   SessionsAndLinksComparisonTable,
+  TriggerCareFlowsComparison,
   Effort,
   HowToUse,
   Alert,

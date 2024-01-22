@@ -1,0 +1,75 @@
+---
+title: Redirect or embed
+description: Learn how to integrate Hosted Pages
+---
+
+[With a Hosted Pages URL](/awell-orchestration/docs/awell-hosted-pages/sessions-and-links), you can choose to either embed Hosted Pages into your app or redirect your stakeholders to a new page.
+
+Both approaches offer identical functionalities and features. Nonetheless, embedding Hosted Pages typically results in a more seamless and enhanced user experience for your stakeholders.
+
+## Set up
+
+### Redirect
+
+You can use the URL to Hosted Pages to redirect your stakeholder in a few ways, for example, using an `<a>` tag:
+
+```html
+<a href="https://goto.awell.health/l/someLinkId">Complete my activities</a>
+```
+
+### Embed
+
+You can easily embed the URL content of Hosted Pages through an iframe.
+
+```html
+<iframe
+  src="https://goto.awell.health/l/someLinkId"
+  title="Hosted Pages embed"
+></iframe>
+```
+
+## Upon activity completion
+
+**Once a stakeholder completes all their activities**, you'll typically want them to see a success screen, and then be redirected to a certain page in a web app, or to a specific screen in a native app.
+
+<Alert type="info" title="Deep linking">
+  <p>
+    Note that you can use leverage{' '}
+    <a
+      href="https://orchestration-stories.vercel.app/stories/hosted-pathway"
+      title="deep linking"
+    >
+      deep Linking
+    </a>{' '}
+    to send users directly to an app (and specific in-app locations) instead of
+    a website.
+  </p>
+</Alert>
+
+### How to
+
+When you are using sessions to generate Hosted Pages URL, you can pass the `success_url` [upon creating the session](/awell-orchestration/api-reference/mutations/start-hosted-pages-session). When a stakeholder completes all activities, we'll make sure to send the patient to the specified URL.
+
+If you are using [Hosted Pages Links](https://help.awellhealth.com/en/articles/8205630-care-flow-design-when-using-hosted-pages), the `success_url` can be configured in Awell Studio.
+
+### Default behaviour
+
+If no `success_url` is specified, the stakeholder will see a default completion screen which prompts them that they can safely close the page as they have completed all their activities.
+
+### With embed
+
+When integrating Hosted Pages in an iframe or a WebView for native apps, setting a success URL will redirect the iframe or WebView to the specified URL. However, you may also want to trigger an action in the main application or view. To achieve this, you can listen for URL changes within the iframe or WebView.
+
+**Here's the process:**
+
+1. Configure the success_url to trigger a URL change
+2. Detect this URL change and then execute your desired navigation or action in response.
+
+<Alert title="Iframe vs. WebView">
+  <p>
+    Many web browsers used in native apps, known as WebViews, possess the
+    capability to monitor changes in URLs or navigational states. This feature,
+    however, is typically not available for iframes. Improved support (with
+    callback events) for embedding Hosted Pages in iframes is coming soon.
+  </p>
+</Alert>

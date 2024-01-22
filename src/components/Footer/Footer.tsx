@@ -1,13 +1,26 @@
+import clsx from 'clsx'
 import { FC } from 'react'
 
-export const Footer: FC = () => {
+interface FooterProps {
+  location?: 'docs'
+}
+
+export const Footer: FC<FooterProps> = ({ location }) => {
   return (
-    <footer className="pb-16 text-sm leading-6">
+    <footer
+      className={clsx(location === 'docs' ? '' : 'pb-16', 'text-sm leading-6')}
+    >
       <div className="mx-auto divide-y divide-slate-200 dark:divide-slate-700">
-        <div className="mt-16 pt-10 border-t border-slate-200 dark:border-slate-600">
+        <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-600">
           <div className="leading-none text-slate-700 dark:text-slate-200">
             <div className="sm:flex items-center justify-between">
-              <svg className="w-32 mx-auto sm:mx-0" viewBox="0 0 190 50">
+              <svg
+                className={clsx(
+                  location === 'docs' ? 'w-24' : 'w-32',
+                  'mx-auto sm:mx-0'
+                )}
+                viewBox="0 0 190 50"
+              >
                 <g>
                   <path
                     id="svg_1"

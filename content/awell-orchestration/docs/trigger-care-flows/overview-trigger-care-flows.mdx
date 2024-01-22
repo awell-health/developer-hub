@@ -1,0 +1,29 @@
+---
+title: Overview
+description: Learn about various ways of how to trigger the start of a care flow in Awell
+---
+
+Keep in mind that you are not restricted to using just one type of trigger. Each trigger is designed for specific use cases, so you may find it beneficial to employ a variety of triggers for your care flows in Awell, depending on the needs of each use case.
+
+## Prerequisites
+
+Regardless of the method used to trigger care flows in Awell, there are two fundamental principles to keep in mind.
+
+### Patient resource
+
+In Awell, each care flow is linked to a patient resource. This means a patient resource needs to be created before starting a care flow. **However, Awell’s system is flexible in the data you need to provide for patients; we can even support anonymous patients (no PHI).**
+
+We do recommend populating the patient_code field in the Awell patient resource. The value you input here is your internal ID for the patient, which facilitates matching a patient resource in Awell with one in your system.
+
+### Data required at care flow start
+
+It’s important to consider what data will be needed to start a care flow. There are two categories of data to consider:
+
+1. **Data about the patient**: recommended to minimally pass the internal identifier of the patient via the patient_code field
+2. **Data needed for the care flow logic**: this includes information essential for assessing conditions and determining timings within the care flow. For instance, in pre-surgery care flows, usually the type and date of surgery is provided. These data points are then utilized within the care flow's configuration to ensure timely message delivery and relevant surgery information.
+
+## Comparison
+
+<br />
+
+<TriggerCareFlowsComparison />
