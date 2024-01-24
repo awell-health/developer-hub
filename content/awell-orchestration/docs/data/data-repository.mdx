@@ -41,7 +41,7 @@ The data repository contains three different types of data: collected data, gene
 The collected data is stored in two tables: `data_points` and `data_point_definitions`. The `data_points` table uses a normalized structure to handle the fact that the collected data can have different value types (string, boolean, numeric, date etc), and can come from many different sources (forms, calculations, Extensions, etc.).
 
 <Alert type="info">
-  <p class="mb-1">
+  <p className="mb-1">
     When building a care flow in Awell Studio you have the ability to configure human readable identifiers for all data points as well as the source behind these data points. Our system uses that information to generate a `qualified_key` for each data point definition which combines the source key and the data point key. Let's imagine that you are building a patient form to collect the patient's weight and height, with the intent of calculating a BMI score. You set the form key to <em>bmi</em>, and set the question keys to <em>height</em> and <em>weight</em> respectively.
   </p>
   <p>
@@ -82,7 +82,16 @@ Table name: `care_flows`.
 
 Table name: `activities`.
 
-You can find more information about the activity data model <a href="/awell-orchestration/docs/getting-started/domain-model#activities">here</a>.
+<Alert type="info">
+  <p className="mb-1">
+    Activities use a generic structure to be able to describe any action that needs to be performed by a human or system.
+  </p>
+  <p>
+    Go to the <a href="/awell-orchestration/api-reference/overview/domain-model#activities">
+      Domain Model reference
+    </a> to find more information about how activities are structured, including examples.
+  </p>
+</Alert>
 
 <ActivityTableSpecs />
 

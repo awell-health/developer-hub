@@ -232,7 +232,7 @@ export const activities: BQTableType = [
     property: 'indirect_object_type',
     type: 'STRING',
     description:
-      'Type of indirect object this activity relates to. Examples: `action`, `form`, `step`.',
+      'Type of indirect object this activity relates to. Examples: `patient`, `stakeholder`.',
   },
   {
     property: 'indirect_object_name',
