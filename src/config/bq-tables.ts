@@ -187,12 +187,6 @@ export const activities: BQTableType = [
       'Activity status. One of: `active`, `done`, `failed`, `canceled`, `expired`.',
   },
   {
-    property: 'resolution',
-    type: 'STRING',
-    description:
-      'Activity resolution. One of: `success`, `failure`, `expired`.',
-  },
-  {
     property: 'date',
     type: 'TIMESTAMP',
     description:
@@ -205,12 +199,6 @@ export const activities: BQTableType = [
       'Scheduled activation date of the activity (UTC).',
   },
   {
-    property: 'object_id',
-    type: 'STRING',
-    description:
-      'Identifier of the related object.',
-  },
-  {
     property: 'object_type',
     type: 'STRING',
     description:
@@ -221,12 +209,6 @@ export const activities: BQTableType = [
     type: 'STRING',
     description:
       'Name of the related object.',
-  },
-  {
-    property: 'indirect_object_id',
-    type: 'STRING',
-    description:
-      'Identifier of the related indirect object.',
   },
   {
     property: 'indirect_object_type',
