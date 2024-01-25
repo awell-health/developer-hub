@@ -114,24 +114,6 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_ORCHESTRATION}/docs/data/data-repository`,
       },
       {
-        title: 'Kibana',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/kibana/introduction`,
-        submenu: [
-          {
-            title: 'Introduction',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/data/kibana/introduction`,
-          },
-          {
-            title: 'Data repository',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/data/kibana/elastic-data-repository`,
-          },
-              {
-            title: 'Create dashboards',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/data/kibana/create-dashboards`,
-          },
-        ],
-      },
-      {
         title: 'Healthcare interoperability',
         path: `/${Space.AWELL_ORCHESTRATION}/docs/data/healthcare-interoperability`,
       },
