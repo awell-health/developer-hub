@@ -5,28 +5,45 @@ description: Understand what is available in the data repository
 
 ## Understanding the data schema
 
+To use the data from the Awell platform, it's essential to understand some Awell terminology first.
+
+Below, we explain the terminology that you'll find back in the data schema. If you have any further questions about this, please contact your Awell Customer Success Manager.
+
 ### Care flow definition vs Care flow
 
-In the Awell domain, a care flow definition is a care flow template designed in the no-code studio, representing the general structure and components of a care plan without being tied to any specific patient.
+In the Awell domain, a care flow definition is a care flow template designed in the Awell Studio, representing the general structure and components of a care plan without being tied to any specific patient.
 
-A care flow on the other hand is a patient-specific instance derived from a care flow definition that tracks and manages an individual patient's care journey.
+A care flow on the other hand is a patient-specific instance derived from a care flow definition that tracks and manages an individual patient's care journey. For example, if you created the care flow definition "post-operative follow-up" in Awell Studio, all your patients that get included in this care flow definition will have an individual care flow.
+
+### Data point definition vs Data point
+
+Similar to care flow definitions and care flows, a data point definition is a care flow component as designed in Awell Studio while a data point is the patient-specific instance of that data point definition. For example, if you collect the weight of a patient in a care flow, the data point for a specific patient could be 80 kg (or 176lbs).
+
+### Data point keys
+
+To avoid having to work with randomly generated IDs for data point definitions, we allow users to define a human-readable identifier in Awell Studio for all data point definitions. In the data repository, we combine this human-readable identifier with the source to form a 'key'. Let's imagine that you are building a patient form to collect the patient's weight and height, with the intent of calculating a BMI score. You set the form key to <em>bmi</em>, and set the question keys to <em>height</em> and <em>weight</em> respectively. This will result in data point definitions with the following keys:
+<li><em>bmi.height</em> contains the answer to the <em>height</em> question in the <em>bmi</em> form</li>
+<li><em>bmi.weight</em> contains the answer to the <em>weight</em> question in the <em>bmi</em> form</li>
 
 ### Identifiers
 
-A care flow definition is made of a set of components which have three identifiers: the **definition** identifier, the **published** identifier and the **release** identifier.
+A care flow definition is made of a set of components (e.g. data points, actions, etc.) that have three identifiers: the **definition** identifier, the **published** identifier and the **release** identifier.
 - The **definition** identifier is version agnostic, so it remains the same across all published versions of a care flow definition.
 - The **published** identifier on the other hand is version specific, so every publication generates a new unique published identifier for each component in a care flow definition.
-- The **release** identifier is a unique identifier for the published version itself. It is assigned to all components in that published version.
+- The **release** identifier is a unique identifier for the published version of the care flow definition itself. All components in that published version have the same release identifier.
 
 This provides the flexibility to use two different strategies when referencing components: either by the published identifier, or by a combination of the definition identifier and the release identifier.
 
-In the current version of the schema available in the repository there is only one such relationship: the `data_points` table references the `data_point_definitions` table using the `definition_id` and `release_id` properties. This allows you to easily query the data in those table in a version specific or version agnostic way depending on your use case. Using the `definition_id` you can get data across all published versions of a care flow definition. Using the `definition_id` and `release_id` you can narrow down your query to a specific published version.
+In the current version of the schema available in the repository, there is only one such relationship: the `data_points` table references the `data_point_definitions` table using the `definition_id` and `release_id` properties. This allows you to easily query the data in those table in a version specific or version agnostic way depending on your use case. Using the `definition_id` you can get data across all published versions of a care flow definition. Using the `definition_id` and `release_id` you can narrow down your query to a specific published version.
 
 ### Release vs. Version
 
 In Awell Studio you can see the list of published versions for a given care flow definition with an auto incremented version number. This version number is only used for display purposes. Behind the scenes we assign a unique release identifier to each published version, which you can retrieve through the [Get published pathway definitions query](/awell-orchestration/api-reference/queries/get-published-pathways).
 
 The release identifier is guaranteed to be globally unique so it can be safely used as input to build analytics query on the data set.
+
+### Qualified keys
+
 
 ## Schema
 
@@ -58,24 +75,6 @@ The data repository contains three different types of data: data points, orchest
 ### Data points
 
 The data points are stored in two tables: `data_points` and `data_point_definitions`. The `data_points` table uses a normalized structure to handle the fact that atomic data can have different value types (string, boolean, numeric, date etc), and can come from many different sources (forms, calculations, Extensions, etc.).
-
-<Alert type="info">
-  <p className="mb-1">
-    When building a care flow in Awell Studio you have the ability to configure human readable identifiers for all data points as well as the source behind these data points. Our system uses that information to generate a `qualified_key` for each data point definition which combines the source key and the data point key. Let's imagine that you are building a patient form to collect the patient's weight and height, with the intent of calculating a BMI score. You set the form key to <em>bmi</em>, and set the question keys to <em>height</em> and <em>weight</em> respectively.
-  </p>
-  <p>
-    This will result in data point definitions with the following qualified keys:
-    <ul>
-      <li><em>bmi.height</em> contains the answer to the <em>height</em> question in the <em>bmi</em> form</li>
-      <li><em>bmi.weight</em> contains the answer to the <em>weight</em> question in the <em>bmi</em> form</li>
-    </ul>
-  </p>
-  <p>
-    Use the <a href="https://help.awellhealth.com/en/articles/4791428-data-catalog">
-      Data Catalog
-    </a> to get an overview of all the collected data points, including the qualified keys and where in your care flow they are collected.
-  </p>
-</Alert>
 
 #### Data Points
 
