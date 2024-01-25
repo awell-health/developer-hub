@@ -5,9 +5,15 @@ description: Understand what is available in the data repository
 
 ## Understanding the data schema
 
+### Care flow definition vs Care flow
+
+In the Awell domain, a care flow definition is a care flow template designed in the no-code studio, representing the general structure and components of a care plan without being tied to any specific patient.
+
+A care flow on the other hand is a patient-specific instance derived from a care flow definition that tracks and manages an individual patient's care journey.
+
 ### Identifiers
 
-In the Awell domain, a care flow definition is made of a set of components which have three identifiers: the **definition** identifier, the **published** identifier and the **release** identifier.
+A care flow definition is made of a set of components which have three identifiers: the **definition** identifier, the **published** identifier and the **release** identifier.
 - The **definition** identifier is version agnostic, so it remains the same across all published versions of a care flow definition.
 - The **published** identifier on the other hand is version specific, so every publication generates a new unique published identifier for each component in a care flow definition.
 - The **release** identifier is a unique identifier for the published version itself. It is assigned to all components in that published version.
