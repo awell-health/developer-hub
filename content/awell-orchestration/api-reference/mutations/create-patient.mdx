@@ -9,7 +9,7 @@ In order to make sure you there's only one single reference to each unique patie
 
 ## Reconcile patient records
 
-In order to establish a link between the patient resource on your end and the patient resource in Awell, we advise you to store the identifier of the patient resource in your system in the `patient_code` field. This way its easy to establish a link between the patient record in your system and in Awell's system.
+In order to establish a link between the patient in your systems and Awell, we advise you to store the identifier of the patient in your system in the `patient_code` field.
 
 ## Request
 
@@ -27,7 +27,7 @@ mutation CreatePatient($input: CreatePatientInput!) {
 
 ### Variables for anonymous patient
 
-In case you want to create anonymous patients without any PHI, we still advise you to specify a `patient_code` where you can insert the internal identifier of the patient. This can later be used to reconcile the Awell patient resource with a patient resource in your system.
+In case you want to create anonymous patients without any PHI, we still advise you to specify a `patient_code` where you can insert the internal identifier of the patient. This can later be used to reconcile an Awell patient with a patient in your system.
 
 ```json
 {

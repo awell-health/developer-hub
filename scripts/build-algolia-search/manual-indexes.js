@@ -35,28 +35,6 @@ module.exports = [
     slug: 'awell-orchestration/developer-tools/webhooks/webhook-builder',
   },
   {
-    objectID:
-      '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide',
-    space: 'Awell Orchestration',
-    title: 'Hosted Pathway Guide',
-    description:
-      'Get up and running with Awell Orchestration in less than a day',
-    content:
-      'The quickest way to get up and running with Awell is the "Awell-hosted pathway page". This page will allow users to complete a pathway or flow and is a low-code integration.',
-    slug: 'awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide',
-  },
-  {
-    objectID:
-      '/awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide',
-    space: 'Awell Orchestration',
-    title: 'Hosted Activity Guide',
-    description:
-      'Redirect stakeholders to an Awell Hosted Activity page to complete activities',
-    content:
-      'This integration enables you to orchestrate activities over time for multiple stakeholders on an Awell Hosted Activity page.',
-    slug: 'awell-orchestration/docs/activities/awell-hosted-pages/hosted-activity-guide',
-  },
-  {
     objectID: '/awell-extensions/marketplace',
     space: 'Awell Extensions',
     title: 'Marketplace',

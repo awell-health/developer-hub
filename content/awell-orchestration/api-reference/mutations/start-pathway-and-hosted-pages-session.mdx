@@ -1,9 +1,17 @@
 ---
-title: Start hosted pathway session
-description: Start a pathway and create a session to redirect to the Awell Hosted Pathway page
+title: Start pathway and Hosted Pages session
+description: Start a pathway and create a session for Hosted Pages
 ---
 
-This page documents the `startHostedPathwaySession` mutation but we recommend reading the ["What are Awell Hosted Pages"](/awell-orchestration/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages) page first and the [full guide](/awell-orchestration/docs/activities/awell-hosted-pages/hosted-pathway-guide) on how to get started with Awell in less than a day via the Awell Hosted Pathway integration.
+We recommend reading more about ["Awell Hosted Pages"](/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/overview-hosted-pages) first before moving on.
+
+**This mutation starts a pathway or care flow first and immediately creates a session for the patient stakeholder.** If you want to create a Hosted Pages session for an ongoing pathway or care flow, have a look at the [Start Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-hosted-pages-session).
+
+## Use cases
+
+There are use cases, like onboarding and intake flows, where you might want a stakeholder (e.g. a patient) to start a care flow themselves and immediately let them complete activities in their care flows.
+
+**Example**: a patient visits your website and there's a button to start an onboarding flow. Clicking the button should both start a care flow and immediately allow the patient to complete activities in that care flow.
 
 ## Request
 
@@ -74,7 +82,7 @@ Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/
 
 #### Patient id
 
-Every pathway is linked to a patient resource in our system. We automatically create an anonymous patient resource if `patient_id` is left blank.
+Every pathway is linked to a patient in Awell. We automatically create an anonymous patient if `patient_id` is left blank.
 
 If you want to create a patient first, you will have to do an a priori API call to create the patient and use the id returned by that API call as the value for the `patient_id` field. See the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient) for more information on how to create a patient.
 

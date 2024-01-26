@@ -33,7 +33,7 @@ const domains = [
     description: 'Design, build, and publish care flows in our no-code editor.',
   },
   {
-    url: rootRoutes[Space.AWELL_ORCHESTRATION].home,
+    url: rootRoutes[Space.AWELL_ORCHESTRATION].docs,
     title: 'Awell Orchestration',
     icon: (
       <svg

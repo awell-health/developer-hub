@@ -14,7 +14,9 @@ import { FAQ } from '@/components/FAQ'
 import { HowToUse } from '@/components/HowToUse'
 import { PostmanLinks } from '@/components/Links/PostmanLinks'
 import { Properties } from '@/components/Properties'
+import { SessionsAndLinksComparisonTable } from '@/components/SessionsAndLinksComparisonTable'
 import { StoryBrowser } from '@/components/StoryBrowser'
+import { TriggerCareFlowsComparison } from '@/components/TriggerCareFlowsComparison'
 import { UseCasesComparisonTable } from '@/components/UseCasesComparisonTable'
 import { Effort } from '@/components/UseCasesComparisonTable/atoms'
 import { WebhooksList } from '@/components/Webhooks'
@@ -36,6 +38,8 @@ export const mdxComponents = {
   h3: CustomH3,
   code: Code,
   UseCasesComparisonTable,
+  SessionsAndLinksComparisonTable,
+  TriggerCareFlowsComparison,
   Effort,
   HowToUse,
   Alert,

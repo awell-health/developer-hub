@@ -29,6 +29,13 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/awell-orchestration',
+        destination:
+          '/awell-orchestration/docs/getting-started/orchestration-introduction',
+        permanent: false,
+      },
+
+      {
         source: '/awell-orchestration/developer-tools/playground',
         destination: '/awell-orchestration/developer-tools/api/playground',
         permanent: true,

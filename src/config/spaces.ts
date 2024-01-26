@@ -9,7 +9,7 @@ export const spaces: { label: string; path: string; active?: boolean }[] = [
   },
   {
     label: 'Awell Orchestration',
-    path: rootRoutes[Space.AWELL_ORCHESTRATION].home,
+    path: rootRoutes[Space.AWELL_ORCHESTRATION].docs,
   },
   {
     label: 'Awell Extensions',
