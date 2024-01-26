@@ -767,8 +767,7 @@ export type HostedPagesLink = {
 export type HostedPagesLinkPayload = Payload & {
   __typename?: 'HostedPagesLinkPayload';
   code: Scalars['String']['output'];
-  /** The hosted pages link for the stakeholder. If there is no activity for the stakeholder in the care flow, this link will be null. */
-  hosted_pages_link?: Maybe<HostedPagesLink>;
+  hosted_pages_link: HostedPagesLink;
   success: Scalars['Boolean']['output'];
 };
 
