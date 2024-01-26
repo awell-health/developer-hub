@@ -21,7 +21,6 @@ export const docsMenu: MenuType = [
       },
     ],
   },
-
   {
     title: 'Trigger care flows',
     path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows`,
@@ -63,63 +62,41 @@ export const docsMenu: MenuType = [
     ],
   },
   {
-    title: 'Awell Hosted Pages',
-    path: `/${Space.AWELL_ORCHESTRATION}/docs/awell-hosted-pages`,
+    title: 'Interact with care flows',
+    path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows`,
     submenu: [
       {
-        title: 'Overview',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/awell-hosted-pages/overview-hosted-pages`,
+        title: 'Awell Hosted Pages',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/awell-hosted-pages`,
+        submenu: [
+          {
+            title: 'Overview',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/awell-hosted-pages/overview-hosted-pages`,
+          },
+          {
+            title: 'How Hosted Pages works',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/awell-hosted-pages/how-hosted-pages-works`,
+          },
+          {
+            title: 'Sessions and Links',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/awell-hosted-pages/sessions-and-links`,
+          },
+          {
+            title: 'Built-in and customizable features',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/awell-hosted-pages/built-in-and-customizable-features`,
+          },
+          {
+            title: 'Redirect or embed',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/awell-hosted-pages/redirect-or-embed`,
+          },
+        ],
       },
       {
-        title: 'How Hosted Pages works',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/awell-hosted-pages/how-hosted-pages-works`,
+        title: 'Build your own UI',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/build-your-own-ui`,
       },
-      {
-        title: 'Sessions and Links',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/awell-hosted-pages/sessions-and-links`,
-      },
-      {
-        title: 'Built-in and customizable features',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/awell-hosted-pages/built-in-and-customizable-features`,
-      },
-      {
-        title: 'Redirect or embed',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/awell-hosted-pages/redirect-or-embed`,
-      },
-      // {
-      //   title: 'Alternatives',
-      //   path: `/${Space.AWELL_ORCHESTRATION}/docs/awell-hosted-pages/alternatives`,
-      //   submenu: [
-      //     {
-      //       title: 'Awell Platform',
-      //       path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-platform-activities`,
-      //     },
-      //     {
-      //       title: 'Build Your Own UI',
-      //       path: `/${Space.AWELL_ORCHESTRATION}/docs/activities/build-your-own-ui-activities`,
-      //     },
-      //   ],
-      // },
     ],
   },
-  // {
-  //   title: 'Operate and manage care',
-  //   path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows`,
-  //   submenu: [
-  //     {
-  //       title: 'Overview',
-  //       path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows/overview-care`,
-  //     },
-  //     {
-  //       title: 'Awell Platform',
-  //       path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows/awell-platform-care`,
-  //     },
-  //     {
-  //       title: 'Build Your Own UI',
-  //       path: `/${Space.AWELL_ORCHESTRATION}/docs/operate-and-manage-care-flows/build-your-own-ui-care`,
-  //     },
-  //   ],
-  // },
   {
     title: 'Get data and events out',
     path: `/${Space.AWELL_ORCHESTRATION}/docs/data`,

@@ -22,28 +22,28 @@ export type SectionType = {
 export const sessionsAndLink: CategoryType[] = [
   {
     name: 'Awell Hosted Pages Link',
-    href: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`,
+    href: ``,
     description: `By pressing a link`,
     useWhen: 'Patient self-enrollment',
     effort: 1,
   },
   {
     name: 'Awell API',
-    href: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`,
+    href: ``,
     description: `By calling our API`,
     useWhen: 'You want maximum control and flexibility',
     effort: 3,
   },
   {
     name: 'Incoming webhooks',
-    href: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`,
+    href: ``,
     description: `Based on events in external systems`,
     useWhen: 'You want external system to trigger a care flow',
     effort: 2,
   },
   {
     name: 'File uploads',
-    href: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`,
+    href: ``,
     description: `With a CSV, XML, JSON file`,
     useWhen:
       'You want a convenient and easy way to trigger care flows in batch',
@@ -51,14 +51,14 @@ export const sessionsAndLink: CategoryType[] = [
   },
   {
     name: 'ADT feeds',
-    href: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-pathway-guide`,
+    href: ``,
     description: `By listening to ADT messages`,
     useWhen: 'Start care flows based on ADT messages',
     effort: 3,
   },
   {
     name: 'Awell Care',
-    href: `/${Space.AWELL_ORCHESTRATION}/docs/activities/awell-hosted-pages/hosted-activity-guide`,
+    href: ``,
     description: "Via Awell's app",
     useWhen: `You're using Awell Care to operate care flows`,
     effort: 1,
