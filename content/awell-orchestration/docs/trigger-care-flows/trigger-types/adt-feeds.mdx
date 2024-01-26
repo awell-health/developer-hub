@@ -1,0 +1,16 @@
+---
+title: ADT feeds
+description: Trigger care flows based on a stream of ADT messages
+---
+
+**An "ADT feed" refers to an "Admission, Discharge, and Transfer" feed in the context of healthcare information systems.** ADT is a standard communication protocol used in the medical field to share patient status updates among different systems.
+
+An ADT feed streams various types of messages related to the movements and changes in the status of a patient within a healthcare facility. The ADT feed is essential for keeping all parts of the healthcare system informed in real-time about where a patient is.
+
+## How it works
+
+**We use Mirth Connect (Mirth) as an integration engine to handle ADT feeds** (read more in ["Healthcare interopability"](http://localhost:3000/awell-orchestration/docs/data/healthcare-interoperability)). Mirth is configured to intercept your ADT messages and upon receiving a message, we process it, extracting key patient information and identifying which care flow to start.
+
+## Use cases
+
+Start, update, or delete a care flow based on messages from your hospital's scheduling system

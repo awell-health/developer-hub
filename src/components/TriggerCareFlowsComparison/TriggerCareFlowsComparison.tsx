@@ -152,7 +152,7 @@ export const TriggerCareFlowsComparison: FC<
                   className="py-8 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left align-top"
                   scope="row"
                 >
-                  Volume
+                  How
                 </th>
                 {sessionsAndLink.map((tier) => (
                   <td
@@ -170,7 +170,7 @@ export const TriggerCareFlowsComparison: FC<
               </tr>
               <tr>
                 <th
-                  className="py-8 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left align-top"
+                  className="py-8 px-6 text-sm font-medium text-slate-900 dark:text-slate-400 text-left align-center"
                   scope="row"
                 >
                   Use when

@@ -9,9 +9,9 @@ Please note that this mutation can only be used to create a Hosted Pages session
 
 ## Lifecycle
 
-1. When Awell notifies you via the `activity.created` webhook or through a specific action in the care flow, such as an API call, indicating that a stakeholder needs to complete an activity in a care flow, your application creates a new Hosted Pages Session with this mutation. **This will will give you access to a session URL**.
-2. You embed (or redirect staeholder to) Hosted Pages as an iframe in your app so the stakeholder can interact with their pending activities.
-3. The stakeholder completes all their pending activities.
+1. When Awell notifies you via the `activity.created` webhook or through a specific action in the care flow, such as an API call, indicating that a patient/stakeholder needs to complete an activity in a care flow, your application creates a new Hosted Pages Session with this mutation. **This will will give you access to a session URL**.
+2. You embed (or redirect staeholder to) Hosted Pages as an iframe in your app so the patient can interact with their pending activities.
+3. The patient completes all their pending activities.
 4. (optional) When all pending activities are completed, you can subscribe to the `session.completed` webhook to trigger any kind of post-completion logic on your end ([view all session-related webhooks](/awell-orchestration/docs/data/webhooks-and-events)).
 
 ## Request

@@ -1,22 +1,24 @@
 ---
-title: FTP Connector
-description: Trigger care flows simply by uploading a CSV file
+title: File uploads
+description: Trigger care flows simply by uploading a file
 ---
 
-A convenient way to get care flows started in Awell with maximum control but requiring practically no engineering lift is Awell’s FTP connector. Additionally, the FTP connector enables you to conveniently trigger multiple care flows in a batch.
+A convenient way to get care flows started in Awell with maximum control but requiring practically no engineering lift is by uploading files via Awell’s FTP Connector. Moreover, file upload a enables you to conveniently trigger multiple care flows in a batch.
 
 ## How it works
 
 1. Awell provisions a secure FTP server for you and will provide the necessary login credentials for access.
-2. You can upload CSV files in a format agreed upfront to the FTP server.
+2. You can upload CSV files (or similar data format files) in a format agreed upfront to the FTP server.
 3. Awell polls the contents of the FTP server periodically (e.g. every hour). Upon detecting a new file, Awell will process it and start the required care flows.
 4. Awell will manage the intricate tasks of verifying the existence of the patient in the system, creating a new patient record if needed, and starting the care flow.
 5. For auditability, Awell maintains comprehensive logging.
 
 **This approach offers an ideal balance:** you have complete control over the care flows you wish to start, with the simple action of uploading a file to an FTP server being enough to set it in motion 🪄.
 
-## Overview
+### File format
 
-<br />
+The file format will be agreed upon upfront. Each row or entry in the file corresponds to a care flow that will be started.
 
-<TriggerCareFlowsComparison highlight="FTP Connector" />
+## Use cases
+
+Extract a CSV file of eligible patients from your systems and start all of them in one go.

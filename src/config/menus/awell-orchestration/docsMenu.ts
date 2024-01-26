@@ -31,28 +31,34 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/overview-trigger-care-flows`,
       },
       {
-        title: 'Awell Care',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/awell-care`,
-      },
-      {
-        title: 'Sharing link',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/sharing-link`,
-      },
-      {
-        title: 'Awell API',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/awell-api`,
-      },
-      {
-        title: 'Incoming webhook',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/incoming-webhook`,
-      },
-      {
-        title: 'FTP Connector',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/ftp-connector`,
-      },
-      {
-        title: 'ADT feed',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/adt-feed`,
+        title: 'Trigger types',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/trigger-types`,
+        submenu: [
+          {
+            title: 'Awell Hosted Pages Link',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/trigger-types/awell-hosted-pages-link`,
+          },
+          {
+            title: 'Awell API',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/trigger-types/awell-api`,
+          },
+          {
+            title: 'Incoming webhooks',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/trigger-types/incoming-webhooks`,
+          },
+          {
+            title: 'File uploads',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/trigger-types/file-uploads`,
+          },
+          {
+            title: 'ADT feeds',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/trigger-types/adt-feeds`,
+          },
+          {
+            title: 'Awell Care',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/trigger-care-flows/trigger-types/awell-care`,
+          },
+        ],
       },
     ],
   },

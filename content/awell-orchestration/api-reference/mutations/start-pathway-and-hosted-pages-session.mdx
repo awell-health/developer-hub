@@ -82,7 +82,7 @@ Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/
 
 #### Patient id
 
-Every pathway is linked to a patient resource in our system. We automatically create an anonymous patient resource if `patient_id` is left blank.
+Every pathway is linked to a patient in Awell. We automatically create an anonymous patient if `patient_id` is left blank.
 
 If you want to create a patient first, you will have to do an a priori API call to create the patient and use the id returned by that API call as the value for the `patient_id` field. See the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient) for more information on how to create a patient.
 
