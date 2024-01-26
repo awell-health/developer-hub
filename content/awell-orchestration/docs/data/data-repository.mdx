@@ -25,17 +25,6 @@ To avoid having to work with randomly generated IDs for data point definitions, 
 - <em>bmi.height</em> contains the answer to the <em>height</em> question in the <em>bmi</em> form
 - <em>bmi.weight</em> contains the answer to the <em>weight</em> question in the <em>bmi</em> form
 
-### Identifiers
-
-A care flow definition is made of a set of components (e.g. data points, actions, etc.) that have three identifiers: the **definition** identifier, the **published** identifier and the **release** identifier.
-- The **definition** identifier is version agnostic, so it remains the same across all published versions of a care flow definition.
-- The **published** identifier on the other hand is version specific, so every publication generates a new unique published identifier for each component in a care flow definition.
-- The **release** identifier is a unique identifier for the published version of the care flow definition itself. All components in that published version have the same release identifier.
-
-This provides the flexibility to use two different strategies when referencing components: either by the published identifier, or by a combination of the definition identifier and the release identifier.
-
-In the current version of the schema available in the repository, there is only one such relationship: the `data_points` table references the `data_point_definitions` table using the `definition_id` and `release_id` properties. This allows you to easily query the data in those table in a version specific or version agnostic way depending on your use case. Using the `definition_id` you can get data across all published versions of a care flow definition. Using the `definition_id` and `release_id` you can narrow down your query to a specific published version.
-
 ### Release vs. Version
 
 In Awell Studio you can see the list of published versions for a given care flow definition with an auto incremented version number. This version number is only used for display purposes. Behind the scenes we assign a unique release identifier to each published version, which you can retrieve through the [Get published pathway definitions query](/awell-orchestration/api-reference/queries/get-published-pathways).
