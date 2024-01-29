@@ -73,6 +73,14 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
   const setMenu = (menu: MenuType) => setNewMenu(menu)
 
+  const getHeadingLevelFromMarkdown = (heading: string) => {
+    switch (heading.trim()) {
+      case '##': return 'h2'
+      case '###': return 'h3'
+      default: return 'h4'
+    }
+  }
+
   const setTableOfContents = (
     content: string,
     tocArray?: { title: string; link: string; level: 'h2' | 'h3' }[]
@@ -80,9 +88,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     if (tocArray) {
       setToc(tocArray)
     } else {
-      const regexp = new RegExp(/^(### |## )(.*)\n/, 'gm')
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
+      const regexp = new RegExp(/^(##+) (.*)\n/, 'gm')
       const headings = [...content.matchAll(regexp)]
 
       let tableOfContents: TableOfContentsType = []
@@ -90,7 +96,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       if (headings.length) {
         tableOfContents = headings.map((heading) => {
           const headingText = heading[2].trim()
-          const headingLevel = heading[1].trim() === '##' ? 'h2' : 'h3'
+          const headingLevel = getHeadingLevelFromMarkdown(heading[1])
           const headingLink = slugify(headingText, {
             lower: true,
             strict: true,

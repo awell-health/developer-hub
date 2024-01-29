@@ -110,22 +110,8 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_ORCHESTRATION}/docs/data/webhooks-and-events`,
       },
       {
-        title: 'Data repository',
+        title: 'Data Repository',
         path: `/${Space.AWELL_ORCHESTRATION}/docs/data/data-repository`,
-      },
-      {
-        title: 'Kibana',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/create-dashboards`,
-        submenu: [
-          {
-            title: 'Introduction',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/data/kibana/introduction`,
-          },
-          {
-            title: 'Create dashboards',
-            path: `/${Space.AWELL_ORCHESTRATION}/docs/data/kibana/create-dashboards`,
-          },
-        ],
       },
       {
         title: 'Healthcare interoperability',
