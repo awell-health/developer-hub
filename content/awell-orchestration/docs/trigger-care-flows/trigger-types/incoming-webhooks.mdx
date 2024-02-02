@@ -7,48 +7,44 @@ This trigger type allows you to use webhooks to start care flows when you receiv
 
 ## How to
 
-In Home also known as CareOps, navigate to Settings and then Incoming webhooks tab where you can set up your Incoming Webhooks.
+Webhooks can be configured in the CareOps app of Awell by navigating to `Settings > Incoming webhooks`.
 
-### How to create new incoming webhook
+### Create a new webhook
 
 1. Click `Create webhook`
-2. Name your webhook and select which care flow you want it to trigger - make sure your care flow is published first
+2. Name your webhook and select which care flow you want it to start. **Make sure your care flow is published first.**
 
-You are able to pass baseline data points into the webhook. If you do not require baseline data points you can enable the webhook and start using it.
+You are able to use data from the webhook payload and pass it as baseline data points into the care flow. This is required for care flows that have required baseline data points. If required baseline data points have no mapping then your request will be rejected. If your care flow has no required data points, you can just enable your webhook and start using it.
 
-If you do require baseline data points they will be displayed on the page for you to configure. 
-
-### How to map the baseline data points
+### Map baseline data points
 
 <figure className="w-full flex flex-col justify-center text-center relative">
   <div className="bg-white p-12 w-full sm:p-4 mx-auto rounded-md">
     <a
-      href=" "
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1706901419/Developer%20portal/301480408-0699ef1e-bbee-4d4a-9ece-5c656a3f5b63.png"
       target="_blank"
       title="Baseline Data Points"
     >
       <img
-        src=" "
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1706901419/Developer%20portal/301480408-0699ef1e-bbee-4d4a-9ece-5c656a3f5b63.png"
         alt="Baseline Data Points"
       />
     </a>
   </div>
   <figcaption className="dark:text-slate-400 pt-2">
-    Configure your Baseline Data Points
+    Configure your baseline data points
   </figcaption>
 </figure>
 
-**The webhook will not trigger a care flow if you do not configure required baseline data points.** You can still send requests but they will be rejected.
+**Steps to map data from your payload to baseline data points:**
 
-1. Click `Create webhook`.
-2. Name your webhook and select the care flow you want it to trigger (ensure the care flow is published).
-3. Within a minute the payload will display on the page. Then start typing `$` on the data point which you want to map
-4. A helper mapper will pop up with instructions on how to map and which element you are mapping from
-5. Once you map all the baseline data points you want to pass to the incoming webhook send another test payload
-6. We will run validation and display whether the mapping is correct and would indeed start a care flow
-7. After successful validation, you can safely enable the incoming webhook.
+1. Click on `Test link` to send a test request to your endpoint. A payload will appear on the page within a minute.
+2. Use [JsonPath](https://github.com/json-path/JsonPath) to access data from your webhook payload and assign the values to a baseline data point.
+3. After mapping values to all data points, send another test payload.
+4. The system will perform a check to verify if the mapping is valid and if it meets the requirements to initiate a care flow.
+5. If the validation is successful, indicating the data mapping is correct, you are clear to enable the webhook.
 
-### How to examine Incoming Webhook logs
+## Webhook logs
 
 1. Click `View logs`.
 2. Select your filters (request status, incoming webhook name, and care flow name).
@@ -57,12 +53,12 @@ If you do require baseline data points they will be displayed on the page for yo
 <figure className="w-full flex flex-col justify-center text-center relative">
   <div className="bg-white p-12 w-full sm:p-4 mx-auto rounded-md">
     <a
-      href=" "
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1706901422/Developer%20portal/301480350-973eeede-c2db-4d34-8882-26497102a273.png"
       target="_blank"
       title="Incoming Webhook Logs Page"
     >
       <img
-        src=" "
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1706901422/Developer%20portal/301480350-973eeede-c2db-4d34-8882-26497102a273.png"
         alt="Incoming Webhook Logs Page"
       />
     </a>
@@ -72,15 +68,69 @@ If you do require baseline data points they will be displayed on the page for yo
   </figcaption>
 </figure>
 
-### Incoming Webhook log statuses
+### Webhook statuses
 
-Available statuses: 
+Available statuses:
 
-- **SCHEDULED**: The payload has all required baseline data points, and the request is queued for processing.
-- **REJECTED**: Something is wrong with the payload or the incoming webhook is disabled; we reject the request.
-- **TEST**: Test payload; we validated it, and if the response would have been rejected, we display why.
-- **PROCESSING**: The scheduled request is being processed.
-- **SUCCESS**: The care flow has been triggered correctly; we include the care flow ID and patient ID.
-- **FAILED**: The request has failed during processing.
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th className="w-[150px]">Status</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <strong>SCHEDULED</strong>
+        </td>
+        <td>
+          The payload has all required baseline data points, and the request is
+          queued for processing.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>REJECTED</strong>
+        </td>
+        <td>
+          Something is wrong with the payload or the incoming webhook is
+          disabled; we reject the request.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>TEST</strong>
+        </td>
+        <td>
+          Test payload; we validated it, and if the response would have been
+          rejected, we display why.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>PROCESSING</strong>
+        </td>
+        <td>The scheduled request is being processed.</td>
+      </tr>
+      <tr>
+        <td>
+          <strong>SUCCESS</strong>
+        </td>
+        <td>
+          The care flow has been triggered correctly; we include the care flow
+          ID and patient ID.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>FAILED</strong>
+        </td>
+        <td>The request has failed during processing.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-A successful request undergoes three statuses: SCHEDULED, PROCESSING, and SUCCESS. In the 'View details' page, you can access all pertinent logs associated with a specific request.
+A successful request undergoes three statuses: `SCHEDULED`, `PROCESSING`, and `SUCCESS`. In the 'View details' page, you can access all pertinent logs associated with a specific request.
