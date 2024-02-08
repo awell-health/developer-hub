@@ -207,6 +207,7 @@ export type AddressInput = {
 
 export type Answer = {
   __typename?: 'Answer';
+  label?: Maybe<Scalars['String']['output']>;
   question_id: Scalars['String']['output'];
   value: Scalars['String']['output'];
   value_type: DataPointValueType;
@@ -607,7 +608,9 @@ export enum ExtensionActionFieldType {
   Html = 'HTML',
   Json = 'JSON',
   Numeric = 'NUMERIC',
+  NumericArray = 'NUMERIC_ARRAY',
   String = 'STRING',
+  StringArray = 'STRING_ARRAY',
   Text = 'TEXT'
 }
 
