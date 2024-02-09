@@ -15,11 +15,14 @@ query GetFormResponse($pathway_id: String!, $activity_id: String!) {
         question_id
         value
         value_type
+        label
       }
     }
   }
 }
 ```
+
+Label is nullable as it is only applicable in case of Multi-Choice questions where each option is a combination of a Value and a Label.
 
 ### Variables
 
