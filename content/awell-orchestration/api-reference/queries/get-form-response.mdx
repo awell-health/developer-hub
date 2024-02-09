@@ -22,7 +22,7 @@ query GetFormResponse($pathway_id: String!, $activity_id: String!) {
 }
 ```
 
-Label is nullable as it is only applicable in case of Multi-Choice questions where each option is a combination of a Value and a Label.
+Note: The `label` field may be empty (null) for non-multi-choice questions; for multi-choice questions, it represents the text description of the selected option, pairing its value with a descriptive label.
 
 ### Variables
 
