@@ -92,6 +92,17 @@ export const sections: SectionType[] = [
         },
       },
       {
+        name: 'Supports baseline info',
+        categories: {
+          'Awell Care': true,
+          'Awell Hosted Pages Link': 'Link: no<br/>Session: yes',
+          'Awell API': true,
+          'Incoming webhooks': true,
+          'File uploads': true,
+          'ADT feeds': true,
+        },
+      },
+      {
         name: 'Real-time',
         categories: {
           'Awell Care': true,

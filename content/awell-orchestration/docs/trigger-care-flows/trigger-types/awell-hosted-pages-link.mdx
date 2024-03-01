@@ -55,6 +55,34 @@ The concept is to invoke this mutation when a user clicks a button or link. This
   </p>
 </Alert>
 
+## Associate a patient with your care flow
+
+When using the default [shareable Hosted Pages Link](#hosted-pages-link), a care flow is started and assigned to an anonymous patient profile in Awell. Normally, you'd want to ensure that these care flows can be connected back to a specific patient profile in Awell, so you can match them with a patient in your own system. There are two methods available to make sure your care flows are correctly linked to identifiable patient profiles in Awell.
+
+### Identify through URL parameters
+
+If the linked is clicked within a context where the patient's identity is already established (e.g. patient is logged into your app), the identity of the patient is known. **In such cases, we enable you to append an identifier to the link, indicating which specific patient the care flow should be started for.**
+
+```
+https://goto.awell.health/l/86eay?identifier=<identifier_system>|<identifier_value>
+```
+
+When the link is clicked, Awell verifies whether a patient with the provided identifier already exists. If a patient with that identifier is found, the care flow is started for this existing patient. If there is no matching patient, Awell creates a new patient profile and immediately assigns the identifier to this new profile.
+
+**We only allow identifiers in URL query parameters for security reasons**; passing any other patient data (PHI) this way is not permitted. Consequently, when using the shareable link, you are limited to passing only an identifier. This limitation is particularly relevant when a patient profile does not yet exist in Awell, as no additional patient data can be passed through the link.
+
+TO ADD: the additional patient data (all data besides the identifier) could be fetched by the care flow using the provided identifier. This means that is okay that you can't pass more PHI through the link as we provide means to fetch it safely during the care flow.
+
+### Sessions
+
+**If you want more control over the patient creation process, the data you'd like to pass about a patient when they don't exist yet, or have baseline information in your care flow**, the use of [Sessions](#session) is recommended, as it offers complete control over these aspects.
+
+### Identify during the care flow
+
+In addition to using the shareable Hosted Pages link and Sessions, another option is to identify a patient within your care flow and link the care flow to an existing profile. This approach involves creating specific actions within your care flow designed to support patient identification and assignment.
+
+GIVE EXAMPLES HERE.
+
 ## Use cases
 
 - A patient clicks a button on your website or app to start an onboarding flow
