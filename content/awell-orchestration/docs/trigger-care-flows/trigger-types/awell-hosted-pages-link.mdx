@@ -3,9 +3,9 @@ title: Awell Hosted Pages Link
 description: Let patients and care team members start care flows simply by clicking a link
 ---
 
-**Awell can generate a shareable link for your published care flow that, upon clicking, starts a care flow** and immediately returns a session URL to [Awell Hosted Pages](/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/overview-hosted-pages) so the user who clicked the link can immediately interact with their activities.
+**Awell can generate a shareable link for your published care flow that, upon clicking, starts a care flow** and immediately returns a URL to [Awell Hosted Pages](/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/overview-hosted-pages) so the user who clicked the link can immediately interact with their activities.
 
-This trigger is perfect when:
+**This trigger is perfect when:**
 
 1. You want patients to be able to self-enroll in a care flow. E.g. start an intake or onboarding flow upon clicking a button on your website or in your app.
 2. Since a patient initiates the trigger by clicking a link, there will be an instant feedback mechanism where [Hosted Pages](/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/overview-hosted-pages) will be displayed to the user, enabling them to immediately complete their activities.
@@ -19,7 +19,7 @@ In Awell Studio, you can generate a shareable Hosted Pages Link which, upon clic
 **The link can also be downloaded as a QR code.** Patients can start a care flow easily by scanning the code using their mobile device.
 
 <figure className="w-full flex flex-col justify-center text-center relative">
-  <div className="bg-white p-12 w-full sm:p-4 mx-auto rounded-md">
+  <div className="bg-white p-4 w-3/4 mx-auto rounded-md">
     <a
       href="https://downloads.intercomcdn.com/i/o/894781850/e73580e09b11d9a09efeae68/image.png"
       target="_blank"
@@ -54,6 +54,226 @@ The concept is to invoke this mutation when a user clicks a button or link. This
     .
   </p>
 </Alert>
+
+## Associate a patient with your care flow
+
+When using the default [shareable Hosted Pages Link](#hosted-pages-link), a care flow is started and assigned to an anonymous patient profile in Awell. However, usually you'd want to ensure that these care flows can be connected back to a specific patient profile in Awell, so you can match them with a patient in your own system.
+
+<Alert title="Sharing PHI with Awell" type="info">
+  <p>
+    Please note that you have full control over how much PHI or demographic data
+    you choose to share with Awell. We are equipped to manage care flows even
+    for patients who remain anonymous.{' '}
+    <strong>
+      The specific details you need to provide largely depend on the design of
+      your care flow.
+    </strong>{' '}
+    <br />
+    <br />
+    For example, if your care flow incorporates conditional logic based on the
+    patient's sex and birth date, then these details must be shared with (or
+    captured by) Awell. Additionally, we advise including at least one
+    identifier to ensure that a patient profile in Awell can be matched with a
+    patient in your own system.
+  </p>
+</Alert>
+
+### Query string
+
+If the link is clicked within a context where the patient's identity is already established (e.g. patient is logged into your app), the identity of the patient is known. **In such cases, we enable you to append an identifier to the link, indicating which specific patient the care flow should be started for.**
+
+```URL
+Example URL     https://goto.awell.health/c/86eay?identifier=<identifier_system>|<identifier_value>
+Query string    ?identifier=<identifier_system>|<identifier_value>
+```
+
+**The query string is part of the URL, and its components need to be url-safe.** Characters list spaces, ampersands, and others cannot appear in URLs, and so need to be escaped. If you're generating the URL to redirect to in javascript, make sure to use the
+`encodeURIComponent()` method for encoding your query parameter. Similar functions exist for other languages.
+
+When the link is clicked, Awell verifies whether a patient with the provided identifier already exists. If a patient with that identifier is found, the care flow is started for this existing patient. **If there is no matching patient, Awell creates a new patient profile and immediately assigns the identifier to this new profile.**
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="bg-white p-4 w-3/4 mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1709543689/Developer%20portal/identification_hosted_pages_link.png"
+      target="_blank"
+      title="Identification via Hosted Pages link"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1709543689/Developer%20portal/identification_hosted_pages_link.png"
+        alt="Identification via Hosted Pages link"
+      />
+    </a>
+  </div>
+</figure>
+
+<Alert title="Query parameters" type="warning">
+  <p>
+    We only allow identifiers in URL query parameters for security reasons;
+    passing any other patient data (PHI) is not permitted. Consequently, when
+    using the shareable link, you are limited to passing only an identifier.
+    This limitation is particularly relevant when a patient profile does not yet
+    exist in Awell, as no additional patient data can be passed through the
+    link. Moreover, passing baseline is also not supported via the shareable
+    link.
+  </p>
+</Alert>
+
+If you would like to use the shareable Hosted Pages link and **require additional flexibility to submit either patient profile data or baseline information**, the following options are available to you (read more below):
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th className="text-center">Supports baseline info</th>
+        <th className="text-center">Supports patient identification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sessions</td>
+        <td>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            class="h-5 w-5 text-green-500 mx-auto"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </td>
+        <td>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            class="h-5 w-5 text-green-500 mx-auto"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </td>
+      </tr>
+      <tr>
+        <td>Identify patient in care flow</td>
+        <td>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            class="h-5 w-5 text-slate-400 mx-auto"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </td>
+        <td>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            class="h-5 w-5 text-green-500 mx-auto"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+In summary, for handling especially sensitive data, we suggest using Sessions or safely identify a patient during the care flow, as detailed below.
+
+### Sessions
+
+**If you want more control over the patient creation process, the data you'd like to pass about a patient when they don't exist yet, or have baseline information in your care flow**, the use of [Sessions](#session) is recommended, as it offers complete control over these aspects.
+
+Given that Sessions are created programmatically via Awell's API, it is possible to safely search for, create, and update patient profiles, as well as input baseline information, before starting the Hosted Pages session through the API.
+
+### Identification during the care flow
+
+In addition to using the shareable Hosted Pages link and Sessions, another option is to identify a patient within your care flow and assign the care flow to a patient profile or update the current patient profile if relevant. This approach involves creating specific actions within your care flow designed to support patient identification, update, and assignment.
+
+**Here is a list of situations where this applies and the typical action(s) you would want to take in response.**
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th className="w-2/5">Scenario</th>
+        <th className="w-3/5">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Completely anonymous patient profile
+          <br />
+          (no identifier, no PHI)
+        </td>
+        <td>
+          Collect patient info (e.g. patient fills form) and update patient in
+          Awell
+        </td>
+      </tr>
+      <tr>
+        <td>Patient profile with one or more identifiers</td>
+        <td>
+          <ul
+            style={{
+              paddingLeft: '13px !important',
+              marginBottom: '0 !important',
+            }}
+          >
+            <li className="text-base">
+              Collect patient info (e.g. patient fills form) and update patient
+              in Awell
+            </li>
+            <li className="text-base">
+              Retrieve patient info from a system (based on identifier) and
+              update patient in Awell
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>A patient has a duplicate patient profile in Awell</td>
+        <td>
+          Find existing profile by identifier and assign current care flow to
+          existing patient
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+Awell provides builders with a toolbox of actions to support you in building an identification process within your care flow that makes sense for your organization and your use case(s):
+
+- **Form actions** to collect patient demographics from the patient or **extensions and API call actions** to fetch patient demographics from a remote source;
+- **Update patient action** to update a patient profile;
+- **Find patient by identifier** to find a patient based on the provided identifier;
+- **Assign care flow** to assign a care flow to an existing patient;
+
+More information about these actions and how to use them can be found in our [Help Center](https://help.awellhealth.com/en/).
 
 ## Use cases
 

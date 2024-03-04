@@ -205,6 +205,12 @@ export type AddressInput = {
   zip?: InputMaybe<Scalars['String']['input']>;
 };
 
+export enum AllowedDatesOptions {
+  All = 'ALL',
+  Future = 'FUTURE',
+  Past = 'PAST'
+}
+
 export type Answer = {
   __typename?: 'Answer';
   label?: Maybe<Scalars['String']['output']>;
@@ -357,6 +363,13 @@ export type ChecklistPayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type ChoiceRangeConfig = {
+  __typename?: 'ChoiceRangeConfig';
+  enabled?: Maybe<Scalars['Boolean']['output']>;
+  max?: Maybe<Scalars['Float']['output']>;
+  min?: Maybe<Scalars['Float']['output']>;
+};
+
 export type ClinicalNotePayload = Payload & {
   __typename?: 'ClinicalNotePayload';
   clinical_note: GeneratedClinicalNote;
@@ -497,6 +510,12 @@ export enum DataPointValueType {
   Telephone = 'TELEPHONE'
 }
 
+export type DateConfig = {
+  __typename?: 'DateConfig';
+  allowed_dates?: Maybe<AllowedDatesOptions>;
+  include_date_of_response?: Maybe<Scalars['Boolean']['output']>;
+};
+
 export type DateFilter = {
   gte?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
@@ -592,6 +611,12 @@ export type EvaluateFormRulesPayload = Payload & {
   code: Scalars['String']['output'];
   results: Array<QuestionRuleResult>;
   success: Scalars['Boolean']['output'];
+};
+
+export type ExclusiveOptionConfig = {
+  __typename?: 'ExclusiveOptionConfig';
+  enabled?: Maybe<Scalars['Boolean']['output']>;
+  option_id?: Maybe<Scalars['String']['output']>;
 };
 
 export type ExtensionActionField = {
@@ -870,6 +895,12 @@ export type MessagePayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type MultipleSelectConfig = {
+  __typename?: 'MultipleSelectConfig';
+  exclusive_option?: Maybe<ExclusiveOptionConfig>;
+  range?: Maybe<ChoiceRangeConfig>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addTrack: AddTrackPayload;
@@ -890,6 +921,7 @@ export type Mutation = {
   retryApiCall: RetryApiCallPayload;
   retryPushToEmr: EmptyPayload;
   retryWebhookCall: RetryWebhookCallPayload;
+  /** @deprecated We will be deactivating this endpoint in the future. */
   saveBaselineInfo: EmptyPayload;
   scheduleTrack: ScheduleTrackPayload;
   startHostedActivitySession: StartHostedActivitySessionPayload;
@@ -1081,6 +1113,11 @@ export type MyCareOptions = {
 
 export type NumberArrayFilter = {
   in?: InputMaybe<Array<Scalars['Float']['input']>>;
+};
+
+export type NumberConfig = {
+  __typename?: 'NumberConfig';
+  range?: Maybe<RangeConfig>;
 };
 
 export type Operand = {
@@ -1678,7 +1715,10 @@ export type Question = {
 
 export type QuestionConfig = {
   __typename?: 'QuestionConfig';
+  date?: Maybe<DateConfig>;
   mandatory: Scalars['Boolean']['output'];
+  multiple_select?: Maybe<MultipleSelectConfig>;
+  number?: Maybe<NumberConfig>;
   phone?: Maybe<PhoneConfig>;
   recode_enabled?: Maybe<Scalars['Boolean']['output']>;
   slider?: Maybe<SliderConfig>;
@@ -1705,6 +1745,13 @@ export enum QuestionType {
 
 export type Range = {
   __typename?: 'Range';
+  max?: Maybe<Scalars['Float']['output']>;
+  min?: Maybe<Scalars['Float']['output']>;
+};
+
+export type RangeConfig = {
+  __typename?: 'RangeConfig';
+  enabled?: Maybe<Scalars['Boolean']['output']>;
   max?: Maybe<Scalars['Float']['output']>;
   min?: Maybe<Scalars['Float']['output']>;
 };
@@ -1945,6 +1992,7 @@ export type StartPathwayInput = {
   data_points?: InputMaybe<Array<DataPointInput>>;
   pathway_definition_id: Scalars['String']['input'];
   patient_id: Scalars['String']['input'];
+  release_id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type StartPathwayPayload = Payload & {

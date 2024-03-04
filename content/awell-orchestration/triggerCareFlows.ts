@@ -1,5 +1,3 @@
-import { Space } from '@/types/space.types'
-
 export type CategoryType = {
   name: string
   href: string
@@ -89,6 +87,28 @@ export const sections: SectionType[] = [
           'Incoming webhooks': false,
           'File uploads': false,
           'ADT feeds': false,
+        },
+      },
+      {
+        name: 'Starts Hosted Pages',
+        categories: {
+          'Awell Care': false,
+          'Awell Hosted Pages Link': true,
+          'Awell API': false,
+          'Incoming webhooks': false,
+          'File uploads': false,
+          'ADT feeds': false,
+        },
+      },
+      {
+        name: 'Supports baseline info',
+        categories: {
+          'Awell Care': true,
+          'Awell Hosted Pages Link': 'Link: no<br/>Session: yes',
+          'Awell API': true,
+          'Incoming webhooks': true,
+          'File uploads': true,
+          'ADT feeds': true,
         },
       },
       {
