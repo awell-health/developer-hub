@@ -15,11 +15,14 @@ query GetFormResponse($pathway_id: String!, $activity_id: String!) {
         question_id
         value
         value_type
+        label
       }
     }
   }
 }
 ```
+
+Note: The `label` field may be empty (null) for non-multi-choice questions; for multi-choice questions, it represents the text description of the selected option, pairing its value with a descriptive label.
 
 ### Variables
 
