@@ -22,7 +22,7 @@ query GetFormResponse($pathway_id: String!, $activity_id: String!) {
 }
 ```
 
-Note: The `label` field may be empty (null) for non-multi-choice questions; for multi-choice questions, it represents the text description of the selected option, pairing its value with a descriptive label.
+Note: The `label` field will be empty (_null_) for non-multi-choice questions; for multi-choice questions, it represents the text description of the selected option, pairing its value with a descriptive label. The order of labels in the array matches the values order in the `value` field.
 
 ### Variables
 
@@ -32,6 +32,88 @@ Note: The `label` field may be empty (null) for non-multi-choice questions; for 
   "activity_id": "{{FORM_ACTIVITY_ID}}"
 }
 ```
+
+### Deserialization
+
+In the table below you can find an overview of all question types, their corresponding data point value type, and examples of the values you will receive from the Awell API in this query.
+
+_Note that we undertake some conversion (particularly for boolean and numbers array value types) to ensure consistency in our system, regardless of the submitted value format._
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Question type</th>
+        <th>Data point value type</th>
+        <th>Value type you will receive</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Date</td>
+        <td>DATE</td>
+        <td>ISO-8601 String</td>
+        <td>"2024-03-05T00:00:00.000Z"</td>
+      </tr>
+      <tr>
+        <td>Number</td>
+        <td>NUMBER</td>
+        <td>string</td>
+        <td>"10"</td>
+      </tr>
+      <tr>
+        <td>Short Text</td>
+        <td>STRING</td>
+        <td>string</td>
+        <td>"Awell is great"</td>
+      </tr>
+      <tr>
+        <td>Long Text</td>
+        <td>STRING</td>
+        <td>string</td>
+        <td>"A long story about why Awell is so great"</td>
+      </tr>
+      <tr>
+        <td>Multiple Choice</td>
+        <td>NUMBER</td>
+        <td>
+          string
+          <br /> (value of selected option)
+        </td>
+        <td>"1"</td>
+      </tr>
+      <tr>
+        <td>Multiple Select</td>
+        <td>NUMBERS_ARRAY</td>
+        <td>string</td>
+        <td>
+          "[1, 2, 4]"
+          <br />
+          (note: we convert any array of strings submitted to a stringified
+          array of numbers)
+        </td>
+      </tr>
+      <tr>
+        <td>Slider</td>
+        <td>NUMBER</td>
+        <td>string</td>
+        <td>"50"</td>
+      </tr>
+      <tr>
+        <td>Yes/No</td>
+        <td>BOOLEAN</td>
+        <td>string</td>
+        <td>
+          "1" (yes) | "0" (no)
+          <br />
+          (note: we convert all forms of yes/no values in submission mutation to
+          "1" or "0")
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 The inputs for this query are:
 
