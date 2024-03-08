@@ -1,6 +1,11 @@
 import { Extension } from '@/types/extenion.types'
 
-const EXCLUDE_EXTENSIONS = ['wellinks', 'hello-world', 'nexuzhealth']
+const EXCLUDE_EXTENSIONS = [
+  'wellinks',
+  'hello-world',
+  'nexuzhealth',
+  'experimental',
+]
 interface UseExtensions {
   marketplaceExtensions: Extension[]
   categories: Array<string>
