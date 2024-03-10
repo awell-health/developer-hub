@@ -1,0 +1,160 @@
+---
+title: Start care flow with patient's identifier
+description: Start a new care flow for a given patient using patient identifier
+---
+
+## Prerequisites
+
+Care flows can only be started for patients so you need to create a patient first before you can start a care flow. You can create a new patient with the [`createPatient` mutation](/awell-orchestration/api-reference/mutations/create-patient).
+
+To use identifiers, they need to be first set up on the tenant level. Learn more about how to set up [identifiers](https://developers.awellhealth.com/awell-orchestration/docs/misc/patient-identifiers).
+
+## Selecting the version
+
+When starting a care flow, Awell Orchestration automatically chooses the most recent published version of the specified care flow definition.
+
+> Improved support for versioning is coming soon, with the ability to select a specific version when starting a new care flow and upgrading started care flows to newer version.
+
+## Providing baseline data points
+
+You have the ability to pass some initial data when starting a care flow with baseline data points. What data you can pass on care flow start needs to be configured in Awell Studio.
+
+<Alert type="info" title="Configure baseline data points">
+  <p>
+    <a
+      href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points"
+      target="_blank"
+    >
+      Learn how to create and configure baseline data points for your care flows
+      in Awell Studio.
+    </a>
+  </p>
+</Alert>
+
+When your baseline data points are configured and your care flow is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-pathways)).
+
+> There are `required` and `optional` baseline data points. A care flow will not be started until all required baseline data points have a value.
+
+```graphql
+query GetpublishedPathwayDefinitions {
+  publishedPathwayDefinitions {
+    publishedPathwayDefinitions {
+      id
+      title
+      dataPointDefinitions {
+        id
+        key
+        valueType
+        optional
+      }
+    }
+  }
+}
+```
+
+## Request
+
+### Mutation
+
+```graphql
+mutation StartCareflowWithPatientIdentifier($input: StartCareflowWithPatientIdentifierInput!) {
+  startCareflowWithPatientIdentifier(input: $input) {
+    careflow_id
+    patient_id
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "patient_identifier": {
+      "system": "{{IDENTIFIER_SYSTEM}}",
+      "value": "{{IDENTIFIER_VALUE}}"
+    },
+    "careflow_definition_id": "{{CAREFLOW_DEFINITION_ID}}"
+  }
+}
+```
+
+The `careflow_definition_id` can be located either by using the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-pathways) or by checking the URL bar while working in Awell Studio. It's important to remember that your care flow must be published and have an active version set before you can start it.
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1704991524/Developer%20portal/pathway_definition_id.png"
+      target="_blank"
+      title="How to find the care flow definition ID in Awell Studio"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1704991524/Developer%20portal/pathway_definition_id.png"
+        alt="How to find the care flow definition ID in Awell Studio"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    How to find the care flow definition ID in Awell Studio
+  </figcaption>
+</figure>
+
+### Variables - With baseline data points
+
+```json
+{
+  "input": {
+    "patient_identifier": {
+      "system": "{{IDENTIFIER_SYSTEM}}",
+      "value": "{{IDENTIFIER_VALUE}}"
+    },
+    "careflow_definition_id": "{{CAREFLOW_DEFINITION_ID}}"
+    "data_points": [
+      // Repeat for each input data point
+      {
+        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
+        "value": "{{DATA_POINT_VALUE}}"
+      }
+    ]
+  }
+}
+```
+
+### Serialization
+
+**Given data point values are polymorphic, the value for a data point should always be sent as a string.** Values are validated and deserialized on the Awell side and we will throw an error if a value does not match the corresponding data point value type.
+
+In table below you can find an overview of all baseline data point types and the value type you should be sending to the Awell API.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Data point value type</th>
+        <th>Value type to send</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>date</td>
+        <td>ISO8601 string</td>
+        <td>"2023-01-01"</td>
+      </tr>
+      <tr>
+        <td>number</td>
+        <td>string</td>
+        <td>"10"</td>
+      </tr>
+      <tr>
+        <td>string</td>
+        <td>string</td>
+        <td>"Awell is great"</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## How to use
+
+<HowToUse storyIds={['start-pathway']} />

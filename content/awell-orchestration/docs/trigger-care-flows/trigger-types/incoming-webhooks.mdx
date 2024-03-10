@@ -54,7 +54,22 @@ However, you can build filters or eligibility checks in your care flow with cond
 
 ### Anonymous patients
 
-Note that each incoming webhook that hits the provided URL starts a care flow for an anonymous patient. Support for associating a care flow to an existing patient is coming soon!
+Note that each incoming webhook that hits the provided URL starts a care flow for an anonymous patient.
+
+### Non-anonymous patients
+
+To create a new patient or start a care flow for a known patient you can padd patient identifier in the payload.
+
+```json
+{
+  "patient_identifier": {
+    "system": "{{IDENTIFIER_SYSTEM}}",
+    "value": "{{IDENTIFIER_VALUE}}"
+  }
+}
+```
+
+You must set up identifier system first in the settings tab. Learn more about [identifiers](https://developers.awellhealth.com/awell-orchestration/docs/misc/patient-identifiers).
 
 ## Webhook logs
 

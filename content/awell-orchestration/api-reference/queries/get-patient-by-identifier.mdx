@@ -1,0 +1,55 @@
+---
+title: Get patient by identifier
+description: Get a patient's profile by identifier
+---
+
+Learn more about [identifiers](https://developers.awellhealth.com/awell-orchestration/docs/misc/patient-identifiers).
+
+## Request
+
+### Query
+
+```graphql
+query GetPatientByIdentifier($patient_id: String!) {
+  patient(patient_identifier: { system: $system, value: $value}) {
+    patient {
+      id
+      profile {
+        name
+        first_name
+        last_name
+        preferred_language
+        birth_date
+        sex
+        patient_code
+        address {
+          city
+          country
+          state
+          street
+          zip
+        }
+        email
+        national_registry_number
+        mobile_phone
+        phone
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "patient_identifier": {
+    "system": "{{IDENTIFIER_SYSTEM}}",
+    "value": "{{IDENTIFIER_VALUE}}"
+  }
+}
+```
+
+## How to use
+
+<HowToUse storyIds={['patient-profile']} />

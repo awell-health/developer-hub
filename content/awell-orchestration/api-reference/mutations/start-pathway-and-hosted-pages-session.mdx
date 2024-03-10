@@ -60,6 +60,10 @@ The `success_url` and `cancel_url` specify where the stakeholder should be redir
     "success_url": "https://yourdomain.com/success.html",
     "cancel_url": "https://yourdomain.com/cancel.html",
     "patient_id": "{{PATIENT_ID}}",
+    "patient_identifier": {
+      "system": "{{IDENTIFIER_SYSTEM}}",
+      "value": "{{IDENTIFIER_VALUE}}"
+    },
     "data_points": [],
     "language": "en"
   }
@@ -84,7 +88,12 @@ Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/
 
 Every pathway is linked to a patient in Awell. We automatically create an anonymous patient if `patient_id` is left blank.
 
-If you want to create a patient first, you will have to do an a priori API call to create the patient and use the id returned by that API call as the value for the `patient_id` field. See the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient) for more information on how to create a patient.
+If you want to create a patient first, you will have to do an a prior API call to create the patient and use the id returned by that API call as the value for the `patient_id` field. See the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient) for more information on how to create a patient.
+
+#### Patient identifier
+
+Every pathway is linked to a patient in Awell. If you would like to create a new patient with patient with a specific identifier or start a pathway for a existing patient you can pass patient identifier. Learn more about [identifiers](https://developers.awellhealth.com/awell-orchestration/docs/misc/patient-identifiers).
+
 
 #### Data points (or Baseline info)
 
