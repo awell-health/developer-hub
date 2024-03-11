@@ -10,30 +10,42 @@ Learn more about [identifiers](https://developers.awellhealth.com/awell-orchestr
 ### Query
 
 ```graphql
-query GetPatientByIdentifier($patient_id: String!) {
-  patient(patient_identifier: { system: $system, value: $value}) {
+fragment PatientProfile on UserProfile {
+  email
+  sex
+  birth_date
+  first_name
+  last_name
+  name
+  phone
+  mobile_phone
+  preferred_language
+  patient_code
+  national_registry_number
+  identifier {
+    system
+    value
+  }
+  address {
+    street
+    city
+    zip
+    state
+    country
+  }
+}
+
+fragment Patient on User {
+  id
+  profile {
+    ...PatientProfile
+  }
+}
+
+query GetPatientByIdentifier($system: String!, $value: String!) {
+  patientByIdentifier(system: $system, value: $value) {
     patient {
-      id
-      profile {
-        name
-        first_name
-        last_name
-        preferred_language
-        birth_date
-        sex
-        patient_code
-        address {
-          city
-          country
-          state
-          street
-          zip
-        }
-        email
-        national_registry_number
-        mobile_phone
-        phone
-      }
+      ...Patient 
     }
   }
 }
@@ -43,10 +55,8 @@ query GetPatientByIdentifier($patient_id: String!) {
 
 ```json
 {
-  "patient_identifier": {
-    "system": "{{IDENTIFIER_SYSTEM}}",
-    "value": "{{IDENTIFIER_VALUE}}"
-  }
+  "system": "{{IDENTIFIER_SYSTEM}}",
+  "value": "{{IDENTIFIER_VALUE}}"
 }
 ```
 
