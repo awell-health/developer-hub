@@ -141,6 +141,10 @@ export const docsMenu: MenuType = [
         title: 'Patient Demographics Query',
         path: `/${Space.AWELL_ORCHESTRATION}/docs/misc/patient-demographics-query`,
       },
+      {
+        title: 'Patient Identifiers',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/misc/patient-identifiers`,
+      },
     ],
   },
 ]
