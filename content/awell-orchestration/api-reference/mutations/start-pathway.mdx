@@ -7,6 +7,10 @@ description: Start a new pathway for a given patient
 
 Care flows or pathways can only be started for patients so you need to create a patient first before you can start a pathway. You can create a new patient with the [`createPatient` mutation](/awell-orchestration/api-reference/mutations/create-patient).
 
+By creating a new patient you will get a patient id you can use to start your care flow. Or if you created a patient with a your own FHIR like identifier, you can use that identifier to start a care flow.
+
+To use identifiers, they need to be first set up on the tenant level. Learn more about how to set up [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
+
 ## Selecting the version
 
 When starting a pathway, Awell Orchestration automatically chooses the most recent published version of the specified pathway definition.
@@ -52,7 +56,9 @@ query GetPublishedPathwayDefinitions {
 
 ## Request
 
-### Mutation
+There are two mutations to start a care flow for a patient, they only differ by how to provide information for which patient to start a care flow, via Awell patient id or via FHIR like identifier.
+
+### Mutation - StartPathway
 
 ```graphql
 mutation StartPathway($input: StartPathwayInput!) {
@@ -68,7 +74,48 @@ mutation StartPathway($input: StartPathwayInput!) {
 {
   "input": {
     "patient_id": "{{PATIENT_ID}}",
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "data_points": [
+      // Repeat for each input data point
+      {
+        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
+        "value": "{{DATA_POINT_VALUE}}"
+      }
+    ]
+  }
+}
+```
+
+### Mutation - StartPathwayWithPatientIdentifier
+
+```graphql
+mutation StartPathwayWithPatientIdentifier(
+  $input: StartPathwayWithPatientIdentifierInput!
+) {
+  startPathwayWithPatientIdentifier(input: $input) {
+    pathway_id
+    patient_id # if you want to fetch awell patient id for provided identifier
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "patient_identifier": {
+      "system": "{{IDENTIFIER_SYSTEM}}",
+      "value": "{{IDENTIFIER_VALUE}}"
+    },
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
+    "data_points": [
+      // Repeat for each input data point
+      {
+        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
+        "value": "{{DATA_POINT_VALUE}}"
+      }
+    ]
   }
 }
 ```
@@ -92,24 +139,6 @@ The `pathway_definition_id` can be located either by using the [publishedPathway
     How to find the pathway definition ID in Awell Studio
   </figcaption>
 </figure>
-
-### Variables - With baseline data points
-
-```json
-{
-  "input": {
-    "patient_id": "{{PATIENT_ID}}",
-    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
-    "data_points": [
-      // Repeat for each input data point
-      {
-        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
-        "value": "{{DATA_POINT_VALUE}}"
-      }
-    ]
-  }
-}
-```
 
 ### Serialization
 

@@ -3,13 +3,11 @@ title: Create patient
 description: Create a new patient, anonymous patients are also supported.
 ---
 
-## Deduplication
-
-In order to make sure you there's only one single reference to each unique patient, we advise you to first search whether the patient already exists ([see "searchPatient" queries](/awell-orchestration/api-reference/queries/search-patient)).
-
 ## Reconcile patient records
 
-In order to establish a link between the patient in your systems and Awell, we advise you to store the identifier of the patient in your system in the `patient_code` field.
+In order to establish a link between the patient in your systems and Awell, we advise you to store the identifier of the patient in your system in the `identifier` array field.
+
+Learn more about [identifiers](https://developers.awellhealth.com/awell-orchestration/docs/misc/patient-identifiers).
 
 ## Request
 
@@ -27,12 +25,18 @@ mutation CreatePatient($input: CreatePatientInput!) {
 
 ### Variables for anonymous patient
 
-In case you want to create anonymous patients without any PHI, we still advise you to specify a `patient_code` where you can insert the internal identifier of the patient. This can later be used to reconcile an Awell patient with a patient in your system.
+In case you want to create anonymous patients without any PHI, we still advise you to specify a `identifier` where you can insert the internal identifier of the patient. This can later be used to reconcile an Awell patient with a patient in your system.
 
 ```json
 {
   "input": {
-    "patient_code": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}" // recommended
+    "identifier": [
+      // recommended
+      {
+        "system": "{{IDENTIFIER_SYSTEM_DEFINED_IN_YOUR_TENANT}}",
+        "value": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}"
+      }
+    ]
   }
 }
 ```
@@ -44,7 +48,12 @@ Use our <a target="_blank" rel="noopener noreferrer" href="/awell-orchestration/
 ```json
 {
   "input": {
-    "patient_code": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}",
+    "identifier": [
+      {
+        "system": "{{IDENTIFIER_SYSTEM_DEFINED_IN_YOUR_TENANT}}",
+        "value": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}"
+      }
+    ],
     "first_name": "{{PATIENT_FIRST_NAME}}",
     "last_name": "{{PATIENT_LAST_NAME}}"
   }
@@ -77,6 +86,16 @@ Phone numbers should be passed in the E.164 format. Read more [here](/awell-orch
   }
 }
 ```
+
+## Errors
+
+### Patient already exists
+
+If you pass in a system|value pair in the identifier array that is used in another patient record, Awell will throw INVALID_IDENTIFIER error with a message that identifiers are not unique.
+
+### Unknown identifier system
+
+If you pass in a system|value pair in the identifier array where system is not one of the specified systems within you organization in the CareOps app, Awell will throw INVALID_IDENTIFIER error with a message that identifier system is not known.
 
 ## How to use
 

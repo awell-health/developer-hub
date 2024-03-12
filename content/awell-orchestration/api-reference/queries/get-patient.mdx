@@ -3,9 +3,18 @@ title: Get patient
 description: Get a patient's profile
 ---
 
+In Awell, patients can be uniquely identified in two ways:
+
+1. by `id` - required - every patient resource must have unique id string
+2. by `identifier` - optional - array of unique system|value pairs that represent business identifiers
+
+Learn more about [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
+
 ## Request
 
-### Query
+There are 2 queries that can be used to get a single patient: `patient` and `patientByIdentifier`
+
+### Query - Get patient
 
 ```graphql
 query GetPatient($patient_id: String!) {
@@ -13,37 +22,80 @@ query GetPatient($patient_id: String!) {
     patient {
       id
       profile {
-        name
-        first_name
-        last_name
-        preferred_language
-        birth_date
-        sex
-        patient_code
-        address {
-          city
-          country
-          state
-          street
-          zip
+        identifier {
+          system
+          value
         }
         email
-        national_registry_number
-        mobile_phone
+        first_name
+        last_name
+        name
+        sex
+        birth_date
         phone
+        mobile_phone
+        preferred_language
+        patient_code
+        national_registry_number
+        address {
+          street
+          city
+          zip
+          state
+          country
+        }
       }
     }
   }
 }
 ```
 
-### Variables
+### Arguments
 
-```json
-{
-  "patient_id": "{{PATIENT_ID}}"
+`patient` query accepts a single argument that represents Awell patient id
+
+### Query - Get patient by identifier
+
+```graphql
+query GetPatientByIdentifier($system: String!, $value: String!) {
+  patientByIdentifier(system: $system, value: $value) {
+    patient {
+      id
+      profile {
+        identifier {
+          system
+          value
+        }
+        email
+        first_name
+        last_name
+        name
+        sex
+        birth_date
+        phone
+        mobile_phone
+        preferred_language
+        patient_code
+        national_registry_number
+        address {
+          street
+          city
+          zip
+          state
+          country
+        }
+      }
+    }
+  }
 }
 ```
+
+### Arguments
+
+`patientByIdentifier` query accepts a two arguments:
+
+1. `system` - URI that represents a namespace that describes the value
+2. `value` - value string
 
 ## How to use
 

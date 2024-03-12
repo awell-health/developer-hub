@@ -54,11 +54,6 @@ export const apiMenu: MenuType = [
         badge: badges.patient,
       },
       {
-        title: 'Get patient by identifier',
-        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-patient-by-identifier`,
-        badge: badges.patient,
-      },
-      {
         title: 'Get patients',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-patients`,
         badge: badges.patient,
@@ -222,11 +217,6 @@ export const apiMenu: MenuType = [
       {
         title: 'Start pathway',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/start-pathway`,
-        badge: badges.pathway,
-      },
-      {
-        title: 'Start care flow with patient identifier',
-        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/start-careflow-with-patient-identifier`,
         badge: badges.pathway,
       },
       {

@@ -54,23 +54,34 @@ The `success_url` and `cancel_url` specify where the stakeholder should be redir
 
 <code className="language-json" highlightedRows={[[4, 12]]}>
   {`
-{
-  "input": {
-    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
-    "success_url": "https://yourdomain.com/success.html",
-    "cancel_url": "https://yourdomain.com/cancel.html",
-    "patient_id": "{{PATIENT_ID}}",
-    "patient_identifier": {
-      "system": "{{IDENTIFIER_SYSTEM}}",
-      "value": "{{IDENTIFIER_VALUE}}"
-    },
-    "data_points": [],
-    "language": "en"
-  }
-}
+    {
+      "input": {
+        "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+        "success_url": "https://yourdomain.com/success.html",
+        "cancel_url": "https://yourdomain.com/cancel.html",
+        "patient_id": "{{PATIENT_ID}}",
+        "patient_identifier": {
+          "system": "{{IDENTIFIER_SYSTEM}}",
+          "value": "{{IDENTIFIER_VALUE}}"
+        },
+        "data_points": [],
+        "language": "en"
+      }
+    }
 `}
 </code>
 <br />
+
+#### Patient
+
+Every careflow is linked to a patient in Awell. Patient is uniquely identified in Awell by id or an FHIR like identifier.
+Learn more about [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
+
+This mutation allows you to start a careflow for an existing or a new anonymous patient. You can pass in `patient_id` or `patient_identifier` to start a care flow for an existing patient. If both are passed in, only `patient_id` will be used.
+
+If no `patient_id` or `patient_identifier` is provided, we automatically create an anonymous patient.
+
+If you want to create a patient first, you will have to do an a prior API call to create the patient and use the id returned by that API call as the value for the `patient_id` field. See the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient) for more information on how to create a patient.
 
 #### Language
 
@@ -83,17 +94,6 @@ Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/
 - Estonian (et)
 - French (fr)
 - Romanian (ro)
-
-#### Patient id
-
-Every pathway is linked to a patient in Awell. We automatically create an anonymous patient if `patient_id` is left blank.
-
-If you want to create a patient first, you will have to do an a prior API call to create the patient and use the id returned by that API call as the value for the `patient_id` field. See the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient) for more information on how to create a patient.
-
-#### Patient identifier
-
-If you would like to create a new patient with a specific identifier or start a pathway for an existing patient you can pass patient identifier. Learn more about [identifiers](https://developers.awellhealth.com/awell-orchestration/docs/misc/patient-identifiers).
-
 
 #### Data points (or Baseline info)
 
