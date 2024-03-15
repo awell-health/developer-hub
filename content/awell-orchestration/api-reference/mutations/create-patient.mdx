@@ -55,7 +55,11 @@ Use our <a target="_blank" rel="noopener noreferrer" href="/awell-orchestration/
       }
     ],
     "first_name": "{{PATIENT_FIRST_NAME}}",
-    "last_name": "{{PATIENT_LAST_NAME}}"
+    "last_name": "{{PATIENT_LAST_NAME}}",
+    "preferred_language": "en",
+    "mobile_phone": "+16175551212",
+    "phone": "+16175551212"
+    // more fields available, see GraphQL schema
   }
 }
 ```
@@ -91,11 +95,11 @@ Phone numbers should be passed in the E.164 format. Read more [here](/awell-orch
 
 ### Patient already exists
 
-If you pass in a system|value pair in the identifier array that is used in another patient record, Awell will throw INVALID_IDENTIFIER error with a message that identifiers are not unique.
+If you pass in an identifier system-value pair in the identifier array that is used in another patient record, Awell will throw `INVALID_IDENTIFIER` error with a message that identifiers are not unique.
 
 ### Unknown identifier system
 
-If you pass in a system|value pair in the identifier array where system is not one of the specified systems within you organization in the CareOps app, Awell will throw INVALID_IDENTIFIER error with a message that identifier system is not known.
+If you pass in an identifier system-value pair in the identifier array where system is not one of the specified systems within you organization, Awell will throw `INVALID_IDENTIFIER` error with a message that identifier system is not known.
 
 ## How to use
 

@@ -7,9 +7,9 @@ description: Start a new pathway for a given patient
 
 Care flows or pathways can only be started for patients so you need to create a patient first before you can start a pathway. You can create a new patient with the [`createPatient` mutation](/awell-orchestration/api-reference/mutations/create-patient).
 
-By creating a new patient you will get a patient id you can use to start your care flow. Or if you created a patient with a your own FHIR like identifier, you can use that identifier to start a care flow.
+When you create a new patient, we will return you an Awell patient ID, which you can use to start a pathway. However, if you have created a patient using your own business identifiers, you can also utilize these identifiers to start a pathway.
 
-To use identifiers, they need to be first set up on the tenant level. Learn more about how to set up [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
+To use identifiers, they need to be set up on the tenant level. Learn more about how to set up [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
 
 ## Selecting the version
 
@@ -17,48 +17,15 @@ When starting a pathway, Awell Orchestration automatically chooses the most rece
 
 > Improved support for versioning is coming soon, with the ability to select a specific version when starting a new pathway and upgrading started pathways to newer version.
 
-## Providing baseline data points
-
-You have the ability to pass some initial data when starting a pathway with baseline data points. What data you can pass on pathway start needs to be configured in Awell Studio.
-
-<Alert type="info" title="Configure baseline data points">
-  <p>
-    <a
-      href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points"
-      target="_blank"
-    >
-      Learn how to create and configure baseline data points for your pathways
-      in Awell Studio.
-    </a>
-  </p>
-</Alert>
-
-When your baseline data points are configured and your pathway is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-pathways)).
-
-> There are `required` and `optional` baseline data points. A pathway will not be started until all required baseline data points have a value.
-
-```graphql
-query GetPublishedPathwayDefinitions {
-  publishedPathwayDefinitions {
-    publishedPathwayDefinitions {
-      id
-      title
-      dataPointDefinitions {
-        id
-        key
-        valueType
-        optional
-      }
-    }
-  }
-}
-```
-
 ## Request
 
-There are two mutations to start a care flow for a patient, they only differ by how to provide information for which patient to start a care flow, via Awell patient id or via FHIR like identifier.
+**There are two mutations to start a care flow for a patient**, they only differ by how to provide information for which patient to start a care flow, via Awell patient ID or via a business identifier.
 
-### Mutation - StartPathway
+### StartPathway mutation
+
+This mutation allows you to start a pathway for a patient **using the Awell patient ID**.
+
+**Request:**
 
 ```graphql
 mutation StartPathway($input: StartPathwayInput!) {
@@ -68,25 +35,22 @@ mutation StartPathway($input: StartPathwayInput!) {
 }
 ```
 
-### Variables
+**Variables:**
 
-```json
+<code className="language-json" highlightedRows={[[3]]}>
+  {`
 {
   "input": {
     "patient_id": "{{PATIENT_ID}}",
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
-    "data_points": [
-      // Repeat for each input data point
-      {
-        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
-        "value": "{{DATA_POINT_VALUE}}"
-      }
-    ]
   }
 }
-```
+  `}
+</code>
 
-### Mutation - StartPathwayWithPatientIdentifier
+### StartPathwayWithPatientIdentifier mutation
+
+This mutation allows you to start a pathway for a patient **using a business identifier**.
 
 ```graphql
 mutation StartPathwayWithPatientIdentifier(
@@ -99,9 +63,10 @@ mutation StartPathwayWithPatientIdentifier(
 }
 ```
 
-### Variables
+**Variables:**
 
-```json
+<code className="language-json" highlightedRows={[[3, 6]]}>
+  {`
 {
   "input": {
     "patient_identifier": {
@@ -109,21 +74,30 @@ mutation StartPathwayWithPatientIdentifier(
       "value": "{{IDENTIFIER_VALUE}}"
     },
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
-    "data_points": [
-      // Repeat for each input data point
-      {
-        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
-        "value": "{{DATA_POINT_VALUE}}"
-      }
-    ]
   }
 }
-```
+  `}
+</code>
+
+## Variables
+
+### Pathway definition ID
+
+<code className="language-json" highlightedRows={[[3]]}>
+  {`
+{
+  "input": {
+    // the rest of your variables
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
+  }
+}
+  `}
+</code>
 
 The `pathway_definition_id` can be located either by using the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-pathways) or by checking the URL bar while working in Awell Studio. It's important to remember that your care flow must be published and have an active version set before you can start it.
 
 <figure className="w-full flex flex-col justify-center text-center relative">
-  <div className="mx-auto rounded-md">
+  <div className="max-w-[500px] mx-auto rounded-md">
     <a
       href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1704991524/Developer%20portal/pathway_definition_id.png"
       target="_blank"
@@ -140,7 +114,42 @@ The `pathway_definition_id` can be located either by using the [publishedPathway
   </figcaption>
 </figure>
 
-### Serialization
+### Baseline info
+
+You have the ability to pass some initial data when starting a pathway with baseline data points. What data you can pass on pathway start needs to be configured in Awell Studio. When your baseline data points are configured and your pathway is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-pathways)).
+
+<code className="language-json" highlightedRows={[[4, 9]]}>
+  {`
+{
+  "input": {
+    // the rest of your variables
+    "data_points": [
+      {
+        "data_point_definition_id": "{{DATA_POINT_DEFINITION_ID}}",
+        "value": "{{DATA_POINT_VALUE}}"
+      }
+    ]
+  }
+}
+  `}
+</code>
+<br />
+
+<Alert type="info" title="Configure baseline data points">
+  <p>
+    <a
+      href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points"
+      target="_blank"
+    >
+      Learn how to create and configure baseline data points for your pathways
+      in Awell Studio.
+    </a>
+  </p>
+</Alert>
+
+There are `required` and `optional` baseline data points. A pathway will not be started if not all required baseline data points have a value.
+
+#### Serialization
 
 **Given data point values are polymorphic, the value for a data point should always be sent as a string.** Values are validated and deserialized on the Awell side and we will throw an error if a value does not match the corresponding data point value type.
 

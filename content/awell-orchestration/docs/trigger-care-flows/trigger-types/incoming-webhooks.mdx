@@ -54,14 +54,15 @@ However, you can build filters or eligibility checks in your care flow with cond
 
 ### Anonymous patients
 
-Note that each incoming webhook that hits the provided URL starts a care flow for an anonymous patient.
+Note that, by default, each incoming webhook that hits the provided URL starts a care flow for an anonymous patient.
 
 ### Associate a patient with your care flow
 
-To create a new non-anonymous patient or start a care flow for a known patient you can add patient identifier in the payload.
+If you want the incoming webhook to either create a new patient or start a pathway for an existing patient, you can include the patient identifier in the payload.
 
 ```json
 {
+  // rest of your payload
   "patient_identifier": {
     "system": "{{IDENTIFIER_SYSTEM}}",
     "value": "{{IDENTIFIER_VALUE}}"
