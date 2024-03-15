@@ -14,8 +14,9 @@ To verify that messages are legitimate, both the webhook provider (Awell) and cl
 Webhooks are digitally signed using a 2048 bits RSA key specific to your tenant. The signature is generated from the webhook body and is included in a custom `x-awell-signature` header. When you receive the webhook message, you can use the public key to verify the signature.
 
 Here is how the signature can be verified in Node.js:
+
 ```typescript
-import { createVerify } from 'crypto';
+import { createVerify } from 'crypto'
 /**
  * Verify that the incoming webhook has been sent by Awell and has not been tampered with.
  * @param {any} body the JSON body of the webhook.
@@ -24,8 +25,8 @@ import { createVerify } from 'crypto';
  * @returns true if the signature is valid
  */
 const verifyWebhook = (body, signature, publicKey) => {
-  const verify = createVerify('sha256').update(JSON.stringify(body)).end();
-  return verify.verify(publicKey, Buffer.from(signature, 'base64'));
+  const verify = createVerify('sha256').update(JSON.stringify(body)).end()
+  return verify.verify(publicKey, Buffer.from(signature, 'base64'))
 }
 ```
 
@@ -36,7 +37,3 @@ We only allow HTTPS webhook endpoints. This provides security at the transport l
 ### Headers to verify the source
 
 Headers can be configured for all outgoing webhooks that are sent by our system. An authentication token can thus be added to the header you can validate that token to verify whether the incoming request is coming from the right source.
-
-### Whitelisting
-
-Another way to verify the source is for you to be aware of our IP address. You can whitelist this IP address and bounce any other request coming from unknown IP addresses.
