@@ -432,6 +432,7 @@ export type CreatePatientInput = {
   birth_date?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   first_name?: InputMaybe<Scalars['String']['input']>;
+  identifier?: InputMaybe<Array<IdentifierInput>>;
   last_name?: InputMaybe<Scalars['String']['input']>;
   /** Must be in valid E164 telephone number format */
   mobile_phone?: InputMaybe<Scalars['String']['input']>;
@@ -450,6 +451,21 @@ export type CreatePatientPayload = Payload & {
   code: Scalars['String']['output'];
   patient?: Maybe<User>;
   success: Scalars['Boolean']['output'];
+};
+
+export type CurrentUser = {
+  __typename?: 'CurrentUser';
+  id: Scalars['ID']['output'];
+  profile?: Maybe<UserProfile>;
+  tenant: Tenant;
+  tenant_id: Scalars['String']['output'];
+};
+
+export type CurrentUserPayload = Payload & {
+  __typename?: 'CurrentUserPayload';
+  code: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+  user: CurrentUser;
 };
 
 export type DataPointDefinition = {
@@ -495,6 +511,7 @@ export enum DataPointSourceType {
   ExtensionWebhook = 'EXTENSION_WEBHOOK',
   Form = 'FORM',
   Pathway = 'PATHWAY',
+  PatientIdentifier = 'PATIENT_IDENTIFIER',
   PatientProfile = 'PATIENT_PROFILE',
   Step = 'STEP',
   Track = 'TRACK'
@@ -849,6 +866,24 @@ export type IdFilter = {
   eq?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type Identifier = {
+  __typename?: 'Identifier';
+  system: Scalars['String']['output'];
+  value: Scalars['String']['output'];
+};
+
+export type IdentifierInput = {
+  system: Scalars['String']['input'];
+  value: Scalars['String']['input'];
+};
+
+export type IdentifierSystem = {
+  __typename?: 'IdentifierSystem';
+  display_name: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  system: Scalars['String']['output'];
+};
+
 export type MarkMessageAsReadInput = {
   activity_id: Scalars['String']['input'];
 };
@@ -926,9 +961,11 @@ export type Mutation = {
   scheduleTrack: ScheduleTrackPayload;
   startHostedActivitySession: StartHostedActivitySessionPayload;
   startHostedActivitySessionViaHostedPagesLink: StartHostedActivitySessionPayload;
+  /** Start a hosted pathway session for a patient uniquely identified by patient_id or patient_identifier. If neither patient_id or patient_identifier is provided, a new anonymous patient will be created. */
   startHostedPathwaySession: StartHostedPathwaySessionPayload;
   startHostedPathwaySessionFromLink: StartHostedPathwaySessionFromLinkPayload;
   startPathway: StartPathwayPayload;
+  startPathwayWithPatientIdentifier: StartPathwayWithPatientIdentifierPayload;
   stopPathway: EmptyPayload;
   stopTrack: StopTrackPayload;
   submitChecklist: SubmitChecklistPayload;
@@ -1060,6 +1097,11 @@ export type MutationStartHostedPathwaySessionFromLinkArgs = {
 
 export type MutationStartPathwayArgs = {
   input: StartPathwayInput;
+};
+
+
+export type MutationStartPathwayWithPatientIdentifierArgs = {
+  input: StartPathwayWithPatientIdentifierInput;
 };
 
 
@@ -1325,6 +1367,7 @@ export type PatientProfileInput = {
   birth_date?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   first_name?: InputMaybe<Scalars['String']['input']>;
+  identifier?: InputMaybe<Array<IdentifierInput>>;
   last_name?: InputMaybe<Scalars['String']['input']>;
   /** Must be in valid E164 telephone number format */
   mobile_phone?: InputMaybe<Scalars['String']['input']>;
@@ -1448,6 +1491,7 @@ export type Query = {
   pathwayStepActivities: ActivitiesPayload;
   pathways: PathwaysPayload;
   patient: PatientPayload;
+  patientByIdentifier: PatientPayload;
   patientDemographicsQueryConfiguration: PatientDemographicsQueryConfigurationPayload;
   patientPathways: PatientPathwaysPayload;
   patients: PatientsPayload;
@@ -1464,7 +1508,7 @@ export type Query = {
   webhookCalls: WebhookCallsPayload;
   webhookCallsForPathwayDefinition: WebhookCallsPayload;
   webhookCallsForTenant: WebhookCallsPayload;
-  whoami: UserPayload;
+  whoami: CurrentUserPayload;
 };
 
 
@@ -1626,6 +1670,12 @@ export type QueryPathwaysArgs = {
 
 export type QueryPatientArgs = {
   id: Scalars['String']['input'];
+};
+
+
+export type QueryPatientByIdentifierArgs = {
+  system: Scalars['String']['input'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -1959,6 +2009,7 @@ export type StartHostedActivitySessionViaHostedPagesLinkInput = {
 
 export type StartHostedPathwaySessionFromLinkInput = {
   id: Scalars['String']['input'];
+  patient_identifier?: InputMaybe<IdentifierInput>;
 };
 
 export type StartHostedPathwaySessionFromLinkPayload = Payload & {
@@ -1974,7 +2025,10 @@ export type StartHostedPathwaySessionInput = {
   /** ISO 639-1 shortcode */
   language?: InputMaybe<Scalars['String']['input']>;
   pathway_definition_id: Scalars['String']['input'];
+  /** Unique id of the patient in Awell, if not provided, patient identifier will be tried to uniquely identify the patient. */
   patient_id?: InputMaybe<Scalars['String']['input']>;
+  /** If no patient_id is provided this field will be used to uniquely identify the patient. */
+  patient_identifier?: InputMaybe<IdentifierInput>;
   success_url?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1999,6 +2053,22 @@ export type StartPathwayPayload = Payload & {
   __typename?: 'StartPathwayPayload';
   code: Scalars['String']['output'];
   pathway_id: Scalars['String']['output'];
+  stakeholders: Array<Stakeholder>;
+  success: Scalars['Boolean']['output'];
+};
+
+export type StartPathwayWithPatientIdentifierInput = {
+  data_points?: InputMaybe<Array<DataPointInput>>;
+  pathway_definition_id: Scalars['String']['input'];
+  patient_identifier: IdentifierInput;
+  release_id?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type StartPathwayWithPatientIdentifierPayload = Payload & {
+  __typename?: 'StartPathwayWithPatientIdentifierPayload';
+  code: Scalars['String']['output'];
+  pathway_id: Scalars['String']['output'];
+  patient_id: Scalars['String']['output'];
   stakeholders: Array<Stakeholder>;
   success: Scalars['Boolean']['output'];
 };
@@ -2224,6 +2294,7 @@ export type Tenant = {
   __typename?: 'Tenant';
   accent_color: Scalars['String']['output'];
   hosted_page_title: Scalars['String']['output'];
+  identifier_systems?: Maybe<Array<IdentifierSystem>>;
   is_default: Scalars['Boolean']['output'];
   logo_path: Scalars['String']['output'];
   name: Scalars['String']['output'];
@@ -2313,15 +2384,7 @@ export type User = {
   __typename?: 'User';
   id: Scalars['ID']['output'];
   profile?: Maybe<UserProfile>;
-  tenant: Tenant;
   tenant_id: Scalars['String']['output'];
-};
-
-export type UserPayload = Payload & {
-  __typename?: 'UserPayload';
-  code: Scalars['String']['output'];
-  success: Scalars['Boolean']['output'];
-  user: User;
 };
 
 export type UserProfile = {
@@ -2330,6 +2393,7 @@ export type UserProfile = {
   birth_date?: Maybe<Scalars['String']['output']>;
   email?: Maybe<Scalars['String']['output']>;
   first_name?: Maybe<Scalars['String']['output']>;
+  identifier?: Maybe<Array<Identifier>>;
   last_name?: Maybe<Scalars['String']['output']>;
   mobile_phone?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
