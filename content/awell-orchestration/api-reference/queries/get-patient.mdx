@@ -3,9 +3,20 @@ title: Get patient
 description: Get a patient's profile
 ---
 
+**Within Awell, there are two methods to uniquely identify patients:**
+
+1. By `ID` (the Awell patient ID) - This is mandatory, as each patient in Awell is assigned a unique ID.
+2. Through business `identifiers` - This is optional and consists of an array of unique system-value pairs, defined by you, that serve as business identifiers.
+
+Learn more about [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
+
 ## Request
 
-### Query
+Two queries can be used to retrieve a patient: one employs the Awell patient ID, and the other utilizes a business identifier for patient retrieval.
+
+### Get patient
+
+**Request:**
 
 ```graphql
 query GetPatient($patient_id: String!) {
@@ -13,37 +24,92 @@ query GetPatient($patient_id: String!) {
     patient {
       id
       profile {
-        name
-        first_name
-        last_name
-        preferred_language
-        birth_date
-        sex
-        patient_code
-        address {
-          city
-          country
-          state
-          street
-          zip
+        identifier {
+          system
+          value
         }
         email
-        national_registry_number
-        mobile_phone
+        first_name
+        last_name
+        name
+        sex
+        birth_date
         phone
+        mobile_phone
+        preferred_language
+        patient_code
+        national_registry_number
+        address {
+          street
+          city
+          zip
+          state
+          country
+        }
       }
     }
   }
 }
 ```
 
-### Variables
+**Variables:**
 
-```json
+<code className="language-json" highlightedRows={[[2]]}>
+  {`
 {
-  "patient_id": "{{PATIENT_ID}}"
+  "patient_id": "<AWELL_PATIENT_ID>"
+}
+  `}
+</code>
+
+### Get patient by identifier
+
+**Request:**
+
+```graphql
+query GetPatientByIdentifier($system: String!, $value: String!) {
+  patientByIdentifier(system: $system, value: $value) {
+    patient {
+      id
+      profile {
+        identifier {
+          system
+          value
+        }
+        email
+        first_name
+        last_name
+        name
+        sex
+        birth_date
+        phone
+        mobile_phone
+        preferred_language
+        patient_code
+        national_registry_number
+        address {
+          street
+          city
+          zip
+          state
+          country
+        }
+      }
+    }
+  }
 }
 ```
+
+**Variables:**
+
+<code className="language-json" highlightedRows={[[2, 3]]}>
+  {`
+{
+  "system": "{{IDENTIFIER_SYSTEM}}",
+  "value": "{{IDENTIFIER_VALUE}}"
+}
+  `}
+</code>
 
 ## How to use
 

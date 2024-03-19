@@ -138,6 +138,10 @@ export const docsMenu: MenuType = [
     path: `/${Space.AWELL_ORCHESTRATION}/docs/misc/`,
     submenu: [
       {
+        title: 'Patient Identifiers',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/misc/patient-identifiers`,
+      },
+      {
         title: 'Patient Demographics Query',
         path: `/${Space.AWELL_ORCHESTRATION}/docs/misc/patient-demographics-query`,
       },

@@ -1,0 +1,75 @@
+---
+title: Patient identifiers
+description: What are patient identifiers and how to set them up
+---
+
+**A patient represents a real-world entity that is documented across various systems, each assigning unique, portable identifiers to track the entity throughout these systems.** These identifiers remain consistent, even as the entity's information is transferred or replicated in different locations. Many identifiers, such as Patient Medical Record Numbers (MRNs) and Provider Numbers, may be issued by external entities, including government agencies.
+
+Due to the nature of distributed record-keeping, a single patient may accumulate numerous identifiers. Managing and reconciling these identifiers is a significant aspect of data management, highlighting the complexity and importance of maintaining accurate records across healthcare and other systems.
+
+## Identifiers at Awell
+
+Awell adopted [FHIR identifiers](https://hl7.org/fhir/r4/datatypes.html#Identifier) to solve this problem. FHIR anticipates this complexity by allowing each patient to have multiple identifiers (also referred to as "business identifiers").
+
+Each identifier is defined by a system- value pair. As with [CodeableConcepts](https://build.fhir.org/ig/HL7/phd/CodeableConcepts.html#:~:text=The%20CodeableConcept%20is%20used%20quite,in%20several%20different%20coding%20systems.), the system acts as namespace for the identifier, and must be specified as an absolute URL to ensure that it is globally unique.
+
+Using the identifier system allows you to simplify your healthcare applications by consolidating data in a single patient, while allowing different systems to access the data by different ID schemes.
+
+### Example
+
+The example Patient below has three identifiers: an SSN and two MRN identifiers from different hospital systems.
+
+```json
+{
+  "id": "6ed73ee8-6fe9-4c13-8a0d-e7c4954b5e86" // Awell patient ID
+  "identifier": [
+    // Social Security Number ID (US-SSN)
+    {
+      "system": "http://hl7.org/fhir/sid/us-ssn",
+      "value": "011-11-1234"
+    },
+    // MRN - Hospital 1
+    {
+      "system": "http://hospital-1.org",
+      "value": "MRN-12345678"
+    },
+    // MRN - Hospital 2
+    {
+      "system": "http://hospital-2.org",
+      "value": "0987AZ6"
+    }
+  ]
+}
+```
+
+## How to set up identifier systems in Awell
+
+To assign identifiers to patients you first have to set up your identifiers in your organization via Awell's app. Identifier name and system must be unique.
+
+1. Go to **Settings** in Awell (CareOps app)
+2. Go to **Identifier systems** tab
+3. Click **Add System**
+4. Either create your system or select one of the pre-configured systems
+5. Click **Add**
+
+<figure className="w-full flex flex-col justify-center text-center relative">
+  <div className="bg-white p-4 w-3/4 mx-auto rounded-md">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1710145639/identifier_system_modal.png"
+      target="_blank"
+      title="Modal to add a new identifier system"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1710145639/identifier_system_modal.png"
+        alt="Modal to add a new identifier system"
+      />
+    </a>
+  </div>
+  <figcaption className="dark:text-slate-400 pt-2">
+    Modal to add a new pre-configured identifier system
+  </figcaption>
+</figure>
+
+## Assign identifier to the patient
+
+Identifiers can be added to patients via our apps (Awell Care) or via our API.
