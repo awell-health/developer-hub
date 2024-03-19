@@ -83,8 +83,8 @@ When using the default [shareable Hosted Pages Link](#hosted-pages-link), a care
 If the link is clicked within a context where the patient's identity is already established (e.g. patient is logged into your app), the identity of the patient is known. **In such cases, we enable you to append an identifier to the link, indicating which specific patient the care flow should be started for.**
 
 ```URL
-Example URL     https://goto.awell.health/c/86eay?identifier=<identifier_system>|<identifier_value>
-Query string    ?identifier=<identifier_system>|<identifier_value>
+Example URL     https://goto.awell.health/c/86eay?patient_identifier=<identifier_system>|<identifier_value>
+Query string    ?patient_identifier=<identifier_system>|<identifier_value>
 ```
 
 **The query string is part of the URL, and its components need to be url-safe.** Characters list spaces, ampersands, and others cannot appear in URLs, and so need to be escaped. If you're generating the URL to redirect to in javascript, make sure to use the
