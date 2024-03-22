@@ -177,6 +177,18 @@ export type ActivityTrack = {
   title: Scalars['String']['output'];
 };
 
+export type AddIdentifierToPatientInput = {
+  identifier: IdentifierInput;
+  patient_id: Scalars['String']['input'];
+};
+
+export type AddIdentifierToPatientPayload = Payload & {
+  __typename?: 'AddIdentifierToPatientPayload';
+  code: Scalars['String']['output'];
+  patient?: Maybe<User>;
+  success: Scalars['Boolean']['output'];
+};
+
 export type AddTrackInput = {
   pathway_id: Scalars['String']['input'];
   track_id: Scalars['String']['input'];
@@ -324,6 +336,7 @@ export enum BooleanOperator {
 export type BrandingSettings = {
   __typename?: 'BrandingSettings';
   accent_color?: Maybe<Scalars['String']['output']>;
+  custom_theme?: Maybe<Scalars['String']['output']>;
   /** Auto progress to the next question when using the conversational display mode in Hosted Pages. */
   hosted_page_auto_progress?: Maybe<Scalars['Boolean']['output']>;
   /** Automatically save question answers locally in Hosted Pages */
@@ -938,6 +951,7 @@ export type MultipleSelectConfig = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addIdentifierToPatient: AddIdentifierToPatientPayload;
   addTrack: AddTrackPayload;
   completeExtensionActivity: CompleteExtensionActivityPayload;
   createPatient: CreatePatientPayload;
@@ -976,6 +990,11 @@ export type Mutation = {
   /** Update which patient was created after import request for logging purposes */
   updatePatientDemographicsQuery: UpdatePatientDemographicsQueryPayload;
   updatePatientLanguage: UpdatePatientLanguagePayload;
+};
+
+
+export type MutationAddIdentifierToPatientArgs = {
+  input: AddIdentifierToPatientInput;
 };
 
 

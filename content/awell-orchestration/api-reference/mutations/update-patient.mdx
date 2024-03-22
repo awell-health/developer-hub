@@ -29,6 +29,36 @@ Have a look at the validation section of the [createPatient mutation](/awell-orc
   }
 }
 ```
+### Updating patient identifiers
+
+Providing patient identifier object in UpdatePatient mutation will **replace** any existing identifiers. If you wish to add a new identifier you can use the AddIdentifierToPatient mutation instead. Learn more about [identifiers](https://developers.awellhealth.com/awell-orchestration/docs/misc/patient-identifiers).
+
+### Mutation
+
+```graphql
+mutation AddIdentifierToPatient(input: AddIdentifierToPatientInput!) {
+  addIdentifierToPatient(input: $input) {
+    patient {
+      id
+    }
+  }
+}
+```
+
+### Variables
+
+
+```json
+{
+  "input": {
+    "patient_id": "{{PATIENT_ID}}",
+    "identifier": {
+      "system": "{{IDENTIFIER_SYSTEM_DEFINED_IN_YOUR_TENANT}}",
+      "value": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}"
+    }
+  }
+}
+```
 
 ## How to use
 
