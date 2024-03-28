@@ -9,8 +9,7 @@ export const awellScoreEndpoints: Endpoint[] = [
       {
         version: 'v1',
         endpoint: 'https://score-api.staging.awellhealth.com/v1/calculations',
-        endpointLabel:
-          'https://score-api.staging.awellhealth.com/v1/calculations',
+        endpointLabel: '/v1/calculations',
         options: {
           headerParameters: [],
           pathParameters: [],
@@ -28,8 +27,7 @@ export const awellScoreEndpoints: Endpoint[] = [
       {
         version: 'v1',
         endpoint: 'https://score-api.staging.awellhealth.com/v1/calculations/',
-        endpointLabel:
-          'https://score-api.staging.awellhealth.com/v1/calculations/{calculationId}',
+        endpointLabel: '/v1/calculations/{calculationId}',
         options: {
           headerParameters: [],
           pathParameters: [
@@ -55,7 +53,7 @@ export const awellScoreEndpoints: Endpoint[] = [
         endpoint:
           'https://score-api.staging.awellhealth.com/v1/calculations/search',
         endpointLabel:
-          'https://score-api.staging.awellhealth.com/v1/calculations/search?calculation_name={searchString}',
+          '/v1/calculations/search?calculation_name={searchString}',
         options: {
           headerParameters: [],
           pathParameters: [],
@@ -76,8 +74,7 @@ export const awellScoreEndpoints: Endpoint[] = [
         version: 'v1',
         endpoint:
           'https://score-api.staging.awellhealth.com/v1/calculations/simulate/',
-        endpointLabel:
-          'https://score-api.staging.awellhealth.com/v1/calculations/simulate/{calculationId}',
+        endpointLabel: '/v1/calculations/simulate/{calculationId}',
         options: {
           headerParameters: [],
           pathParameters: [
@@ -101,8 +98,7 @@ export const awellScoreEndpoints: Endpoint[] = [
       {
         version: 'v1',
         endpoint: 'https://score-api.staging.awellhealth.com/v1/calculations',
-        endpointLabel:
-          'https://score-api.staging.awellhealth.com/v1/calculations',
+        endpointLabel: '/v1/calculations',
         options: {
           headerParameters: [],
           pathParameters: [],
@@ -120,8 +116,7 @@ export const awellScoreEndpoints: Endpoint[] = [
       {
         version: 'v2',
         endpoint: 'https://score-api.staging.awellhealth.com/v2/calculations',
-        endpointLabel:
-          'https://score-api.staging.awellhealth.com/v2/calculations',
+        endpointLabel: '/v2/calculations',
         options: {
           headerParameters: [],
           pathParameters: [],
@@ -147,8 +142,7 @@ export const awellScoreEndpoints: Endpoint[] = [
         version: 'v2',
         endpoint:
           'https://score-api.staging.awellhealth.com/v2/calculations/result/',
-        endpointLabel:
-          'https://score-api.staging.awellhealth.com/v2/calculations/result/{id}',
+        endpointLabel: '/v2/calculations/result/{id}',
         options: {
           headerParameters: [],
           pathParameters: [

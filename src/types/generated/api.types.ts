@@ -2049,6 +2049,8 @@ export type StartHostedPathwaySessionInput = {
   /** If no patient_id is provided this field will be used to uniquely identify the patient. */
   patient_identifier?: InputMaybe<IdentifierInput>;
   success_url?: InputMaybe<Scalars['String']['input']>;
+  /** Time-to-live of the session in seconds. This defaults to the maximal value of 3600 seconds (one hour). */
+  ttl?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type StartHostedPathwaySessionPayload = Payload & {

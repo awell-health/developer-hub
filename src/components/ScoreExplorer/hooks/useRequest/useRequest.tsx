@@ -77,6 +77,7 @@ export const useRequest = ({
 
   const request = {
     endpoint: endpointVersion?.endpoint,
+    endpointLabel: endpointVersion?.endpointLabel,
     method: endpoint?.method,
     headers,
     query,

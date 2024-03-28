@@ -51,6 +51,7 @@ export type Endpoint = {
 
 export type RequestType = {
   endpoint?: string
+  endpointLabel?: string
   method?: MethodEnum
   headers?: {
     [key in string]: unknown
