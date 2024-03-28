@@ -130,6 +130,10 @@ There are 2 possible scenarios when requesting promotion of a care flow:
   </p>
 </Alert>
 
+## Identifier systems
+
+Identifier systems are a tenant setting and are `not` promoted, therefore you must set the systems in all of your environments - make sure name and system are the same. Learn more about identifiers [here](/awell-orchestration/docs/misc/patient-identifiers).
+
 ## Identifiers
 
 You might have some integrations running on Sandbox that depend on identifiers, eg: pathway definition ids or data point ids. When care flows are promoted to production, these identifiers will remain the same so it doesn't impact any integrations you've already set up.
