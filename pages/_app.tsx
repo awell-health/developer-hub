@@ -46,7 +46,11 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
-
+      <Script
+        src="https://tag.clearbitscripts.com/v1/pk_0750bfd7c0a4df7b139a397e81a963db/tags.js"
+        strategy="beforeInteractive"
+        referrerPolicy="strict-origin-when-cross-origin"
+      />
       <Script id="google-analytics" strategy="lazyOnload">
         {`
             window.dataLayer = window.dataLayer || [];
