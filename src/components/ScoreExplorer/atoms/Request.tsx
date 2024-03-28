@@ -1,6 +1,8 @@
 import { omit } from 'lodash'
-import { Code } from '../../Docs/atoms/Code'
+
 import { RequestType } from '@/types/restExplorer.types'
+
+import { Code } from '../../Docs/atoms/Code'
 
 interface RequestProps {
   request: RequestType
