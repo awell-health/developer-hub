@@ -13,7 +13,7 @@ export const AlgoliaAutocomplete = (props: any) => {
 
     // Initialize autocomplete on the newly created container
     const search = autocomplete({
-      debug: true,
+      debug: false,
       autoFocus: true,
       container: buttonRef.current,
       renderer: { createElement, Fragment },
