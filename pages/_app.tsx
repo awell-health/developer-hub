@@ -38,17 +38,23 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
           href="/awell-webclip.png"
         />
       </Head>
-      <Script
-        strategy="beforeInteractive"
-        src="https://cdn-cookieyes.com/client_data/5f6661d434c5243eba8423d0/script.js"
-      />
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-      />
-
-      <Script id="google-analytics" strategy="lazyOnload">
-        {`
+      {process.env.NODE_ENV === 'production' && (
+        <>
+          <Script
+            strategy="beforeInteractive"
+            src="https://cdn-cookieyes.com/client_data/5f6661d434c5243eba8423d0/script.js"
+          />
+          <Script
+            strategy="lazyOnload"
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          />
+          <Script
+            src="https://tag.clearbitscripts.com/v1/pk_0750bfd7c0a4df7b139a397e81a963db/tags.js"
+            strategy="beforeInteractive"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+          <Script id="google-analytics" strategy="lazyOnload">
+            {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -56,7 +62,34 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
               page_path: window.location.pathname,
             });
                 `}
-      </Script>
+          </Script>
+          <Script
+            id="intercom_1"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.intercomSettings = {
+              api_base: "https://api-iam.intercom.io",
+              app_id: "${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}",
+              source: 'awell_developers',
+              alignment: 'left',
+              horizontal_padding: 66,
+              vertical_padding: 1
+            }
+            `,
+            }}
+          />
+          <Script
+            id="intercom_2"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+            (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/yfwvlb21';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+            `,
+            }}
+          />
+        </>
+      )}
 
       <ApolloProvider client={client}>
         <ThemeProvider>
@@ -70,32 +103,6 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       </ApolloProvider>
 
       <AvaGPT />
-
-      <Script
-        id="intercom_1"
-        strategy="lazyOnload"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.intercomSettings = {
-              api_base: "https://api-iam.intercom.io",
-              app_id: "${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}",
-              source: 'awell_developers',
-              alignment: 'left',
-              horizontal_padding: 66,
-              vertical_padding: 1
-            }
-            `,
-        }}
-      />
-      <Script
-        id="intercom_2"
-        strategy="lazyOnload"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/yfwvlb21';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
-            `,
-        }}
-      />
     </>
   )
 }
