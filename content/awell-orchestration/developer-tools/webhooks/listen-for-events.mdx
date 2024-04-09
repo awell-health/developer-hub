@@ -13,7 +13,11 @@ Based on the type of integration you want to set up, you will have to decide to 
 
 Set up an endpoint on your server that can accept webhook requests with a POST method. Below you can find an example how this could be done in Node (with Express).
 
-<code className="language-javascript" fileName='server.js' numberOfLinesPreview={999}>
+<CodeBlock
+  className="language-javascript"
+  fileName="server.js"
+  numberOfLinesPreview={999}
+>
   {`
 const express = require('express');
 const app = express();
@@ -39,8 +43,7 @@ app.post('/awell-webhooks', express.json({type: 'application/json'}), (request, 
 ${''}
 app.listen(8000, () => console.log('Running on port 8000'));
 `}
-
-</code>
+</CodeBlock>
 
 In this example, the `/awell-webhooks` route is configured to accept only POST requests and expects data to be delivered in a JSON payload.
 

@@ -1,3 +1,4 @@
+import { isNil } from 'lodash'
 import { Highlight } from 'prism-react-renderer'
 import { useEffect, useState } from 'react'
 import { arrayOfNumbersBasedOnRanges } from 'src/utils/array/arrayOfNumbersBasedOnRanges'
@@ -8,15 +9,16 @@ import { CodeTab } from '../../../CodeTabs/atoms/CodeTab'
 import { ExpandCollapseButton } from './atoms/ExandCollapseButton'
 
 interface CodeProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children: any
+  children: string
+  className?: string
   fileName?: string
   numberOfLinesPreview?: number
   highlightedRows?: Array<number[]>
 }
 
-export const Code = ({
+export const AdvancedCodeBlock = ({
   children,
+  className,
   fileName,
   numberOfLinesPreview = 15,
   highlightedRows = [],
@@ -25,28 +27,21 @@ export const Code = ({
     useState<boolean>(false)
   const [showAll, setIsShowAll] = useState<boolean>(true)
 
-  useEffect(() => {
-    if (children && children.type === 'code') {
-      const numberOfLines = children.props.children.split(/\r\n|\r|\n/).length
-      if (numberOfLines > numberOfLinesPreview) {
-        setShowExpandeCollapseButton(true)
-        setIsShowAll(false)
-      }
-    }
-  }, [children, numberOfLinesPreview])
-
-  // Early return moved after hooks
-  if (!children || children.type !== 'code') return null
-
-  const {
-    props: { className, children: code = '' },
-  } = children
-
-  const language = className ? className.replace(/language-/, '') : ''
+  const language = !isNil(className) ? className.replace(/language-/, '') : ''
+  const code = children
 
   const allHighlightedRows = arrayOfNumbersBasedOnRanges(highlightedRows)
 
   const toggleShowAll = () => setIsShowAll(!showAll)
+
+  useEffect(() => {
+    const numberOfLines = code.split(/\r\n|\r|\n/).length
+
+    if (numberOfLines > numberOfLinesPreview) {
+      setShowExpandeCollapseButton(true)
+      setIsShowAll(false)
+    }
+  }, [code])
 
   return (
     <div

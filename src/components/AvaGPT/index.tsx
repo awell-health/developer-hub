@@ -1,1 +1,0 @@
-export { AvaGPT } from './AvaGPT'

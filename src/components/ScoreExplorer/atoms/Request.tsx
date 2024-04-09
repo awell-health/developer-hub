@@ -2,7 +2,7 @@ import { omit } from 'lodash'
 
 import { RequestType } from '@/types/restExplorer.types'
 
-import { Code } from '../../Docs/atoms/Code'
+import { AdvancedCodeBlock } from '../../Docs/atoms/Code'
 
 interface RequestProps {
   request: RequestType
@@ -16,7 +16,9 @@ export const Request = ({ request }: RequestProps) => {
     <div>
       <div className="pb-2 text-md font-medium tracking-wide">Request</div>
       <div className="text-xs">
-        <Code className="language-json">{JSON.stringify(req, null, 2)}</Code>
+        <AdvancedCodeBlock className="language-json">
+          {JSON.stringify(req, null, 2)}
+        </AdvancedCodeBlock>
       </div>
     </div>
   )

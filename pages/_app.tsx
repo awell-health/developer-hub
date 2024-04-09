@@ -7,7 +7,6 @@ import Script from 'next/script'
 import type { NextPage } from 'next/types'
 import type { ReactElement, ReactNode } from 'react'
 
-import { AvaGPT } from '@/components/AvaGPT'
 import { MobileNav } from '@/components/Header/MobileNav'
 import { MobileMenu } from '@/components/Sidebar/Menu/'
 import { AppProvider } from '@/contexts/app/AppContext'
@@ -101,8 +100,6 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
           </AppProvider>
         </ThemeProvider>
       </ApolloProvider>
-
-      <AvaGPT />
     </>
   )
 }

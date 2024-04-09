@@ -48,6 +48,7 @@ export default function SystemStatusPage({
         githubUrl={`/content${slug}.mdx`}
       />
       <div id="content-wrapper">
+        {/* @ts-expect-error type later */}
         <MDXRemote {...mdxSource} components={mdxComponents} />
       </div>
     </div>

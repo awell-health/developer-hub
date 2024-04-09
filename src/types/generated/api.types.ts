@@ -35,7 +35,7 @@ export enum ActionType {
   PushToEmr = 'PUSH_TO_EMR'
 }
 
-export type ActivitiesPayload = Payload & {
+export type ActivitiesPayload = PaginationAndSortingPayload & {
   __typename?: 'ActivitiesPayload';
   activities: Array<Activity>;
   code: Scalars['String']['output'];
@@ -1203,7 +1203,7 @@ export type OrchestrationFact = {
   pathway_id: Scalars['String']['output'];
 };
 
-export type OrchestrationFactsPayload = Payload & {
+export type OrchestrationFactsPayload = PaginationAndSortingPayload & {
   __typename?: 'OrchestrationFactsPayload';
   code: Scalars['String']['output'];
   facts: Array<OrchestrationFact>;
@@ -1219,24 +1219,37 @@ export type OrchestrationFactsPromptPayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type PaginationAndSortingPayload = {
+  code: Scalars['String']['output'];
+  pagination?: Maybe<PaginationOutput>;
+  sorting?: Maybe<SortingOutput>;
+  success: Scalars['Boolean']['output'];
+};
+
 export type PaginationOutput = {
   __typename?: 'PaginationOutput';
-  count?: Maybe<Scalars['Float']['output']>;
-  offset?: Maybe<Scalars['Float']['output']>;
-  total_count?: Maybe<Scalars['Float']['output']>;
+  count?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  total_count?: Maybe<Scalars['Int']['output']>;
 };
 
 export type PaginationParams = {
-  count: Scalars['Float']['input'];
-  offset: Scalars['Float']['input'];
+  count: Scalars['Int']['input'];
+  offset: Scalars['Int']['input'];
 };
 
 export type Pathway = {
   __typename?: 'Pathway';
-  activities: Array<Activity>;
+  /**
+   * Deprecated. Please use latestActivities.
+   * @deprecated use latestActivities instead. Limited to most recent 1000 activities
+   */
+  activities?: Maybe<Array<Activity>>;
   complete_date?: Maybe<Scalars['SafeDate']['output']>;
   dashboards?: Maybe<PathwayDashboard>;
   id: Scalars['ID']['output'];
+  /** Activities, sorted by date in descending order. For larger care flows, only the most recent 1000 activities are included. To see a complete list of activities, please use the `activity` query and appropriate filters. */
+  latestActivities: Array<Activity>;
   pathway_definition_id: Scalars['String']['output'];
   patient: User;
   patient_id: Scalars['String']['output'];
@@ -1318,7 +1331,7 @@ export type PathwaySummary = {
   version?: Maybe<Scalars['Float']['output']>;
 };
 
-export type PathwaysPayload = Payload & {
+export type PathwaysPayload = PaginationAndSortingPayload & {
   __typename?: 'PathwaysPayload';
   code: Scalars['String']['output'];
   pagination?: Maybe<PaginationOutput>;
@@ -1400,12 +1413,12 @@ export type PatientProfileInput = {
   sex?: InputMaybe<Sex>;
 };
 
-export type PatientsPayload = Payload & {
+export type PatientsPayload = PaginationAndSortingPayload & {
   __typename?: 'PatientsPayload';
   code: Scalars['String']['output'];
-  pagination: PaginationOutput;
+  pagination?: Maybe<PaginationOutput>;
   patients: Array<User>;
-  sorting: SortingOutput;
+  sorting?: Maybe<SortingOutput>;
   success: Scalars['Boolean']['output'];
 };
 
@@ -1466,7 +1479,7 @@ export type PublishedPathwayDefinition = {
   version?: Maybe<Scalars['Float']['output']>;
 };
 
-export type PublishedPathwayDefinitionsPayload = Payload & {
+export type PublishedPathwayDefinitionsPayload = PaginationAndSortingPayload & {
   __typename?: 'PublishedPathwayDefinitionsPayload';
   code: Scalars['String']['output'];
   pagination?: Maybe<PaginationOutput>;
@@ -1641,7 +1654,9 @@ export type QueryMessageArgs = {
 
 
 export type QueryMyActivitiesArgs = {
+  pagination?: InputMaybe<PaginationParams>;
   pathway_id: Scalars['String']['input'];
+  sorting?: InputMaybe<SortingParams>;
 };
 
 
@@ -1651,7 +1666,9 @@ export type QueryPathwayArgs = {
 
 
 export type QueryPathwayActivitiesArgs = {
+  pagination?: InputMaybe<PaginationParams>;
   pathway_id: Scalars['String']['input'];
+  sorting?: InputMaybe<SortingParams>;
 };
 
 

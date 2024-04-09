@@ -12,9 +12,10 @@ import {
   PathwayIndexSpecs,
   PatientProfileTableSpecs,
   PatientTableSpecs,
-  StepIndexSpecs
+  StepIndexSpecs,
 } from '@/components/DataRepository'
 import { Code, CustomH2, CustomH3 } from '@/components/Docs/atoms'
+import { AdvancedCodeBlock } from '@/components/Docs/atoms/Code'
 import { EmailTemplate } from '@/components/EmailTemplate'
 import { FAQ } from '@/components/FAQ'
 import { HowToUse } from '@/components/HowToUse'
@@ -35,14 +36,11 @@ export const mdxOptions = {
   },
 }
 
-export const AvaGPTComponents = {
-  code: Code,
-}
-
 export const mdxComponents = {
   h2: CustomH2,
   h3: CustomH3,
-  code: Code,
+  pre: Code,
+  CodeBlock: AdvancedCodeBlock,
   UseCasesComparisonTable,
   SessionsAndLinksComparisonTable,
   TriggerCareFlowsComparison,
