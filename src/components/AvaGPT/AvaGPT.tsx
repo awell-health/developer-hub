@@ -11,7 +11,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import { usePrompt } from '@/hooks/avaGPT'
-import { getHref } from '@/hooks/avaGPT/utils'
+import { getHref, stripMarkdownFences } from '@/hooks/avaGPT/utils'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 import { Button } from '../Button'
@@ -169,7 +169,7 @@ export const AvaGPT = () => {
                     }}
                     remarkPlugins={[remarkGfm]}
                   >
-                    {answer}
+                    {stripMarkdownFences(answer)}
                   </ReactMarkdown>
                 </div>
               </Transition>
