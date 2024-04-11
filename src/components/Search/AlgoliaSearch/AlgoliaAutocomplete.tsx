@@ -1,5 +1,6 @@
 import { autocomplete } from '@algolia/autocomplete-js'
 import React, { createElement, Fragment, useEffect, useRef } from 'react'
+// eslint-disable-next-line
 import { render } from 'react-dom'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

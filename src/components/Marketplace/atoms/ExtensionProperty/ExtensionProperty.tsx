@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
 interface ExtensionPropertyProps {
   label: string
+  children: ReactNode
 }
 
 export const ExtensionProperty: FC<ExtensionPropertyProps> = ({

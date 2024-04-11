@@ -42,7 +42,9 @@ export const ScoreExplorer = () => {
     pathParameters,
     requestBodyParameters,
   })
-  const [response, setResponse] = useState<unknown>(null)
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [response, setResponse] = useState<any>(null)
 
   const resetEndPointParameters = () => {
     setPathParameters([])
