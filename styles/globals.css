@@ -4,13 +4,10 @@
 @import './components/layout.css';
 @import './components/typography.css';
 @import './components/code.css';
-/* @import './components/prism.css'; */
 @import './components/button.css';
 @import './components/docStyles.css';
 @import './components/avaGPT.css';
 @import './components/table.css';
-@import './components/graphQLExplorer.css';
 @import './components/docSearch.css';
 
 @import 'tailwindcss/utilities';
-/** Import custom css utilities here **/

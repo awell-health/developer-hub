@@ -3,7 +3,7 @@ import { buildClientSchema, GraphQLSchema } from 'graphql'
 import { useIntrospection } from './awell-orchestration/useIntrospection'
 
 export const useGraphQLSchema = (): {
-  schema: GraphQLSchema | null
+  schema: GraphQLSchema | undefined
 } => {
   const { introspection } = useIntrospection()
 
@@ -13,5 +13,5 @@ export const useGraphQLSchema = (): {
     }
   }
 
-  return { schema: null }
+  return { schema: undefined }
 }

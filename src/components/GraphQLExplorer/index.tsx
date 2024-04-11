@@ -1,1 +1,0 @@
-export { GraphQLExplorer } from './GraphQLExplorer'
