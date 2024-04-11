@@ -27,25 +27,23 @@ export const Node = () => {
               </p>
               <ul className="list-disc ml-4">
                 <li>
-                  <Link href="/awell-orchestration/api-reference/overview/endpoints">
-                    <a
-                      title="Endpoints"
-                      target="_blank"
-                      className="text-sky-500 underline"
-                    >
-                      Endpoints
-                    </a>
+                  <Link
+                    href="/awell-orchestration/api-reference/overview/endpoints"
+                    title="Endpoints"
+                    target="_blank"
+                    className="text-sky-500 underline"
+                  >
+                    Endpoints
                   </Link>
                 </li>
                 <li>
-                  <Link href="/awell-orchestration/api-reference/overview/authorization">
-                    <a
-                      title="Get your API keys"
-                      target="_blank"
-                      className="text-sky-500 underline"
-                    >
-                      Get your API keys
-                    </a>
+                  <Link
+                    href="/awell-orchestration/api-reference/overview/authorization"
+                    title="Get your API keys"
+                    target="_blank"
+                    className="text-sky-500 underline"
+                  >
+                    Get your API keys
                   </Link>
                 </li>
               </ul>
@@ -106,14 +104,13 @@ export const Node = () => {
               </p>
               <ul className="list-disc ml-4">
                 <li>
-                  <Link href="/awell-orchestration/api-reference/mutations/start-hosted-activity-session">
-                    <a
-                      title="Get your API key"
-                      target="_blank"
-                      className="text-sky-500 underline"
-                    >
-                      startedHostedActivitySession mutation
-                    </a>
+                  <Link
+                    href="/awell-orchestration/api-reference/mutations/start-hosted-activity-session"
+                    title="Get your API key"
+                    target="_blank"
+                    className="text-sky-500 underline"
+                  >
+                    startedHostedActivitySession mutation
                   </Link>
                 </li>
               </ul>

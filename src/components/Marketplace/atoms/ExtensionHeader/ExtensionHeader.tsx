@@ -13,13 +13,12 @@ export const ExtensionHeader: FC<ExtensionHeaderProps> = ({ extension }) => {
   return (
     <div className="bg-slate-50 border-b border-slate-100 dark:bg-slate-800 dark:border-slate-700">
       <div className="max-w-6xl py-12 mx-auto px-4 sm:px-6 md:px-8">
-        <Link href={`/${Space.AWELL_EXTENSIONS}/marketplace`}>
-          <a
-            title="Back to the Marketplace"
-            className="inline-block text-blue-600 text-base pb-4 dark:text-sky-400"
-          >
-            &#8592; Back to the Marketplace
-          </a>
+        <Link
+          href={`/${Space.AWELL_EXTENSIONS}/marketplace`}
+          title="Back to the Marketplace"
+          className="inline-block text-blue-600 text-base pb-4 dark:text-sky-400"
+        >
+          &#8592; Back to the Marketplace
         </Link>
         <div className="flex justify-between items-center">
           <div className="flex items-start gap-4">

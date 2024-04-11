@@ -58,31 +58,29 @@ export default function Marketplace({ extensions }: PageProps) {
               <ul className="space-y-4 pb-6 text-base font-medium text-slate-800 dark:text-slate-400">
                 {categories.map((category) => (
                   <li key={category}>
-                    <Link href={{ query: { category } }}>
-                      <a
-                        className={
-                          router.query?.category === category
-                            ? 'font-semibold text-blue-600 dark:text-sky-400'
-                            : ''
-                        }
-                      >
-                        {category}
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <Link href={{ query: {} }}>
-                    <a
+                    <Link
+                      href={{ query: { category } }}
                       className={
-                        isNil(router.query?.category) ||
-                        isEmpty(router.query?.category)
+                        router.query?.category === category
                           ? 'font-semibold text-blue-600 dark:text-sky-400'
                           : ''
                       }
                     >
-                      All categories
-                    </a>
+                      {category}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    href={{ query: {} }}
+                    className={
+                      isNil(router.query?.category) ||
+                      isEmpty(router.query?.category)
+                        ? 'font-semibold text-blue-600 dark:text-sky-400'
+                        : ''
+                    }
+                  >
+                    All categories
                   </Link>
                 </li>
               </ul>

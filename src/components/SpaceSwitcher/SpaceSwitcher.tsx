@@ -38,32 +38,26 @@ export const SpaceSwitcher = () => {
           .map((s) => (
             <Menu.Item key={s.path} disabled={s.path.includes(space ?? '')}>
               {() => (
-                <Link href={s.path}>
-                  <a
-                    className={clsx(
-                      'w-full flex items-center justify-between px-3 py-1',
-                      s.path.includes(space ?? 'no-check') &&
-                        'text-blue-600 dark:text-sky-400'
-                    )}
-                  >
-                    {s.label}
-                    {s.path.includes(space ?? 'no-check') && (
-                      <svg
-                        width="24"
-                        height="24"
-                        fill="none"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="m7.75 12.75 2.25 2.5 6.25-6.5"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    )}
-                  </a>
+                <Link
+                  href={s.path}
+                  className={clsx(
+                    'w-full flex items-center justify-between px-3 py-1',
+                    s.path.includes(space ?? 'no-check') &&
+                      'text-blue-600 dark:text-sky-400'
+                  )}
+                >
+                  {s.label}
+                  {s.path.includes(space ?? 'no-check') && (
+                    <svg width="24" height="24" fill="none" aria-hidden="true">
+                      <path
+                        d="m7.75 12.75 2.25 2.5 6.25-6.5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
                 </Link>
               )}
             </Menu.Item>

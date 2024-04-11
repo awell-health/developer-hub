@@ -24,14 +24,13 @@ export const LinkButton = ({
   size = DEFAULT_BUTTON_SIZE,
 }: ButtonProps) => {
   return (
-    <Link href={href}>
-      <a
-        title={label}
-        target={newTab ? '_blank' : ''}
-        className={`btn-base ${buttonSizes[size]} ${buttonColors[color]}`}
-      >
-        <span>{label}</span>
-      </a>
+    <Link
+      href={href}
+      title={label}
+      target={newTab ? '_blank' : ''}
+      className={`btn-base ${buttonSizes[size]} ${buttonColors[color]}`}
+    >
+      <span>{label}</span>
     </Link>
   )
 }

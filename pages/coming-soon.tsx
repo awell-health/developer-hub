@@ -28,10 +28,11 @@ export default function ComingSoon() {
               </div>
             </div>
             <div className="mt-6">
-              <Link href="/">
-                <a className="text-base font-medium text-blue-600 dark:text-sky-400 hover:text-blue-500 dark:hover:text-sky-500">
-                  Go back home<span aria-hidden="true"> &rarr;</span>
-                </a>
+              <Link
+                href="/"
+                className="text-base font-medium text-blue-600 dark:text-sky-400 hover:text-blue-500 dark:hover:text-sky-500"
+              >
+                Go back home<span aria-hidden="true"> &rarr;</span>
               </Link>
             </div>
           </div>

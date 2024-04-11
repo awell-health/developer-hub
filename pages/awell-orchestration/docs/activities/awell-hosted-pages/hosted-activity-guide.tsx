@@ -148,18 +148,27 @@ export default function HostedActivityPage() {
             <li>
               An <strong>API key</strong> to authorize requests to the Awell
               API. Click{' '}
-              <Link href="/awell-orchestration/api-reference/overview/authorization">
-                <a title="Get API key">here</a>
+              <Link
+                href="/awell-orchestration/api-reference/overview/authorization"
+                title="Get API key"
+              >
+                here
               </Link>{' '}
               to get your API key.
             </li>
             <li>
-              <Link href="/awell-orchestration/api-reference/mutations/create-patient">
-                <a title="Create a patient">A patient resource created</a>
+              <Link
+                href="/awell-orchestration/api-reference/mutations/create-patient"
+                title="Create a patient"
+              >
+                A patient resource created
               </Link>{' '}
               and{' '}
-              <Link href="/awell-orchestration/api-reference/mutations/start-pathway">
-                <a title="Start a pathway">included in a care pathway</a>
+              <Link
+                href="/awell-orchestration/api-reference/mutations/start-pathway"
+                title="Start a pathway"
+              >
+                included in a care pathway
               </Link>
               . It is not explicitly part of this guide but you can find
               documentation on creating a patient and starting a pathway on the
@@ -180,8 +189,11 @@ export default function HostedActivityPage() {
             </strong>{' '}
             Depending on the type of integration and events you want to receive,
             you can configure other wehooks as well ({' '}
-            <Link href="/awell-orchestration/developer-tools/webhooks/introduction">
-              <a title="See list of all webhooks">see list of all webhooks</a>
+            <Link
+              href="/awell-orchestration/developer-tools/webhooks/introduction"
+              title="See list of all webhooks"
+            >
+              see list of all webhooks
             </Link>
             ).
           </p>
@@ -193,17 +205,21 @@ export default function HostedActivityPage() {
           <div className="mb-12">
             <Alert title="Configure webhooks" type="info">
               Click{' '}
-              <Link href="https://help.awellhealth.com/en/articles/6103339-configure-a-webhook">
-                <a title="Configure webhooks" target="_blank">
-                  here
-                </a>
+              <Link
+                href="https://help.awellhealth.com/en/articles/6103339-configure-a-webhook"
+                title="Configure webhooks"
+                target="_blank"
+              >
+                here
               </Link>{' '}
               for more information on how to configure Webhooks on pathways. The
               payload of the{' '}
-              <Link href="/awell-orchestration/api-reference/webhooks/activity-created">
-                <a title="pathway.started webhook" target="_blank">
-                  activity.created
-                </a>
+              <Link
+                href="/awell-orchestration/api-reference/webhooks/activity-created"
+                title="pathway.started webhook"
+                target="_blank"
+              >
+                activity.created
               </Link>{' '}
               webhook can be found on the respective link.
             </Alert>

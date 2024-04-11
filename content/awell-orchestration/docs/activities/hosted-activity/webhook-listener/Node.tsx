@@ -13,14 +13,13 @@ export const Node = () => {
       <div className="mb-8">
         <Alert title="Interactive webhook builder" type="info">
           Use our{' '}
-          <Link href="/awell-orchestration/developer-tools/webhooks/webhook-builder">
-            <a
-              title="interactive webhook builder"
-              target="_blank"
-              className="underline"
-            >
-              interactive webhook builder
-            </a>
+          <Link
+            href="/awell-orchestration/developer-tools/webhooks/webhook-builder"
+            title="interactive webhook builder"
+            target="_blank"
+            className="underline"
+          >
+            interactive webhook builder
           </Link>{' '}
           to quickly generate code to process & handle webhooks coming from
           Awell
@@ -84,14 +83,13 @@ export const Node = () => {
               </p>
               <ul className="list-disc ml-4">
                 <li>
-                  <Link href="/awell-orchestration/api-reference/mutations/start-hosted-activity-session">
-                    <a
-                      title="Get your API key"
-                      target="_blank"
-                      className="text-sky-500 underline"
-                    >
-                      startedHostedActivitySession mutation
-                    </a>
+                  <Link
+                    href="/awell-orchestration/api-reference/mutations/start-hosted-activity-session"
+                    title="Get your API key"
+                    target="_blank"
+                    className="text-sky-500 underline"
+                  >
+                    startedHostedActivitySession mutation
                   </Link>
                 </li>
               </ul>

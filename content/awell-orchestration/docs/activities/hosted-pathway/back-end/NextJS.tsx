@@ -41,30 +41,30 @@ export const NextJS = () => {
               </p>
               <ul className="list-disc ml-4">
                 <li>
-                  <Link href="/awell-orchestration/api-reference/overview/endpoints">
-                    <a title="API endpoints" className="text-sky-500 underline">
-                      API endpoints
-                    </a>
+                  <Link
+                    href="/awell-orchestration/api-reference/overview/endpoints"
+                    title="API endpoints"
+                    className="text-sky-500 underline"
+                  >
+                    API endpoints
                   </Link>
                 </li>
                 <li>
-                  <Link href="/awell-orchestration/api-reference/overview/authorization">
-                    <a
-                      title="Get your API key"
-                      className="text-sky-500 underline"
-                    >
-                      Get your API key
-                    </a>
+                  <Link
+                    href="/awell-orchestration/api-reference/overview/authorization"
+                    title="Get your API key"
+                    className="text-sky-500 underline"
+                  >
+                    Get your API key
                   </Link>
                 </li>
                 <li>
-                  <Link href="https://developers.awellhealth.com/awell-orchestration/api-reference/queries/get-published-pathways">
-                    <a
-                      title="Get pathway definition ids"
-                      className="text-sky-500 underline"
-                    >
-                      Get pathway definition ids
-                    </a>
+                  <Link
+                    href="https://developers.awellhealth.com/awell-orchestration/api-reference/queries/get-published-pathways"
+                    title="Get pathway definition ids"
+                    className="text-sky-500 underline"
+                  >
+                    Get pathway definition ids
                   </Link>{' '}
                   (if not using the template pathway)
                 </li>
@@ -90,14 +90,13 @@ export const NextJS = () => {
               </p>
               <ul className="list-disc ml-4">
                 <li>
-                  <Link href="/awell-orchestration/api-reference/mutations/start-hosted-pathway-session">
-                    <a
-                      title="API reference for startHostedPathwaySession mutation"
-                      target="_blank"
-                      className="text-sky-500 underline"
-                    >
-                      API reference for startHostedPathwaySession mutation
-                    </a>
+                  <Link
+                    href="/awell-orchestration/api-reference/mutations/start-hosted-pathway-session"
+                    title="API reference for startHostedPathwaySession mutation"
+                    target="_blank"
+                    className="text-sky-500 underline"
+                  >
+                    API reference for startHostedPathwaySession mutation
                   </Link>
                 </li>
               </ul>
@@ -136,14 +135,13 @@ export const NextJS = () => {
               </p>
               <ul className="list-disc ml-4">
                 <li>
-                  <Link href="/awell-orchestration/api-reference/mutations/create-patient">
-                    <a
-                      title="createPatient mutation documentation"
-                      target="_blank"
-                      className="text-sky-500 underline"
-                    >
-                      createPatient mutation documentation
-                    </a>
+                  <Link
+                    href="/awell-orchestration/api-reference/mutations/create-patient"
+                    title="createPatient mutation documentation"
+                    target="_blank"
+                    className="text-sky-500 underline"
+                  >
+                    createPatient mutation documentation
                   </Link>
                 </li>
               </ul>
@@ -182,25 +180,23 @@ export const NextJS = () => {
               </p>
               <ul className="list-disc ml-4">
                 <li>
-                  <Link href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points">
-                    <a
-                      title="Configure baseline data points in your pathway"
-                      target="_blank"
-                      className="text-sky-500 underline"
-                    >
-                      Configure baseline data points in your pathway
-                    </a>
+                  <Link
+                    href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points"
+                    title="Configure baseline data points in your pathway"
+                    target="_blank"
+                    className="text-sky-500 underline"
+                  >
+                    Configure baseline data points in your pathway
                   </Link>
                 </li>
                 <li>
-                  <Link href="/awell-orchestration/api-reference/mutations/start-hosted-pathway-session#optional-variables">
-                    <a
-                      title="How to pass baseline information"
-                      target="_blank"
-                      className="text-sky-500 underline"
-                    >
-                      How to pass baseline information
-                    </a>
+                  <Link
+                    href="/awell-orchestration/api-reference/mutations/start-hosted-pathway-session#optional-variables"
+                    title="How to pass baseline information"
+                    target="_blank"
+                    className="text-sky-500 underline"
+                  >
+                    How to pass baseline information
                   </Link>
                 </li>
               </ul>

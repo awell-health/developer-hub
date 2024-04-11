@@ -78,14 +78,13 @@ export const DocsHeader = ({
       )}
       {customLink && (
         <div className="mt-2 mr-3">
-          <Link href={customLink.url}>
-            <a
-              title={customLink.title}
-              target="_blank"
-              className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-sky-500 text-white border border-sky-500 rounded-lg focus:outline-none hover:bg-sky-400 hover:border-sky-400 focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-sky-200"
-            >
-              {customLink.title}
-            </a>
+          <Link
+            href={customLink.url}
+            title={customLink.title}
+            target="_blank"
+            className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-sky-500 text-white border border-sky-500 rounded-lg focus:outline-none hover:bg-sky-400 hover:border-sky-400 focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-sky-200"
+          >
+            {customLink.title}
           </Link>
         </div>
       )}

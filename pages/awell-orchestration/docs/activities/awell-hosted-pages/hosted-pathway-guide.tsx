@@ -121,10 +121,11 @@ export default function HostedPathwayPage() {
           <h2>Low-code integration</h2>
           <p>
             The hosted pathway integration requires minimal coding.{' '}
-            <Link href="/awell-orchestration/docs/getting-started/integrations-overview">
-              <a title="this page">
-                Compare the hosted pathway integration to other options
-              </a>
+            <Link
+              href="/awell-orchestration/docs/getting-started/integrations-overview"
+              title="this page"
+            >
+              Compare the hosted pathway integration to other options
             </Link>{' '}
             to determine which option meets your requirements .
           </p>
@@ -134,15 +135,21 @@ export default function HostedPathwayPage() {
             <li>
               An <strong>API key</strong> to authorize requests to the Awell
               API. Click{' '}
-              <Link href="/awell-orchestration/api-reference/overview/authorization">
-                <a title="Get API key">here</a>
+              <Link
+                href="/awell-orchestration/api-reference/overview/authorization"
+                title="Get API key"
+              >
+                here
               </Link>{' '}
               to get your API key.
             </li>
             <li>
               A <strong>published pathway</strong> that meets the{' '}
-              <Link href="/awell-orchestration/docs/activities/overview-activities">
-                <a title="requirements">requirements</a>
+              <Link
+                href="/awell-orchestration/docs/activities/overview-activities"
+                title="requirements"
+              >
+                requirements
               </Link>{' '}
               to be used with the Awell hosted pathway integration. To get
               started quickly, you can use a template pathway that is available
@@ -187,23 +194,29 @@ export default function HostedPathwayPage() {
           <div className="mb-12">
             <Alert title="Configure webhooks" type="info">
               Click{' '}
-              <Link href="https://help.awellhealth.com/en/articles/6103339-configure-a-webhook">
-                <a title="Configure webhooks" target="_blank">
-                  here
-                </a>
+              <Link
+                href="https://help.awellhealth.com/en/articles/6103339-configure-a-webhook"
+                title="Configure webhooks"
+                target="_blank"
+              >
+                here
               </Link>{' '}
               for more information on how to configure Webhooks on pathways. The
               payload of the{' '}
-              <Link href="/awell-orchestration/api-reference/webhooks/pathway-started">
-                <a title="pathway.started webhook" target="_blank">
-                  pathway.started
-                </a>
+              <Link
+                href="/awell-orchestration/api-reference/webhooks/pathway-started"
+                title="pathway.started webhook"
+                target="_blank"
+              >
+                pathway.started
               </Link>{' '}
               and{' '}
-              <Link href="/awell-orchestration/api-reference/webhooks/pathway-completed">
-                <a title="pathway.completed wehook" target="_blank">
-                  pathway.completed
-                </a>
+              <Link
+                href="/awell-orchestration/api-reference/webhooks/pathway-completed"
+                title="pathway.completed wehook"
+                target="_blank"
+              >
+                pathway.completed
               </Link>{' '}
               webhook can be found on the respective links.
             </Alert>
@@ -259,10 +272,11 @@ export default function HostedPathwayPage() {
                     <p>
                       Start your applications (front-end and server) and
                       navigate to{' '}
-                      <Link href="http://localhost:3000">
-                        <a className="underline text-sky-500">
-                          http://localhost:3000
-                        </a>
+                      <Link
+                        href="http://localhost:3000"
+                        className="underline text-sky-500"
+                      >
+                        http://localhost:3000
                       </Link>
                       . Press the &quot;Start pathway session&quot; button to go
                       to the Awell hosted pathway page and complete the pathway.
@@ -283,10 +297,11 @@ export default function HostedPathwayPage() {
                         <code>npm run dev</code>
                       </div>{' '}
                       and navigate to{' '}
-                      <Link href="http://localhost:3000">
-                        <a className="underline text-sky-500">
-                          http://localhost:3000
-                        </a>
+                      <Link
+                        href="http://localhost:3000"
+                        className="underline text-sky-500"
+                      >
+                        http://localhost:3000
                       </Link>
                       .
                     </p>
