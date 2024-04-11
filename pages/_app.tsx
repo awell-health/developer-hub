@@ -52,6 +52,14 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
             strategy="beforeInteractive"
             referrerPolicy="strict-origin-when-cross-origin"
           />
+          <Script
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+            strategy="lazyOnload"
+          />
+          <Script
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"
+            strategy="lazyOnload"
+          />
           <Script id="google-analytics" strategy="lazyOnload">
             {`
             window.dataLayer = window.dataLayer || [];
