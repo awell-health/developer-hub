@@ -70,26 +70,6 @@ export const docsMenu: MenuType = [
     ],
   },
   {
-    title: 'Webhooks',
-    path: `/${Space.AWELL_EXTENSIONS}/docs/webhooks`,
-    submenu: [
-      {
-        title: 'What are Webhooks?',
-        path: `/${Space.AWELL_EXTENSIONS}/docs/webhooks/what-are-webhooks`,
-      },
-      {
-        title: 'Development',
-        path: `/${Space.AWELL_EXTENSIONS}/docs/webhooks/development`,
-        submenu: [
-          {
-            title: 'Create a webhook',
-            path: `/${Space.AWELL_EXTENSIONS}/docs/webhooks/development/create-a-webhook`,
-          },
-        ],
-      },
-    ],
-  },
-  {
     title: 'Deployment & usage',
     path: `/${Space.AWELL_EXTENSIONS}/docs/deployment-and-usage`,
     submenu: [

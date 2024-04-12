@@ -1,6 +1,6 @@
 import { Listbox } from '@headlessui/react'
 import clsx from 'clsx'
-import { Fragment, ReactNode, useContext } from 'react'
+import { ElementType, Fragment, useContext } from 'react'
 
 import { ThemeContext } from '../../hooks/useTheme'
 import { MoonIcon, SunIcon } from './atoms/icons'
@@ -8,7 +8,7 @@ import { MoonIcon, SunIcon } from './atoms/icons'
 type ThemeSettingsType = {
   isDarkMode: boolean
   label: string
-  icon: ReactNode
+  icon: ElementType
 }
 
 const settings: ThemeSettingsType[] = [
@@ -59,7 +59,6 @@ export function ThemeToggle({ panelClassName = 'mt-4' }) {
                 )}
                 data-track-heap={`set-theme-${isDarkMode ? 'dark' : 'light'}`}
               >
-                {/* @ts-expect-error don't know how to fix this typing error */}
                 <Icon selected={selected} className="w-6 h-6 mr-2" />
                 {label}
               </li>

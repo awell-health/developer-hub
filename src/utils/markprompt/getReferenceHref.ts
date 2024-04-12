@@ -1,4 +1,4 @@
-export const getHref = (path: string): string => {
+export const getReferenceHref = (path: string): string => {
   const isDevHubDocumentation = path.startsWith('/content')
   const isExtensionDocumentation = path.startsWith('/extensions')
 
@@ -17,5 +17,5 @@ export const getHref = (path: string): string => {
       .replace('/extensions', '/awell-extensions/marketplace')
   }
 
-  return pathWithoutExtension
+  return 'pathWithoutExtension'
 }

@@ -7,7 +7,6 @@ import Script from 'next/script'
 import type { NextPage } from 'next/types'
 import type { ReactElement, ReactNode } from 'react'
 
-import { AvaGPT } from '@/components/AvaGPT'
 import { MobileNav } from '@/components/Header/MobileNav'
 import { MobileMenu } from '@/components/Sidebar/Menu/'
 import { AppProvider } from '@/contexts/app/AppContext'
@@ -41,17 +40,16 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       {process.env.NODE_ENV === 'production' && (
         <>
           <Script
-            strategy="beforeInteractive"
-            src="https://cdn-cookieyes.com/client_data/5f6661d434c5243eba8423d0/script.js"
-          />
-          <Script
             strategy="lazyOnload"
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
           <Script
-            src="https://tag.clearbitscripts.com/v1/pk_0750bfd7c0a4df7b139a397e81a963db/tags.js"
-            strategy="beforeInteractive"
-            referrerPolicy="strict-origin-when-cross-origin"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+            strategy="lazyOnload"
+          />
+          <Script
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"
+            strategy="lazyOnload"
           />
           <Script id="google-analytics" strategy="lazyOnload">
             {`
@@ -101,8 +99,6 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
           </AppProvider>
         </ThemeProvider>
       </ApolloProvider>
-
-      <AvaGPT />
     </>
   )
 }

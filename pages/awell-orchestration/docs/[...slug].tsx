@@ -42,7 +42,7 @@ export default function DocsPage({
 
   useEffect(() => {
     setTableOfContents(content)
-  }, [slug])
+  }, [content, setTableOfContents])
 
   return (
     <div>
@@ -65,6 +65,7 @@ export default function DocsPage({
         />
       )}
       <div id="content-wrapper">
+        {/* @ts-expect-error type later */}
         <MDXRemote {...mdxSource} components={mdxComponents} />
       </div>
       <div className="mt-12">

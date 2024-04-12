@@ -40,13 +40,12 @@ export const WebhooksTable = () => {
                     {webhook.description}
                   </td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm sm:pr-6 md:pr-0">
-                    <Link href={webhook.apiReferenceLink}>
-                      <a
-                        title={`View payload of ${webhook.event}`}
-                        className="custom-link font-semibold text-blue-600 dark:text-sky-400 hover:text-blue-900 dark:hover:text-sky-500"
-                      >
-                        View payload
-                      </a>
+                    <Link
+                      href={webhook.apiReferenceLink}
+                      title={`View payload of ${webhook.event}`}
+                      className="custom-link font-semibold text-blue-600 dark:text-sky-400 hover:text-blue-900 dark:hover:text-sky-500"
+                    >
+                      View payload
                     </Link>
                   </td>
                 </tr>

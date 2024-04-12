@@ -37,16 +37,14 @@ mutation StartPathway($input: StartPathwayInput!) {
 
 **Variables:**
 
-<code className="language-json" highlightedRows={[[3]]}>
-  {`
+```json
 {
   "input": {
     "patient_id": "{{PATIENT_ID}}",
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
   }
 }
-  `}
-</code>
+```
 
 ### StartPathwayWithPatientIdentifier mutation
 
@@ -65,8 +63,7 @@ mutation StartPathwayWithPatientIdentifier(
 
 **Variables:**
 
-<code className="language-json" highlightedRows={[[3, 6]]}>
-  {`
+```json
 {
   "input": {
     "patient_identifier": {
@@ -76,23 +73,20 @@ mutation StartPathwayWithPatientIdentifier(
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
   }
 }
-  `}
-</code>
+```
 
 ## Variables
 
 ### Pathway definition ID
 
-<code className="language-json" highlightedRows={[[3]]}>
-  {`
+```json
 {
   "input": {
     // the rest of your variables
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
   }
 }
-  `}
-</code>
+```
 
 The `pathway_definition_id` can be located either by using the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-pathways) or by checking the URL bar while working in Awell Studio. It's important to remember that your care flow must be published and have an active version set before you can start it.
 
@@ -118,8 +112,7 @@ The `pathway_definition_id` can be located either by using the [publishedPathway
 
 You have the ability to pass some initial data when starting a pathway with baseline data points. What data you can pass on pathway start needs to be configured in Awell Studio. When your baseline data points are configured and your pathway is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-pathways)).
 
-<code className="language-json" highlightedRows={[[4, 9]]}>
-  {`
+```json
 {
   "input": {
     // the rest of your variables
@@ -131,20 +124,11 @@ You have the ability to pass some initial data when starting a pathway with base
     ]
   }
 }
-  `}
-</code>
+```
 <br />
 
 <Alert type="info" title="Configure baseline data points">
-  <p>
-    <a
-      href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points"
-      target="_blank"
-    >
-      Learn how to create and configure baseline data points for your pathways
-      in Awell Studio.
-    </a>
-  </p>
+  <p><a href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points" target="_blank">Learn how to create and configure baseline data points for your pathways in Awell Studio.</a></p>
 </Alert>
 
 There are `required` and `optional` baseline data points. A pathway will not be started if not all required baseline data points have a value.

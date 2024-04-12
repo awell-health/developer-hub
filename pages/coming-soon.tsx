@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import { Footer } from '@/components/Footer'
-import { Search } from '@/components/Search'
 import { SEO } from '@/components/SEO'
 
 export default function ComingSoon() {
@@ -19,19 +18,15 @@ export default function ComingSoon() {
             </h1>
             <div className="w-96 mx-auto">
               <p className="mt-2 text-base text-gray-500 dark:text-slate-400">
-                We are currently working on this page. In the meantime, go back
-                to our home page or use the search bar to try and find other
-                documentation that could help you.
+                We are currently working on this page.
               </p>
-              <div className="mt-4">
-                <Search />
-              </div>
             </div>
             <div className="mt-6">
-              <Link href="/">
-                <a className="text-base font-medium text-blue-600 dark:text-sky-400 hover:text-blue-500 dark:hover:text-sky-500">
-                  Go back home<span aria-hidden="true"> &rarr;</span>
-                </a>
+              <Link
+                href="/"
+                className="text-base font-medium text-blue-600 dark:text-sky-400 hover:text-blue-500 dark:hover:text-sky-500"
+              >
+                Go back home<span aria-hidden="true"> &rarr;</span>
               </Link>
             </div>
           </div>

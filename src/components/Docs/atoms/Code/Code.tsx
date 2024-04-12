@@ -1,5 +1,5 @@
 import { isNil } from 'lodash'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import { Highlight } from 'prism-react-renderer'
 import { useEffect, useState } from 'react'
 import { arrayOfNumbersBasedOnRanges } from 'src/utils/array/arrayOfNumbersBasedOnRanges'
 
@@ -11,7 +11,8 @@ import { ExpandCollapseButton } from './atoms/ExandCollapseButton'
 interface CodeProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any
-  className: string
+  mode?: 'markdown' | 'jsx'
+  className?: string
   fileName?: string
   numberOfLinesPreview?: number
   highlightedRows?: Array<number[]>
@@ -19,6 +20,7 @@ interface CodeProps {
 
 export const Code = ({
   children,
+  mode = 'markdown',
   className,
   fileName,
   numberOfLinesPreview = 15,
@@ -27,22 +29,41 @@ export const Code = ({
   const [showExpandCollapseButton, setShowExpandeCollapseButton] =
     useState<boolean>(false)
   const [showAll, setIsShowAll] = useState<boolean>(true)
-  const language = !isNil(className) ? className.replace(/language-/, '') : ''
-
-  const [code] = Array.isArray(children) ? children : [children]
-
-  const allHighlightedRows = arrayOfNumbersBasedOnRanges(highlightedRows)
-
-  const toggleShowAll = () => setIsShowAll(!showAll)
+  const [code, setCode] = useState('')
+  const [language, setLanguage] = useState('')
 
   useEffect(() => {
-    const numberOfLines = code.split(/\r\n|\r|\n/).length
+    let extractedCode = ''
+    let extractedLanguage = ''
+    if (mode === 'markdown') {
+      if (typeof children === 'object' && children.type === 'code') {
+        extractedCode = children.props.children
+        extractedLanguage = children.props.className
+          ? children.props.className.replace(/language-/, '')
+          : ''
+      }
+    } else if (mode === 'jsx') {
+      extractedCode = typeof children === 'string' ? children : ''
+      extractedLanguage = !isNil(className)
+        ? className.replace(/language-/, '')
+        : ''
+    }
 
+    setCode(extractedCode)
+    setLanguage(extractedLanguage)
+
+    const numberOfLines = extractedCode.split(/\r\n|\r|\n/).length
     if (numberOfLines > numberOfLinesPreview) {
       setShowExpandeCollapseButton(true)
       setIsShowAll(false)
+    } else {
+      setShowExpandeCollapseButton(false)
+      setIsShowAll(true)
     }
-  }, [code])
+  }, [children, className, numberOfLinesPreview, mode])
+
+  const allHighlightedRows = arrayOfNumbersBasedOnRanges(highlightedRows)
+  const toggleShowAll = () => setIsShowAll(!showAll)
 
   return (
     <div
@@ -70,13 +91,7 @@ export const Code = ({
           showExpandCollapseButton ? 'withCollapseExpandButton' : ''
         }`}
       >
-        {/* @ts-expect-error not sure how to type */}
-        <Highlight
-          {...defaultProps}
-          theme={darkTheme}
-          code={children.trim()}
-          language={language}
-        >
+        <Highlight theme={darkTheme} code={code.trim()} language={language}>
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <pre className={className} style={style}>
               {showAll

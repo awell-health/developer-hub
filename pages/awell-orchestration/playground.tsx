@@ -1,46 +1,50 @@
-import 'graphiql/graphiql.css'
-
+/* eslint-disable simple-import-sort/imports */
+import React from 'react'
+import dynamic from 'next/dynamic'
+import { GraphQLSchema } from 'graphql'
 import { createGraphiQLFetcher } from '@graphiql/toolkit'
 
-import { SEO } from '@/components/SEO'
-import { Space } from '@/types/space.types'
+import 'graphiql/graphiql.css'
 
-import { defaultQuery } from '../../src/config/graphiql/graphiql'
-import { useGraphQLSchema } from '../../src/hooks/useGraphQLSchema'
+import { useGraphQLSchema } from '@/hooks/useGraphQLSchema'
+import { defaultQuery } from '@/config/graphiql/graphiql'
 
-export default function Playground() {
-  const { schema } = useGraphQLSchema()
-  // https://github.com/graphql/graphiql/issues/118
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { GraphiQL } = require('graphiql')
-
-  if (typeof window === 'undefined') return null
-
-  if (!process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL) {
-    throw new Error('NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL is not defined')
-  }
-
-  const fetcher = createGraphiQLFetcher({
-    url: process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL,
-  })
-
-  return (
-    <div>
-      <SEO
-        title="GraphQL Playground"
-        url={`/${Space.AWELL_ORCHESTRATION}/playground`}
-        canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/playground`}
-      />
-      <div id="graphql-embed" className="h-screen">
-        <GraphiQL
+// Dynamically import the GraphiQL component to disable SSR
+const GraphiQLWithNoSSR = dynamic(
+  () =>
+    import('graphiql').then((mod) => {
+      const fetcher = createGraphiQLFetcher({
+        url: process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL || '',
+      })
+      const GraphiQLComponent = ({
+        schema,
+      }: {
+        schema: GraphQLSchema | undefined
+      }) => (
+        <mod.GraphiQL
           schema={schema}
           fetcher={fetcher}
-          editorTheme={'dracula'}
           defaultQuery={defaultQuery}
+          headers={JSON.stringify({ apiKey: 'YOUR-API-KEY-HERE' })}
           shouldPersistHeaders={true}
-          tabs={true}
         />
-      </div>
+      )
+
+      GraphiQLComponent.displayName = 'GraphiQLComponent'
+
+      return GraphiQLComponent
+    }),
+  { ssr: false }
+)
+
+export default function GraphqlPlayground() {
+  const { schema } = useGraphQLSchema()
+
+  if (!schema) return <div>Loading...</div>
+
+  return (
+    <div style={{ height: '100vh' }}>
+      <GraphiQLWithNoSSR schema={schema} />
     </div>
   )
 }

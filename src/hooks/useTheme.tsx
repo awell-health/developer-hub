@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import { createContext, ReactNode, useState } from 'react'
 
 interface ThemeContextStateType {
   isDarkMode: boolean
@@ -19,17 +19,19 @@ interface ThemeProviderProps {
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [isDarkMode, setIsDarkMode] = useState(false)
 
-  useEffect(() => {
-    // Check local storage or system preference and set initial mode
-    const prefersDarkMode = window.matchMedia(
-      '(prefers-color-scheme: dark)'
-    ).matches
-    const savedMode = localStorage.getItem('theme')
+  // Uncomment to re-install dark theme
 
-    setIsDarkMode(
-      savedMode === 'dark' || (savedMode === null && prefersDarkMode)
-    )
-  }, [])
+  // useEffect(() => {
+  //   // Check local storage or system preference and set initial mode
+  //   const prefersDarkMode = window.matchMedia(
+  //     '(prefers-color-scheme: dark)'
+  //   ).matches
+  //   const savedMode = localStorage.getItem('theme')
+
+  //   setIsDarkMode(
+  //     savedMode === 'dark' || (savedMode === null && prefersDarkMode)
+  //   )
+  // }, [])
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode)

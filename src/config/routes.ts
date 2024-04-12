@@ -30,6 +30,6 @@ export const rootRoutes: Record<Space, Routes> = {
     home: `/${Space.AWELL_SCORE}`,
     docs: `/${Space.AWELL_SCORE}/docs/getting-started/what-is-awell-score`,
     api: ``,
-    developerTools: `/${Space.AWELL_SCORE}/developer-tools/api-playground`,
+    developerTools: ``,
   },
 }

@@ -1,1 +1,0 @@
-export { ReactDocs } from './React'

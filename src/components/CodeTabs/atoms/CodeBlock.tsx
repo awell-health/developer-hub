@@ -1,4 +1,4 @@
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import { Highlight } from 'prism-react-renderer'
 import { useEffect, useState } from 'react'
 
 import { darkTheme } from '../../../config/prism'
@@ -37,7 +37,7 @@ export const CodeBlock = ({
       setShowExpandeCollapseButton(true)
       setIsShowAll(false)
     }
-  }, [code])
+  }, [code, setShowExpandeCollapseButton, setIsShowAll, numberOfLinesPreview])
 
   return (
     <div
@@ -45,13 +45,7 @@ export const CodeBlock = ({
         showExpandCollapseButton ? 'withCollapseExpandButton' : ''
       }`}
     >
-      {/* @ts-expect-error not sure how to type */}
-      <Highlight
-        {...defaultProps}
-        theme={darkTheme}
-        code={children.trim()}
-        language={language}
-      >
+      <Highlight theme={darkTheme} code={children.trim()} language={language}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
             {showAll

@@ -17,6 +17,6 @@ export const spaces: { label: string; path: string; active?: boolean }[] = [
   },
   {
     label: 'Awell Score',
-    path: rootRoutes[Space.AWELL_SCORE].home,
+    path: rootRoutes[Space.AWELL_SCORE].docs,
   },
 ]

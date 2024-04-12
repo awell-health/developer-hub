@@ -7,15 +7,14 @@ export const PostmanLinks = () => {
     <ul>
       {postManLinks.map((link) => (
         <li key={link.title}>
-          <Link href={link.url}>
-            <a
-              title={link.title}
-              target="_blank"
-              rel="noreferrer"
-              data-heap={link.heapTracker}
-            >
-              {link.title}
-            </a>
+          <Link
+            href={link.url}
+            title={link.title}
+            target="_blank"
+            rel="noreferrer"
+            data-heap={link.heapTracker}
+          >
+            {link.title}
           </Link>
         </li>
       ))}

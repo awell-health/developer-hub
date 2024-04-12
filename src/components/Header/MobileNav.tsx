@@ -73,44 +73,40 @@ export const MobileNav = () => {
         <ul className="space-y-6">
           {navigation.map((navItem) => (
             <li key={`${space}-${navItem.slug}`}>
-              <Link href={navItem.slug}>
-                <a
-                  className="hover:text-sky-500 dark:hover:text-sky-400"
-                  title={navItem.title}
-                >
-                  {navItem.title}
-                </a>
+              <Link
+                href={navItem.slug}
+                className="hover:text-sky-500 dark:hover:text-sky-400"
+                title={navItem.title}
+              >
+                {navItem.title}
               </Link>
             </li>
           ))}
           <li>
-            <Link href="https://awellhealth.atlassian.net/wiki/spaces/AH/pages/3560275979/What+s+New">
-              <a
-                title="Changelog"
-                className="hover:text-sky-500 dark:hover:text-sky-400"
-              >
-                Changelog
-              </a>
+            <Link
+              href="https://awellhealth.atlassian.net/wiki/spaces/AH/pages/3560275979/What+s+New"
+              title="Changelog"
+              className="hover:text-sky-500 dark:hover:text-sky-400"
+            >
+              Changelog
             </Link>
           </li>
           <li>
-            <Link href="/faq">
-              <a
-                className="hover:text-sky-500 dark:hover:text-sky-400"
-                title="FAQ"
-              >
-                FAQ
-              </a>
+            <Link
+              href="/faq"
+              className="hover:text-sky-500 dark:hover:text-sky-400"
+              title="FAQ"
+            >
+              FAQ
             </Link>
           </li>
           <li>
-            <Link href="/system-status">
-              <a
-                className="hover:text-sky-500 dark:hover:text-sky-400"
-                title="System status"
-              >
-                System status
-              </a>
+            <Link
+              href="/system-status"
+              className="hover:text-sky-500 dark:hover:text-sky-400"
+              title="System status"
+            >
+              System status
             </Link>
           </li>
           <li>
@@ -125,7 +121,7 @@ export const MobileNav = () => {
             </a>
           </li>
         </ul>
-        <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-200/10">
+        <div className="hidden mt-6 pt-6 border-t border-slate-200 dark:border-slate-200/10">
           <ThemeSelect />
         </div>
       </div>

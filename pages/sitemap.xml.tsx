@@ -35,9 +35,6 @@ const generateSiteMap = ({
         <loc>https://developers.awellhealth.com/awell-score/docs/getting-started/playground</loc>
        </url>
        <url>
-        <loc>https://developers.awellhealth.com/awell-score/developer-tools/api-playground</loc>
-       </url>
-       <url>
         <loc>https://developers.awellhealth.com/awell-orchestration/developer-tools/webhooks/webhook-builder</loc>
        </url>
        <url>

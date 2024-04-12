@@ -6,16 +6,7 @@ description: Learn how to promote care flows from Sandbox to Production.
 If you're using a Sandbox environment to test care flows & integrations, eventually you'll need to promote them to your Production environment to start enrolling patients in your care flows.
 
 <Alert type="info" title="Preflight checklist">
-  <p>
-    Also have a look at our{' '}
-    <a
-      href="/awell-orchestration/docs/going-live/preflight-checklist"
-      title="Preflight checklist"
-    >
-      preflight checklist
-    </a>{' '}
-    to start orchestrating care flows in production.
-  </p>
+  <p>Also have a look at our <a href="/awell-orchestration/docs/going-live/preflight-checklist" title="Preflight checklist">preflight checklist</a> to start orchestrating care flows in production.</p>
 </Alert>
 
 ## Sandbox vs. production
@@ -33,7 +24,7 @@ Given that Sandbox and Production are completely separate environments, there is
 <div className="flex justify-center">
   <a
     title="Request promotion"
-    class="custom-link btn-base py-3 px-5 text-base text-white bg-blue-600 highlight-white/20 hover:bg-blue-500 dark:bg-sky-500 dark:hover:bg-sky-400"
+    className="custom-link btn-base py-3 px-5 text-base text-white bg-blue-600 highlight-white/20 hover:bg-blue-500 dark:bg-sky-500 dark:hover:bg-sky-400"
     href="/request-promotion"
   >
     <span>Request promotion</span>
@@ -74,7 +65,7 @@ With the ability to conceal the value of a constant, they are also perfectly sui
         </td>
       </tr>
       <tr>
-        <td colspan="2">
+        <td colSpan="2">
           If you are "re-promoting" your care flow but have set or updated the
           value in the destination system, we will not overwrite that value.
         </td>
@@ -87,12 +78,7 @@ With the ability to conceal the value of a constant, they are also perfectly sui
 <br />
 
 <Alert type="info" title="Tip">
-  <p>
-    Although we have built some smart defaults to make sure your consants are
-    imported correctly into the destination environment, we advise you to do a
-    manual check of your constants before using the care flow in a production
-    setting.
-  </p>
+  <p>Although we have built some smart defaults to make sure your consants are imported correctly into the destination environment, we advise you to do a manual check of your constants before using the care flow in a production setting.</p>
 </Alert>
 
 ### Promotion should be unidirectional
@@ -113,21 +99,7 @@ There are 2 possible scenarios when requesting promotion of a care flow:
 **If the care flow already exists in the destination environment,** we'll just update the working version of the already existing care flow in the destination environment so it represents the working version of the care flow in the source environment.
 
 <Alert type="info" title="Publish your care flows after promotion">
-  <p>
-    <strong>
-      Please note that we're always promoting the current working version of
-      your care flow
-    </strong>{' '}
-    from the source environment and make it the new working version in the
-    destination environment.
-  </p>
-  <br />
-  <p>
-    We're not automatically publishing a new version of your care flow in the
-    destination environment as part of the promotion so you still have to
-    publish your care flows manually in the destination environment to start
-    enrolling patients.
-  </p>
+  <p><strong>Please note that we're always promoting the current working version of your care flow </strong> from the source environment and make it the new working version in the destination environment.</p><br /><p>We're not automatically publishing a new version of your care flow in the destination environment as part of the promotion so you still have to publish your care flows manually in the destination environment to start enrolling patients.</p>
 </Alert>
 
 ## Identifier systems

@@ -43,16 +43,7 @@ You can use [this mutation](/awell-orchestration/api-reference/mutations/start-p
 The concept is to invoke this mutation when a user clicks a button or link. This mutation will then provide a `session_url` to which you can redirect the user.
 
 <Alert title="Sessions and Hosted Pages Links" type="info">
-  <p>
-    Learn more about Sessions and Hosted Pages Links{' '}
-    <a
-      href="/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/sessions-and-links"
-      title="Sessions and Links"
-    >
-      here
-    </a>
-    .
-  </p>
+  <p>Learn more about Sessions and Hosted Pages Links <a href="/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/sessions-and-links" title="Sessions and Links">here</a>.</p>
 </Alert>
 
 ## Associate a patient with your care flow
@@ -60,22 +51,7 @@ The concept is to invoke this mutation when a user clicks a button or link. This
 When using the default [shareable Hosted Pages Link](#hosted-pages-link), a care flow is started and assigned to an anonymous patient profile in Awell. However, usually you'd want to ensure that these care flows can be connected back to a specific patient profile in Awell, so you can match them with a patient in your own system.
 
 <Alert title="Sharing PHI with Awell" type="info">
-  <p>
-    Please note that you have full control over how much PHI or demographic data
-    you choose to share with Awell. We are equipped to manage care flows even
-    for patients who remain anonymous.{' '}
-    <strong>
-      The specific details you need to provide largely depend on the design of
-      your care flow.
-    </strong>{' '}
-    <br />
-    <br />
-    For example, if your care flow incorporates conditional logic based on the
-    patient's sex and birth date, then these details must be shared with (or
-    captured by) Awell. Additionally, we advise including at least one
-    identifier to ensure that a patient profile in Awell can be matched with a
-    patient in your own system.
-  </p>
+  <p>Please note that you have full control over how much PHI or demographic data you choose to share with Awell. We are equipped to manage care flows even for patients who remain anonymous. <strong>The specific details you need to provide largely depend on the design ofyour care flow.</strong> <br /><br />For example, if your care flow incorporates conditional logic based on the patient's sex and birth date, then these details must be shared with (or captured by) Awell. Additionally, we advise including at least one identifier to ensure that a patient profile in Awell can be matched with a patient in your own system.</p>
 </Alert>
 
 ### Query string
@@ -108,15 +84,7 @@ When the link is clicked, Awell verifies whether a patient with the provided ide
 </figure>
 
 <Alert title="Query parameters" type="warning">
-  <p>
-    We only allow identifiers in URL query parameters for security reasons;
-    passing any other patient data (PHI) is not permitted. Consequently, when
-    using the shareable link, you are limited to passing only an identifier.
-    This limitation is particularly relevant when a patient profile does not yet
-    exist in Awell, as no additional patient data can be passed through the
-    link. Moreover, passing baseline is also not supported via the shareable
-    link.
-  </p>
+  <p>We only allow identifiers in URL query parameters for security reasons; passing any other patient data (PHI) is not permitted. Consequently, when using the shareable link, you are limited to passing only an identifier. This limitation is particularly relevant when a patient profile does not yet exist in Awell, as no additional patient data can be passed through the link. Moreover, passing baseline is also not supported via the shareable link.</p>
 </Alert>
 
 If you would like to use the shareable Hosted Pages link and **require additional flexibility to submit either patient profile data or baseline information**, the following options are available to you (read more below):
@@ -139,12 +107,12 @@ If you would like to use the shareable Hosted Pages link and **require additiona
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
-            class="h-5 w-5 text-green-500 mx-auto"
+            className="h-5 w-5 text-green-500 mx-auto"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </td>
@@ -154,12 +122,12 @@ If you would like to use the shareable Hosted Pages link and **require additiona
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
-            class="h-5 w-5 text-green-500 mx-auto"
+            className="h-5 w-5 text-green-500 mx-auto"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </td>
@@ -172,12 +140,12 @@ If you would like to use the shareable Hosted Pages link and **require additiona
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
-            class="h-5 w-5 text-slate-400 mx-auto"
+            className="h-5 w-5 text-slate-400 mx-auto"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </td>
@@ -187,12 +155,12 @@ If you would like to use the shareable Hosted Pages link and **require additiona
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
-            class="h-5 w-5 text-green-500 mx-auto"
+            className="h-5 w-5 text-green-500 mx-auto"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </td>

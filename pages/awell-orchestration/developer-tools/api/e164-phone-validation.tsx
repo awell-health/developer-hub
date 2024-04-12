@@ -3,7 +3,7 @@ import {
   ExclamationCircleIcon,
 } from '@heroicons/react/outline'
 import { isNil } from 'lodash'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 

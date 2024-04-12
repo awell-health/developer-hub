@@ -115,22 +115,25 @@ export default function Home() {
 
                   <dl className="mt-10 space-y-10">
                     {getStartedItems.map((item) => (
-                      <Link key={item.id} href={item.href}>
-                        <a title={item.name} className="block group">
-                          <div className="relative">
-                            <dt>
-                              <div className="absolute flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-blue-600 font-semibold text-xl dark:bg-slate-800 dark:text-slate-100">
-                                {item.id}
-                              </div>
-                              <p className="ml-16 text-lg font-semibold leading-6 text-slate-900 group-hover:text-blue-600 dark:text-sky-400 dark:group-hover:text-sky-500">
-                                {item.name}
-                              </p>
-                            </dt>
-                            <dd className="mt-1 ml-16 text-base text-slate-500 dark:text-slate-400">
-                              {item.description}
-                            </dd>
-                          </div>
-                        </a>
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        title={item.name}
+                        className="block group"
+                      >
+                        <div className="relative">
+                          <dt>
+                            <div className="absolute flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-blue-600 font-semibold text-xl dark:bg-slate-800 dark:text-slate-100">
+                              {item.id}
+                            </div>
+                            <p className="ml-16 text-lg font-semibold leading-6 text-slate-900 group-hover:text-blue-600 dark:text-sky-400 dark:group-hover:text-sky-500">
+                              {item.name}
+                            </p>
+                          </dt>
+                          <dd className="mt-1 ml-16 text-base text-slate-500 dark:text-slate-400">
+                            {item.description}
+                          </dd>
+                        </div>
                       </Link>
                     ))}
                   </dl>
@@ -167,25 +170,27 @@ export default function Home() {
           </p>
           <div className="grid md:grid-cols-3 gap-8 mt-6">
             {domains.map((d) => (
-              <Link href={d.url} key={d.title}>
-                <a className="block group relative rounded-xl border border-slate-200 dark:border-slate-800">
-                  <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
-                  <div className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
-                    <div className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
-                      <div>
-                        <div className="bg-blue-600 text-white dark:bg-sky-400 rounded-lg p-1.5 inline-block">
-                          {d.icon}
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold dark:text-sky-400">
-                          {d.title}
-                        </h3>
-                        <span className="pt-3">{d.description}</span>
+              <Link
+                href={d.url}
+                key={d.title}
+                className="block group relative rounded-xl border border-slate-200 dark:border-slate-800"
+              >
+                <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,theme(colors.sky.50)),var(--quick-links-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]" />
+                <div className="relative overflow-hidden rounded-xl p-6 flex flex-col justify-start h-full">
+                  <div className="dark:text-slate-400 pt-1 flex flex-col flex-grow">
+                    <div>
+                      <div className="bg-blue-600 text-white dark:bg-sky-400 rounded-lg p-1.5 inline-block">
+                        {d.icon}
                       </div>
                     </div>
+                    <div>
+                      <h3 className="font-semibold dark:text-sky-400">
+                        {d.title}
+                      </h3>
+                      <span className="pt-3">{d.description}</span>
+                    </div>
                   </div>
-                </a>
+                </div>
               </Link>
             ))}
           </div>

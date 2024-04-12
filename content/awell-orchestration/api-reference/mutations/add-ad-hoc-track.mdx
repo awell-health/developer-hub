@@ -6,9 +6,7 @@ description: Add a pre-configured ad hoc track to a patient care flow (pathway)
 When a care flow (pathway) is active, an ad hoc track (i.e. one that has 'manually triggered' as at least one of its configured activation triggers) can be added to that care flow. This is done via the `addTrack` mutation. Care flows that are not yet active, have been stopped, or have been completed cannot have ad hoc tracks added to them.
 
 <Alert title="Rate limits on tracks">
-  <p>
-      Please be aware that you can only activate one same track in a pathway per minute. Adding multiple tracks at a time will queue them up for activation with a delay.
-  </p>
+  <p>Please be aware that you can only activate one same track in a pathway per minute. Adding multiple tracks at a time will queue them up for activation with a delay.</p>
 </Alert>
 
 ## Request
@@ -52,5 +50,5 @@ The `pathway_id` is the id of the patient care flow (pathway) that you want to a
 
 The following errors can be returned:
 
-- `BAD_REQUEST_ERROR`: "Care flow with id ${pathway_id} is not active. Ad hoc tracks can only be added to active care flows." -> This occurs if the patient care flow is not yet active or has been completed
+- `BAD_REQUEST_ERROR`: "Care flow with id `${pathway_id}` is not active. Ad hoc tracks can only be added to active care flows." -> This occurs if the patient care flow is not yet active or has been completed
 - `BAD_REQUEST_ERROR`: "Track with definition id XXXX cannot be triggered manually. Please check its configuration in Studio." -> This occurs if the ad hoc track you are trying to add to the patient care flow has not been configured to be manually triggered.
