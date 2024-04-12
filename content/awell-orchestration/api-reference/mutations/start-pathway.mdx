@@ -37,16 +37,14 @@ mutation StartPathway($input: StartPathwayInput!) {
 
 **Variables:**
 
-<CodeBlock className="language-json" highlightedRows={[[3]]}>
-  {`
+```json
 {
   "input": {
     "patient_id": "{{PATIENT_ID}}",
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
   }
 }
-  `}
-</CodeBlock>
+```
 
 ### StartPathwayWithPatientIdentifier mutation
 
@@ -65,8 +63,7 @@ mutation StartPathwayWithPatientIdentifier(
 
 **Variables:**
 
-<CodeBlock className="language-json" highlightedRows={[[3, 6]]}>
-  {`
+```json
 {
   "input": {
     "patient_identifier": {
@@ -76,23 +73,20 @@ mutation StartPathwayWithPatientIdentifier(
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
   }
 }
-  `}
-</CodeBlock>
+```
 
 ## Variables
 
 ### Pathway definition ID
 
-<CodeBlock className="language-json" highlightedRows={[[3]]}>
-  {`
+```json
 {
   "input": {
     // the rest of your variables
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
   }
 }
-  `}
-</CodeBlock>
+```
 
 The `pathway_definition_id` can be located either by using the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-pathways) or by checking the URL bar while working in Awell Studio. It's important to remember that your care flow must be published and have an active version set before you can start it.
 
@@ -118,8 +112,7 @@ The `pathway_definition_id` can be located either by using the [publishedPathway
 
 You have the ability to pass some initial data when starting a pathway with baseline data points. What data you can pass on pathway start needs to be configured in Awell Studio. When your baseline data points are configured and your pathway is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-pathways)).
 
-<CodeBlock className="language-json" highlightedRows={[[4, 9]]}>
-  {`
+```json
 {
   "input": {
     // the rest of your variables
@@ -131,8 +124,7 @@ You have the ability to pass some initial data when starting a pathway with base
     ]
   }
 }
-  `}
-</CodeBlock>
+```
 <br />
 
 <Alert type="info" title="Configure baseline data points">

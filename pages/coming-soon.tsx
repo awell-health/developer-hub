@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import { Footer } from '@/components/Footer'
-import { Search } from '@/components/Search'
 import { SEO } from '@/components/SEO'
 
 export default function ComingSoon() {
@@ -19,13 +18,8 @@ export default function ComingSoon() {
             </h1>
             <div className="w-96 mx-auto">
               <p className="mt-2 text-base text-gray-500 dark:text-slate-400">
-                We are currently working on this page. In the meantime, go back
-                to our home page or use the search bar to try and find other
-                documentation that could help you.
+                We are currently working on this page.
               </p>
-              <div className="mt-4">
-                <Search />
-              </div>
             </div>
             <div className="mt-6">
               <Link

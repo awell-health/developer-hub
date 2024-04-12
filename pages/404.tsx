@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import { Footer } from '@/components/Footer'
-import { Search } from '@/components/Search'
 import { SEO } from '@/components/SEO'
 
 export default function Custom404() {
@@ -19,12 +18,9 @@ export default function Custom404() {
             </h1>
             <div className="w-96 mx-auto">
               <p className="mt-2 text-base text-gray-500 dark:text-slate-400">
-                It seems you are lost. Go back to our home page or use the
-                search bar to try and find what you are looking for.
+                It seems you are lost. Go back to our home page and use the
+                search to find what you are looking for
               </p>
-              <div className="mt-4">
-                <Search />
-              </div>
             </div>
             <div className="mt-6">
               <Link

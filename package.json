@@ -14,11 +14,11 @@
     "prepare": "husky install",
     "ts": "tsc --noEmit --incremental",
     "lint": "next lint",
+    "lint:fix": "next lint --fix .",
     "clean": "rm -rf ./.next && rm ./tsconfig.tsbuildinfo",
     "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
-    "@algolia/autocomplete-js": "^1.17.0",
     "@apollo/client": "^3.9.11",
     "@graphql-codegen/cli": "^5.0.2",
     "@graphql-codegen/typescript": "^4.0.6",

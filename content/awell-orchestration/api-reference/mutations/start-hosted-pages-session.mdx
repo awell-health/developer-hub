@@ -29,8 +29,7 @@ mutation StartHostedPagesSession($input: StartHostedActivitySessionInput!) {
 
 ### Required variables
 
-<CodeBlock className="language-json" highlightedRows={[[3, 4]]}>
-  {`
+```json
 {
   "input": {
     "pathway_id": "{{PATHWAY_ID}}",
@@ -39,8 +38,7 @@ mutation StartHostedPagesSession($input: StartHostedActivitySessionInput!) {
     "cancel_url": "https://yourdomain.com/cancel.html"
   }
 }
-`}
-</CodeBlock>
+```
 
 The `pathway_id` specifies which care flow/pathway instance there are activities to complete for and the `stakeholder_id` specifies the stakeholder.
 
@@ -48,8 +46,7 @@ The `pathway_id` specifies which care flow/pathway instance there are activities
 
 The `success_url` and `cancel_url` specify where the stakeholder should be redirected to when the care flow/pathway session is completed or canceled/interrupted respectively. If `success_url` and `cancel_url` are not specified, then static success and cancel pages will be shown in the Hosted Pages application.
 
-<CodeBlock className="language-json" highlightedRows={[[5, 7]]}>
-  {`
+```json
 {
   "input": {
     "pathway_id": "{{PATHWAY_ID}}",
@@ -59,9 +56,7 @@ The `success_url` and `cancel_url` specify where the stakeholder should be redir
     "language": "en"
   }
 }
-`}
-</CodeBlock>
-<br />
+```
 
 #### Language
 

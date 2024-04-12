@@ -107,21 +107,19 @@ All `in` filters accept a list of values and result in an `is any of` search cri
 
 When specifying multiple filters, the resulting criteria is the conjuction of all filters.
 
-<CodeBlock className="language-json" highlightedRows={[[2, 6]]}>
-  {`
-  {
-    "action": ["ASSIGNED", "ACTIVATE"], // See ActivityAction enum
-    "activity_type": ["FORM", "MESSAGE"], // See ActivityObjectType enum
-    "activity_status": ["DONE", "ACTIVE"], // See ActivityStatus enum
-    "pathway_definition_id": ["{{ PATHWAY_DEFINITION_ID }}"],
-    "patient_id": "{{ PATIENT_ID }}",
-    "offset": 0,
-    "count": 20,
-    "sort_field": "date",
-    "sort_direction": "desc"
-  }
-  `}
-</CodeBlock>
+```json
+{
+  "action": ["ASSIGNED", "ACTIVATE"], // See ActivityAction enum
+  "activity_type": ["FORM", "MESSAGE"], // See ActivityObjectType enum
+  "activity_status": ["DONE", "ACTIVE"], // See ActivityStatus enum
+  "pathway_definition_id": ["{{ PATHWAY_DEFINITION_ID }}"],
+  "patient_id": "{{ PATIENT_ID }}",
+  "offset": 0,
+  "count": 20,
+  "sort_field": "date",
+  "sort_direction": "desc"
+}
+```
 
 ### Pagination and sorting
 

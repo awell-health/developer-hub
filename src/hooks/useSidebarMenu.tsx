@@ -11,10 +11,7 @@ import {
   orchestrationDeveloperToolsMenu,
   orchestrationDocsMenu,
 } from '@/config/menus/awell-orchestration'
-import {
-  scoreDeveloperToolsMenu,
-  scoreDocsMenu,
-} from '@/config/menus/awell-score'
+import { scoreDocsMenu } from '@/config/menus/awell-score'
 import { studioDocsMenu } from '@/config/menus/awell-studio'
 import { AppContext } from '@/contexts/app/AppContext'
 import {
@@ -47,8 +44,6 @@ export const useSidebarMenu = (): useSidebarMenuHook => {
     } else if (router.asPath.includes(Space.AWELL_SCORE)) {
       if (router.asPath.includes('docs')) {
         setMenu(scoreDocsMenu)
-      } else if (router.asPath.includes('developer-tools')) {
-        setMenu(scoreDeveloperToolsMenu)
       } else {
         setMenu([])
       }

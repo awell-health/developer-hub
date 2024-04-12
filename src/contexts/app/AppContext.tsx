@@ -75,33 +75,32 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
   const getHeadingLevelFromMarkdown = (heading: string) => {
     switch (heading.trim()) {
-      case '##': return 'h2'
-      case '###': return 'h3'
-      default: return 'h4'
+      case '##':
+        return 'h2'
+      case '###':
+        return 'h3'
+      default:
+        return 'h4'
     }
   }
 
-  const setTableOfContents = (
-    content: string,
-    tocArray?: { title: string; link: string; level: 'h2' | 'h3' }[]
-  ) => {
-    if (tocArray) {
-      setToc(tocArray)
-    } else {
-      const regexp = new RegExp(/^(##+) (.*)\n/, 'gm')
-      const headings = [...content.matchAll(regexp)]
-
-      let tableOfContents: TableOfContentsType = []
-
-      if (headings.length) {
-        tableOfContents = headings.map((heading) => {
+  const setTableOfContents = useCallback(
+    (
+      content: string,
+      tocArray?: { title: string; link: string; level: 'h2' | 'h3' }[]
+    ) => {
+      if (tocArray) {
+        setToc(tocArray)
+      } else {
+        const regexp = new RegExp(/^(##+) (.*)\n/, 'gm')
+        const headings = [...content.matchAll(regexp)]
+        const tableOfContents: TableOfContentsType = headings.map((heading) => {
           const headingText = heading[2].trim()
           const headingLevel = getHeadingLevelFromMarkdown(heading[1])
           const headingLink = slugify(headingText, {
             lower: true,
             strict: true,
           })
-
           return {
             title: headingText,
             link: `#${headingLink}`,
@@ -109,12 +108,15 @@ export const AppProvider = ({ children }: AppProviderProps) => {
           }
         })
 
-        setToc(tableOfContents)
-      } else {
-        setToc(null)
+        if (headings.length) {
+          setToc(tableOfContents)
+        } else {
+          setToc(null)
+        }
       }
-    }
-  }
+    },
+    []
+  )
 
   const hideMenu = useCallback(() => {
     setIsSideMobileMenuOpen(false)

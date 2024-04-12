@@ -31,7 +31,7 @@ export default function FaqPage({
 
   useEffect(() => {
     setTableOfContents(content)
-  }, [slug])
+  }, [content, setTableOfContents])
 
   return (
     <div>

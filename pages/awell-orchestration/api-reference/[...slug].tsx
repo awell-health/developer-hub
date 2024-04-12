@@ -44,7 +44,7 @@ export default function ApiPage({
 
   useEffect(() => {
     setTableOfContents(content)
-  }, [slug])
+  }, [content, setTableOfContents])
 
   return (
     <div>

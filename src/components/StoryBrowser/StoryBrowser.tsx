@@ -102,7 +102,7 @@ export const StoryBrowser = () => {
     })
 
     setFilteredStories(filteredStories)
-  }, [categoryFilters, operationsFilters])
+  }, [stories, categoryFilters, operationsFilters])
 
   const onSetFilter = (f: {
     filter: string

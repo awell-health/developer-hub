@@ -1,1 +1,0 @@
-export { SearchResultItem } from './SearchResultItem'

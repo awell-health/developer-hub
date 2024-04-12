@@ -121,7 +121,7 @@ export const MobileNav = () => {
             </a>
           </li>
         </ul>
-        <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-200/10">
+        <div className="hidden mt-6 pt-6 border-t border-slate-200 dark:border-slate-200/10">
           <ThemeSelect />
         </div>
       </div>

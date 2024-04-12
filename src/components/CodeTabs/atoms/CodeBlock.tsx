@@ -37,7 +37,7 @@ export const CodeBlock = ({
       setShowExpandeCollapseButton(true)
       setIsShowAll(false)
     }
-  }, [code])
+  }, [code, setShowExpandeCollapseButton, setIsShowAll, numberOfLinesPreview])
 
   return (
     <div

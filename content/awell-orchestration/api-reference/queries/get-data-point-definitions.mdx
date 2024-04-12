@@ -88,8 +88,7 @@ All `in` filter type accepts a list of values and results in an `is any of` sear
 
 When specifying multiple filters, the resulting criteria is the conjuction of all filters.
 
-<CodeBlock className="language-json" highlightedRows={[[3, 11]]}>
-  {`
+```json
 {
   "release_id": "{{ RELEASE_ID }}",
   "category": [
@@ -102,8 +101,7 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
   ],
   "value_type": ["BOOLEAN", "DATE", "NUMBER", "NUMBERS_ARRAY", "STRING"]
 }
-  `}
-</CodeBlock>
+```
 
 ### Pagination and sorting
 

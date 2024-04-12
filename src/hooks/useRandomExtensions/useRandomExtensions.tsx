@@ -63,7 +63,7 @@ export const useRandomExtensions = (
     }
 
     fetchData()
-  }, [])
+  }, [exclude, n])
 
   return {
     randomExtensions: extensions,

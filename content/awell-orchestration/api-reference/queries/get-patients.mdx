@@ -106,22 +106,20 @@ All `in` filters accept a list of values and result in an `is any of` search cri
 
 When specifying multiple filters, the resulting criteria is the conjuction of all filters.
 
-<CodeBlock className="language-json" highlightedRows={[[2, 4]]}>
-  {`
-    {
-      "search": "Henriet",
-      "name_contains": "Henriet",
-      "name_equals": "Henrietta Lacks",
-      "national_registry_number": "{{ NRNN }}",
-      "patient_code": "{{ PATIENT_CODE }}",
-      "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
-      "offset": 0,
-      "count": 20,
-      "sort_field": "last_name",
-      "sort_direction": "DESC"
-    }
-  `}
-</CodeBlock>
+```json
+{
+  "search": "Henriet",
+  "name_contains": "Henriet",
+  "name_equals": "Henrietta Lacks",
+  "national_registry_number": "{{ NRNN }}",
+  "patient_code": "{{ PATIENT_CODE }}",
+  "profile_id": ["AWELL_PATIENT_ID_1", "AWELL_PATIENT_ID_2"],
+  "offset": 0,
+  "count": 20,
+  "sort_field": "last_name",
+  "sort_direction": "DESC"
+}
+```
 
 ### Pagination and sorting
 

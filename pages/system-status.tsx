@@ -31,7 +31,7 @@ export default function SystemStatusPage({
 
   useEffect(() => {
     setTableOfContents(content)
-  }, [slug])
+  }, [content, setTableOfContents])
 
   return (
     <div>

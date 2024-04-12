@@ -42,7 +42,7 @@ export default function DocsPage({
 
   useEffect(() => {
     setTableOfContents(content)
-  }, [slug])
+  }, [content, setTableOfContents])
 
   return (
     <div>

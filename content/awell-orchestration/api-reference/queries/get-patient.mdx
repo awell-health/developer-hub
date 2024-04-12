@@ -54,13 +54,11 @@ query GetPatient($patient_id: String!) {
 
 **Variables:**
 
-<CodeBlock className="language-json" highlightedRows={[[2]]}>
-  {`
+```json
 {
   "patient_id": "<AWELL_PATIENT_ID>"
 }
-  `}
-</CodeBlock>
+```
 
 ### Get patient by identifier
 
@@ -102,14 +100,12 @@ query GetPatientByIdentifier($system: String!, $value: String!) {
 
 **Variables:**
 
-<CodeBlock className="language-json" highlightedRows={[[2, 3]]}>
-  {`
+```json
 {
   "system": "{{IDENTIFIER_SYSTEM}}",
   "value": "{{IDENTIFIER_VALUE}}"
 }
-  `}
-</CodeBlock>
+```
 
 ## How to use
 

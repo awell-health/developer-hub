@@ -27,7 +27,7 @@ export const useStory = (storyId: string): useStoryHook => {
     }
 
     fetchData()
-  }, [])
+  }, [ENDPOINT])
 
   return {
     loading,

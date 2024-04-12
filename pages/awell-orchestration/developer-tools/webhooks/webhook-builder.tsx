@@ -5,31 +5,12 @@ import { CodeBlock } from '@/components/CodeTabs/atoms'
 import { DocsHeader } from '@/components/Docs/atoms'
 import { DocsLayoutWithoutToc } from '@/components/Layouts'
 import { SEO } from '@/components/SEO'
-import { StackSelector } from '@/components/StackSelector'
 import { webhooks } from '@/config/webhooks'
-import { stack } from '@/content/awell-orchestration/developer-tools/webhooks/webhook-builder'
-import { useStack } from '@/hooks/useStack'
 import { Space } from '@/types/space.types'
 import { type WebhooksType } from '@/types/webhooks.types'
 
 export default function WebhookBuilderPage() {
-  const { frontEnd, changeFrontEnd, backEnd, changeBackEnd } = useStack()
   const [selectedWebhooks, setSelectedWebhooks] = useState<WebhooksType>([])
-
-  const onChangeStack = ({
-    newBackEnd,
-    newFrontEnd,
-  }: {
-    newBackEnd?: string
-    newFrontEnd?: string
-  }) => {
-    if (newBackEnd) {
-      changeBackEnd(newBackEnd)
-    }
-    if (newFrontEnd) {
-      changeFrontEnd(newFrontEnd)
-    }
-  }
 
   return (
     <div>
@@ -39,16 +20,6 @@ export default function WebhookBuilderPage() {
         url={`/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/webhooks/webhook-builder`}
         canonicalUrl={`/${Space.AWELL_ORCHESTRATION}/developer-tools/webhooks/webhooks/webhook-builder`}
       />
-      <div className="flex mb-8">
-        <StackSelector
-          selectedStack={{
-            frontEnd,
-            backEnd,
-          }}
-          onStackChange={onChangeStack}
-          stacks={stack}
-        />
-      </div>
       <DocsHeader
         heading={'Webhooks'}
         title={'Webhook builder'}
