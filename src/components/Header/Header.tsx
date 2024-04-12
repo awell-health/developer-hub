@@ -69,7 +69,7 @@ export const Header = () => {
             <div className="relative flex items-center">
               <Link
                 href="/"
-                className="mr-3 flex-none w-[1.9rem] overflow-hidden md:w-auto"
+                className="mr-1 sm:mr-3 flex-none w-[1.9rem] overflow-hidden md:w-auto"
                 title="Awell Health Developers"
               >
                 <span className="sr-only">Awell Health Developer Hub</span>
@@ -90,7 +90,12 @@ export const Header = () => {
                   </svg>
                 </div>
               </Link>
-              <Badge color="sky">Developer Hub</Badge>
+              <div className="hidden sm:block">
+                <Badge color="sky">Developer Hub</Badge>
+              </div>
+              <div className="sm:hidden">
+                <Badge color="sky">Dev Hub</Badge>
+              </div>
               <div className="ml-2">
                 <SpaceSwitcher />
               </div>

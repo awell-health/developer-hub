@@ -11,7 +11,7 @@ export const SpaceSwitcher = () => {
 
   const currentSpaceLabel = space
     ? spaces.find((s) => s.path.includes(space))?.label || ''
-    : 'Choose doc space'
+    : 'Doc space'
 
   return (
     <Menu as="div" className="relative">
