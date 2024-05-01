@@ -37,7 +37,7 @@ Providing patient identifier object in UpdatePatient mutation will **replace** a
 ### Mutation
 
 ```graphql
-mutation AddIdentifierToPatient(input: AddIdentifierToPatientInput!) {
+mutation AddIdentifierToPatient($input: AddIdentifierToPatientInput!) {
   addIdentifierToPatient(input: $input) {
     patient {
       id
