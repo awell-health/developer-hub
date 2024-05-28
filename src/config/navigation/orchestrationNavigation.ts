@@ -21,7 +21,7 @@ export const orchestrationNavigation: MainNavType = [
   },
   {
     title: 'Developer tools',
-    slug: '/awell-orchestration/developer-tools/api/schema',
+    slug: '/awell-orchestration/developer-tools/sdks/server-side-sdk',
     activeSlugCheck: 'schema',
   },
 ]

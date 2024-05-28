@@ -4,6 +4,20 @@ import { type MenuType } from '../../../types/menu.types'
 
 export const developerToolsMenu: MenuType = [
   {
+    title: 'SDKs',
+    path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/sdks`,
+    submenu: [
+      {
+        title: 'Node.js SDK',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/sdks/server-side-sdk`,
+      },
+      {
+        title: 'UI library',
+        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/sdks/ui-library`,
+      },
+    ],
+  },
+  {
     title: 'API',
     path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/api`,
     submenu: [
@@ -70,16 +84,6 @@ export const developerToolsMenu: MenuType = [
       {
         title: 'Orchestration stories',
         path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/example-projects/orchestration-stories`,
-      },
-    ],
-  },
-  {
-    title: 'SDKs',
-    path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/sdks`,
-    submenu: [
-      {
-        title: 'UI library',
-        path: `/${Space.AWELL_ORCHESTRATION}/developer-tools/sdks/ui-library`,
       },
     ],
   },

@@ -520,6 +520,7 @@ export enum DataPointSourceType {
   ApiCall = 'API_CALL',
   ApiCallStatus = 'API_CALL_STATUS',
   Calculation = 'CALCULATION',
+  DataPoint = 'DATA_POINT',
   ExtensionAction = 'EXTENSION_ACTION',
   ExtensionWebhook = 'EXTENSION_WEBHOOK',
   Form = 'FORM',
@@ -533,6 +534,7 @@ export enum DataPointSourceType {
 export enum DataPointValueType {
   Boolean = 'BOOLEAN',
   Date = 'DATE',
+  Json = 'JSON',
   Number = 'NUMBER',
   NumbersArray = 'NUMBERS_ARRAY',
   String = 'STRING',
