@@ -7,39 +7,39 @@ export const data_points: BQTableType = [
     description: 'Unique identifier.',
   },
   {
-    property: 'care_flow_id',
+    property: 'definition_id',
     type: 'STRING',
     description:
-      'Identifier of the care flow in which the data point was collected. Refers to the `id` column in the `care_flows` table.',
-  },
-  {
-    property: 'care_flow_definition_id',
-    type: 'STRING',
-    description:
-      'Identifier of the care flow definition the related care flow was instantiated from.',
+      'Version agnostic identifier linking to the `definition_id` column in the `data_point_definitions` table, acting as a foreign key to this table, together with `release_id`.',
   },
   {
     property: 'release_id',
     type: 'STRING',
     description:
-      'Identifier of the published version of the care flow definition.',
+      'An internal identifier for the published version_number of the care flow definition. Refers to the `release_id` in the `published_careflows` table, serving as a foreign key, together with `definition_id` for connecting to the proper care flow definition.',
+  },
+  {
+    property: 'care_flow_id',
+    type: 'STRING',
+    description:
+      'Identifier of the care flow in which the data point was collected. Refers to the `id` column in the `care_flows` table, serving as a foreign key to the `care_flows` table.',
+  },
+  {
+    property: 'care_flow_definition_id',
+    type: 'STRING',
+    description:
+      'Identifier of the care flow definition (designed care flow template) from which the care flow was instantiated. Refers to the `definition_id` in the `published_careflows` table, serving as a foreign key, together with `release_id` for connecting to the proper care flow definition.',
   },
   {
     property: 'activity_id',
     type: 'STRING',
     description:
-      'Identifier of the activity in which the data point was collected. Refers to the `id` column in the `activities` table.',
-  },
-  {
-    property: 'definition_id',
-    type: 'STRING',
-    description:
-      'Version agnostic identifier of the underlying data point definition component. Refers to the `definition_id` column in the `data_point_definitions` table.',
+      'Identifier of the activity in which the data point was collected. Refers to the `id` column in the `activities` table, acting as a foreign key to the `activities` table.',
   },
   {
     property: 'value_raw',
     type: 'STRING',
-    description: 'Serialised value of the data point.',
+    description: 'Serialised value of the data point. Better to use type dedicated columns.',
   },
   {
     property: 'value_boolean',
@@ -63,9 +63,29 @@ export const data_points: BQTableType = [
       'Primitive type of the value before serialisation (boolean, date, number, string).',
   },
   {
+    property: 'label',
+    type: 'STRING',
+    description: 'Descriptive label associated with the value, providing a human-readable description. Example: for value_numeric 0, the label might be "Female" or "Ocassionally". Especially useful for data points collected in a form.',
+  },
+  {
+    property: 'value_type',
+    type: 'STRING',
+    description: 'Primitive type of the value before serialisation (boolean, date, number, string, numbers_array).',
+  },
+  {
     property: 'date',
     type: 'TIMESTAMP',
-    description: 'Collection date (UTC).',
+    description: 'Data point collection time (UTC Timestamp).',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description: '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
+  },
+  {
+    property: 'status',
+    type: 'STRING',
+    description: '[IRRELEVANT FOR ANALYSIS] It will always be `created` indicating collection of a data point.',
   },
 ]
 
@@ -73,37 +93,55 @@ export const data_point_definitions: BQTableType = [
   {
     property: 'id',
     type: 'STRING',
-    description: 'Unique identifier.',
+    description: 'Unique identifier. Not to be used as foreign key when joining with other tables.',
   },
   {
     property: 'definition_id',
     type: 'STRING',
     description:
-      'Version agnostic identifier.',
+      'Version agnostic identifier of designed data point.',
   },
   {
     property: 'release_id',
     type: 'STRING',
     description:
-      'Identifier of the published version of the care flow definition.',
+      'An internal identifier for the published version_number of the care flow definition. Refers to the `release_id` in the `published_careflows` table.',
+  },
+  {
+    property: 'source_definition_id',
+    type: 'STRING',
+    description:
+      '',
   },
   {
     property: 'category',
     type: 'STRING',
     description:
-      'Identifies how the data point is collected. Examples: `form`, `calculation`.',
+      'Identifies how/where the data point is collected. Examples: `form`, `calculation`, `step`.',
   },
   {
     property: 'key',
     type: 'STRING',
     description:
-      'Human readable qualified key which defines the meaning of the collected data.',
+      'Human readable qualified key which defines the meaning of the collected data. It is usually formed with a dot notation of category name and data point name. The naming convention may vary (e.g., snake_case, camelCase, ...). Example: Email.CompletionDate',
+  },
+  {
+    property: 'options',
+    type: 'RECORD',
+    description:
+      'Nested field with an array of objects, each representing a valid option with value and label. Example: "value": "1", "label": "Yes", "value": "0", "label": "No" .',
   },
   {
     property: 'value_type',
     type: 'STRING',
     description:
-      'Expected primitive type for the collected data (boolean, date, number, string).',
+      'The expected primitive type for the collected data (boolean, date, number, string, numbers_array).',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description:
+      '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
   },
 ]
 
@@ -116,49 +154,55 @@ export const care_flows: BQTableType = [
   {
     property: 'patient_id',
     type: 'STRING',
-    description: 'Identifier of the patient enrolled in that care flow. Refers to the `id` column in the `patients` table.',
+    description: 'Identifier of the patient enrolled in the care flow. Refers to the `id` column in the `patients` table, serving as a foreign key to the `patients` table.',
   },
   {
     property: 'definition_id',
     type: 'STRING',
     description:
-      'Identifier of the care flow definition the related care flow was instantiated from.',
-  },
-  {
-    property: 'release_id',
-    type: 'STRING',
-    description:
-      'Identifier of the published version of the care flow definition.',
+      'Identifier of the care flow definition (designed care flow template) from which the care flow was instantiated. Refers to the `definition_id` in the `published_careflows` table, serving as a foreign key, together with `release_id` for connecting to the proper care flow definition.',
   },
   {
     property: 'title',
     type: 'STRING',
     description:
-      'Title of the care fow definition.',
+      'Title (Name) of the care flow definition.',
+  },
+  {
+    property: 'release_id',
+    type: 'STRING',
+    description:
+      'An internal identifier for the published version_number of the care flow definition. Refers to the `release_id` in the `published_careflows` table, serving as a foreign key, together with `definition_id` for connecting to the proper care flow definition.',
   },
   {
     property: 'status',
     type: 'STRING',
     description:
-      'Status of the care flow. One of `starting`, `active`, `stopped`, `completed`.',
+      'Current care flow status. Possible values: `active`, `stopped`, `completed`, `missing_baseline_info`',
   },
   {
     property: 'start_date',
     type: 'TIMESTAMP',
     description:
-      'Recorded start date of the care flow (UTC).',
+      'Recorded start date of the care flow (UTC). It is always available.',
   },
   {
     property: 'stop_date',
     type: 'TIMESTAMP',
     description:
-      'Recorded stop date of the care flow (UTC). Only populated for stopped care flows.',
+      'Recorded stop date of the care flow (UTC). Populated only for stopped flows, otherwise NULL.',
   },
   {
     property: 'complete_date',
     type: 'TIMESTAMP',
     description:
-      'Recorded completion date of the care flow (UTC). Only populated for completed care flows.',
+      'Recorded completion date of the care flow (UTC). Populated only for completed flows, otherwise NULL.',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description:
+      '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
   },
 ]
 
@@ -172,61 +216,108 @@ export const activities: BQTableType = [
     property: 'care_flow_id',
     type: 'STRING',
     description:
-      'Identifier of the care flow in which the data point was collected. Refers to the `id` column in the `care_flows` table.',
+      'Identifier of the care flow associated with the activity. Refers to the `id` column in the `care_flows` table, serving as a foreign key to the `care_flows` table.',
   },
   {
     property: 'care_flow_definition_id',
     type: 'STRING',
     description:
-      'Identifier of the care flow definition the related care flow was instantiated from.',
+      'Identifier of the care flow definition (designed care flow template) from which the care flow was instantiated. Refers to the `definition_id` in the `care_flows` table.',
   },
   {
     property: 'status',
     type: 'STRING',
     description:
-      'Activity status. One of: `active`, `done`, `failed`, `canceled`, `expired`.',
+      'The current activity status. One of: `active`, `done`, `failed`, `canceled`, `expired`. Status done indicates complete resolution of the activity, such as a sent message being read or a form being fully completed. Done refers to completed activity.',
+  },
+  {
+    property: 'resolution',
+    type: 'STRING',
+    description:
+      'An internal system status reflecting the outcome of executing the activity, indicating `success`, `failure` (e.g., if a plugin call fails), or `NULL` for activities yet to be resolved or not applicable.',
   },
   {
     property: 'date',
     type: 'TIMESTAMP',
     description:
-      'Creation date of the activity (UTC).',
+      'The creation date of the activity (UTC). Usually refers to start date.',
   },
   {
     property: 'scheduled_date',
     type: 'TIMESTAMP',
     description:
-      'Scheduled activation date of the activity (UTC).',
+      'The date when the scheduled activity is set to start (UTC). Relevant only for scheduled activities.',
   },
+  {
+    property: 'completion_date',
+    type: 'TIMESTAMP',
+    description:
+      'Completion date of `done` activities.',
+  },
+  {
+    property: 'action',
+    type: 'STRING',
+    description:
+      '',
+  },
+  {
+    property: 'action_component_name',
+    type: 'STRING',
+    description:
+      'The name of the action component holding the primary object, such as a message, form, api_call, calculation. In care flow design, this is typically referred to simply as an action.',
   {
     property: 'object_type',
     type: 'STRING',
     description:
-      'Type of object this activity relates to. Examples: `action`, `form`, `step`.',
+      'Type of primary object this activity relates to. Example values: action, api_call, calculation, form, message, pathway, plugin_action, reminder, step, track.',
   },
   {
     property: 'object_name',
     type: 'STRING',
     description:
-      'Name of the related object.',
+      'The name of the primary object the activity is associated with. For messages, this is the subject; for forms the form name.',
+  },
+  {
+    property: 'object_id',
+    type: 'STRING',
+    description:
+      'Id of the primary object.',
   },
   {
     property: 'indirect_object_type',
     type: 'STRING',
     description:
-      'Type of indirect object this activity relates to. Examples: `patient`, `stakeholder`.',
+      'Type of indirect/secondary object this activity relates to. Examples: `patient`, `stakeholder`, `plugin`.',
   },
   {
     property: 'indirect_object_name',
     type: 'STRING',
     description:
-      'Name of the related indirect object.',
+      'The name of the related indirect/secondary object the activity relates to. It points to who should engage with or is targeted by the activity. It could be a system (for example plugin name) or a human (for example care provider name).',
   },
   {
     property: 'step_name',
     type: 'STRING',
     description:
-      'Name of the step this activity belongs to.',
+      'Name of the step the activity belongs to. [IMPORTANT NOTE] Relevant only for activities within steps. If the `object_type` is step, this value will be NULL and step name will be in `object_name` field.',
+  },
+  {
+    property: 'track_name',
+    type: 'STRING',
+    description:
+      'Name of the track the activity belongs to. [IMPORTANT NOTE] Relevant only for activities within track. If the `object_type` is track, this value will be NULL and track name will be in `object_name` field.',
+  },
+  {
+    property: 'track_id',
+    type: 'STRING',
+    description:
+      'Identifier of the track the activity belongs to. [IMPORTANT NOTE] Relevant only for activities within track. If the `object_type` is track, this value will be NULL.',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description:
+      '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
   },
 ]
 
@@ -239,7 +330,18 @@ export const patients: BQTableType = [
   {
     property: 'profile_id',
     type: 'STRING',
-    description: 'Unique identifier of the associated profile. Refers to the `id` property in the `patient_profiles` table.',
+    description: 'Unique identifier of the associated patient profile. Acts as a foreign key referring to the id property in the patient_profiles table',
+  },
+  {
+    property: 'status',
+    type: 'STRING',
+    description: 'Indicates patient status within the system. Currently, `active_record` is the only available value, indicating that patient is present/not deleted.',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description:
+      '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
   },
 ]
 
@@ -250,6 +352,11 @@ export const patient_profiles: BQTableType = [
     description: 'Unique identifier.',
   },
   {
+    property: 'name',
+    type: 'STRING',
+    description: 'Concatenation of the first name and last name.',
+  },
+  {
     property: 'first_name',
     type: 'STRING',
     description: 'First name of the patient.',
@@ -258,11 +365,6 @@ export const patient_profiles: BQTableType = [
     property: 'last_name',
     type: 'STRING',
     description: 'Last name of the patient.',
-  },
-  {
-    property: 'name',
-    type: 'STRING',
-    description: 'Concatenation of the first name and last name.',
   },
   {
     property: 'email',
@@ -323,5 +425,16 @@ export const patient_profiles: BQTableType = [
     property: 'address_country',
     type: 'STRING',
     description: '',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description:
+      '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
+  },
+  {
+    property: 'status',
+    type: 'STRING',
+    description: 'Indicates patient status within the system. Currently, `active_record` is the only available value, indicating that patient is present/not deleted.',
   },
 ]
