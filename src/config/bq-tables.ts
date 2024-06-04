@@ -265,6 +265,7 @@ export const activities: BQTableType = [
     type: 'STRING',
     description:
       'The name of the action component holding the primary object, such as a message, form, api_call, calculation. In care flow design, this is typically referred to simply as an action.',
+  },
   {
     property: 'object_type',
     type: 'STRING',
