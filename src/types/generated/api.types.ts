@@ -16,6 +16,13 @@ export type Scalars = {
   SafeDate: { input: any; output: any; }
 };
 
+export type ActionComponent = {
+  __typename?: 'ActionComponent';
+  definition_id?: Maybe<Scalars['String']['output']>;
+  release_id?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 export type ActionPayload = Payload & {
   __typename?: 'ActionPayload';
   calculationId: Scalars['String']['output'];
@@ -48,6 +55,7 @@ export type ActivitiesPayload = PaginationAndSortingPayload & {
 export type Activity = {
   __typename?: 'Activity';
   action: ActivityAction;
+  action_component?: Maybe<ActionComponent>;
   container_name?: Maybe<Scalars['String']['output']>;
   context?: Maybe<PathwayContext>;
   date: Scalars['String']['output'];
@@ -855,6 +863,7 @@ export type HostedSessionPayload = Payload & {
   __typename?: 'HostedSessionPayload';
   branding?: Maybe<BrandingSettings>;
   code: Scalars['String']['output'];
+  metadata?: Maybe<SessionMetadata>;
   session: HostedSession;
   success: Scalars['Boolean']['output'];
 };
@@ -1955,6 +1964,12 @@ export type SearchPatientsPayload = Payload & {
   code: Scalars['String']['output'];
   patients: Array<User>;
   success: Scalars['Boolean']['output'];
+};
+
+export type SessionMetadata = {
+  __typename?: 'SessionMetadata';
+  pathway_definition_id?: Maybe<Scalars['String']['output']>;
+  tenant_id?: Maybe<Scalars['String']['output']>;
 };
 
 export enum Sex {
