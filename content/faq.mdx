@@ -196,16 +196,21 @@ showPlaygroundButton: false
       question:
         'Does the Awell Platform include any AI/LLM-enabled functionalities',
       answer:
-        'Yes. Shelly, Awell's CareOps Analytics buddy, is powered by the latest LLM models',
+        "Yes. Shelly, Awell's CareOps Analytics buddy, is powered by the latest LLM models",
     },
     {
       question:
         'What data does Awell share with LLMs',
-      answer: 'Shelly, Awell's CareOps Analytics buddy, has access to the data in Awell customers' tenants. However, we've taken several measures to avoid sharing PHI/PII. 1) Shelly does not have access to patient profile data. 2) We are de-anonymizing any PII that could be part of the care flow data by using an entity extraction model that is running locally on our infrastructure before sending the data to the LLM provider. 3) We have a zero retention policy on all data Shelly is sending to the LLM provider',
+      answer: `<p>Shelly, Awell's CareOps Analytics buddy, has access to the data in Awell customers' tenants. However, we've taken several measures to avoid sharing PHI/PII.</p>
+      <ol>
+        <li>Shelly does not have access to patient profile data.</li>
+        <li>We are de-anonymizing any PII that could be part of the care flow data by using an entity extraction model that is running locally on our infrastructure before sending the data to the LLM provider.</li>
+        <li>We have a zero retention policy on all data Shelly is sending to the LLM provider</li>
+      </ol>`,
     },
     {
       question:
-        'Did Awell sign a HIPAA Business Associate Agreement (BAA) with the LLM provider?',
+        "Did Awell sign a HIPAA Business Associate Agreement (BAA) with the LLM provider?",
       answer: 'Yes.',
     },
   ]}
