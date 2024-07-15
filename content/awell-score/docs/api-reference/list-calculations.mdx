@@ -12,13 +12,24 @@ description: Retrieve all calculations in Awell Score
   <span className="text-gray-600 dark:text-gray-300 font-semibold">{`/v1/calculations`}</span>
 </p>
 
+### Query parameters
+
+When querying the API to retrieve all calculations, the payload can be quite large because it includes their full schema. Typically, you only need the ID and name of each calculation. **Therefore, we recommend not fetching the full schema by using the query parameter provided below.** 
+
+<p>
+  <span className="pr-2 font-semibold text-sky-500 dark:text-sky-400">GET</span>
+  <span className="text-gray-600 dark:text-gray-300 font-semibold">{`/v1/calculations?include_schema=false`}</span>
+</p>
+
+If you need the schema for a specific calculation, you can retrieve it using the "[Get Calculation](https://developers.awellhealth.com/awell-score/docs/api-reference/get-calculation)" endpoint.
+
 ## Response
 
 ### HTTP 200
 
 When successful, the API will return a HTTP status code of 200 and in the response an array of calculations. The schema of the response can be found [here](https://score-api.awellhealth.com/v1/docs/#/).
 
-**Below you can find an example of a truncated response:**
+**Response with schemas:**
 
 ```json
 [
@@ -89,6 +100,20 @@ When successful, the API will return a HTTP status code of 200 and in the respon
       ]
     },
     "is_private": false
+  },
+  ...
+]
+```
+
+**Response without schemas:**
+
+```json
+[
+  {
+    "calculation_id": "bmi",
+    "calculation_name": {
+      "en": "BMI (metric)"
+    }
   },
   ...
 ]
