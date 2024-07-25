@@ -106,12 +106,22 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_ORCHESTRATION}/docs/data/overview-data`,
       },
       {
-        title: 'Webhooks & events',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/webhooks-and-events`,
+        title: 'BigQuery',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/bigquery`,
+        submenu: [
+          {
+            title: 'Getting access',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/data/bigquery/getting-access`,
+          },
+          {
+            title: 'Data schema',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/data/bigquery/data-schema`,
+          },
+        ],
       },
       {
-        title: 'Data Repository',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/data-repository`,
+        title: 'Webhooks & events',
+        path: `/${Space.AWELL_ORCHESTRATION}/docs/data/webhooks-and-events`,
       },
       {
         title: 'Healthcare interoperability',
