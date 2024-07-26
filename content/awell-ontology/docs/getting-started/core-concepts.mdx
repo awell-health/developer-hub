@@ -1,0 +1,34 @@
+---
+title: Core concepts
+description: What makes an Ontology ?
+---
+
+This page describes the major concepts related to the Ontology in Awell.
+
+## Resource
+
+A resource defines a specific behaviour in your care flows or a specific type of healthcare data.
+
+For example you may build a **Depression screener** care flow with an **Intake** track that includes a **Questionnaire** to be filled by the patient and computes a **PHQ-9** score. This would result in:
+- A top level **Depression screener** CareFlow resource
+- An **Intake** Track resource
+- A **Patient intake** Questionnaire resource
+- A **PHQ-9** Observation resource
+
+## Property
+
+A property defines a specific characteristic of a resource. It has a name which defines what that characteristic represents, and a value which defines what that characteristic is.
+
+TODO: add example.
+
+Some properties contain semantic information about a resource. This category of properties is referred to as a **Semantic Property**. For example the `title` property of a **CareFlow** usually describes the condition that the care flow aims to treat.
+
+Some properties contain values that can be used to drive the logic in a care flow or tailor its content. This category of properties is referred to as a **Value Property**. For example the `value` property of an **Observation** contains the result of the associated medical score which can be used to triage patients.
+
+## Data Store
+
+The collection of Resources that describes all the healthcare data available in your account. This evolves with the care flows that you build and the systems that you connect to Awell.
+
+## Data Lineage
+
+A visualisation that shows where the data comes from for a given **Resource**.
