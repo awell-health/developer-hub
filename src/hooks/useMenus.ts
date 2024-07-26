@@ -3,6 +3,7 @@ import {
   extensionsDeveloperToolsMenu,
   extensionsDocsMenu,
 } from '@/config/menus/awell-extensions'
+import { ontologyDocsMenu } from '@/config/menus/awell-ontology'
 import {
   orchestrationApiMenu,
   orchestrationDeveloperToolsMenu,
@@ -34,6 +35,7 @@ export const useMenus = (): useMenusHook => {
     ...extensionsApiMenu,
     ...extensionsDeveloperToolsMenu,
     ...scoreDocsMenu,
+    ...ontologyDocsMenu,
   ]
 
   /**
