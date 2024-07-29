@@ -18,12 +18,12 @@ export const docsMenu: MenuType = [
     ],
   },
   {
-    title: 'Patient demographic data',
-    path: `/${Space.AWELL_ONTOLOGY}/docs/patient-demographic-data/overview`,
+    title: 'Patient demographics data',
+    path: `/${Space.AWELL_ONTOLOGY}/docs/patient-demographics-data/overview`,
     submenu: [
       {
         title: 'Overview',
-        path: `/${Space.AWELL_ONTOLOGY}/docs/patient-demographic-data/overview`,
+        path: `/${Space.AWELL_ONTOLOGY}/docs/patient-demographics-data/overview`,
       },
     ],
   },
