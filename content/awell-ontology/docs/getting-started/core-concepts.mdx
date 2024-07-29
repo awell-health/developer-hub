@@ -19,11 +19,22 @@ For example you may build a **Depression screener** care flow with an **Intake**
 
 A property defines a specific characteristic of a resource. It has a name which defines what that characteristic represents, and a value which defines what that characteristic is.
 
-TODO: add example.
+Let's look at some properties for the **Observation** resource for example:
+- The `code` property defines what was observed using an external terminology system like LOINC or SNOMED CT.
+- The `value` property holds the actual result of the observation.
+- The `effective` property defines the clinically relevant time or period for the observation.
 
-Some properties contain semantic information about a resource. This category of properties is referred to as a **Semantic Property**. For example the `title` property of a **CareFlow** usually describes the condition that the care flow aims to treat.
+### Semantic properties
 
-Some properties contain values that can be used to drive the logic in a care flow or tailor its content. This category of properties is referred to as a **Value Property**. For example the `value` property of an **Observation** contains the result of the associated medical score which can be used to triage patients.
+Some properties contain semantic information about a resource. This category of properties is referred to as a **Semantic Property** and is mostly frequently used when you want to search for data when designing care flows.
+
+Let's say for example that you are building a care flow related to depression and want to create treatment activities that are relevant only for patients that are likely to be depressed. When you search for the term `depression` we can find the **PHQ-9** Observation thanks to its `code` property as it contains information about what the observation measures (Loinc 44249-1: "PHQ-9 quick depression assessment panel").
+
+### Actionable properties
+
+Some properties contain values that can be used to drive the logic in a care flow or tailor its content. This category of properties is referred to as an **Actionable Property**.
+
+Building up on the previous example, once you've identified that the **PHQ-9** observation has the information that you need, you can configure treatment activities that will only be activated when the observation `value` (Actionable Property of an Observation) is higher greater or equal to 10, which indicates a moderate or higher level of depression.
 
 ## Data Store
 
