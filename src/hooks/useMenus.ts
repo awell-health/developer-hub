@@ -13,7 +13,7 @@ import { scoreDocsMenu } from '@/config/menus/awell-score'
 import { studioDocsMenu } from '@/config/menus/awell-studio'
 import { BadgeType } from '@/types/menu.types'
 
-interface FlattenedMenuType {
+export interface FlattenedMenuType {
   title: string
   path?: string
   parentTitle?: string
