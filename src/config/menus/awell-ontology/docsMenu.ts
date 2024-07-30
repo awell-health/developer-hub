@@ -39,6 +39,10 @@ export const docsMenu: MenuType = [
         title: 'Overview',
         path: `/${Space.AWELL_ONTOLOGY}/docs/patient-demographics-data/overview`,
       },
+      {
+        title: 'Patient',
+        path: `/${Space.AWELL_ONTOLOGY}/docs/patient-demographics-data/patient`,
+      },
     ],
   },
   {
