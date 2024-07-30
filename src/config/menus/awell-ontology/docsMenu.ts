@@ -15,6 +15,20 @@ export const docsMenu: MenuType = [
         title: 'Core concepts',
         path: `/${Space.AWELL_ONTOLOGY}/docs/getting-started/core-concepts`,
       },
+      {
+        title: 'Design vs. Orchestration',
+        path: `/${Space.AWELL_ONTOLOGY}/docs/getting-started/design-vs-orchestration`,
+      },
+    ],
+  },
+  {
+    title: 'Care flow data',
+    path: `/${Space.AWELL_ONTOLOGY}/docs/care-flow-data/overview`,
+    submenu: [
+      {
+        title: 'Overview',
+        path: `/${Space.AWELL_ONTOLOGY}/docs/care-flow-data/overview`,
+      },
     ],
   },
   {
