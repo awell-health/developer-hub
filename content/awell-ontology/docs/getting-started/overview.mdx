@@ -5,7 +5,7 @@ description: What is the Awell Ontology?
 
 ## What is the Awell Ontology?
 
-With Awell you can design and orchestrate care flows that can be infinitely complex. In these care flows you can exchange and interpret data coming from multiple different systems. The Awell Ontology is an exhaustive and systematic documentation of all the objects you will use in your care flow designer journey, as well as their properties and how they relate to one another.
+Awell enables you to design and manage care flows with ease, integrating data from various systems effortlessly. The Awell Ontology serves as a comprehensive documentation, detailing all the objects you will use in your care flow design journey, their properties, and how they interconnect.
 
 <figure className="flex flex-col justify-center text-center">
   <a
@@ -24,15 +24,21 @@ With Awell you can design and orchestrate care flows that can be infinitely comp
 
 ## Why use a FHIR based ontology ?
 
-Our ontology is based on the FHIR framework in order to simplify the data exchange with other systems. As a side benefit it should feel familiar for anyone with a base level knowledge of FHIR.
+Our ontology is based on the FHIR framework as this is a widely-recognize standard in the healthcare industry. It facilitates data exchange between healthcare systems, ensuring interoperability and ease of integration.
 
-Imagine being able to use something like this to not just identify patient cohorts but also to use as a basis for designing and operating care flows:
+## What are the benefits of a FHIR based ontology ?
+
+There are two key benefits:
+- It simplifies the data exchange between systems
+- It helps translate clinical concepts into actionable care flow components
+
+Imagine for example being able to use something like this to not just identify patient cohorts but also to use as a basis for designing and operating care flows:
 
 > From the ADT feeds received in the last 3 days, start a follow-up care flow for every person taking sitagliptin with an A1C above 6.5 measured in the last 14 days even if they've never been diagnosed with diabetes.
 
-This illustrates the two key benefits of a FHIR based ontology:
-- It simplifies the data exchange between systems, so messages from an ADT feed can easily be converted into data that can be used in care flows.
-- It helps translate clinical concepts into actionable care flow components:
+This illustrates the power of the FHIR based ontology
+- Messages from an ADT feed can easily be converted into data that can be used in care flows.
+- Clinical concepts are translated into actionable care flow components:
   - A1C level is an **Observation** (already available in the Awell Ontology).
   - Sitagliptin is a medication (soon to be added as **MedicationRequest** and **MedicationDispense** resources in the Awell Ontology).
   - Diabetes is a **Diagnosis** (soon to be added in the Awell Ontology).
