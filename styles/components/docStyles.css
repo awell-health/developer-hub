@@ -81,7 +81,7 @@
   @apply mb-2 pl-2;
 }
 
-#content-wrapper ol:not(.code-block ol) li {
+#content-wrapper ol:not(.code-block ol) > li {
   counter-increment: step-counter;
   @apply relative pl-10;
 }

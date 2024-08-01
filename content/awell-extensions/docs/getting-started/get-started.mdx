@@ -11,7 +11,7 @@ There are two main reasons why you would want to build your own extension.
 
 ## Github repository
 
-Building an extension needs to be done via our `awell-extensions` repository. Check out the repository locally to start contributing and create your first extension!
+Building an extension needs to be done via our `awell-extensions` repository. Check out the repository locally to start contributing and create your first extension! If you're building a private extension, use your private repository.
 
 <a
   title="Open Github repo"
@@ -46,8 +46,27 @@ Building an extension needs to be done via our `awell-extensions` repository. Ch
 5. You have **Node.js installed**.
 6. You have a text editor installed, such as Visual Studio Code, Atom, Sublime Text, or Vim. If you're not sure which editor to use, we recommend [Visual Studio Code](https://code.visualstudio.com/).
 
+### Node
+
+The repository can run using Node.js versions below `20.6` (e.g., `20.5.1`). Versions `20.6` and above will cause an error with ESLint.
+
 ### Yarn
 
-Note that we use yarn PnP which might require additional configuration in your IDE to work properly. If you are using VSCode, use the workspace configuration provided in `.vscode/` and everything will be ready to go.
+Note that we use [yarn PnP](https://yarnpkg.com/features/pnp) which might require [additional configuration](https://yarnpkg.com/getting-started/editor-sdks) in your IDE to work properly. You can follow the installation instructions below to get the repository running locally.
 
 If you use a different IDE, check the yarn documentation for instructions on IDE setup.
+
+## Installation (VSCode)
+
+Follow the steps below to set up the extensions repository locally on your machine:
+
+1. Check out the repository locally
+2. Install the [ZipFS extension](https://marketplace.visualstudio.com/items?itemName=arcanis.vscode-zipfs) in VSCode
+3. Explicitly set the Typescript version in VSCode:
+    - Press `ctrl+shift+p` in a TypeScript file
+    - Choose "Select TypeScript Version"
+    - Pick "Use Workspace Version"
+
+You can validate you have a working set up by running `yarn test`, `yarn lint`, and `yarn build`.
+
+
