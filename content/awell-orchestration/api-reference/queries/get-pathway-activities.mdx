@@ -3,18 +3,33 @@ title: Get pathway activities
 description: Get all activities in a given pathway
 ---
 
-This query lets us fetch all of the pathway activities of any status for a specific orchestrated pathway, including system activities such as calculations or activations.
+This query fetches all of the pathway activities of any status for a specific orchestrated pathway, including system activities such as calculations or activations.
 
 > We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the activity model.
 
-## Request
-
-### Query
+## Query
 
 ```graphql
-query GetPathwayActivities($pathway_id: String!) {
-  pathwayActivities(pathway_id: $pathway_id) {
+query GetPathwayActivities(
+  $pathway_id: String!
+  $pagination: PaginationParams
+  $sorting: SortingParams
+) {
+  pathwayActivities(
+    pathway_id: $pathway_id
+    pagination: $pagination
+    sorting: $sorting
+  ) {
     success
+    pagination {
+      count
+      offset
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
     activities {
       id
       stream_id
@@ -45,11 +60,35 @@ query GetPathwayActivities($pathway_id: String!) {
 }
 ```
 
-### Variables
+## Variables
+
+### Required variables
+
+The `pathway_id` is a required input variable for this query.
 
 ```json
 {
-  "pathway_id": "{{PATIENT_PATHWAY_ID}}"
+  "pathway_id": "{{ PATIENT_PATHWAY_ID }}",
+}
+```
+
+### Pagination and sorting
+
+Pagination and sorting are optional for this query. If no pagination values are supplied, the API will return only the first 100 activities. There is an upper limit of 500 records per query. Please be aware that setting `count` greater than 500 will throw an error.
+
+Default sorting is based on the `date` field, in descending order (i.e. newest to oldest).
+
+```json
+{
+  "pathway_id": "{{ PATIENT_PATHWAY_ID }}",
+  "pagination": {
+    "offset": 0,
+    "count": 500
+  },
+  "sorting": {
+    "field": "date",
+    "direction": "desc"
+  }
 }
 ```
 
@@ -57,19 +96,20 @@ query GetPathwayActivities($pathway_id: String!) {
 
 ### Get all pending user activities
 
-**An orchesrated care flow consists of system activities and user actionable activities (forms, messages, checklists, ...).** System activities are activities related to the Orchestration of the care flow whereas user actionable activities are the actual activities a stakeholder (eg: patient) needs to interact with.
+**An orchesrated care flow consists of system activities and user activities (forms, messages, checklists, ...).** System activities are activities related to the Orchestration of the care flow whereas user activities are the actual activities a stakeholder (eg: patient) needs to interact with.
 
-In most cases, you're only interested in the user actionable activities which you can get by filtering the activities array by the `isUserActivity` field.
+In most cases, you're only interested in the user activities which you can get by filtering the activities array by the `isUserActivity` field.
 
 Additionally, you can filter the results by `status === 'ACTIVE'` to only get the pending activities.
 
 <Alert type="info">
-  <p>The query doesn't support server-side filtering yet so the filters have to be applied on the response of the query.</p>
+    The query doesn't support server-side filtering yet so the filters have to
+    be applied on the response of the query.
 </Alert>
 
 ### Filter activities by stakeholder
 
-User actionable activities need to be completed by a certain stakeholder. The stakeholder who needs to complete an activity is determined by the stakeholder you assigned to an action in Awell Studio. To get all pending activities for a given stakeholder, you can filter on the `activity.indirect_object.type` and the `activity.indirect_object.name` field.
+User activities need to be completed by a certain stakeholder. The stakeholder who needs to complete an activity is determined by the stakeholder you assigned to an action in Awell Studio. To get all pending activities for a given stakeholder, you can filter on the `activity.indirect_object.type` and the `activity.indirect_object.name` field.
 
 **Example:**<br/>
 If you'd like to get all pending activities for the patient, you can filter the activities array by `activity.indirect_object.type === PATIENT`.
