@@ -1,31 +1,32 @@
 ---
-title: Data repository
-description: Understand what is available in the data repository
+title: Data schema
+description: Learn more about the shape of your data like column names, data types, and other information. 
 ---
-
-## Understanding the data schema
 
 To use the data from the Awell platform, it's essential to understand some Awell terminology first.
 
 Below, we explain the terminology that you'll find back in the data schema. If you have any further questions about this, please contact your Awell Customer Success Manager.
 
-### Care flow definition vs Care flow
+## Terminology
+
+### Care flow definition vs care flow
 
 In the Awell domain, a care flow definition is a care flow template designed in the Awell Studio, representing the general structure and components of a care plan without being tied to any specific patient.
 
 A care flow on the other hand is a patient-specific instance derived from a care flow definition that tracks and manages an individual patient's care journey. For example, if you created the care flow definition "post-operative follow-up" in Awell Studio, all your patients that get included in this care flow definition will have an individual care flow.
 
-### Data point definition vs Data point
+### Data point definition vs data point
 
 Similar to care flow definitions and care flows, a data point definition is a care flow component as designed in Awell Studio while a data point is the patient-specific instance of that data point definition. For example, if you collect the weight of a patient in a care flow, the data point for a specific patient could be 80 kg (or 176lbs).
 
 ### Data point keys
 
 To avoid having to work with randomly generated IDs for data point definitions, we allow users to define a human-readable identifier in Awell Studio for all data point definitions. In the data repository, we combine this human-readable identifier with the source to form a 'key'. Let's imagine that you are building a patient form to collect the patient's weight and height, with the intent of calculating a BMI score. You set the form key to <em>bmi</em>, and set the question keys to <em>height</em> and <em>weight</em> respectively. This will result in data point definitions with the following keys:
+
 - <em>bmi.height</em> contains the answer to the <em>height</em> question in the <em>bmi</em> form
 - <em>bmi.weight</em> contains the answer to the <em>weight</em> question in the <em>bmi</em> form
 
-### Release vs. Version
+### Release vs. version
 
 In Awell Studio you can see the list of published versions for a given care flow definition with an auto incremented version number. This version number is only used for display purposes. Behind the scenes we assign a unique release identifier to each published version, which you can retrieve through the [Get published pathway definitions query](/awell-orchestration/api-reference/queries/get-published-pathways).
 
@@ -105,7 +106,3 @@ Table name: `patients`
 Table name: `patient_profiles`
 
 <PatientProfileTableSpecs />
-
-## Getting access to your dataset
-
-You need a service account to access your Big Query dataset. Please contact your Awell Customer Success Manager to receive your account details. 
