@@ -27,6 +27,7 @@ interface useMenusHook {
 
 export const useMenus = (): useMenusHook => {
   const menus = [
+    ...ontologyDocsMenu,
     ...studioDocsMenu,
     ...orchestrationDocsMenu,
     ...orchestrationApiMenu,
@@ -35,7 +36,6 @@ export const useMenus = (): useMenusHook => {
     ...extensionsApiMenu,
     ...extensionsDeveloperToolsMenu,
     ...scoreDocsMenu,
-    ...ontologyDocsMenu,
   ]
 
   /**

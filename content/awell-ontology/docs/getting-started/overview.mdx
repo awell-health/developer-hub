@@ -3,9 +3,11 @@ title: Introduction
 description: What is the Awell Ontology?
 ---
 
-## What is the Awell Ontology?
+An ontology enables the classification and organization of information. For Awell specifically, it defines the various components and relationships within the healthcare ecosystem. **It serves as a comprehensive semantic and operational layer that overlays your data.**
 
-Awell enables you to design and manage care flows with ease, integrating data from various systems effortlessly. The Awell Ontology serves as a comprehensive documentation, detailing all the objects you will use in your care flow design journey, their properties, and how they interconnect.
+## Ontology at Awell
+
+Awell enables you to design and operate care flows with ease, integrating data from various systems effortlessly. The Awell Ontology serves as a comprehensive documentation, detailing all the objects you will use in your care flow design journey, their properties, and how they interconnect.
 
 <figure className="flex flex-col justify-center text-center">
   <a
@@ -22,17 +24,18 @@ Awell enables you to design and manage care flows with ease, integrating data fr
   <figcaption className="dark:text-slate-400 pt-1">Awell Ontology diagram</figcaption>
 </figure>
 
-## Why use a FHIR based ontology ?
+## FHIR-based Ontology
 
-Our ontology is based on the FHIR framework as this is a widely-recognize standard in the healthcare industry. It facilitates data exchange between healthcare systems, ensuring interoperability and ease of integration.
+Our ontology is based on the [FHIR framework](https://hl7.org/fhir/) as this is a widely-recognize standard in the healthcare industry. It facilitates data exchange between healthcare systems, ensuring interoperability and ease of integration.
 
-## What are the benefits of a FHIR based ontology ?
+### Benefits
 
-There are two key benefits:
-- It simplifies the data exchange between systems
-- It helps translate clinical concepts into actionable care flow components
+**There are two key benefits:**
 
-Imagine for example being able to use something like this to not just identify patient cohorts but also to use as a basis for designing and operating care flows:
+1. It simplifies the data exchange between systems
+2. It helps translate clinical concepts into actionable care flow components
+
+Imagine being able to use something like this to not just identify patient cohorts but also to use as a basis for designing and operating care flows:
 
 > From the ADT feeds received in the last 3 days, start a follow-up care flow for every person taking sitagliptin with an A1C above 6.5 measured in the last 14 days even if they've never been diagnosed with diabetes.
 
