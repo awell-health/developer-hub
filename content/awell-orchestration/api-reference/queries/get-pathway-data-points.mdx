@@ -1,0 +1,84 @@
+---
+title: Get Pathway Data Points
+description: Get data points from a care flow.
+---
+
+## Request
+
+Fetch data points from a care flow.
+
+While the ID of the care flow (`pathway_id`) is mandatory, the `data_point_definition_id` and `activity_id` are optional.
+
+### Query
+
+```graphql
+query GetPathwayDataPoints(
+  $pathway_id: String!
+  $data_point_definition_id: String
+  $activity_id: String
+) {
+  pathwayDataPoints(
+    pathway_id: $pathway_id
+    data_point_definition_id: $data_point_definition_id
+    activity_id: $activity_id
+  ) {
+    data_points {
+      id
+      data_set_id
+      serialized_value
+      data_point_definition_id
+      date
+      valueType
+      activity_id
+    }
+  }
+}
+```
+
+### Variables
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `pathway_id` | `String!` | The instance of the care flow to fetch data points from. |
+| `data_point_definition_id` | `String` | The ID of the data point definition to filter the data points by. |
+| `activity_id` | `String` | The ID of the activity to filter the data points by. |
+
+### Use cases
+
+#### Fetching all data points from a care flow
+    
+```json
+{
+    "pathway_id": "{{ PATHWAY_ID }}"
+}
+```
+
+Fetch all pathway data points from a care flow. These will be sorted by date in descending order, by default.
+
+---
+
+#### Fetch data points from a specific activity
+
+
+```json
+{
+    "pathway_id": "my_pathway_id",
+    "activity_id": "my_activity_id"
+}
+```
+Another common use case would be to see all data points returned from a given activity (e.g. a form submission or an extension activity)
+
+---
+
+#### Fetch data points from a specific data point definition
+
+
+```json
+{
+    "pathway_id": "my_pathway_id",
+    "data_point_definition_id": "my_data_point_definition_id"
+}
+```
+
+Finally, another use case would be to see all data points returned from a specific data point definition (e.g. a blood pressure measurement or a PROM, collected multiple times over a period of time)
+
