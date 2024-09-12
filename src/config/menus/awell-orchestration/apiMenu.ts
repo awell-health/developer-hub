@@ -89,6 +89,11 @@ export const apiMenu: MenuType = [
         badge: badges.pathway,
       },
       {
+        title: 'Get pathway data points',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-pathway-data-points`,
+        badge: badges.pathway,
+      },
+      {
         title: 'Get pathway elements',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/queries/get-pathway-elements`,
         badge: badges.pathway,
