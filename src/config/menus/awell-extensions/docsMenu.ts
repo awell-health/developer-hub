@@ -54,8 +54,12 @@ export const docsMenu: MenuType = [
             path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/action-fields`,
           },
           {
-            title: 'onActivityCreated',
+            title: 'onActivityCreated (deprecated)',
             path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/on-activity-created`,
+          },
+          {
+            title: 'onEvent',
+            path: `/${Space.AWELL_EXTENSIONS}/docs/custom-actions/development/on-event`,
           },
         ],
       },

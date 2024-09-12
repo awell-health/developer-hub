@@ -3,6 +3,8 @@ title: onActivityCreated function
 description: Define the logic of what needs to happen when your action is activated
 ---
 
+<Alert type="warning" title="hello"><p>the onActivityCreated function has been deprecated as of September 1, 2024. Please use the onEvent function.</p> </Alert>
+
 The `onActivityCreated` function is called whenever orchestration or design (preview) activates a Custom Action. It will publish a message that is received by the extension server, which automatically finds the right Custom Action and calls the `onActivityCreated` function defined in that action.
 
 <figure className="w-full flex flex-col justify-center text-center relative my-16">
