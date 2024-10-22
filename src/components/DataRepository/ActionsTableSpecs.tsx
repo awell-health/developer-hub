@@ -1,6 +1,6 @@
 import { actions } from '@/config/bq-tables'
 
-export const ActionTableSpecs = () => {
+export const ActionsTableSpecs = () => {
   return (
     <div className="flex flex-col">
       <table className="table-fixed ignore-default-style divide-y divide-slate-300 dark:divide-slate-500">

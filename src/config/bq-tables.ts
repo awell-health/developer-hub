@@ -456,7 +456,7 @@ export const actions: BQTableType = [
   {
     property: 'object_name',
     type: 'STRING',
-    description: 'Name of the primary object associated with the action.',
+    description: 'Name of the primary object associated with the action (e.g., form name).',
   },
   {
     property: 'definition_id',
@@ -537,6 +537,127 @@ export const actions: BQTableType = [
     property: 'status',
     type: 'STRING',
     description: 'Current status of the action. Possible values: `active`, `done`, `canceled`, `expired`, `deleted`, or other statuses derived from actions.',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description: '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
+  },
+]
+
+export const steps: BQTableType = [
+  {
+    property: 'id',
+    type: 'STRING',
+    description: 'Unique identifier of the step.',
+  },
+  {
+    property: 'name',
+    type: 'STRING',
+    description: 'Name of the step.',
+  },
+  {
+    property: 'definition_id',
+    type: 'STRING',
+    description: 'Identifier of the step definition (template) from which the step was instantiated.',
+  },
+  {
+    property: 'care_flow_definition_id',
+    type: 'STRING',
+    description: 'Identifier of the care flow definition associated with the step. Refers to the `definition_id` in the `care_flows` table.',
+  },
+  {
+    property: 'care_flow_id',
+    type: 'STRING',
+    description: 'Identifier of the care flow in which the step exists. Refers to the `id` column in the `care_flows` table, serving as a foreign key.',
+  },
+  {
+    property: 'track_id',
+    type: 'STRING',
+    description: 'Identifier of the track the step belongs to. Refers to the `id` column in the `tracks` table.',
+  },
+  {
+    property: 'started_at',
+    type: 'TIMESTAMP',
+    description: 'Timestamp indicating when the step was started (UTC).',
+  },
+  {
+    property: 'completed_at',
+    type: 'TIMESTAMP',
+    description: 'Timestamp indicating when the step was completed (UTC). Null if the step is not completed.',
+  },
+  {
+    property: 'duration_in_seconds',
+    type: 'INTEGER',
+    description: 'Duration of the step in seconds, calculated as the difference between `completed_at` and `started_at`. Zero if negative or not applicable.',
+  },
+  {
+    property: 'scheduled_at',
+    type: 'TIMESTAMP',
+    description: 'The date and time when the step is scheduled to start (UTC). Relevant only for scheduled steps.',
+  },
+  {
+    property: 'status',
+    type: 'STRING',
+    description: 'Current status of the step. Possible values: `active`, `completed`, `stopped`, `deleted`, or other statuses derived from actions.',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description: '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
+  },
+]
+
+export const tracks: BQTableType = [
+  {
+    property: 'id',
+    type: 'STRING',
+    description: 'Unique identifier of the track.',
+  },
+  {
+    property: 'name',
+    type: 'STRING',
+    description: 'Name of the track.',
+  },
+  {
+    property: 'definition_id',
+    type: 'STRING',
+    description: 'Identifier of the track definition (template) from which the track was instantiated.',
+  },
+  {
+    property: 'care_flow_definition_id',
+    type: 'STRING',
+    description: 'Identifier of the care flow definition associated with the track. Refers to the `definition_id` in the `care_flows` table.',
+  },
+  {
+    property: 'care_flow_id',
+    type: 'STRING',
+    description: 'Identifier of the care flow in which the track exists. Refers to the `id` column in the `care_flows` table, serving as a foreign key.',
+  },
+  {
+    property: 'started_at',
+    type: 'TIMESTAMP',
+    description: 'Timestamp indicating when the track was started (UTC).',
+  },
+  {
+    property: 'completed_at',
+    type: 'TIMESTAMP',
+    description: 'Timestamp indicating when the track was completed (UTC). Null if the track is not completed.',
+  },
+  {
+    property: 'duration_in_seconds',
+    type: 'INTEGER',
+    description: 'Duration of the track in seconds, calculated as the difference between `completed_at` and `started_at`. Zero if negative or not applicable.',
+  },
+  {
+    property: 'scheduled_at',
+    type: 'TIMESTAMP',
+    description: 'The date and time when the track is scheduled to start (UTC). Relevant only for scheduled steps.',
+  },
+  {
+    property: 'status',
+    type: 'STRING',
+    description: 'Current status of the track. Possible values: `active`, `completed`, `stopped`, `deleted`, or other statuses derived from actions.',
   },
   {
     property: 'last_synced_at',
