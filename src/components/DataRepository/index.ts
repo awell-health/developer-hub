@@ -1,5 +1,7 @@
 export * from './ActivityIndexSpecs'
 export * from './ActivityTableSpecs'
+export * from './ActionIndexSpecs'
+export * from './ActionTableSpecs'
 export * from './CareFlowTableSpecs'
 export * from './DataPointDefinitionTableSpecs'
 export * from './DataPointIndexSpecs'
