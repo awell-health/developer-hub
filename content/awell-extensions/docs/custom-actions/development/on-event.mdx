@@ -1,0 +1,166 @@
+---
+title: onEvent function
+description: Define the logic of what needs to happen when your action is activated
+---
+
+<Alert type="warning" title="hello"><p>this function replaces the [onActivityCreated function](./on-activity-created.mdx), which has been deprecated as of September 1, 2024.</p> </Alert>
+
+The `onEvent` function is called whenever orchestration or design (preview) activates a Custom Action. It will publish a message that is received by the extension server, which automatically finds the right Custom Action and calls the `onEvent` function defined in that action.
+
+<figure className="w-full flex flex-col justify-center text-center relative my-16">
+  <div className="bg-white w-full mx-auto rounded-md dark:p-4 mx-auto">
+    <a
+      href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1726108352/onEvent_imeurk.svg"
+      target="_blank"
+      title="onEvent with callbacks"
+    >
+      <img
+        src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1726108352/onEvent_imeurk.svg"
+        alt="onEvent with callbacks"
+      />
+    </a>
+  </div>
+</figure>
+
+**The `onEvent` function has a couple of parameters that will be useful when developing an extension:**
+
+1. **Payload:** not only gives you access to the values of your extension settings and action fields but also to patient and pathway-related data.
+2. **Callbacks:** they allow you to communicate with the Design (preview) or Orchestration engine and delegate back control to them. An extension should either call the `onComplete` or `onError` function.
+
+```javascript
+export const myAction = {
+    ...,
+  onEvent: async ({payload, onComplete, onError, helpers}) => {
+    // Do something here
+  },
+}
+```
+
+## Payload
+
+The payload allows you to access the values of your extension settings, action fields, and patient data.
+
+```javascript
+export const myAction = {
+  onEvent: async ({payload}) => {
+    const {
+      patient, // access patient profile data for patient enrolled in pathway the activity is related to
+      fields, // access the values of your action fields
+      settings, // access the values of your extension settings
+    } = payload
+
+    // Do something
+  },
+}
+```
+
+## onComplete callback
+
+The `onComplete` callback can be called to confirm your activity has been completed and can be called with the following (optional) parameters:
+
+- **Data points:** allows you to ingest values in the pathway through data points which can then be used by the pathway builder for conditional logic, variables, and more.
+- **Events:** activity events can be used to provide more granular info on what the extension does. These events will be displayed under the "updates" tab in Awell Studio & Awell Care.
+
+```javascript
+export const myAction = {
+  onEvent: async (payload, onComplete) => {
+    const randomNumber = Math.random()
+
+    await onComplete({
+      data_points: {
+        // Will create a "randomNumber" data point in the pathway and assign
+        // the randomly generated number as the value
+        randomNumber,
+      },
+      events: [
+        {
+          date: new Date().toISOString(),
+          text: { en: 'Successfully generated a random number' },
+        },
+      ],
+    })
+  },
+}
+```
+
+Important: If you do **not** call the `onComplete` function, the activity will not be completed by the extension server. However, the activity can still be completed elsewhere (e.g. [Awell Hosted Pages](https://github.com/awell-health/hosted-pages)) by calling the `completeExtensionActivity` mutation.
+
+## onError callback
+
+The `onError` callback can be called to let Awell know something went wrong with running your extension code.
+
+**An activity that calls `onError` will still be completed, however the "resolution" of the activity will be marked as "failed".**
+
+The function can be called with the following (optional) parameter:
+
+- **Events:** activity events can be used to provide more granular info on what the extension does. These events will be displayed under the "updates" tab in Awell Studio & Awell Care.
+
+```javascript
+export const myAction = {
+  onEvent: async (payload, onComplete, onError) => {
+    try {
+      // Connect to external API
+    } catch {
+      await onError({
+        events: [
+          {
+            date: new Date().toISOString(),
+            text: { en: "Couldn't connect to the external API" },
+            error: {
+              category: 'CONNECTION_ERROR',
+              message: "Couldn't connect to the external API",
+            },
+          },
+        ],
+      })
+    }
+
+    await onComplete()
+  },
+}
+```
+
+## helpers
+
+The helpers object contains useful functions that can be used in your extension. The following functions are available:
+- httpsAgent: a function returns an https agent that can be used to make requests to external APIs using the mTLS protocol.
+```javascript
+export const myAction = {
+  onEvent: async ({ payload, helpers: { httpsAgent } }) => {
+    await axios.post<{
+      data_points: any
+      events: any
+      response: 'success' | 'failure'
+    }>(
+      `${settings.url}`,
+      {
+        headers: { 'Content-Type': 'application/json' },
+        httpsAgent: httpsAgent(),
+      }
+    )
+  },
+}
+```
+
+- awellSdk: a promise that resolves to the Awell SDK. The Awell SDK can be used to interact with the Awell API using an API key from your tenant. If you do not already have an API key, calling this function will generate one for you.
+
+```javascript
+export const myAction = {
+  onEvent: async ({ payload, helpers: { awellSdk } }) => {
+    const awellSdk = await awellSdk()
+    const { data } = await awellSdk.orchestration.mutation({
+        startPathway: {
+            __args: {
+                pathway_definition_id: 'asdf',
+                patient_id: 'asdf',
+            }
+            code: true,
+            success: true,
+            pathway_id: true
+        }
+    })
+  },
+}
+```
+
+Have an idea for something to make your extension-building life easier? Let us know!
