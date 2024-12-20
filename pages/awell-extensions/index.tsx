@@ -78,6 +78,12 @@ export default function Extensions() {
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
+                  className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 p-3.5 dark:bg-white dark:p-3.5 dark:rounded"
+                  src="https://www.astranahealth.com/wp-content/uploads/2024/02/Astrana_Logo_250px_space_around-1024x201.png"
+                  alt="Astrana Health"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
                   src="https://cdn.shopify.com/s/files/1/0342/7850/6631/t/17/assets/logo.svg?v=3128126792532175881646291453"
                   alt="Better Health"
