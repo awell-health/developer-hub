@@ -138,7 +138,7 @@ export const docsMenu: MenuType = [
         path: `/${Space.AWELL_ORCHESTRATION}/docs/going-live/preflight-checklist`,
       },
       {
-        title: 'Sandbox to production promotion guide',
+        title: 'Promotion guide',
         path: `/${Space.AWELL_ORCHESTRATION}/docs/going-live/sandbox-to-production-promotion-guide`,
       },
     ],

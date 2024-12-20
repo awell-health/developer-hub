@@ -3,14 +3,14 @@ title: Action fields
 description: Learn more about action fields that determine how a user can configure your action in Awell Studio
 ---
 
-**When an action is added by a user in Awell Studio, they can configure the action through the UI.** As an extension developer, you can decide what fields a user needs to configure in order to use your action. **Every action can have none, one, or many action fields.**
+**When a user adds an action in Awell Studio, they can configure it based on their needs.** As an extension developer, you define the fields that users must configure to use your action. Each action can have no fields, a single field, or multiple fields, depending on its requirements.
 
 <figure className="w-full flex flex-col justify-center text-center relative">
   <div className="bg-[#F0F6FF] p-12 w-full sm:w-8/12 sm:p-4 mx-auto rounded-md">
     <a
       href="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678703642/Developer%20portal/Action_Fields.png"
       target="_blank"
-      title="Action vs. Activity"
+      title="Action fields"
     >
       <img
         src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1678703642/Developer%20portal/Action_Fields.png"
@@ -163,6 +163,29 @@ const jsonField = {
 }
 ```
 
+## Use dropdowns
+
+Both the `string` and `numeric` field types support dropdowns, which are rendered as a Select input in Awell Studio. Handy if you want to limit the options a user can choose from.
+
+```javascript
+const stringField = {
+    ...,
+    type: 'string',
+    options: {
+      dropdownOptions: [
+        {
+          value: 'option_1',
+          label: 'Option 1',
+        },
+        {
+          value: 'option_2',
+          label: 'Option 2',
+        }
+      ]
+    }
+}
+```
+
 ## Example
 
 ```typescript
@@ -179,6 +202,17 @@ const fields = {
     label: 'Content',
     type: 'text',
     required: true,
+  },
+  status: {
+    id: 'status',
+    label: 'Status',
+    type: 'string',
+    options: {
+      dropdownOptions: [
+        { value: 'active', label: 'Active' },
+        { value: 'inactive', label: 'Inactive' },
+      ],
+    },
   },
 } satisfies Record<string, Field>
 

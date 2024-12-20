@@ -55,9 +55,9 @@ description: Add a Custom Action to your extension
       required: true,
     },
     {
-      key: 'onActivityCreated',
+      key: 'onEvent',
       description:
-        'When your action is activated, the Awell system publishes a message that is received by the extension server, which will call the `onActivityCreated` function defined in your action. In this function you will write the logic to handle what needs to happen when your action is activated. Learn more about the `onActivityCreated` function <a href="/awell-extensions/docs/custom-actions/development/on-activity-created">here</a>.',
+        'When your action is activated, the Awell system publishes a message that is received by the extension server, which will call the `onEvent` function defined in your action. In this function you will write the logic to handle what needs to happen when your action is activated. Learn more about the `onEvent` function <a href="/awell-extensions/docs/custom-actions/development/on-event">here</a>.',
       type: 'function',
       required: true,
     },
@@ -88,7 +88,7 @@ export const myFirstAction: Action<typeof fields, typeof settings> = {
   title: 'Log Your Name',
   fields: actionFields,
   previewable: true,
-  onActivityCreated: async (payload, onComplete): Promise<void> => {
+  onEvent: async ({ payload, onComplete, onError, helpers }): Promise<void> => {
     const { activity, fields, settings } = payload
     console.log('My name is:' + fields.name)
     await onComplete()

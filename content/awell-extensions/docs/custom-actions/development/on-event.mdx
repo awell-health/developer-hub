@@ -3,8 +3,6 @@ title: onEvent function
 description: Define the logic of what needs to happen when your action is activated
 ---
 
-<Alert type="warning" title="hello"><p>this function replaces the [onActivityCreated function](./on-activity-created.mdx), which has been deprecated as of September 1, 2024.</p> </Alert>
-
 The `onEvent` function is called whenever orchestration or design (preview) activates a Custom Action. It will publish a message that is received by the extension server, which automatically finds the right Custom Action and calls the `onEvent` function defined in that action.
 
 <figure className="w-full flex flex-col justify-center text-center relative my-16">
@@ -44,7 +42,7 @@ The payload allows you to access the values of your extension settings, action f
 export const myAction = {
   onEvent: async ({payload}) => {
     const {
-      patient, // access patient profile data for patient enrolled in pathway the activity is related to
+      patient, // access patient profile data
       fields, // access the values of your action fields
       settings, // access the values of your extension settings
     } = payload
@@ -68,8 +66,8 @@ export const myAction = {
 
     await onComplete({
       data_points: {
-        // Will create a "randomNumber" data point in the pathway and assign
-        // the randomly generated number as the value
+        // Will create a "randomNumber" data point in the pathway 
+        // and assign the randomly generated number as the value
         randomNumber,
       },
       events: [
@@ -120,10 +118,14 @@ export const myAction = {
 }
 ```
 
-## helpers
+## Helpers
 
 The helpers object contains useful functions that can be used in your extension. The following functions are available:
-- httpsAgent: a function returns an https agent that can be used to make requests to external APIs using the mTLS protocol.
+
+### httpsAgent
+
+A function returns an https agent that can be used to make requests to external APIs using the mTLS protocol.
+
 ```javascript
 export const myAction = {
   onEvent: async ({ payload, helpers: { httpsAgent } }) => {
@@ -142,7 +144,9 @@ export const myAction = {
 }
 ```
 
-- awellSdk: a promise that resolves to the Awell SDK. The Awell SDK can be used to interact with the Awell API using an API key from your tenant. If you do not already have an API key, calling this function will generate one for you.
+### AwellSdk
+
+A promise that resolves to the Awell SDK. The Awell SDK can be used to interact with the Awell API using an API key from your tenant. If you do not already have an API key, calling this function will generate one for you.
 
 ```javascript
 export const myAction = {
