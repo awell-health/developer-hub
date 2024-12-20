@@ -78,9 +78,9 @@ export default function Extensions() {
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1 bg-slate-800 rounded p-2 dark:bg-transparent dark:p-2 dark:rounded-none"
-                  src="https://commonsclinic.com/images/logos/commons-logo-light.svg"
-                  alt="Commons Clinic"
+                  className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
+                  src="https://www.astranahealth.com/wp-content/uploads/2024/02/Astrana_Logo_250px_space_around-1024x201.png"
+                  alt="Astrana Health"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
