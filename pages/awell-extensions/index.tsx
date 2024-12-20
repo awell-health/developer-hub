@@ -78,12 +78,6 @@ export default function Extensions() {
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1 bg-slate-800 rounded p-2 dark:bg-transparent dark:p-2 dark:rounded-none"
-                  src="https://commonsclinic.com/images/logos/commons-logo-light.svg"
-                  alt="Commons Clinic"
-                />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
                   className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1 dark:bg-white dark:p-1 dark:rounded"
                   src="https://cdn.shopify.com/s/files/1/0342/7850/6631/t/17/assets/logo.svg?v=3128126792532175881646291453"
                   alt="Better Health"
