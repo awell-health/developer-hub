@@ -1,7 +1,7 @@
 /* eslint-disable simple-import-sort/imports */
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { GraphQLSchema } from 'graphql'
+import { GraphQLSchema, lexicographicSortSchema } from 'graphql'
 import { createGraphiQLFetcher } from '@graphiql/toolkit'
 
 import 'graphiql/graphiql.css'
@@ -22,7 +22,7 @@ const GraphiQLWithNoSSR = dynamic(
         schema: GraphQLSchema | undefined
       }) => (
         <mod.GraphiQL
-          schema={schema}
+          schema={lexicographicSortSchema(schema as GraphQLSchema)}
           fetcher={fetcher}
           defaultQuery={defaultQuery}
           headers={JSON.stringify({ apiKey: 'YOUR-API-KEY-HERE' })}

@@ -196,6 +196,13 @@ export type ActivityTrack = {
   title: Scalars['String']['output'];
 };
 
+export type ActivityTypesPayload = Payload & {
+  __typename?: 'ActivityTypesPayload';
+  activityTypes: Array<Scalars['String']['output']>;
+  code: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+};
+
 export type AddActivityMetadataInput = {
   activity_id: Scalars['String']['input'];
   metadata: Scalars['JSON']['input'];
@@ -612,6 +619,11 @@ export type DateFilter = {
   lte?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type DateRangeInput = {
+  from: Scalars['SafeDate']['input'];
+  to: Scalars['SafeDate']['input'];
+};
+
 export type DecisionOutputsPayload = Payload & {
   __typename?: 'DecisionOutputsPayload';
   code: Scalars['String']['output'];
@@ -782,6 +794,15 @@ export type FilterActivitiesParams = {
   pathway_status?: InputMaybe<StringArrayFilter>;
   patient_id?: InputMaybe<TextFilterEquals>;
   stakeholders?: InputMaybe<StringArrayFilter>;
+};
+
+export type FilterCareflowActivitiesParams = {
+  action?: InputMaybe<Array<Scalars['String']['input']>>;
+  activity_status?: InputMaybe<Array<Scalars['String']['input']>>;
+  activity_type?: InputMaybe<Array<Scalars['String']['input']>>;
+  date_range?: InputMaybe<DateRangeInput>;
+  hide_system_activities?: InputMaybe<Scalars['Boolean']['input']>;
+  stakeholders?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type FilterPathwayDataPointDefinitionsParams = {
@@ -1596,6 +1617,8 @@ export type Query = {
   baselineInfo: BaselineInfoPayload;
   calculationAction: ActionPayload;
   calculationResults: CalculationResultsPayload;
+  careflowActivities: ActivitiesPayload;
+  careflowActivityTypes: ActivityTypesPayload;
   checklist: ChecklistPayload;
   clinicalNote: ClinicalNotePayload;
   decisionOutputs: DecisionOutputsPayload;
@@ -1690,6 +1713,19 @@ export type QueryCalculationActionArgs = {
 export type QueryCalculationResultsArgs = {
   activity_id: Scalars['String']['input'];
   pathway_id: Scalars['String']['input'];
+};
+
+
+export type QueryCareflowActivitiesArgs = {
+  filters?: InputMaybe<FilterCareflowActivitiesParams>;
+  pagination?: InputMaybe<PaginationParams>;
+  pathway_id: Scalars['String']['input'];
+  sorting?: InputMaybe<SortingParams>;
+};
+
+
+export type QueryCareflowActivityTypesArgs = {
+  careflow_id: Scalars['String']['input'];
 };
 
 
