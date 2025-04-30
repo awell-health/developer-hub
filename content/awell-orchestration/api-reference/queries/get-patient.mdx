@@ -1,14 +1,12 @@
 ---
 title: Get patient
-description: Get a patient's profile
+description: Retrieve a patient from Awell
 ---
 
-**Within Awell, there are two methods to uniquely identify patients:**
+**To retrieve a single patient, there are two queries available:**
 
-1. By `ID` (the Awell patient ID) - This is mandatory, as each patient in Awell is assigned a unique ID.
-2. Through business `identifiers` - This is optional and consists of an array of unique system-value pairs, defined by you, that serve as business identifiers.
-
-Learn more about [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
+1. `patient`: Allows you to retrieve a patient by their Awell patient ID.
+2. `patientByIdentifier`: Allows you to retrieve a patient by a business identifier (system-value pair). Learn more about [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
 
 ## Request
 
