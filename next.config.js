@@ -22,8 +22,22 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/playground',
-        destination: '/awell-orchestration/developer-tools/api/playground',
+        source:
+          '/awell-orchestration/docs/going-live/sandbox-to-production-promotion-guide',
+        destination:
+          'https://help.awellhealth.com/en/articles/11104378-promotion-and-go-live',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/docs/going-live/preflight-checklist',
+        destination:
+          'https://help.awellhealth.com/en/articles/11104378-promotion-and-go-live',
+        permanent: true,
+      },
+      {
+        source: '/request-promotion',
+        destination:
+          'https://help.awellhealth.com/en/articles/11104378-promotion-and-go-live',
         permanent: true,
       },
       {
