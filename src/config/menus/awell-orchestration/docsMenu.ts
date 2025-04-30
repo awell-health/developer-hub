@@ -130,20 +130,6 @@ export const docsMenu: MenuType = [
     ],
   },
   {
-    title: 'Going live',
-    path: `/${Space.AWELL_ORCHESTRATION}/docs/going-live`,
-    submenu: [
-      {
-        title: 'Preflight checklist',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/going-live/preflight-checklist`,
-      },
-      {
-        title: 'Promotion guide',
-        path: `/${Space.AWELL_ORCHESTRATION}/docs/going-live/sandbox-to-production-promotion-guide`,
-      },
-    ],
-  },
-  {
     title: 'Miscellaneous',
     path: `/${Space.AWELL_ORCHESTRATION}/docs/misc/`,
     submenu: [
