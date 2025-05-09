@@ -546,18 +546,6 @@ export type DataPoint = {
   valueType: DataPointValueType;
 };
 
-export type DataPoint = {
-  __typename?: 'DataPoint';
-  activity_id?: Maybe<Scalars['String']['output']>;
-  data_point_definition_id: Scalars['String']['output'];
-  data_set_id: Scalars['String']['output'];
-  date: Scalars['String']['output'];
-  id: Scalars['ID']['output'];
-  key?: Maybe<Scalars['String']['output']>;
-  serialized_value?: Maybe<Scalars['String']['output']>;
-  valueType: DataPointValueType;
-};
-
 export type DataPointDefinition = {
   __typename?: 'DataPointDefinition';
   category: DataPointSourceType;
