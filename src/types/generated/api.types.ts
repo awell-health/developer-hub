@@ -67,12 +67,15 @@ export type Activity = {
   icon_url?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   indirect_object?: Maybe<ActivityObject>;
+  inputs?: Maybe<Scalars['JSON']['output']>;
   isUserActivity: Scalars['Boolean']['output'];
   label?: Maybe<ActivityLabel>;
   metadata?: Maybe<Scalars['JSON']['output']>;
   object: ActivityObject;
+  outputs?: Maybe<Scalars['JSON']['output']>;
   public?: Maybe<Scalars['Boolean']['output']>;
   reference_id: Scalars['String']['output'];
+  reference_type: ActivityReferenceType;
   resolution?: Maybe<ActivityResolution>;
   session_id?: Maybe<Scalars['String']['output']>;
   stakeholders?: Maybe<Array<ActivityObject>>;
@@ -162,6 +165,13 @@ export type ActivityPayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export enum ActivityReferenceType {
+  Agent = 'AGENT',
+  Navigation = 'NAVIGATION',
+  Orchestration = 'ORCHESTRATION',
+  Reminder = 'REMINDER'
+}
+
 export enum ActivityResolution {
   Expired = 'EXPIRED',
   Failure = 'FAILURE',
@@ -184,6 +194,7 @@ export type ActivitySubject = {
 };
 
 export enum ActivitySubjectType {
+  Agent = 'AGENT',
   ApiCall = 'API_CALL',
   Awell = 'AWELL',
   Plugin = 'PLUGIN',
@@ -255,6 +266,12 @@ export type AddressInput = {
   state?: InputMaybe<Scalars['String']['input']>;
   street?: InputMaybe<Scalars['String']['input']>;
   zip?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AgentStakeholder = {
+  __typename?: 'AgentStakeholder';
+  definition_id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 export enum AllowedDatesOptions {
@@ -689,6 +706,7 @@ export enum ElementStatus {
 
 export enum ElementType {
   Action = 'ACTION',
+  Agent = 'AGENT',
   Pathway = 'PATHWAY',
   Step = 'STEP',
   Track = 'TRACK',
@@ -824,6 +842,7 @@ export type FilterActivitiesParams = {
   pathway_definition_id?: InputMaybe<StringArrayFilter>;
   pathway_status?: InputMaybe<StringArrayFilter>;
   patient_id?: InputMaybe<TextFilterEquals>;
+  reference_id?: InputMaybe<TextFilterEquals>;
   stakeholders?: InputMaybe<StringArrayFilter>;
 };
 
@@ -833,6 +852,7 @@ export type FilterCareflowActivitiesParams = {
   activity_type?: InputMaybe<Array<Scalars['String']['input']>>;
   date_range?: InputMaybe<DateRangeInput>;
   hide_system_activities?: InputMaybe<Scalars['Boolean']['input']>;
+  reference_id?: InputMaybe<Scalars['String']['input']>;
   stakeholders?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
@@ -1040,6 +1060,28 @@ export type IdentityVerificationPayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type InputValidationAllowed = {
+  __typename?: 'InputValidationAllowed';
+  letters?: Maybe<Scalars['Boolean']['output']>;
+  numbers?: Maybe<Scalars['Boolean']['output']>;
+  special?: Maybe<Scalars['Boolean']['output']>;
+  whitespace?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type InputValidationConfig = {
+  __typename?: 'InputValidationConfig';
+  helper_text?: Maybe<Scalars['String']['output']>;
+  mode?: Maybe<Scalars['String']['output']>;
+  pattern?: Maybe<Scalars['String']['output']>;
+  simpleConfig?: Maybe<InputValidationSimpleConfig>;
+};
+
+export type InputValidationSimpleConfig = {
+  __typename?: 'InputValidationSimpleConfig';
+  allowed?: Maybe<InputValidationAllowed>;
+  exactLength?: Maybe<Scalars['Float']['output']>;
+};
+
 export type MarkMessageAsReadInput = {
   activity_id: Scalars['String']['input'];
 };
@@ -1055,7 +1097,7 @@ export type Message = {
   __typename?: 'Message';
   attachments?: Maybe<Array<MessageAttachment>>;
   body: Scalars['String']['output'];
-  format: MessageFormat;
+  format?: Maybe<MessageFormat>;
   id: Scalars['ID']['output'];
   subject?: Maybe<Scalars['String']['output']>;
 };
@@ -1357,6 +1399,38 @@ export type Option = {
   value_string: Scalars['String']['output'];
 };
 
+export type OrchestratedAgent = {
+  __typename?: 'OrchestratedAgent';
+  agent_definition_id: Scalars['String']['output'];
+  agent_id: Scalars['String']['output'];
+  agent_thread_id: Scalars['String']['output'];
+  agent_version: Scalars['Float']['output'];
+  careflow_id: Scalars['String']['output'];
+  context: Scalars['JSON']['output'];
+  created_at: Scalars['String']['output'];
+  execution: Scalars['JSON']['output'];
+  hosted_pages_links?: Maybe<Array<StakeholderHpLink>>;
+  status: OrchestratedAgentStatus;
+  tenant_id: Scalars['String']['output'];
+  updated_at: Scalars['String']['output'];
+};
+
+export type OrchestratedAgentPayload = {
+  __typename?: 'OrchestratedAgentPayload';
+  agent: OrchestratedAgent;
+  code: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+};
+
+/** The status of the orchestrated agent */
+export enum OrchestratedAgentStatus {
+  Active = 'ACTIVE',
+  Completed = 'COMPLETED',
+  Failed = 'FAILED',
+  Pending = 'PENDING',
+  Stopped = 'STOPPED'
+}
+
 export type OrchestrationFact = {
   __typename?: 'OrchestrationFact';
   content: Array<Scalars['String']['output']>;
@@ -1428,6 +1502,8 @@ export type Pathway = {
 export type PathwayContext = {
   __typename?: 'PathwayContext';
   action_id?: Maybe<Scalars['String']['output']>;
+  agent_id?: Maybe<Scalars['String']['output']>;
+  agent_thread_id?: Maybe<Scalars['String']['output']>;
   instance_id: Scalars['String']['output'];
   pathway_id: Scalars['String']['output'];
   step_id?: Maybe<Scalars['String']['output']>;
@@ -1652,7 +1728,6 @@ export type Query = {
   activity: ActivityPayload;
   adHocTracksByPathway: TracksPayload;
   adHocTracksByRelease: TracksPayload;
-  agentMessage: MessagePayload;
   apiCall: ApiCallPayload;
   apiCalls: ApiCallsPayload;
   baselineInfo: BaselineInfoPayload;
@@ -1670,6 +1745,8 @@ export type Query = {
   formResponse: FormResponsePayload;
   forms: FormsPayload;
   generateRetoolEmbedUrl: GenerateRetoolEmbedUrlPayload;
+  getAgentById: OrchestratedAgentPayload;
+  getAgentByThreadId: OrchestratedAgentPayload;
   getOrchestrationFactsFromPrompt: OrchestrationFactsPromptPayload;
   getPublishedCareflowVersions: CareflowVersionsPayload;
   /** Generate a signed URL for file upload to GCS */
@@ -1731,12 +1808,6 @@ export type QueryAdHocTracksByPathwayArgs = {
 
 export type QueryAdHocTracksByReleaseArgs = {
   release_id: Scalars['String']['input'];
-};
-
-
-export type QueryAgentMessageArgs = {
-  run_id: Scalars['String']['input'];
-  thread_id: Scalars['String']['input'];
 };
 
 
@@ -1835,6 +1906,16 @@ export type QueryGenerateRetoolEmbedUrlArgs = {
   landingPageUuid: Scalars['String']['input'];
   releaseVersion?: InputMaybe<Scalars['String']['input']>;
   userInfo: UserInfoParams;
+};
+
+
+export type QueryGetAgentByIdArgs = {
+  id?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryGetAgentByThreadIdArgs = {
+  agent_thread_id?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -2029,6 +2110,7 @@ export type QuestionConfig = {
   __typename?: 'QuestionConfig';
   date?: Maybe<DateConfig>;
   file_storage?: Maybe<FileStorageQuestionConfig>;
+  input_validation?: Maybe<InputValidationConfig>;
   mandatory: Scalars['Boolean']['output'];
   multiple_select?: Maybe<MultipleSelectConfig>;
   number?: Maybe<NumberConfig>;
@@ -2241,6 +2323,12 @@ export enum StakeholderClinicalAppRole {
   Patient = 'PATIENT',
   Physician = 'PHYSICIAN'
 }
+
+export type StakeholderHpLink = {
+  __typename?: 'StakeholderHPLink';
+  stakeholder: AgentStakeholder;
+  url: Scalars['String']['output'];
+};
 
 export type StakeholderLabel = {
   __typename?: 'StakeholderLabel';
