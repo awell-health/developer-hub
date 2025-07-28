@@ -67,12 +67,12 @@ export type Activity = {
   icon_url?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   indirect_object?: Maybe<ActivityObject>;
-  inputs?: Maybe<Scalars['JSON']['output']>;
+  inputs?: Maybe<ActivityInputs>;
   isUserActivity: Scalars['Boolean']['output'];
   label?: Maybe<ActivityLabel>;
   metadata?: Maybe<Scalars['JSON']['output']>;
   object: ActivityObject;
-  outputs?: Maybe<Scalars['JSON']['output']>;
+  outputs?: Maybe<ActivityOutputs>;
   public?: Maybe<Scalars['Boolean']['output']>;
   reference_id: Scalars['String']['output'];
   reference_type: ActivityReferenceType;
@@ -112,11 +112,32 @@ export enum ActivityAction {
   Submitted = 'SUBMITTED'
 }
 
+export enum ActivityInputType {
+  Calculation = 'CALCULATION',
+  DynamicForm = 'DYNAMIC_FORM',
+  Extension = 'EXTENSION',
+  Form = 'FORM',
+  Message = 'MESSAGE'
+}
+
+export type ActivityInputs = {
+  type: ActivityInputType;
+};
+
 export type ActivityLabel = {
   __typename?: 'ActivityLabel';
   color: Scalars['String']['output'];
   id?: Maybe<Scalars['String']['output']>;
   text: Scalars['String']['output'];
+};
+
+export type ActivityMessage = {
+  __typename?: 'ActivityMessage';
+  attachments?: Maybe<Array<MessageAttachment>>;
+  body: Scalars['String']['output'];
+  format?: Maybe<MessageFormat>;
+  message_id: Scalars['String']['output'];
+  subject: Scalars['String']['output'];
 };
 
 export type ActivityMetadata = {
@@ -157,6 +178,17 @@ export enum ActivityObjectType {
   Track = 'TRACK',
   User = 'USER'
 }
+
+export enum ActivityOutputType {
+  Calculation = 'CALCULATION',
+  DynamicForm = 'DYNAMIC_FORM',
+  Extension = 'EXTENSION',
+  Form = 'FORM'
+}
+
+export type ActivityOutputs = {
+  type: ActivityOutputType;
+};
 
 export type ActivityPayload = Payload & {
   __typename?: 'ActivityPayload';
@@ -363,11 +395,18 @@ export type ApiPathwayContext = {
   start_date?: Maybe<Scalars['String']['output']>;
 };
 
+export type AuditGraphqlType = {
+  __typename?: 'AuditGraphqlType';
+  at: Scalars['SafeDate']['output'];
+  by: ByGraphqlType;
+};
+
 export type AuditTrail = {
   __typename?: 'AuditTrail';
   date: Scalars['SafeDate']['output'];
   user_email?: Maybe<Scalars['String']['output']>;
   user_id: Scalars['String']['output'];
+  user_name?: Maybe<Scalars['String']['output']>;
 };
 
 export type BaselineDataPoint = {
@@ -403,6 +442,30 @@ export type BrandingSettings = {
   hosted_page_autosave?: Maybe<Scalars['Boolean']['output']>;
   hosted_page_title?: Maybe<Scalars['String']['output']>;
   logo_url?: Maybe<Scalars['String']['output']>;
+};
+
+export type ByGraphqlType = {
+  __typename?: 'ByGraphqlType';
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type CalculationActivityInputs = ActivityInputs & {
+  __typename?: 'CalculationActivityInputs';
+  calculation_fields?: Maybe<Array<CalculationInput>>;
+  type: ActivityInputType;
+};
+
+export type CalculationActivityOutputs = ActivityOutputs & {
+  __typename?: 'CalculationActivityOutputs';
+  calculation_results?: Maybe<Array<SingleCalculationResult>>;
+  type: ActivityOutputType;
+};
+
+export type CalculationInput = {
+  __typename?: 'CalculationInput';
+  calculation_input_id: Scalars['String']['output'];
+  data_point_value: Scalars['JSON']['output'];
 };
 
 export type CalculationResultsPayload = Payload & {
@@ -478,6 +541,17 @@ export type CompleteExtensionActivityPayload = Payload & {
   __typename?: 'CompleteExtensionActivityPayload';
   activity: Activity;
   code: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+};
+
+export type CompleteSessionInput = {
+  session_id: Scalars['String']['input'];
+};
+
+export type CompleteSessionPayload = Payload & {
+  __typename?: 'CompleteSessionPayload';
+  code: Scalars['String']['output'];
+  session?: Maybe<HostedSession>;
   success: Scalars['Boolean']['output'];
 };
 
@@ -668,6 +742,38 @@ export type DeletePatientInput = {
   patient_id: Scalars['String']['input'];
 };
 
+export type DynamicFormActivityInputs = ActivityInputs & {
+  __typename?: 'DynamicFormActivityInputs';
+  dynamicForm?: Maybe<DynamicFormGraphqlType>;
+  type: ActivityInputType;
+};
+
+export type DynamicFormActivityOutputs = ActivityOutputs & {
+  __typename?: 'DynamicFormActivityOutputs';
+  answers?: Maybe<Array<QuestionResponseOutput>>;
+  type: ActivityOutputType;
+};
+
+export type DynamicFormGraphqlType = {
+  __typename?: 'DynamicFormGraphqlType';
+  key: Scalars['String']['output'];
+  questions: Array<DynamicQuestion>;
+  title: Scalars['String']['output'];
+  trademark?: Maybe<Scalars['String']['output']>;
+};
+
+export type DynamicQuestion = {
+  __typename?: 'DynamicQuestion';
+  dataPointValueType?: Maybe<DataPointValueType>;
+  id: Scalars['ID']['output'];
+  key: Scalars['String']['output'];
+  options?: Maybe<Array<Option>>;
+  questionConfig?: Maybe<QuestionConfig>;
+  questionType: QuestionType;
+  title: Scalars['String']['output'];
+  userQuestionType?: Maybe<UserQuestionType>;
+};
+
 export type EmrRequest = {
   __typename?: 'EMRRequest';
   id?: Maybe<Scalars['String']['output']>;
@@ -790,6 +896,18 @@ export enum ExtensionActionFieldType {
   Text = 'TEXT'
 }
 
+export type ExtensionActivityInputs = ActivityInputs & {
+  __typename?: 'ExtensionActivityInputs';
+  extension_fields?: Maybe<Scalars['JSON']['output']>;
+  type: ActivityInputType;
+};
+
+export type ExtensionActivityOutputs = ActivityOutputs & {
+  __typename?: 'ExtensionActivityOutputs';
+  extension_results?: Maybe<Scalars['JSON']['output']>;
+  type: ActivityOutputType;
+};
+
 export type ExtensionActivityRecord = {
   __typename?: 'ExtensionActivityRecord';
   activity_id: Scalars['String']['output'];
@@ -814,11 +932,19 @@ export type ExtensionDataPoint = {
   __typename?: 'ExtensionDataPoint';
   label: Scalars['String']['output'];
   value: Scalars['String']['output'];
+  valueType: Scalars['String']['output'];
 };
 
 export type ExtensionDataPointInput = {
   key: Scalars['String']['input'];
   value: Scalars['String']['input'];
+};
+
+export type FieldSpecGraphqlType = {
+  __typename?: 'FieldSpecGraphqlType';
+  description: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  type: Scalars['String']['output'];
 };
 
 export type FileStorageQuestionConfig = {
@@ -898,6 +1024,18 @@ export type Form = {
 
 export type FormPrevious_AnswersArgs = {
   pathway_id: Scalars['String']['input'];
+};
+
+export type FormActivityInputs = ActivityInputs & {
+  __typename?: 'FormActivityInputs';
+  form?: Maybe<Form>;
+  type: ActivityInputType;
+};
+
+export type FormActivityOutputs = ActivityOutputs & {
+  __typename?: 'FormActivityOutputs';
+  answers?: Maybe<Array<QuestionResponseOutput>>;
+  type: ActivityOutputType;
 };
 
 export enum FormDisplayMode {
@@ -1102,6 +1240,12 @@ export type Message = {
   subject?: Maybe<Scalars['String']['output']>;
 };
 
+export type MessageActivityInputs = ActivityInputs & {
+  __typename?: 'MessageActivityInputs';
+  message?: Maybe<ActivityMessage>;
+  type: ActivityInputType;
+};
+
 export type MessageAttachment = {
   __typename?: 'MessageAttachment';
   id: Scalars['ID']['output'];
@@ -1140,6 +1284,7 @@ export type Mutation = {
   addIdentifierToPatient: AddIdentifierToPatientPayload;
   addTrack: AddTrackPayload;
   completeExtensionActivity: CompleteExtensionActivityPayload;
+  completeSession: CompleteSessionPayload;
   createPatient: CreatePatientPayload;
   deletePathway: EmptyPayload;
   deletePatient: EmptyPayload;
@@ -1199,6 +1344,11 @@ export type MutationAddTrackArgs = {
 
 export type MutationCompleteExtensionActivityArgs = {
   input: CompleteExtensionActivityInput;
+};
+
+
+export type MutationCompleteSessionArgs = {
+  input: CompleteSessionInput;
 };
 
 
@@ -1401,6 +1551,7 @@ export type Option = {
 
 export type OrchestratedAgent = {
   __typename?: 'OrchestratedAgent';
+  agent_config_id: Scalars['String']['output'];
   agent_definition_id: Scalars['String']['output'];
   agent_id: Scalars['String']['output'];
   agent_thread_id: Scalars['String']['output'];
@@ -1410,7 +1561,7 @@ export type OrchestratedAgent = {
   created_at: Scalars['String']['output'];
   execution: Scalars['JSON']['output'];
   hosted_pages_links?: Maybe<Array<StakeholderHpLink>>;
-  status: OrchestratedAgentStatus;
+  status: Scalars['String']['output'];
   tenant_id: Scalars['String']['output'];
   updated_at: Scalars['String']['output'];
 };
@@ -1421,15 +1572,6 @@ export type OrchestratedAgentPayload = {
   code: Scalars['String']['output'];
   success: Scalars['Boolean']['output'];
 };
-
-/** The status of the orchestrated agent */
-export enum OrchestratedAgentStatus {
-  Active = 'ACTIVE',
-  Completed = 'COMPLETED',
-  Failed = 'FAILED',
-  Pending = 'PENDING',
-  Stopped = 'STOPPED'
-}
 
 export type OrchestrationFact = {
   __typename?: 'OrchestrationFact';
@@ -1474,6 +1616,18 @@ export type PaginationParams = {
   offset: Scalars['Int']['input'];
 };
 
+export type ParameterSpecGraphqlType = {
+  __typename?: 'ParameterSpecGraphqlType';
+  description?: Maybe<Scalars['String']['output']>;
+  input_field_name?: Maybe<Scalars['String']['output']>;
+  instructions?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  required?: Maybe<Scalars['Boolean']['output']>;
+  static_value?: Maybe<Scalars['String']['output']>;
+  value_source?: Maybe<Scalars['String']['output']>;
+  value_type?: Maybe<Scalars['String']['output']>;
+};
+
 /** A care flow, also including any activities or swimlanes. Otherwise, it should be almost identical to the PathwaySummary, which is returned when retrieving a list of care flows. */
 export type Pathway = {
   __typename?: 'Pathway';
@@ -1483,6 +1637,7 @@ export type Pathway = {
    */
   activities?: Maybe<Array<Activity>>;
   complete_date?: Maybe<Scalars['SafeDate']['output']>;
+  created?: Maybe<AuditTrail>;
   id: Scalars['ID']['output'];
   /** Activities, sorted by date in descending order. For larger care flows, only the most recent 1000 activities are included. To see a complete list of activities, please use the `activity` query and appropriate filters. */
   latestActivities: Array<Activity>;
@@ -1502,10 +1657,12 @@ export type Pathway = {
 export type PathwayContext = {
   __typename?: 'PathwayContext';
   action_id?: Maybe<Scalars['String']['output']>;
+  agent_config_id?: Maybe<Scalars['String']['output']>;
   agent_id?: Maybe<Scalars['String']['output']>;
   agent_thread_id?: Maybe<Scalars['String']['output']>;
   instance_id: Scalars['String']['output'];
   pathway_id: Scalars['String']['output'];
+  run_id?: Maybe<Scalars['String']['output']>;
   step_id?: Maybe<Scalars['String']['output']>;
   track_id?: Maybe<Scalars['String']['output']>;
 };
@@ -1596,6 +1753,7 @@ export type PatientPathway = {
   active_activities?: Maybe<Scalars['Float']['output']>;
   baseline_info?: Maybe<Array<BaselineDataPoint>>;
   complete_date?: Maybe<Scalars['String']['output']>;
+  created?: Maybe<AuditTrail>;
   failed_activities?: Maybe<Scalars['Float']['output']>;
   id: Scalars['ID']['output'];
   latest_activity_date?: Maybe<Scalars['String']['output']>;
@@ -1728,6 +1886,7 @@ export type Query = {
   activity: ActivityPayload;
   adHocTracksByPathway: TracksPayload;
   adHocTracksByRelease: TracksPayload;
+  agent: WorkerAgentConfigPayload;
   apiCall: ApiCallPayload;
   apiCalls: ApiCallsPayload;
   baselineInfo: BaselineInfoPayload;
@@ -1745,7 +1904,6 @@ export type Query = {
   formResponse: FormResponsePayload;
   forms: FormsPayload;
   generateRetoolEmbedUrl: GenerateRetoolEmbedUrlPayload;
-  getAgentById: OrchestratedAgentPayload;
   getAgentByThreadId: OrchestratedAgentPayload;
   getOrchestrationFactsFromPrompt: OrchestrationFactsPromptPayload;
   getPublishedCareflowVersions: CareflowVersionsPayload;
@@ -1808,6 +1966,11 @@ export type QueryAdHocTracksByPathwayArgs = {
 
 export type QueryAdHocTracksByReleaseArgs = {
   release_id: Scalars['String']['input'];
+};
+
+
+export type QueryAgentArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -1906,11 +2069,6 @@ export type QueryGenerateRetoolEmbedUrlArgs = {
   landingPageUuid: Scalars['String']['input'];
   releaseVersion?: InputMaybe<Scalars['String']['input']>;
   userInfo: UserInfoParams;
-};
-
-
-export type QueryGetAgentByIdArgs = {
-  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -2125,6 +2283,12 @@ export type QuestionResponseInput = {
   value: Scalars['String']['input'];
 };
 
+export type QuestionResponseOutput = {
+  __typename?: 'QuestionResponseOutput';
+  question_id: Scalars['String']['output'];
+  value?: Maybe<Scalars['String']['output']>;
+};
+
 export type QuestionRuleResult = {
   __typename?: 'QuestionRuleResult';
   question_id: Scalars['String']['output'];
@@ -2278,6 +2442,7 @@ export enum Sex {
 
 export type SingleCalculationResult = {
   __typename?: 'SingleCalculationResult';
+  label?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   subresult_id: Scalars['String']['output'];
   unit?: Maybe<Scalars['String']['output']>;
@@ -2328,6 +2493,12 @@ export type StakeholderHpLink = {
   __typename?: 'StakeholderHPLink';
   stakeholder: AgentStakeholder;
   url: Scalars['String']['output'];
+};
+
+export type StakeholderInfoGraphqlType = {
+  __typename?: 'StakeholderInfoGraphqlType';
+  definition_id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type StakeholderLabel = {
@@ -2634,6 +2805,16 @@ export type TextFilterEquals = {
   eq?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ToolSpecGraphqlType = {
+  __typename?: 'ToolSpecGraphqlType';
+  description: Scalars['String']['output'];
+  hitl_required?: Maybe<Scalars['Boolean']['output']>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  parameters?: Maybe<Array<ParameterSpecGraphqlType>>;
+  type: Scalars['String']['output'];
+};
+
 export type Track = {
   __typename?: 'Track';
   /** Whether the track can be triggered manually (i.e. via addTrack or scheduleTrack mutations) */
@@ -2817,4 +2998,30 @@ export type WebhookCallsPayload = Payload & {
   code: Scalars['String']['output'];
   success: Scalars['Boolean']['output'];
   webhook_calls: Array<WebhookCall>;
+};
+
+export type WorkerAgentConfigGraphqlType = {
+  __typename?: 'WorkerAgentConfigGraphqlType';
+  agent_id: Scalars['String']['output'];
+  agent_uuid: Scalars['String']['output'];
+  created: AuditGraphqlType;
+  description: Scalars['String']['output'];
+  guardrails?: Maybe<Array<Scalars['String']['output']>>;
+  id: Scalars['String']['output'];
+  input_specs: Array<FieldSpecGraphqlType>;
+  instructions?: Maybe<Scalars['String']['output']>;
+  jobToBeDone?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  organization_slug: Scalars['String']['output'];
+  output_specs: Array<FieldSpecGraphqlType>;
+  stakeholders: Array<StakeholderInfoGraphqlType>;
+  state: Scalars['String']['output'];
+  tools: Array<ToolSpecGraphqlType>;
+  updated?: Maybe<AuditGraphqlType>;
+  version: Scalars['Float']['output'];
+};
+
+export type WorkerAgentConfigPayload = {
+  __typename?: 'WorkerAgentConfigPayload';
+  workerAgentConfig?: Maybe<WorkerAgentConfigGraphqlType>;
 };
