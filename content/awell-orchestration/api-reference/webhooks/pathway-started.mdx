@@ -9,12 +9,24 @@ showPlaygroundButton: false
 
 ```json
 {
-  "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
+  "start_date": "<PATHWAY_START_DATE>", // In ISO8601 format
   "pathway": {
-    "id": "<PATHWAY_ID>",
-    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
+    "id": "<CARE_FLOW_ID>",
+    "pathway_definition_id": "<CARE_FLOW_DEFINITION_ID>",
     "patient_id": "<PATIENT_ID>",
-    "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
+    "patient_identifiers": [
+      {
+        "system": "<IDENTIFIER_SYSTEM>",
+        "value": "<IDENTIFIER_VALUE>"
+      },
+      {
+        "system": "<IDENTIFIER_SYSTEM_N>",
+        "value": "<IDENTIFIER_VALUE_N>"
+      }
+    ],
+    "tenant_id": "<TENANT_ID>",
+    "pathway_title": "<CARE_FLOW_TITLE>",
+    "start_date": "<CARE_FLOW_START_DATE>" // In ISO8601 format
   },
   "event_type": "pathway.started"
 }
