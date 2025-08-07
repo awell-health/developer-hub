@@ -4,7 +4,7 @@ import { type WebhooksType } from '@/types/webhooks.types'
 export const webhooks: WebhooksType = [
   {
     event: 'pathway.started',
-    description: 'Triggered every time a care flow/pathway is started.',
+    description: 'Triggered every time a care flow is started.',
     eventVariables: [
       {
         variableName: 'pathway',
@@ -12,12 +12,12 @@ export const webhooks: WebhooksType = [
       },
     ],
     comment:
-      'Then define and call a method to handle the start of the care flow/pathway in your system.',
+      'Then define and call a method to handle the start of the care flow in your system.',
     apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-started`,
   },
   {
-    event: 'pathway.completed',
-    description: 'Triggered every time a care flow/pathway is completed.',
+    event: 'pathway.stopped',
+    description: 'Triggered every time a care flow is stopped.',
     eventVariables: [
       {
         variableName: 'pathway',
@@ -25,8 +25,33 @@ export const webhooks: WebhooksType = [
       },
     ],
     comment:
-      'Then define and call a method to handle the completion of the care flow/pathway in your system.',
+      'When a care flow is `stopped`, all future reminders and activities are cancelled.',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-stopped`,
+  },
+  {
+    event: 'pathway.completed',
+    description: 'Triggered every time a care flow is completed.',
+    eventVariables: [
+      {
+        variableName: 'pathway',
+        jsonPath: 'event.pathway',
+      },
+    ],
+    comment: 'A `stopped` care flow is not considered completed.',
     apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-completed`,
+  },
+  {
+    event: 'pathway.deleted',
+    description: 'Triggered every time a care flow is deleted.',
+    eventVariables: [
+      {
+        variableName: 'pathway',
+        jsonPath: 'event.pathway',
+      },
+    ],
+    comment:
+      'A `deleted` care flow that is still active is `stopped` before it is deleted.',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-deleted`,
   },
   {
     event: 'activity.created',
@@ -41,6 +66,20 @@ export const webhooks: WebhooksType = [
     comment:
       'Then define and call a method to handle the creation of an activity in your system.',
     apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/activity-created`,
+  },
+  {
+    event: 'activity.updated',
+    description:
+      'Triggered every time an activity in the care flow/pathway is updated, including system activities.',
+    eventVariables: [
+      {
+        variableName: 'activity',
+        jsonPath: 'event.activity',
+      },
+    ],
+    comment:
+      'Not every activity is updated before it is completed; updated events may be due to changes in the activity status, or changes in the activity due date.',
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/activity-updated`,
   },
   {
     event: 'activity.completed',

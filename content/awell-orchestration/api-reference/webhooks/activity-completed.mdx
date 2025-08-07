@@ -9,7 +9,6 @@ showPlaygroundButton: false
 
 ```json
 {
-{
   "activity": {
     "id": "<ACTIVITY_ID>",
     "stream_id": "<PATHWAY_ID>",
@@ -59,11 +58,9 @@ showPlaygroundButton: false
       "track_id": "<TRACK_ID>"
     }
   },
-  "pathway": {
-    "id": "<PATHWAY_ID>",
-    "pathway_definition_id": "<PATHWAY_DEFINITION_ID>",
-    "patient_id": "<PATIENT_ID>",
-    "start_date": "<PATHWAY_START_DATE>" // In ISO8601 format
+  "user_context": {
+    "stytch_member_id": "<MAYBE_USER_ID>",
+    "stytch_member_email": "<MAYBE_USER_EMAIL>"
   },
   "event_type": "activity.completed"
 }

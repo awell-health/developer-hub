@@ -1,6 +1,6 @@
 ---
-title: Pathway completed
-description: Pathway completed webhook payload
+title: Pathway stopped
+description: Pathway stopped webhook payload
 showPostmanButton: false
 showPlaygroundButton: false
 ---
@@ -9,9 +9,10 @@ showPlaygroundButton: false
 
 ```json
 {
-  "complete_date": "<PATHWAY_COMPLETE_DATE>", // In ISO8601 format
+  "stop_date": "<PATHWAY_STOP_DATE>", // In ISO8601 format
+  "reason": "<STOP_REASON>",
   "pathway": {
-    "id": "<PATHWAY_ID>",
+    "id": "<CARE_FLOW_ID>",
     "pathway_definition_id": "<CARE_FLOW_DEFINITION_ID>",
     "patient_id": "<PATIENT_ID>",
     "patient_identifiers": [
@@ -28,6 +29,6 @@ showPlaygroundButton: false
     "pathway_title": "<CARE_FLOW_TITLE>",
     "start_date": "<CARE_FLOW_START_DATE>" // In ISO8601 format
   },
-  "event_type": "pathway.completed"
+  "event_type": "pathway.stopped"
 }
 ```
