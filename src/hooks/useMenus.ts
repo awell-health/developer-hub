@@ -10,6 +10,7 @@ import {
 } from '@/config/menus/awell-orchestration'
 import { scoreDocsMenu } from '@/config/menus/awell-score'
 import { studioDocsMenu } from '@/config/menus/awell-studio'
+import { naviDocsMenu } from '@/config/menus/navi'
 import { BadgeType } from '@/types/menu.types'
 
 interface FlattenedMenuType {
@@ -34,6 +35,7 @@ export const useMenus = (): useMenusHook => {
     ...extensionsApiMenu,
     ...extensionsDeveloperToolsMenu,
     ...scoreDocsMenu,
+    ...naviDocsMenu,
   ]
 
   /**

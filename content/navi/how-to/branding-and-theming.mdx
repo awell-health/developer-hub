@@ -1,0 +1,183 @@
+```mdx
+---
+title: Branding and theming
+description: Configure organization-wide branding in CareOps and optionally override via the SDK. Includes font setup guidance.
+---
+
+### Overview
+
+There are two ways to control branding:
+- Organization‑wide in CareOps (recommended for consistency)
+- Per‑app or per‑embed overrides via the SDK using `BrandingConfig`
+
+Branding values set in CareOps apply to the embedded experience automatically. SDK overrides can refine or A/B test specific embeds.
+
+### Step 1 — Configure branding in CareOps
+
+1. Go to Settings → Navi → Branding.
+2. Customize colors, logo, typography, and preview.
+3. Ensure your publishable key’s Allowed Domains includes your website origin.
+4. Save changes.
+
+When you render Navi, the embed will inherit these settings.
+
+### Step 2 — Optional overrides in your app
+
+You can pass `BrandingConfig` either at the provider level (applies to all embeds) or per embed (merged, per‑page control).
+
+#### React
+
+```tsx
+import { NaviProvider, NaviEmbed } from "@awell-health/navi-js-react";
+
+export default function App() {
+  return (
+    <NaviProvider
+      publishableKey={process.env.NEXT_PUBLIC_NAVI_PK as string}
+      branding={{
+        primary: "#3b82f6",
+        radius: "10px",
+        fontFamilyBody: { fontFamily: "Inter", weight: ["400","600"], style: ["normal"] },
+      }}
+    >
+      {/* Provider branding can be further refined per embed */}
+      <NaviEmbed
+        careflowDefinitionId="cfdef_12345"
+        branding={{ primary: "#0ea5e9" }}
+      />
+    </NaviProvider>
+  );
+}
+```
+
+#### JavaScript
+
+```html
+<div id="navi-container" style="min-height: 500px"></div>
+<script src="https://cdn.awellhealth.com/v1/navi-loader.js"></script>
+<script>
+  const navi = window.Navi("pk_test_your_key_here");
+  navi.render("#navi-container", {
+    careflowDefinitionId: "cfdef_12345",
+    branding: {
+      primary: "#3b82f6",
+      radius: "8px"
+    }
+  });
+</script>
+```
+
+### Fonts
+
+CareOps lets you pick brand typography that the portal and embeds use. If you override fonts via the SDK, make sure the font files are actually available to the page (via a `<link>` to a web font provider or `@font-face`).
+
+- Recommended: configure fonts in CareOps for most use cases.
+- If overriding in the SDK:
+  - Load the font on your site (examples below)
+  - Pass the family and the weights/styles you intend to use
+
+Example (Google Fonts):
+
+```html
+<!-- In your app's HTML <head> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+```
+
+Then set via `BrandingConfig`:
+
+```tsx
+<NaviEmbed
+  careflowDefinitionId="cfdef_12345"
+  branding={{
+    fontFamilyBody: { fontFamily: "Inter, system-ui, sans-serif", weight: ["400","600"], style: ["normal"] },
+    fontFamilyHeading: { fontFamily: "Inter, system-ui, sans-serif", weight: ["600"], style: ["normal"] },
+  }}
+/>
+```
+
+If self-hosting fonts, define `@font-face` and reference the same family name in `BrandingConfig`.
+
+### BrandingConfig reference (excerpt)
+
+```22:82:packages/navi-core/src/types/config.ts
+export interface BrandingConfig {
+  // === Core shadcn/ui Theme Tokens ===
+  // Base colors
+  background?: string;
+  foreground?: string;
+
+  // Card colors
+  card?: string;
+  cardForeground?: string;
+
+  // Popover colors
+  popover?: string;
+  popoverForeground?: string;
+
+  // Primary colors
+  primary?: string;
+  primaryForeground?: string;
+
+  // Secondary colors
+  secondary?: string;
+  secondaryForeground?: string;
+
+  // Muted colors
+  muted?: string;
+  mutedForeground?: string;
+
+  // Accent colors
+  accent?: string;
+  accentForeground?: string;
+
+  // Destructive colors
+  destructive?: string;
+  destructiveForeground?: string;
+
+  // Border & input colors
+  border?: string;
+  input?: string;
+  ring?: string;
+
+  // Border radius
+  radius?: string;
+
+  // === Typography ===
+  // Font families
+  fontFamilyBody?: FontConfig;
+  fontFamilyHeading?: FontConfig;
+  fontFamilyMono?: FontConfig;
+
+  // === Brand Assets ===
+  logoUrl?: string;
+  logoWidth?: string;
+  logoHeight?: string;
+  faviconUrl?: string;
+
+  // === Welcome Page ===
+  welcomeTitle?: string;
+  welcomeSubtitle?: string;
+
+  // === Layout ===
+  navHeight?: string;
+}
+```
+
+Notes:
+- Tokens align with shadcn/ui theme primitives.
+- Provider‑level `branding` is merged with embed‑level `branding` (embed wins per key).
+- Prefer CareOps for organization‑wide consistency; use SDK overrides sparingly.
+
+### Checklist
+
+- Publishable key Allowed Domains includes your site
+- Branding saved in CareOps
+- If overriding fonts, fonts are loaded (link or @font-face)
+- Optional: border radius and color tokens align with your design system
+
+### Troubleshooting
+
+- Colors not applying: confirm you’re using the correct publishable key.
+- Fonts not applying: ensure the fonts are google fonts, the files are loaded and the family name matches exactly; confirm weights/styles requested are available.

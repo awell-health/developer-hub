@@ -1,0 +1,46 @@
+---
+title: Activity model and lifecycle
+description: What an activity is, which types exist, and the events Navi emits during the lifecycle.
+---
+
+### What is an activity?
+
+An activity is a single user task in a careflow (e.g., a form, checklist, message acknowledgement, or custom extension). Activities are orchestrated by the backend and rendered by the embedded portal.
+
+### Supported activity types
+
+- FORM, DYNAMIC_FORM
+- CHECKLIST
+- MESSAGE
+- EXTENSION (coming soon)
+
+These map to the user‑facing types in the SDK and determine UI and validation behavior.
+
+### Lifecycle
+
+Navi emits structured events so you can react to lifecycle changes:
+
+- activity-ready: mounted and ready
+- activity-activate: becomes the active step
+- activity-progress: progress changed (e.g., required fields)
+- activity-data-change: value changed (field, currentData)
+- activity-complete: submitted successfully
+- activity-error: validation or runtime error
+- activity-focus / activity-blur: focus changes
+
+Example (React):
+
+```tsx
+<NaviEmbed
+  careflowDefinitionId="cfdef_12345"
+  onActivityComplete={(e) => console.log("submitted", e)}
+  onActivityProgress={(e) => console.log("progress", e.data?.progress)}
+  onActivityError={(e) => console.error(e.data?.error)}
+/>
+```
+
+### Data and validation
+
+- Input validation happens inside the iframe; invalid inputs emit activity-error.
+- On submit, Navi tokenizes and transmits only the data needed for processing.
+- After completion, the backend advances the careflow, which may load the next activity or complete the session.

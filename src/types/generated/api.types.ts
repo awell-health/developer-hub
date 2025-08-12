@@ -1026,6 +1026,20 @@ export type FormPrevious_AnswersArgs = {
   pathway_id: Scalars['String']['input'];
 };
 
+export type FormActivityDataPoint = {
+  __typename?: 'FormActivityDataPoint';
+  key: Scalars['String']['output'];
+  value: Scalars['String']['output'];
+  valueType: DataPointValueType;
+};
+
+export type FormActivityDataPointsPayload = Payload & {
+  __typename?: 'FormActivityDataPointsPayload';
+  code: Scalars['String']['output'];
+  data_points: Array<FormActivityDataPoint>;
+  success: Scalars['Boolean']['output'];
+};
+
 export type FormActivityInputs = ActivityInputs & {
   __typename?: 'FormActivityInputs';
   form?: Maybe<Form>;
@@ -1116,6 +1130,8 @@ export type HostedPagesLinkPayload = Payload & {
 export type HostedSession = {
   __typename?: 'HostedSession';
   cancel_url?: Maybe<Scalars['String']['output']>;
+  created_at: Scalars['String']['output'];
+  expires_at: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   pathway_id: Scalars['String']['output'];
   stakeholder: HostedSessionStakeholder;
@@ -1323,6 +1339,7 @@ export type Mutation = {
   /** Update which patient was created after import request for logging purposes */
   updatePatientDemographicsQuery: UpdatePatientDemographicsQueryPayload;
   updatePatientLanguage: UpdatePatientLanguagePayload;
+  upsertPatient: UpsertPatientPayload;
   verify_identity: IdentityVerificationPayload;
 };
 
@@ -1519,6 +1536,11 @@ export type MutationUpdatePatientDemographicsQueryArgs = {
 
 export type MutationUpdatePatientLanguageArgs = {
   input: UpdatePatientLanguageInput;
+};
+
+
+export type MutationUpsertPatientArgs = {
+  input: UpsertPatientInput;
 };
 
 
@@ -1901,6 +1923,7 @@ export type Query = {
   extensionActivityRecord: ExtensionActivityRecordPayload;
   filterStakeholders: StakeholdersPayload;
   form: FormPayload;
+  formActivityDataPoints: FormActivityDataPointsPayload;
   formResponse: FormResponsePayload;
   forms: FormsPayload;
   generateRetoolEmbedUrl: GenerateRetoolEmbedUrlPayload;
@@ -2049,6 +2072,12 @@ export type QueryFilterStakeholdersArgs = {
 export type QueryFormArgs = {
   id: Scalars['String']['input'];
   pathway_id?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryFormActivityDataPointsArgs = {
+  activity_id: Scalars['String']['input'];
+  careflow_id: Scalars['String']['input'];
 };
 
 
@@ -2893,6 +2922,38 @@ export type UpdatePatientPayload = Payload & {
   code: Scalars['String']['output'];
   patient?: Maybe<User>;
   success: Scalars['Boolean']['output'];
+};
+
+export type UpsertPatientInput = {
+  patient_identifier: IdentifierInput;
+  profile?: InputMaybe<UpsertPatientProfileInput>;
+};
+
+export type UpsertPatientPayload = Payload & {
+  __typename?: 'UpsertPatientPayload';
+  code: Scalars['String']['output'];
+  patient?: Maybe<User>;
+  success: Scalars['Boolean']['output'];
+};
+
+export type UpsertPatientProfileInput = {
+  address?: InputMaybe<AddressInput>;
+  birth_date?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  first_name: Scalars['String']['input'];
+  last_name: Scalars['String']['input'];
+  /** Must be in valid E164 telephone number format */
+  mobile_phone?: InputMaybe<Scalars['String']['input']>;
+  national_registry_number?: InputMaybe<Scalars['String']['input']>;
+  patient_code?: InputMaybe<Scalars['String']['input']>;
+  /** Must be a valid IANA timezone */
+  patient_timezone?: InputMaybe<Scalars['String']['input']>;
+  /** Must be in valid E164 telephone number format */
+  phone?: InputMaybe<Scalars['String']['input']>;
+  /** ISO 639-1 shortcode */
+  preferred_language?: InputMaybe<Scalars['String']['input']>;
+  /** Sex code as defined by ISO standard IEC_5218, 0 - NOT_KNOWN, 1 - MALE, 2 - FEMALE */
+  sex?: InputMaybe<Sex>;
 };
 
 export type User = {

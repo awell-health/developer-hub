@@ -1,0 +1,31 @@
+---
+title: Sessions and JWTs
+description: How publishable keys, sessions, and JWTs work together.
+---
+
+### Overview
+
+- Frontends initialize with a publishable key (`pk_...`).
+- The backend issues a short‑lived session/JWT that authorizes the embedded portal for a specific careflow.
+- The portal renews tokens as needed without exposing secrets to the parent page.
+
+### Lifetimes (defaults)
+
+- Session TTL: 30 days
+- JWT TTL: 15 minutes
+
+Short JWTs reduce blast radius; the longer session controls continuity.
+
+### Flow
+
+1. Your app starts the flow (React `NaviProvider` or JS `Navi()`)
+2. Backend mints a session and issues a JWT scoped to the careflow
+3. Iframe uses the JWT to fetch/submit activities
+4. On expiry, the portal refreshes the JWT using the session
+
+### Best practices
+
+- Keep publishable keys on the client, secrets on the server only
+- Set Allowed Domains on the publishable key in CareOps
+- Treat sessions as user‑scoped; revoke on logout or risk events
+- Use HTTPS and strict origin checks

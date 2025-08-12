@@ -1,0 +1,102 @@
+---
+title: Quickstart
+description: Embed Navi in 5 minutes
+---
+
+<Tabs selectedTab="React">
+  <Tab label="React">
+
+### 1. Generate a publishable key
+
+In CareOps, create a publishable key (pk_test-...). You’ll use it in your app.
+
+### 2. Install packages
+
+```bash
+npm i @awell-health/navi-js @awell-health/navi-js-react
+```
+
+### 3. Wrap your app with the provider
+
+Add `NaviProvider` at the root of your React app and pass your publishable key.
+
+```tsx
+// app/providers.tsx (or your root layout)
+import { NaviProvider } from "@awell-health/navi-js-react";
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <NaviProvider publishableKey={process.env.NEXT_PUBLIC_NAVI_PK as string}>
+      {children}
+    </NaviProvider>
+  );
+}
+```
+
+### 4. Render your first care flow/activity
+
+Use `NaviEmbed` where you want the experience to appear. Provide a `careflowDefinitionId` (and optionally `stakeholderId`, `branding`, etc.).
+
+```tsx
+// app/page.tsx (or any component/page)
+import { NaviEmbed } from "@awell-health/navi-js-react";
+
+export default function Page() {
+  return (
+    <main>
+      <h1>Welcome</h1>
+      <NaviEmbed careflowDefinitionId="cfdef_12345" />
+    </main>
+  );
+}
+```
+
+### 5. Run your app
+
+```bash
+npm run dev
+```
+
+That’s it — your React app will load Navi with your publishable key and render the care flow.
+
+  </Tab>
+  <Tab label="JavaScript">
+
+### 1. Generate a publishable key
+
+In CareOps, create a publishable key (pk_test-...). You’ll use it in your app.
+
+### 2. Add the script and container
+
+```html
+<!-- Your page -->
+<div id="navi-container" style="min-height: 500px"></div>
+
+<!-- Load Navi from CDN -->
+<script src="https://cdn.awellhealth.com/v1/navi-loader.js"></script>
+```
+
+### 3. Initialize and render
+
+```html
+<script>
+  // Initialize with your publishable key
+  const navi = window.Navi("pk_test_your_key_here");
+
+  // Render into the container
+  navi.render("#navi-container", {
+    careflowDefinitionId: "cfdef_12345",
+  });
+</script>
+```
+
+That’s it — your website will load the Navi script and render the care flow in the specified container.
+
+  </Tab>
+</Tabs>
+
+### Notes
+
+- Replace `cfdef_12345` with your actual care flow definition ID (Copy the care flow list in Awell Studio).
+- For React, prefer storing the publishable key in `NEXT_PUBLIC_NAVI_PK` (or similar) and passing it to `NaviProvider`.
+- Customize your styling, including colors, fonts, border radius, and spacing inside of CareOps Settings.
