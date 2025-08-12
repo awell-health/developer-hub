@@ -21,6 +21,6 @@ export const spaces: { label: string; path: string; active?: boolean }[] = [
   },
   {
     label: 'Navi',
-    path: rootRoutes[Space.NAVI].docs,
+    path: rootRoutes[Space.NAVI].home,
   },
 ]
