@@ -98,6 +98,27 @@ const domains = [
     description:
       'A standalone API developed by the Awell team to calculate validated scores for clinical & patient reported outcome measures.',
   },
+  {
+    url: rootRoutes[Space.NAVI].home,
+    title: 'Navi',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        className="w-6 h-6"
+      >
+        <path d="M12 3v6M12 15v6M3 12h6M15 12h6" />
+        <path d="M12 9l2.5 3L12 15l-2.5-3L12 9z" />
+      </svg>
+    ),
+    description:
+      'A standalone API developed by the Awell team to calculate validated scores for clinical & patient reported outcome measures.',
+  },
 ]
 
 export default function Home() {
