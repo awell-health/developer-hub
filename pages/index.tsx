@@ -117,7 +117,7 @@ const domains = [
       </svg>
     ),
     description:
-      'A standalone API developed by the Awell team to calculate validated scores for clinical & patient reported outcome measures.',
+      'A HIPAA-compliant embeddable experience that leverages the flexibility and power of Awell Orchestration.',
   },
 ]
 
