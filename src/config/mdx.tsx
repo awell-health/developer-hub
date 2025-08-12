@@ -15,15 +15,22 @@ import {
   PatientTableSpecs,
   StepIndexSpecs,
   StepsTableSpecs,
-  TracksTableSpecs
+  TracksTableSpecs,
 } from '@/components/DataRepository'
-import { Code, CustomH2, CustomH3 } from '@/components/Docs/atoms'
+import {
+  Card,
+  Code,
+  Columns,
+  CustomH2,
+  CustomH3,
+} from '@/components/Docs/atoms'
 import { FAQ } from '@/components/FAQ'
 import { HowToUse } from '@/components/HowToUse'
 import { PostmanLinks } from '@/components/Links/PostmanLinks'
 import { Properties } from '@/components/Properties'
 import { SessionsAndLinksComparisonTable } from '@/components/SessionsAndLinksComparisonTable'
 import { StoryBrowser } from '@/components/StoryBrowser'
+import { Tab, Tabs } from '@/components/Tabs'
 import { TriggerCareFlowsComparison } from '@/components/TriggerCareFlowsComparison'
 import { UseCasesComparisonTable } from '@/components/UseCasesComparisonTable'
 import { Effort } from '@/components/UseCasesComparisonTable/atoms'
@@ -65,8 +72,12 @@ export const mdxComponents = {
   StepIndexSpecs,
   ActivityIndexSpecs,
   CodeTabs,
+  Tabs,
+  Tab,
   Properties,
   ActionsTableSpecs,
   StepsTableSpecs,
   TracksTableSpecs,
+  Columns,
+  Card,
 }

@@ -1,3 +1,5 @@
 export { Code } from './Code'
+export { Card } from './Diataxis/Card'
+export { Columns } from './Diataxis/Columns'
 export { DocsHeader } from './DocsHeader'
 export { CustomH2, CustomH3 } from './Headings'

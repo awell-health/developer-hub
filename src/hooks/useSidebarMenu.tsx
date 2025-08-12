@@ -13,6 +13,7 @@ import {
 } from '@/config/menus/awell-orchestration'
 import { scoreDocsMenu } from '@/config/menus/awell-score'
 import { studioDocsMenu } from '@/config/menus/awell-studio'
+import { naviDocsMenu } from '@/config/menus/navi'
 import { AppContext } from '@/contexts/app/AppContext'
 import {
   type LevelOneMenuType,
@@ -63,6 +64,10 @@ export const useSidebarMenu = (): useSidebarMenuHook => {
       } else {
         setMenu([])
       }
+    } else if (router.asPath.includes(Space.NAVI)) {
+      // For Navi, we use a single consolidated docs menu across sections
+      // so always show it on Navi pages (docs, tutorials, how-to, explanations, reference, home)
+      setMenu(naviDocsMenu)
     } else {
       setMenu([])
     }

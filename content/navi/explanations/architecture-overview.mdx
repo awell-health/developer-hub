@@ -1,0 +1,35 @@
+---
+title: Architecture and security
+description: Why we use CDN + iframe + postMessage, and the core security measures.
+---
+
+### High‑level architecture
+
+- CDN loader (`navi-loader.js`) initializes the SDK and creates iframes.
+- Embedded portal (separate origin) renders activities and handles validation.
+- Backend APIs process submissions and advance careflows.
+
+This separation provides universal embeddability and strong isolation.
+
+![Navi flow](/images/navi-flow.svg)
+
+### Cross‑origin communication
+
+The parent and iframe communicate via `postMessage`. Messages are strictly scoped to:
+
+- Request/response for data collection
+- Height/width changes
+- Session status and completion
+
+### Security controls
+
+- Origin allow‑list: messages are ignored if the origin is not expected.
+- Tokenization: sensitive data is never exposed to the parent; only tokens/results cross origins.
+- Publishable keys: frontends use `pk_...` keys; privileged secrets stay server‑side.
+- CSP ready: you can lock down allowed script/iframe sources.
+
+### Why this model?
+
+- Framework‑agnostic integration (React or plain JS)
+- Robust sandboxing for PHI/PII boundaries
+- Easier versioning and rollout via CDN

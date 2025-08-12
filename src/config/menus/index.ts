@@ -10,6 +10,7 @@ import {
 } from './awell-orchestration'
 import { scoreDocsMenu } from './awell-score'
 import { studioDocsMenu } from './awell-studio'
+import { naviDocsMenu } from './navi'
 
 export const allMenus = [
   ...studioDocsMenu,
@@ -20,4 +21,5 @@ export const allMenus = [
   ...extensionsApiMenu,
   ...extensionsDeveloperToolsMenu,
   ...scoreDocsMenu,
+  ...naviDocsMenu,
 ]

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { IntrospectionQuery } from 'graphql'
+import { type IntrospectionQuery } from 'graphql'
 
 import { INTROSPECTION } from './graphql/introspection.graphql'
 

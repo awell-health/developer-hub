@@ -32,4 +32,10 @@ export const rootRoutes: Record<Space, Routes> = {
     api: ``,
     developerTools: ``,
   },
+  [Space.NAVI]: {
+    home: `/${Space.NAVI}`,
+    docs: `/${Space.NAVI}/docs`,
+    api: `/${Space.NAVI}/reference`,
+    developerTools: `/${Space.NAVI}/tutorials`,
+  },
 }

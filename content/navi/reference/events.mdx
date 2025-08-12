@@ -1,0 +1,613 @@
+---
+title: Events emitted by the Navi application
+description: Complete reference for all Navi SDK event types and their signatures
+---
+
+# Event Reference
+
+This reference provides complete documentation for all event types available in the Navi SDK, including their signatures, data payloads, and availability across different integration methods.
+
+## Event Categories
+
+Navi SDK events are organized into two main categories:
+
+- **Activity Events** - Emitted by individual activities within a care flow
+- **Session Events** - Emitted by the overall care flow session
+
+## Activity Events
+
+Activity events are emitted by individual activities (forms, messages, checklists, etc.) and provide real-time information about user interactions and activity state changes.
+
+### `activity-ready`
+
+Emitted when an activity is fully mounted and ready for user interaction.
+
+**Event Signature:**
+```typescript
+interface ActivityReadyEvent extends ActivityEvent {
+  type: "activity-ready"
+  activityId: string
+  activityType: "FORM" | "DYNAMIC_FORM" | "MESSAGE" | "CHECKLIST" | "EXTENSION"
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "activity-ready",
+  activityId: "activity_123",
+  activityType: "FORM",
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ❌ Not exposed  
+**navi.js Availability:** ✅ Available as `navi.activity.ready`
+
+---
+
+### `activity-activate`
+
+Emitted when an activity becomes the active/focused activity in the care flow.
+
+**Event Signature:**
+```typescript
+interface ActivityActivateEvent extends ActivityEvent {
+  type: "activity-activate"
+  activityId: string
+  activityType: "FORM" | "DYNAMIC_FORM" | "MESSAGE" | "CHECKLIST" | "EXTENSION"
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "activity-activate",
+  activityId: "activity_456",
+  activityType: "CHECKLIST",
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ❌ Not exposed  
+**navi.js Availability:** ✅ Available as `navi.activity.activate`
+
+---
+
+### `activity-progress`
+
+Emitted when progress changes within an activity (forms, checklists with completion tracking).
+
+**Event Signature:**
+```typescript
+interface ActivityProgressEvent extends ActivityEvent<{
+  progress: number
+  total: number
+}> {
+  type: "activity-progress"
+  activityId: string
+  activityType: "FORM" | "DYNAMIC_FORM" | "MESSAGE" | "CHECKLIST" | "EXTENSION"
+  data: {
+    progress: number  // Current progress count
+    total: number     // Total items/fields
+  }
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "activity-progress",
+  activityId: "form_789",
+  activityType: "FORM",
+  data: {
+    progress: 3,
+    total: 5
+  },
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ❌ Not exposed  
+**navi.js Availability:** ✅ Available as `navi.activity.progress`
+
+---
+
+### `activity-data-change`
+
+Emitted in real-time when data values change within an activity (form field inputs, checklist items).
+
+**Event Signature:**
+```typescript
+interface ActivityDataChangeEvent extends ActivityEvent<{
+  field?: string
+  value: any
+  currentData: Record<string, any>
+}> {
+  type: "activity-data-change"
+  activityId: string
+  activityType: "FORM" | "DYNAMIC_FORM" | "MESSAGE" | "CHECKLIST" | "EXTENSION"
+  data: {
+    field?: string                    // Field ID that changed (if applicable)
+    value: any                       // New value
+    currentData: Record<string, any> // Complete current form data
+  }
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "activity-data-change",
+  activityId: "form_123",
+  activityType: "FORM",
+  data: {
+    field: "patient_age",
+    value: "25",
+    currentData: {
+      patient_name: "John Doe",
+      patient_age: "25",
+      symptoms: []
+    }
+  },
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ❌ Not exposed  
+**navi.js Availability:** ✅ Available as `navi.activity.dataChange` (note: camelCase conversion)
+
+---
+
+### `activity-complete`
+
+Emitted when an activity has been completed and submitted by the user.
+
+**Event Signature:**
+```typescript
+interface ActivityCompleteEvent extends ActivityEvent<{
+  submissionData: Record<string, any>
+}> {
+  type: "activity-complete"
+  activityId: string
+  activityType: "FORM" | "DYNAMIC_FORM" | "MESSAGE" | "CHECKLIST" | "EXTENSION"
+  data: {
+    submissionData: Record<string, any> // Final submitted data
+  }
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "activity-complete",
+  activityId: "form_456",
+  activityType: "FORM",
+  data: {
+    submissionData: {
+      patient_name: "Jane Smith",
+      date_of_birth: "1990-05-15",
+      consent_given: true
+    }
+  },
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ✅ Available as `onActivityCompleted`  
+**navi.js Availability:** ✅ Available as `navi.activity.completed`
+
+---
+
+### `activity-error`
+
+Emitted when an error occurs at the activity level (validation errors, submission failures).
+
+**Event Signature:**
+```typescript
+interface ActivityErrorEvent extends ActivityEvent<{
+  error: string
+  field?: string
+}> {
+  type: "activity-error"
+  activityId: string
+  activityType: "FORM" | "DYNAMIC_FORM" | "MESSAGE" | "CHECKLIST" | "EXTENSION"
+  data: {
+    error: string    // Error message
+    field?: string   // Specific field with error (if applicable)
+  }
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "activity-error",
+  activityId: "form_789",
+  activityType: "FORM",
+  data: {
+    error: "Email address is required",
+    field: "email"
+  },
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ❌ Not exposed  
+**navi.js Availability:** ✅ Available as `navi.activity.error`
+
+---
+
+### `activity-focus`
+
+Emitted when an activity gains focus (user interaction begins).
+
+**Event Signature:**
+```typescript
+interface ActivityFocusEvent extends ActivityEvent {
+  type: "activity-focus"
+  activityId: string
+  activityType: "FORM" | "DYNAMIC_FORM" | "MESSAGE" | "CHECKLIST" | "EXTENSION"
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "activity-focus",
+  activityId: "form_123",
+  activityType: "FORM",
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ❌ Not exposed  
+**navi.js Availability:** ✅ Available as `navi.activity.focus`
+
+---
+
+### `activity-blur`
+
+Emitted when an activity loses focus (user interaction ends or moves elsewhere).
+
+**Event Signature:**
+```typescript
+interface ActivityBlurEvent extends ActivityEvent {
+  type: "activity-blur"
+  activityId: string
+  activityType: "FORM" | "DYNAMIC_FORM" | "MESSAGE" | "CHECKLIST" | "EXTENSION"
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "activity-blur",
+  activityId: "form_456",
+  activityType: "FORM",
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ❌ Not exposed  
+**navi.js Availability:** ✅ Available as `navi.activity.blur`
+
+---
+
+## Session Events
+
+Session events are emitted by the overall care flow session and provide information about session lifecycle, iframe management, and global state changes.
+
+### `navi.session.ready`
+
+Emitted when the care flow session is fully initialized and ready for user interaction.
+
+**Event Signature:**
+```typescript
+interface SessionReadyEvent extends SessionEvent<{
+  sessionId: string
+  environment: string
+}> {
+  type: "navi.session.ready"
+  instanceId: string
+  data: {
+    sessionId: string    // Unique session identifier
+    environment: string  // Environment (development/production)
+  }
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "navi.session.ready",
+  instanceId: "navi-abc123",
+  data: {
+    sessionId: "session_789xyz",
+    environment: "production"
+  },
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ✅ Available as `onSessionReady`  
+**navi.js Availability:** ✅ Available as `navi.session.ready`
+
+---
+
+### `navi.session.completed`
+
+Emitted when all activities in the care flow have been completed and the session is finished.
+
+**Event Signature:**
+```typescript
+interface SessionCompletedEvent extends SessionEvent {
+  type: "navi.session.completed"
+  instanceId: string
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "navi.session.completed",
+  instanceId: "navi-def456",
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ✅ Available as `onSessionCompleted`  
+**navi.js Availability:** ✅ Available as `navi.session.completed`
+
+---
+
+### `navi.session.error`
+
+Emitted when a session-level error occurs (authentication failures, network issues, critical errors).
+
+**Event Signature:**
+```typescript
+interface SessionErrorEvent extends SessionEvent<{
+  error: string
+}> {
+  type: "navi.session.error"
+  instanceId: string
+  data: {
+    error: string // Error description
+  }
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "navi.session.error",
+  instanceId: "navi-ghi789",
+  data: {
+    error: "Authentication failed: Invalid publishable key"
+  },
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ✅ Available as `onSessionError`  
+**navi.js Availability:** ✅ Available as `navi.session.error`
+
+---
+
+### `navi.iframe.close`
+
+Emitted when the iframe should be closed or removed from the DOM.
+
+**Event Signature:**
+```typescript
+interface IframeCloseEvent extends SessionEvent {
+  type: "navi.iframe.close"
+  instanceId: string
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "navi.iframe.close",
+  instanceId: "navi-jkl012",
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ✅ Available as `onIframeClose`  
+**navi.js Availability:** ✅ Available as `navi.iframe.close`
+
+---
+
+### `navi.height.changed`
+
+Emitted when the iframe content height changes, allowing for dynamic iframe resizing.
+
+**Event Signature:**
+```typescript
+interface HeightChangedEvent extends SessionEvent<{
+  height: number
+  activityId?: string
+}> {
+  type: "navi.height.changed"
+  instanceId: string
+  data: {
+    height: number        // New height in pixels
+    activityId?: string   // Activity that triggered the change (if applicable)
+  }
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "navi.height.changed",
+  instanceId: "navi-mno345",
+  data: {
+    height: 650,
+    activityId: "form_123"
+  },
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ❌ Not exposed (handled automatically)  
+**navi.js Availability:** ✅ Available as `navi.height.changed` (handled automatically)
+
+---
+
+### `navi.width.changed`
+
+Emitted when the iframe content width changes. Currently a no-op as width is handled responsively via CSS.
+
+**Event Signature:**
+```typescript
+interface WidthChangedEvent extends SessionEvent<{
+  width: number
+}> {
+  type: "navi.width.changed"
+  instanceId: string
+  data: {
+    width: number // New width in pixels
+  }
+  timestamp: number
+}
+```
+
+**Example:**
+```typescript
+{
+  type: "navi.width.changed",
+  instanceId: "navi-pqr678",
+  data: {
+    width: 800
+  },
+  timestamp: 1672531200000
+}
+```
+
+**NaviEmbed Availability:** ❌ Not exposed  
+**navi.js Availability:** ✅ Available as `navi.width.changed` (no-op)
+
+---
+
+## Integration Patterns
+
+### React Component (NaviEmbed)
+
+The `NaviEmbed` React component exposes a limited subset of events via props:
+
+```typescript
+interface NaviEmbedProps {
+  // Activity Events
+  onActivityCompleted?: (event: ActivityEvent<{ submissionData: any }>) => void
+
+  // Session Events  
+  onSessionReady?: (event: SessionEvent<{ sessionId: string; environment: string }>) => void
+  onSessionCompleted?: (event: SessionEvent) => void
+  onSessionError?: (event: SessionEvent<{ error: string }>) => void
+  onIframeClose?: (event: SessionEvent) => void
+}
+```
+
+**Example Usage:**
+```jsx
+<NaviEmbed
+  careflowDefinitionId="your-careflow-id"
+  stakeholderId="patient-123"
+  onActivityCompleted={(event) => {
+    console.log('Activity completed:', event.data.submissionData)
+  }}
+  onSessionReady={(event) => {
+    console.log('Session ready:', event.data.sessionId)
+  }}
+  onSessionCompleted={() => {
+    console.log('Care flow completed!')
+  }}
+  onSessionError={(event) => {
+    console.error('Session error:', event.data.error)
+  }}
+/>
+```
+
+### JavaScript SDK (navi.js)
+
+The JavaScript SDK provides access to all event types via the `.on()` method:
+
+```typescript
+const instance = await navi.render('#container', options)
+
+// Activity events
+instance.on('activity-ready', (event) => { /* ... */ })
+instance.on('activity-activate', (event) => { /* ... */ })
+instance.on('activity-progress', (event) => { /* ... */ })
+instance.on('activity-data-change', (event) => { /* ... */ }) // Note: camelCase
+instance.on('activity-complete', (event) => { /* ... */ })
+instance.on('activity-error', (event) => { /* ... */ })
+instance.on('activity-focus', (event) => { /* ... */ })
+instance.on('activity-blur', (event) => { /* ... */ })
+
+// Session events
+instance.on('navi.session.ready', (event) => { /* ... */ })
+instance.on('navi.session.completed', (event) => { /* ... */ })
+instance.on('navi.session.error', (event) => { /* ... */ })
+instance.on('navi.iframe.close', (event) => { /* ... */ })
+instance.on('navi.height.changed', (event) => { /* ... */ })
+instance.on('navi.width.changed', (event) => { /* ... */ })
+```
+
+## Event Name Transformations
+
+Note that some event names are transformed between internal system names and external API names:
+
+| Internal (Portal) | External (navi.js) | External (NaviEmbed) |
+|-------------------|-------------------|---------------------|
+| `navi.activity.data-change` | `navi.activity.dataChange` | Not exposed |
+| `activity-complete` | `activity-complete` | `onActivityCompleted` |
+
+## Base Event Interfaces
+
+All events extend these base interfaces defined in `@awell-health/navi-core`:
+
+```typescript
+interface ActivityEvent<T = any> {
+  type: ActivityEventType
+  activityId: string
+  activityType: "FORM" | "DYNAMIC_FORM" | "MESSAGE" | "CHECKLIST" | "EXTENSION"
+  data?: T
+  timestamp: number
+}
+
+interface SessionEvent<T = any> {
+  type: SessionEventType
+  instanceId: string
+  data?: T
+  timestamp: number
+}
+
+type NaviEvent<T = any> = ActivityEvent<T> | SessionEvent<T>
+```
+
+## Security Considerations
+
+All events are validated for origin security. Events are only processed when:
+- Origin matches the expected portal domain
+- Message source is identified as `"navi"`
+- Instance ID matches a known Navi instance
+
+Invalid events are rejected with console warnings for debugging.

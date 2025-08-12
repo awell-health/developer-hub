@@ -56,6 +56,11 @@ export const Header = () => {
       setNavigation(extensionsNavigation)
     } else if (space === Space.AWELL_STUDIO) {
       setNavigation(studioNavigation)
+    } else if (space === Space.NAVI) {
+      // Lazy import to avoid circular deps in build
+      import('@/config/navigation/naviNavigation').then((m) =>
+        setNavigation(m.naviNavigation)
+      )
     } else {
       setNavigation(defaultNavigation)
     }
