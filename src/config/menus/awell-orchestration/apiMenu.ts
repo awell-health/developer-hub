@@ -301,6 +301,16 @@ export const apiMenu: MenuType = [
         badge: badges.pathway,
       },
       {
+        title: 'Pathway stopped',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-stopped`,
+        badge: badges.pathway,
+      },
+      {
+        title: 'Pathway deleted',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-deleted`,
+        badge: badges.pathway,
+      },
+      {
         title: 'Pathway completed',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-completed`,
         badge: badges.pathway,
@@ -308,6 +318,11 @@ export const apiMenu: MenuType = [
       {
         title: 'Activity created',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/activity-created`,
+        badge: badges.activity,
+      },
+      {
+        title: 'Activity updated',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/activity-updated`,
         badge: badges.activity,
       },
       {
