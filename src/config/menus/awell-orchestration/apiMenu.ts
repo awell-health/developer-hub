@@ -275,6 +275,16 @@ export const apiMenu: MenuType = [
         badge: badges.activity,
       },
       {
+        title: 'Expire activity',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/expire-activity`,
+        badge: badges.activity,
+      },
+      {
+        title: 'Expire timer',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/expire-timer`,
+        badge: badges.activity,
+      },
+      {
         title: 'Resend EMR report',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/mutations/resend-emr-report`,
         badge: badges.activity,

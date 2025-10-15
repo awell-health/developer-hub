@@ -1,0 +1,57 @@
+---
+title: Expire timer
+description: Manually expire a timer activity before its scheduled completion time
+---
+
+This mutation allows you to manually expire a timer activity before it reaches its scheduled completion time. This is useful when you need to end a waiting period early or when certain conditions are met that make waiting for the timer unnecessary.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation ExpireTimer($input: ExpireTimerInput!) {
+  expireTimer(input: $input) {
+    success
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "activity_id": "{{TIMER_ACTIVITY_ID}}",
+    "user_name": "{{USER_NAME}}"
+  }
+}
+```
+
+## Required fields
+
+- `activity_id`: The ID of the timer activity to expire
+- `user_name`: The name of the user who is expiring the timer (for audit purposes)
+
+## Use cases
+
+Timer activities are used in care flows to introduce waiting periods or delays. You might want to expire a timer early in scenarios such as:
+
+- A patient completes a prerequisite action that makes waiting unnecessary
+- Clinical conditions change requiring immediate action
+- Administrative decisions to accelerate the care flow
+- Testing and development workflows
+
+## How it works
+
+When you expire a timer:
+
+1. The timer activity status is updated to completed
+2. The care flow continues immediately without waiting for the scheduled timer completion
+3. An audit log is created with the user information for tracking purposes
+4. Any downstream activities scheduled after the timer will be triggered
+
+## How to use
+
+<HowToUse storyIds={['pathway-activities']} />
+
