@@ -1,22 +1,22 @@
 ---
 title: Get data point definitions
-description: Retrieve the data dictionary for a pathway
+description: Retrieve the data dictionary for a care flow
 ---
 
-For any given care flow/pathway a patient is included in, you might want to know what data points are captured in that pathway (i.e a data dictionary). Via the `pathwayDataPointDefinitions` query, you're able to retrieve all data points definitions for a given pathway version.
+For any given care flow a patient is included in, you might want to know what data points are captured in that care flow (i.e a data dictionary). Via the `pathwayDataPointDefinitions` query, you're able to retrieve all data points definitions for a given care flow version.
 
 ## Release id
 
-Every patient enrolled in a pathway is included in the last version of the pathway at the moment of pathway start. Because care flows/pathways can evolve over time, it might be that the oldest version of your pathway has a totally different data dictionary compared to the most recent version.
+Every patient enrolled in a care flow is included in the last version of the care flow at the moment of care flow start. Because care flows can evolve over time, it might be that the oldest version of your care flow has a totally different data dictionary compared to the most recent version.
 
-Therefore, to query all the data point definitions for a given pathway version, you need to specify the `release_id` as an input parameter for this query.
+Therefore, to query all the data point definitions for a given care flow version, you need to specify the `release_id` as an input parameter for this query.
 
 ### Version vs. release id
 
-The `version` of a pathway is an auto-incremented and human-readable numerical value (eg: version 5). However, every version also has a unique identifier which is called the `release_id`. The `version` and `release_id` are returned in all pathway related queries.
+The `version` of a care flow is an auto-incremented and human-readable numerical value (eg: version 5). However, every version also has a unique identifier which is called the `release_id`. The `version` and `release_id` are returned in all care flow related queries.
 
 **Example:**
-All patients included in version 5 of the pathway have the same `release_id`.
+All patients included in version 5 of the care flow have the same `release_id`.
 
 ## Query
 
@@ -62,7 +62,7 @@ The `data_point_metadata` field can be used to retrieve additional information a
 
 ### Required parameters
 
-A `release_id` needs to be specified in order to retrieve the data dictionary for a pathway.
+A `release_id` needs to be specified in order to retrieve the data dictionary for a care flow.
 
 ```json
 {
@@ -105,7 +105,7 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 ### Pagination and sorting
 
-There is no pagination or sorting available for this query. All matching patient pathways will be returned.
+There is no pagination or sorting available for this query. All matching patient care flows will be returned.
 
 ## How to use
 

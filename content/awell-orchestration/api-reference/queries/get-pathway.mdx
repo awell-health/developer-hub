@@ -1,9 +1,9 @@
 ---
 title: Get pathway
-description: Get all information for a given pathway
+description: Get all information for a given care flow
 ---
 
-> We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the pathway model.
+> We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the care flow model.
 
 ## Request
 
@@ -55,8 +55,8 @@ query GetPathway($pathway_id: String!) {
       status
       status_explanation
       start_date
-      complete_date # if pathway is completed
-      stop_date # if pathway is stopped
+      complete_date # if care flow is completed
+      stop_date # if care flow is stopped
     }
   }
 }

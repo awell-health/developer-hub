@@ -3,13 +3,48 @@ title: Get calculation results
 description: Get the calculations results from a given calculation activity
 ---
 
+**Two queries are available for calculation-related data:**
+
+1. `calculationAction`: Retrieve a calculation action by its ID and get the calculation definition ID.
+2. `calculationResults`: Get the calculation results from a given calculation activity.
+
 ## Request
 
-### Query
+### Get calculation action
+
+Retrieve a calculation action by its published action ID.
+
+**Query:**
+
+```graphql
+query GetCalculationAction($id: String!) {
+  calculationAction(id: $id) {
+    code
+    success
+    calculationId
+  }
+}
+```
+
+**Variables:**
+
+```json
+{
+  "id": "{{ ACTION_ID }}"
+}
+```
+
+### Get calculation results
+
+Retrieve the calculation results from a given calculation activity.
+
+**Query:**
 
 ```graphql
 query GetCalculationResults($pathway_id: String!, $activity_id: String!) {
   calculationResults(pathway_id: $pathway_id, activity_id: $activity_id) {
+    code
+    success
     result {
       status
       subresult_id
@@ -21,7 +56,7 @@ query GetCalculationResults($pathway_id: String!, $activity_id: String!) {
 }
 ```
 
-### Variables
+**Variables:**
 
 ```json
 {

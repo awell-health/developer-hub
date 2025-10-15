@@ -1,13 +1,20 @@
 ---
 title: Get pathway activities
-description: Get all activities in a given pathway
+description: Get all activities in a given care flow
 ---
 
-This query fetches all of the pathway activities of any status for a specific orchestrated pathway, including system activities such as calculations or activations.
+**Two queries are available for care flow activities:**
+
+1. `pathwayActivities`: Get all activities in a given care flow (legacy).
+2. `careflowActivities`: Get activities in a care flow with advanced filtering options (recommended).
+
+Both queries fetch care flow activities of any status for a specific orchestrated care flow, including system activities such as calculations or activations.
 
 > We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the activity model.
 
-## Query
+## Request
+
+### Get care flow activities (legacy)
 
 ```graphql
 query GetPathwayActivities(
@@ -233,6 +240,199 @@ Form and question metadata is returned in all form queries as a JSON string rath
 
 **Example:**<br/>
 If you'd like to get all pending activities for the patient, you can filter the activities array by `activity.indirect_object.type === PATIENT`.
+
+### Get care flow activities (recommended)
+
+Get activities in a care flow with advanced server-side filtering options. This is the recommended query for most use cases as it supports filtering by activity status, type, stakeholders, date range, and more.
+
+**Query:**
+
+```graphql
+query GetCareflowActivities(
+  $pathway_id: String!
+  $pagination: PaginationParams
+  $sorting: SortingParams
+  $filters: FilterCareflowActivitiesParams
+) {
+  careflowActivities(
+    pathway_id: $pathway_id
+    pagination: $pagination
+    sorting: $sorting
+    filters: $filters
+  ) {
+    code
+    success
+    pagination {
+      count
+      offset
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
+    activities {
+      id
+      stream_id
+      date
+      status
+      action
+      isUserActivity
+      subject {
+        id
+        name
+        type
+      }
+      object {
+        id
+        name
+        type
+      }
+      indirect_object {
+        id
+        name
+        type
+      }
+      context {
+        instance_id
+        pathway_id
+        track_id
+        step_id
+        action_id
+      }
+      # For form content
+      form {
+        id
+        definition_id
+        title
+        key
+        questions {
+          id
+          definition_id
+          title
+          key
+          dataPointValueType
+          questionType
+        }
+      }
+    }
+  }
+}
+```
+
+**Variables:**
+
+```json
+{
+  "pathway_id": "{{ PATHWAY_ID }}",
+  "pagination": {
+    "count": 100,
+    "offset": 0
+  },
+  "sorting": {
+    "field": "date",
+    "direction": "DESC"
+  },
+  "filters": {
+    "activity_status": ["ACTIVE", "DONE"],
+    "activity_type": ["FORM", "MESSAGE"],
+    "action": ["ASSIGNED"],
+    "stakeholders": ["{{ STAKEHOLDER_ID }}"],
+    "hide_system_activities": true,
+    "reference_id": "{{ REFERENCE_ID }}",
+    "date_range": {
+      "from": "2024-01-01T00:00:00.000Z",
+      "to": "2024-12-31T23:59:59.999Z"
+    }
+  }
+}
+```
+
+**Filter Parameters:**
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pathway_id</td>
+        <td>Yes</td>
+        <td>The ID of the care flow</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>activity_status</td>
+        <td>No</td>
+        <td>Filter by activity status (e.g., ACTIVE, DONE, FAILED)</td>
+        <td>array of strings</td>
+      </tr>
+      <tr>
+        <td>activity_type</td>
+        <td>No</td>
+        <td>Filter by activity type (e.g., FORM, MESSAGE, CALCULATION)</td>
+        <td>array of strings</td>
+      </tr>
+      <tr>
+        <td>action</td>
+        <td>No</td>
+        <td>Filter by action type (e.g., ASSIGNED, ACTIVATE, COMPLETE)</td>
+        <td>array of strings</td>
+      </tr>
+      <tr>
+        <td>stakeholders</td>
+        <td>No</td>
+        <td>Filter by stakeholder IDs</td>
+        <td>array of strings</td>
+      </tr>
+      <tr>
+        <td>hide_system_activities</td>
+        <td>No</td>
+        <td>Hide system activities (calculations, activations, etc.)</td>
+        <td>boolean</td>
+      </tr>
+      <tr>
+        <td>reference_id</td>
+        <td>No</td>
+        <td>Filter by reference ID (e.g., action definition ID)</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>date_range</td>
+        <td>No</td>
+        <td>Filter activities within a date range</td>
+        <td>object with from/to ISO date strings</td>
+      </tr>
+      <tr>
+        <td>pagination</td>
+        <td>No</td>
+        <td>Pagination parameters (default: count=100, offset=0)</td>
+        <td>PaginationParams</td>
+      </tr>
+      <tr>
+        <td>sorting</td>
+        <td>No</td>
+        <td>Sorting parameters (default: field="date", direction="DESC")</td>
+        <td>SortingParams</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Advantages of careflowActivities:**
+- Server-side filtering (no need to filter on the client)
+- Filter by activity status, type, and action
+- Filter by stakeholders
+- Hide system activities with a single flag
+- Filter by date range
+- Filter by reference ID (action definition ID)
+- Includes form content directly in the response
 
 ## Examples
 

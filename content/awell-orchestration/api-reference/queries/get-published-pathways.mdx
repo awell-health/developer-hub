@@ -1,9 +1,9 @@
 ---
 title: Get published pathway definitions
-description: Get all published pathway definitions for your organization
+description: Get all published care flow definitions for your organization
 ---
 
-Retrieve the full list of published pathway definitions including the title, version, baseline data point definitions, and track definitions.
+Retrieve the full list of published care flow definitions including the title, version, baseline data point definitions, and track definitions.
 
 ## Request
 
@@ -46,7 +46,7 @@ query GetPublishedPathwayDefinitions {
 
 This boolean field indicates that the track can be triggered manually using the [startTrack](/awell-orchestration/api-reference/mutations/start-track) or [scheduleTrack](/awell-orchestration/api-reference/mutations/schedule-track) mutations.
 
-The `id` of the track is the track reference required for these mutations, and does not change between published pathway versions. You will also need the id of the specific patient pathway the track is (scheduled) to be added to.
+The `id` of the track is the track reference required for these mutations, and does not change between published care flow versions. You will also need the id of the specific patient care flow the track is (scheduled) to be added to.
 
 ## How to use
 

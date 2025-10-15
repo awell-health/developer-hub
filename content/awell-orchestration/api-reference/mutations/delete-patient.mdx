@@ -17,10 +17,27 @@ mutation DeletePatient($input: DeletePatientInput!) {
 
 ### Variables
 
+You can identify the patient using either `patient_id` or `patient_identifier`.
+
+#### Using patient_id
+
 ```json
 {
   "input": {
     "patient_id": "{{PATIENT_ID}}"
+  }
+}
+```
+
+#### Using patient_identifier
+
+```json
+{
+  "input": {
+    "patient_identifier": {
+      "system": "{{IDENTIFIER_SYSTEM}}",
+      "value": "{{IDENTIFIER_VALUE}}"
+    }
   }
 }
 ```

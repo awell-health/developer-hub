@@ -689,12 +689,14 @@ export enum DataPointSourceType {
   DataPoint = 'DATA_POINT',
   Decision = 'DECISION',
   ExtensionAction = 'EXTENSION_ACTION',
+  ExtensionActionResolution = 'EXTENSION_ACTION_RESOLUTION',
   ExtensionWebhook = 'EXTENSION_WEBHOOK',
   Form = 'FORM',
   Pathway = 'PATHWAY',
   PatientIdentifier = 'PATIENT_IDENTIFIER',
   PatientProfile = 'PATIENT_PROFILE',
   Step = 'STEP',
+  System = 'SYSTEM',
   Track = 'TRACK'
 }
 
@@ -739,7 +741,8 @@ export type DeletePathwayInput = {
 };
 
 export type DeletePatientInput = {
-  patient_id: Scalars['String']['input'];
+  patient_id?: InputMaybe<Scalars['String']['input']>;
+  patient_identifier?: InputMaybe<IdentifierInput>;
 };
 
 export type DynamicFormActivityInputs = ActivityInputs & {
@@ -784,6 +787,7 @@ export type Element = {
   __typename?: 'Element';
   activity_type?: Maybe<ActionType>;
   context: PathwayContext;
+  definition_id?: Maybe<Scalars['String']['output']>;
   end_date?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   label?: Maybe<ActivityLabel>;
@@ -869,6 +873,13 @@ export type ExclusiveOptionConfig = {
   __typename?: 'ExclusiveOptionConfig';
   enabled?: Maybe<Scalars['Boolean']['output']>;
   option_id?: Maybe<Scalars['String']['output']>;
+};
+
+export type ExpireActivityInput = {
+  activity_id: Scalars['String']['input'];
+  reason: Scalars['String']['input'];
+  user_email: Scalars['String']['input'];
+  user_id: Scalars['String']['input'];
 };
 
 export type ExpireTimerInput = {
@@ -990,6 +1001,7 @@ export type FilterPathwayDataPointDefinitionsParams = {
 export type FilterPathways = {
   pathway_definition_id?: InputMaybe<IdFilter>;
   patient_id?: InputMaybe<StringArrayFilter>;
+  patient_identifier?: InputMaybe<Array<IdentifierInput>>;
   release_id?: InputMaybe<StringArrayFilter>;
   start_date?: InputMaybe<DateFilter>;
   status?: InputMaybe<StringArrayFilter>;
@@ -1305,6 +1317,7 @@ export type Mutation = {
   deletePathway: EmptyPayload;
   deletePatient: EmptyPayload;
   evaluateFormRules: EvaluateFormRulesPayload;
+  expireActivity: EmptyPayload;
   expireTimer: EmptyPayload;
   markMessageAsRead: MarkMessageAsReadPayload;
   /** Retrieve patient demographics from an external system */
@@ -1386,6 +1399,11 @@ export type MutationDeletePatientArgs = {
 
 export type MutationEvaluateFormRulesArgs = {
   input: EvaluateFormRulesInput;
+};
+
+
+export type MutationExpireActivityArgs = {
+  input: ExpireActivityInput;
 };
 
 
@@ -2218,7 +2236,8 @@ export type QueryPatientByIdentifierArgs = {
 
 export type QueryPatientPathwaysArgs = {
   filters?: InputMaybe<FilterPatientPathways>;
-  patient_id: Scalars['String']['input'];
+  patient_id?: InputMaybe<Scalars['String']['input']>;
+  patient_identifier?: InputMaybe<IdentifierInput>;
 };
 
 

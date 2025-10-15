@@ -1,17 +1,17 @@
 ---
 title: Get pathway elements
-description: Pathway elements help you construct a clear picture of where you are in the lifespan of a pathway
+description: Pathway elements help you construct a clear picture of where you are in the lifespan of a care flow
 ---
 
-Where pathway activities represent every granular activity related to the operation or orchestration of a pathway, Elements are the building blocks of a pathway represented by their logical (e.g. this step belongs to a parent track) and chronological (e.g. this step's completion date depends on when all its child actions are completed) dependencies.
+Where care flow activities represent every granular activity related to the operation or orchestration of a care flow, Elements are the building blocks of a care flow represented by their logical (e.g. this step belongs to a parent track) and chronological (e.g. this step's completion date depends on when all its child actions are completed) dependencies.
 
-## Elements of a pathway
+## Elements of a care flow
 
-Elements allow us to reflect a pathway's overall shape. This means we can generate a clear picture of not just when we are (as with activities), but where we are in the lifespan of an orchestrated pathway. This makes them perfect for constructing [Gantt or Timeline-style views](#timeline-view) that give users high-level or granular views of a patient's progress through a care flow.
+Elements allow us to reflect a care flow's overall shape. This means we can generate a clear picture of not just when we are (as with activities), but where we are in the lifespan of an orchestrated care flow. This makes them perfect for constructing [Gantt or Timeline-style views](#timeline-view) that give users high-level or granular views of a patient's progress through a care flow.
 
 ### Element types
 
-**A pathway consists of the following types of elements:**
+**A care flow consists of the following types of elements:**
 
 - Pathway
 - Tracks
@@ -19,7 +19,7 @@ Elements allow us to reflect a pathway's overall shape. This means we can genera
 - Actions
 - Triggers (not yet supported in the query)
 
-There is hierarchy to elements. An action's parent is a Step. A Step's parent is a Track. A Track's parent is a Pathway. In other words, `Pathway -> Track -> Step -> Action`. Pathways, being the largest unit of pathway definition themselves, do not have parents.
+There is hierarchy to elements. An action's parent is a Step. A Step's parent is a Track. A Track's parent is a Care Flow. In other words, `Care Flow -> Track -> Step -> Action`. Care flows, being the largest unit of care flow definition themselves, do not have parents.
 
 ## Request
 

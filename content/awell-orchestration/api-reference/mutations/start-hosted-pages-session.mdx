@@ -5,7 +5,7 @@ description: Create a session for a specific stakeholder to complete activities 
 
 We recommend reading more about ["Awell Hosted Pages"](/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/overview-hosted-pages) first before moving on.
 
-Please note that this mutation can only be used to create a Hosted Pages session for a care flow that is already active. Have a look at our [Start pathway and Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-pathway-and-hosted-pages-session). If you would like to start a pathway and immediately create a session.
+Please note that this mutation can only be used to create a Hosted Pages session for a care flow that is already active. Have a look at our [Start pathway and Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-pathway-and-hosted-pages-session). If you would like to start a care flow and immediately create a session.
 
 ## Lifecycle
 
@@ -40,11 +40,11 @@ mutation StartHostedPagesSession($input: StartHostedActivitySessionInput!) {
 }
 ```
 
-The `pathway_id` specifies which care flow/pathway instance there are activities to complete for and the `stakeholder_id` specifies the stakeholder.
+The `pathway_id` specifies which care flow instance there are activities to complete for and the `stakeholder_id` specifies the stakeholder.
 
 ### Optional variables
 
-The `success_url` and `cancel_url` specify where the stakeholder should be redirected to when the care flow/pathway session is completed or canceled/interrupted respectively. If `success_url` and `cancel_url` are not specified, then static success and cancel pages will be shown in the Hosted Pages application.
+The `success_url` and `cancel_url` specify where the stakeholder should be redirected to when the care flow session is completed or canceled/interrupted respectively. If `success_url` and `cancel_url` are not specified, then static success and cancel pages will be shown in the Hosted Pages application.
 
 ```json
 {
@@ -74,4 +74,4 @@ Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/
 
 ## Session expiration
 
-A session expires after 60 minutes but the timer is reset after every completion of an activity. A session also expires when there are no pending activities left in a pathway.
+A session expires after 60 minutes but the timer is reset after every completion of an activity. A session also expires when there are no pending activities left in a care flow.

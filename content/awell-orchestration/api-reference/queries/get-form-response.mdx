@@ -3,13 +3,22 @@ title: Get form response
 description: Get the form response from a given form activity
 ---
 
+**Two queries are available for form-related data:**
+
+1. `formResponse`: Get the form response from a given form activity.
+2. `formActivityDataPoints`: Get data points from a form activity with their qualified keys.
+
 ## Request
 
-### Query
+### Get form response
+
+**Query:**
 
 ```graphql
 query GetFormResponse($pathway_id: String!, $activity_id: String!) {
   formResponse(pathway_id: $pathway_id, activity_id: $activity_id) {
+    code
+    success
     response {
       answers {
         question_id
@@ -24,7 +33,7 @@ query GetFormResponse($pathway_id: String!, $activity_id: String!) {
 
 Note: The `label` field will be empty (_null_) for non-multi-choice questions; for multi-choice questions, it represents the text description of the selected option, pairing its value with a descriptive label. The order of labels in the array matches the values order in the `value` field.
 
-### Variables
+**Variables:**
 
 ```json
 {
@@ -33,7 +42,7 @@ Note: The `label` field will be empty (_null_) for non-multi-choice questions; f
 }
 ```
 
-### Deserialization
+**Deserialization:**
 
 In the table below you can find an overview of all question types, their corresponding data point value type, and examples of the values you will receive from the Awell API in this query.
 
@@ -115,7 +124,7 @@ _Note that we undertake some conversion (particularly for boolean and numbers ar
   </table>
 </div>
 
-The inputs for this query are:
+**Inputs:**
 
 <div className="table-wrapper">
   <table>
@@ -131,7 +140,7 @@ The inputs for this query are:
       <tr>
         <td>pathway_id</td>
         <td>Yes</td>
-        <td>the id of the pathway</td>
+        <td>the id of the care flow</td>
         <td>string</td>
       </tr>
       <tr>
@@ -139,6 +148,95 @@ The inputs for this query are:
         <td>Yes</td>
         <td>the id of the form activity (note: not the form id)</td>
         <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Get form activity data points
+
+Retrieve data points from a form activity with their qualified keys. This query enriches the data points with their qualified keys from the data point definitions, making it easier to identify and use the data points in your application.
+
+**Query:**
+
+```graphql
+query GetFormActivityDataPoints($careflow_id: String!, $activity_id: String!) {
+  formActivityDataPoints(careflow_id: $careflow_id, activity_id: $activity_id) {
+    code
+    success
+    data_points {
+      key
+      value
+      valueType
+    }
+  }
+}
+```
+
+**Variables:**
+
+```json
+{
+  "careflow_id": "{{CAREFLOW_ID}}",
+  "activity_id": "{{FORM_ACTIVITY_ID}}"
+}
+```
+
+**Inputs:**
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>careflow_id</td>
+        <td>Yes</td>
+        <td>the id of the care flow</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>activity_id</td>
+        <td>Yes</td>
+        <td>the id of the form activity</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Response fields:**
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>key</td>
+        <td>The qualified key of the data point (e.g., "patient.age")</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>value</td>
+        <td>The value of the data point</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>valueType</td>
+        <td>The type of the data point value (STRING, NUMBER, BOOLEAN, DATE, NUMBERS_ARRAY)</td>
+        <td>DataPointValueType</td>
       </tr>
     </tbody>
   </table>

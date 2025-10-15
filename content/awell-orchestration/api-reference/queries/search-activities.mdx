@@ -3,9 +3,18 @@ title: Search activities
 description: Search activities by status, type, patient and other criteria
 ---
 
+**Two queries are available for activity lookups:**
+
+1. `activities`: Search activities by status, type, patient, and other criteria.
+2. `activity`: Get a single activity by its ID.
+
 > We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the activity model.
 
-## Query
+## Request
+
+### Search activities
+
+Search for activities with various filters including status, type, patient ID, pathway definition, and more.
 
 ```graphql
 query GetActivities(
@@ -74,7 +83,7 @@ There are no required parameters for this query. However, you should provide pag
 
 ### Filters
 
-The filter is optional: if you don't provide one, an unfiltered list of pathways will be returned.
+The filter is optional: if you don't provide one, an unfiltered list of care flows will be returned.
 
 ```graphql
 query GetActivities(
@@ -135,3 +144,85 @@ Default sorting is based on the `date` field, in descending order (i.e. newest t
   "sort_direction": "DESC"
 }
 ```
+
+### Get single activity
+
+Retrieve a single activity by its ID.
+
+**Query:**
+
+```graphql
+query GetActivity($id: String!) {
+  activity(id: $id) {
+    code
+    success
+    activity {
+      id
+      stream_id
+      date
+      status
+      action
+      subject {
+        id
+        name
+        type
+      }
+      object {
+        id
+        name
+        type
+      }
+      indirect_object {
+        id
+        name
+        type
+      }
+      context {
+        instance_id
+        pathway_id
+        track_id
+        step_id
+        action_id
+      }
+      resolution
+      isUserActivity
+      inputs {
+        ... on ActivityInputs {
+          __typename
+        }
+      }
+    }
+  }
+}
+```
+
+**Variables:**
+
+```json
+{
+  "id": "{{ ACTIVITY_ID }}"
+}
+```
+
+**Parameters:**
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>Yes</td>
+        <td>The unique identifier of the activity</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

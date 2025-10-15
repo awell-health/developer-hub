@@ -1,19 +1,19 @@
 ---
 title: Get all forms in a published pathway
-description: Get all the form definitions in a published pathway
+description: Get all the form definitions in a published care flow
 ---
 
-This query allows us to fetch the form details for all form defintions in a published care flow/pathway. Want to learn more about how to display the form in your UI and conditionally show/hide the correct questions based on the response? [Click here](/awell-orchestration/api-reference/queries/get-form)!
+This query allows us to fetch the form details for all form defintions in a published care flow. Want to learn more about how to display the form in your UI and conditionally show/hide the correct questions based on the response? [Click here](/awell-orchestration/api-reference/queries/get-form)!
 
 ## All forms vs. forms that will be completed
 
-Please note that this query returns all forms in a published care flow or pathway but that this doesn't necessarily mean that all these forms will be completed as that is dependent on the logic built into the care flow.
+Please note that this query returns all forms in a published care flow but that this doesn't necessarily mean that all these forms will be completed as that is dependent on the logic built into the care flow.
 
 **See the example below:**
 
 - There are 3 forms: Form A, B, and C.
 - However, Form B is only activated when the subject is a male and Form C when the subject is a female
-- The query will return all published forms in the care flow or pathway so Form A, B, and C but depending on the workflow some forms might never be completed.
+- The query will return all published forms in the care flow so Form A, B, and C but depending on the workflow some forms might never be completed.
 
 <figure className="w-full flex flex-col justify-center text-center relative">
   <div className="bg-[#F0F6FF] p-12 w-full sm:w-8/12 mx-auto rounded-md">
@@ -84,7 +84,7 @@ query GetFormsForPublishedPathway(
 
 ### Variables
 
-The `release_id` is optional. If not specified, we return the forms for the latest published version of the care flow or pathway.
+The `release_id` is optional. If not specified, we return the forms for the latest published version of the care flow.
 
 ```json
 {
