@@ -1,0 +1,59 @@
+---
+title: Expire activity
+description: Manually expire an activity and mark it as skipped with a reason
+---
+
+This mutation allows you to manually expire an activity and mark it as skipped. When expiring an activity, you must provide a reason which will be recorded in the activity's history for audit and tracking purposes.
+
+## Request
+
+### Mutation
+
+```graphql
+mutation ExpireActivity($input: ExpireActivityInput!) {
+  expireActivity(input: $input) {
+    success
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "activity_id": "{{ACTIVITY_ID}}",
+    "user_id": "{{USER_ID}}",
+    "user_email": "{{USER_EMAIL}}",
+    "reason": "{{REASON_FOR_EXPIRING}}"
+  }
+}
+```
+
+## Required fields
+
+- `activity_id`: The ID of the activity to expire
+- `user_id`: The ID of the user who is expiring the activity
+- `user_email`: The email address of the user (for audit trail)
+- `reason`: A description explaining why the activity is being expired
+
+
+## How it works
+
+When you expire an activity:
+
+1. The activity status is updated to expired with resolution "EXPIRED"
+2. The user information is recorded in the audit trail
+3. The care flow continues to the next steps, treating the activity as completed
+4. The reason remains visible in the activity history for compliance and auditing
+
+## Important notes
+
+- Expired activities cannot be undone. Once an activity is expired, it is marked as completed and will not appear in pending activities.
+- The reason provided is permanently recorded in the activity's history.
+- Make sure to provide clear and descriptive reasons for expiring activities for future reference and compliance purposes.
+
+## How to use
+
+<HowToUse storyIds={['pathway-activities']} />
+

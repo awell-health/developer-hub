@@ -1,11 +1,14 @@
 ---
-title: Get a user's pending activities
-description: Get all pending activities for a given user over all care flows
+title: Get a user's activities
+description: Get all activities or pending activities for a given user over all care flows
 ---
 
-This query allows us to fetch a specific user's pending pathway activities (i.e. activities that require them to take action) **for all care flows/pathways they are involved in**. An activity is pending if its status is 'ACTIVE'.
+**Two queries are available for user activities:**
 
-**If you'd like to fetch the pending activities in a specific care flow / pathay**, use the [GetPathwayActivities query](/awell-orchestration/api-reference/queries/get-pathway-activities).
+1. `myPendingActivities`: Get all pending activities for a given user over all care flows.
+2. `myActivities`: Get all activities (any status) for a given user, with optional filtering by pathway.
+
+**If you'd like to fetch activities in a specific care flow**, use the [GetPathwayActivities query](/awell-orchestration/api-reference/queries/get-pathway-activities).
 
 > We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the activity model.
 
@@ -13,15 +16,21 @@ This query allows us to fetch a specific user's pending pathway activities (i.e.
 
 ### Headers
 
-Use the `X-User-ID` header to specify for what user you'd like to fetch the pending activities for. Eg: you can pass the Awell patient ID as the value which will return all pending activities over all care flows the patient is included in.
+Use the `X-User-ID` header to specify for what user you'd like to fetch activities for. For example, you can pass the Awell patient ID as the value which will return all activities over all care flows the patient is included in.
 
 We use the value of the `X-User-ID` header to find all activities where the value matches the `activity.indirect_object.id` field.
 
-### Query
+### Get pending activities
+
+This query fetches a specific user's pending care flow activities (i.e., activities that require them to take action) **for all care flows they are involved in**. An activity is pending if its status is 'ACTIVE'.
+
+**Query:**
 
 ```graphql
 query GetPatientPendingActivities {
   myPendingActivities {
+    code
+    success
     activities {
       stream_id
       id
@@ -37,3 +46,116 @@ query GetPatientPendingActivities {
   }
 }
 ```
+
+### Get all user activities
+
+Get all activities for a specific user across all care flows or filtered by a specific care flow. Supports pagination and sorting.
+
+**Query:**
+
+```graphql
+query GetMyActivities(
+  $pathway_id: String
+  $pagination: PaginationParams
+  $sorting: SortingParams
+) {
+  myActivities(
+    pathway_id: $pathway_id
+    pagination: $pagination
+    sorting: $sorting
+  ) {
+    code
+    success
+    pagination {
+      count
+      offset
+      total_count
+    }
+    sorting {
+      field
+      direction
+    }
+    activities {
+      id
+      stream_id
+      date
+      status
+      action
+      isUserActivity
+      subject {
+        id
+        name
+        type
+      }
+      object {
+        id
+        name
+        type
+      }
+      indirect_object {
+        id
+        name
+        type
+      }
+      context {
+        instance_id
+        pathway_id
+        track_id
+        step_id
+        action_id
+      }
+    }
+  }
+}
+```
+
+**Variables:**
+
+```json
+{
+  "pathway_id": "{{ PATHWAY_ID }}", // Optional: filter by specific care flow
+  "pagination": {
+    "count": 100,
+    "offset": 0
+  },
+  "sorting": {
+    "field": "date",
+    "direction": "DESC"
+  }
+}
+```
+
+**Parameters:**
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pathway_id</td>
+        <td>No</td>
+        <td>Optional filter to limit activities to a specific care flow</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>pagination</td>
+        <td>No</td>
+        <td>Pagination parameters (default: count=100, offset=0)</td>
+        <td>PaginationParams</td>
+      </tr>
+      <tr>
+        <td>sorting</td>
+        <td>No</td>
+        <td>Sorting parameters (default: field="date", direction="DESC")</td>
+        <td>SortingParams</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

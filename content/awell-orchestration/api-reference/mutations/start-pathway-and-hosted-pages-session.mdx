@@ -1,11 +1,11 @@
 ---
 title: Start pathway and Hosted Pages session
-description: Start a pathway and create a session for Hosted Pages
+description: Start a care flow and create a session for Hosted Pages
 ---
 
 We recommend reading more about ["Awell Hosted Pages"](/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/overview-hosted-pages) first before moving on.
 
-**This mutation starts a pathway or care flow first and immediately creates a session for the patient stakeholder.** If you want to create a Hosted Pages session for an ongoing pathway, have a look at the [Start Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-hosted-pages-session).
+**This mutation starts a care flow first and immediately creates a session for the patient stakeholder.** If you want to create a Hosted Pages session for an ongoing care flow, have a look at the [Start Hosted Pages session mutation](/awell-orchestration/api-reference/mutations/start-hosted-pages-session).
 
 ## Use cases
 
@@ -34,7 +34,7 @@ mutation StartHostedPathwaySession($input: StartHostedPathwaySessionInput!) {
 
 ### Required variables
 
-`pathway_definition_id` specifies what pathway definition needs to be started.
+`pathway_definition_id` specifies what care flow definition needs to be started.
 
 ```json
 {
@@ -84,11 +84,11 @@ If no `patient_id` or `patient_identifier` is provided, we create an anonymous p
 
 #### Data points (baseline info)
 
-You have the ability to pass some initial data when starting a pathway. What data you can pass on pathway start needs to be configured in Awell Studio via the settings (see `Pathway > Settings > General`).
+You have the ability to pass some initial data when starting a care flow. What data you can pass on care flow start needs to be configured in Awell Studio via the settings (see `Pathway > Settings > General`).
 
-When your baseline data points are configured and your pathway is published, you can query the available baseline data points via the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-pathways).
+When your baseline data points are configured and your care flow is published, you can query the available baseline data points via the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-pathways).
 
-> There are `required` and `optional` baseline data points. A pathway will not be started until all required baseline data points have a value.
+> There are `required` and `optional` baseline data points. A care flow will not be started until all required baseline data points have a value.
 
 **Passing baseline info is as easy as providing an array of objects in the following format:**
 
@@ -110,7 +110,7 @@ When your baseline data points are configured and your pathway is published, you
 
 #### Success and cancel URL
 
-The `success_url` and `cancel_url` specify where the stakeholder should be redirected to when the care flow/pathway session is completed or canceled/interrupted respectively. If `success_url` and `cancel_url` are not specified, then static success and cancel pages will be shown in the Hosted Pages application.
+The `success_url` and `cancel_url` specify where the stakeholder should be redirected to when the care flow session is completed or canceled/interrupted respectively. If `success_url` and `cancel_url` are not specified, then static success and cancel pages will be shown in the Hosted Pages application.
 
 ```json
 {
@@ -148,7 +148,7 @@ Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/
 
 ## Session expiration
 
-A session expires after 60 minutes but the timer is reset after every completion of an activity. A session also expires when there are no pending activities left in a pathway.
+A session expires after 60 minutes but the timer is reset after every completion of an activity. A session also expires when there are no pending activities left in a care flow.
 
 ## How to use
 

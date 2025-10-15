@@ -1,9 +1,9 @@
 ---
 title: Get pathways
-description: Search pathways by status, type, patient and other criteria
+description: Search care flows by status, type, patient and other criteria
 ---
 
-> We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the pathway model.
+> We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the care flow model.
 
 ## Query
 
@@ -50,8 +50,8 @@ query GetPathways(
       status_explanation
       version # version number
       start_date
-      stop_date # if pathway is stopped
-      complete_date # if pathway is completed
+      stop_date # if care flow is stopped
+      complete_date # if care flow is completed
     }
   }
 }
@@ -65,7 +65,7 @@ There are no required parameters for this query. However, you should provide pag
 
 ### Filters
 
-The filter is optional: if you don't provide one, an unfiltered list of pathways will be returned.
+The filter is optional: if you don't provide one, an unfiltered list of care flows will be returned.
 
 ```graphql
 query GetPathways(
@@ -98,6 +98,8 @@ All `in` filter type accepts a list of values and results in an `is any of` sear
 
 When specifying multiple filters, the resulting criteria is the conjunction of all filters.
 
+#### Filter by patient_id
+
 ```json
 {
   "pathway_definition_id": "{{ PATHWAY_DEFINITION_ID }}",
@@ -106,6 +108,30 @@ When specifying multiple filters, the resulting criteria is the conjunction of a
   "start_date_latest": '2022-01-01',  // ISO8601 date string
   "release_id": ["{{ RELEASE_ID_1 }}", "{{ RELEASE_ID_2 }}"],
   "status": ["active", "completed", "stopped"], // See PathwayStatus enum
+  "offset": 0,
+  "count": 20,
+  "sort_field": "start_date",
+  "sort_direction": "DESC"
+}
+```
+
+#### Filter by patient_identifier
+
+Alternatively, you can filter care flows using patient identifiers instead of patient IDs:
+
+```json
+{
+  "pathway_definition_id": "{{ PATHWAY_DEFINITION_ID }}",
+  "patient_identifier": [
+    {
+      "system": "{{ IDENTIFIER_SYSTEM }}",
+      "value": "{{ IDENTIFIER_VALUE }}"
+    }
+  ],
+  "start_date_earliest": '2022-01-01',
+  "start_date_latest": '2022-01-01',
+  "release_id": ["{{ RELEASE_ID_1 }}", "{{ RELEASE_ID_2 }}"],
+  "status": ["active", "completed", "stopped"],
   "offset": 0,
   "count": 20,
   "sort_field": "start_date",

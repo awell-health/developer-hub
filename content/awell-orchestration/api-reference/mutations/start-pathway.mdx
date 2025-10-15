@@ -1,21 +1,21 @@
 ---
 title: Start pathway
-description: Start a new pathway for a given patient
+description: Start a new care flow for a given patient
 ---
 
 ## Prerequisites
 
-Care flows or pathways can only be started for patients so you need to create a patient first before you can start a pathway. You can create a new patient with the [`createPatient` mutation](/awell-orchestration/api-reference/mutations/create-patient).
+Care flows can only be started for patients so you need to create a patient first before you can start a care flow. You can create a new patient with the [`createPatient` mutation](/awell-orchestration/api-reference/mutations/create-patient).
 
-When you create a new patient, we will return you an Awell patient ID, which you can use to start a pathway. However, if you have created a patient using your own business identifiers, you can also utilize these identifiers to start a pathway.
+When you create a new patient, we will return you an Awell patient ID, which you can use to start a care flow. However, if you have created a patient using your own business identifiers, you can also utilize these identifiers to start a care flow.
 
 To use identifiers, they need to be set up on the tenant level. Learn more about how to set up [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
 
 ## Selecting the version
 
-When starting a pathway, Awell Orchestration automatically chooses the most recent published version of the specified pathway definition.
+When starting a care flow, Awell Orchestration automatically chooses the most recent published version of the specified care flow definition.
 
-> Improved support for versioning is coming soon, with the ability to select a specific version when starting a new pathway and upgrading started pathways to newer version.
+> Improved support for versioning is coming soon, with the ability to select a specific version when starting a new care flow and upgrading started care flows to newer version.
 
 ## Request
 
@@ -23,7 +23,7 @@ When starting a pathway, Awell Orchestration automatically chooses the most rece
 
 ### StartPathway mutation
 
-This mutation allows you to start a pathway for a patient **using the Awell patient ID**.
+This mutation allows you to start a care flow for a patient **using the Awell patient ID**.
 
 **Request:**
 
@@ -48,7 +48,7 @@ mutation StartPathway($input: StartPathwayInput!) {
 
 ### StartPathwayWithPatientIdentifier mutation
 
-This mutation allows you to start a pathway for a patient **using a business identifier**.
+This mutation allows you to start a care flow for a patient **using a business identifier**.
 
 ```graphql
 mutation StartPathwayWithPatientIdentifier(
@@ -104,13 +104,13 @@ The `pathway_definition_id` can be located either by using the [publishedPathway
     </a>
   </div>
   <figcaption className="dark:text-slate-400 pt-2">
-    How to find the pathway definition ID in Awell Studio
+    How to find the care flow definition ID in Awell Studio
   </figcaption>
 </figure>
 
 ### Baseline info
 
-You have the ability to pass some initial data when starting a pathway with baseline data points. What data you can pass on pathway start needs to be configured in Awell Studio. When your baseline data points are configured and your pathway is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-pathways)).
+You have the ability to pass some initial data when starting a care flow with baseline data points. What data you can pass on care flow start needs to be configured in Awell Studio. When your baseline data points are configured and your care flow is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-pathways)).
 
 ```json
 {
@@ -128,10 +128,10 @@ You have the ability to pass some initial data when starting a pathway with base
 <br />
 
 <Alert type="info" title="Configure baseline data points">
-  <p><a href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points" target="_blank">Learn how to create and configure baseline data points for your pathways in Awell Studio.</a></p>
+  <p><a href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points" target="_blank">Learn how to create and configure baseline data points for your care flows in Awell Studio.</a></p>
 </Alert>
 
-There are `required` and `optional` baseline data points. A pathway will not be started if not all required baseline data points have a value.
+There are `required` and `optional` baseline data points. A care flow will not be started if not all required baseline data points have a value.
 
 #### Serialization
 

@@ -1,12 +1,12 @@
 ---
 title: Update baseline info
-description: Update baseline pathway data points with new values
+description: Update baseline care flow data points with new values
 ---
 
-If your pathway has baseline info or data points, you can update the values of these data points while the pathway is already ongoing.
+If your care flow has baseline info or data points, you can update the values of these data points while the care flow is already ongoing.
 
 <Alert type="info" title="Configure baseline data points">
-  <p><a href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points" target="_blank">Learn how to create and configure baseline data points for your pathways in Awell Studio.</a></p>
+  <p><a href="https://help.awellhealth.com/en/articles/6423139-create-baseline-data-points" target="_blank">Learn how to create and configure baseline data points for your care flows in Awell Studio.</a></p>
 </Alert>
 
 ## Request
@@ -37,7 +37,7 @@ mutation UpdateBaselineInfo($input: UpdateBaselineInfoInput!) {
 }
 ```
 
-To update the baseline info data points in an existing pathway, the request needs the following, provided within an input object:
+To update the baseline info data points in an existing care flow, the request needs the following, provided within an input object:
 
 <div className="table-wrapper">
   <table>
@@ -53,7 +53,7 @@ To update the baseline info data points in an existing pathway, the request need
       <tr>
         <td>pathway_id</td>
         <td>Yes</td>
-        <td>the id of the pathway</td>
+        <td>the id of the care flow</td>
         <td>string</td>
       </tr>
       <tr>

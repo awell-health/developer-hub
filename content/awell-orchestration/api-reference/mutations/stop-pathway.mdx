@@ -1,9 +1,9 @@
 ---
 title: Stop pathway
-description: Stopping a pathway will stop the orchestration of the pathway
+description: Stopping a care flow will stop the orchestration of the care flow
 ---
 
-When a pathway is stopped, all scheduled steps will be cancelled and no notifications (eg reminders) will be sent anymore. The pathway will come to a halt at the state it's currently in.
+When a care flow is stopped, all scheduled steps will be cancelled and no notifications (eg reminders) will be sent anymore. The care flow will come to a halt at the state it's currently in.
 
 ## Request
 
@@ -20,7 +20,7 @@ mutation StopPathway($input: StopPathwayInput!) {
 
 ### Variables
 
-We highly recommend to pass a reason for stopping the pathway as this creates transparency for why a pathway was stopped.
+We highly recommend to pass a reason for stopping the care flow as this creates transparency for why a care flow was stopped.
 
 ```json
 {

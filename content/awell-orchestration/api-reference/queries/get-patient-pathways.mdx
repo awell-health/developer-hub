@@ -1,6 +1,6 @@
 ---
 title: Get patient pathways
-description: Get all pathways a given patient is or was enrolled in
+description: Get all care flows a given patient is or was enrolled in
 ---
 
 ## Query
@@ -47,15 +47,30 @@ query GetPatientPathways($patient_id: String!, $status: [String!]) {
 
 ### Required parameters
 
+You can identify the patient using either `patient_id` or `patient_identifier`.
+
+#### Using patient_id
+
 ```json
 {
   "patient_id": "{{ PATIENT_ID }}"
 }
 ```
 
+#### Using patient_identifier
+
+```json
+{
+  "patient_identifier": {
+    "system": "{{ IDENTIFIER_SYSTEM }}",
+    "value": "{{ IDENTIFIER_VALUE }}"
+  }
+}
+```
+
 ### Filters
 
-The filter is optional: if you don't provide one, all pathways for the patient will be returned.
+The filter is optional: if you don't provide one, all care flows for the patient will be returned.
 
 ```graphql
 query GetPatientPathways($patient_id: String!) {
@@ -92,4 +107,4 @@ enum PathwayStatus {
 
 ### Pagination and sorting
 
-There is no pagination or sorting available for this query. All matching patient pathways will be returned.
+There is no pagination or sorting available for this query. All matching patient care flows will be returned.

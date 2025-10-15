@@ -60,6 +60,125 @@ mutation AddIdentifierToPatient($input: AddIdentifierToPatientInput!) {
 }
 ```
 
+## Update patient language
+
+Update the preferred language for a patient. This mutation is particularly useful when you need to change a patient's language preference independently from other profile updates.
+
+### Mutation
+
+```graphql
+mutation UpdatePatientLanguage($input: UpdatePatientLanguageInput!) {
+  updatePatientLanguage(input: $input) {
+    user {
+      id
+      profile {
+        preferred_language
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+
+```json
+{
+  "input": {
+    "preferred_language": "en"
+  }
+}
+```
+
+## Upsert patient
+
+The `upsertPatient` mutation creates a new patient if one doesn't exist with the provided identifier, or updates the existing patient if a match is found. This is useful when you're not sure whether a patient record already exists in Awell.
+
+The patient is identified using a business identifier (system-value pair). Learn more about [identifiers](/awell-orchestration/docs/misc/patient-identifiers).
+
+### Mutation
+
+```graphql
+mutation UpsertPatient($input: UpsertPatientInput!) {
+  upsertPatient(input: $input) {
+    patient {
+      id
+      profile {
+        first_name
+        last_name
+        email
+      }
+    }
+  }
+}
+```
+
+### Variables
+
+```json
+{
+  "input": {
+    "patient_identifier": {
+      "system": "{{IDENTIFIER_SYSTEM_DEFINED_IN_YOUR_TENANT}}",
+      "value": "{{YOUR_INTERNAL_PATIENT_IDENTIFIER}}"
+    },
+    "profile": {
+      "first_name": "{{PATIENT_FIRST_NAME}}",
+      "last_name": "{{PATIENT_LAST_NAME}}",
+      "email": "{{PATIENT_EMAIL}}",
+      "preferred_language": "en",
+      "mobile_phone": "+16175551212",
+      "phone": "+16175551212",
+      "birth_date": "1990-01-01",
+      "patient_timezone": "America/New_York"
+    }
+  }
+}
+```
+
+### Required fields
+
+- `patient_identifier.system`: The identifier system configured in your tenant
+- `patient_identifier.value`: The patient's identifier value in your system
+- `profile.first_name`: Patient's first name (required if profile is provided)
+- `profile.last_name`: Patient's last name (required if profile is provided)
+
+### Clearing field values
+
+When updating an existing patient, passing `null` or an empty string for optional profile fields will clear those values from the patient record. This allows you to remove data that is no longer relevant or accurate.
+
+For example, to clear a patient's email address:
+
+```json
+{
+  "input": {
+    "patient_identifier": {
+      "system": "{{IDENTIFIER_SYSTEM}}",
+      "value": "{{IDENTIFIER_VALUE}}"
+    },
+    "profile": {
+      "email": null
+    }
+  }
+}
+```
+
+### Validation
+
+This mutation uses the same validation rules as the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient#validation):
+
+- **Preferred language**: Must be an [ISO 639-1 shortcode](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+- **Phone numbers**: Must be in E.164 format (see [E.164 phone validation](/awell-orchestration/developer-tools/api/e164-phone-validation))
+- **Birth date**: Must be a valid ISO8601 date string
+- **Timezone**: Must be a valid IANA timezone identifier
+
+### Errors
+
+#### Unknown identifier system
+
+If you pass in an identifier system that is not configured in your organization, Awell will throw an `INVALID_IDENTIFIER` error with a message that the identifier system is not known.
+
 ## How to use
 
 <HowToUse storyIds={['patient-profile']} />
