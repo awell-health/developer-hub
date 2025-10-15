@@ -19,7 +19,7 @@ mutation ScheduleTrack($input: ScheduleTrackInput!) {
 
 ### Variables
 
-The `pathway_id` is the id of the patient care flow for which you want to stop a track. Any query that returns a patient care flow such as [patientPathways](/awell-orchestration/api-reference/queries/get-patient-pathways) or [pathways](/awell-orchestration/api-reference/queries/get-pathways), will return a care flow id.
+The `pathway_id` is the id of the patient care flow for which you want to stop a track. Any query that returns a patient care flow such as [patientPathways](/awell-orchestration/api-reference/queries/get-patient-care-flows) or [pathways](/awell-orchestration/api-reference/queries/get-care-flows), will return a care flow id.
 
 The `track_id` is the id of the track that you want to stop. You can see a list of of schedulable tracks by using the [adHocTracks](/awell-orchestration/api-reference/queries/get-ad-hoc-tracks) query.
 

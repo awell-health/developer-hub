@@ -92,6 +92,90 @@ const nextConfig = {
         destination: '/awell-extensions',
         permanent: false,
       },
+      // Pathway to Care Flow redirects
+      // Queries
+      {
+        source: '/awell-orchestration/api-reference/queries/get-pathways',
+        destination: '/awell-orchestration/api-reference/queries/get-care-flows',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/queries/get-published-pathways',
+        destination: '/awell-orchestration/api-reference/queries/get-published-care-flows',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/queries/get-patient-pathways',
+        destination: '/awell-orchestration/api-reference/queries/get-patient-care-flows',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/queries/get-pathway',
+        destination: '/awell-orchestration/api-reference/queries/get-care-flow',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/queries/get-pathway-data-points',
+        destination: '/awell-orchestration/api-reference/queries/get-care-flow-data-points',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/queries/get-pathway-elements',
+        destination: '/awell-orchestration/api-reference/queries/get-care-flow-elements',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/queries/get-pathway-activities',
+        destination: '/awell-orchestration/api-reference/queries/get-care-flow-activities',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/queries/get-forms-in-pathway',
+        destination: '/awell-orchestration/api-reference/queries/get-forms-in-care-flow',
+        permanent: true,
+      },
+      // Mutations
+      {
+        source: '/awell-orchestration/api-reference/mutations/delete-pathway',
+        destination: '/awell-orchestration/api-reference/mutations/delete-care-flow',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/mutations/start-pathway',
+        destination: '/awell-orchestration/api-reference/mutations/start-care-flow',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/mutations/stop-pathway',
+        destination: '/awell-orchestration/api-reference/mutations/stop-care-flow',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/mutations/start-pathway-and-hosted-pages-session',
+        destination: '/awell-orchestration/api-reference/mutations/start-care-flow-and-hosted-pages-session',
+        permanent: true,
+      },
+      // Webhooks
+      {
+        source: '/awell-orchestration/api-reference/webhooks/pathway-started',
+        destination: '/awell-orchestration/api-reference/webhooks/care-flow-started',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/webhooks/pathway-stopped',
+        destination: '/awell-orchestration/api-reference/webhooks/care-flow-stopped',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/webhooks/pathway-deleted',
+        destination: '/awell-orchestration/api-reference/webhooks/care-flow-deleted',
+        permanent: true,
+      },
+      {
+        source: '/awell-orchestration/api-reference/webhooks/pathway-completed',
+        destination: '/awell-orchestration/api-reference/webhooks/care-flow-completed',
+        permanent: true,
+      },
     ]
   },
 }

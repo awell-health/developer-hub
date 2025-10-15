@@ -88,7 +88,7 @@ mutation StartPathwayWithPatientIdentifier(
 }
 ```
 
-The `pathway_definition_id` can be located either by using the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-pathways) or by checking the URL bar while working in Awell Studio. It's important to remember that your care flow must be published and have an active version set before you can start it.
+The `pathway_definition_id` can be located either by using the [publishedPathwayDefinitions query](/awell-orchestration/api-reference/queries/get-published-care-flows) or by checking the URL bar while working in Awell Studio. It's important to remember that your care flow must be published and have an active version set before you can start it.
 
 <figure className="w-full flex flex-col justify-center text-center relative">
   <div className="max-w-[500px] mx-auto rounded-md">
@@ -110,7 +110,7 @@ The `pathway_definition_id` can be located either by using the [publishedPathway
 
 ### Baseline info
 
-You have the ability to pass some initial data when starting a care flow with baseline data points. What data you can pass on care flow start needs to be configured in Awell Studio. When your baseline data points are configured and your care flow is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-pathways)).
+You have the ability to pass some initial data when starting a care flow with baseline data points. What data you can pass on care flow start needs to be configured in Awell Studio. When your baseline data points are configured and your care flow is published, you can query the available baseline data points via the `publishedPathwayDefinitions` query (see documentation [here](/awell-orchestration/api-reference/queries/get-published-care-flows)).
 
 ```json
 {
