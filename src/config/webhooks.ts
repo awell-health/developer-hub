@@ -13,7 +13,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'Then define and call a method to handle the start of the care flow in your system.',
-    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-started`,
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/care-flow-started`,
   },
   {
     event: 'pathway.stopped',
@@ -26,7 +26,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'When a care flow is `stopped`, all future reminders and activities are cancelled.',
-    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-stopped`,
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/care-flow-stopped`,
   },
   {
     event: 'pathway.completed',
@@ -38,7 +38,7 @@ export const webhooks: WebhooksType = [
       },
     ],
     comment: 'A `stopped` care flow is not considered completed.',
-    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-completed`,
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/care-flow-completed`,
   },
   {
     event: 'pathway.deleted',
@@ -51,7 +51,7 @@ export const webhooks: WebhooksType = [
     ],
     comment:
       'A `deleted` care flow that is still active is `stopped` before it is deleted.',
-    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/pathway-deleted`,
+    apiReferenceLink: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/care-flow-deleted`,
   },
   {
     event: 'activity.created',

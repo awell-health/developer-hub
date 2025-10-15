@@ -8,13 +8,13 @@ All of the interactions with Awell Orchestration are accessible through our API.
 Below is a typical, although very basic, lifecycle of interacting with our API.
 
 1. [Create a Patient](/awell-orchestration/api-reference/mutations/create-patient) in Awell
-2. [Start a Care Flow](/awell-orchestration/api-reference/mutations/start-pathway) for this patient
-3. [Get the pending activities](/awell-orchestration/api-reference/queries/get-pathway-activities) for this care flow
+2. [Start a Care Flow](/awell-orchestration/api-reference/mutations/start-care-flow) for this patient
+3. [Get the pending activities](/awell-orchestration/api-reference/queries/get-care-flow-activities) for this care flow
 4. Request the details of the next activity, e.g. [get form](/awell-orchestration/api-reference/queries/get-form) details
 5. Complete the next activity, e.g. [submit form response](/awell-orchestration/api-reference/mutations/submit-form-response)
 6. Request the details of the next activity, e.g. [get message](/awell-orchestration/api-reference/queries/get-message) details
 7. Complete the next activity (e.g. [mark the message as read](/awell-orchestration/api-reference/mutations/mark-message-as-read)
-8. ... and so on until the care flow is completed, at which point you can receive a [pathway completed](/awell-orchestration/api-reference/webhooks/pathway-completed) webhook
+8. ... and so on until the care flow is completed, at which point you can receive a [pathway completed](/awell-orchestration/api-reference/webhooks/care-flow-completed) webhook
 
 ## Core concepts
 
