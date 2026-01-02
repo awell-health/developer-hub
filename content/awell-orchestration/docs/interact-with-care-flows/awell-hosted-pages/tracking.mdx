@@ -1,0 +1,323 @@
+---
+title: Tracking and attribution
+description: Add UTM parameters and custom tracking data to Hosted Pages links for marketing attribution and analytics
+---
+
+Awell Hosted Pages supports UTM parameters and custom tracking data, enabling you to attribute sessions to specific marketing campaigns, partners, and traffic sources. Tracking data is captured when sessions are created and can be queried from BigQuery for reporting and analytics.
+
+## Why use tracking?
+
+Adding tracking parameters to your Hosted Pages links helps you:
+
+- **Measure campaign performance** — Understand which campaigns drive the most session completions
+- **Attribute traffic sources** — Know where your patients are coming from (email, ads, partners, etc.)
+- **A/B test content** — Compare different ad creatives or landing pages
+- **Track partner referrals** — Monitor affiliate or partner-driven traffic with custom parameters
+
+## Adding tracking parameters
+
+### Standard UTM parameters
+
+You can append standard UTM parameters to any Hosted Pages URL. These parameters are automatically captured when the session is created.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>utm_source</code></td>
+        <td>Which site/platform sent the traffic</td>
+        <td><code>google</code>, <code>facebook</code>, <code>newsletter</code></td>
+      </tr>
+      <tr>
+        <td><code>utm_medium</code></td>
+        <td>Type of link or marketing medium</td>
+        <td><code>email</code>, <code>cpc</code>, <code>social</code>, <code>organic</code></td>
+      </tr>
+      <tr>
+        <td><code>utm_campaign</code></td>
+        <td>Campaign identifier</td>
+        <td><code>spring_promo</code>, <code>product_launch</code></td>
+      </tr>
+      <tr>
+        <td><code>utm_term</code></td>
+        <td>Search terms (for paid search)</td>
+        <td><code>healthcare software</code></td>
+      </tr>
+      <tr>
+        <td><code>utm_content</code></td>
+        <td>Ad/content identifier for A/B testing</td>
+        <td><code>banner_ad_1</code>, <code>text_link_v2</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### URL examples
+
+<Alert type="info" title="Custom domains">
+  <p>Replace `goto.awell.health` with your custom URL if you have configured one.</p>
+</Alert>
+
+```bash
+# Standard UTM tracking
+https://goto.awell.health/c/abc123?utm_source=google&utm_medium=cpc&utm_campaign=summer_2025
+
+# Email campaign with patient identifier
+https://goto.awell.health/c/abc123?patient_identifier=system|value&utm_source=email&utm_medium=newsletter&utm_campaign=weekly_digest
+
+# With A/B test variant
+https://goto.awell.health/l/xyz789?utm_source=facebook&utm_medium=social&utm_campaign=awareness&utm_content=video_ad_v2
+```
+
+### Custom tracking parameters
+
+In addition to standard UTM parameters, you can pass any custom key-value pairs in the query string. These are captured in the `tracking_custom` field and can include:
+
+- Partner or affiliate IDs
+- Referral codes
+- Promo codes
+- Any other attribution data
+
+```bash
+# With custom parameters
+https://goto.awell.health/l/xyz789?utm_source=partner&affiliate_id=12345&referrer=partner_portal&promo_code=SAVE20
+```
+
+## Querying tracking data in BigQuery
+
+Tracking data is stored in the `hosted_sessions` table in your BigQuery dataset. All tracking fields are **nullable** — sessions created without tracking data will have `NULL` values.
+
+### Available tracking fields
+
+#### UTM parameter columns
+
+These are stored as `STRING` columns and are nullable.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Column</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>tracking_utm_source</code></td>
+        <td>The traffic source</td>
+      </tr>
+      <tr>
+        <td><code>tracking_utm_medium</code></td>
+        <td>The marketing medium</td>
+      </tr>
+      <tr>
+        <td><code>tracking_utm_campaign</code></td>
+        <td>The campaign identifier</td>
+      </tr>
+      <tr>
+        <td><code>tracking_utm_term</code></td>
+        <td>Search terms</td>
+      </tr>
+      <tr>
+        <td><code>tracking_utm_content</code></td>
+        <td>Content/ad identifier</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div className="mt-8" />
+
+#### JSON columns
+
+These are stored as `JSON` columns and are nullable.
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Column</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>tracking</code></td>
+        <td>Full tracking object containing all UTM params plus any additional data</td>
+      </tr>
+      <tr>
+        <td><code>tracking_custom</code></td>
+        <td>Custom tracking key-value pairs (non-UTM parameters)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Basic query examples
+
+#### View all sessions with tracking data
+
+```sql
+SELECT
+  id,
+  care_flow_id,
+  created_at,
+  status,
+  tracking_utm_source,
+  tracking_utm_medium,
+  tracking_utm_campaign,
+  tracking_utm_term,
+  tracking_utm_content,
+  tracking_custom
+FROM `your-project.your_dataset.hosted_sessions`
+WHERE tracking_utm_source IS NOT NULL
+ORDER BY created_at DESC
+LIMIT 100;
+```
+
+<div className="mt-8" />
+
+#### Count completed care flows by traffic source
+
+```sql
+SELECT
+  hs.tracking_utm_source,
+  COUNT(DISTINCT hs.id) as total_sessions,
+  COUNT(DISTINCT CASE WHEN cf.status = 'completed' THEN hs.id END) as completed_care_flows,
+  ROUND(
+    COUNT(DISTINCT CASE WHEN cf.status = 'completed' THEN hs.id END) * 100.0 / 
+    COUNT(DISTINCT hs.id), 
+    2
+  ) as completion_rate_pct
+FROM `your-project.your_dataset.hosted_sessions` hs
+LEFT JOIN `your-project.your_dataset.care_flows` cf
+  ON hs.care_flow_id = cf.id
+WHERE hs.tracking_utm_source IS NOT NULL
+GROUP BY hs.tracking_utm_source
+ORDER BY total_sessions DESC;
+```
+
+### Querying custom tracking data
+
+Extract specific fields from the `tracking_custom` JSON column:
+
+```sql
+SELECT
+  id,
+  care_flow_id,
+  created_at,
+  tracking_custom,
+  JSON_VALUE(tracking_custom, '$.affiliate_id') as affiliate_id,
+  JSON_VALUE(tracking_custom, '$.referrer') as referrer,
+  JSON_VALUE(tracking_custom, '$.promo_code') as promo_code
+FROM `your-project.your_dataset.hosted_sessions`
+WHERE tracking_custom IS NOT NULL
+LIMIT 100;
+```
+
+### Advanced analysis examples
+
+#### Conversion funnel by traffic source
+
+```sql
+WITH session_stats AS (
+  SELECT
+    tracking_utm_source,
+    COUNT(*) as total_sessions,
+    COUNTIF(status = 'active') as active_sessions,
+    COUNTIF(status = 'completed') as completed_sessions,
+    COUNTIF(status = 'expired') as expired_sessions
+  FROM `your-project.your_dataset.hosted_sessions`
+  WHERE tracking_utm_source IS NOT NULL
+    AND created_at >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+  GROUP BY tracking_utm_source
+)
+SELECT
+  tracking_utm_source,
+  total_sessions,
+  active_sessions,
+  completed_sessions,
+  expired_sessions,
+  ROUND(completed_sessions / total_sessions * 100, 2) as completion_rate_pct
+FROM session_stats
+ORDER BY total_sessions DESC;
+```
+
+#### Form completion rate by campaign
+
+You can measure form completion rates by joining with other tables. Here are a couple of approaches:
+
+##### Using the `forms` JSON column
+
+The `hosted_sessions` table includes a `forms` JSON column that tracks which forms were completed within the session:
+
+```sql
+SELECT
+  tracking_utm_source,
+  tracking_utm_campaign,
+  COUNT(*) as total_sessions,
+  COUNTIF(JSON_EXTRACT(forms, '$.<your-form-id>') IS NOT NULL) as sessions_with_form_completed,
+  ROUND(
+    COUNTIF(JSON_EXTRACT(forms, '$.<your-form-id>') IS NOT NULL) * 100.0 / COUNT(*),
+    2
+  ) as form_completion_rate_pct
+FROM `your-project.your_dataset.hosted_sessions`
+WHERE tracking_utm_source IS NOT NULL
+  AND created_at >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+GROUP BY tracking_utm_source, tracking_utm_campaign
+ORDER BY total_sessions DESC;
+```
+
+##### Using the `activities` table
+
+You can also join with the `activities` table and filter by form name:
+
+```sql
+SELECT
+  hs.tracking_utm_source,
+  hs.tracking_utm_campaign,
+  COUNT(DISTINCT hs.id) as total_sessions,
+  COUNT(DISTINCT CASE WHEN a.status = 'done' THEN hs.id END) as sessions_with_form_completed,
+  ROUND(
+    COUNT(DISTINCT CASE WHEN a.status = 'done' THEN hs.id END) * 100.0 / 
+    COUNT(DISTINCT hs.id), 
+    2
+  ) as form_completion_rate_pct
+FROM `your-project.your_dataset.hosted_sessions` hs
+LEFT JOIN `your-project.your_dataset.activities` a
+  ON hs.care_flow_id = a.care_flow_id
+  AND a.object_type = 'form'
+  AND a.object_name = 'Patient Intake Form'  -- Replace with your form name
+WHERE hs.tracking_utm_source IS NOT NULL
+  AND hs.created_at >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+GROUP BY hs.tracking_utm_source, hs.tracking_utm_campaign
+ORDER BY total_sessions DESC;
+```
+
+<div className="mt-4" />
+
+<Alert type="info" title="Finding form names and IDs">
+  <p>You can find form names by querying the <code>activities</code> table: <code>SELECT DISTINCT object_name, object_id FROM activities WHERE object_type = 'form'</code></p>
+</Alert>
+
+## Tips and best practices
+
+1. **Establish consistent naming conventions** for your UTM parameters (e.g. always lowercase, use underscores), which makes analysis much easier
+
+2. **Always use time filters** — Add `created_at >= ...` filters to improve query performance on large datasets.
+
+3. **Check for NULL values** — Many sessions may not have tracking data. Always filter with `IS NOT NULL` when analyzing tracked sessions.
+
+4. **Filter by status** — Consider filtering by session status (or care flow status) for meaningful metrics:
+
+5. **Handle JSON parsing safely** — Use `SAFE.JSON_VALUE()` if you encounter parsing errors with malformed JSON in custom tracking fields.
+
+6. **Dataset names** — Replace `your-project.your_dataset` with your actual BigQuery project and dataset name (e.g., `awell-production.customer_name`).
+

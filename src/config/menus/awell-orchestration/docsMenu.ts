@@ -82,6 +82,10 @@ export const docsMenu: MenuType = [
             path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/awell-hosted-pages/sessions-and-links`,
           },
           {
+            title: 'Tracking and attribution',
+            path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/awell-hosted-pages/tracking`,
+          },
+          {
             title: 'Built-in and customizable features',
             path: `/${Space.AWELL_ORCHESTRATION}/docs/interact-with-care-flows/awell-hosted-pages/built-in-and-customizable-features`,
           },

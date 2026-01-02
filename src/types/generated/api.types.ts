@@ -43,6 +43,12 @@ export enum ActionType {
   PushToEmr = 'PUSH_TO_EMR'
 }
 
+export type ActivationReference = {
+  __typename?: 'ActivationReference';
+  reference_name?: Maybe<Scalars['String']['output']>;
+  type: Scalars['String']['output'];
+};
+
 export type ActivitiesPayload = PaginationAndSortingPayload & {
   __typename?: 'ActivitiesPayload';
   activities: Array<Activity>;
@@ -114,6 +120,8 @@ export enum ActivityAction {
 
 export enum ActivityInputType {
   Calculation = 'CALCULATION',
+  CodeBlock = 'CODE_BLOCK',
+  DecisionTable = 'DECISION_TABLE',
   DynamicForm = 'DYNAMIC_FORM',
   Extension = 'EXTENSION',
   Form = 'FORM',
@@ -161,11 +169,12 @@ export enum ActivityObjectType {
   Calculation = 'CALCULATION',
   Checklist = 'CHECKLIST',
   ClinicalNote = 'CLINICAL_NOTE',
-  Decision = 'DECISION',
   EmrReport = 'EMR_REPORT',
   EmrRequest = 'EMR_REQUEST',
+  EnrollmentTrigger = 'ENROLLMENT_TRIGGER',
   EvaluatedRule = 'EVALUATED_RULE',
   Form = 'FORM',
+  Logic = 'LOGIC',
   Message = 'MESSAGE',
   Pathway = 'PATHWAY',
   Patient = 'PATIENT',
@@ -175,15 +184,22 @@ export enum ActivityObjectType {
   Stakeholder = 'STAKEHOLDER',
   Step = 'STEP',
   Timer = 'TIMER',
+  TimerCompletion = 'TIMER_COMPLETION',
   Track = 'TRACK',
+  TrackTrigger = 'TRACK_TRIGGER',
   User = 'USER'
 }
 
 export enum ActivityOutputType {
   Calculation = 'CALCULATION',
+  CodeBlock = 'CODE_BLOCK',
+  DecisionTable = 'DECISION_TABLE',
   DynamicForm = 'DYNAMIC_FORM',
+  EnrollmentTrigger = 'ENROLLMENT_TRIGGER',
   Extension = 'EXTENSION',
-  Form = 'FORM'
+  Form = 'FORM',
+  Timer = 'TIMER',
+  TrackTrigger = 'TRACK_TRIGGER'
 }
 
 export type ActivityOutputs = {
@@ -532,6 +548,29 @@ export type ClinicalNotePayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type CodeBlockActivityInputs = ActivityInputs & {
+  __typename?: 'CodeBlockActivityInputs';
+  code_block?: Maybe<Scalars['JSON']['output']>;
+  type: ActivityInputType;
+};
+
+export type CodeBlockActivityOutputs = ActivityOutputs & {
+  __typename?: 'CodeBlockActivityOutputs';
+  /** Output data points with their labels */
+  code_block_outputs?: Maybe<Scalars['JSON']['output']>;
+  /** Execution metadata */
+  execution_meta?: Maybe<CodeBlockExecutionMeta>;
+  /** The result value returned by the code block */
+  result?: Maybe<Scalars['String']['output']>;
+  type: ActivityOutputType;
+};
+
+export type CodeBlockExecutionMeta = {
+  __typename?: 'CodeBlockExecutionMeta';
+  duration_ms?: Maybe<Scalars['Float']['output']>;
+  execution_id?: Maybe<Scalars['String']['output']>;
+};
+
 export type CompleteExtensionActivityInput = {
   activity_id: Scalars['String']['input'];
   data_points: Array<ExtensionDataPointInput>;
@@ -686,12 +725,14 @@ export enum DataPointSourceType {
   ApiCall = 'API_CALL',
   ApiCallStatus = 'API_CALL_STATUS',
   Calculation = 'CALCULATION',
+  Code = 'CODE',
   DataPoint = 'DATA_POINT',
   Decision = 'DECISION',
   ExtensionAction = 'EXTENSION_ACTION',
   ExtensionActionResolution = 'EXTENSION_ACTION_RESOLUTION',
   ExtensionWebhook = 'EXTENSION_WEBHOOK',
   Form = 'FORM',
+  Logic = 'LOGIC',
   Pathway = 'PATHWAY',
   PatientIdentifier = 'PATIENT_IDENTIFIER',
   PatientProfile = 'PATIENT_PROFILE',
@@ -729,11 +770,18 @@ export type DateRangeInput = {
   to: Scalars['SafeDate']['input'];
 };
 
-export type DecisionOutputsPayload = Payload & {
-  __typename?: 'DecisionOutputsPayload';
-  code: Scalars['String']['output'];
-  outputs: Scalars['String']['output'];
-  success: Scalars['Boolean']['output'];
+export type DecisionTableActivityInputs = ActivityInputs & {
+  __typename?: 'DecisionTableActivityInputs';
+  decision_table?: Maybe<Scalars['JSON']['output']>;
+  type: ActivityInputType;
+};
+
+export type DecisionTableActivityOutputs = ActivityOutputs & {
+  __typename?: 'DecisionTableActivityOutputs';
+  decision_table_outputs?: Maybe<Scalars['JSON']['output']>;
+  matched_rule_ids?: Maybe<Array<Scalars['String']['output']>>;
+  matched_rule_priorities?: Maybe<Array<Scalars['Float']['output']>>;
+  type: ActivityOutputType;
 };
 
 export type DeletePathwayInput = {
@@ -857,6 +905,33 @@ export type EmrReportPayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type EnrollmentTriggerActivityOutputs = ActivityOutputs & {
+  __typename?: 'EnrollmentTriggerActivityOutputs';
+  action_type: Scalars['String']['output'];
+  careflow_definition_id?: Maybe<Scalars['String']['output']>;
+  careflow_definition_name?: Maybe<Scalars['String']['output']>;
+  careflow_id?: Maybe<Scalars['String']['output']>;
+  conditions_evaluated?: Maybe<Scalars['Boolean']['output']>;
+  data_points_set?: Maybe<Array<EnrollmentTriggerDataPoint>>;
+  error_message?: Maybe<Scalars['String']['output']>;
+  existing_careflow_id?: Maybe<Scalars['String']['output']>;
+  existing_careflow_title?: Maybe<Scalars['String']['output']>;
+  result: Scalars['String']['output'];
+  skip_reason?: Maybe<Scalars['String']['output']>;
+  source_id: Scalars['String']['output'];
+  source_type: Scalars['String']['output'];
+  status: Scalars['String']['output'];
+  track_id?: Maybe<Scalars['String']['output']>;
+  track_name?: Maybe<Scalars['String']['output']>;
+  type: ActivityOutputType;
+};
+
+export type EnrollmentTriggerDataPoint = {
+  __typename?: 'EnrollmentTriggerDataPoint';
+  data_point_definition_id: Scalars['String']['output'];
+  value: Scalars['String']['output'];
+};
+
 export type EvaluateFormRulesInput = {
   answers: Array<AnswerInput>;
   form_id: Scalars['String']['input'];
@@ -909,7 +984,9 @@ export enum ExtensionActionFieldType {
 
 export type ExtensionActivityInputs = ActivityInputs & {
   __typename?: 'ExtensionActivityInputs';
+  componentKey: Scalars['String']['output'];
   extension_fields?: Maybe<Scalars['JSON']['output']>;
+  extension_settings?: Maybe<Array<Scalars['JSON']['output']>>;
   type: ActivityInputType;
 };
 
@@ -968,6 +1045,7 @@ export type FileUploadGcsPayload = Payload & {
   __typename?: 'FileUploadGCSPayload';
   code: Scalars['String']['output'];
   file_url: Scalars['String']['output'];
+  required_headers?: Maybe<Scalars['JSON']['output']>;
   success: Scalars['Boolean']['output'];
   upload_url: Scalars['String']['output'];
 };
@@ -1145,10 +1223,12 @@ export type HostedSession = {
   created_at: Scalars['String']['output'];
   expires_at: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  organization_slug?: Maybe<Scalars['String']['output']>;
   pathway_id: Scalars['String']['output'];
   stakeholder: HostedSessionStakeholder;
   status: HostedSessionStatus;
   success_url?: Maybe<Scalars['String']['output']>;
+  tracking?: Maybe<SessionTracking>;
   user_context?: Maybe<HostedSessionUserContext>;
 };
 
@@ -1936,7 +2016,6 @@ export type Query = {
   careflowActivityTypes: ActivityTypesPayload;
   checklist: ChecklistPayload;
   clinicalNote: ClinicalNotePayload;
-  decisionOutputs: DecisionOutputsPayload;
   emrReport: EmrReportPayload;
   extensionActivityRecord: ExtensionActivityRecordPayload;
   filterStakeholders: StakeholdersPayload;
@@ -1950,6 +2029,7 @@ export type Query = {
   getPublishedCareflowVersions: CareflowVersionsPayload;
   /** Generate a signed URL for file upload to GCS */
   getSignedUrl: FileUploadGcsPayload;
+  /** @deprecated This query is deprecated. Use 'publishedPathwayDefinitions' instead for better performance. */
   getStatusForPublishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
   hostedPagesLink: HostedPagesLinkPayload;
   hostedSession: HostedSessionPayload;
@@ -2064,12 +2144,6 @@ export type QueryClinicalNoteArgs = {
 };
 
 
-export type QueryDecisionOutputsArgs = {
-  activity_id: Scalars['String']['input'];
-  pathway_id: Scalars['String']['input'];
-};
-
-
 export type QueryEmrReportArgs = {
   id: Scalars['String']['input'];
 };
@@ -2136,6 +2210,7 @@ export type QueryGetPublishedCareflowVersionsArgs = {
 
 
 export type QueryGetSignedUrlArgs = {
+  activity_id?: InputMaybe<Scalars['String']['input']>;
   config_slug: Scalars['String']['input'];
   content_type: Scalars['String']['input'];
   expires_in?: InputMaybe<Scalars['Float']['input']>;
@@ -2482,6 +2557,16 @@ export type SessionMetadata = {
   tenant_id?: Maybe<Scalars['String']['output']>;
 };
 
+export type SessionTracking = {
+  __typename?: 'SessionTracking';
+  custom?: Maybe<Scalars['JSON']['output']>;
+  utm_campaign?: Maybe<Scalars['String']['output']>;
+  utm_content?: Maybe<Scalars['String']['output']>;
+  utm_medium?: Maybe<Scalars['String']['output']>;
+  utm_source?: Maybe<Scalars['String']['output']>;
+  utm_term?: Maybe<Scalars['String']['output']>;
+};
+
 export enum Sex {
   Female = 'FEMALE',
   Male = 'MALE',
@@ -2568,6 +2653,8 @@ export type StartHostedActivitySessionInput = {
   pathway_id: Scalars['String']['input'];
   stakeholder_id: Scalars['String']['input'];
   success_url?: InputMaybe<Scalars['String']['input']>;
+  /** UTM tracking parameters for analytics */
+  tracking?: InputMaybe<TrackingInput>;
   user_context?: InputMaybe<HostedSessionUserContextInput>;
 };
 
@@ -2575,26 +2662,34 @@ export type StartHostedActivitySessionPayload = Payload & {
   __typename?: 'StartHostedActivitySessionPayload';
   code: Scalars['String']['output'];
   language?: Maybe<Scalars['String']['output']>;
+  organization_slug?: Maybe<Scalars['String']['output']>;
   session_id: Scalars['String']['output'];
   session_url: Scalars['String']['output'];
   success: Scalars['Boolean']['output'];
+  tracking?: Maybe<SessionTracking>;
   user_context?: Maybe<HostedSessionUserContext>;
 };
 
 export type StartHostedActivitySessionViaHostedPagesLinkInput = {
   hosted_pages_link_id: Scalars['String']['input'];
+  /** UTM tracking parameters for analytics */
+  tracking?: InputMaybe<TrackingInput>;
 };
 
 export type StartHostedPathwaySessionFromLinkInput = {
   id: Scalars['String']['input'];
   patient_identifier?: InputMaybe<IdentifierInput>;
+  /** UTM tracking parameters for analytics */
+  tracking?: InputMaybe<TrackingInput>;
 };
 
 export type StartHostedPathwaySessionFromLinkPayload = Payload & {
   __typename?: 'StartHostedPathwaySessionFromLinkPayload';
   code: Scalars['String']['output'];
+  organization_slug?: Maybe<Scalars['String']['output']>;
   session_url: Scalars['String']['output'];
   success: Scalars['Boolean']['output'];
+  tracking?: Maybe<SessionTracking>;
 };
 
 export type StartHostedPathwaySessionInput = {
@@ -2610,6 +2705,8 @@ export type StartHostedPathwaySessionInput = {
   /** Specify the stakeholder for the hosted session. If not provided, the stakeholder will be the patient by default */
   stakeholder_definition_id?: InputMaybe<Scalars['String']['input']>;
   success_url?: InputMaybe<Scalars['String']['input']>;
+  /** UTM tracking parameters for analytics */
+  tracking?: InputMaybe<TrackingInput>;
   /** Time-to-live of the session in seconds. This defaults to the maximal value of 3600 seconds (one hour). */
   ttl?: InputMaybe<Scalars['Float']['input']>;
   user_context?: InputMaybe<HostedSessionUserContextInput>;
@@ -2618,11 +2715,13 @@ export type StartHostedPathwaySessionInput = {
 export type StartHostedPathwaySessionPayload = Payload & {
   __typename?: 'StartHostedPathwaySessionPayload';
   code: Scalars['String']['output'];
+  organization_slug?: Maybe<Scalars['String']['output']>;
   pathway_id: Scalars['String']['output'];
   session_id: Scalars['String']['output'];
   session_url: Scalars['String']['output'];
   stakeholder: HostedSessionStakeholder;
   success: Scalars['Boolean']['output'];
+  tracking?: Maybe<SessionTracking>;
   user_context?: Maybe<HostedSessionUserContext>;
 };
 
@@ -2642,6 +2741,7 @@ export type StartPathwayPayload = Payload & {
 };
 
 export type StartPathwayWithPatientIdentifierInput = {
+  create_patient?: InputMaybe<Scalars['Boolean']['input']>;
   data_points?: InputMaybe<Array<DataPointInput>>;
   pathway_definition_id: Scalars['String']['input'];
   patient_identifier: IdentifierInput;
@@ -2853,6 +2953,64 @@ export type TextFilterEquals = {
   eq?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type TimerActivityOutputs = ActivityOutputs & {
+  __typename?: 'TimerActivityOutputs';
+  activation_activity_id?: Maybe<Scalars['String']['output']>;
+  awaited_data_point?: Maybe<TimerAwaitedDataPoint>;
+  completion_date: Scalars['String']['output'];
+  /** For DATA_POINT_AWAITED timers: whether completed due to data point collection or timeout */
+  completion_reason?: Maybe<Scalars['String']['output']>;
+  completion_type: Scalars['String']['output'];
+  delay_config?: Maybe<TimerDelayConfig>;
+  reference_data_point?: Maybe<TimerReferenceDataPoint>;
+  resource_config?: Maybe<TimerResourceConfig>;
+  scheduled_date: Scalars['String']['output'];
+  skip_reason?: Maybe<Scalars['String']['output']>;
+  skipped_by?: Maybe<Scalars['String']['output']>;
+  timeout_config?: Maybe<TimerTimeoutConfig>;
+  timer_type: TimerType;
+  type: ActivityOutputType;
+};
+
+export type TimerAwaitedDataPoint = {
+  __typename?: 'TimerAwaitedDataPoint';
+  definition_id: Scalars['String']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type TimerDelayConfig = {
+  __typename?: 'TimerDelayConfig';
+  amount: Scalars['Float']['output'];
+  unit: Scalars['String']['output'];
+};
+
+export type TimerReferenceDataPoint = {
+  __typename?: 'TimerReferenceDataPoint';
+  definition_id: Scalars['String']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+export type TimerResourceConfig = {
+  __typename?: 'TimerResourceConfig';
+  action_key: Scalars['String']['output'];
+  resource_id?: Maybe<Scalars['String']['output']>;
+  timer_key: Scalars['String']['output'];
+};
+
+export type TimerTimeoutConfig = {
+  __typename?: 'TimerTimeoutConfig';
+  amount: Scalars['Float']['output'];
+  unit: Scalars['String']['output'];
+};
+
+export enum TimerType {
+  DataPointAwaited = 'DATA_POINT_AWAITED',
+  DataPointReference = 'DATA_POINT_REFERENCE',
+  Delay = 'DELAY',
+  ExtensionResourceUpdated = 'EXTENSION_RESOURCE_UPDATED'
+}
+
 export type ToolSpecGraphqlType = {
   __typename?: 'ToolSpecGraphqlType';
   description: Scalars['String']['output'];
@@ -2873,6 +3031,34 @@ export type Track = {
   title: Scalars['String']['output'];
 };
 
+export type TrackTriggerActivityOutputs = ActivityOutputs & {
+  __typename?: 'TrackTriggerActivityOutputs';
+  activation_reference?: Maybe<ActivationReference>;
+  evaluated_rule_id: Scalars['String']['output'];
+  satisfied: Scalars['Boolean']['output'];
+  scheduled_activation_date?: Maybe<Scalars['String']['output']>;
+  target_track_id: Scalars['String']['output'];
+  target_track_name?: Maybe<Scalars['String']['output']>;
+  trigger_type: Scalars['String']['output'];
+  triggering_event: TriggeringEvent;
+  type: ActivityOutputType;
+};
+
+export type TrackingInput = {
+  /** Custom key-value pairs for additional tracking parameters */
+  custom?: InputMaybe<Scalars['JSON']['input']>;
+  /** Identifies a specific product promotion or strategic campaign */
+  utm_campaign?: InputMaybe<Scalars['String']['input']>;
+  /** Identifies what specifically was clicked to bring the user to the site */
+  utm_content?: InputMaybe<Scalars['String']['input']>;
+  /** Identifies what type of link was used (e.g., email, cpc) */
+  utm_medium?: InputMaybe<Scalars['String']['input']>;
+  /** Identifies which site sent the traffic */
+  utm_source?: InputMaybe<Scalars['String']['input']>;
+  /** Identifies search terms */
+  utm_term?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type TracksPayload = Payload & {
   __typename?: 'TracksPayload';
   code: Scalars['String']['output'];
@@ -2883,6 +3069,12 @@ export type TracksPayload = Payload & {
 export type TranslatedText = {
   __typename?: 'TranslatedText';
   en?: Maybe<Scalars['String']['output']>;
+};
+
+export type TriggeringEvent = {
+  __typename?: 'TriggeringEvent';
+  source_id?: Maybe<Scalars['String']['output']>;
+  type: Scalars['String']['output'];
 };
 
 export type UpdateBaselineInfoInput = {

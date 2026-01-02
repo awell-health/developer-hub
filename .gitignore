@@ -41,3 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 .dccache
 .vscode/settings.json
+
+# local files
+tmp/
