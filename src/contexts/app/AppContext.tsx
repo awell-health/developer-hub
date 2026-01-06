@@ -1,3 +1,4 @@
+import { slug } from 'github-slugger'
 import { useRouter } from 'next/router'
 import React, {
   ReactNode,
@@ -6,7 +7,6 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import slugify from 'slugify'
 
 import { ThemeContext } from '@/hooks/useTheme'
 import { Space } from '@/types/space.types'
@@ -97,10 +97,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         const tableOfContents: TableOfContentsType = headings.map((heading) => {
           const headingText = heading[2].trim()
           const headingLevel = getHeadingLevelFromMarkdown(heading[1])
-          const headingLink = slugify(headingText, {
-            lower: true,
-            strict: true,
-          })
+          const headingLink = slug(headingText)
           return {
             title: headingText,
             link: `#${headingLink}`,
