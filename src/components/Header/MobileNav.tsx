@@ -84,7 +84,7 @@ export const MobileNav = () => {
           ))}
           <li>
             <Link
-              href="https://awellhealth.atlassian.net/wiki/spaces/AH/pages/3560275979/What+s+New"
+              href="https://www.notion.so/awellhealth/What-s-New-0b27bf33538e4423b24bb3a1c719375e"
               title="Changelog"
               className="hover:text-sky-500 dark:hover:text-sky-400"
             >

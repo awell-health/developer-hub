@@ -181,7 +181,7 @@ export const Header = () => {
                 <ul className="flex">
                   <li>
                     <Link
-                      href="https://awellhealth.atlassian.net/wiki/spaces/AH/pages/3560275979/What+s+New"
+                      href="https://www.notion.so/awellhealth/What-s-New-0b27bf33538e4423b24bb3a1c719375e"
                       title="Changelog"
                       className="mr-8 block font-semibold text-sm text-slate-700 dark:text-white pb-2 hover:border-b border-blue-700 dark:hover:border-sky-400"
                     >
