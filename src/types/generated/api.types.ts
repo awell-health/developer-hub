@@ -250,6 +250,13 @@ export enum ActivitySubjectType {
   User = 'USER'
 }
 
+export type ActivityTimerPayload = Payload & {
+  __typename?: 'ActivityTimerPayload';
+  code: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+  timer?: Maybe<CareflowTimer>;
+};
+
 export type ActivityTrack = {
   __typename?: 'ActivityTrack';
   id?: Maybe<Scalars['String']['output']>;
@@ -502,6 +509,31 @@ export type CancelScheduledTracksPayload = Payload & {
   unscheduled_ids: Array<Scalars['String']['output']>;
 };
 
+export type CareflowTimer = {
+  __typename?: 'CareflowTimer';
+  activity_id: Scalars['String']['output'];
+  careflow_id: Scalars['String']['output'];
+  completion_reason?: Maybe<Scalars['String']['output']>;
+  config: TimerConfigInterface;
+  created_at?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  job_id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  readable_explanation?: Maybe<Scalars['String']['output']>;
+  resource_id?: Maybe<Scalars['String']['output']>;
+  scheduled_date?: Maybe<Scalars['String']['output']>;
+  status: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+  updated_at?: Maybe<Scalars['String']['output']>;
+};
+
+export type CareflowTimersPayload = Payload & {
+  __typename?: 'CareflowTimersPayload';
+  code: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+  timers: Array<CareflowTimer>;
+};
+
 export type CareflowVersion = {
   __typename?: 'CareflowVersion';
   live?: Maybe<Scalars['Boolean']['output']>;
@@ -676,6 +708,16 @@ export type DataPoint = {
   valueType: DataPointValueType;
 };
 
+export type DataPointAwaitedTimerConfig = TimerConfigInterface & {
+  __typename?: 'DataPointAwaitedTimerConfig';
+  data_point_definition_id: Scalars['String']['output'];
+  data_point_key: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  timeout_unit: Scalars['String']['output'];
+  timeout_value: Scalars['Int']['output'];
+  type: Scalars['String']['output'];
+};
+
 export type DataPointDefinition = {
   __typename?: 'DataPointDefinition';
   category: DataPointSourceType;
@@ -718,6 +760,20 @@ export type DataPointPossibleValue = {
   __typename?: 'DataPointPossibleValue';
   label?: Maybe<Scalars['String']['output']>;
   value: Scalars['String']['output'];
+};
+
+export type DataPointReferenceTimerConfig = TimerConfigInterface & {
+  __typename?: 'DataPointReferenceTimerConfig';
+  data_point_definition_id: Scalars['String']['output'];
+  data_point_key: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  hour?: Maybe<Scalars['String']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  offsetDirection?: Maybe<Scalars['String']['output']>;
+  offset_unit?: Maybe<Scalars['String']['output']>;
+  period?: Maybe<Scalars['String']['output']>;
+  type: Scalars['String']['output'];
+  usePatientTimezone?: Maybe<Scalars['Boolean']['output']>;
 };
 
 export enum DataPointSourceType {
@@ -782,6 +838,14 @@ export type DecisionTableActivityOutputs = ActivityOutputs & {
   matched_rule_ids?: Maybe<Array<Scalars['String']['output']>>;
   matched_rule_priorities?: Maybe<Array<Scalars['Float']['output']>>;
   type: ActivityOutputType;
+};
+
+export type DelayTimerConfig = TimerConfigInterface & {
+  __typename?: 'DelayTimerConfig';
+  description: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+  unit: Scalars['String']['output'];
+  value: Scalars['Int']['output'];
 };
 
 export type DeletePathwayInput = {
@@ -1028,6 +1092,16 @@ export type ExtensionDataPointInput = {
   value: Scalars['String']['input'];
 };
 
+export type ExtensionResourceUpdatedTimerConfig = TimerConfigInterface & {
+  __typename?: 'ExtensionResourceUpdatedTimerConfig';
+  action_definition_id: Scalars['String']['output'];
+  action_key: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  extension_key: Scalars['String']['output'];
+  timer_key: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
 export type FieldSpecGraphqlType = {
   __typename?: 'FieldSpecGraphqlType';
   description: Scalars['String']['output'];
@@ -1054,6 +1128,7 @@ export type FilterActivitiesParams = {
   action?: InputMaybe<StringArrayFilter>;
   activity_status?: InputMaybe<StringArrayFilter>;
   activity_type?: InputMaybe<StringArrayFilter>;
+  exclude_system_activities?: InputMaybe<Scalars['Boolean']['input']>;
   pathway_definition_id?: InputMaybe<StringArrayFilter>;
   pathway_status?: InputMaybe<StringArrayFilter>;
   patient_id?: InputMaybe<TextFilterEquals>;
@@ -1339,6 +1414,20 @@ export type MarkMessageAsReadPayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type MergePatientsInput = {
+  patient_id_to_delete: Scalars['String']['input'];
+  patient_id_to_keep: Scalars['String']['input'];
+};
+
+export type MergePatientsPayload = Payload & {
+  __typename?: 'MergePatientsPayload';
+  code: Scalars['String']['output'];
+  deleted_patient_id: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+  transferred_careflow_ids: Array<Scalars['String']['output']>;
+  transferred_count: Scalars['Int']['output'];
+};
+
 export type Message = {
   __typename?: 'Message';
   attachments?: Maybe<Array<MessageAttachment>>;
@@ -1400,6 +1489,7 @@ export type Mutation = {
   expireActivity: EmptyPayload;
   expireTimer: EmptyPayload;
   markMessageAsRead: MarkMessageAsReadPayload;
+  mergePatients: MergePatientsPayload;
   /** Retrieve patient demographics from an external system */
   requestPatientDemographics: PatientDemographicsPayload;
   retryActivity: EmptyPayload;
@@ -1494,6 +1584,11 @@ export type MutationExpireTimerArgs = {
 
 export type MutationMarkMessageAsReadArgs = {
   input: MarkMessageAsReadInput;
+};
+
+
+export type MutationMergePatientsArgs = {
+  input: MergePatientsInput;
 };
 
 
@@ -2004,6 +2099,7 @@ export type Query = {
   __typename?: 'Query';
   activities: ActivitiesPayload;
   activity: ActivityPayload;
+  activityTimer: ActivityTimerPayload;
   adHocTracksByPathway: TracksPayload;
   adHocTracksByRelease: TracksPayload;
   agent: WorkerAgentConfigPayload;
@@ -2014,6 +2110,7 @@ export type Query = {
   calculationResults: CalculationResultsPayload;
   careflowActivities: ActivitiesPayload;
   careflowActivityTypes: ActivityTypesPayload;
+  careflowTimers: CareflowTimersPayload;
   checklist: ChecklistPayload;
   clinicalNote: ClinicalNotePayload;
   emrReport: EmrReportPayload;
@@ -2053,6 +2150,7 @@ export type Query = {
   patientPathways: PatientPathwaysPayload;
   patients: PatientsPayload;
   publishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
+  scheduledDestinations: ScheduledDestinationsPayload;
   scheduledSteps: ScheduledStepsPayload;
   scheduledTracksForPathway: ScheduledTracksPayload;
   searchPatientsByNationalRegistryNumber: SearchPatientsPayload;
@@ -2077,6 +2175,12 @@ export type QueryActivitiesArgs = {
 
 export type QueryActivityArgs = {
   id: Scalars['String']['input'];
+};
+
+
+export type QueryActivityTimerArgs = {
+  activity_id: Scalars['String']['input'];
+  careflow_id: Scalars['String']['input'];
 };
 
 
@@ -2131,6 +2235,12 @@ export type QueryCareflowActivitiesArgs = {
 
 export type QueryCareflowActivityTypesArgs = {
   careflow_id: Scalars['String']['input'];
+};
+
+
+export type QueryCareflowTimersArgs = {
+  careflow_id: Scalars['String']['input'];
+  status?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -2323,6 +2433,11 @@ export type QueryPatientsArgs = {
 };
 
 
+export type QueryScheduledDestinationsArgs = {
+  pathway_id: Scalars['String']['input'];
+};
+
+
 export type QueryScheduledStepsArgs = {
   pathway_id: Scalars['String']['input'];
 };
@@ -2364,12 +2479,25 @@ export type QueryWebhookCallArgs = {
 
 
 export type QueryWebhookCallsArgs = {
+  filters?: InputMaybe<WebhookCallFiltersInput>;
+  pagination?: InputMaybe<PaginationParams>;
   pathway_id: Scalars['String']['input'];
+  sorting?: InputMaybe<SortingParams>;
 };
 
 
 export type QueryWebhookCallsForPathwayDefinitionArgs = {
+  filters?: InputMaybe<WebhookCallFiltersInput>;
+  pagination?: InputMaybe<PaginationParams>;
   pathway_definition_id: Scalars['String']['input'];
+  sorting?: InputMaybe<SortingParams>;
+};
+
+
+export type QueryWebhookCallsForTenantArgs = {
+  filters?: InputMaybe<WebhookCallFiltersInput>;
+  pagination?: InputMaybe<PaginationParams>;
+  sorting?: InputMaybe<SortingParams>;
 };
 
 export type Question = {
@@ -2383,7 +2511,9 @@ export type Question = {
   questionConfig?: Maybe<QuestionConfig>;
   questionType?: Maybe<QuestionType>;
   rule?: Maybe<Rule>;
-  title: Scalars['String']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  /** The HTML version of the question title. Applicable for description questions. */
+  title_html?: Maybe<Scalars['String']['output']>;
   userQuestionType?: Maybe<UserQuestionType>;
 };
 
@@ -2512,6 +2642,29 @@ export type ScheduleTrackPayload = Payload & {
   __typename?: 'ScheduleTrackPayload';
   code: Scalars['String']['output'];
   id: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+};
+
+export type ScheduledDestination = {
+  __typename?: 'ScheduledDestination';
+  date: Scalars['String']['output'];
+  node: ScheduledDestinationNode;
+};
+
+export type ScheduledDestinationNode = {
+  __typename?: 'ScheduledDestinationNode';
+  date?: Maybe<Scalars['String']['output']>;
+  definition_id: Scalars['String']['output'];
+  definition_type: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  track_definition_id?: Maybe<Scalars['String']['output']>;
+};
+
+export type ScheduledDestinationsPayload = Payload & {
+  __typename?: 'ScheduledDestinationsPayload';
+  code: Scalars['String']['output'];
+  destinations: Array<ScheduledDestination>;
   success: Scalars['Boolean']['output'];
 };
 
@@ -2978,6 +3131,11 @@ export type TimerAwaitedDataPoint = {
   name?: Maybe<Scalars['String']['output']>;
 };
 
+export type TimerConfigInterface = {
+  description: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
 export type TimerDelayConfig = {
   __typename?: 'TimerDelayConfig';
   amount: Scalars['Float']['output'];
@@ -3237,6 +3395,39 @@ export type WebhookCall = {
   webhook_name: Scalars['String']['output'];
 };
 
+export enum WebhookCallEventType {
+  ActivityCompleted = 'ACTIVITY_COMPLETED',
+  ActivityCreated = 'ACTIVITY_CREATED',
+  ActivityDeleted = 'ACTIVITY_DELETED',
+  ActivityExpired = 'ACTIVITY_EXPIRED',
+  ActivityFailed = 'ACTIVITY_FAILED',
+  ActivityUpdated = 'ACTIVITY_UPDATED',
+  ClinicalNoteCreated = 'CLINICAL_NOTE_CREATED',
+  DataPointCollected = 'DATA_POINT_COLLECTED',
+  FormSubmitted = 'FORM_SUBMITTED',
+  PathwayCompleted = 'PATHWAY_COMPLETED',
+  PathwayDeleted = 'PATHWAY_DELETED',
+  PathwayStarted = 'PATHWAY_STARTED',
+  PathwayStopped = 'PATHWAY_STOPPED',
+  PatientCreated = 'PATIENT_CREATED',
+  PatientDeleted = 'PATIENT_DELETED',
+  PatientUpdated = 'PATIENT_UPDATED',
+  ReminderCreated = 'REMINDER_CREATED',
+  SessionCompleted = 'SESSION_COMPLETED',
+  SessionExpired = 'SESSION_EXPIRED',
+  SessionStarted = 'SESSION_STARTED',
+  TrackCompleted = 'TRACK_COMPLETED',
+  TrackStarted = 'TRACK_STARTED',
+  TrackStopped = 'TRACK_STOPPED'
+}
+
+export type WebhookCallFiltersInput = {
+  event_type?: InputMaybe<Array<WebhookCallEventType>>;
+  response_codes?: InputMaybe<Array<Scalars['Int']['input']>>;
+  status?: InputMaybe<Array<Scalars['String']['input']>>;
+  webhook_name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type WebhookCallHeader = {
   __typename?: 'WebhookCallHeader';
   key: Scalars['String']['output'];
@@ -3265,9 +3456,11 @@ export type WebhookCallResponse = {
   status: Scalars['Float']['output'];
 };
 
-export type WebhookCallsPayload = Payload & {
+export type WebhookCallsPayload = PaginationAndSortingPayload & {
   __typename?: 'WebhookCallsPayload';
   code: Scalars['String']['output'];
+  pagination?: Maybe<PaginationOutput>;
+  sorting?: Maybe<SortingOutput>;
   success: Scalars['Boolean']['output'];
   webhook_calls: Array<WebhookCall>;
 };
