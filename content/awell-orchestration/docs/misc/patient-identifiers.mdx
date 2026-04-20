@@ -42,6 +42,26 @@ The example Patient below has three identifiers: an SSN and two MRN identifiers 
 }
 ```
 
+## Built-in Awell identifier
+
+Every patient in Awell automatically has a built-in identifier that maps to their Awell patient ID. This identifier is available out of the box — you do not need to configure it in your organization settings.
+
+- **System:** `https://awellhealth.com/identifiers/mrn`
+- **Value:** The Awell patient ID
+
+This means any query or mutation that accepts a `patient_identifier` (such as `startPathwayWithPatientIdentifier`, `patientByIdentifier`, `deletePatient`, or `patientPathways`) will work with the Awell patient ID by using this system-value pair:
+
+```json
+{
+  "patient_identifier": {
+    "system": "https://awellhealth.com/identifiers/mrn",
+    "value": "{{AWELL_PATIENT_ID}}"
+  }
+}
+```
+
+This is useful when you only have the Awell patient ID and want to use identifier-based API endpoints without setting up a custom identifier system.
+
 ## How to set up identifier systems in Awell
 
 To assign identifiers to patients you first have to set up your identifiers in your organization via Awell's app. Identifier name and system must be unique.
