@@ -42,7 +42,6 @@ mutation StartHostedPathwaySession($input: StartHostedPathwaySessionInput!) {
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
   }
 }
-`}
 ```
 
 ### Optional variables
@@ -56,28 +55,26 @@ You can pass in `patient_id` (Awell patient ID) or `patient_identifier` (busines
 **When you are passing the Awell patient ID:**
 
 ```json
-  {`
-    {
-      "input": {
-        "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
-        "patient_id": "{{AWELL_PATIENT_ID}}"
-      }
-    }
+{
+  "input": {
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "patient_id": "{{AWELL_PATIENT_ID}}"
+  }
+}
 ```
 
 **When you are passing a business identifier:**
 
 ```json
-  {`
-    {
-      "input": {
-        "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
-        "patient_identifier": {
-          "system": "{{IDENTIFIER_SYSTEM}}",
-          "value": "{{IDENTIFIER_VALUE}}"
-        }
-      }
+{
+  "input": {
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "patient_identifier": {
+      "system": "{{IDENTIFIER_SYSTEM}}",
+      "value": "{{IDENTIFIER_VALUE}}"
     }
+  }
+}
 ```
 
 If no `patient_id` or `patient_identifier` is provided, we create an anonymous patient. Have a look at the [createPatient mutation](/awell-orchestration/api-reference/mutations/create-patient) if you don't have a patient created yet and need to create one first.
@@ -125,13 +122,39 @@ The `success_url` and `cancel_url` specify where the stakeholder should be redir
 
 #### Language
 
-Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).If no language is passed, it defaults to English.
+Languages should be passed as an [ISO 639-1 shortcode](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes). If no language is passed, it defaults to English.
 
-```
+```json
 {
   "input": {
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
     "language": "en"
+  }
+}
+```
+
+#### TTL (Time to live)
+
+You can optionally set a session TTL in seconds. The default is 3600 (1 hour).
+
+```json
+{
+  "input": {
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "ttl": 3600
+  }
+}
+```
+
+#### Stakeholder definition ID
+
+Optionally specify which stakeholder definition the session should be created for.
+
+```json
+{
+  "input": {
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "stakeholder_definition_id": "{{STAKEHOLDER_DEFINITION_ID}}"
   }
 }
 ```

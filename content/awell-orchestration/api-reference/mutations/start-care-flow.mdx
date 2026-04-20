@@ -13,9 +13,7 @@ To use identifiers, they need to be set up on the tenant level. Learn more about
 
 ## Selecting the version
 
-When starting a care flow, Awell Orchestration automatically chooses the most recent published version of the specified care flow definition.
-
-> Improved support for versioning is coming soon, with the ability to select a specific version when starting a new care flow and upgrading started care flows to newer version.
+When starting a care flow, Awell Orchestration automatically chooses the most recent published version of the specified care flow definition. You can optionally pass a `release_id` to start a specific version.
 
 ## Request
 
@@ -42,6 +40,7 @@ mutation StartPathway($input: StartPathwayInput!) {
   "input": {
     "patient_id": "{{PATIENT_ID}}",
     "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "release_id": "{{RELEASE_ID}}" // optional, defaults to latest published version
   }
 }
 ```
@@ -70,7 +69,9 @@ mutation StartPathwayWithPatientIdentifier(
       "system": "{{IDENTIFIER_SYSTEM}}",
       "value": "{{IDENTIFIER_VALUE}}"
     },
-    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}"
+    "pathway_definition_id": "{{PATHWAY_DEFINITION_ID}}",
+    "release_id": "{{RELEASE_ID}}", // optional, defaults to latest published version
+    "create_patient": true // optional, creates a new patient if the identifier doesn't match an existing one
   }
 }
 ```

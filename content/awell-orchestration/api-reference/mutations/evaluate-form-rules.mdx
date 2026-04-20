@@ -35,6 +35,7 @@ mutation EvaluateFormRules($input: EvaluateFormRulesInput!) {
   evaluateFormRules(input: $input) {
     results {
       question_id
+      rule_id
       satisfied
     }
   }
@@ -164,10 +165,12 @@ If a question is always visible because it has no display logic configured, then
       "results": [
         {
           "question_id": "Q3",
+          "rule_id": "rule_1",
           "satisfied": true
         },
         {
           "question_id": "Q4",
+          "rule_id": "rule_2",
           "satisfied": false
         }
       ]
@@ -183,6 +186,7 @@ If a question is always visible because it has no display logic configured, then
 ```typescript
 type QuestionRuleResult = {
   question_id: string
+  rule_id: string
   satisfied: boolean
 }
 
