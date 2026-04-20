@@ -3,38 +3,47 @@ title: Search activities
 description: Search activities by status, type, patient and other criteria
 ---
 
-**Two queries are available for activity lookups:**
+**Three queries are available for activity lookups:**
 
-1. `activities`: Search activities by status, type, patient, and other criteria.
-2. `activity`: Get a single activity by its ID.
+1. `activitiesByPatient`: Search activities across care flows for a specific patient.
+2. `activitiesByCareflowDefinition`: Search activities across care flows for a specific care flow definition.
+3. `activity`: Get a single activity by its ID.
 
 > We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the activity model.
 
 ## Request
 
-### Search activities
+### Search activities by patient
 
-Search for activities with various filters including status, type, patient ID, pathway definition, and more.
+Search for activities across all care flows for a given patient. Supports filtering by status, type, action, stakeholders, care flow status, and more.
 
 ```graphql
-query GetActivities(
-  $activity_type: [String!]
-  $activity_status: [String!]
-  $pathway_definition_id: [String!]
-  $action: [String!]
-  $patient_id: String
+query GetActivitiesByPatient(
+  $patient_id: String!
+  $activity_status: StringArrayFilter
+  $activity_type: StringArrayFilter
+  $action: StringArrayFilter
+  $stakeholders: StringArrayFilter
+  $careflow_status: StringArrayFilter
+  $careflow_definition_id: StringArrayFilter
+  $careflow_ids: StringArrayFilter
+  $exclude_system_activities: Boolean
   $count: Float!
   $offset: Float!
   $sort_field: String!
   $sort_direction: String!
 ) {
-  activities(
+  activitiesByPatient(
+    patient_id: $patient_id
     filters: {
-      activity_type: { in: $activity_type }
-      action: { in: $action }
-      pathway_definition_id: { in: $pathway_definition_id }
-      patient_id: { eq: $patient_id }
-      activity_status: { in: $activity_status }
+      activity_status: $activity_status
+      activity_type: $activity_type
+      action: $action
+      stakeholders: $stakeholders
+      careflow_status: $careflow_status
+      careflow_definition_id: $careflow_definition_id
+      careflow_ids: $careflow_ids
+      exclude_system_activities: $exclude_system_activities
     }
     pagination: { count: $count, offset: $offset }
     sorting: { field: $sort_field, direction: $sort_direction }
@@ -50,7 +59,7 @@ query GetActivities(
     }
     activities {
       id
-      stream_id # pathway id
+      stream_id
       date
       subject {
         id
@@ -64,7 +73,7 @@ query GetActivities(
         type
       }
       indirect_object {
-        id # typically the stakeholder id
+        id
         name
         type
       }
@@ -79,26 +88,129 @@ query GetActivities(
 
 ### Required parameters
 
-There are no required parameters for this query. However, you should provide pagination and sorting parameters. See `Pagination and Sorting` below.
+| Field | Required | Description | Type |
+| --- | --- | --- | --- |
+| patient_id | Yes | The ID of the patient | string |
 
 ### Filters
 
-The filter is optional: if you don't provide one, an unfiltered list of care flows will be returned.
+All filters are optional. If you don't provide any, all activities for the patient will be returned (excluding system activities by default).
+
+```json
+{
+  "patient_id": "{{ PATIENT_ID }}",
+  "activity_status": { "in": ["DONE", "ACTIVE"] },
+  "activity_type": { "in": ["FORM", "MESSAGE"] },
+  "action": { "in": ["ASSIGNED", "ACTIVATE"] },
+  "stakeholders": { "in": ["{{ STAKEHOLDER_ID }}"] },
+  "careflow_status": { "in": ["active", "completed"] },
+  "careflow_definition_id": { "in": ["{{ PATHWAY_DEFINITION_ID }}"] },
+  "careflow_ids": { "in": ["{{ PATHWAY_ID }}"] },
+  "exclude_system_activities": true,
+  "offset": 0,
+  "count": 100,
+  "sort_field": "date",
+  "sort_direction": "desc"
+}
+```
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>activity_status</td>
+        <td>No</td>
+        <td>Filter by activity status (e.g., ACTIVE, DONE, FAILED)</td>
+        <td>StringArrayFilter</td>
+      </tr>
+      <tr>
+        <td>activity_type</td>
+        <td>No</td>
+        <td>Filter by activity type (e.g., FORM, MESSAGE, CALCULATION)</td>
+        <td>StringArrayFilter</td>
+      </tr>
+      <tr>
+        <td>action</td>
+        <td>No</td>
+        <td>Filter by action type (e.g., ASSIGNED, ACTIVATE, COMPLETE)</td>
+        <td>StringArrayFilter</td>
+      </tr>
+      <tr>
+        <td>stakeholders</td>
+        <td>No</td>
+        <td>Filter by stakeholder IDs</td>
+        <td>StringArrayFilter</td>
+      </tr>
+      <tr>
+        <td>careflow_status</td>
+        <td>No</td>
+        <td>Filter by care flow status (e.g., active, completed, stopped)</td>
+        <td>StringArrayFilter</td>
+      </tr>
+      <tr>
+        <td>careflow_definition_id</td>
+        <td>No</td>
+        <td>Filter by care flow definition IDs</td>
+        <td>StringArrayFilter</td>
+      </tr>
+      <tr>
+        <td>careflow_ids</td>
+        <td>No</td>
+        <td>Filter by specific care flow IDs</td>
+        <td>StringArrayFilter</td>
+      </tr>
+      <tr>
+        <td>exclude_system_activities</td>
+        <td>No</td>
+        <td>Exclude system activities (defaults to true)</td>
+        <td>boolean</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Search activities by care flow definition
+
+Search for activities across all care flows of a specific care flow definition.
 
 ```graphql
-query GetActivities(
+query GetActivitiesByCareflowDefinition(
+  $careflow_definition_id: String!
+  $activity_status: StringArrayFilter
+  $activity_type: StringArrayFilter
+  $action: StringArrayFilter
+  $stakeholders: StringArrayFilter
+  $careflow_status: StringArrayFilter
+  $exclude_system_activities: Boolean
   $count: Float!
   $offset: Float!
   $sort_field: String!
   $sort_direction: String!
 ) {
-  activities(
+  activitiesByCareflowDefinition(
+    careflow_definition_id: $careflow_definition_id
+    filters: {
+      activity_status: $activity_status
+      activity_type: $activity_type
+      action: $action
+      stakeholders: $stakeholders
+      careflow_status: $careflow_status
+      exclude_system_activities: $exclude_system_activities
+    }
     pagination: { count: $count, offset: $offset }
     sorting: { field: $sort_field, direction: $sort_direction }
   ) {
     pagination {
-      count
       offset
+      count
       total_count
     }
     sorting {
@@ -106,25 +218,41 @@ query GetActivities(
       direction
     }
     activities {
-      ...Activity
+      id
+      stream_id
+      date
+      subject {
+        id
+        name
+        type
+      }
+      action
+      object {
+        id
+        name
+        type
+      }
+      indirect_object {
+        id
+        name
+        type
+      }
+      resolution
+      status
     }
   }
 }
 ```
 
-All `in` filters accept a list of values and result in an `is any of` search criteria. The `eq` filter accepts a single string and results in `is exact match` search criteria.
-
-When specifying multiple filters, the resulting criteria is the conjuction of all filters.
+**Variables:**
 
 ```json
 {
-  "action": ["ASSIGNED", "ACTIVATE"], // See ActivityAction enum
-  "activity_type": ["FORM", "MESSAGE"], // See ActivityObjectType enum
-  "activity_status": ["DONE", "ACTIVE"], // See ActivityStatus enum
-  "pathway_definition_id": ["{{ PATHWAY_DEFINITION_ID }}"],
-  "patient_id": "{{ PATIENT_ID }}",
+  "careflow_definition_id": "{{ PATHWAY_DEFINITION_ID }}",
+  "activity_status": { "in": ["DONE", "ACTIVE"] },
+  "exclude_system_activities": true,
   "offset": 0,
-  "count": 20,
+  "count": 100,
   "sort_field": "date",
   "sort_direction": "desc"
 }
@@ -132,13 +260,13 @@ When specifying multiple filters, the resulting criteria is the conjuction of al
 
 ### Pagination and sorting
 
-Pagination and sorting are required for this query. If no pagination values are supplied, the API will return only the first 100 activities, or 100 activities from the specified offset. There is an upper limit of 100 records per query. Please be aware that setting `count` greater than 100 will successfully execute but return only 100 records.
+Pagination and sorting are required for both queries. If no pagination values are supplied, the API will return only the first 100 activities, or 100 activities from the specified offset. There is an upper limit of 100 records per query. Please be aware that setting `count` greater than 100 will successfully execute but return only 100 records.
 
 Default sorting is based on the `date` field, in descending order (i.e. newest to oldest).
 
 ```json
 {
-  "count": 100, // max 100
+  "count": 100,
   "offset": 0,
   "sort_field": "date",
   "sort_direction": "DESC"

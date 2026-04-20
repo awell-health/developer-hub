@@ -1,0 +1,45 @@
+---
+title: Clinical note created
+description: Clinical note created webhook payload
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+## Payload
+
+```json
+{
+  "clinical_note": {
+    "id": "<CLINICAL_NOTE_ID>",
+    "narratives": [
+      {
+        "id": "<NARRATIVE_ID>",
+        "key": "<NARRATIVE_KEY>",
+        "title": "<NARRATIVE_TITLE>",
+        "body": "<NARRATIVE_BODY_HTML>"
+      }
+    ],
+    "context": [
+      {
+        "key": "<CONTEXT_KEY>",
+        "value": "<CONTEXT_VALUE>"
+      }
+    ]
+  },
+  "pathway": {
+    "id": "<CARE_FLOW_ID>",
+    "pathway_definition_id": "<CARE_FLOW_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "patient_identifiers": [
+      {
+        "system": "<IDENTIFIER_SYSTEM>",
+        "value": "<IDENTIFIER_VALUE>"
+      }
+    ],
+    "tenant_id": "<TENANT_ID>",
+    "pathway_title": "<CARE_FLOW_TITLE>",
+    "start_date": "<CARE_FLOW_START_DATE>" // In ISO8601 format
+  },
+  "event_type": "clinical_note.created"
+}
+```

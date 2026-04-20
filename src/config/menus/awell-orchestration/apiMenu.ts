@@ -341,6 +341,21 @@ export const apiMenu: MenuType = [
         badge: badges.activity,
       },
       {
+        title: 'Activity expired',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/activity-expired`,
+        badge: badges.activity,
+      },
+      {
+        title: 'Activity failed',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/activity-failed`,
+        badge: badges.activity,
+      },
+      {
+        title: 'Activity deleted',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/activity-deleted`,
+        badge: badges.activity,
+      },
+      {
         title: 'Form submitted',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/form-submitted`,
         badge: badges.activity,
@@ -354,6 +369,41 @@ export const apiMenu: MenuType = [
         title: 'Data point collected',
         path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/data-point-collected`,
         badge: badges.datapoint,
+      },
+      {
+        title: 'Clinical note created',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/clinical-note-created`,
+        badge: badges.elements,
+      },
+      {
+        title: 'Track started',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/track-started`,
+        badge: badges.tracks,
+      },
+      {
+        title: 'Track stopped',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/track-stopped`,
+        badge: badges.tracks,
+      },
+      {
+        title: 'Track completed',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/track-completed`,
+        badge: badges.tracks,
+      },
+      {
+        title: 'Patient created',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/patient-created`,
+        badge: badges.patient,
+      },
+      {
+        title: 'Patient updated',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/patient-updated`,
+        badge: badges.patient,
+      },
+      {
+        title: 'Patient deleted',
+        path: `/${Space.AWELL_ORCHESTRATION}/api-reference/webhooks/patient-deleted`,
+        badge: badges.patient,
       },
       {
         title: 'Session started',

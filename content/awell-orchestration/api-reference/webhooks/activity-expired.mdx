@@ -1,6 +1,6 @@
 ---
-title: Activity completed
-description: Activity completed webhook payload
+title: Activity expired
+description: Activity expired webhook payload
 showPostmanButton: false
 showPlaygroundButton: false
 ---
@@ -17,7 +17,7 @@ showPlaygroundButton: false
       "type": "awell",
       "name": "Awell"
     },
-    "action":  "<ACTION>",
+    "action": "<ACTION>",
     "object": {
       "id": "<OBJECT_ID>",
       "type": "<OBJECT_TYPE>",
@@ -28,13 +28,13 @@ showPlaygroundButton: false
       "type": "<OBJECT_TYPE>",
       "name": "<OBJECT_NAME>"
     },
-    "status": "done",
+    "status": "expired",
     "track": {
       "id": "<TRACK_ID>",
       "title": "<TRACK_TITLE>"
     },
     "label": {
-      "color": "<COLOR_NAME>", // green, yellow etc.
+      "color": "<COLOR_NAME>",
       "id": "<COLOR_ID>",
       "text": "<COLOR_TEXT>"
     },
@@ -58,10 +58,6 @@ showPlaygroundButton: false
       "track_id": "<TRACK_ID>"
     }
   },
-  "user_context": {
-    "stytch_member_id": "<MAYBE_USER_ID>",
-    "stytch_member_email": "<MAYBE_USER_EMAIL>"
-  },
-  "event_type": "activity.completed"
+  "event_type": "activity.expired"
 }
 ```
