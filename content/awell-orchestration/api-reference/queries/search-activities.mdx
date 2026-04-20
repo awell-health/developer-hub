@@ -59,7 +59,7 @@ query GetActivitiesByPatient(
     }
     activities {
       id
-      stream_id
+      stream_id # pathway id
       date
       subject {
         id
@@ -73,7 +73,7 @@ query GetActivitiesByPatient(
         type
       }
       indirect_object {
-        id
+        id # typically the stakeholder id
         name
         type
       }
@@ -108,7 +108,7 @@ All filters are optional. If you don't provide any, all activities for the patie
   "careflow_ids": { "in": ["{{ PATHWAY_ID }}"] },
   "exclude_system_activities": true,
   "offset": 0,
-  "count": 100,
+  "count": 100, // max 100
   "sort_field": "date",
   "sort_direction": "desc"
 }
@@ -252,7 +252,7 @@ query GetActivitiesByCareflowDefinition(
   "activity_status": { "in": ["DONE", "ACTIVE"] },
   "exclude_system_activities": true,
   "offset": 0,
-  "count": 100,
+  "count": 100, // max 100
   "sort_field": "date",
   "sort_direction": "desc"
 }
@@ -266,7 +266,7 @@ Default sorting is based on the `date` field, in descending order (i.e. newest t
 
 ```json
 {
-  "count": 100,
+  "count": 100, // max 100
   "offset": 0,
   "sort_field": "date",
   "sort_direction": "DESC"

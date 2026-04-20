@@ -3,30 +3,26 @@ title: Get care flow activities
 description: Get all activities in a given care flow
 ---
 
-**Two queries are available for care flow activities:**
-
-1. `pathwayActivities`: Get all activities in a given care flow (legacy).
-2. `careflowActivities`: Get activities in a care flow with advanced filtering options (recommended).
-
-Both queries fetch care flow activities of any status for a specific orchestrated care flow, including system activities such as calculations or activations.
+The `careflowActivities` query fetches activities for a specific orchestrated care flow, including system activities such as calculations or activations. It supports advanced server-side filtering by activity status, type, stakeholders, date range, and more.
 
 > We suggest reading the page on our [domain model](/awell-orchestration/docs/getting-started/domain-model) first to get an understanding of the activity model.
 
 ## Request
 
-### Get care flow activities (legacy)
-
 ```graphql
-query GetPathwayActivities(
+query GetCareflowActivities(
   $pathway_id: String!
   $pagination: PaginationParams
   $sorting: SortingParams
+  $filters: FilterCareflowActivitiesParams
 ) {
-  pathwayActivities(
+  careflowActivities(
     pathway_id: $pathway_id
     pagination: $pagination
     sorting: $sorting
+    filters: $filters
   ) {
+    code
     success
     pagination {
       count
@@ -40,18 +36,24 @@ query GetPathwayActivities(
     activities {
       id
       stream_id
-      status
       date
+      status
+      action
       isUserActivity
       subject {
-        type
+        id
         name
+        type
       }
-      action
       object {
         id
-        type
         name
+        type
+      }
+      indirect_object {
+        id
+        name
+        type
       }
       context {
         instance_id
@@ -60,14 +62,16 @@ query GetPathwayActivities(
         step_id
         action_id
       }
-      indirect_object {
-        id
-        type
-        name
-      }
-      # For form content
-      form {
-        ...Form
+      inputs {
+        ... on FormActivityInputs {
+          type
+          form {
+            id
+            definition_id
+            title
+            key
+          }
+        }
       }
     }
   }
@@ -82,9 +86,121 @@ The `pathway_id` is a required input variable for this query.
 
 ```json
 {
-  "pathway_id": "{{ PATIENT_PATHWAY_ID }}",
+  "pathway_id": "{{ PATIENT_PATHWAY_ID }}"
 }
 ```
+
+### Filters
+
+All filters are optional. When no filters are provided, all activities in the care flow are returned.
+
+```json
+{
+  "pathway_id": "{{ PATHWAY_ID }}",
+  "pagination": {
+    "count": 100,
+    "offset": 0
+  },
+  "sorting": {
+    "field": "date",
+    "direction": "DESC"
+  },
+  "filters": {
+    "activity_status": ["ACTIVE", "DONE"],
+    "activity_type": ["FORM", "MESSAGE"],
+    "action": ["ASSIGNED"],
+    "stakeholders": ["{{ STAKEHOLDER_ID }}"],
+    "hide_system_activities": true,
+    "reference_id": "{{ REFERENCE_ID }}",
+    "track_id": "{{ TRACK_ID }}",
+    "date_range": {
+      "from": "2024-01-01T00:00:00.000Z",
+      "to": "2024-12-31T23:59:59.999Z"
+    }
+  }
+}
+```
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pathway_id</td>
+        <td>Yes</td>
+        <td>The ID of the care flow</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>activity_status</td>
+        <td>No</td>
+        <td>Filter by activity status (e.g., ACTIVE, DONE, FAILED)</td>
+        <td>array of strings</td>
+      </tr>
+      <tr>
+        <td>activity_type</td>
+        <td>No</td>
+        <td>Filter by activity type (e.g., FORM, MESSAGE, CALCULATION)</td>
+        <td>array of strings</td>
+      </tr>
+      <tr>
+        <td>action</td>
+        <td>No</td>
+        <td>Filter by action type (e.g., ASSIGNED, ACTIVATE, COMPLETE)</td>
+        <td>array of strings</td>
+      </tr>
+      <tr>
+        <td>stakeholders</td>
+        <td>No</td>
+        <td>Filter by stakeholder IDs</td>
+        <td>array of strings</td>
+      </tr>
+      <tr>
+        <td>hide_system_activities</td>
+        <td>No</td>
+        <td>Hide system activities (calculations, activations, etc.)</td>
+        <td>boolean</td>
+      </tr>
+      <tr>
+        <td>reference_id</td>
+        <td>No</td>
+        <td>Filter by reference ID (e.g., action definition ID)</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>track_id</td>
+        <td>No</td>
+        <td>Filter by track ID</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>date_range</td>
+        <td>No</td>
+        <td>Filter activities within a date range</td>
+        <td>object with from/to ISO date strings</td>
+      </tr>
+      <tr>
+        <td>pagination</td>
+        <td>No</td>
+        <td>Pagination parameters (default: count=100, offset=0)</td>
+        <td>PaginationParams</td>
+      </tr>
+      <tr>
+        <td>sorting</td>
+        <td>No</td>
+        <td>Sorting parameters (default: field="date", direction="DESC")</td>
+        <td>SortingParams</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Pagination and sorting
 
@@ -92,38 +208,17 @@ Pagination and sorting are optional for this query. If no pagination values are 
 
 Default sorting is based on the `date` field, in descending order (i.e. newest to oldest).
 
-```json
-{
-  "pathway_id": "{{ PATIENT_PATHWAY_ID }}",
-  "pagination": {
-    "offset": 0,
-    "count": 500
-  },
-  "sorting": {
-    "field": "date",
-    "direction": "desc"
-  }
-}
-```
-
 ## How to use
 
 ### Get all pending user activities
 
-**An orchesrated care flow consists of system activities and user activities (forms, messages, checklists, ...).** System activities are activities related to the Orchestration of the care flow whereas user activities are the actual activities a stakeholder (eg: patient) needs to interact with.
+**An orchestrated care flow consists of system activities and user activities (forms, messages, checklists, ...).** System activities are activities related to the Orchestration of the care flow whereas user activities are the actual activities a stakeholder (eg: patient) needs to interact with.
 
-In most cases, you're only interested in the user activities which you can get by filtering the activities array by the `isUserActivity` field.
-
-Additionally, you can filter the results by `status === 'ACTIVE'` to only get the pending activities.
-
-<Alert type="info">
-    The query doesn't support server-side filtering yet so the filters have to
-    be applied on the response of the query.
-</Alert>
+You can use the `hide_system_activities` filter to exclude system activities. Additionally, filter by `activity_status: ["ACTIVE"]` to only get pending activities.
 
 ### Filter activities by stakeholder
 
-User activities need to be completed by a certain stakeholder. The stakeholder who needs to complete an activity is determined by the stakeholder you assigned to an action in Awell Studio. To get all pending activities for a given stakeholder, you can filter on the `activity.indirect_object.type` and the `activity.indirect_object.name` field.
+User activities need to be completed by a certain stakeholder. The stakeholder who needs to complete an activity is determined by the stakeholder you assigned to an action in Awell Studio. You can use the `stakeholders` filter to filter by stakeholder IDs, or filter on the `activity.indirect_object.type` and `activity.indirect_object.name` fields in the response.
 
 **Example:**<br/>
 If you'd like to get all pending activities for the patient, you can filter the activities array by `activity.indirect_object.type === PATIENT`.
@@ -190,65 +285,12 @@ The table below can help you with filtering activities for the right stakeholder
   </div>
 </div>
 
-### Including Form Content in Form Activities
+### Getting activity content via inputs
 
-To simplify obtaining the content of a form for a form activity, there are two options:
-
-- as with all actions, you can use the `activity.object.id` and the related getter query (e.g. GetForm, GetMessage) to fetch the content you need
-- expand this query by including the `form` field at the `activity` root (see `...Form` in the query above), along with the form fields you are interested in. The schema of a form is identical to what you would use in the [GetForm](/awell-orchestration/api-reference/queries/get-form) query:
+Each activity has an `inputs` field that provides the content associated with that activity based on its type. The `inputs` field is a union type — use inline fragments to select the fields for each activity type you're interested in.
 
 ```graphql
-form {
-  id
-  definition_id # static id from Studio
-  title
-  key # form key set in Studio
-  metadata # JSON metadata string set in Studio
-  questions {
-    id
-    definition_id # static id from Studio
-    title # string or html string (for description questions)
-    key # question key set in Studio
-    dataPointValueType
-    questionType
-    metadata # JSON metadata string set in Studio
-    options {
-      id
-      value
-      label
-    }
-    rule {
-      # visibility conditions of a question
-      boolean_operator
-      conditions {
-        id
-        reference # definition id of the question this condition is based on
-        operator
-        operand {
-          type
-          value
-        }
-      }
-    }
-  }
-}
-```
-
-For non-Form activities, this field will return `null`. Currently, the `form` field is only available on this activity query.
-
-Form and question metadata is returned in all form queries as a JSON string rather than a JSON object. This is because the metadata is defined in Studio as a JSON string and we want to avoid any potential parsing errors. You can parse the metadata string into a JSON object in your application (for example, using `JSON.parse` in JavaScript/TypeScript, `json.loads` in Python or `json_decode` in PHP or Ruby).
-
-**Example:**<br/>
-If you'd like to get all pending activities for the patient, you can filter the activities array by `activity.indirect_object.type === PATIENT`.
-
-### Get care flow activities (recommended)
-
-Get activities in a care flow with advanced server-side filtering options. This is the recommended query for most use cases as it supports filtering by activity status, type, stakeholders, date range, and more.
-
-**Query:**
-
-```graphql
-query GetCareflowActivities(
+query GetCareflowActivitiesWithInputs(
   $pathway_id: String!
   $pagination: PaginationParams
   $sorting: SortingParams
@@ -262,57 +304,78 @@ query GetCareflowActivities(
   ) {
     code
     success
-    pagination {
-      count
-      offset
-      total_count
-    }
-    sorting {
-      field
-      direction
-    }
     activities {
       id
-      stream_id
-      date
       status
       action
-      isUserActivity
-      subject {
-        id
-        name
-        type
-      }
       object {
         id
-        name
         type
-      }
-      indirect_object {
-        id
         name
-        type
       }
-      context {
-        instance_id
-        pathway_id
-        track_id
-        step_id
-        action_id
-      }
-      # For form content
-      form {
-        id
-        definition_id
-        title
-        key
-        questions {
-          id
-          definition_id
-          title
-          key
-          dataPointValueType
-          questionType
+      inputs {
+        ... on FormActivityInputs {
+          type
+          form {
+            id
+            definition_id
+            title
+            key
+            metadata
+            questions {
+              id
+              definition_id
+              title
+              key
+              dataPointValueType
+              questionType
+              metadata
+              options {
+                id
+                value
+                label
+              }
+              rule {
+                boolean_operator
+                conditions {
+                  id
+                  reference
+                  operator
+                  operand {
+                    type
+                    value
+                  }
+                }
+              }
+            }
+          }
+        }
+        ... on MessageActivityInputs {
+          type
+          message {
+            message_id
+            subject
+            body
+            format
+            attachments {
+              id
+              name
+              url
+              type
+            }
+          }
+        }
+        ... on ExtensionActivityInputs {
+          type
+          extension_fields
+          componentKey
+        }
+        ... on CalculationActivityInputs {
+          type
+          calculation_fields {
+            calculation_input_id
+            data_point_value
+          }
         }
       }
     }
@@ -320,119 +383,43 @@ query GetCareflowActivities(
 }
 ```
 
-**Variables:**
-
-```json
-{
-  "pathway_id": "{{ PATHWAY_ID }}",
-  "pagination": {
-    "count": 100,
-    "offset": 0
-  },
-  "sorting": {
-    "field": "date",
-    "direction": "DESC"
-  },
-  "filters": {
-    "activity_status": ["ACTIVE", "DONE"],
-    "activity_type": ["FORM", "MESSAGE"],
-    "action": ["ASSIGNED"],
-    "stakeholders": ["{{ STAKEHOLDER_ID }}"],
-    "hide_system_activities": true,
-    "reference_id": "{{ REFERENCE_ID }}",
-    "date_range": {
-      "from": "2024-01-01T00:00:00.000Z",
-      "to": "2024-12-31T23:59:59.999Z"
-    }
-  }
-}
-```
-
-**Filter Parameters:**
+The available `inputs` types are:
 
 <div className="table-wrapper">
   <table>
     <thead>
       <tr>
-        <th>Field</th>
-        <th>Required</th>
-        <th>Description</th>
         <th>Type</th>
+        <th>Fragment</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>pathway_id</td>
-        <td>Yes</td>
-        <td>The ID of the care flow</td>
-        <td>string</td>
+        <td>FORM</td>
+        <td>FormActivityInputs</td>
+        <td>Contains the form definition with questions, options, and visibility rules</td>
       </tr>
       <tr>
-        <td>activity_status</td>
-        <td>No</td>
-        <td>Filter by activity status (e.g., ACTIVE, DONE, FAILED)</td>
-        <td>array of strings</td>
+        <td>MESSAGE</td>
+        <td>MessageActivityInputs</td>
+        <td>Contains the message subject, body, format, and attachments</td>
       </tr>
       <tr>
-        <td>activity_type</td>
-        <td>No</td>
-        <td>Filter by activity type (e.g., FORM, MESSAGE, CALCULATION)</td>
-        <td>array of strings</td>
+        <td>EXTENSION</td>
+        <td>ExtensionActivityInputs</td>
+        <td>Contains extension fields and component key</td>
       </tr>
       <tr>
-        <td>action</td>
-        <td>No</td>
-        <td>Filter by action type (e.g., ASSIGNED, ACTIVATE, COMPLETE)</td>
-        <td>array of strings</td>
-      </tr>
-      <tr>
-        <td>stakeholders</td>
-        <td>No</td>
-        <td>Filter by stakeholder IDs</td>
-        <td>array of strings</td>
-      </tr>
-      <tr>
-        <td>hide_system_activities</td>
-        <td>No</td>
-        <td>Hide system activities (calculations, activations, etc.)</td>
-        <td>boolean</td>
-      </tr>
-      <tr>
-        <td>reference_id</td>
-        <td>No</td>
-        <td>Filter by reference ID (e.g., action definition ID)</td>
-        <td>string</td>
-      </tr>
-      <tr>
-        <td>date_range</td>
-        <td>No</td>
-        <td>Filter activities within a date range</td>
-        <td>object with from/to ISO date strings</td>
-      </tr>
-      <tr>
-        <td>pagination</td>
-        <td>No</td>
-        <td>Pagination parameters (default: count=100, offset=0)</td>
-        <td>PaginationParams</td>
-      </tr>
-      <tr>
-        <td>sorting</td>
-        <td>No</td>
-        <td>Sorting parameters (default: field="date", direction="DESC")</td>
-        <td>SortingParams</td>
+        <td>CALCULATION</td>
+        <td>CalculationActivityInputs</td>
+        <td>Contains calculation input fields and their data point values</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-**Advantages of careflowActivities:**
-- Server-side filtering (no need to filter on the client)
-- Filter by activity status, type, and action
-- Filter by stakeholders
-- Hide system activities with a single flag
-- Filter by date range
-- Filter by reference ID (action definition ID)
-- Includes form content directly in the response
+Form and question metadata is returned as a JSON string rather than a JSON object. You can parse the metadata string into a JSON object in your application (for example, using `JSON.parse` in JavaScript/TypeScript, `json.loads` in Python or `json_decode` in PHP or Ruby).
 
 ## Examples
 
