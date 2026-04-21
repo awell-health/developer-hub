@@ -37,6 +37,7 @@ import { Effort } from '@/components/UseCasesComparisonTable/atoms'
 import { WebhooksList } from '@/components/Webhooks'
 
 export const mdxOptions = {
+  blockJS: false,
   mdxOptions: {
     rehypePlugins: [
       rehypeSlug, // add IDs to any h1-h6 tag that doesn't have one, using a slug made from its text
