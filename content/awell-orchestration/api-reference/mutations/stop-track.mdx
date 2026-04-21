@@ -13,19 +13,27 @@ Any track in a patient care flow (pathway) can be stopped. This will stop the or
 mutation StopTrack($input: StopTrackInput!) {
   stopTrack(input: $input) {
     success
+    track {
+      id
+      name
+      status
+      start_date
+      end_date
+    }
   }
 }
 ```
 
 ### Variables
 
-The `pathway_id` is the id of the patient care flow (pathway) for which you want to stop a track. The `track_id` is the id of the track that you want to stop.
+The `pathway_id` is the id of the patient care flow (pathway) for which you want to stop a track. The `track_id` is the id of the track that you want to stop. You can optionally provide a `reason` for stopping the track.
 
 ```json
 {
   "input": {
     "pathway_id": "{{PATHWAY_ID}}",
-    "track_id": "{{TRACK_ID}}" // obtainable from the track activated activity (activity.context.instance_id)
+    "track_id": "{{TRACK_ID}}", // obtainable from the track activated activity (activity.context.instance_id)
+    "reason": "No longer needed" // optional
   }
 }
 ```
@@ -36,7 +44,14 @@ The `pathway_id` is the id of the patient care flow (pathway) for which you want
 {
   "data": {
     "stopTrack": {
-      "success": true
+      "success": true,
+      "track": {
+        "id": "{{TRACK_ID}}",
+        "name": "Track name",
+        "status": "stopped",
+        "start_date": "2024-01-01T00:00:00.000Z",
+        "end_date": "2024-01-15T00:00:00.000Z"
+      }
     }
   }
 }

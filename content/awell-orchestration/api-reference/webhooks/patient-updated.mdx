@@ -1,0 +1,42 @@
+---
+title: Patient updated
+description: Patient updated webhook payload
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+## Payload
+
+```json
+{
+  "patient": {
+    "id": "<PATIENT_ID>",
+    "profile": {
+      "identifier": [
+        {
+          "system": "<IDENTIFIER_SYSTEM>",
+          "value": "<IDENTIFIER_VALUE>"
+        }
+      ],
+      "email": "<EMAIL>",
+      "first_name": "<FIRST_NAME>",
+      "last_name": "<LAST_NAME>",
+      "sex": "<SEX>",
+      "birth_date": "<BIRTH_DATE>",
+      "phone": "<PHONE>",
+      "mobile_phone": "<MOBILE_PHONE>",
+      "preferred_language": "<PREFERRED_LANGUAGE>",
+      "patient_code": "<PATIENT_CODE>",
+      "national_registry_number": "<NATIONAL_REGISTRY_NUMBER>",
+      "address": {
+        "street": "<STREET>",
+        "city": "<CITY>",
+        "zip": "<ZIP>",
+        "state": "<STATE>",
+        "country": "<COUNTRY>"
+      }
+    }
+  },
+  "event_type": "patient.updated"
+}
+```

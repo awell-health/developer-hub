@@ -10,8 +10,8 @@ Scheduled tracks in a patient care flow that have not already been activated can
 ### Mutation
 
 ```graphql
-mutation UnscheduleTrack($input: CancelScheduledTracksInput!) {
-  unscheduleTrack(input: $input) {
+mutation UnscheduleTracks($input: CancelScheduledTracksInput!) {
+  unscheduleTracks(input: $input) {
     success
     unscheduled_ids
   }

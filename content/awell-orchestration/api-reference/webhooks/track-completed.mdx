@@ -1,0 +1,32 @@
+---
+title: Track completed
+description: Track completed webhook payload
+showPostmanButton: false
+showPlaygroundButton: false
+---
+
+## Payload
+
+```json
+{
+  "track": {
+    "id": "<TRACK_ID>",
+    "title": "<TRACK_TITLE>"
+  },
+  "pathway": {
+    "id": "<CARE_FLOW_ID>",
+    "pathway_definition_id": "<CARE_FLOW_DEFINITION_ID>",
+    "patient_id": "<PATIENT_ID>",
+    "patient_identifiers": [
+      {
+        "system": "<IDENTIFIER_SYSTEM>",
+        "value": "<IDENTIFIER_VALUE>"
+      }
+    ],
+    "tenant_id": "<TENANT_ID>",
+    "pathway_title": "<CARE_FLOW_TITLE>",
+    "start_date": "<CARE_FLOW_START_DATE>" // In ISO8601 format
+  },
+  "event_type": "track.completed"
+}
+```

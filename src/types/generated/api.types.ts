@@ -66,6 +66,8 @@ export type Activity = {
   container_name?: Maybe<Scalars['String']['output']>;
   context?: Maybe<PathwayContext>;
   date: Scalars['String']['output'];
+  /** When set, the activity is configured to expire at this time (ISO string). Only present when already persisted on the activity. */
+  expires_at?: Maybe<Scalars['String']['output']>;
   form?: Maybe<Form>;
   /** Form display mode can either be conversational (1 question at a time) or regular (all questions at once). Only used in hosted pages for now. */
   form_display_mode?: Maybe<FormDisplayMode>;
@@ -296,6 +298,7 @@ export type AddIdentifierToPatientPayload = Payload & {
 };
 
 export type AddTrackInput = {
+  allow_any_track_definition?: InputMaybe<Scalars['Boolean']['input']>;
   pathway_id: Scalars['String']['input'];
   track_id: Scalars['String']['input'];
 };
@@ -443,6 +446,15 @@ export type BaselineInfoInput = {
   value: Scalars['String']['input'];
 };
 
+export type BaselineInfoLogPayload = PaginationAndSortingPayload & {
+  __typename?: 'BaselineInfoLogPayload';
+  code: Scalars['String']['output'];
+  dataPoints: Array<DataPoint>;
+  pagination?: Maybe<PaginationOutput>;
+  sorting?: Maybe<SortingOutput>;
+  success: Scalars['Boolean']['output'];
+};
+
 export type BaselineInfoPayload = Payload & {
   __typename?: 'BaselineInfoPayload';
   baselineDataPoints: Array<BaselineDataPoint>;
@@ -532,6 +544,28 @@ export type CareflowTimersPayload = Payload & {
   code: Scalars['String']['output'];
   success: Scalars['Boolean']['output'];
   timers: Array<CareflowTimer>;
+};
+
+export type CareflowTrack = {
+  __typename?: 'CareflowTrack';
+  definition_id: Scalars['String']['output'];
+  end_date?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  start_date: Scalars['String']['output'];
+  started_by_user_id?: Maybe<Scalars['String']['output']>;
+  started_by_user_name?: Maybe<Scalars['String']['output']>;
+  status: Scalars['String']['output'];
+  stop_reason?: Maybe<Scalars['String']['output']>;
+  stopped_by_user_id?: Maybe<Scalars['String']['output']>;
+  stopped_by_user_name?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+};
+
+export type CareflowTracksPayload = Payload & {
+  __typename?: 'CareflowTracksPayload';
+  code: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+  tracks: Array<CareflowTrack>;
 };
 
 export type CareflowVersion = {
@@ -1008,6 +1042,35 @@ export type EvaluateFormRulesPayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type EvaluatedRule = {
+  __typename?: 'EvaluatedRule';
+  conditions: Array<EvaluatedRuleCondition>;
+  satisfied: Scalars['Boolean']['output'];
+};
+
+export type EvaluatedRuleCondition = {
+  __typename?: 'EvaluatedRuleCondition';
+  id: Scalars['String']['output'];
+  operand?: Maybe<Operand>;
+  operator?: Maybe<ConditionOperator>;
+  reference?: Maybe<EvaluatedRuleReference>;
+  satisfied: Scalars['Boolean']['output'];
+};
+
+export type EvaluatedRulePayload = Payload & {
+  __typename?: 'EvaluatedRulePayload';
+  code: Scalars['String']['output'];
+  evaluatedRule?: Maybe<EvaluatedRule>;
+  success: Scalars['Boolean']['output'];
+};
+
+export type EvaluatedRuleReference = {
+  __typename?: 'EvaluatedRuleReference';
+  data_point_definition_id: Scalars['String']['output'];
+  qualified_key?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
+};
+
 export type ExclusiveOptionConfig = {
   __typename?: 'ExclusiveOptionConfig';
   enabled?: Maybe<Scalars['Boolean']['output']>;
@@ -1124,6 +1187,26 @@ export type FileUploadGcsPayload = Payload & {
   upload_url: Scalars['String']['output'];
 };
 
+export type FilterActivitiesByCareflowDefinitionFilters = {
+  action?: InputMaybe<StringArrayFilter>;
+  activity_status?: InputMaybe<StringArrayFilter>;
+  activity_type?: InputMaybe<StringArrayFilter>;
+  careflow_status?: InputMaybe<StringArrayFilter>;
+  exclude_system_activities?: InputMaybe<Scalars['Boolean']['input']>;
+  stakeholders?: InputMaybe<StringArrayFilter>;
+};
+
+export type FilterActivitiesByPatientFilters = {
+  action?: InputMaybe<StringArrayFilter>;
+  activity_status?: InputMaybe<StringArrayFilter>;
+  activity_type?: InputMaybe<StringArrayFilter>;
+  careflow_definition_id?: InputMaybe<StringArrayFilter>;
+  careflow_ids?: InputMaybe<StringArrayFilter>;
+  careflow_status?: InputMaybe<StringArrayFilter>;
+  exclude_system_activities?: InputMaybe<Scalars['Boolean']['input']>;
+  stakeholders?: InputMaybe<StringArrayFilter>;
+};
+
 export type FilterActivitiesParams = {
   action?: InputMaybe<StringArrayFilter>;
   activity_status?: InputMaybe<StringArrayFilter>;
@@ -1144,6 +1227,7 @@ export type FilterCareflowActivitiesParams = {
   hide_system_activities?: InputMaybe<Scalars['Boolean']['input']>;
   reference_id?: InputMaybe<Scalars['String']['input']>;
   stakeholders?: InputMaybe<Array<Scalars['String']['input']>>;
+  track_id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type FilterPathwayDataPointDefinitionsParams = {
@@ -1492,6 +1576,8 @@ export type Mutation = {
   mergePatients: MergePatientsPayload;
   /** Retrieve patient demographics from an external system */
   requestPatientDemographics: PatientDemographicsPayload;
+  /** Retry failed activities by their IDs. Limited to 1000 activities per call. */
+  retryActivities: RetryActivitiesPayload;
   retryActivity: EmptyPayload;
   retryAllApiCalls: EmptyPayload;
   retryAllFailedApiCalls: EmptyPayload;
@@ -1594,6 +1680,11 @@ export type MutationMergePatientsArgs = {
 
 export type MutationRequestPatientDemographicsArgs = {
   input: PatientDemographicsInput;
+};
+
+
+export type MutationRetryActivitiesArgs = {
+  input: RetryActivitiesInput;
 };
 
 
@@ -1866,6 +1957,7 @@ export type Pathway = {
   stop_date?: Maybe<Scalars['SafeDate']['output']>;
   title: Scalars['String']['output'];
   tracks: Array<Track>;
+  upgrades?: Maybe<Array<PathwayUpgrade>>;
   version?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1932,6 +2024,19 @@ export type PathwaySummary = {
   stop_date?: Maybe<Scalars['SafeDate']['output']>;
   title: Scalars['String']['output'];
   version?: Maybe<Scalars['Float']['output']>;
+};
+
+export type PathwayUpgrade = {
+  __typename?: 'PathwayUpgrade';
+  from: PathwayUpgradeVersion;
+  to: PathwayUpgradeVersion;
+  upgrade_date: Scalars['String']['output'];
+};
+
+export type PathwayUpgradeVersion = {
+  __typename?: 'PathwayUpgradeVersion';
+  release_id: Scalars['String']['output'];
+  revision: Scalars['Float']['output'];
 };
 
 export type PathwaysPayload = PaginationAndSortingPayload & {
@@ -2097,7 +2202,10 @@ export type PublishedPathwayDefinitionsPayload = PaginationAndSortingPayload & {
 
 export type Query = {
   __typename?: 'Query';
+  /** @deprecated Use activitiesByPatient or activitiesByCareflowDefinition instead. This will be removed on June 1st 2026. */
   activities: ActivitiesPayload;
+  activitiesByCareflowDefinition: ActivitiesPayload;
+  activitiesByPatient: ActivitiesPayload;
   activity: ActivityPayload;
   activityTimer: ActivityTimerPayload;
   adHocTracksByPathway: TracksPayload;
@@ -2106,14 +2214,17 @@ export type Query = {
   apiCall: ApiCallPayload;
   apiCalls: ApiCallsPayload;
   baselineInfo: BaselineInfoPayload;
+  baselineInfoLog: BaselineInfoLogPayload;
   calculationAction: ActionPayload;
   calculationResults: CalculationResultsPayload;
   careflowActivities: ActivitiesPayload;
   careflowActivityTypes: ActivityTypesPayload;
   careflowTimers: CareflowTimersPayload;
+  careflowTracks: CareflowTracksPayload;
   checklist: ChecklistPayload;
   clinicalNote: ClinicalNotePayload;
   emrReport: EmrReportPayload;
+  evaluatedRule: EvaluatedRulePayload;
   extensionActivityRecord: ExtensionActivityRecordPayload;
   filterStakeholders: StakeholdersPayload;
   form: FormPayload;
@@ -2126,7 +2237,7 @@ export type Query = {
   getPublishedCareflowVersions: CareflowVersionsPayload;
   /** Generate a signed URL for file upload to GCS */
   getSignedUrl: FileUploadGcsPayload;
-  /** @deprecated This query is deprecated. Use 'publishedPathwayDefinitions' instead for better performance. */
+  /** @deprecated This query is deprecated. Use 'publishedPathwayDefinitions' instead for better performance. This query will be removed in May 1st 2026. */
   getStatusForPublishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
   hostedPagesLink: HostedPagesLinkPayload;
   hostedSession: HostedSessionPayload;
@@ -2159,6 +2270,7 @@ export type Query = {
   stakeholdersByPathwayDefinitionIds: StakeholdersPayload;
   stakeholdersByReleaseIds: StakeholdersPayload;
   tenant: TenantPayload;
+  tracksByPathway: TracksPayload;
   webhookCall: WebhookCallPayload;
   webhookCalls: WebhookCallsPayload;
   webhookCallsForPathwayDefinition: WebhookCallsPayload;
@@ -2169,6 +2281,22 @@ export type Query = {
 export type QueryActivitiesArgs = {
   filters?: InputMaybe<FilterActivitiesParams>;
   pagination?: InputMaybe<PaginationParams>;
+  sorting?: InputMaybe<SortingParams>;
+};
+
+
+export type QueryActivitiesByCareflowDefinitionArgs = {
+  careflow_definition_id: Scalars['String']['input'];
+  filters?: InputMaybe<FilterActivitiesByCareflowDefinitionFilters>;
+  pagination?: InputMaybe<PaginationParams>;
+  sorting?: InputMaybe<SortingParams>;
+};
+
+
+export type QueryActivitiesByPatientArgs = {
+  filters?: InputMaybe<FilterActivitiesByPatientFilters>;
+  pagination?: InputMaybe<PaginationParams>;
+  patient_id: Scalars['String']['input'];
   sorting?: InputMaybe<SortingParams>;
 };
 
@@ -2214,6 +2342,15 @@ export type QueryBaselineInfoArgs = {
 };
 
 
+export type QueryBaselineInfoLogArgs = {
+  data_point_definition_id?: InputMaybe<Scalars['String']['input']>;
+  data_point_key?: InputMaybe<Scalars['String']['input']>;
+  pagination?: InputMaybe<PaginationParams>;
+  pathway_id: Scalars['String']['input'];
+  sorting?: InputMaybe<SortingParams>;
+};
+
+
 export type QueryCalculationActionArgs = {
   id: Scalars['String']['input'];
 };
@@ -2244,6 +2381,12 @@ export type QueryCareflowTimersArgs = {
 };
 
 
+export type QueryCareflowTracksArgs = {
+  careflow_id: Scalars['String']['input'];
+  statuses?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+
 export type QueryChecklistArgs = {
   id: Scalars['String']['input'];
 };
@@ -2256,6 +2399,12 @@ export type QueryClinicalNoteArgs = {
 
 export type QueryEmrReportArgs = {
   id: Scalars['String']['input'];
+};
+
+
+export type QueryEvaluatedRuleArgs = {
+  id: Scalars['String']['input'];
+  release_id: Scalars['String']['input'];
 };
 
 
@@ -2473,6 +2622,11 @@ export type QueryStakeholdersByReleaseIdsArgs = {
 };
 
 
+export type QueryTracksByPathwayArgs = {
+  pathway_id: Scalars['String']['input'];
+};
+
+
 export type QueryWebhookCallArgs = {
   webhook_call_id: Scalars['String']['input'];
 };
@@ -2566,6 +2720,24 @@ export type RangeConfig = {
   enabled?: Maybe<Scalars['Boolean']['output']>;
   max?: Maybe<Scalars['Float']['output']>;
   min?: Maybe<Scalars['Float']['output']>;
+};
+
+export type RetryActivitiesInput = {
+  activity_ids: Array<Scalars['String']['input']>;
+};
+
+export type RetryActivitiesPayload = {
+  __typename?: 'RetryActivitiesPayload';
+  code: Scalars['String']['output'];
+  result?: Maybe<RetryActivitiesResultType>;
+  success: Scalars['Boolean']['output'];
+};
+
+export type RetryActivitiesResultType = {
+  __typename?: 'RetryActivitiesResultType';
+  failed: Scalars['Int']['output'];
+  skipped: Scalars['Int']['output'];
+  succeeded: Scalars['Int']['output'];
 };
 
 export type RetryActivityInput = {
@@ -2732,7 +2904,7 @@ export type SingleCalculationResult = {
   status?: Maybe<Scalars['String']['output']>;
   subresult_id: Scalars['String']['output'];
   unit?: Maybe<Scalars['String']['output']>;
-  value: Scalars['String']['output'];
+  value?: Maybe<Scalars['String']['output']>;
   value_type?: Maybe<DataPointValueType>;
 };
 
@@ -2917,6 +3089,7 @@ export type StopPathwayInput = {
 
 export type StopTrackInput = {
   pathway_id: Scalars['String']['input'];
+  reason?: InputMaybe<Scalars['String']['input']>;
   track_id: Scalars['String']['input'];
 };
 

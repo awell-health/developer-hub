@@ -29,10 +29,44 @@ The `pathway_id` is the id of the patient care flow (pathway) that you want to a
 {
   "input": {
     "pathway_id": "{{PATHWAY_ID}}",
-    "track_id": "{{TRACK_ID}}"
+    "track_id": "{{TRACK_ID}}",
+    "allow_any_track_definition": false // optional, defaults to false
   }
 }
 ```
+
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pathway_id</td>
+        <td>Yes</td>
+        <td>The id of the patient care flow to add the track to</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>track_id</td>
+        <td>Yes</td>
+        <td>The id of the ad hoc track to add</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>allow_any_track_definition</td>
+        <td>No</td>
+        <td>When true, allows adding any track definition regardless of its activation trigger configuration</td>
+        <td>boolean</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Response
 
