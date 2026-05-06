@@ -40,7 +40,7 @@ export const Footer: FC<FooterProps> = ({ location }) => {
                 <ul className="flex flex-col sm:flex-row gap-4 justify-end">
                   <li>
                     <a
-                      href="https://www.awellhealth.com/privacy-policy"
+                      href="https://www.awellhealth.com/legal/privacy-policy"
                       title="Privacy Policy"
                       className="hover:underline"
                     >
@@ -49,7 +49,7 @@ export const Footer: FC<FooterProps> = ({ location }) => {
                   </li>
                   <li>
                     <a
-                      href="https://www.awellhealth.com/terms-conditions"
+                      href="https://www.awellhealth.com/legal/terms-conditions"
                       title="Terms and Conditions"
                       className="hover:underline"
                     >
@@ -58,7 +58,7 @@ export const Footer: FC<FooterProps> = ({ location }) => {
                   </li>
                   <li>
                     <a
-                      href="https://www.awellhealth.com/cookie-policy"
+                      href="https://www.awellhealth.com/legal/cookie-policy"
                       title="Cookie Policy"
                       className="hover:underline"
                     >
@@ -67,7 +67,7 @@ export const Footer: FC<FooterProps> = ({ location }) => {
                   </li>
                   <li>
                     <a
-                      href="https://www.awellhealth.com/hipaa-at-awell"
+                      href="https://www.awellhealth.com/legal/hipaa-at-awell"
                       title="HIPAA At Awell"
                       className="hover:underline"
                     >

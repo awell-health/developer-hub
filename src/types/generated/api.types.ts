@@ -1376,6 +1376,23 @@ export type HostedPagesLinkPayload = Payload & {
   success: Scalars['Boolean']['output'];
 };
 
+export type HostedPagesLinkWithStakeholder = {
+  __typename?: 'HostedPagesLinkWithStakeholder';
+  id: Scalars['ID']['output'];
+  pathway_id: Scalars['String']['output'];
+  stakeholder_definition_id: Scalars['String']['output'];
+  stakeholder_id?: Maybe<Scalars['String']['output']>;
+  stakeholder_label?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type HostedPagesLinksPayload = Payload & {
+  __typename?: 'HostedPagesLinksPayload';
+  code: Scalars['String']['output'];
+  hosted_pages_links: Array<HostedPagesLinkWithStakeholder>;
+  success: Scalars['Boolean']['output'];
+};
+
 export type HostedSession = {
   __typename?: 'HostedSession';
   cancel_url?: Maybe<Scalars['String']['output']>;
@@ -1587,7 +1604,7 @@ export type Mutation = {
   retryApiCall: RetryApiCallPayload;
   retryPushToEmr: EmptyPayload;
   retryWebhookCall: RetryWebhookCallPayload;
-  /** @deprecated We will be deactivating this endpoint in the future. */
+  /** @deprecated We will be deactivating this endpoint in the future. This will be removed in June 1st 2026. */
   saveBaselineInfo: EmptyPayload;
   scheduleTrack: ScheduleTrackPayload;
   startHostedActivitySession: StartHostedActivitySessionPayload;
@@ -1938,7 +1955,7 @@ export type ParameterSpecGraphqlType = {
 export type Pathway = {
   __typename?: 'Pathway';
   /**
-   * Deprecated. Please use latestActivities.
+   * Deprecated. Please use latestActivities. This will be removed in June 1st 2026.
    * @deprecated use latestActivities instead. Limited to most recent 1000 activities
    */
   activities?: Maybe<Array<Activity>>;
@@ -1979,15 +1996,6 @@ export type PathwayDataPointDefinitionsPayload = Payload & {
   code: Scalars['String']['output'];
   data_point_definitions: Array<DataPointDefinition>;
   success: Scalars['Boolean']['output'];
-};
-
-export type PathwayDefinitionDetails = {
-  __typename?: 'PathwayDefinitionDetails';
-  active_careflows?: Maybe<Scalars['Float']['output']>;
-  completed_careflows?: Maybe<Scalars['Float']['output']>;
-  stopped_careflows?: Maybe<Scalars['Float']['output']>;
-  total_careflows?: Maybe<Scalars['Float']['output']>;
-  total_patients?: Maybe<Scalars['Float']['output']>;
 };
 
 export type PathwayFactsFilters = {
@@ -2161,31 +2169,19 @@ export type PreviousAnswers = {
 
 export type PublishedPathwayDefinition = {
   __typename?: 'PublishedPathwayDefinition';
-  active_activities?: Maybe<Scalars['Float']['output']>;
-  /** Details about the latest pathway definition */
-  all?: Maybe<PathwayDefinitionDetails>;
-  cancelled_activities?: Maybe<Scalars['Float']['output']>;
   created?: Maybe<AuditTrail>;
   /**
    * Starting/baseline data point definitions for the pathway
-   * @deprecated Use data_point_definitions instead
+   * @deprecated Use data_point_definitions instead. Will be removed in June 1st 2026.
    */
   dataPointDefinitions: Array<DataPointDefinition>;
   /** Starting/baseline data point definitions for the pathway */
   data_point_definitions?: Maybe<Array<DataPointDefinition>>;
-  failed_activities?: Maybe<Scalars['Float']['output']>;
   id: Scalars['ID']['output'];
   last_updated?: Maybe<AuditTrail>;
-  /** Details about all pathway definitions */
-  latest?: Maybe<PathwayDefinitionDetails>;
-  patients_with_pending_activities?: Maybe<Scalars['Float']['output']>;
   release_date?: Maybe<Scalars['String']['output']>;
   release_id?: Maybe<Scalars['String']['output']>;
-  stakeholders_with_pending_activities_list?: Maybe<Array<Scalars['String']['output']>>;
   title: Scalars['String']['output'];
-  total_activities?: Maybe<Scalars['Float']['output']>;
-  total_patients?: Maybe<Scalars['Float']['output']>;
-  total_stakeholders?: Maybe<Scalars['Float']['output']>;
   /** Tracks for the pathway */
   track_definitions?: Maybe<Array<Track>>;
   version?: Maybe<Scalars['Float']['output']>;
@@ -2237,17 +2233,16 @@ export type Query = {
   getPublishedCareflowVersions: CareflowVersionsPayload;
   /** Generate a signed URL for file upload to GCS */
   getSignedUrl: FileUploadGcsPayload;
-  /** @deprecated This query is deprecated. Use 'publishedPathwayDefinitions' instead for better performance. This query will be removed in May 1st 2026. */
-  getStatusForPublishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
   hostedPagesLink: HostedPagesLinkPayload;
+  hostedPagesLinks: HostedPagesLinksPayload;
   hostedSession: HostedSessionPayload;
   hostedSessionActivities: HostedSessionActivitiesPayload;
   message: MessagePayload;
   myActivities: ActivitiesPayload;
-  /** @deprecated Use the `pathways` query instead. */
-  myPathways: PathwaysPayload;
+  /** @deprecated Use myActivities instead. This will be removed on June 1st 2026. */
   myPendingActivities: ActivitiesPayload;
   pathway: PathwayPayload;
+  /** @deprecated Use careflowActivities instead. This will be removed on June 1st 2026. */
   pathwayActivities: ActivitiesPayload;
   pathwayDataPointDefinitions: PathwayDataPointDefinitionsPayload;
   pathwayDataPoints: DataPointPayload;
@@ -2366,6 +2361,7 @@ export type QueryCareflowActivitiesArgs = {
   filters?: InputMaybe<FilterCareflowActivitiesParams>;
   pagination?: InputMaybe<PaginationParams>;
   pathway_id: Scalars['String']['input'];
+  skip_enrichment?: InputMaybe<Scalars['Boolean']['input']>;
   sorting?: InputMaybe<SortingParams>;
 };
 
@@ -2480,6 +2476,11 @@ export type QueryGetSignedUrlArgs = {
 export type QueryHostedPagesLinkArgs = {
   pathway_id: Scalars['String']['input'];
   stakeholder_id: Scalars['String']['input'];
+};
+
+
+export type QueryHostedPagesLinksArgs = {
+  pathway_id: Scalars['String']['input'];
 };
 
 
