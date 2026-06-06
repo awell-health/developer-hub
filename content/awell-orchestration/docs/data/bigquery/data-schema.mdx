@@ -142,3 +142,11 @@ Table name: `patient_profiles`
 
 <PatientProfileTableSpecs />
 
+#### Patient data points
+
+Table names: `patient_data` (full audited history) and `patient_data_latest` (current value per field).
+
+The `patient_data` table is the append-only audit log of patient profile and identifier values. Every change adds a new row, each carrying its **provenance** — how, when and by whom the value was set. Use `patient_data_latest` for the current value of each field, and `patient_data` when you need the full history of changes.
+
+<PatientDataTableSpecs />
+

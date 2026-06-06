@@ -442,6 +442,129 @@ export const patient_profiles: BQTableType = [
   },
 ]
 
+export const patient_data: BQTableType = [
+  {
+    property: 'id',
+    type: 'STRING',
+    description: 'Unique identifier of this value version (one row per change). Use `data_point_definition_id` to identify the field.',
+  },
+  {
+    property: 'patient_id',
+    type: 'STRING',
+    description: 'Identifier of the patient. Foreign key to the `id` column in the `patients` table.',
+  },
+  {
+    property: 'data_point_definition_id',
+    type: 'STRING',
+    description: 'Stable identifier of the field: `patient_profile:<field>` (e.g. `patient_profile:email`) or `patient_identifier:<system>`.',
+  },
+  {
+    property: 'data_source_id',
+    type: 'STRING',
+    description: 'The source bucket of the field: `patient_profile` or `patient_identifier`.',
+  },
+  {
+    property: 'key',
+    type: 'STRING',
+    description: 'Human-readable field key (e.g. `email`, `first_name`), or the identifier system for identifiers.',
+  },
+  {
+    property: 'label',
+    type: 'STRING',
+    description: 'Descriptive label associated with the value.',
+  },
+  {
+    property: 'value_type',
+    type: 'STRING',
+    description: 'Primitive type of the value before serialisation (boolean, date, number, string, ...).',
+  },
+  {
+    property: 'value_raw',
+    type: 'STRING',
+    description: 'Serialised value of the data point. Prefer the type-dedicated columns below.',
+  },
+  {
+    property: 'value_boolean',
+    type: 'BOOL',
+    description: 'Typed value, populated only when value_type is `boolean`.',
+  },
+  {
+    property: 'value_numeric',
+    type: 'NUMERIC',
+    description: 'Typed value, populated only when value_type is `number`.',
+  },
+  {
+    property: 'value_date',
+    type: 'TIMESTAMP',
+    description: 'Typed value, populated only when value_type is `date`.',
+  },
+  {
+    property: 'value_json',
+    type: 'JSON',
+    description: 'JSON value of the data point.',
+  },
+  {
+    property: 'provenance_method',
+    type: 'STRING',
+    description: 'How the value came to exist: `manual` (a human), `integration` (external system of record), `migration`, `import`, `form`, `calculation`, etc.',
+  },
+  {
+    property: 'provenance_actor',
+    type: 'STRING',
+    description: 'The user or service account that produced the value, when applicable.',
+  },
+  {
+    property: 'provenance_collected_at',
+    type: 'TIMESTAMP',
+    description: 'When the value was produced / collected (UTC).',
+  },
+  {
+    property: 'provenance_careflow_id',
+    type: 'STRING',
+    description: 'Care flow that produced the value, when applicable.',
+  },
+  {
+    property: 'provenance_track_id',
+    type: 'STRING',
+    description: 'Track that produced the value, when applicable.',
+  },
+  {
+    property: 'provenance_step_id',
+    type: 'STRING',
+    description: 'Step that produced the value, when applicable.',
+  },
+  {
+    property: 'provenance_activity_id',
+    type: 'STRING',
+    description: 'Activity that produced the value, when applicable.',
+  },
+  {
+    property: 'provenance_ingestion_id',
+    type: 'STRING',
+    description: 'Data-ingestion processing / record id, when method is `import`.',
+  },
+  {
+    property: 'provenance_json',
+    type: 'JSON',
+    description: 'The full provenance object as JSON.',
+  },
+  {
+    property: 'date',
+    type: 'TIMESTAMP',
+    description: 'When this value version was written (UTC). Orders the change history of a field.',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description: '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
+  },
+  {
+    property: 'status',
+    type: 'STRING',
+    description: '[IRRELEVANT FOR ANALYSIS] Always `created`; the store is append-only.',
+  },
+]
+
 export const actions: BQTableType = [
   {
     property: 'id',
