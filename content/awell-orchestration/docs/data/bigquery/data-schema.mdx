@@ -138,6 +138,11 @@ Table name: `patients`
 
 #### Patient profiles
 
+<Alert type="warning" title="Deprecated">
+  <p className="mb-1">The <code>patient_profiles</code> table is deprecated as of June 7, 2026. Patient profile and identifier data is now stored in the <code>patient_data</code> and <code>patient_data_latest</code> tables — see <a href="#patient-data-points">Patient data points</a> below.</p>
+  <p>The table remains available for backward compatibility, but new integrations should query <code>patient_data_latest</code> instead of <code>patient_profiles</code>.</p>
+</Alert>
+
 Table name: `patient_profiles`
 
 <PatientProfileTableSpecs />
@@ -145,6 +150,8 @@ Table name: `patient_profiles`
 #### Patient data points
 
 Table names: `patient_data` (full audited history) and `patient_data_latest` (current value per field).
+
+These tables supersede the deprecated [`patient_profiles`](#patient-profiles) table and are the recommended source for patient profile and identifier data.
 
 The `patient_data` table is the append-only audit log of patient profile and identifier values. Every change adds a new row, each carrying its **provenance** — how, when and by whom the value was set. Use `patient_data_latest` for the current value of each field, and `patient_data` when you need the full history of changes.
 
