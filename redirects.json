@@ -1,0 +1,1357 @@
+[
+  {
+    "source": "/",
+    "destination": "https://docs.awellhealth.com/docs",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions",
+    "destination": "https://docs.awellhealth.com/docs/extensions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/beta",
+    "destination": "https://docs.awellhealth.com/docs/extensions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/custom-actions/development/action-fields",
+    "destination": "https://docs.awellhealth.com/docs/extensions/action-fields",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/custom-actions/development/create-an-action",
+    "destination": "https://docs.awellhealth.com/docs/extensions/create-an-action",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/custom-actions/development/on-activity-created",
+    "destination": "https://docs.awellhealth.com/docs/extensions/on-activity-created",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/custom-actions/development/on-event",
+    "destination": "https://docs.awellhealth.com/docs/extensions/on-event",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/custom-actions/test-your-custom-actions",
+    "destination": "https://docs.awellhealth.com/docs/extensions/test-your-extension",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/custom-actions/use-your-custom-actions",
+    "destination": "https://docs.awellhealth.com/docs/extensions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/custom-actions/what-are-custom-actions",
+    "destination": "https://docs.awellhealth.com/docs/extensions/what-are-custom-actions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/deployment-and-usage/deploy-your-extension",
+    "destination": "https://docs.awellhealth.com/docs/extensions/deploy-your-extension",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/deployment-and-usage/enable-and-configure-your-extension",
+    "destination": "https://docs.awellhealth.com/docs/connect-systems/integrate-with-extensions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/deployment-and-usage/versioning",
+    "destination": "https://docs.awellhealth.com/docs/extensions/versioning",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/getting-started/contributing-guidelines",
+    "destination": "https://docs.awellhealth.com/docs/extensions/contributing-guidelines",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/getting-started/create-an-extension",
+    "destination": "https://docs.awellhealth.com/docs/extensions/create-an-extension",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/getting-started/extension-settings",
+    "destination": "https://docs.awellhealth.com/docs/extensions/extension-settings",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/getting-started/get-started",
+    "destination": "https://docs.awellhealth.com/docs/extensions/get-started",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/getting-started/store-secrets",
+    "destination": "https://docs.awellhealth.com/docs/extensions/store-secrets",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/docs/getting-started/what-are-awell-extensions",
+    "destination": "https://docs.awellhealth.com/docs/extensions/what-are-awell-extensions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace",
+    "destination": "https://docs.awellhealth.com/docs/marketplace",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/airtop",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/airtop",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/athenahealth",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/athenahealth",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/availity",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/availity",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/awell",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/awell",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/awellTasks",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/awelltasks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/bland",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/bland",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/braze",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/braze",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/calDotCom",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/caldotcom",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/calendly",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/calendly",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/canvasMedical",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/canvasmedical",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/cerner",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/cerner",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/cloudinary",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/cloudinary",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/cmDotCom",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/cmdotcom",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/collectData",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/collectdata",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/customerIo",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/customerio",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/dateHelpers",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/datehelpers",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/dockHealth",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/dockhealth",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/docuSign",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/docusign",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/documo",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/documo",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/dropboxSign",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/dropboxsign",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/elation",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/elation",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/epic",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/epic",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/experimental",
+    "destination": "https://docs.awellhealth.com/docs/marketplace",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/external-server",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/external-server",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/formsort",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/formsort",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/freshdesk",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/freshdesk",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/freshsales",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/freshsales",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/gridspace",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/gridspace",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/healthie",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/healthie",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/hello-world",
+    "destination": "https://docs.awellhealth.com/docs/marketplace",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/hubspot",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/hubspot",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/identityVerification",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/identityverification",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/infobip",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/infobip",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/iterable",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/iterable",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/landingAi",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/landingai",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/mailchimp",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/mailchimp",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/mailgun",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/mailgun",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/math",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/math",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/medplum",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/medplum",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/messagebird",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/messagebird",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/metriport",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/metriport",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/nexuzhealth",
+    "destination": "https://docs.awellhealth.com/docs/marketplace",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/request-extension",
+    "destination": "https://docs.awellhealth.com/docs/marketplace",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/rest",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/rest",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/sendbird",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/sendbird",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/sendgrid-extension",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/sendgrid",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/sfdc",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/salesforce",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/shelly",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/shelly",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/slack",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/slack",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/srfax",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/srfax",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/stedi",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/stedi",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/stripe",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/stripe",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/talkDesk",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/talkdesk",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/text-em-all",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/text-em-all",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/textline",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/textline",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/transform",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/transform",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/twilio",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/twilio",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/westFax",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/westfax",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/workramp",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/workramp",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/zendesk",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/zendesk",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/zendeskSell",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/zendesksell",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/zoom",
+    "destination": "https://docs.awellhealth.com/docs/marketplace/zoom",
+    "permanent": true
+  },
+  {
+    "source": "/awell-extensions/marketplace/zusHealth",
+    "destination": "https://docs.awellhealth.com/docs/marketplace",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration",
+    "destination": "https://docs.awellhealth.com/docs/get-started",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/add-ad-hoc-track",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/tracks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/create-patient",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/patients",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/delete-care-flow",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/delete-pathway",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/delete-patient",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/patients",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/evaluate-form-rules",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/expire-activity",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activities",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/expire-timer",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/timers",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/mark-message-as-read",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/resend-emr-report",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/api-calls-and-webhooks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/schedule-track",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/tracks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/start-care-flow",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/start-care-flow-and-hosted-pages-session",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/hosted-sessions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/start-hosted-pages-session",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/hosted-sessions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/start-pathway",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/start-pathway-and-hosted-pages-session",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/hosted-sessions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/stop-care-flow",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/stop-pathway",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/stop-track",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/tracks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/submit-checklist-response",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/submit-form-response",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/unschedule-tracks",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/tracks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/update-baseline-info",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/patients",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/mutations/update-patient",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/patients",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/overview/authorization",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/authentication",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/overview/domain-model",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/domain-model",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/overview/endpoints",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/environments",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/overview/graphql-api",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/getting-started",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/overview/requests-and-responses",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/getting-started",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/overview/status-codes-and-error-responses",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/errors",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-ad-hoc-tracks",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/tracks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-api-call",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/api-calls-and-webhooks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-audit-logs",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/tenant",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-baseline-info",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/patients",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-calculation-results",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-care-flow",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-care-flow-activities",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activities",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-care-flow-data-points",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-care-flow-elements",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-care-flows",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-checklist",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-clinical-note",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-data-point-definitions",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-emr-report",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/api-calls-and-webhooks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-form",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-form-response",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-forms-in-care-flow",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-forms-in-pathway",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-hosted-pages-link",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/hosted-sessions",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-message",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activity-types",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-pathway",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-pathway-activities",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activities",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-pathway-data-points",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-pathway-elements",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-pathways",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-patient",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/patients",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-patient-care-flows",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-patient-pathways",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-patients",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/patients",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-published-care-flows",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-published-pathways",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-scheduled-steps",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/tracks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-scheduled-tracks",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/tracks",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-stakeholders",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/stakeholders",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/get-user-pending-activities",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activities",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/search-activities",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/activities",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/queries/search-patient",
+    "destination": "https://docs.awellhealth.com/api-reference/reference/patients",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/activity-completed",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/activity-created",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/activity-deleted",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/activity-expired",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/activity-failed",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/activity-updated",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/care-flow-completed",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/care-flow-deleted",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/care-flow-started",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/care-flow-stopped",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/clinical-note-created",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/data-point-collected",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/form-submitted",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/pathway-completed",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/pathway-deleted",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/pathway-started",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/pathway-stopped",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/patient-created",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/patient-deleted",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/patient-updated",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/reminder-created",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/session-completed",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/session-expired",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/session-started",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/track-completed",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/track-started",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/api-reference/webhooks/track-stopped",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/webhook-payloads",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/api/e164-phone-validation",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/e164-phone-numbers",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/api/playground",
+    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/api/postman-collection",
+    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/api/schema",
+    "destination": "https://docs.awellhealth.com/api-reference",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/e164-phone-validation",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/e164-phone-numbers",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/example-projects/orchestration-stories",
+    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/playground",
+    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/schema",
+    "destination": "https://docs.awellhealth.com/api-reference",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/sdks/server-side-sdk",
+    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/sdks/ui-library",
+    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/webhook-builder",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/webhooks/best-practices",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/webhooks-and-events",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/webhooks/events-overview",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/webhook-event-catalog",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/webhooks/go-live",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/receive-webhook-events",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/webhooks/introduction",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/webhooks-and-events",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/webhooks/listen-for-events",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/receive-webhook-events",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/webhooks/security",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/receive-webhook-events",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/webhooks/test-webhooks",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/receive-webhook-events",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/developer-tools/webhooks/webhook-builder",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/activities/hosted-pathway",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/overview-hosted-pages",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/data/bigquery/data-schema",
+    "destination": "https://docs.awellhealth.com/docs/data/data-schema",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/data/bigquery/getting-access",
+    "destination": "https://docs.awellhealth.com/docs/data/getting-access",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/data/healthcare-interoperability",
+    "destination": "https://docs.awellhealth.com/docs/connect-systems/healthcare-interoperability",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/data/monthly-active-patients",
+    "destination": "https://docs.awellhealth.com/docs/data/monthly-active-patients",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/data/overview-data",
+    "destination": "https://docs.awellhealth.com/docs/data",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/data/webhooks-and-events",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/webhook-event-catalog",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/getting-started/design-and-orchestrate-care-flows",
+    "destination": "https://docs.awellhealth.com/api-reference/guides/getting-started",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/getting-started/orchestration-introduction",
+    "destination": "https://docs.awellhealth.com/docs/get-started/awell-platform-overview",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/getting-started/orchestration-ontology",
+    "destination": "https://docs.awellhealth.com/docs/get-started/what-happens-when-a-care-flow-runs",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/getting-started/orchestration-versioning",
+    "destination": "https://docs.awellhealth.com/docs/design-care-flows/publish-set-your-care-flow-live",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/going-live/preflight-checklist",
+    "destination": "https://docs.awellhealth.com/docs/design-care-flows/sandbox-production-promotion",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/going-live/sandbox-to-production-migration-guide",
+    "destination": "https://docs.awellhealth.com/docs/design-care-flows/sandbox-production-promotion",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/going-live/sandbox-to-production-promotion-guide",
+    "destination": "https://docs.awellhealth.com/docs/design-care-flows/sandbox-production-promotion",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/built-in-and-customizable-features",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/built-in-and-customizable-features",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/how-hosted-pages-works",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/overview-hosted-pages",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/overview-hosted-pages",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/overview-hosted-pages",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/redirect-or-embed",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/redirect-or-embed",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/sessions-and-links",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/sessions-and-links",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/interact-with-care-flows/awell-hosted-pages/tracking",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/tracking",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/interact-with-care-flows/build-your-own-ui",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/build-your-own-ui",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/misc/patient-demographics-query",
+    "destination": "https://docs.awellhealth.com/docs/connect-systems/patient-demographics-query",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/misc/patient-identifiers",
+    "destination": "https://docs.awellhealth.com/docs/connect-systems/patient-identifiers",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/operate-and-manage-care-flows/awell-platform-care",
+    "destination": "https://docs.awellhealth.com/docs/run-care-flows/how-you-work-in-awell-care",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/operate-and-manage-care-flows/overview-care",
+    "destination": "https://docs.awellhealth.com/docs/run-care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/trigger-care-flows/overview-trigger-care-flows",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/before-you-trigger-a-care-flow",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/trigger-care-flows/trigger-types/adt-feeds",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/adt-feeds",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/trigger-care-flows/trigger-types/awell-api",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/trigger-with-the-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/trigger-care-flows/trigger-types/awell-care",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/trigger-from-awell-care",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/trigger-care-flows/trigger-types/awell-hosted-pages-link",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/trigger-with-a-hosted-pages-link",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/trigger-care-flows/trigger-types/file-uploads",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/trigger-from-a-file-upload",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/docs/trigger-care-flows/trigger-types/incoming-webhooks",
+    "destination": "https://docs.awellhealth.com/docs/automate-with-events/start-a-care-flow-from-an-incoming-webhook",
+    "permanent": true
+  },
+  {
+    "source": "/awell-orchestration/playground",
+    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score",
+    "destination": "https://docs.awellhealth.com/api-reference",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/api-reference/get-calculation",
+    "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/api-reference/get-calculation-result",
+    "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/api-reference/list-calculations",
+    "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/api-reference/perform-calculation",
+    "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/api-reference/perform-calculation-v1",
+    "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/api-reference/search-calculations",
+    "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/api-reference/simulate-calculation",
+    "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/getting-started/endpoints",
+    "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/getting-started/playground",
+    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/getting-started/score-explorer",
+    "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
+    "permanent": true
+  },
+  {
+    "source": "/awell-score/docs/getting-started/what-is-awell-score",
+    "destination": "https://docs.awellhealth.com/docs/improve-and-analyse/awell-score",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/getting-started/design-ontology",
+    "destination": "https://docs.awellhealth.com/docs/get-started/how-a-care-flow-is-built",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/getting-started/help-center",
+    "destination": "https://docs.awellhealth.com/docs/get-started",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/getting-started/studio-introduction",
+    "destination": "https://docs.awellhealth.com/docs/get-started/awell-platform-overview",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/getting-started/versioning",
+    "destination": "https://docs.awellhealth.com/docs/design-care-flows/publish-set-your-care-flow-live",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/source-control/concepts/components",
+    "destination": "https://docs.awellhealth.com/docs/data/components",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/source-control/concepts/deploy-care-flows",
+    "destination": "https://docs.awellhealth.com/docs/data/deploy-care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/source-control/concepts/protect-care-flows",
+    "destination": "https://docs.awellhealth.com/docs/data/protect-care-flows",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/source-control/concepts/syncing-to-scm",
+    "destination": "https://docs.awellhealth.com/docs/data/syncing-to-scm",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/source-control/concepts/test-care-flows",
+    "destination": "https://docs.awellhealth.com/docs/data/source-control",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/source-control/introduction",
+    "destination": "https://docs.awellhealth.com/docs/data/source-control",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/source-control/quickstarts/github",
+    "destination": "https://docs.awellhealth.com/docs/data/set-up-source-control",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/source-control/quickstarts/gitlab",
+    "destination": "https://docs.awellhealth.com/docs/data/set-up-source-control",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/sso/identity-providers/google",
+    "destination": "https://docs.awellhealth.com/docs/administer-and-secure/sso-with-google",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/sso/identity-providers/okta",
+    "destination": "https://docs.awellhealth.com/docs/administer-and-secure/sso-with-okta",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/sso/introduction-sso",
+    "destination": "https://docs.awellhealth.com/docs/administer-and-secure/single-sign-on",
+    "permanent": true
+  },
+  {
+    "source": "/awell-studio/docs/sso/setting-up-sso",
+    "destination": "https://docs.awellhealth.com/docs/administer-and-secure/set-up-sso",
+    "permanent": true
+  },
+  {
+    "source": "/documents/orchestration-api-benchmark",
+    "destination": "https://docs.awellhealth.com/api-reference",
+    "permanent": true
+  },
+  {
+    "source": "/faq",
+    "destination": "https://docs.awellhealth.com/docs/get-started/key-terms",
+    "permanent": true
+  },
+  {
+    "source": "/navi/docs",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/what-is-navi",
+    "permanent": true
+  },
+  {
+    "source": "/navi/explanations/activity-model-and-lifecycle",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/activity-model-and-lifecycle",
+    "permanent": true
+  },
+  {
+    "source": "/navi/explanations/architecture-overview",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/navi-architecture-and-security",
+    "permanent": true
+  },
+  {
+    "source": "/navi/explanations/sessions-and-jwts",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/sessions-and-jwts",
+    "permanent": true
+  },
+  {
+    "source": "/navi/how-to/branding-and-theming",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/branding-and-theming",
+    "permanent": true
+  },
+  {
+    "source": "/navi/reference/events",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/activity-model-and-lifecycle",
+    "permanent": true
+  },
+  {
+    "source": "/navi/tutorials/quickstart",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/quickstart",
+    "permanent": true
+  },
+  {
+    "source": "/navi/what-is-navi",
+    "destination": "https://docs.awellhealth.com/docs/embed-and-host/what-is-navi",
+    "permanent": true
+  },
+  {
+    "source": "/request-migration",
+    "destination": "https://docs.awellhealth.com/docs/design-care-flows/sandbox-production-promotion",
+    "permanent": true
+  },
+  {
+    "source": "/request-promotion",
+    "destination": "https://docs.awellhealth.com/docs/design-care-flows/sandbox-production-promotion",
+    "permanent": true
+  },
+  {
+    "source": "/system-status",
+    "destination": "https://status.awellhealth.com/",
+    "permanent": true
+  }
+]
