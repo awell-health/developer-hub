@@ -1296,7 +1296,7 @@
   },
   {
     "source": "/faq",
-    "destination": "https://docs.awellhealth.com/docs/get-started/key-terms",
+    "destination": "https://docs.awellhealth.com/docs/administer-and-secure/faq",
     "permanent": true
   },
   {
