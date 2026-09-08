@@ -6,6 +6,7 @@ import { join } from 'path'
 import { Space } from '@/types/space.types'
 
 import { DocType } from '../../../types/doc.types'
+import { readMdx } from '../readMdx'
 
 const DOCS_PATH = join(
   process.cwd(),
@@ -13,8 +14,7 @@ const DOCS_PATH = join(
 )
 
 export const getDoc = (slug: string): DocType => {
-  const fullPath = join(DOCS_PATH, `${slug}.mdx`)
-  const fileContents = fs.readFileSync(fullPath, 'utf-8')
+  const fileContents = readMdx(DOCS_PATH, slug)
   const { data, content } = matter(fileContents)
 
   return { frontMatter: data, slug, content }
