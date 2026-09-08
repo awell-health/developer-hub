@@ -68,6 +68,9 @@ export const FAQ = ({
                     <Disclosure.Panel as="dd" className="mt-2">
                       <p
                         className="text-base text-slate-500 dark:text-slate-400"
+                        // Answers are authored in this repository (pages/*.tsx and content/*.mdx),
+                        // not user input. See docs/standards/sast-finding-remediation.md.
+                        // nosemgrep: AIK_react-dangerouslysetinnerhtml
                         dangerouslySetInnerHTML={{ __html: faq.answer }}
                       />
                     </Disclosure.Panel>

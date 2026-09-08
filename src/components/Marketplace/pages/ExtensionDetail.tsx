@@ -22,6 +22,10 @@ export const ExtensionDetail: FC<ExtensionDetailProps> = ({ extension }) => {
         <div
           id="content-wrapper"
           className="extension-detail w-3/4"
+          // htmlDocs is rendered by Awell's own extension-server from the awell-extensions
+          // repository's markdown (NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT); the route parameter only
+          // selects which extension. See docs/standards/sast-finding-remediation.md.
+          // nosemgrep: AIK_react-dangerouslysetinnerhtml
           dangerouslySetInnerHTML={{ __html: extension.htmlDocs }}
         />
         <div className="flex flex-col gap-6">
