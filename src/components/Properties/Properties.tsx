@@ -30,6 +30,9 @@ const Property: FC<{ property: Property }> = ({ property }) => {
         <dd className="w-full flex-none [&>:first-child]:mt-0 [&>:last-child]:mb-0">
           <p
             className="text-base mt-0 mb-0 text-slate-600 dark:text-slate-400"
+            // Descriptions come from <Properties> usages in this repository's content/*.mdx,
+            // not user input. See docs/standards/sast-finding-remediation.md.
+            // nosemgrep: AIK_react-dangerouslysetinnerhtml
             dangerouslySetInnerHTML={{ __html: property.description }}
           />
         </dd>

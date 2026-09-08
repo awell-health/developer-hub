@@ -28,7 +28,7 @@ Once you have an API key, simply add it to the header (`apiKey`) of your request
 curl -X POST \
   'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql' \
   -H "Content-Type: application/json" \
-  -H 'apiKey: YOUR_API_KEY' \
+  -H "apiKey: $AWELL_API_KEY" \
   -d '{"query":"query GetPublishedPathwayDefinitions{publishedPathwayDefinitions{publishedPathwayDefinitions{id title}}}"}'
 ```
 
