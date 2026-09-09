@@ -50,10 +50,18 @@ interface Iparams extends ParsedUrlQuery {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { extensionKey } = context.params as Iparams
 
+  // The route is a catch-all, but an extension key is a single identifier
+  // (`slack`, `calDotCom`). Anything else would become a path on the extensions
+  // API host, so refuse it here rather than forward it.
+  const key = extensionKey.join('/')
+  if (!/^[A-Za-z0-9_-]+$/.test(key)) {
+    return { notFound: true }
+  }
+
   const res = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT
-    }${extensionKey.toString()}` ?? ''
+    // Host is our own env-configured API; `key` passed the identifier check above.
+    // nosemgrep: AIK_js_ssrf
+    `${process.env.NEXT_PUBLIC_EXTENSIONS_API_ENDPOINT}${key}`
   )
   const extension = await res.json()
 

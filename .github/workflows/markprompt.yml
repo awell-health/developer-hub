@@ -15,15 +15,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Zip Docs
         run: zip data.zip `find . -name "*.mdx"`
 
       - name: Upload docs to MarkPrompt
+        # This curl *uploads* data.zip to Markprompt; nothing is downloaded or executed, so there is
+        # no artifact to checksum. Register: docs/standards/sast-finding-remediation.md
+        # nosemgrep: AIK_yaml_github-workflow-binary-integrity-check-missing
         run: |
-          curl https://api.markprompt.com/v1/train \
+          curl --fail-with-body https://api.markprompt.com/v1/train \
           -X POST \
-          -H "Authorization: Bearer ${{ env.MARKPROMPT_TOKEN }}" \
+          -H "Authorization: Bearer $MARKPROMPT_TOKEN" \
           -H "Content-Type: application/zip" \
           --data-binary @data.zip
