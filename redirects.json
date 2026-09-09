@@ -1145,11 +1145,6 @@
     "permanent": true
   },
   {
-    "source": "/awell-orchestration/playground",
-    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
-    "permanent": true
-  },
-  {
     "source": "/awell-score",
     "destination": "https://docs.awellhealth.com/api-reference",
     "permanent": true
@@ -1192,11 +1187,6 @@
   {
     "source": "/awell-score/docs/getting-started/endpoints",
     "destination": "https://docs.awellhealth.com/api-reference/score/awell-score-api",
-    "permanent": true
-  },
-  {
-    "source": "/awell-score/docs/getting-started/playground",
-    "destination": "https://docs.awellhealth.com/api-reference/tools/api-tools",
     "permanent": true
   },
   {
