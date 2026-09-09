@@ -33,10 +33,15 @@ export const useMakeRequest = (): UseMakeRequestHook => {
       pathString = pathParameters.join('/')
     }
 
+    // Runs in the visitor's browser: `request.endpoint` is one of the awell-score URLs in
+    // src/config/awell-score/endpoints, picked from the explorer's dropdown, and the request
+    // goes out from the user's own machine to the public awell-score API. There is no server
+    // here to forge a request from. Register: docs/standards/sast-finding-remediation.md
     const endpoint = `${request.endpoint}${pathString}`
 
     try {
       if (request.method === 'GET') {
+        // nosemgrep: AIK_js_ssrf
         const { data } = await axios.get(endpoint, {
           params: request.query,
         })
@@ -45,6 +50,7 @@ export const useMakeRequest = (): UseMakeRequestHook => {
       }
 
       if (request.method === 'POST') {
+        // nosemgrep: AIK_js_ssrf
         const { data } = await axios.post(endpoint, {
           ...request.body,
           meta: { source: 'developer_hub_explorer' },
