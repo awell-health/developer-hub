@@ -25,10 +25,11 @@ Anyone with an API key can make an API call on behalf of your tenant, such as cr
 Once you have an API key, simply add it to the header (`apiKey`) of your requests, as shown below.
 
 ```bash
+# Put your API key in the AWELL_API_KEY environment variable first.
 curl -X POST \
   'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql' \
   -H "Content-Type: application/json" \
-  -H "apiKey: $AWELL_API_KEY" \
+  -H "apiKey: ${AWELL_API_KEY:?set AWELL_API_KEY first}" \
   -d '{"query":"query GetPublishedPathwayDefinitions{publishedPathwayDefinitions{publishedPathwayDefinitions{id title}}}"}'
 ```
 
