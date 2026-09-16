@@ -135,6 +135,26 @@ The `tracks` table captures data about orchestrated tracks within care flows. It
 
 <TracksTableSpecs />
 
+#### Care flow events
+
+Table name: `careflow_events`.
+
+The `careflow_events` table is the event log of a care flow built in the new Studio (a "v2" care flow): one row per lifecycle moment the engine recorded on a node the author drew: the care flow itself, its tracks, steps, timers, decisions and milestones. `event_type` is `<subject>.<moment>` from a closed vocabulary (`careflow.started`, `step.completed`, `timer.fired`, `decision.evaluated`, `milestone.reached`, ...). Use it for timelines, durations between moments and outcome analysis instead of reconstructing moments from `activities`. Legacy care flows record these moments as data points and do not appear here.
+
+<Alert type="info">
+  <p className="mb-1">A care flow with rows in <code>careflow_events</code> is a v2 care flow. A care flow with none is legacy: use the <code>activities</code> table for its history.</p>
+</Alert>
+
+<CareflowEventsTableSpecs />
+
+#### Care flow data
+
+Table name: `careflow_data`.
+
+The `careflow_data` table holds the data a v2 care flow produces. Every time a form, decision, code block, API call, calculation or extension action completes, one row captures that producer's full set of outputs, keyed by the producing node (`node_id`). The store is append-only and scoped to the care flow instance, so the latest row per (`care_flow_id`, `node_id`) is the node's current output. The outputs stay together in the `outputs` JSON array (one element per output value); outputs the author bound to the patient record are also written to `patient_data`.
+
+<CareflowDataTableSpecs />
+
 ### Patient data
 
 #### Patients
@@ -163,4 +183,12 @@ These tables supersede the deprecated [`patient_profiles`](#patient-profiles) ta
 The `patient_data` table is the append-only audit log of patient profile and identifier values. Every change adds a new row, each carrying its **provenance** — how, when and by whom the value was set. Use `patient_data_latest` for the current value of each field, and `patient_data` when you need the full history of changes.
 
 <PatientDataTableSpecs />
+
+#### Patient events
+
+Table name: `patient_events`.
+
+The `patient_events` table is the log of clinical moments recorded for a patient ("appointment booked", "care gap flagged", a care-flow milestone reached): the events counterpart of `patient_data`. Where `careflow_events` is scoped to one care flow run, patient events belong to the **patient** across care flows and use an open, domain vocabulary (`event_type` = `<subject_type>.<moment>`). Every row carries its **provenance**. A patient deletion appears as one `status = 'deleted'` tombstone row keyed by the patient id.
+
+<PatientEventsTableSpecs />
 
