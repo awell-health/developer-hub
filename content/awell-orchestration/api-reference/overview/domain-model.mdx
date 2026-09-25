@@ -66,9 +66,37 @@ type Pathway {
                                   # this pathway is derived from
   start_date: SafeDate            # Start date in ISO8601 format
   status: PathwayStatus!          # Current status of the pathway
+  start_context: StartContext     # How and by whom the care flow was started
   [...]
 }
 ```
+
+#### Start context
+
+Every care flow records how it was started. The `start_context` field tells you *how* the
+care flow came to be (`source`) and *who or what* started it (`started_by`), which is useful
+for attribution, debugging triggered enrollments, and filtering test runs from real ones.
+
+```graphql
+type StartContext {
+  source: StartContextSource     # How the care flow was started
+  started_by: StartContextActor  # Who or what started the care flow
+  started_at: SafeDate           # When the care flow was started, in ISO8601 format
+}
+
+type StartContextSource {
+  type: StartContextSourceType   # One of: api / enrollment / trigger /
+                                 # webhook / migration / test / unknown
+}
+
+type StartContextActor {
+  kind: StartContextActorKind    # One of: human / system / integration
+}
+```
+
+<Alert type="info">
+  <p>We currently expose a high-level summary of the start context: the <code>source.type</code> (<em>how</em> the flow started), the <code>started_by.kind</code> (<em>who or what</em> started it), and <code>started_at</code>. More granular fields (such as the identifier of the trigger or webhook that started the flow, or the user who enrolled the patient) are not part of the public API at this time.</p>
+</Alert>
 
 See the [API Reference](/awell-orchestration/developer-tools/api/schema) for more information about the care flow type.
 
