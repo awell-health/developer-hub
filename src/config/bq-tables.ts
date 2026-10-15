@@ -788,3 +788,327 @@ export const tracks: BQTableType = [
     description: '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
   },
 ]
+
+export const careflow_events: BQTableType = [
+  {
+    property: 'id',
+    type: 'STRING',
+    description: 'Unique identifier of the event (one row per recorded moment). Never rewritten: the store is append-only.',
+  },
+  {
+    property: 'care_flow_id',
+    type: 'STRING',
+    description: 'Identifier of the care flow the event belongs to. Foreign key to the `id` column in the `care_flows` table.',
+  },
+  {
+    property: 'care_flow_definition_id',
+    type: 'STRING',
+    description: 'Identifier of the care flow definition the care flow was instantiated from. Refers to `definition_id` in the `care_flows` / `published_careflows` tables.',
+  },
+  {
+    property: 'release_id',
+    type: 'STRING',
+    description: 'Identifier of the published release the care flow runs on. Refers to `release_id` in the `published_careflows` table.',
+  },
+  {
+    property: 'event_type',
+    type: 'STRING',
+    description: 'The moment, as `<subject>.<moment>`: `careflow.started`, `careflow.completed`, `careflow.stopped`, `track.started`, `track.completed`, `step.started`, `step.completed`, `timer.started`, `timer.fired`, `decision.started`, `decision.evaluated`, `milestone.reached`. Looped tracks record `track.started` on the first iteration and `track.completed` at loop exit only.',
+  },
+  {
+    property: 'subject_type',
+    type: 'STRING',
+    description: 'The kind of node the event is a state change of: `careflow`, `track`, `step`, `timer`, `decision` or `milestone`.',
+  },
+  {
+    property: 'subject_definition_id',
+    type: 'STRING',
+    description: 'The node’s definition identifier, stable across every care flow instantiated from the same release. Matches `definition_id` in the `tracks` / `steps` tables for tracks and steps.',
+  },
+  {
+    property: 'subject_node_id',
+    type: 'STRING',
+    description: 'The navigation-graph node instance that produced the moment, when the engine had one.',
+  },
+  {
+    property: 'subject_label',
+    type: 'STRING',
+    description: 'Human-readable name of the node (track / step / timer / decision / milestone title, or the care flow title). Display only, never a key.',
+  },
+  {
+    property: 'occurred_at',
+    type: 'TIMESTAMP',
+    description: 'When the moment happened (UTC). Use this for timelines and durations.',
+  },
+  {
+    property: 'recorded_at',
+    type: 'TIMESTAMP',
+    description: 'When the store persisted the event (UTC).',
+  },
+  {
+    property: 'activity_id',
+    type: 'STRING',
+    description: 'Identifier of the activity whose execution produced the moment, when applicable. Foreign key to the `id` column in the `activities` table.',
+  },
+  {
+    property: 'session_id',
+    type: 'STRING',
+    description: 'Hosted-pages session in which the moment happened, when applicable. Foreign key to the `id` column in the `hosted_sessions` table.',
+  },
+  {
+    property: 'cause_initiated_by',
+    type: 'STRING',
+    description: 'Why / who initiated the moment, for `careflow.completed` and `careflow.stopped`: `eligibility`, `trigger` or `manual`. NULL for every other event type.',
+  },
+  {
+    property: 'cause_trigger_definition_id',
+    type: 'STRING',
+    description: 'The completion trigger that fired, when `cause_initiated_by` is `trigger`.',
+  },
+  {
+    property: 'cause_actor_id',
+    type: 'STRING',
+    description: 'The user or service account that completed / stopped the care flow, when `cause_initiated_by` is `manual`.',
+  },
+  {
+    property: 'cause_actor_name',
+    type: 'STRING',
+    description: 'Display name of that actor, when known.',
+  },
+  {
+    property: 'cause_reason',
+    type: 'STRING',
+    description: 'Free-text reason given for a manual completion / stop.',
+  },
+  {
+    property: 'cause_json',
+    type: 'JSON',
+    description: 'The full cause object (superset of the cause_* columns). NULL when the event has no explicit initiator.',
+  },
+  {
+    property: 'payload_iteration',
+    type: 'INT64',
+    description: 'For looped-track moments, the loop iteration the moment belongs to. NULL otherwise.',
+  },
+  {
+    property: 'payload_outcome',
+    type: 'JSON',
+    description: 'For `decision.evaluated`, the evaluation outcome (e.g. `{"matched": true, "matched_rule_ids": ["r_other"]}`). NULL otherwise.',
+  },
+  {
+    property: 'payload_json',
+    type: 'JSON',
+    description: 'The full payload object (superset of the payload_* columns). NULL when the event carries none.',
+  },
+  {
+    property: 'status',
+    type: 'STRING',
+    description: '[IRRELEVANT FOR ANALYSIS] Always `created`; the store is append-only.',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description: '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
+  },
+]
+
+export const careflow_data: BQTableType = [
+  {
+    property: 'id',
+    type: 'STRING',
+    description: 'Unique identifier of the record (one row per producer completion). Never rewritten: the store is append-only.',
+  },
+  {
+    property: 'care_flow_id',
+    type: 'STRING',
+    description: 'Identifier of the care flow the record belongs to. Foreign key to the `id` column in the `care_flows` table.',
+  },
+  {
+    property: 'care_flow_definition_id',
+    type: 'STRING',
+    description: 'Identifier of the care flow definition the care flow was instantiated from. Refers to `definition_id` in the `care_flows` / `published_careflows` tables.',
+  },
+  {
+    property: 'release_id',
+    type: 'STRING',
+    description: 'Identifier of the published release the care flow runs on. Refers to `release_id` in the `published_careflows` table.',
+  },
+  {
+    property: 'node_id',
+    type: 'STRING',
+    description: 'Definition identifier of the producing component (the form, decision, calculation, API call or extension action the author drew). Stable across every care flow instantiated from the same release.',
+  },
+  {
+    property: 'output_type',
+    type: 'STRING',
+    description: 'Which kind of producer wrote the record: `form`, `decision`, `code`, `api_call`, `calculation`, `extension` or `agent`.',
+  },
+  {
+    property: 'outputs',
+    type: 'JSON',
+    description: 'JSON array of the producer’s output values, one element per output, each with `data_point_definition_id`, `key`, `label`, `valueType`, `value`, `date` and, when bound to the patient record, `data_source_id`. Unnest with `JSON_QUERY_ARRAY(outputs)`.',
+  },
+  {
+    property: 'output_count',
+    type: 'INT64',
+    description: 'Number of elements in `outputs`.',
+  },
+  {
+    property: 'activity_output',
+    type: 'JSON',
+    description: 'The structured activity output the producer had in scope (e.g. the form response, the API-call response). NULL when none.',
+  },
+  {
+    property: 'occurred_at',
+    type: 'TIMESTAMP',
+    description: 'When the producer completed (UTC). The latest row per (`care_flow_id`, `node_id`) is the node’s current output.',
+  },
+  {
+    property: 'recorded_at',
+    type: 'TIMESTAMP',
+    description: 'When the store persisted the record (UTC).',
+  },
+  {
+    property: 'activity_id',
+    type: 'STRING',
+    description: 'Identifier of the activity whose completion produced the outputs. Foreign key to the `id` column in the `activities` table.',
+  },
+  {
+    property: 'session_id',
+    type: 'STRING',
+    description: 'Hosted-pages session in which the producer completed, when applicable. Foreign key to the `id` column in the `hosted_sessions` table.',
+  },
+  {
+    property: 'status',
+    type: 'STRING',
+    description: '[IRRELEVANT FOR ANALYSIS] Always `created`; the store is append-only.',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description: '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
+  },
+]
+
+export const patient_events: BQTableType = [
+  {
+    property: 'id',
+    type: 'STRING',
+    description: 'Unique identifier of the event (one row per recorded moment). For a deletion tombstone this is the patient id.',
+  },
+  {
+    property: 'patient_id',
+    type: 'STRING',
+    description: 'Identifier of the patient the event belongs to. Foreign key to the `id` column in the `patients` table.',
+  },
+  {
+    property: 'event_type',
+    type: 'STRING',
+    description: 'The moment, as `<subject_type>.<moment>` (e.g. `appointment.booked`, `care_gap.flagged`, or a milestone’s stable key). Open vocabulary defined by the producers. NULL on a deletion tombstone row.',
+  },
+  {
+    property: 'subject_type',
+    type: 'STRING',
+    description: 'The kind of domain thing the event is a state change of (e.g. `appointment`, `care_gap`).',
+  },
+  {
+    property: 'subject_definition_id',
+    type: 'STRING',
+    description: 'The subject’s stable definition identifier, when the producer had one (e.g. the milestone or event definition id).',
+  },
+  {
+    property: 'subject_label',
+    type: 'STRING',
+    description: 'Human-readable subject name, when known. Display only, never a key.',
+  },
+  {
+    property: 'occurred_at',
+    type: 'TIMESTAMP',
+    description: 'When the moment happened (UTC), the clinical time. Orders a patient’s timeline.',
+  },
+  {
+    property: 'recorded_at',
+    type: 'TIMESTAMP',
+    description: 'When the store persisted the event (UTC).',
+  },
+  {
+    property: 'data_source_id',
+    type: 'STRING',
+    description: 'The data source (bucket) the event belongs to, when the producer assigned one.',
+  },
+  {
+    property: 'care_flow_id',
+    type: 'STRING',
+    description: 'The care flow that produced the event (e.g. a milestone), when applicable. Foreign key to the `id` column in the `care_flows` table. NULL for events from ingestion or an external system of record.',
+  },
+  {
+    property: 'release_id',
+    type: 'STRING',
+    description: 'The published release of the producing care flow, when applicable.',
+  },
+  {
+    property: 'provenance_method',
+    type: 'STRING',
+    description: 'How the event came to exist: `lifecycle` (a care-flow milestone), `ingestion` (a data-ingestion endpoint), `manual`, `integration`, etc.',
+  },
+  {
+    property: 'provenance_actor',
+    type: 'STRING',
+    description: 'The user or service account that produced the event, when applicable.',
+  },
+  {
+    property: 'provenance_collected_at',
+    type: 'TIMESTAMP',
+    description: 'When the producer collected the event (UTC).',
+  },
+  {
+    property: 'provenance_careflow_id',
+    type: 'STRING',
+    description: 'Care flow that produced the event, when applicable.',
+  },
+  {
+    property: 'provenance_track_id',
+    type: 'STRING',
+    description: 'Track (definition) that produced the event, when applicable.',
+  },
+  {
+    property: 'provenance_step_id',
+    type: 'STRING',
+    description: 'Step (definition) that produced the event, when applicable.',
+  },
+  {
+    property: 'provenance_activity_id',
+    type: 'STRING',
+    description: 'Activity that produced the event, when applicable. Foreign key to the `id` column in the `activities` table.',
+  },
+  {
+    property: 'provenance_ingestion_id',
+    type: 'STRING',
+    description: 'Data-ingestion processing id, when the method is `ingestion` or `import`.',
+  },
+  {
+    property: 'provenance_ingestion_record_id',
+    type: 'STRING',
+    description: 'The ingested record the event was committed from, when the method is `ingestion`.',
+  },
+  {
+    property: 'provenance_json',
+    type: 'JSON',
+    description: 'The full provenance object (superset of the provenance_* columns).',
+  },
+  {
+    property: 'payload',
+    type: 'JSON',
+    description: 'Moment-specific facts that are part of the event itself. NULL when none.',
+  },
+  {
+    property: 'status',
+    type: 'STRING',
+    description: '`created` for an event; `deleted` for the single tombstone row written when the patient was deleted.',
+  },
+  {
+    property: 'last_synced_at',
+    type: 'TIMESTAMP',
+    description: '[IRRELEVANT FOR ANALYSIS] Recorded timestamp of importing data to BigQuery.',
+  },
+]
