@@ -57,6 +57,15 @@ query GetPathway($pathway_id: String!) {
       start_date
       complete_date # if care flow is completed
       stop_date # if care flow is stopped
+      start_context { # how and by whom the care flow was started
+        source {
+          type # api / enrollment / trigger / webhook / migration / test / unknown
+        }
+        started_by {
+          kind # human / system / integration
+        }
+        started_at # ISO8601 format
+      }
     }
   }
 }
